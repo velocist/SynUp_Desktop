@@ -7,8 +7,8 @@ using SynUp_Desktop.model.pojo;
 
 namespace SynUp_Desktop.model.dao
 {
-    class Connection
+    static class Connection
     {
-        private static synupEntities database = new synupEntities();
+        private static synupEntities database = new synupEntities();        
     }
 }
