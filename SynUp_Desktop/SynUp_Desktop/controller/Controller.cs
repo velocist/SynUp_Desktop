@@ -18,8 +18,9 @@ namespace SynUp_Desktop.controller
     public class Controller
     {
 
+        #region VARIABLES
         private static Service service;
-        private static frmAbout AboutView; 
+        private static frmAbout AboutView;
         private static frmStadistics StatisticsView;
         private static frmTasks TasksView;
         private static frmTeams TeamsView;
@@ -28,7 +29,7 @@ namespace SynUp_Desktop.controller
         private static frmMain MainView;
         private static frmTaskManagement TaskMgtView;
         private static frmTeamManagement TeamMgtView;
-
+        #endregion
 
         #region GETTERS AND SETTERS
         public static frmAbout AboutView1
