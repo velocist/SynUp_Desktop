@@ -60,6 +60,54 @@
     <Compile Include="controller\Controller.cs" />
     <Compile Include="model\dao\Connection.cs" />
     <Compile Include="model\pojo\AñadirModelo.cs" />
+    <Compile Include="model\pojo\Employee.cs">
+      <DependentUpon>ModelSynUp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\EmployeeLog.cs">
+      <DependentUpon>ModelSynUp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\Last.cs">
+      <DependentUpon>ModelSynUp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\ModelSynUp.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelSynUp.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\ModelSynUp.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelSynUp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\ModelSynUp.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelSynUp.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\Task.cs">
+      <DependentUpon>ModelSynUp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\TaskHistory.cs">
+      <DependentUpon>ModelSynUp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\TaskHistoryLog.cs">
+      <DependentUpon>ModelSynUp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\TaskLog.cs">
+      <DependentUpon>ModelSynUp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\Team.cs">
+      <DependentUpon>ModelSynUp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\TeamHistory.cs">
+      <DependentUpon>ModelSynUp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\TeamHistoryLog.cs">
+      <DependentUpon>ModelSynUp.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\TeamLog.cs">
+      <DependentUpon>ModelSynUp.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="views\frmAbout.cs">
@@ -152,6 +200,14 @@
     <EmbeddedResource Include="views\frmTeams.resx">
       <DependentUpon>frmTeams.cs</DependentUpon>
     </EmbeddedResource>
+    <EntityDeploy Include="model\pojo\ModelSynUp.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelSynUp.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="model\pojo\ModelSynUp.edmx.diagram">
+      <DependentUpon>ModelSynUp.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -165,7 +221,18 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="model\pojo\ModelSynUp.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelSynUp.edmx</DependentUpon>
+      <LastGenOutput>ModelSynUp.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="model\pojo\ModelSynUp.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelSynUp.edmx</DependentUpon>
+      <LastGenOutput>ModelSynUp.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

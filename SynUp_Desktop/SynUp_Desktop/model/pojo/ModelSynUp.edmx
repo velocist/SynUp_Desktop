@@ -1,0 +1,603 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="synupModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nif" Type="nchar" MaxLength="9" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="20" />
+          <Property Name="surname" Type="nchar" MaxLength="40" />
+          <Property Name="phone" Type="nchar" MaxLength="20" />
+          <Property Name="email" Type="nchar" MaxLength="30" />
+          <Property Name="adress" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="EmployeeLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_employee" Type="int" Nullable="false" />
+          <Property Name="operation" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="when" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Last">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_employeelog" Type="int" />
+          <Property Name="id_teamlog" Type="int" />
+          <Property Name="id_tasklog" Type="int" />
+          <Property Name="id_teamhistorylog" Type="int" />
+          <Property Name="id_taskhistorylog" Type="int" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_team" Type="int" />
+          <Property Name="code" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="priorityDate" Type="date" Nullable="false" />
+          <Property Name="description" Type="text" />
+          <Property Name="localization" Type="nchar" MaxLength="20" />
+          <Property Name="project" Type="nchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="TaskHistory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_employee" Type="int" Nullable="false" />
+          <Property Name="id_task" Type="int" Nullable="false" />
+          <Property Name="startDate" Type="date" />
+          <Property Name="finishDate" Type="date" />
+          <Property Name="comment" Type="text" />
+        </EntityType>
+        <EntityType Name="TaskHistoryLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_task" Type="int" Nullable="false" />
+          <Property Name="id_employee" Type="int" Nullable="false" />
+          <Property Name="operation" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="when" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TaskLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_task" Type="int" Nullable="false" />
+          <Property Name="operation" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="when" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="code" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="TeamHistory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_employee" Type="int" Nullable="false" />
+          <Property Name="id_team" Type="int" Nullable="false" />
+          <Property Name="entranceDay" Type="date" Nullable="false" />
+          <Property Name="exitDate" Type="date" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TeamHistoryLog">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="id_team" />
+            <PropertyRef Name="id_employee" />
+            <PropertyRef Name="operation" />
+            <PropertyRef Name="when" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_team" Type="int" Nullable="false" />
+          <Property Name="id_employee" Type="int" Nullable="false" />
+          <Property Name="operation" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="when" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeamLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_team" Type="int" Nullable="false" />
+          <Property Name="operation" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="when" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_idEmployee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="TeamHistory" Type="Self.TeamHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TeamHistory">
+              <PropertyRef Name="id_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idEmployee_TaskHistory">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="TaskHistory" Type="Self.TaskHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TaskHistory">
+              <PropertyRef Name="id_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idTask_TaskHistory">
+          <End Role="Task" Type="Self.Task" Multiplicity="1" />
+          <End Role="TaskHistory" Type="Self.TaskHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TaskHistory">
+              <PropertyRef Name="id_task" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idTeam">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="TeamHistory" Type="Self.TeamHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TeamHistory">
+              <PropertyRef Name="id_team" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idTeam_Task">
+          <End Role="Team" Type="Self.Team" Multiplicity="0..1" />
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="id_team" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="synupModelStoreContainer">
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeLog" EntityType="Self.EmployeeLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Last" EntityType="Self.Last" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Task" EntityType="Self.Task" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskHistory" EntityType="Self.TaskHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskHistoryLog" EntityType="Self.TaskHistoryLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskLog" EntityType="Self.TaskLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Team" EntityType="Self.Team" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeamHistory" EntityType="Self.TeamHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeamLog" EntityType="Self.TeamLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeamHistoryLog" EntityType="Self.TeamHistoryLog" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TeamHistoryLog].[id] AS [id], 
+    [TeamHistoryLog].[id_team] AS [id_team], 
+    [TeamHistoryLog].[id_employee] AS [id_employee], 
+    [TeamHistoryLog].[operation] AS [operation], 
+    [TeamHistoryLog].[when] AS [when]
+    FROM [dbo].[TeamHistoryLog] AS [TeamHistoryLog]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_idEmployee" Association="Self.FK_idEmployee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="TeamHistory" EntitySet="TeamHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idEmployee_TaskHistory" Association="Self.FK_idEmployee_TaskHistory">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="TaskHistory" EntitySet="TaskHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idTask_TaskHistory" Association="Self.FK_idTask_TaskHistory">
+            <End Role="Task" EntitySet="Task" />
+            <End Role="TaskHistory" EntitySet="TaskHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idTeam" Association="Self.FK_idTeam">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="TeamHistory" EntitySet="TeamHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idTeam_Task" Association="Self.FK_idTeam_Task">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="Task" EntitySet="Task" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="synupModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nif" Type="String" MaxLength="9" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="surname" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="adress" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="TeamHistories" Relationship="Self.FK_idEmployee" FromRole="Employee" ToRole="TeamHistory" />
+          <NavigationProperty Name="TaskHistories" Relationship="Self.FK_idEmployee_TaskHistory" FromRole="Employee" ToRole="TaskHistory" />
+        </EntityType>
+        <EntityType Name="EmployeeLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_employee" Type="Int32" Nullable="false" />
+          <Property Name="operation" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="when" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Last">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_employeelog" Type="Int32" />
+          <Property Name="id_teamlog" Type="Int32" />
+          <Property Name="id_tasklog" Type="Int32" />
+          <Property Name="id_teamhistorylog" Type="Int32" />
+          <Property Name="id_taskhistorylog" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_team" Type="Int32" />
+          <Property Name="code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="priorityDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="localization" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="project" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="TaskHistories" Relationship="Self.FK_idTask_TaskHistory" FromRole="Task" ToRole="TaskHistory" />
+          <NavigationProperty Name="Team" Relationship="Self.FK_idTeam_Task" FromRole="Task" ToRole="Team" />
+        </EntityType>
+        <EntityType Name="TaskHistory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_employee" Type="Int32" Nullable="false" />
+          <Property Name="id_task" Type="Int32" Nullable="false" />
+          <Property Name="startDate" Type="DateTime" Precision="0" />
+          <Property Name="finishDate" Type="DateTime" Precision="0" />
+          <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_idEmployee_TaskHistory" FromRole="TaskHistory" ToRole="Employee" />
+          <NavigationProperty Name="Task" Relationship="Self.FK_idTask_TaskHistory" FromRole="TaskHistory" ToRole="Task" />
+        </EntityType>
+        <EntityType Name="TaskHistoryLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_task" Type="Int32" Nullable="false" />
+          <Property Name="id_employee" Type="Int32" Nullable="false" />
+          <Property Name="operation" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="when" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="TaskLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_task" Type="Int32" Nullable="false" />
+          <Property Name="operation" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="when" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Tasks" Relationship="Self.FK_idTeam_Task" FromRole="Team" ToRole="Task" />
+          <NavigationProperty Name="TeamHistories" Relationship="Self.FK_idTeam" FromRole="Team" ToRole="TeamHistory" />
+        </EntityType>
+        <EntityType Name="TeamHistory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_employee" Type="Int32" Nullable="false" />
+          <Property Name="id_team" Type="Int32" Nullable="false" />
+          <Property Name="entranceDay" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="exitDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_idEmployee" FromRole="TeamHistory" ToRole="Employee" />
+          <NavigationProperty Name="Team" Relationship="Self.FK_idTeam" FromRole="TeamHistory" ToRole="Team" />
+        </EntityType>
+        <EntityType Name="TeamLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_team" Type="Int32" Nullable="false" />
+          <Property Name="operation" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="when" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="TeamHistoryLog">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="id_team" />
+            <PropertyRef Name="id_employee" />
+            <PropertyRef Name="operation" />
+            <PropertyRef Name="when" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_team" Type="Int32" Nullable="false" />
+          <Property Name="id_employee" Type="Int32" Nullable="false" />
+          <Property Name="operation" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="when" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <Association Name="FK_idEmployee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="TeamHistory" Type="Self.TeamHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TeamHistory">
+              <PropertyRef Name="id_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idEmployee_TaskHistory">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="TaskHistory" Type="Self.TaskHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TaskHistory">
+              <PropertyRef Name="id_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idTask_TaskHistory">
+          <End Role="Task" Type="Self.Task" Multiplicity="1" />
+          <End Role="TaskHistory" Type="Self.TaskHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TaskHistory">
+              <PropertyRef Name="id_task" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idTeam_Task">
+          <End Role="Team" Type="Self.Team" Multiplicity="0..1" />
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="id_team" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_idTeam">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="TeamHistory" Type="Self.TeamHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TeamHistory">
+              <PropertyRef Name="id_team" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="synupEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="EmployeeLogs" EntityType="Self.EmployeeLog" />
+          <EntitySet Name="Lasts" EntityType="Self.Last" />
+          <EntitySet Name="Tasks" EntityType="Self.Task" />
+          <EntitySet Name="TaskHistories" EntityType="Self.TaskHistory" />
+          <EntitySet Name="TaskHistoryLogs" EntityType="Self.TaskHistoryLog" />
+          <EntitySet Name="TaskLogs" EntityType="Self.TaskLog" />
+          <EntitySet Name="Teams" EntityType="Self.Team" />
+          <EntitySet Name="TeamHistories" EntityType="Self.TeamHistory" />
+          <EntitySet Name="TeamLogs" EntityType="Self.TeamLog" />
+          <EntitySet Name="TeamHistoryLogs" EntityType="Self.TeamHistoryLog" />
+          <AssociationSet Name="FK_idEmployee" Association="Self.FK_idEmployee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="TeamHistory" EntitySet="TeamHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idEmployee_TaskHistory" Association="Self.FK_idEmployee_TaskHistory">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="TaskHistory" EntitySet="TaskHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idTask_TaskHistory" Association="Self.FK_idTask_TaskHistory">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="TaskHistory" EntitySet="TaskHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idTeam_Task" Association="Self.FK_idTeam_Task">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="Task" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_idTeam" Association="Self.FK_idTeam">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="TeamHistory" EntitySet="TeamHistories" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="synupModelStoreContainer" CdmEntityContainer="synupEntities">
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="synupModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nif" ColumnName="nif" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="adress" ColumnName="adress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeLogs">
+            <EntityTypeMapping TypeName="synupModel.EmployeeLog">
+              <MappingFragment StoreEntitySet="EmployeeLog">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_employee" ColumnName="id_employee" />
+                <ScalarProperty Name="operation" ColumnName="operation" />
+                <ScalarProperty Name="when" ColumnName="when" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lasts">
+            <EntityTypeMapping TypeName="synupModel.Last">
+              <MappingFragment StoreEntitySet="Last">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_employeelog" ColumnName="id_employeelog" />
+                <ScalarProperty Name="id_teamlog" ColumnName="id_teamlog" />
+                <ScalarProperty Name="id_tasklog" ColumnName="id_tasklog" />
+                <ScalarProperty Name="id_teamhistorylog" ColumnName="id_teamhistorylog" />
+                <ScalarProperty Name="id_taskhistorylog" ColumnName="id_taskhistorylog" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="synupModel.Task">
+              <MappingFragment StoreEntitySet="Task">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_team" ColumnName="id_team" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="priorityDate" ColumnName="priorityDate" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="localization" ColumnName="localization" />
+                <ScalarProperty Name="project" ColumnName="project" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskHistories">
+            <EntityTypeMapping TypeName="synupModel.TaskHistory">
+              <MappingFragment StoreEntitySet="TaskHistory">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_employee" ColumnName="id_employee" />
+                <ScalarProperty Name="id_task" ColumnName="id_task" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="finishDate" ColumnName="finishDate" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskHistoryLogs">
+            <EntityTypeMapping TypeName="synupModel.TaskHistoryLog">
+              <MappingFragment StoreEntitySet="TaskHistoryLog">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_task" ColumnName="id_task" />
+                <ScalarProperty Name="id_employee" ColumnName="id_employee" />
+                <ScalarProperty Name="operation" ColumnName="operation" />
+                <ScalarProperty Name="when" ColumnName="when" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskLogs">
+            <EntityTypeMapping TypeName="synupModel.TaskLog">
+              <MappingFragment StoreEntitySet="TaskLog">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_task" ColumnName="id_task" />
+                <ScalarProperty Name="operation" ColumnName="operation" />
+                <ScalarProperty Name="when" ColumnName="when" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teams">
+            <EntityTypeMapping TypeName="synupModel.Team">
+              <MappingFragment StoreEntitySet="Team">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeamHistories">
+            <EntityTypeMapping TypeName="synupModel.TeamHistory">
+              <MappingFragment StoreEntitySet="TeamHistory">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_employee" ColumnName="id_employee" />
+                <ScalarProperty Name="id_team" ColumnName="id_team" />
+                <ScalarProperty Name="entranceDay" ColumnName="entranceDay" />
+                <ScalarProperty Name="exitDate" ColumnName="exitDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeamLogs">
+            <EntityTypeMapping TypeName="synupModel.TeamLog">
+              <MappingFragment StoreEntitySet="TeamLog">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_team" ColumnName="id_team" />
+                <ScalarProperty Name="operation" ColumnName="operation" />
+                <ScalarProperty Name="when" ColumnName="when" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeamHistoryLogs">
+            <EntityTypeMapping TypeName="synupModel.TeamHistoryLog">
+              <MappingFragment StoreEntitySet="TeamHistoryLog">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_team" ColumnName="id_team" />
+                <ScalarProperty Name="id_employee" ColumnName="id_employee" />
+                <ScalarProperty Name="operation" ColumnName="operation" />
+                <ScalarProperty Name="when" ColumnName="when" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
