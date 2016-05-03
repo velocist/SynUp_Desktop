@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SynUp_Desktop.service
 {
-    class Service
+    public class Service
     {
     }
 }

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Views
+namespace SynUp_Desktop.views
 {
     public partial class frmEmployeeManagement : Form
     {
