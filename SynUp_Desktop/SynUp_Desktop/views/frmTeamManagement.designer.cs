@@ -1,4 +1,4 @@
-﻿namespace Views
+﻿namespace SynUp_Desktop.views
 {
     partial class frmTeamManagement
     {
