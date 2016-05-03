@@ -8,5 +8,6 @@ namespace SynUp_Desktop.model.dao
 {
     class Connection
     {
+
     }
 }

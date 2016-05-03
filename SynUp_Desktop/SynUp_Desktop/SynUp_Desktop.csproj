@@ -59,7 +59,7 @@
   <ItemGroup>
     <Compile Include="controller\Controller.cs" />
     <Compile Include="model\dao\Connection.cs" />
-    <Compile Include="model\pojo\AñadirModelo.cs" />
+    <Compile Include="service\Service.cs" />
     <Compile Include="model\pojo\Employee.cs">
       <DependentUpon>ModelSynUp.tt</DependentUpon>
     </Compile>

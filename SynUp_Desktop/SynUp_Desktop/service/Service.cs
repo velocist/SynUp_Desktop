@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SynUp_Desktop.model.pojo
+namespace SynUp_Desktop.service
 {
-    class AñadirModelo
+    class Service
     {
     }
 }
