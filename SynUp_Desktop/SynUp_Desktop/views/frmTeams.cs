@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SynUp_Desktop.controller;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,21 @@ namespace SynUp_Desktop.views
 {
     public partial class frmTeams : Form
     {
+        private static Controller controller;
+
+        public static Controller Controller
+        {
+            get
+            {
+                return controller;
+            }
+
+            set
+            {
+                controller = value;
+            }
+        }
+
         public frmTeams()
         {
             InitializeComponent();

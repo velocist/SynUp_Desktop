@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace SynUp_Desktop.controller
 {
-    /// <summary>
-    /// Controller class that handles the views and the service that will acccess the object of data access. 
-    /// </summary>
-    /// <Author>Cristina Caballero</Author>
+    ///<summary>
+    ///Controller class that handles the views and the service that will acccess the object of data access. 
+    ///</summary>
+    ///<Author>Cristina Caballero</Author>
     ///<Version>0.01</Version>
     ///<Date>03/05/2016_1819</Date>
     public class Controller

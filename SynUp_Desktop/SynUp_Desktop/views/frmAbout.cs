@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SynUp_Desktop.controller;
 
 namespace SynUp_Desktop.views
 {
@@ -15,6 +16,21 @@ namespace SynUp_Desktop.views
         public frmAbout()
         {
             InitializeComponent();
+        }
+
+        private static Controller controller;
+
+        public static Controller Controller
+        {
+            get
+            {
+                return controller;
+            }
+
+            set
+            {
+                controller = value;
+            }
         }
     }
 }
