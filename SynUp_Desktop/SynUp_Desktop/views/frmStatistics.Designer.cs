@@ -1,6 +1,6 @@
 ﻿namespace SynUp_Desktop.views
 {
-    partial class frmStadistics
+    partial class frmStatistics
     {
         /// <summary>
         /// Required designer variable.

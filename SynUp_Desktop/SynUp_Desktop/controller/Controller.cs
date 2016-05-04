@@ -9,30 +9,30 @@ using System.Threading.Tasks;
 
 namespace SynUp_Desktop.controller
 {
-    ///<summary>
-    ///Controller class that handles the views and the service that will acccess the object of data access. 
-    ///</summary>
-    ///<Author>Cristina Caballero</Author>
+    /// <summary>
+    /// Controller class that handles the views and the service that will acccess the object of data access. 
+    /// </summary>
+    /// <Author>Cristina Caballero</Author>
     ///<Version>0.01</Version>
     ///<Date>03/05/2016_1819</Date>
     public class Controller
     {
 
         #region VARIABLES
-        private static Service service;
-        private static frmAbout AboutView;
-        private static frmStadistics StatisticsView;
-        private static frmTasks TasksView;
-        private static frmTeams TeamsView;
-        private static frmEmployeeManagement EmployeeMgtView;
-        private static frmEmployees EmployeeView;
-        private static frmMain MainView;
-        private static frmTaskManagement TaskMgtView;
-        private static frmTeamManagement TeamMgtView;
+        private Service service;
+        private frmAbout AboutView;
+        private frmStatistics StatisticsView;
+        private frmTasks TasksView;
+        private frmTeams TeamsView;
+        private frmEmployeeManagement EmployeeMgtView;
+        private frmEmployees EmployeeView;
+        private frmMain MainView;
+        private frmTaskManagement TaskMgtView;
+        private frmTeamManagement TeamMgtView;
         #endregion
 
         #region GETTERS AND SETTERS
-        public static frmAbout AboutView1
+        public frmAbout AboutView1
         {
             get
             {
@@ -45,7 +45,7 @@ namespace SynUp_Desktop.controller
             }
         }
 
-        public static frmStadistics StatisticsView1
+        public frmStatistics StatisticsView1
         {
             get
             {
@@ -58,7 +58,7 @@ namespace SynUp_Desktop.controller
             }
         }
 
-        public static frmTasks TasksView1
+        public frmTasks TasksView1
         {
             get
             {
@@ -71,7 +71,7 @@ namespace SynUp_Desktop.controller
             }
         }
 
-        public static frmTeams TeamsView1
+        public frmTeams TeamsView1
         {
             get
             {
@@ -84,7 +84,7 @@ namespace SynUp_Desktop.controller
             }
         }
 
-        public static frmEmployeeManagement EmployeeMgtView1
+        public frmEmployeeManagement EmployeeMgtView1
         {
             get
             {
@@ -97,7 +97,7 @@ namespace SynUp_Desktop.controller
             }
         }
 
-        public static frmEmployees EmployeeView1
+        public frmEmployees EmployeeView1
         {
             get
             {
@@ -110,7 +110,7 @@ namespace SynUp_Desktop.controller
             }
         }
 
-        public static frmMain MainView1
+        public frmMain MainView1
         {
             get
             {
@@ -123,7 +123,7 @@ namespace SynUp_Desktop.controller
             }
         }
 
-        public static frmTaskManagement TaskMgtView1
+        public frmTaskManagement TaskMgtView1
         {
             get
             {
@@ -136,7 +136,7 @@ namespace SynUp_Desktop.controller
             }
         }
 
-        public static frmTeamManagement TeamMgtView1
+        public frmTeamManagement TeamMgtView1
         {
             get
             {
@@ -149,7 +149,7 @@ namespace SynUp_Desktop.controller
             }
         }
 
-        public static Service Service
+        public Service Service
         {
             get
             {

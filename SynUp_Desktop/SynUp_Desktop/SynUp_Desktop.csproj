@@ -134,11 +134,11 @@
     <Compile Include="views\frmMain.designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="views\frmStadistics.cs">
+    <Compile Include="views\frmStatistics.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="views\frmStadistics.Designer.cs">
-      <DependentUpon>frmStadistics.cs</DependentUpon>
+    <Compile Include="views\frmStatistics.Designer.cs">
+      <DependentUpon>frmStatistics.cs</DependentUpon>
     </Compile>
     <Compile Include="views\frmTaskManagement.cs">
       <SubType>Form</SubType>
@@ -185,8 +185,8 @@
     <EmbeddedResource Include="views\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="views\frmStadistics.resx">
-      <DependentUpon>frmStadistics.cs</DependentUpon>
+    <EmbeddedResource Include="views\frmStatistics.resx">
+      <DependentUpon>frmStatistics.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\frmTaskManagement.resx">
       <DependentUpon>frmTaskManagement.cs</DependentUpon>

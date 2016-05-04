@@ -13,9 +13,9 @@ namespace SynUp_Desktop.views
 {
     public partial class frmTasks : Form
     {
-        private static Controller controller;
+        private Controller controller;
 
-        public static Controller Controller
+        public Controller Controller
         {
             get
             {

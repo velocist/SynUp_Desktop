@@ -18,9 +18,9 @@ namespace SynUp_Desktop.views
             InitializeComponent();
         }
 
-        private static Controller controller;
+        private Controller controller;
 
-        public static Controller Controller
+        public Controller Controller
         {
             get
             {

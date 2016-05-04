@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace SynUp_Desktop.views
 {
-    public partial class frmEmployeeManagement : Form
+    public partial class frmStatistics : Form
     {
         private Controller controller;
 
@@ -27,7 +27,7 @@ namespace SynUp_Desktop.views
                 controller = value;
             }
         }
-        public frmEmployeeManagement()
+        public frmStatistics()
         {
             InitializeComponent();
         }
