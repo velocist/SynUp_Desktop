@@ -31,6 +31,22 @@ namespace SynUp_Desktop.views
         {
             InitializeComponent();
         }
-        
+
+        /// <summary>
+        /// Shows the management view window of the tasks.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnManagementTasks_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Controller.TaskMgtView1.ShowDialog();
+            this.Show();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
     }
 }

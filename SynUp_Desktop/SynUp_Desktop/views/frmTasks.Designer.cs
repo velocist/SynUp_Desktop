@@ -63,6 +63,7 @@
             this.btnBack.TabIndex = 3;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // btnManagementTasks
             // 
@@ -72,14 +73,15 @@
             this.btnManagementTasks.TabIndex = 2;
             this.btnManagementTasks.Text = "Management";
             this.btnManagementTasks.UseVisualStyleBackColor = true;
+            this.btnManagementTasks.Click += new System.EventHandler(this.btnManagementTasks_Click);
             // 
             // dgTasks
             // 
             this.dgTasks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgTasks.Location = new System.Drawing.Point(9, 51);
+            this.dgTasks.Name = "dgTasks";
             this.dgTasks.Size = new System.Drawing.Size(585, 360);
             this.dgTasks.TabIndex = 0;
-            this.dgTasks.Name = "dgTasks";
             // 
             // gbContainer
             // 

@@ -73,6 +73,7 @@
             this.btnTasks.TabIndex = 3;
             this.btnTasks.Text = "Tasks";
             this.btnTasks.UseVisualStyleBackColor = true;
+            this.btnTasks.Click += new System.EventHandler(this.btnTasks_Click);
             // 
             // btnExit
             // 

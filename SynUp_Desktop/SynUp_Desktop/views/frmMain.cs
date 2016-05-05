@@ -31,5 +31,17 @@ namespace SynUp_Desktop.views
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Opens the tasks view window.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnTasks_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Controller.TasksView1.ShowDialog();
+            this.Show();
+        }
     }
 }
