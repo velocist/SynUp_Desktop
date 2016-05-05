@@ -28,81 +28,97 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.lblFilter = new System.Windows.Forms.Label();
+            this.cmbFilter = new System.Windows.Forms.ComboBox();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.btnManagementTeams = new System.Windows.Forms.Button();
+            this.dgTeams = new System.Windows.Forms.DataGridView();
+            this.gbContainer = new System.Windows.Forms.GroupBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dgTeams)).BeginInit();
+            this.gbContainer.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // lblFilter
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(29, 13);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Filtro";
+            this.lblFilter.AutoSize = true;
+            this.lblFilter.Location = new System.Drawing.Point(6, 27);
+            this.lblFilter.Name = "lblFilter";
+            this.lblFilter.Size = new System.Drawing.Size(29, 13);
+            this.lblFilter.TabIndex = 0;
+            this.lblFilter.Text = "Filter";
             // 
-            // comboBox1
+            // cmbFilter
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(47, 28);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(152, 21);
-            this.comboBox1.TabIndex = 9;
+            this.cmbFilter.FormattingEnabled = true;
+            this.cmbFilter.Location = new System.Drawing.Point(41, 24);
+            this.cmbFilter.Name = "cmbFilter";
+            this.cmbFilter.Size = new System.Drawing.Size(152, 21);
+            this.cmbFilter.TabIndex = 1;
             // 
-            // button2
+            // btnBack
             // 
-            this.button2.Location = new System.Drawing.Point(388, 398);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Back";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnBack.Location = new System.Drawing.Point(519, 418);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(75, 23);
+            this.btnBack.TabIndex = 3;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnManagementTasks
             // 
-            this.button1.Location = new System.Drawing.Point(12, 398);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(86, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Management";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnManagementTeams.Location = new System.Drawing.Point(6, 418);
+            this.btnManagementTeams.Name = "btnManagementTeams";
+            this.btnManagementTeams.Size = new System.Drawing.Size(86, 23);
+            this.btnManagementTeams.TabIndex = 2;
+            this.btnManagementTeams.Text = "Management";
+            this.btnManagementTeams.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // dgTasks
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 55);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(451, 337);
-            this.dataGridView1.TabIndex = 6;
+            this.dgTeams.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgTeams.Location = new System.Drawing.Point(9, 51);
+            this.dgTeams.Size = new System.Drawing.Size(585, 360);
+            this.dgTeams.TabIndex = 0;
+            this.dgTeams.Name = "dgTeams";
             // 
-            // frmTeams
+            // gbContainer
+            // 
+            this.gbContainer.Controls.Add(this.lblFilter);
+            this.gbContainer.Controls.Add(this.btnBack);
+            this.gbContainer.Controls.Add(this.cmbFilter);
+            this.gbContainer.Controls.Add(this.btnManagementTeams);
+            this.gbContainer.Controls.Add(this.dgTeams);
+            this.gbContainer.Location = new System.Drawing.Point(12, 12);
+            this.gbContainer.Name = "gbContainer";
+            this.gbContainer.Size = new System.Drawing.Size(600, 450);
+            this.gbContainer.TabIndex = 0;
+            this.gbContainer.TabStop = false;
+            this.gbContainer.Text = "List of Teams";
+            // 
+            // frmTasks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(475, 427);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(624, 471);
+            this.Controls.Add(this.gbContainer);
+            this.MinimumSize = new System.Drawing.Size(640, 510);
             this.Name = "frmTeams";
-            this.Text = "frmTeams";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "SynUp - Teams";
+            ((System.ComponentModel.ISupportInitialize)(this.dgTeams)).EndInit();
+            this.gbContainer.ResumeLayout(false);
+            this.gbContainer.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label lblFilter;
+        private System.Windows.Forms.ComboBox cmbFilter;
+        private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Button btnManagementTeams;
+        private System.Windows.Forms.DataGridView dgTeams;
+        private System.Windows.Forms.GroupBox gbContainer;
     }
 }

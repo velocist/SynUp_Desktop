@@ -28,92 +28,94 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.btnEmployees = new System.Windows.Forms.Button();
+            this.btnTeams = new System.Windows.Forms.Button();
+            this.btnTasks = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.btnStadistics = new System.Windows.Forms.Button();
+            this.btnAbout = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // lblTitle
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(52, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "SynUp Application";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
+            this.lblTitle.Location = new System.Drawing.Point(6, 9);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(253, 31);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "SynUp Application";
             // 
-            // button1
+            // btnEmployees
             // 
-            this.button1.Location = new System.Drawing.Point(12, 87);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(174, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Employees";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnEmployees.Location = new System.Drawing.Point(12, 87);
+            this.btnEmployees.Name = "btnEmployees";
+            this.btnEmployees.Size = new System.Drawing.Size(240, 23);
+            this.btnEmployees.TabIndex = 1;
+            this.btnEmployees.Text = "Employees";
+            this.btnEmployees.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnTeams
             // 
-            this.button2.Location = new System.Drawing.Point(12, 116);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(174, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Teams";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnTeams.Location = new System.Drawing.Point(12, 116);
+            this.btnTeams.Name = "btnTeams";
+            this.btnTeams.Size = new System.Drawing.Size(240, 23);
+            this.btnTeams.TabIndex = 2;
+            this.btnTeams.Text = "Teams";
+            this.btnTeams.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnTasks
             // 
-            this.button3.Location = new System.Drawing.Point(12, 145);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(174, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Tasks";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnTasks.Location = new System.Drawing.Point(12, 145);
+            this.btnTasks.Name = "btnTasks";
+            this.btnTasks.Size = new System.Drawing.Size(240, 23);
+            this.btnTasks.TabIndex = 3;
+            this.btnTasks.Text = "Tasks";
+            this.btnTasks.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btnExit
             // 
-            this.button4.Location = new System.Drawing.Point(12, 310);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(174, 23);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Exit";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnExit.Location = new System.Drawing.Point(12, 310);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(240, 23);
+            this.btnExit.TabIndex = 6;
+            this.btnExit.Text = "Exit";
+            this.btnExit.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // btnStadistics
             // 
-            this.button5.Location = new System.Drawing.Point(13, 175);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(174, 23);
-            this.button5.TabIndex = 5;
-            this.button5.Text = "Stadistics";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnStadistics.Location = new System.Drawing.Point(13, 175);
+            this.btnStadistics.Name = "btnStadistics";
+            this.btnStadistics.Size = new System.Drawing.Size(240, 23);
+            this.btnStadistics.TabIndex = 4;
+            this.btnStadistics.Text = "Stadistics";
+            this.btnStadistics.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // btnAbout
             // 
-            this.button6.Location = new System.Drawing.Point(12, 281);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(174, 23);
-            this.button6.TabIndex = 6;
-            this.button6.Text = "About";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnAbout.Location = new System.Drawing.Point(12, 281);
+            this.btnAbout.Name = "btnAbout";
+            this.btnAbout.Size = new System.Drawing.Size(240, 23);
+            this.btnAbout.TabIndex = 5;
+            this.btnAbout.Text = "About";
+            this.btnAbout.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(199, 345);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(264, 345);
+            this.Controls.Add(this.btnAbout);
+            this.Controls.Add(this.btnStadistics);
+            this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.btnTasks);
+            this.Controls.Add(this.btnTeams);
+            this.Controls.Add(this.btnEmployees);
+            this.Controls.Add(this.lblTitle);
             this.Name = "frmMain";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "SynUp - Main Menu";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -121,13 +123,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Button btnEmployees;
+        private System.Windows.Forms.Button btnTeams;
+        private System.Windows.Forms.Button btnTasks;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnStadistics;
+        private System.Windows.Forms.Button btnAbout;
     }
 }
 

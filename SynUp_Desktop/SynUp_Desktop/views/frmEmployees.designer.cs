@@ -28,106 +28,96 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.menuStrip1.SuspendLayout();
+            this.dgEmployees = new System.Windows.Forms.DataGridView();
+            this.btnManagementEmployee = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.cmbFilter = new System.Windows.Forms.ComboBox();
+            this.lblFilter = new System.Windows.Forms.Label();
+            this.gbContainer = new System.Windows.Forms.GroupBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dgEmployees)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // lblFilter
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 55);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(451, 337);
-            this.dataGridView1.TabIndex = 0;
+            this.lblFilter.AutoSize = true;
+            this.lblFilter.Location = new System.Drawing.Point(6, 27);
+            this.lblFilter.Name = "lblFilter";
+            this.lblFilter.Size = new System.Drawing.Size(29, 13);
+            this.lblFilter.TabIndex = 0;
+            this.lblFilter.Text = "Filter";
             // 
-            // button1
+            // cmbFilter
             // 
-            this.button1.Location = new System.Drawing.Point(13, 398);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(86, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Management";
-            this.button1.UseVisualStyleBackColor = true;
+            this.cmbFilter.FormattingEnabled = true;
+            this.cmbFilter.Location = new System.Drawing.Point(41, 24);
+            this.cmbFilter.Name = "cmbFilter";
+            this.cmbFilter.Size = new System.Drawing.Size(152, 21);
+            this.cmbFilter.TabIndex = 1;
             // 
-            // button2
+            // btnBack
             // 
-            this.button2.Location = new System.Drawing.Point(389, 398);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Back";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnBack.Location = new System.Drawing.Point(519, 418);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(75, 23);
+            this.btnBack.TabIndex = 3;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = true;
             // 
-            // menuStrip1
+            // btnManagementTasks
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(476, 24);
-            this.menuStrip1.TabIndex = 3;
-            this.menuStrip1.Text = "menuStrip1";
+            this.btnManagementEmployee.Location = new System.Drawing.Point(6, 418);
+            this.btnManagementEmployee.Name = "btnManagementEmployee";
+            this.btnManagementEmployee.Size = new System.Drawing.Size(86, 23);
+            this.btnManagementEmployee.TabIndex = 2;
+            this.btnManagementEmployee.Text = "Management";
+            this.btnManagementEmployee.UseVisualStyleBackColor = true;
             // 
-            // menuToolStripMenuItem
+            // dgTasks
             // 
-            this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
-            this.menuToolStripMenuItem.Text = "Menu";
+            this.dgEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgEmployees.Location = new System.Drawing.Point(9, 51);
+            this.dgEmployees.Size = new System.Drawing.Size(585, 360);
+            this.dgEmployees.TabIndex = 0;
+            this.dgEmployees.Name = "dgEmployees";
             // 
-            // comboBox1
+            // gbContainer
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(48, 28);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(152, 21);
-            this.comboBox1.TabIndex = 4;
+            this.gbContainer.Controls.Add(this.lblFilter);
+            this.gbContainer.Controls.Add(this.btnBack);
+            this.gbContainer.Controls.Add(this.cmbFilter);
+            this.gbContainer.Controls.Add(this.btnManagementEmployee);
+            this.gbContainer.Controls.Add(this.dgEmployees);
+            this.gbContainer.Location = new System.Drawing.Point(12, 12);
+            this.gbContainer.Name = "gbContainer";
+            this.gbContainer.Size = new System.Drawing.Size(600, 450);
+            this.gbContainer.TabIndex = 0;
+            this.gbContainer.TabStop = false;
+            this.gbContainer.Text = "List of Employees";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(29, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Filtro";
-            // 
-            // frmEmployees
+            // frmTasks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(476, 433);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
-            this.Name = "frmEmployees";
-            this.Text = "frmEmployees";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.ClientSize = new System.Drawing.Size(624, 471);
+            this.Controls.Add(this.gbContainer);
+            this.MinimumSize = new System.Drawing.Size(640, 510);
+            this.Name = "frmEmployee";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "SynUp - Employees";
+            ((System.ComponentModel.ISupportInitialize)(this.dgEmployees)).EndInit();
+            this.gbContainer.ResumeLayout(false);
+            this.gbContainer.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView dgEmployees;
+        private System.Windows.Forms.Button btnManagementEmployee;
+        private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.ComboBox cmbFilter;
+        private System.Windows.Forms.Label lblFilter;
+        private System.Windows.Forms.GroupBox gbContainer;
     }
 }
