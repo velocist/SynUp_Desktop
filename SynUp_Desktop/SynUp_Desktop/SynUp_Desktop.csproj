@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SynUp_Desktop</RootNamespace>
     <AssemblyName>SynUp_Desktop</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -59,55 +60,55 @@
   <ItemGroup>
     <Compile Include="controller\Controller.cs" />
     <Compile Include="model\dao\Connection.cs" />
-    <Compile Include="service\Service.cs" />
     <Compile Include="model\pojo\Employee.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\EmployeeLog.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\Last.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="model\pojo\ModelSynUp.Context.cs">
+    <Compile Include="model\pojo\SynupModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelSynUp.Context.tt</DependentUpon>
+      <DependentUpon>SynupModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="model\pojo\ModelSynUp.cs">
+    <Compile Include="model\pojo\SynupModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="model\pojo\ModelSynUp.Designer.cs">
+    <Compile Include="model\pojo\SynupModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelSynUp.edmx</DependentUpon>
+      <DependentUpon>SynupModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\Task.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\TaskHistory.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\TaskHistoryLog.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\TaskLog.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\Team.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\TeamHistory.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\TeamHistoryLog.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\TeamLog.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="service\Service.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="views\frmAbout.cs">
@@ -172,6 +173,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="views\frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
@@ -200,12 +202,12 @@
     <EmbeddedResource Include="views\frmTeams.resx">
       <DependentUpon>frmTeams.cs</DependentUpon>
     </EmbeddedResource>
-    <EntityDeploy Include="model\pojo\ModelSynUp.edmx">
+    <EntityDeploy Include="model\pojo\SynupModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelSynUp.Designer.cs</LastGenOutput>
+      <LastGenOutput>SynupModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="model\pojo\ModelSynUp.edmx.diagram">
-      <DependentUpon>ModelSynUp.edmx</DependentUpon>
+    <None Include="model\pojo\SynupModel.edmx.diagram">
+      <DependentUpon>SynupModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -222,19 +224,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="model\pojo\ModelSynUp.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelSynUp.edmx</DependentUpon>
-      <LastGenOutput>ModelSynUp.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="model\pojo\ModelSynUp.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelSynUp.edmx</DependentUpon>
-      <LastGenOutput>ModelSynUp.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="model\pojo\SynupModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SynupModel.edmx</DependentUpon>
+      <LastGenOutput>SynupModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="model\pojo\SynupModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SynupModel.edmx</DependentUpon>
+      <LastGenOutput>SynupModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

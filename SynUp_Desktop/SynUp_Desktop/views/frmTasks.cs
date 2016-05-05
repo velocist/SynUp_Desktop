@@ -31,5 +31,6 @@ namespace SynUp_Desktop.views
         {
             InitializeComponent();
         }
+        
     }
 }

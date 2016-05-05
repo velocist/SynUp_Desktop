@@ -14,16 +14,15 @@ namespace SynUp_Desktop.service.Tests
         [TestMethod()]
         public void createTaskTest()
         {
-            /*
+            
             bool resultat = false;
 
             Service servei = new Service();
 
             //String code, String name, DateTime priorityDate, String description, String localization, String project
-            resultat = servei.createTask("1","Projecte",new DateTime(),null,null,null);
+            resultat = servei.createTask("3","Projecte",DateTime.Now,null,null,null);
 
-            //Assert.AreEqual(true, resultat);
-            */
+            Assert.AreEqual(true, resultat);     
             
         }
     }
