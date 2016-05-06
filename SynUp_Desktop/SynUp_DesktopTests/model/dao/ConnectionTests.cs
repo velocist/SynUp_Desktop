@@ -20,7 +20,7 @@ namespace SynUp_Desktop.model.dao.Tests
         [TestMethod()]
         public void readTaskTest()
         {
-            Assert.Equals(null , Connection.readTask("something"));
+            Assert.Equals(null , TaskConnection.readTask("something"));
         }
     }
 }

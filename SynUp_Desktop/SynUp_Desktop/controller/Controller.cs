@@ -19,7 +19,7 @@ namespace SynUp_Desktop.controller
     {
 
         #region VARIABLES
-        private Service service;
+        private TaskService service;
         private frmAbout AboutView;
         private frmStatistics StatisticsView;
         private frmTasks TasksView;
@@ -149,7 +149,7 @@ namespace SynUp_Desktop.controller
             }
         }
 
-        public Service Service
+        public TaskService Service
         {
             get
             {

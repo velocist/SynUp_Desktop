@@ -11,7 +11,7 @@ namespace SynUp_Desktop.service
     /// <summary>
     /// 
     /// </summary>
-    public class Service
+    public class TaskService
     {
         /// <summary>
         /// 
@@ -34,7 +34,12 @@ namespace SynUp_Desktop.service
                 project = project
             };
 
-            return Connection.createTask(newTask);
+            return TaskConnection.createTask(newTask);
+        }
+
+        public List<Task> getAllTasks()
+        {
+            return TaskConnection.readAllTasks();
         }
     }
 }

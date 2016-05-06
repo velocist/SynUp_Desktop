@@ -63,7 +63,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnBack_Click(object sender, EventArgs e)
         {
-            this.Controller.EmployeeView1.Close();
+            this.Close();
             this.Controller.MainView1.Show();
         }
     }

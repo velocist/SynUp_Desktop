@@ -59,7 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="controller\Controller.cs" />
-    <Compile Include="model\dao\Connection.cs" />
+    <Compile Include="model\dao\TaskConnection.cs" />
     <Compile Include="model\pojo\Employee.cs">
       <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
@@ -108,7 +108,7 @@
     <Compile Include="model\pojo\TeamLog.cs">
       <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="service\Service.cs" />
+    <Compile Include="service\TaskService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="views\frmAbout.cs">

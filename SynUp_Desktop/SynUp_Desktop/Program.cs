@@ -26,7 +26,7 @@ namespace SynUp_Desktop
         private static Form init()
         {
             controller.Controller controller = new controller.Controller();
-            service.Service service = new service.Service();
+            service.TaskService service = new service.TaskService();
 
             controller.Service = service;
 

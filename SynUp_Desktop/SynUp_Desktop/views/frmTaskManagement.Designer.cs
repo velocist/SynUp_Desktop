@@ -63,7 +63,7 @@
             this.gbContainer.Controls.Add(this.txtId);
             this.gbContainer.Location = new System.Drawing.Point(12, 12);
             this.gbContainer.Name = "gbContainer";
-            this.gbContainer.Size = new System.Drawing.Size(546, 274);
+            this.gbContainer.Size = new System.Drawing.Size(567, 274);
             this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "Task Data";
@@ -200,13 +200,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(567, 339);
+            this.ClientSize = new System.Drawing.Size(591, 339);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.gbContainer);
             this.Controls.Add(this.btnUpdateTask);
-            this.Controls.Add(this.btnDeleteTask);            
-            this.Name = "frmTaskManagement";
+            this.Controls.Add(this.btnDeleteTask);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Name = "frmTaskManagement";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Task Management ";
             this.gbContainer.ResumeLayout(false);

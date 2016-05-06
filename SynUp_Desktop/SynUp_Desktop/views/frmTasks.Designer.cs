@@ -75,11 +75,18 @@
             this.btnManagementTasks.UseVisualStyleBackColor = true;
             this.btnManagementTasks.Click += new System.EventHandler(this.btnManagementTasks_Click);
             // 
-            // dgTasks
+            // dgvTasks
             // 
+            this.dgvTasks.AllowUserToAddRows = false;
+            this.dgvTasks.AllowUserToDeleteRows = false;
+            this.dgvTasks.AllowUserToOrderColumns = true;
+            this.dgvTasks.AllowUserToResizeColumns = false;
+            this.dgvTasks.AllowUserToResizeRows = false;
             this.dgvTasks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTasks.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgvTasks.Location = new System.Drawing.Point(9, 51);
             this.dgvTasks.Name = "dgvTasks";
+            this.dgvTasks.RowTemplate.ReadOnly = true;
             this.dgvTasks.Size = new System.Drawing.Size(585, 360);
             this.dgvTasks.TabIndex = 0;
             // 
@@ -101,13 +108,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 471);
+            this.ClientSize = new System.Drawing.Size(624, 472);
             this.Controls.Add(this.gbContainer);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MinimumSize = new System.Drawing.Size(640, 510);
             this.Name = "frmTasks";
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Tasks ";
+            this.Activated += new System.EventHandler(this.frmTasks_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTasks)).EndInit();
             this.gbContainer.ResumeLayout(false);
             this.gbContainer.PerformLayout();

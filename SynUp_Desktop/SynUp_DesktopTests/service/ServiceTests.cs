@@ -21,7 +21,7 @@ namespace SynUp_Desktop.service.Tests
             
             bool resultat = false;
 
-            Service servei = new Service();
+            TaskService servei = new TaskService();
 
             //String code, String name, DateTime priorityDate, String description, String localization, String project
             resultat = servei.createTask("3","Projecte",DateTime.Now,null,null,null);

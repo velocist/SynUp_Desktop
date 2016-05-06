@@ -14,7 +14,7 @@ namespace SynUp_Desktop.model.dao
     ///<Author>Pablo Ardèvol</Author>
     ///<Version>0.01</Version>
     ///<Date>04/05/2016_1713</Date>
-    public static class Connection
+    public static class TaskConnection
     {
         private static synupEntities database = new synupEntities();
 
@@ -93,6 +93,11 @@ namespace SynUp_Desktop.model.dao
                         select task;
 
             return query.SingleOrDefault();
+        }
+
+        public static List<pojo.Task> readAllTasks()
+        {
+            return (from task in database.Tasks select task).ToList();
         }
 
 

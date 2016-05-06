@@ -60,7 +60,7 @@ namespace SynUp_Desktop.views
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            this.Controller.MainView1.Close();
+            this.Close();
         }
 
         private void btnAbout_Click(object sender, EventArgs e)
