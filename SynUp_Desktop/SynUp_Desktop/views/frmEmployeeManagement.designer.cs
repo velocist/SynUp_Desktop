@@ -28,203 +28,207 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.btnUpdateEmployee = new System.Windows.Forms.Button();
+            this.btnDeleteEmployee = new System.Windows.Forms.Button();
+            this.lblNif = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
+            this.lblSurname = new System.Windows.Forms.Label();
+            this.lblPhone = new System.Windows.Forms.Label();
+            this.lblEmail = new System.Windows.Forms.Label();
+            this.lblAdress = new System.Windows.Forms.Label();
+            this.txtNif = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.txtSurname = new System.Windows.Forms.TextBox();
+            this.txtPhone = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.txtAdress = new System.Windows.Forms.TextBox();
+            this.gbContainer = new System.Windows.Forms.GroupBox();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.gbContainer.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button2
+            // btnUpdateEmployee
             // 
-            this.button2.Location = new System.Drawing.Point(9, 141);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Update";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnUpdateEmployee.Location = new System.Drawing.Point(12, 200);
+            this.btnUpdateEmployee.Name = "btnUpdateEmployee";
+            this.btnUpdateEmployee.Size = new System.Drawing.Size(75, 39);
+            this.btnUpdateEmployee.TabIndex = 7;
+            this.btnUpdateEmployee.Text = "Update";
+            this.btnUpdateEmployee.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnDeleteEmployee
             // 
-            this.button3.Location = new System.Drawing.Point(90, 141);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Delete";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnDeleteEmployee.Location = new System.Drawing.Point(93, 200);
+            this.btnDeleteEmployee.Name = "btnDeleteEmployee";
+            this.btnDeleteEmployee.Size = new System.Drawing.Size(75, 39);
+            this.btnDeleteEmployee.TabIndex = 7;
+            this.btnDeleteEmployee.Text = "Delete";
+            this.btnDeleteEmployee.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // lblNif
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "label1";
+            this.lblNif.AutoSize = true;
+            this.lblNif.Location = new System.Drawing.Point(17, 31);
+            this.lblNif.Name = "lblNif";
+            this.lblNif.Size = new System.Drawing.Size(24, 13);
+            this.lblNif.TabIndex = 0;
+            this.lblNif.Text = "NIF";
             // 
-            // label2
+            // lblName
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 52);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "label2";
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(10, 69);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(35, 13);
+            this.lblName.TabIndex = 0;
+            this.lblName.Text = "Name";
             // 
-            // label3
+            // lblSurname
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(152, 53);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "label3";
+            this.lblSurname.AutoSize = true;
+            this.lblSurname.Location = new System.Drawing.Point(157, 69);
+            this.lblSurname.Name = "lblSurname";
+            this.lblSurname.Size = new System.Drawing.Size(49, 13);
+            this.lblSurname.TabIndex = 5;
+            this.lblSurname.Text = "Surname";
             // 
-            // label4
+            // lblPhone
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 82);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "label4";
+            this.lblPhone.AutoSize = true;
+            this.lblPhone.Location = new System.Drawing.Point(7, 99);
+            this.lblPhone.Name = "lblPhone";
+            this.lblPhone.Size = new System.Drawing.Size(38, 13);
+            this.lblPhone.TabIndex = 0;
+            this.lblPhone.Text = "Phone";
             // 
-            // label5
+            // lblEmail
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(153, 82);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "label5";
+            this.lblEmail.AutoSize = true;
+            this.lblEmail.Location = new System.Drawing.Point(9, 126);
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.Size = new System.Drawing.Size(32, 13);
+            this.lblEmail.TabIndex = 0;
+            this.lblEmail.Text = "Email";
             // 
-            // label6
+            // lblAdress
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 109);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(35, 13);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "label6";
+            this.lblAdress.AutoSize = true;
+            this.lblAdress.Location = new System.Drawing.Point(6, 154);
+            this.lblAdress.Name = "lblAdress";
+            this.lblAdress.Size = new System.Drawing.Size(39, 13);
+            this.lblAdress.TabIndex = 0;
+            this.lblAdress.Text = "Adress";
             // 
-            // textBox1
+            // txtNif
             // 
-            this.textBox1.Location = new System.Drawing.Point(47, 22);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 9;
+            this.txtNif.Location = new System.Drawing.Point(50, 28);
+            this.txtNif.Name = "txtNif";
+            this.txtNif.Size = new System.Drawing.Size(100, 20);
+            this.txtNif.TabIndex = 1;
             // 
-            // textBox2
+            // txtName
             // 
-            this.textBox2.Location = new System.Drawing.Point(47, 50);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 10;
+            this.txtName.Location = new System.Drawing.Point(50, 66);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(100, 20);
+            this.txtName.TabIndex = 2;
             // 
-            // textBox3
+            // txtSurname
             // 
-            this.textBox3.Location = new System.Drawing.Point(193, 49);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 11;
+            this.txtSurname.Location = new System.Drawing.Point(210, 66);
+            this.txtSurname.Name = "txtSurname";
+            this.txtSurname.Size = new System.Drawing.Size(230, 20);
+            this.txtSurname.TabIndex = 3;
             // 
-            // textBox4
+            // txtPhone
             // 
-            this.textBox4.Location = new System.Drawing.Point(47, 79);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 12;
+            this.txtPhone.Location = new System.Drawing.Point(50, 96);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(100, 20);
+            this.txtPhone.TabIndex = 4;
             // 
-            // textBox5
+            // txtEmail
             // 
-            this.textBox5.Location = new System.Drawing.Point(194, 79);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(156, 20);
-            this.textBox5.TabIndex = 13;
+            this.txtEmail.Location = new System.Drawing.Point(50, 123);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(390, 20);
+            this.txtEmail.TabIndex = 5;
             // 
-            // textBox6
+            // txtAdress
             // 
-            this.textBox6.Location = new System.Drawing.Point(47, 106);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(303, 20);
-            this.textBox6.TabIndex = 14;
+            this.txtAdress.Location = new System.Drawing.Point(50, 149);
+            this.txtAdress.Name = "txtAdress";
+            this.txtAdress.Size = new System.Drawing.Size(390, 20);
+            this.txtAdress.TabIndex = 6;
             // 
-            // groupBox1
+            // gbContainer
             // 
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.textBox6);
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textBox5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.textBox4);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(427, 170);
-            this.groupBox1.TabIndex = 16;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Employee";
+            this.gbContainer.Controls.Add(this.lblNif);
+            this.gbContainer.Controls.Add(this.lblName);
+            this.gbContainer.Controls.Add(this.txtAdress);
+            this.gbContainer.Controls.Add(this.lblSurname);
+            this.gbContainer.Controls.Add(this.txtEmail);
+            this.gbContainer.Controls.Add(this.lblPhone);
+            this.gbContainer.Controls.Add(this.txtPhone);
+            this.gbContainer.Controls.Add(this.lblEmail);
+            this.gbContainer.Controls.Add(this.txtSurname);
+            this.gbContainer.Controls.Add(this.lblAdress);
+            this.gbContainer.Controls.Add(this.txtName);
+            this.gbContainer.Controls.Add(this.txtNif);
+            this.gbContainer.Location = new System.Drawing.Point(12, 12);
+            this.gbContainer.Name = "gbContainer";
+            this.gbContainer.Size = new System.Drawing.Size(445, 182);
+            this.gbContainer.TabIndex = 0;
+            this.gbContainer.TabStop = false;
+            this.gbContainer.Text = "Employee Data";
             // 
-            // button1
+            // btnBack
             // 
-            this.button1.Location = new System.Drawing.Point(342, 140);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Back";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnBack.Location = new System.Drawing.Point(381, 200);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(75, 39);
+            this.btnBack.TabIndex = 8;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = true;
             // 
             // frmEmployeeManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(451, 191);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(469, 251);
+            this.Controls.Add(this.btnBack);
+            this.Controls.Add(this.gbContainer);
+            this.Controls.Add(this.btnUpdateEmployee);
+            this.Controls.Add(this.btnDeleteEmployee);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximumSize = new System.Drawing.Size(485, 290);
+            this.MinimumSize = new System.Drawing.Size(485, 290);
             this.Name = "frmEmployeeManagement";
-            this.Text = "frmEmployeeManagement";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "SynUp - Employee Management";
+            this.gbContainer.ResumeLayout(false);
+            this.gbContainer.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnUpdateEmployee;
+        private System.Windows.Forms.Button btnDeleteEmployee;
+        private System.Windows.Forms.Label lblNif;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label lblSurname;
+        private System.Windows.Forms.Label lblPhone;
+        private System.Windows.Forms.Label lblEmail;
+        private System.Windows.Forms.Label lblAdress;
+        private System.Windows.Forms.TextBox txtNif;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.TextBox txtSurname;
+        private System.Windows.Forms.TextBox txtPhone;
+        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.TextBox txtAdress;
+        private System.Windows.Forms.GroupBox gbContainer;
+        private System.Windows.Forms.Button btnBack;
     }
 }

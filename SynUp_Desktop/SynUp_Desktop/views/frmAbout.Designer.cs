@@ -36,7 +36,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(279, 131);
             this.Name = "frmAbout";
-            this.Text = "frmAbout";
+            this.Text = "SynUp - About";
             this.ResumeLayout(false);
 
         }

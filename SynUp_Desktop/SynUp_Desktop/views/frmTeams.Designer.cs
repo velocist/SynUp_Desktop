@@ -32,9 +32,9 @@
             this.cmbFilter = new System.Windows.Forms.ComboBox();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnManagementTeams = new System.Windows.Forms.Button();
-            this.dgTeams = new System.Windows.Forms.DataGridView();
+            this.dgvTeams = new System.Windows.Forms.DataGridView();
             this.gbContainer = new System.Windows.Forms.GroupBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgTeams)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTeams)).BeginInit();
             this.gbContainer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,7 +64,7 @@
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
             // 
-            // btnManagementTasks
+            // btnManagementTeams
             // 
             this.btnManagementTeams.Location = new System.Drawing.Point(6, 418);
             this.btnManagementTeams.Name = "btnManagementTeams";
@@ -73,13 +73,13 @@
             this.btnManagementTeams.Text = "Management";
             this.btnManagementTeams.UseVisualStyleBackColor = true;
             // 
-            // dgTasks
+            // dgvTeams
             // 
-            this.dgTeams.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgTeams.Location = new System.Drawing.Point(9, 51);
-            this.dgTeams.Size = new System.Drawing.Size(585, 360);
-            this.dgTeams.TabIndex = 0;
-            this.dgTeams.Name = "dgTeams";
+            this.dgvTeams.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTeams.Location = new System.Drawing.Point(9, 51);
+            this.dgvTeams.Name = "dgvTeams";
+            this.dgvTeams.Size = new System.Drawing.Size(585, 360);
+            this.dgvTeams.TabIndex = 0;
             // 
             // gbContainer
             // 
@@ -87,7 +87,7 @@
             this.gbContainer.Controls.Add(this.btnBack);
             this.gbContainer.Controls.Add(this.cmbFilter);
             this.gbContainer.Controls.Add(this.btnManagementTeams);
-            this.gbContainer.Controls.Add(this.dgTeams);
+            this.gbContainer.Controls.Add(this.dgvTeams);
             this.gbContainer.Location = new System.Drawing.Point(12, 12);
             this.gbContainer.Name = "gbContainer";
             this.gbContainer.Size = new System.Drawing.Size(600, 450);
@@ -95,7 +95,7 @@
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "List of Teams";
             // 
-            // frmTasks
+            // frmTeams
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -105,7 +105,7 @@
             this.Name = "frmTeams";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Teams";
-            ((System.ComponentModel.ISupportInitialize)(this.dgTeams)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTeams)).EndInit();
             this.gbContainer.ResumeLayout(false);
             this.gbContainer.PerformLayout();
             this.ResumeLayout(false);
@@ -118,7 +118,7 @@
         private System.Windows.Forms.ComboBox cmbFilter;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnManagementTeams;
-        private System.Windows.Forms.DataGridView dgTeams;
+        private System.Windows.Forms.DataGridView dgvTeams;
         private System.Windows.Forms.GroupBox gbContainer;
     }
 }

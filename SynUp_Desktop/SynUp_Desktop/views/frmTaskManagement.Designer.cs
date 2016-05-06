@@ -28,203 +28,210 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.groupBox1.SuspendLayout();
+            this.gbContainer = new System.Windows.Forms.GroupBox();
+            this.mcalPriorityDate = new System.Windows.Forms.MonthCalendar();
+            this.lblId = new System.Windows.Forms.Label();
+            this.lblCode = new System.Windows.Forms.Label();
+            this.txtLocalization = new System.Windows.Forms.TextBox();
+            this.lblName = new System.Windows.Forms.Label();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.lblPriorityDate = new System.Windows.Forms.Label();
+            this.lblDescription = new System.Windows.Forms.Label();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.lblLocalization = new System.Windows.Forms.Label();
+            this.txtCode = new System.Windows.Forms.TextBox();
+            this.txtId = new System.Windows.Forms.TextBox();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.btnDeleteTask = new System.Windows.Forms.Button();
+            this.btnUpdateTask = new System.Windows.Forms.Button();
+            this.gbContainer.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // gbContainer
             // 
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.textBox6);
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textBox5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.textBox4);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(427, 170);
-            this.groupBox1.TabIndex = 17;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Task";
+            this.gbContainer.Controls.Add(this.mcalPriorityDate);
+            this.gbContainer.Controls.Add(this.lblId);
+            this.gbContainer.Controls.Add(this.lblCode);
+            this.gbContainer.Controls.Add(this.txtLocalization);
+            this.gbContainer.Controls.Add(this.lblName);
+            this.gbContainer.Controls.Add(this.txtDescription);
+            this.gbContainer.Controls.Add(this.lblPriorityDate);
+            this.gbContainer.Controls.Add(this.lblDescription);
+            this.gbContainer.Controls.Add(this.txtName);
+            this.gbContainer.Controls.Add(this.lblLocalization);
+            this.gbContainer.Controls.Add(this.txtCode);
+            this.gbContainer.Controls.Add(this.txtId);
+            this.gbContainer.Location = new System.Drawing.Point(12, 12);
+            this.gbContainer.Name = "gbContainer";
+            this.gbContainer.Size = new System.Drawing.Size(546, 274);
+            this.gbContainer.TabIndex = 0;
+            this.gbContainer.TabStop = false;
+            this.gbContainer.Text = "Task Data";
             // 
-            // button1
+            // mcalPriorityDate
             // 
-            this.button1.Location = new System.Drawing.Point(342, 140);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Back";
-            this.button1.UseVisualStyleBackColor = true;
+            this.mcalPriorityDate.Location = new System.Drawing.Point(333, 98);
+            this.mcalPriorityDate.MinDate = new System.DateTime(2016, 1, 1, 0, 0, 0, 0);
+            this.mcalPriorityDate.Name = "mcalPriorityDate";
+            this.mcalPriorityDate.ShowTodayCircle = false;
+            this.mcalPriorityDate.TabIndex = 5;
             // 
-            // label1
+            // lblId
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "label1";
+            this.lblId.AutoSize = true;
+            this.lblId.Location = new System.Drawing.Point(6, 26);
+            this.lblId.Name = "lblId";
+            this.lblId.Size = new System.Drawing.Size(18, 13);
+            this.lblId.TabIndex = 0;
+            this.lblId.Text = "ID";
             // 
-            // label2
+            // lblCode
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 52);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "label2";
+            this.lblCode.AutoSize = true;
+            this.lblCode.Location = new System.Drawing.Point(156, 26);
+            this.lblCode.Name = "lblCode";
+            this.lblCode.Size = new System.Drawing.Size(32, 13);
+            this.lblCode.TabIndex = 0;
+            this.lblCode.Text = "Code";
             // 
-            // button3
+            // txtLocalization
             // 
-            this.button3.Location = new System.Drawing.Point(90, 141);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Delete";
-            this.button3.UseVisualStyleBackColor = true;
+            this.txtLocalization.Location = new System.Drawing.Point(72, 240);
+            this.txtLocalization.Name = "txtLocalization";
+            this.txtLocalization.Size = new System.Drawing.Size(240, 20);
+            this.txtLocalization.TabIndex = 6;
             // 
-            // textBox6
+            // lblName
             // 
-            this.textBox6.Location = new System.Drawing.Point(47, 106);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(303, 20);
-            this.textBox6.TabIndex = 14;
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(6, 53);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(35, 13);
+            this.lblName.TabIndex = 0;
+            this.lblName.Text = "Name";
             // 
-            // button2
+            // txtDescription
             // 
-            this.button2.Location = new System.Drawing.Point(9, 141);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Update";
-            this.button2.UseVisualStyleBackColor = true;
+            this.txtDescription.Location = new System.Drawing.Point(9, 98);
+            this.txtDescription.Multiline = true;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(303, 130);
+            this.txtDescription.TabIndex = 4;
             // 
-            // label3
+            // lblPriorityDate
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(152, 53);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "label3";
+            this.lblPriorityDate.AutoSize = true;
+            this.lblPriorityDate.Location = new System.Drawing.Point(330, 82);
+            this.lblPriorityDate.Name = "lblPriorityDate";
+            this.lblPriorityDate.Size = new System.Drawing.Size(64, 13);
+            this.lblPriorityDate.TabIndex = 0;
+            this.lblPriorityDate.Text = "Priority Date";
             // 
-            // textBox5
+            // lblDescription
             // 
-            this.textBox5.Location = new System.Drawing.Point(194, 79);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(156, 20);
-            this.textBox5.TabIndex = 13;
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.Location = new System.Drawing.Point(6, 82);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(60, 13);
+            this.lblDescription.TabIndex = 0;
+            this.lblDescription.Text = "Description";
             // 
-            // label4
+            // txtName
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 82);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "label4";
+            this.txtName.Location = new System.Drawing.Point(47, 49);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(493, 20);
+            this.txtName.TabIndex = 3;
             // 
-            // textBox4
+            // lblLocalization
             // 
-            this.textBox4.Location = new System.Drawing.Point(47, 79);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 12;
+            this.lblLocalization.AutoSize = true;
+            this.lblLocalization.Location = new System.Drawing.Point(6, 244);
+            this.lblLocalization.Name = "lblLocalization";
+            this.lblLocalization.Size = new System.Drawing.Size(63, 13);
+            this.lblLocalization.TabIndex = 0;
+            this.lblLocalization.Text = "Localization";
             // 
-            // label5
+            // txtCode
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(153, 82);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "label5";
+            this.txtCode.Location = new System.Drawing.Point(193, 22);
+            this.txtCode.Name = "txtCode";
+            this.txtCode.Size = new System.Drawing.Size(100, 20);
+            this.txtCode.TabIndex = 2;
             // 
-            // textBox3
+            // txtId
             // 
-            this.textBox3.Location = new System.Drawing.Point(193, 49);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 11;
+            this.txtId.Location = new System.Drawing.Point(47, 22);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(100, 20);
+            this.txtId.TabIndex = 1;
             // 
-            // label6
+            // btnBack
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 109);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(35, 13);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "label6";
+            this.btnBack.Location = new System.Drawing.Point(483, 292);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(75, 39);
+            this.btnBack.TabIndex = 9;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // textBox2
+            // btnDeleteTask
             // 
-            this.textBox2.Location = new System.Drawing.Point(47, 50);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 10;
+            this.btnDeleteTask.Location = new System.Drawing.Point(93, 292);
+            this.btnDeleteTask.Name = "btnDeleteTask";
+            this.btnDeleteTask.Size = new System.Drawing.Size(75, 39);
+            this.btnDeleteTask.TabIndex = 8;
+            this.btnDeleteTask.Text = "Delete";
+            this.btnDeleteTask.UseVisualStyleBackColor = true;
+            this.btnDeleteTask.Click += new System.EventHandler(this.btnDeleteTask_Click);
             // 
-            // textBox1
+            // btnUpdateTask
             // 
-            this.textBox1.Location = new System.Drawing.Point(47, 22);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 9;
+            this.btnUpdateTask.Location = new System.Drawing.Point(12, 292);
+            this.btnUpdateTask.Name = "btnUpdateTask";
+            this.btnUpdateTask.Size = new System.Drawing.Size(75, 39);
+            this.btnUpdateTask.TabIndex = 7;
+            this.btnUpdateTask.Text = "Update";
+            this.btnUpdateTask.UseVisualStyleBackColor = true;
+            this.btnUpdateTask.Click += new System.EventHandler(this.btnUpdateTask_Click);
             // 
             // frmTaskManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(452, 194);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(567, 339);
+            this.Controls.Add(this.btnBack);
+            this.Controls.Add(this.gbContainer);
+            this.Controls.Add(this.btnUpdateTask);
+            this.Controls.Add(this.btnDeleteTask);            
             this.Name = "frmTaskManagement";
-            this.Text = "frmTaskManagement";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "SynUp - Task Management ";
+            this.gbContainer.ResumeLayout(false);
+            this.gbContainer.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.TextBox txtCode;
+        private System.Windows.Forms.Label lblLocalization;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.Label lblDescription;
+        private System.Windows.Forms.Label lblPriorityDate;
+        private System.Windows.Forms.TextBox txtDescription;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Button btnUpdateTask;
+        private System.Windows.Forms.TextBox txtLocalization;
+        private System.Windows.Forms.Button btnDeleteTask;
+        private System.Windows.Forms.Label lblCode;
+        private System.Windows.Forms.Label lblId;
+        private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.GroupBox gbContainer;
+        private System.Windows.Forms.MonthCalendar mcalPriorityDate;
     }
 }

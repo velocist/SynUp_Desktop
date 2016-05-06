@@ -55,6 +55,7 @@
             this.btnEmployees.TabIndex = 1;
             this.btnEmployees.Text = "Employees";
             this.btnEmployees.UseVisualStyleBackColor = true;
+            this.btnEmployees.Click += new System.EventHandler(this.btnEmployees_Click);
             // 
             // btnTeams
             // 
@@ -64,6 +65,7 @@
             this.btnTeams.TabIndex = 2;
             this.btnTeams.Text = "Teams";
             this.btnTeams.UseVisualStyleBackColor = true;
+            this.btnTeams.Click += new System.EventHandler(this.btnTeams_Click);
             // 
             // btnTasks
             // 
@@ -83,6 +85,7 @@
             this.btnExit.TabIndex = 6;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // btnStadistics
             // 
@@ -92,6 +95,7 @@
             this.btnStadistics.TabIndex = 4;
             this.btnStadistics.Text = "Stadistics";
             this.btnStadistics.UseVisualStyleBackColor = true;
+            this.btnStadistics.Click += new System.EventHandler(this.btnStadistics_Click);
             // 
             // btnAbout
             // 
@@ -101,6 +105,7 @@
             this.btnAbout.TabIndex = 5;
             this.btnAbout.Text = "About";
             this.btnAbout.UseVisualStyleBackColor = true;
+            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
             // 
             // frmMain
             // 

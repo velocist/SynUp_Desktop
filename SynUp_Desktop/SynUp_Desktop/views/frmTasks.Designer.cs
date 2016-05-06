@@ -32,9 +32,9 @@
             this.cmbFilter = new System.Windows.Forms.ComboBox();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnManagementTasks = new System.Windows.Forms.Button();
-            this.dgTasks = new System.Windows.Forms.DataGridView();
+            this.dgvTasks = new System.Windows.Forms.DataGridView();
             this.gbContainer = new System.Windows.Forms.GroupBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgTasks)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTasks)).BeginInit();
             this.gbContainer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,11 +77,11 @@
             // 
             // dgTasks
             // 
-            this.dgTasks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgTasks.Location = new System.Drawing.Point(9, 51);
-            this.dgTasks.Name = "dgTasks";
-            this.dgTasks.Size = new System.Drawing.Size(585, 360);
-            this.dgTasks.TabIndex = 0;
+            this.dgvTasks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTasks.Location = new System.Drawing.Point(9, 51);
+            this.dgvTasks.Name = "dgvTasks";
+            this.dgvTasks.Size = new System.Drawing.Size(585, 360);
+            this.dgvTasks.TabIndex = 0;
             // 
             // gbContainer
             // 
@@ -89,7 +89,7 @@
             this.gbContainer.Controls.Add(this.btnBack);
             this.gbContainer.Controls.Add(this.cmbFilter);
             this.gbContainer.Controls.Add(this.btnManagementTasks);
-            this.gbContainer.Controls.Add(this.dgTasks);
+            this.gbContainer.Controls.Add(this.dgvTasks);
             this.gbContainer.Location = new System.Drawing.Point(12, 12);
             this.gbContainer.Name = "gbContainer";
             this.gbContainer.Size = new System.Drawing.Size(600, 450);
@@ -105,9 +105,10 @@
             this.Controls.Add(this.gbContainer);
             this.MinimumSize = new System.Drawing.Size(640, 510);
             this.Name = "frmTasks";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SynUp - Tasks";
-            ((System.ComponentModel.ISupportInitialize)(this.dgTasks)).EndInit();
+            this.Text = "SynUp - Tasks ";
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTasks)).EndInit();
             this.gbContainer.ResumeLayout(false);
             this.gbContainer.PerformLayout();
             this.ResumeLayout(false);
@@ -120,7 +121,7 @@
         private System.Windows.Forms.ComboBox cmbFilter;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnManagementTasks;
-        private System.Windows.Forms.DataGridView dgTasks;
+        private System.Windows.Forms.DataGridView dgvTasks;
         private System.Windows.Forms.GroupBox gbContainer;
     }
 }

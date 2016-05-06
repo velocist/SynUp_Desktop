@@ -40,10 +40,15 @@ namespace SynUp_Desktop.views
         private void btnManagementTasks_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Controller.TaskMgtView1.ShowDialog();
+            this.Controller.TaskMgtView1.ShowDialog();
             this.Show();
         }
 
+        /// <summary>
+        /// Event that runs when clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Dispose();

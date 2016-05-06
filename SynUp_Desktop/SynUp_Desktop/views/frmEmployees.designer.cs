@@ -34,8 +34,46 @@
             this.cmbFilter = new System.Windows.Forms.ComboBox();
             this.lblFilter = new System.Windows.Forms.Label();
             this.gbContainer = new System.Windows.Forms.GroupBox();
+            this.btnAddToTeam = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgEmployees)).BeginInit();
+            this.gbContainer.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // dgEmployees
+            // 
+            this.dgEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgEmployees.Location = new System.Drawing.Point(9, 51);
+            this.dgEmployees.Name = "dgEmployees";
+            this.dgEmployees.Size = new System.Drawing.Size(585, 360);
+            this.dgEmployees.TabIndex = 0;
+            // 
+            // btnManagementEmployee
+            // 
+            this.btnManagementEmployee.Location = new System.Drawing.Point(6, 418);
+            this.btnManagementEmployee.Name = "btnManagementEmployee";
+            this.btnManagementEmployee.Size = new System.Drawing.Size(86, 23);
+            this.btnManagementEmployee.TabIndex = 2;
+            this.btnManagementEmployee.Text = "Management";
+            this.btnManagementEmployee.UseVisualStyleBackColor = true;
+            this.btnManagementEmployee.Click += new System.EventHandler(this.btnManagementEmployee_Click);
+            // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(519, 418);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(75, 23);
+            this.btnBack.TabIndex = 3;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // cmbFilter
+            // 
+            this.cmbFilter.FormattingEnabled = true;
+            this.cmbFilter.Location = new System.Drawing.Point(41, 24);
+            this.cmbFilter.Name = "cmbFilter";
+            this.cmbFilter.Size = new System.Drawing.Size(152, 21);
+            this.cmbFilter.TabIndex = 1;
             // 
             // lblFilter
             // 
@@ -46,42 +84,9 @@
             this.lblFilter.TabIndex = 0;
             this.lblFilter.Text = "Filter";
             // 
-            // cmbFilter
-            // 
-            this.cmbFilter.FormattingEnabled = true;
-            this.cmbFilter.Location = new System.Drawing.Point(41, 24);
-            this.cmbFilter.Name = "cmbFilter";
-            this.cmbFilter.Size = new System.Drawing.Size(152, 21);
-            this.cmbFilter.TabIndex = 1;
-            // 
-            // btnBack
-            // 
-            this.btnBack.Location = new System.Drawing.Point(519, 418);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(75, 23);
-            this.btnBack.TabIndex = 3;
-            this.btnBack.Text = "Back";
-            this.btnBack.UseVisualStyleBackColor = true;
-            // 
-            // btnManagementTasks
-            // 
-            this.btnManagementEmployee.Location = new System.Drawing.Point(6, 418);
-            this.btnManagementEmployee.Name = "btnManagementEmployee";
-            this.btnManagementEmployee.Size = new System.Drawing.Size(86, 23);
-            this.btnManagementEmployee.TabIndex = 2;
-            this.btnManagementEmployee.Text = "Management";
-            this.btnManagementEmployee.UseVisualStyleBackColor = true;
-            // 
-            // dgTasks
-            // 
-            this.dgEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgEmployees.Location = new System.Drawing.Point(9, 51);
-            this.dgEmployees.Size = new System.Drawing.Size(585, 360);
-            this.dgEmployees.TabIndex = 0;
-            this.dgEmployees.Name = "dgEmployees";
-            // 
             // gbContainer
             // 
+            this.gbContainer.Controls.Add(this.btnAddToTeam);
             this.gbContainer.Controls.Add(this.lblFilter);
             this.gbContainer.Controls.Add(this.btnBack);
             this.gbContainer.Controls.Add(this.cmbFilter);
@@ -94,16 +99,28 @@
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "List of Employees";
             // 
-            // frmTasks
+            // btnAddToTeam
+            // 
+            this.btnAddToTeam.Enabled = false;
+            this.btnAddToTeam.Location = new System.Drawing.Point(99, 418);
+            this.btnAddToTeam.Name = "btnAddToTeam";
+            this.btnAddToTeam.Size = new System.Drawing.Size(94, 23);
+            this.btnAddToTeam.TabIndex = 4;
+            this.btnAddToTeam.Text = "Add to Team";
+            this.btnAddToTeam.UseVisualStyleBackColor = true;
+            this.btnAddToTeam.Click += new System.EventHandler(this.btnAddToTeam_Click);
+            // 
+            // frmEmployees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 471);
             this.Controls.Add(this.gbContainer);
             this.MinimumSize = new System.Drawing.Size(640, 510);
-            this.Name = "frmEmployee";
+            this.Name = "frmEmployees";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SynUp - Employees";
+            this.Text = "SynUp - Eemployees ";
             ((System.ComponentModel.ISupportInitialize)(this.dgEmployees)).EndInit();
             this.gbContainer.ResumeLayout(false);
             this.gbContainer.PerformLayout();
@@ -119,5 +136,6 @@
         private System.Windows.Forms.ComboBox cmbFilter;
         private System.Windows.Forms.Label lblFilter;
         private System.Windows.Forms.GroupBox gbContainer;
+        private System.Windows.Forms.Button btnAddToTeam;
     }
 }
