@@ -11,6 +11,10 @@ namespace SynUp_Desktop.service.Tests
     [TestClass()]
     public class ServiceTests
     {
+        /// <summary>
+        /// Create task test succedded on 05/05/2016
+        /// </summary>
+        /// <author>Pablo Ardèvol Garcia</author>
         [TestMethod()]
         public void createTaskTest()
         {
