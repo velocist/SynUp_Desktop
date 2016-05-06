@@ -44,9 +44,14 @@ namespace SynUp_Desktop.views
             this.Show();
         }
 
+        /// <summary>
+        /// Closes the window.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBack_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            this.Close();
         }
     }
 }
