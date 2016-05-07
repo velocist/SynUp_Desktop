@@ -40,12 +40,13 @@
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblLocalization = new System.Windows.Forms.Label();
             this.txtCode = new System.Windows.Forms.TextBox();
-            this.txtId = new System.Windows.Forms.TextBox();
+            this.txtIdTeam = new System.Windows.Forms.TextBox();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnDeleteTask = new System.Windows.Forms.Button();
             this.btnUpdateTask = new System.Windows.Forms.Button();
             this.lblProject = new System.Windows.Forms.Label();
             this.txtProject = new System.Windows.Forms.TextBox();
+            this.btnCreateTask = new System.Windows.Forms.Button();
             this.gbContainer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,7 +65,7 @@
             this.gbContainer.Controls.Add(this.txtName);
             this.gbContainer.Controls.Add(this.lblLocalization);
             this.gbContainer.Controls.Add(this.txtCode);
-            this.gbContainer.Controls.Add(this.txtId);
+            this.gbContainer.Controls.Add(this.txtIdTeam);
             this.gbContainer.Location = new System.Drawing.Point(12, 12);
             this.gbContainer.Name = "gbContainer";
             this.gbContainer.Size = new System.Drawing.Size(535, 274);
@@ -85,14 +86,14 @@
             this.lblId.AutoSize = true;
             this.lblId.Location = new System.Drawing.Point(6, 26);
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(18, 13);
+            this.lblId.Size = new System.Drawing.Size(48, 13);
             this.lblId.TabIndex = 0;
-            this.lblId.Text = "ID";
+            this.lblId.Text = "ID Team";
             // 
             // lblCode
             // 
             this.lblCode.AutoSize = true;
-            this.lblCode.Location = new System.Drawing.Point(156, 26);
+            this.lblCode.Location = new System.Drawing.Point(164, 26);
             this.lblCode.Name = "lblCode";
             this.lblCode.Size = new System.Drawing.Size(32, 13);
             this.lblCode.TabIndex = 0;
@@ -158,17 +159,17 @@
             // 
             // txtCode
             // 
-            this.txtCode.Location = new System.Drawing.Point(193, 22);
+            this.txtCode.Location = new System.Drawing.Point(201, 22);
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(100, 20);
             this.txtCode.TabIndex = 2;
             // 
-            // txtId
+            // txtIdTeam
             // 
-            this.txtId.Location = new System.Drawing.Point(47, 22);
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(100, 20);
-            this.txtId.TabIndex = 1;
+            this.txtIdTeam.Location = new System.Drawing.Point(59, 22);
+            this.txtIdTeam.Name = "txtIdTeam";
+            this.txtIdTeam.Size = new System.Drawing.Size(100, 20);
+            this.txtIdTeam.TabIndex = 1;
             // 
             // btnBack
             // 
@@ -182,7 +183,7 @@
             // 
             // btnDeleteTask
             // 
-            this.btnDeleteTask.Location = new System.Drawing.Point(93, 292);
+            this.btnDeleteTask.Location = new System.Drawing.Point(171, 292);
             this.btnDeleteTask.Name = "btnDeleteTask";
             this.btnDeleteTask.Size = new System.Drawing.Size(75, 39);
             this.btnDeleteTask.TabIndex = 8;
@@ -192,7 +193,7 @@
             // 
             // btnUpdateTask
             // 
-            this.btnUpdateTask.Location = new System.Drawing.Point(12, 292);
+            this.btnUpdateTask.Location = new System.Drawing.Point(90, 292);
             this.btnUpdateTask.Name = "btnUpdateTask";
             this.btnUpdateTask.Size = new System.Drawing.Size(75, 39);
             this.btnUpdateTask.TabIndex = 7;
@@ -203,7 +204,7 @@
             // lblProject
             // 
             this.lblProject.AutoSize = true;
-            this.lblProject.Location = new System.Drawing.Point(309, 26);
+            this.lblProject.Location = new System.Drawing.Point(306, 26);
             this.lblProject.Name = "lblProject";
             this.lblProject.Size = new System.Drawing.Size(40, 13);
             this.lblProject.TabIndex = 7;
@@ -211,16 +212,27 @@
             // 
             // txtProject
             // 
-            this.txtProject.Location = new System.Drawing.Point(355, 23);
+            this.txtProject.Location = new System.Drawing.Point(351, 23);
             this.txtProject.Name = "txtProject";
             this.txtProject.Size = new System.Drawing.Size(170, 20);
             this.txtProject.TabIndex = 8;
+            // 
+            // btnCreateTask
+            // 
+            this.btnCreateTask.Location = new System.Drawing.Point(12, 292);
+            this.btnCreateTask.Name = "btnCreateTask";
+            this.btnCreateTask.Size = new System.Drawing.Size(75, 39);
+            this.btnCreateTask.TabIndex = 10;
+            this.btnCreateTask.Text = "Create";
+            this.btnCreateTask.UseVisualStyleBackColor = true;
+            this.btnCreateTask.Click += new System.EventHandler(this.btnCreateTask_Click);
             // 
             // frmTaskManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(559, 339);
+            this.Controls.Add(this.btnCreateTask);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.gbContainer);
             this.Controls.Add(this.btnUpdateTask);
@@ -237,7 +249,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.TextBox txtIdTeam;
         private System.Windows.Forms.TextBox txtCode;
         private System.Windows.Forms.Label lblLocalization;
         private System.Windows.Forms.TextBox txtName;
@@ -255,5 +267,6 @@
         private System.Windows.Forms.MonthCalendar mcalPriorityDate;
         private System.Windows.Forms.TextBox txtProject;
         private System.Windows.Forms.Label lblProject;
+        private System.Windows.Forms.Button btnCreateTask;
     }
 }

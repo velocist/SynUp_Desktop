@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SynUp_Desktop.model.dao;
 
 namespace SynUp_Desktop.views
 {
@@ -63,6 +64,25 @@ namespace SynUp_Desktop.views
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        /// <summary>
+        /// Event that runs when the button is clicked to create a task
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCreateTask_Click(object sender, EventArgs e)
+        {
+            //TODO Falta las excepciones si no hay nada escrito en los textboxs. Solo pruebo que funcione.
+            String _iIdTeam = txtIdTeam.Text;
+            String _idCode = txtCode.Text;
+            String _strProject = txtProject.Text;
+            String _strName = txtName.Text;
+            String _strDescription = txtDescription.Text;
+            String _strLocalization = txtLocalization.Text;
+            DateTime _dtPriorityDate = mcalPriorityDate.SelectionStart.Date;
+
+            Boolean createOk = TaskConnection.createTask(_idCode, _strName, _dtPriorityDate, _strDescription, _strLocalization, _strProject);
         }
     }
 }
