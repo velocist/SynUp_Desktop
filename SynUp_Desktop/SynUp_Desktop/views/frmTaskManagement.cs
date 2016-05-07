@@ -36,6 +36,8 @@ namespace SynUp_Desktop.views
             InitializeComponent();
         }
 
+        #region CRUD
+
         /// <summary>
         /// Event that runs when the button is clicked to delete a task
         /// </summary>
@@ -57,6 +59,95 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
+        /// Event that runs when the button is clicked to create a task
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <Author>Cristina C.</Author>
+        private void btnCreateTask_Click(object sender, EventArgs e)
+        {
+            //TODO Falta mirar que si se inserta un idTeam, este exista antes de insertar la tasca assignada al team
+            String _iIdTeam = txtIdTeam.Text;
+            String _idCode = txtCode.Text;
+            String _strProject = txtProject.Text;
+            String _strName = txtName.Text;
+            String _strDescription = txtDescription.Text;
+            String _strLocalization = txtLocalization.Text;
+            DateTime _dtPriorityDate = mcalPriorityDate.SelectionStart.Date;
+
+            Boolean createOk = TaskService.createTask(_idCode, _strName, _dtPriorityDate, _strDescription, _strLocalization, _strProject);
+
+            if (createOk)
+            {
+                MessageBox.Show("The task was created succesfully!");
+                clearValues();
+                this.Controller.TaskMgtView1.Close();
+            }
+            else
+            {
+                MessageBox.Show("The task wasn't created succesfully!");
+
+            }
+        }
+
+        #endregion
+
+        #region Validaciones Obligatorios
+
+        private void txtCode_Leave(object sender, EventArgs e)
+        {
+            if (txtCode.Text.Equals(""))
+            {
+                lblCode.ForeColor = Color.Red;
+                lblCode.Text = "Code *";
+                //txtCode.Focus();
+                //MessageBox.Show("The code can not be empty!");
+            }
+        }
+
+        private void txtCode_Enter(object sender, EventArgs e)
+        {
+            lblCode.Text = "Code";
+            lblCode.ForeColor = Color.Black;
+        }
+
+        private void txtName_Leave(object sender, EventArgs e)
+        {
+            if (txtName.Text.Equals(""))
+            {
+                //txtName.Focus();
+                lblName.ForeColor = Color.Red;
+                lblName.Text = "Name *";
+                //MessageBox.Show("The name can not be empty!");
+            }
+        }
+
+        private void txtName_Enter(object sender, EventArgs e)
+        {
+            lblName.Text = "Name";
+            lblName.ForeColor = Color.Black;
+        }
+
+        private void mcalPriorityDate_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            if (mcalPriorityDate.SelectionStart.Date < DateTime.Today)
+            {
+                //mcalPriorityDate.Focus();
+                lblPriorityDate.ForeColor = Color.Red;
+                lblPriorityDate.Text = "Priority Date *";
+                MessageBox.Show("The date can not be last!");
+            }
+        }
+
+        private void mcalPriorityDate_DateSelected(object sender, DateRangeEventArgs e)
+        {
+            lblPriorityDate.Text = "Priority Date";
+            lblPriorityDate.ForeColor = Color.Black;
+        }
+
+        #endregion
+
+        /// <summary>
         /// Event that runs when the button is clicked to return back
         /// </summary>
         /// <param name="sender"></param>
@@ -67,34 +158,18 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// Event that runs when the button is clicked to create a task
+        /// Method that cleans values
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <Author>Cristina C.</Author>
-        private void btnCreateTask_Click(object sender, EventArgs e)
+        private void clearValues()
         {
-            //TODO Falta las excepciones si no hay nada escrito en los textboxs. Solo pruebo que funcione.
-            String _iIdTeam = txtIdTeam.Text;
-            String _idCode = txtCode.Text;
-            String _strProject = txtProject.Text;
-            String _strName = txtName.Text;
-            String _strDescription = txtDescription.Text;
-            String _strLocalization = txtLocalization.Text;
-            DateTime _dtPriorityDate = mcalPriorityDate.SelectionStart.Date;
-
-            Boolean createOk = TaskService.createTask(_idCode, _strName, _dtPriorityDate, _strDescription, _strLocalization, _strProject);
-            if (createOk)
-            {
-                MessageBox.Show("La tasca s'ha creat correctament");
-            }
-            else
-            {
-                MessageBox.Show("La tasca no s'ha creat correctament");
-
-            }
-
-
+            txtIdTeam.Text = "";
+            txtCode.Text = "";
+            txtProject.Text = "";
+            txtName.Text = "";
+            txtDescription.Text = "";
+            txtLocalization.Text = "";
+            mcalPriorityDate.SelectionStart = DateTime.Today;
         }
+
     }
 }
