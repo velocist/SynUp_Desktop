@@ -22,7 +22,7 @@ namespace SynUp_Desktop.service
         /// <param name="description"></param>
         /// <param name="localization"></param>
         /// <param name="project"></param>
-        public bool createTask(String code, String name, DateTime priorityDate, String description, String localization, String project)
+        public static bool createTask(String code, String name, DateTime priorityDate, String description, String localization, String project)
         {
             Task newTask = new Task
             {

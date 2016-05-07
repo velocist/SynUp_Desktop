@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SynUp_Desktop.model.dao;
+using SynUp_Desktop.service;
 
 namespace SynUp_Desktop.views
 {
@@ -71,6 +71,7 @@ namespace SynUp_Desktop.views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        /// <Author>Cristina C.</Author>
         private void btnCreateTask_Click(object sender, EventArgs e)
         {
             //TODO Falta las excepciones si no hay nada escrito en los textboxs. Solo pruebo que funcione.
@@ -82,7 +83,18 @@ namespace SynUp_Desktop.views
             String _strLocalization = txtLocalization.Text;
             DateTime _dtPriorityDate = mcalPriorityDate.SelectionStart.Date;
 
-            Boolean createOk = TaskConnection.createTask(_idCode, _strName, _dtPriorityDate, _strDescription, _strLocalization, _strProject);
+            Boolean createOk = TaskService.createTask(_idCode, _strName, _dtPriorityDate, _strDescription, _strLocalization, _strProject);
+            if (createOk)
+            {
+                MessageBox.Show("La tasca s'ha creat correctament");
+            }
+            else
+            {
+                MessageBox.Show("La tasca no s'ha creat correctament");
+
+            }
+
+
         }
     }
 }
