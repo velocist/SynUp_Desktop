@@ -44,11 +44,15 @@
             this.btnBack = new System.Windows.Forms.Button();
             this.btnDeleteTask = new System.Windows.Forms.Button();
             this.btnUpdateTask = new System.Windows.Forms.Button();
+            this.lblProject = new System.Windows.Forms.Label();
+            this.txtProject = new System.Windows.Forms.TextBox();
             this.gbContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbContainer
             // 
+            this.gbContainer.Controls.Add(this.txtProject);
+            this.gbContainer.Controls.Add(this.lblProject);
             this.gbContainer.Controls.Add(this.mcalPriorityDate);
             this.gbContainer.Controls.Add(this.lblId);
             this.gbContainer.Controls.Add(this.lblCode);
@@ -63,7 +67,7 @@
             this.gbContainer.Controls.Add(this.txtId);
             this.gbContainer.Location = new System.Drawing.Point(12, 12);
             this.gbContainer.Name = "gbContainer";
-            this.gbContainer.Size = new System.Drawing.Size(567, 274);
+            this.gbContainer.Size = new System.Drawing.Size(535, 274);
             this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "Task Data";
@@ -140,7 +144,7 @@
             // 
             this.txtName.Location = new System.Drawing.Point(47, 49);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(493, 20);
+            this.txtName.Size = new System.Drawing.Size(478, 20);
             this.txtName.TabIndex = 3;
             // 
             // lblLocalization
@@ -168,7 +172,7 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(483, 292);
+            this.btnBack.Location = new System.Drawing.Point(472, 292);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(75, 39);
             this.btnBack.TabIndex = 9;
@@ -196,11 +200,27 @@
             this.btnUpdateTask.UseVisualStyleBackColor = true;
             this.btnUpdateTask.Click += new System.EventHandler(this.btnUpdateTask_Click);
             // 
+            // lblProject
+            // 
+            this.lblProject.AutoSize = true;
+            this.lblProject.Location = new System.Drawing.Point(309, 26);
+            this.lblProject.Name = "lblProject";
+            this.lblProject.Size = new System.Drawing.Size(40, 13);
+            this.lblProject.TabIndex = 7;
+            this.lblProject.Text = "Project";
+            // 
+            // txtProject
+            // 
+            this.txtProject.Location = new System.Drawing.Point(355, 23);
+            this.txtProject.Name = "txtProject";
+            this.txtProject.Size = new System.Drawing.Size(170, 20);
+            this.txtProject.TabIndex = 8;
+            // 
             // frmTaskManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(591, 339);
+            this.ClientSize = new System.Drawing.Size(559, 339);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.gbContainer);
             this.Controls.Add(this.btnUpdateTask);
@@ -233,5 +253,7 @@
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.GroupBox gbContainer;
         private System.Windows.Forms.MonthCalendar mcalPriorityDate;
+        private System.Windows.Forms.TextBox txtProject;
+        private System.Windows.Forms.Label lblProject;
     }
 }
