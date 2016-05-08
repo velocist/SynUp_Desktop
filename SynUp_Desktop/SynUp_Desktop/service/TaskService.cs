@@ -47,9 +47,29 @@ namespace SynUp_Desktop.service
             return TaskConnection.readTask(pCode);
         }
 
+        /// <summary>
+        /// Method that returns a Task if it exists
+        /// </summary>
+        /// <param name="pCode"></param>
+        /// <returns></returns>
+        public static Task deleteTask(Task pTask)
+        {
+            return TaskConnection.deleteTask(pTask);
+        }
+
         public List<Task> getAllTasks()
         {
             return TaskConnection.readAllTasks();
+        }
+
+        /// <summary>
+        /// Method that returns a boolean if the task is updated
+        /// </summary>
+        /// <param name="pTask"></param>
+        /// <returns></returns>
+        public static bool updateTask(Task pTask)
+        {
+            return TaskConnection.updateTask(pTask);
         }
     }
 }

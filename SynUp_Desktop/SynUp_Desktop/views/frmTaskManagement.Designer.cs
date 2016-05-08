@@ -32,7 +32,6 @@
             this.txtProject = new System.Windows.Forms.TextBox();
             this.lblProject = new System.Windows.Forms.Label();
             this.mcalPriorityDate = new System.Windows.Forms.MonthCalendar();
-            this.lblIdTeam = new System.Windows.Forms.Label();
             this.lblCode = new System.Windows.Forms.Label();
             this.txtLocalization = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
@@ -42,21 +41,23 @@
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblLocalization = new System.Windows.Forms.Label();
             this.txtCode = new System.Windows.Forms.TextBox();
-            this.txtIdTeam = new System.Windows.Forms.TextBox();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnDeleteTask = new System.Windows.Forms.Button();
             this.btnUpdateTask = new System.Windows.Forms.Button();
             this.btnCreateTask = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
+            this.lblIdTeam = new System.Windows.Forms.Label();
+            this.txtIdTeam = new System.Windows.Forms.TextBox();
             this.gbContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbContainer
             // 
+            this.gbContainer.Controls.Add(this.lblIdTeam);
+            this.gbContainer.Controls.Add(this.txtIdTeam);
             this.gbContainer.Controls.Add(this.txtProject);
             this.gbContainer.Controls.Add(this.lblProject);
             this.gbContainer.Controls.Add(this.mcalPriorityDate);
-            this.gbContainer.Controls.Add(this.lblIdTeam);
             this.gbContainer.Controls.Add(this.lblCode);
             this.gbContainer.Controls.Add(this.txtLocalization);
             this.gbContainer.Controls.Add(this.lblName);
@@ -66,7 +67,6 @@
             this.gbContainer.Controls.Add(this.txtName);
             this.gbContainer.Controls.Add(this.lblLocalization);
             this.gbContainer.Controls.Add(this.txtCode);
-            this.gbContainer.Controls.Add(this.txtIdTeam);
             this.gbContainer.Location = new System.Drawing.Point(12, 12);
             this.gbContainer.Name = "gbContainer";
             this.gbContainer.Size = new System.Drawing.Size(535, 274);
@@ -100,19 +100,10 @@
             this.mcalPriorityDate.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.mcalPriorityDate_DateChanged);
             this.mcalPriorityDate.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.mcalPriorityDate_DateSelected);
             // 
-            // lblIdTeam
-            // 
-            this.lblIdTeam.AutoSize = true;
-            this.lblIdTeam.Location = new System.Drawing.Point(6, 26);
-            this.lblIdTeam.Name = "lblIdTeam";
-            this.lblIdTeam.Size = new System.Drawing.Size(48, 13);
-            this.lblIdTeam.TabIndex = 0;
-            this.lblIdTeam.Text = "ID Team";
-            // 
             // lblCode
             // 
             this.lblCode.AutoSize = true;
-            this.lblCode.Location = new System.Drawing.Point(164, 26);
+            this.lblCode.Location = new System.Drawing.Point(6, 26);
             this.lblCode.Name = "lblCode";
             this.lblCode.Size = new System.Drawing.Size(32, 13);
             this.lblCode.TabIndex = 0;
@@ -180,21 +171,12 @@
             // 
             // txtCode
             // 
-            this.txtCode.Location = new System.Drawing.Point(202, 22);
+            this.txtCode.Location = new System.Drawing.Point(44, 22);
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(99, 20);
             this.txtCode.TabIndex = 2;
             this.txtCode.Enter += new System.EventHandler(this.txtCode_Enter);
             this.txtCode.Leave += new System.EventHandler(this.txtCode_Leave);
-            // 
-            // txtIdTeam
-            // 
-            this.txtIdTeam.Location = new System.Drawing.Point(59, 22);
-            this.txtIdTeam.Name = "txtIdTeam";
-            this.txtIdTeam.Size = new System.Drawing.Size(100, 20);
-            this.txtIdTeam.TabIndex = 1;
-            this.txtIdTeam.Enter += new System.EventHandler(this.txtIdTeam_Enter);
-            this.txtIdTeam.Leave += new System.EventHandler(this.txtIdTeam_Leave);
             // 
             // btnBack
             // 
@@ -246,6 +228,22 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // lblIdTeam
+            // 
+            this.lblIdTeam.AutoSize = true;
+            this.lblIdTeam.Location = new System.Drawing.Point(149, 26);
+            this.lblIdTeam.Name = "lblIdTeam";
+            this.lblIdTeam.Size = new System.Drawing.Size(48, 13);
+            this.lblIdTeam.TabIndex = 9;
+            this.lblIdTeam.Text = "ID Team";
+            // 
+            // txtIdTeam
+            // 
+            this.txtIdTeam.Location = new System.Drawing.Point(202, 22);
+            this.txtIdTeam.Name = "txtIdTeam";
+            this.txtIdTeam.Size = new System.Drawing.Size(100, 20);
+            this.txtIdTeam.TabIndex = 10;
+            // 
             // frmTaskManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -269,8 +267,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtIdTeam;
         private System.Windows.Forms.TextBox txtCode;
         private System.Windows.Forms.Label lblLocalization;
         private System.Windows.Forms.TextBox txtName;
@@ -282,7 +278,6 @@
         private System.Windows.Forms.TextBox txtLocalization;
         private System.Windows.Forms.Button btnDeleteTask;
         private System.Windows.Forms.Label lblCode;
-        private System.Windows.Forms.Label lblIdTeam;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.GroupBox gbContainer;
         private System.Windows.Forms.MonthCalendar mcalPriorityDate;
@@ -290,5 +285,7 @@
         private System.Windows.Forms.Label lblProject;
         private System.Windows.Forms.Button btnCreateTask;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.TextBox txtIdTeam;
+        private System.Windows.Forms.Label lblIdTeam;
     }
 }
