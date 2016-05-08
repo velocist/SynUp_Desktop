@@ -94,6 +94,11 @@ namespace SynUp_Desktop.views
 
         #region Validaciones Obligatorios
 
+        /// <summary>
+        ///  Event that runs when the focus leaves the textbox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtCode_Leave(object sender, EventArgs e)
         {
             if (txtCode.Text.Equals(""))
@@ -105,12 +110,22 @@ namespace SynUp_Desktop.views
             }
         }
 
+        /// <summary>
+        /// Event that runs when the textbox recibes the focus
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtCode_Enter(object sender, EventArgs e)
         {
             lblCode.Text = "Code";
             lblCode.ForeColor = Color.Black;
         }
 
+        /// <summary>
+        /// Event that runs when the focus leaves the textbox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtName_Leave(object sender, EventArgs e)
         {
             if (txtName.Text.Equals(""))
@@ -122,12 +137,22 @@ namespace SynUp_Desktop.views
             }
         }
 
+        /// <summary>
+        /// Event that runs when the textbox recibes the focus
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtName_Enter(object sender, EventArgs e)
         {
             lblName.Text = "Name";
             lblName.ForeColor = Color.Black;
         }
 
+        /// <summary>
+        /// Event that runs when date changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void mcalPriorityDate_DateChanged(object sender, DateRangeEventArgs e)
         {
             if (mcalPriorityDate.SelectionStart.Date < DateTime.Today)
@@ -139,6 +164,11 @@ namespace SynUp_Desktop.views
             }
         }
 
+        /// <summary>
+        /// Event that runs when date selects
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void mcalPriorityDate_DateSelected(object sender, DateRangeEventArgs e)
         {
             lblPriorityDate.Text = "Priority Date";
