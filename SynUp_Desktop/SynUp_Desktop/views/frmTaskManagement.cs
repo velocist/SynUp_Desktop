@@ -36,6 +36,7 @@ namespace SynUp_Desktop.views
             InitializeComponent();
         }
 
+        public model.pojo.Task AuxTask;
         #region CRUD
 
         /// <summary>
@@ -201,5 +202,18 @@ namespace SynUp_Desktop.views
             mcalPriorityDate.SelectionStart = DateTime.Today;
         }
 
+        private void frmTaskManagement_Load(object sender, EventArgs e)
+        {
+            if (AuxTask != null)
+            {
+                txtIdTeam.Text = Convert.ToString(AuxTask.id_team);
+                txtCode.Text = Convert.ToString(AuxTask.code);
+                txtName.Text = AuxTask.name;
+                txtDescription.Text = AuxTask.description;
+                txtLocalization.Text = AuxTask.localization;
+                mcalPriorityDate.SelectionStart = AuxTask.priorityDate;
+                txtProject.Text = AuxTask.project; 
+            }
+        }
     }
 }

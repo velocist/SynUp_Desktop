@@ -37,6 +37,16 @@ namespace SynUp_Desktop.service
             return TaskConnection.createTask(newTask);
         }
 
+        /// <summary>
+        /// Method that returns the Task if it found
+        /// </summary>
+        /// <param name="pCode"></param>
+        /// <returns></returns>
+        public static Task readTask(String pCode)
+        {
+            return TaskConnection.readTask(pCode);
+        }
+
         public List<Task> getAllTasks()
         {
             return TaskConnection.readAllTasks();
