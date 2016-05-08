@@ -37,6 +37,7 @@ namespace SynUp_Desktop.views
         }
 
         public model.pojo.Task AuxTask;
+
         #region CRUD
 
         /// <summary>
@@ -68,15 +69,16 @@ namespace SynUp_Desktop.views
         private void btnCreateTask_Click(object sender, EventArgs e)
         {
             //TODO Falta mirar que si se inserta un idTeam, este exista antes de insertar la tasca assignada al team
+
+            String _iIdCode = txtCode.Text;
             String _iIdTeam = txtIdTeam.Text;
-            String _idCode = txtCode.Text;
             String _strProject = txtProject.Text;
             String _strName = txtName.Text;
             String _strDescription = txtDescription.Text;
             String _strLocalization = txtLocalization.Text;
             DateTime _dtPriorityDate = mcalPriorityDate.SelectionStart.Date;
 
-            Boolean createOk = TaskService.createTask(_idCode, _strName, _dtPriorityDate, _strDescription, _strLocalization, _strProject);
+            Boolean createOk = TaskService.createTask(_iIdCode, _strName, _dtPriorityDate, _strDescription, _strLocalization, _strProject);
 
             if (createOk)
             {
@@ -87,8 +89,8 @@ namespace SynUp_Desktop.views
             else
             {
                 MessageBox.Show("The task wasn't created succesfully!");
-
             }
+
         }
 
         #endregion
@@ -102,13 +104,22 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void txtCode_Leave(object sender, EventArgs e)
         {
-            if (txtCode.Text.Equals(""))
+            if (txtCode.Text.Equals("")) // We found that the textbox is not emtpty
             {
                 lblCode.ForeColor = Color.Red;
-                lblCode.Text = "Code *";
+                lblCode.Text = "Code*";
                 //txtCode.Focus();
                 //MessageBox.Show("The code can not be empty!");
             }
+
+            String _iIdCode = txtCode.Text;
+            model.pojo.Task foundTask = TaskService.readTask(_iIdCode); // We look for if the task already exists
+
+            if (foundTask != null) // If the task exists, we show a message
+            {
+                MessageBox.Show("This code already exists");
+            }
+
         }
 
         /// <summary>
@@ -133,7 +144,7 @@ namespace SynUp_Desktop.views
             {
                 //txtName.Focus();
                 lblName.ForeColor = Color.Red;
-                lblName.Text = "Name *";
+                lblName.Text = "Name*";
                 //MessageBox.Show("The name can not be empty!");
             }
         }
@@ -160,7 +171,7 @@ namespace SynUp_Desktop.views
             {
                 //mcalPriorityDate.Focus();
                 lblPriorityDate.ForeColor = Color.Red;
-                lblPriorityDate.Text = "Priority Date *";
+                lblPriorityDate.Text = "Priority Date*";
                 MessageBox.Show("The date can not be last!");
             }
         }
@@ -189,6 +200,29 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
+        /// Event that runs when the form loads.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmTaskManagement_Load(object sender, EventArgs e)
+        {
+            if (AuxTask != null)
+            {
+                // We recover the data of selected task
+                txtIdTeam.Text = Convert.ToString(AuxTask.id_team);
+                txtCode.Text = Convert.ToString(AuxTask.code);
+                txtName.Text = AuxTask.name;
+                txtDescription.Text = AuxTask.description;
+                txtLocalization.Text = AuxTask.localization;
+                mcalPriorityDate.SelectionStart = AuxTask.priorityDate;
+                txtProject.Text = AuxTask.project;
+
+                btnCreateTask.Enabled = false; // We disabled the button to create a task
+
+            }
+        }
+
+        /// <summary>
         /// Method that cleans values
         /// </summary>
         private void clearValues()
@@ -200,20 +234,42 @@ namespace SynUp_Desktop.views
             txtDescription.Text = "";
             txtLocalization.Text = "";
             mcalPriorityDate.SelectionStart = DateTime.Today;
+            mcalPriorityDate.SelectionEnd = DateTime.Today;
+
         }
 
-        private void frmTaskManagement_Load(object sender, EventArgs e)
+        private void btnClear_Click(object sender, EventArgs e)
         {
-            if (AuxTask != null)
+            clearValues();
+
+            if (btnCreateTask.Enabled == false)
             {
-                txtIdTeam.Text = Convert.ToString(AuxTask.id_team);
-                txtCode.Text = Convert.ToString(AuxTask.code);
-                txtName.Text = AuxTask.name;
-                txtDescription.Text = AuxTask.description;
-                txtLocalization.Text = AuxTask.localization;
-                mcalPriorityDate.SelectionStart = AuxTask.priorityDate;
-                txtProject.Text = AuxTask.project; 
+                btnCreateTask.Enabled = true;
+                AuxTask = null;
             }
+        }
+
+        private void txtIdTeam_Leave(object sender, EventArgs e)
+        {
+            if (txtName.Text.Equals(""))
+            {
+                lblIdTeam.ForeColor = Color.Red;
+                lblIdTeam.Text = "Id Team*";
+            }
+
+            /*String _iIdTeam = txtIdTeam.Text;
+            model.pojo.Task foundTask = TaskService.readTask(_iIdTeam); // We look for if the task already exists
+
+            if (foundTask != null) // If the task exists, we show a message
+            {
+                MessageBox.Show("This code already exists");
+            }*/
+        }
+
+        private void txtIdTeam_Enter(object sender, EventArgs e)
+        {
+            lblIdTeam.Text = "Id Team";
+            lblIdTeam.ForeColor = Color.Black;
         }
     }
 }

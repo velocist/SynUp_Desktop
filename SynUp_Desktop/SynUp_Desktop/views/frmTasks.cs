@@ -45,7 +45,7 @@ namespace SynUp_Desktop.views
             if (dgvTasks.SelectedRows.Count == 1)//If the row selected
 
             {
-                int _iIndexSelected = dgvTasks.SelectedRows[0].Index;
+                int _iIndexSelected = dgvTasks.SelectedRows[0].Index; // Recover the index of selected row
                 String _strSelectedRowCode = dgvTasks.Rows[_iIndexSelected].Cells[2].Value.ToString(); // Recover the code
                 _oSelectedTask = TaskService.readTask(_strSelectedRowCode); // We look for the task code
 
@@ -79,22 +79,7 @@ namespace SynUp_Desktop.views
             BindingSource source = new BindingSource();
             source.DataSource = Controller.Service.getAllTasks();
 
-            dgvTasks.DataSource = source;            
-
-            dgvTasks.Columns[0].Visible = false; // We hide id column
-            dgvTasks.Columns["id_team"].Visible = false; // We hide the id_team column
-
-            dgvTasks.Columns[2].HeaderText = "Code"; // We change the column name
-            dgvTasks.Columns[3].HeaderText = "Name";
-            dgvTasks.Columns[4].HeaderText = "Priority Date";
-            dgvTasks.Columns[5].HeaderText = "Description";
-            dgvTasks.Columns[6].HeaderText = "Localization";
-            dgvTasks.Columns[7].HeaderText = "Project";
-            dgvTasks.Columns[8].HeaderText = "Task Histories";
-            dgvTasks.Columns[9].HeaderText = "Team";
-
-            dgvTasks.AutoResizeColumns();
-            dgvTasks.RowHeadersVisible = false;
+            dgvTasks.DataSource = source;
 
             dgvTasks.Refresh();
 
@@ -109,8 +94,23 @@ namespace SynUp_Desktop.views
         {
             //The grid with all the tasks will load.
             fillGridView();
+
+            // DataGridView Configuration
+            dgvTasks.Columns[0].Visible = false; // We hide id column
+            dgvTasks.Columns["id_team"].Visible = false; // We hide the id_team column
+
+            dgvTasks.Columns[2].HeaderText = "Code"; // We change the column name
+            dgvTasks.Columns[3].HeaderText = "Name";
+            dgvTasks.Columns[4].HeaderText = "Priority Date";
+            dgvTasks.Columns[5].HeaderText = "Description";
+            dgvTasks.Columns[6].HeaderText = "Localization";
+            dgvTasks.Columns[7].HeaderText = "Project";
+            dgvTasks.Columns[8].HeaderText = "Task Histories";
+            dgvTasks.Columns[9].HeaderText = "Team";
+
+            dgvTasks.AutoResizeColumns();
+            dgvTasks.RowHeadersVisible = false; // We hide the rowheader
+            dgvTasks.ClearSelection(); // Cleer selection rows
         }
-
-
     }
 }

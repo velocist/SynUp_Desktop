@@ -193,6 +193,8 @@
             this.txtIdTeam.Name = "txtIdTeam";
             this.txtIdTeam.Size = new System.Drawing.Size(100, 20);
             this.txtIdTeam.TabIndex = 1;
+            this.txtIdTeam.Enter += new System.EventHandler(this.txtIdTeam_Enter);
+            this.txtIdTeam.Leave += new System.EventHandler(this.txtIdTeam_Leave);
             // 
             // btnBack
             // 
@@ -242,6 +244,7 @@
             this.btnClear.TabIndex = 11;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // frmTaskManagement
             // 
