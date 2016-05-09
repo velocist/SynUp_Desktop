@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.gbContainer = new System.Windows.Forms.GroupBox();
+            this.lblIdTeam = new System.Windows.Forms.Label();
+            this.txtIdTeam = new System.Windows.Forms.TextBox();
             this.txtProject = new System.Windows.Forms.TextBox();
             this.lblProject = new System.Windows.Forms.Label();
             this.mcalPriorityDate = new System.Windows.Forms.MonthCalendar();
@@ -46,8 +48,6 @@
             this.btnUpdateTask = new System.Windows.Forms.Button();
             this.btnCreateTask = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
-            this.lblIdTeam = new System.Windows.Forms.Label();
-            this.txtIdTeam = new System.Windows.Forms.TextBox();
             this.gbContainer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,6 +73,23 @@
             this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "Task Data";
+            // 
+            // lblIdTeam
+            // 
+            this.lblIdTeam.AutoSize = true;
+            this.lblIdTeam.Location = new System.Drawing.Point(149, 26);
+            this.lblIdTeam.Name = "lblIdTeam";
+            this.lblIdTeam.Size = new System.Drawing.Size(48, 13);
+            this.lblIdTeam.TabIndex = 9;
+            this.lblIdTeam.Text = "ID Team";
+            // 
+            // txtIdTeam
+            // 
+            this.txtIdTeam.Location = new System.Drawing.Point(202, 22);
+            this.txtIdTeam.Name = "txtIdTeam";
+            this.txtIdTeam.Size = new System.Drawing.Size(100, 20);
+            this.txtIdTeam.TabIndex = 10;
+            this.txtIdTeam.TextChanged += new System.EventHandler(this.txtIdTeam_TextChanged);
             // 
             // txtProject
             // 
@@ -155,10 +172,9 @@
             // 
             this.txtName.Location = new System.Drawing.Point(59, 49);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(466, 20);
+            this.txtName.Size = new System.Drawing.Size(462, 20);
             this.txtName.TabIndex = 3;
-            this.txtName.Enter += new System.EventHandler(this.txtName_Enter);
-            this.txtName.Leave += new System.EventHandler(this.txtName_Leave);
+            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // lblLocalization
             // 
@@ -175,8 +191,7 @@
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(99, 20);
             this.txtCode.TabIndex = 2;
-            this.txtCode.Enter += new System.EventHandler(this.txtCode_Enter);
-            this.txtCode.Leave += new System.EventHandler(this.txtCode_Leave);
+            this.txtCode.TextChanged += new System.EventHandler(this.txtCode_TextChanged);
             // 
             // btnBack
             // 
@@ -227,22 +242,6 @@
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
-            // 
-            // lblIdTeam
-            // 
-            this.lblIdTeam.AutoSize = true;
-            this.lblIdTeam.Location = new System.Drawing.Point(149, 26);
-            this.lblIdTeam.Name = "lblIdTeam";
-            this.lblIdTeam.Size = new System.Drawing.Size(48, 13);
-            this.lblIdTeam.TabIndex = 9;
-            this.lblIdTeam.Text = "ID Team";
-            // 
-            // txtIdTeam
-            // 
-            this.txtIdTeam.Location = new System.Drawing.Point(202, 22);
-            this.txtIdTeam.Name = "txtIdTeam";
-            this.txtIdTeam.Size = new System.Drawing.Size(100, 20);
-            this.txtIdTeam.TabIndex = 10;
             // 
             // frmTaskManagement
             // 

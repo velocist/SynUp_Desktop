@@ -43,7 +43,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnManagementEmployee_Click(object sender, EventArgs e)
         {
-            this.Controller.EmployeeMgtView1.ShowDialog();
+            this.Controller.EmployeeMgtView.ShowDialog();
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace SynUp_Desktop.views
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
-            this.Controller.MainView1.Show();
+            this.Controller.MainView.Show();
         }
     }
 }

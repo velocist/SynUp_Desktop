@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace SynUp_Desktop.controller
 {
     /// <summary>
-    /// Controller class that handles the views and the service that will acccess the object of data access. 
+    /// Controller class that handles the views and the _TaskService that will acccess the object of data access. 
     /// </summary>
     /// <Author>Cristina Caballero</Author>
     ///<Version>0.01</Version>
@@ -19,148 +19,166 @@ namespace SynUp_Desktop.controller
     {
 
         #region VARIABLES
-        private TaskService service;
-        private frmAbout AboutView;
-        private frmStatistics StatisticsView;
-        private frmTasks TasksView;
-        private frmTeams TeamsView;
-        private frmEmployeeManagement EmployeeMgtView;
-        private frmEmployees EmployeeView;
-        private frmMain MainView;
-        private frmTaskManagement TaskMgtView;
-        private frmTeamManagement TeamMgtView;
+        private TaskService _TaskService;
+        private TeamService _TeamService;
+        private frmAbout _AboutView;
+        private frmStatistics _StatisticsView;
+        private frmTasks _TasksView;
+        private frmTeams _TeamsView;
+        private frmEmployeeManagement _EmployeeMgtView;
+        private frmEmployees _EmployeeView;
+        private frmMain _MainView;
+        private frmTaskManagement _TaskMgtView;
+        private frmTeamManagement _TeamMgtView;
         #endregion
 
         #region GETTERS AND SETTERS
-        public frmAbout AboutView1
+        public TaskService TaskService
         {
             get
             {
-                return AboutView;
+                return _TaskService;
             }
 
             set
             {
-                AboutView = value;
+                _TaskService = value;
             }
         }
 
-        public frmStatistics StatisticsView1
+        public TeamService TeamService
         {
             get
             {
-                return StatisticsView;
+                return _TeamService;
             }
 
             set
             {
-                StatisticsView = value;
+                _TeamService = value;
             }
         }
 
-        public frmTasks TasksView1
+        public frmAbout AboutView
         {
             get
             {
-                return TasksView;
+                return _AboutView;
             }
 
             set
             {
-                TasksView = value;
+                _AboutView = value;
             }
         }
 
-        public frmTeams TeamsView1
+        public frmStatistics StatisticsView
         {
             get
             {
-                return TeamsView;
+                return _StatisticsView;
             }
 
             set
             {
-                TeamsView = value;
+                _StatisticsView = value;
             }
         }
 
-        public frmEmployeeManagement EmployeeMgtView1
+        public frmTasks TasksView
         {
             get
             {
-                return EmployeeMgtView;
+                return _TasksView;
             }
 
             set
             {
-                EmployeeMgtView = value;
+                _TasksView = value;
             }
         }
 
-        public frmEmployees EmployeeView1
+        public frmTeams TeamsView
         {
             get
             {
-                return EmployeeView;
+                return _TeamsView;
             }
 
             set
             {
-                EmployeeView = value;
+                _TeamsView = value;
             }
         }
 
-        public frmMain MainView1
+        public frmEmployeeManagement EmployeeMgtView
         {
             get
             {
-                return MainView;
+                return _EmployeeMgtView;
             }
 
             set
             {
-                MainView = value;
+                _EmployeeMgtView = value;
             }
         }
 
-        public frmTaskManagement TaskMgtView1
+        public frmEmployees EmployeeView
         {
             get
             {
-                return TaskMgtView;
+                return _EmployeeView;
             }
 
             set
             {
-                TaskMgtView = value;
+                _EmployeeView = value;
             }
         }
 
-        public frmTeamManagement TeamMgtView1
+        public frmMain MainView
         {
             get
             {
-                return TeamMgtView;
+                return _MainView;
             }
 
             set
             {
-                TeamMgtView = value;
+                _MainView = value;
             }
         }
 
-        public TaskService Service
+        public frmTaskManagement TaskMgtView
         {
             get
             {
-                return service;
+                return _TaskMgtView;
             }
 
             set
             {
-                service = value;
+                _TaskMgtView = value;
             }
         }
+
+        public frmTeamManagement TeamMgtView
+        {
+            get
+            {
+                return _TeamMgtView;
+            }
+
+            set
+            {
+                _TeamMgtView = value;
+            }
+        }
+
+
+
+
         #endregion
 
     }

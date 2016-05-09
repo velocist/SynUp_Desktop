@@ -40,7 +40,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnManagementTeams_Click(object sender, EventArgs e)
         {
-            this.Controller.TeamMgtView1.ShowDialog();
+            this.Controller.TeamMgtView.ShowDialog();
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnBack_Click(object sender, EventArgs e)
         {
-            this.Controller.TeamsView1.Close();
+            this.Close();
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace SynUp_Desktop.views
             /// He ocultado las dos primeras columnas. Lo he hecho de dos maneras para que veas como se puede hacer.
 
             BindingSource source = new BindingSource();
-            source.DataSource = Controller.Service.getAllTeams();
+            source.DataSource = Controller.TeamService.getAllTeams();
 
             dgvTeams.DataSource = source;
 

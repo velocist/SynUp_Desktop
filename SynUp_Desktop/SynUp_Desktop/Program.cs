@@ -26,9 +26,11 @@ namespace SynUp_Desktop
         private static Form init()
         {
             controller.Controller controller = new controller.Controller();
-            service.TaskService service = new service.TaskService();
+            service.TaskService taskservice = new service.TaskService();
+            service.TeamService teamservice = new service.TeamService();
 
-            controller.Service = service;
+            controller.TaskService = taskservice;
+            controller.TeamService = teamservice;
 
             frmAbout aboutView = new frmAbout();
             frmEmployeeManagement employeeMgtView = new frmEmployeeManagement();
@@ -50,15 +52,15 @@ namespace SynUp_Desktop
             teamMgtView.Controller = controller;
             teamsView.Controller = controller;
 
-            controller.AboutView1 = aboutView;
-            controller.MainView1 = mainView;
-            controller.StatisticsView1 = statisticsView;
-            controller.TaskMgtView1 = taskMgtView;
-            controller.TasksView1 = taskView;
-            controller.TeamMgtView1 = teamMgtView;
-            controller.TeamsView1 = teamsView;
-            controller.EmployeeView1 = employeeView;
-            controller.EmployeeMgtView1 = employeeMgtView;
+            controller.AboutView = aboutView;
+            controller.MainView = mainView;
+            controller.StatisticsView = statisticsView;
+            controller.TaskMgtView = taskMgtView;
+            controller.TasksView = taskView;
+            controller.TeamMgtView = teamMgtView;
+            controller.TeamsView = teamsView;
+            controller.EmployeeView = employeeView;
+            controller.EmployeeMgtView = employeeMgtView;
 
             return mainView;
         }

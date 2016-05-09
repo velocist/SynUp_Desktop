@@ -49,7 +49,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnDeleteTask_Click(object sender, EventArgs e)
         {
-            model.pojo.Task deleteTask = TaskService.deleteTask(AuxTask);
+            model.pojo.Task deleteTask = Controller.TaskService.deleteTask(AuxTask);
             if (deleteTask != null)
             {
                 MessageBox.Show("This task was delete succesfully");
@@ -75,25 +75,11 @@ namespace SynUp_Desktop.views
             String _strLocalization = txtLocalization.Text;
             DateTime _dtPriorityDate = mcalPriorityDate.SelectionStart.Date;
 
-            model.pojo.Task _oUpdateTask = new model.pojo.Task();
-
-            if (_strIdTeam != "")
-            {
-                _oUpdateTask.id_team = Convert.ToInt16(_strIdTeam);
-            }
-            _oUpdateTask.id = this.AuxTask.id;
-            _oUpdateTask.code = _strCode;
-            _oUpdateTask.name = _strName;
-            _oUpdateTask.priorityDate = _dtPriorityDate;
-            _oUpdateTask.description = _strDescription;
-            _oUpdateTask.localization = _strLocalization;
-            _oUpdateTask.project = _strProject;
-
-            Boolean _blUpdateOk = TaskService.updateTask(_oUpdateTask);
+            Boolean _blUpdateOk = Controller.TaskService.updateTask(_strCode, _strName, _dtPriorityDate, _strDescription, _strLocalization, _strProject);
 
             if (_blUpdateOk)
             {
-                MessageBox.Show("The task was update succesfully!");
+                MessageBox.Show("The task was updated succesfully!");
                 this.btnBack_Click(sender, e);
             }
             else
@@ -118,7 +104,7 @@ namespace SynUp_Desktop.views
             String _strLocalization = txtLocalization.Text;
             DateTime _dtPriorityDate = mcalPriorityDate.SelectionStart.Date;
 
-            Boolean createOk = TaskService.createTask(_strCode, _strName, _dtPriorityDate, _strDescription, _strLocalization, _strProject);
+            Boolean createOk = Controller.TaskService.createTask(_strCode, _strName, _dtPriorityDate, _strDescription, _strLocalization, _strProject);
 
             if (createOk)
             {
@@ -134,43 +120,43 @@ namespace SynUp_Desktop.views
 
         #endregion
 
-        #region Validaciones Obligatorios
+        #region VALIDATIONS
 
-        /// <summary>
-        ///  Event that runs when the focus leaves the textbox
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void txtCode_Leave(object sender, EventArgs e)
-        {
-            if (txtCode.Text.Equals("")) // We found that the textbox is not emtpty
-            {
-                lblCode.ForeColor = Color.Red;
-                lblCode.Text = "Code*";
-                //txtCode.Focus();
-                //MessageBox.Show("The code can not be empty!");
-            }
+        ///// <summary>
+        /////  Event that runs when the focus leaves the textbox
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void txtCode_Leave(object sender, EventArgs e)
+        //{
+        //    //if (txtCode.Text.Equals("")) // We found that the textbox is not emtpty
+        //    //{
+        //    //    lblCode.ForeColor = Color.Red;
+        //    //    lblCode.Text = "Code*";
+        //    //    //txtCode.Focus();
+        //    //    //MessageBox.Show("The code can not be empty!");
+        //    //}
 
-            String _strIdCode = txtCode.Text;
-            model.pojo.Task foundTask = TaskService.readTask(_strIdCode); // We look for if the task already exists
+        //    //String _strIdCode = txtCode.Text;
+        //    //model.pojo.Task foundTask = Controller.TaskService.readTask(_strIdCode); // We look for if the task already exists
 
-            if (foundTask != null) // If the task exists, we show a message
-            {
-                MessageBox.Show("This code already exists");
-            }
+        //    //if (foundTask != null) // If the task exists, we show a message
+        //    //{
+        //    //    MessageBox.Show("This code already exists");
+        //    //}
 
-        }
+        //}
 
-        /// <summary>
-        /// Event that runs when the textbox recibes the focus
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void txtCode_Enter(object sender, EventArgs e)
-        {
-            lblCode.Text = "Code";
-            lblCode.ForeColor = Color.Black;
-        }
+        ///// <summary>
+        ///// Event that runs when the textbox recibes the focus
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void txtCode_Enter(object sender, EventArgs e)
+        //{
+        //    //lblCode.Text = "Code";
+        //    //lblCode.ForeColor = Color.Black;
+        //}
 
         /// <summary>
         /// Event that runs when the focus leaves the textbox
@@ -179,13 +165,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void txtName_Leave(object sender, EventArgs e)
         {
-            if (txtName.Text.Equals(""))
-            {
-                //txtName.Focus();
-                lblName.ForeColor = Color.Red;
-                lblName.Text = "Name*";
-                //MessageBox.Show("The name can not be empty!");
-            }
+
         }
 
         /// <summary>
@@ -211,7 +191,11 @@ namespace SynUp_Desktop.views
                 //mcalPriorityDate.Focus();
                 lblPriorityDate.ForeColor = Color.Red;
                 lblPriorityDate.Text = "Priority Date*";
-                MessageBox.Show("The date can not be last!");
+                //MessageBox.Show("The date can not be past!");
+            } else
+            {
+                lblPriorityDate.ForeColor = Color.Black;
+                lblPriorityDate.Text = "Priority Date";
             }
         }
 
@@ -233,20 +217,20 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void txtIdTeam_Leave(object sender, EventArgs e)
         {
-            //TODO: Falta comprobar porque no se inserta el idTeam al insertar la Tasca
-            if (txtIdTeam.Text != "")
-            {
-                String _iIdTeam = txtIdTeam.Text;
-                model.pojo.Team _oTeam = TeamService.readTeam(_iIdTeam); // We look for if the team already exists
+            //TODO: Falta comprobar porque no se inserta el idTeam al insertar la Tasca --> PORQUE TEAM NO EXISTE I ES UNA FK
+            //if (txtIdTeam.Text != "")
+            //{
+            //    String _iIdTeam = txtIdTeam.Text;
+            //    model.pojo.Team _oTeam = Controller.TeamService.readTeam(_iIdTeam); // We look for if the team already exists
 
-                if (_oTeam == null) // If the team exists, we show a message
-                {
-                    MessageBox.Show("This team don't exists");
-                    lblIdTeam.ForeColor = Color.Red;
-                    lblIdTeam.Text = "Id Team*";
-                }
+            //    if (_oTeam == null) // If the team exists, we show a message
+            //    {
+            //        MessageBox.Show("This team don't exists");
+            //        lblIdTeam.ForeColor = Color.Red;
+            //        lblIdTeam.Text = "Id Team*";
+            //    }
 
-            }
+            //}
         }
 
         /// <summary>
@@ -259,6 +243,70 @@ namespace SynUp_Desktop.views
             lblIdTeam.Text = "Id Team";
             lblIdTeam.ForeColor = Color.Black;
         }
+
+        #region TEXT CHANGED EVENTS 
+        /// <summary>
+        /// Even that runs everytime the IdTeam textbox is changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtIdTeam_TextChanged(object sender, EventArgs e)
+        {
+            if (txtIdTeam.Text != "")
+            {
+                String _iIdTeam = txtIdTeam.Text;
+
+                model.pojo.Team _oTeam = Controller.TeamService.readTeam(_iIdTeam); // We look for if the team already exists
+
+                if (_oTeam == null) // If the team exists, we show a message
+                {
+                    //MessageBox.Show("This team don't exists");
+                    lblIdTeam.ForeColor = Color.Red;
+                    lblIdTeam.Text = "Id Team*";
+                }
+                else
+                {
+                    lblIdTeam.ForeColor = Color.Black;
+                    lblIdTeam.Text = "Id Team";
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// Even that runs everytime the Code textbox is changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtCode_TextChanged(object sender, EventArgs e)
+        {
+            String _strIdCode = txtCode.Text;
+            model.pojo.Task foundTask = Controller.TaskService.readTask(_strIdCode); // We look for if the task already exists
+
+            if (foundTask != null || txtCode.Text.Equals("")) // If the task exists, we show a message
+            {
+                lblCode.ForeColor = Color.Red;
+                lblCode.Text = "Code*";
+            }
+            else
+            {
+                lblCode.Text = "Code";
+                lblCode.ForeColor = Color.Black;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+            lblName.Text = "Name";
+            lblName.ForeColor = Color.Black;
+        }
+
+        #endregion
 
         #endregion
 
@@ -292,7 +340,7 @@ namespace SynUp_Desktop.views
                 this.mcalPriorityDate.SelectionStart = this.AuxTask.priorityDate;
                 this.txtProject.Text = this.AuxTask.project;
 
-                this.btnCreateTask.Enabled = false; // We disabled the button to create a task
+                this.btnCreateTask.Enabled = false; // We disable the button to create a task
                 this.txtCode.Enabled = false;
             }
         }
@@ -310,6 +358,7 @@ namespace SynUp_Desktop.views
             {
                 this.btnCreateTask.Enabled = true;
                 this.AuxTask = null;
+                if (txtCode.Enabled == false) txtCode.Enabled = true;
             }
         }
 
@@ -326,8 +375,7 @@ namespace SynUp_Desktop.views
             txtLocalization.Text = "";
             mcalPriorityDate.SelectionStart = DateTime.Today;
             mcalPriorityDate.SelectionEnd = DateTime.Today;
-
         }
-
+       
     }
 }

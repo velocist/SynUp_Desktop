@@ -46,14 +46,18 @@ namespace SynUp_Desktop.views
 
             {
                 int _iIndexSelected = dgvTasks.SelectedRows[0].Index; // Recover the index of selected row
-                String _strSelectedRowCode = dgvTasks.Rows[_iIndexSelected].Cells[2].Value.ToString(); // Recover the code
-                _oSelectedTask = TaskService.readTask(_strSelectedRowCode); // We look for the task code
-
-                this.Controller.TaskMgtView1.AuxTask = _oSelectedTask; // We assign the task to form task management
+                Object _cell = dgvTasks.Rows[_iIndexSelected].Cells[2].Value;
+                if(_cell != null)
+                {
+                    String _strSelectedRowCode = _cell.ToString(); // Recover the code
+                    _oSelectedTask = Controller.TaskService.readTask(_strSelectedRowCode); // We look for the task code
+                    this.Controller.TaskMgtView.AuxTask = _oSelectedTask; // We assign the task to form task management
+                }
+                
             }
 
             //this.Hide();
-            this.Controller.TaskMgtView1.ShowDialog();
+            this.Controller.TaskMgtView.ShowDialog();
             //this.Show();
         }
 
@@ -75,7 +79,7 @@ namespace SynUp_Desktop.views
         {
 
             BindingSource source = new BindingSource();
-            source.DataSource = Controller.Service.getAllTasks();
+            source.DataSource = Controller.TaskService.getAllTasks();
 
             dgvTasks.DataSource = source;
 

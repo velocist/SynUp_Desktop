@@ -74,9 +74,17 @@ namespace SynUp_Desktop.model.dao
         /// <returns>Returns a boolean whether the task has been updated succesfully or not.</returns>
         public static bool updateTask(pojo.Task t)
         {
-            pojo.Task foundTask = readTask(t.code);
+            pojo.Task modifiedTask;
 
-            foundTask = t;
+            modifiedTask = readTask(t.code);
+
+            modifiedTask.code = t.code;
+            modifiedTask.description = t.description;
+            modifiedTask.id_team = t.id_team;
+            modifiedTask.localization = t.localization;
+            modifiedTask.name = t.name;
+            modifiedTask.priorityDate = t.priorityDate;
+            modifiedTask.project = t.project;
 
             return commitChanges();
         }

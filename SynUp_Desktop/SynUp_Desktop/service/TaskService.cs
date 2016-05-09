@@ -22,7 +22,7 @@ namespace SynUp_Desktop.service
         /// <param name="description"></param>
         /// <param name="localization"></param>
         /// <param name="project"></param>
-        public static bool createTask(String code, String name, DateTime priorityDate, String description, String localization, String project)
+        public bool createTask(String code, String name, DateTime priorityDate, String description, String localization, String project)
         {
             Task newTask = new Task
             {
@@ -37,12 +37,27 @@ namespace SynUp_Desktop.service
             return TaskConnection.createTask(newTask);
         }
 
+        public bool updateTask(String code, String name, DateTime priorityDate, String description, String localization, String project)
+        {
+            Task newTask = new Task
+            {
+                code = code,
+                name = name,
+                priorityDate = priorityDate,
+                description = description,
+                localization = localization,
+                project = project
+            };
+
+            return TaskConnection.updateTask(newTask);
+        }
+
         /// <summary>
         /// Method that returns the Task if it found
         /// </summary>
         /// <param name="pCode"></param>
         /// <returns></returns>
-        public static Task readTask(String pCode)
+        public Task readTask(String pCode)
         {
             return TaskConnection.readTask(pCode);
         }
@@ -52,7 +67,7 @@ namespace SynUp_Desktop.service
         /// </summary>
         /// <param name="pCode"></param>
         /// <returns></returns>
-        public static Task deleteTask(Task pTask)
+        public Task deleteTask(Task pTask)
         {
             return TaskConnection.deleteTask(pTask);
         }
@@ -67,46 +82,10 @@ namespace SynUp_Desktop.service
         /// </summary>
         /// <param name="pTask"></param>
         /// <returns></returns>
-        public static bool updateTask(Task pTask)
+        public bool updateTask(Task pTask)
         {
             return TaskConnection.updateTask(pTask);
         }
-
-        #region TEAM SERVICE
-        ///Note: Coloco aqui el servicio del team. Tenemos que decidir que hacer, si un archivo de servicio por cada o 
-        ///todos en el mismo.
-
-        public static bool createTeam(String code, String name)
-        {
-            Team newTeam = new Team
-            {
-                code = code,
-                name = name
-            };
-
-            return TeamConnection.createTeam(newTeam);
-        }
-
-        public static Team readTeam(String pCode)
-        {
-            return TeamConnection.readTeam(pCode);
-        }
-
-        public static bool updateTeam(Team pTeam)
-        {
-            return TeamConnection.updateTeam(pTeam);
-        }
-
-        public static Team deleteTeam(Team pTeam)
-        {
-            return TeamConnection.deleteTeam(pTeam);
-        }
-
-        public List<Team> getAllTeams()
-        {
-            return TeamConnection.readAllTeams();
-        }
-
-        #endregion
+        
     }
 }

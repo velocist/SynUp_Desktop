@@ -43,7 +43,7 @@ namespace SynUp_Desktop.views
             String _strCode = txtCode.Text;
             String _strName = txtName.Text;
 
-            Boolean createOk = TaskService.createTeam(_strCode, _strName);
+            Boolean createOk = Controller.TeamService.createTeam(_strCode, _strName);
 
             if (createOk)
             {
@@ -74,7 +74,7 @@ namespace SynUp_Desktop.views
 
         private void btnDeleteTeam_Click(object sender, EventArgs e)
         {
-            model.pojo.Team deleteTeam = TaskService.deleteTeam(AuxTeam);
+            Team deleteTeam = Controller.TeamService.deleteTeam(AuxTeam);
             if (deleteTeam != null)
             {
                 MessageBox.Show("This team was delete succesfully");
@@ -99,7 +99,7 @@ namespace SynUp_Desktop.views
             }
 
             String _strIdCode = txtCode.Text;
-            model.pojo.Team _oTeam = TaskService.readTeam(_strIdCode); // We look for if the task already exists
+            Team _oTeam = Controller.TeamService.readTeam(_strIdCode); // We look for if the task already exists
 
             if (_oTeam != null) // If the task exists, we show a message
             {
