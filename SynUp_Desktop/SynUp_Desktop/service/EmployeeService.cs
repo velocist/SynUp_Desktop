@@ -19,16 +19,16 @@ namespace SynUp_Desktop.service
         /// <param name="email"></param>
         /// <param name="adress"></param>
         /// <returns></returns>
-        public bool createEmployee(String nif, String name, String surname, String phone, String email, String adress)
+        public bool createEmployee(String pNif, String pName, String pSurname, String pPhone, String pEmail, String pAdress)
         {
             Employee newEmployee = new Employee
             {
-                nif = nif,
-                name = name,
-                surname = surname,
-                phone = phone,
-                email = email,
-                adress = adress
+                nif = pNif,
+                name = pName,
+                surname = pSurname,
+                phone = pPhone,
+                email = pEmail,
+                adress = pAdress
             };
 
             return EmployeeConnection.createEmployee(newEmployee);
@@ -44,16 +44,16 @@ namespace SynUp_Desktop.service
         /// <param name="email"></param>
         /// <param name="adress"></param>
         /// <returns></returns>
-        public bool updateEmployee(String nif, String name, String surname, String phone, String email, String adress)
+        public bool updateEmployee(String pNif, String pName, String pSurname, String pPhone, String pEmail, String pAdress)
         {
             Employee newEmployee = new Employee
             {
-                nif = nif,
-                name = name,
-                surname = surname,
-                phone = phone,
-                email = email,
-                adress = adress
+                nif = pNif,
+                name = pName,
+                surname = pSurname,
+                phone = pPhone,
+                email = pEmail,
+                adress = pAdress
             };
 
             return EmployeeConnection.updateEmployee(newEmployee);

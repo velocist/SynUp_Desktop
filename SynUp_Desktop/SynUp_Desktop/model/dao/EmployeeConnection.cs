@@ -45,12 +45,12 @@ namespace SynUp_Desktop.model.dao
         /// <summary>
         /// Given the code, it is searched in the database and will return the first result.
         /// </summary>
-        /// <param name="pCode">Code key of the employee</param>
+        /// <param name="pNif">Code key of the employee</param>
         /// <returns>If the code is already on the database it will return the Employee, otherwise it will return a null.</returns>
-        public static pojo.Employee readEmployee(String pCode)
+        public static pojo.Employee readEmployee(String pNif)
         {
             var query = from employee in database.Employees
-                        where employee.nif == pCode
+                        where employee.nif == pNif
                         select employee;
 
             return query.SingleOrDefault();
@@ -65,7 +65,12 @@ namespace SynUp_Desktop.model.dao
         {
             pojo.Employee _oEmployee = readEmployee(pEmployee.nif);
 
-            _oEmployee = pEmployee;
+            _oEmployee.nif = pEmployee.nif;
+            _oEmployee.name = pEmployee.name;
+            _oEmployee.surname = pEmployee.surname;
+            _oEmployee.phone = pEmployee.phone;
+            _oEmployee.email = pEmployee.email;
+            _oEmployee.adress = pEmployee.adress;
 
             return commitChanges();
         }
@@ -84,7 +89,7 @@ namespace SynUp_Desktop.model.dao
                 database.Employees.Remove(_oEmployee); //Will be deleted.
             }
 
-            if (commitChanges()) return _oEmployee; //If the changes are commited succesfully it will return the deleted Team.
+            if (commitChanges()) return _oEmployee; //If the changes are commited succesfully it will return the deleted Employee.
             else return null;
         }
 

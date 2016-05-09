@@ -49,7 +49,7 @@ namespace SynUp_Desktop.views
 
             {
                 int _iIndexSelected = dgvEmployees.SelectedRows[0].Index; // Recover the index of selected row
-                Object _cell = dgvEmployees.Rows[_iIndexSelected].Cells[2].Value;
+                Object _cell = dgvEmployees.Rows[_iIndexSelected].Cells[1].Value;
                 if (_cell != null)
                 {
                     String _strSelectedRowCode = _cell.ToString(); // Recover the code
