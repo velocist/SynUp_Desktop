@@ -109,7 +109,7 @@
             // 
             // mcalPriorityDate
             // 
-            this.mcalPriorityDate.Location = new System.Drawing.Point(333, 98);
+            this.mcalPriorityDate.Location = new System.Drawing.Point(329, 98);
             this.mcalPriorityDate.MinDate = new System.DateTime(2016, 1, 1, 0, 0, 0, 0);
             this.mcalPriorityDate.Name = "mcalPriorityDate";
             this.mcalPriorityDate.ShowTodayCircle = false;
@@ -152,7 +152,7 @@
             // lblPriorityDate
             // 
             this.lblPriorityDate.AutoSize = true;
-            this.lblPriorityDate.Location = new System.Drawing.Point(330, 82);
+            this.lblPriorityDate.Location = new System.Drawing.Point(326, 82);
             this.lblPriorityDate.Name = "lblPriorityDate";
             this.lblPriorityDate.Size = new System.Drawing.Size(64, 13);
             this.lblPriorityDate.TabIndex = 0;
@@ -169,9 +169,9 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(59, 49);
+            this.txtName.Location = new System.Drawing.Point(44, 49);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(462, 20);
+            this.txtName.Size = new System.Drawing.Size(477, 20);
             this.txtName.TabIndex = 3;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
@@ -204,7 +204,7 @@
             // 
             // btnDeleteTask
             // 
-            this.btnDeleteTask.Location = new System.Drawing.Point(171, 292);
+            this.btnDeleteTask.Location = new System.Drawing.Point(174, 292);
             this.btnDeleteTask.Name = "btnDeleteTask";
             this.btnDeleteTask.Size = new System.Drawing.Size(75, 39);
             this.btnDeleteTask.TabIndex = 8;
@@ -214,7 +214,7 @@
             // 
             // btnUpdateTask
             // 
-            this.btnUpdateTask.Location = new System.Drawing.Point(90, 292);
+            this.btnUpdateTask.Location = new System.Drawing.Point(93, 292);
             this.btnUpdateTask.Name = "btnUpdateTask";
             this.btnUpdateTask.Size = new System.Drawing.Size(75, 39);
             this.btnUpdateTask.TabIndex = 7;
@@ -234,7 +234,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(253, 293);
+            this.btnClear.Location = new System.Drawing.Point(255, 292);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 38);
             this.btnClear.TabIndex = 11;

@@ -84,7 +84,7 @@ namespace SynUp_Desktop.views
             }
             else
             {
-                MessageBox.Show("The task wasn't updated succesfully!");
+                MessageBox.Show("The task wasn't updated.");
             }
         }
 
@@ -113,7 +113,7 @@ namespace SynUp_Desktop.views
             }
             else
             {
-                MessageBox.Show("The task wasn't created succesfully!");
+                MessageBox.Show("The task wasn't created!");
             }
 
         }
@@ -339,7 +339,18 @@ namespace SynUp_Desktop.views
 
                 this.btnCreateTask.Enabled = false; // We disable the button to create a task
                 this.txtCode.Enabled = false;
+            } else
+            {
+                this.btnCreateTask.Enabled = true;
+                this.txtCode.Enabled = true;
             }
+
+            ///Sets the tooltips for the view
+            ///Nota: Interesante poner las restricciones de la base de datos directamente.
+            ToolTip ToolTips = new ToolTip();
+            //ToolTip1.IsBalloon = true;
+            ToolTips.SetToolTip(this.lblCode, "Task code.");
+            ToolTips.SetToolTip(lblDescription, "Description of the task.");
         }
 
         /// <summary>
