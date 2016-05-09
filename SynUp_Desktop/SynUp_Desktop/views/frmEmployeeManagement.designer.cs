@@ -44,26 +44,30 @@
             this.txtAdress = new System.Windows.Forms.TextBox();
             this.gbContainer = new System.Windows.Forms.GroupBox();
             this.btnBack = new System.Windows.Forms.Button();
+            this.btnCreate = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
             this.gbContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnUpdateEmployee
             // 
-            this.btnUpdateEmployee.Location = new System.Drawing.Point(12, 200);
+            this.btnUpdateEmployee.Location = new System.Drawing.Point(93, 200);
             this.btnUpdateEmployee.Name = "btnUpdateEmployee";
             this.btnUpdateEmployee.Size = new System.Drawing.Size(75, 39);
-            this.btnUpdateEmployee.TabIndex = 7;
+            this.btnUpdateEmployee.TabIndex = 8;
             this.btnUpdateEmployee.Text = "Update";
             this.btnUpdateEmployee.UseVisualStyleBackColor = true;
+            this.btnUpdateEmployee.Click += new System.EventHandler(this.btnUpdateEmployee_Click);
             // 
             // btnDeleteEmployee
             // 
-            this.btnDeleteEmployee.Location = new System.Drawing.Point(93, 200);
+            this.btnDeleteEmployee.Location = new System.Drawing.Point(174, 200);
             this.btnDeleteEmployee.Name = "btnDeleteEmployee";
             this.btnDeleteEmployee.Size = new System.Drawing.Size(75, 39);
-            this.btnDeleteEmployee.TabIndex = 7;
+            this.btnDeleteEmployee.TabIndex = 79;
             this.btnDeleteEmployee.Text = "Delete";
             this.btnDeleteEmployee.UseVisualStyleBackColor = true;
+            this.btnDeleteEmployee.Click += new System.EventHandler(this.btnDeleteEmployee_Click);
             // 
             // lblNif
             // 
@@ -187,15 +191,38 @@
             this.btnBack.Location = new System.Drawing.Point(381, 200);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(75, 39);
-            this.btnBack.TabIndex = 8;
+            this.btnBack.TabIndex = 10;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // btnCreate
+            // 
+            this.btnCreate.Location = new System.Drawing.Point(12, 200);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(75, 39);
+            this.btnCreate.TabIndex = 7;
+            this.btnCreate.Text = "Create";
+            this.btnCreate.UseVisualStyleBackColor = true;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(255, 200);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 39);
+            this.btnClear.TabIndex = 80;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // frmEmployeeManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(469, 251);
+            this.Controls.Add(this.btnClear);
+            this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.gbContainer);
             this.Controls.Add(this.btnUpdateEmployee);
@@ -230,5 +257,7 @@
         private System.Windows.Forms.TextBox txtAdress;
         private System.Windows.Forms.GroupBox gbContainer;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Button btnCreate;
+        private System.Windows.Forms.Button btnClear;
     }
 }
