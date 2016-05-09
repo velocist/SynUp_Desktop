@@ -57,7 +57,7 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(519, 418);
+            this.btnBack.Location = new System.Drawing.Point(658, 418);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(75, 23);
             this.btnBack.TabIndex = 3;
@@ -87,7 +87,7 @@
             this.dgvTasks.Name = "dgvTasks";
             this.dgvTasks.RowTemplate.ReadOnly = true;
             this.dgvTasks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTasks.Size = new System.Drawing.Size(585, 360);
+            this.dgvTasks.Size = new System.Drawing.Size(724, 360);
             this.dgvTasks.TabIndex = 0;
             // 
             // gbContainer
@@ -99,7 +99,7 @@
             this.gbContainer.Controls.Add(this.dgvTasks);
             this.gbContainer.Location = new System.Drawing.Point(12, 12);
             this.gbContainer.Name = "gbContainer";
-            this.gbContainer.Size = new System.Drawing.Size(600, 450);
+            this.gbContainer.Size = new System.Drawing.Size(739, 450);
             this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "List of Tasks";
@@ -108,7 +108,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 472);
+            this.ClientSize = new System.Drawing.Size(763, 471);
             this.Controls.Add(this.gbContainer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MinimumSize = new System.Drawing.Size(640, 510);

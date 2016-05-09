@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="controller\Controller.cs" />
     <Compile Include="model\dao\TaskConnection.cs" />
+    <Compile Include="model\dao\TeamConnection.cs" />
     <Compile Include="model\pojo\Employee.cs">
       <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>

@@ -79,6 +79,7 @@ namespace SynUp_Desktop.views
             {
                 _oUpdateTask.id_team = Convert.ToInt16(_strIdTeam);
             }
+            _oUpdateTask.id = this.AuxTask.id;
             _oUpdateTask.code = _strCode;
             _oUpdateTask.name = _strName;
             _oUpdateTask.priorityDate = _dtPriorityDate;
