@@ -21,7 +21,6 @@ namespace SynUp_Desktop.service
         /// <returns></returns>
         public bool createEmployee(String nif, String name, String surname, String phone, String email, String adress)
         {
-
             Employee newEmployee = new Employee
             {
                 nif = nif,
@@ -32,8 +31,7 @@ namespace SynUp_Desktop.service
                 adress = adress
             };
 
-            return false;
-
+            return EmployeeConnection.createEmployee(newEmployee);
         }
 
         /// <summary>

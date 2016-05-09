@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgEmployees = new System.Windows.Forms.DataGridView();
+            this.dgvEmployees = new System.Windows.Forms.DataGridView();
             this.btnManagementEmployee = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             this.cmbFilter = new System.Windows.Forms.ComboBox();
             this.lblFilter = new System.Windows.Forms.Label();
             this.gbContainer = new System.Windows.Forms.GroupBox();
             this.btnAddToTeam = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgEmployees)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
             this.gbContainer.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dgEmployees
+            // dgvEmployees
             // 
-            this.dgEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgEmployees.Location = new System.Drawing.Point(9, 51);
-            this.dgEmployees.Name = "dgEmployees";
-            this.dgEmployees.Size = new System.Drawing.Size(585, 360);
-            this.dgEmployees.TabIndex = 0;
+            this.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEmployees.Location = new System.Drawing.Point(9, 51);
+            this.dgvEmployees.Name = "dgvEmployees";
+            this.dgvEmployees.Size = new System.Drawing.Size(585, 360);
+            this.dgvEmployees.TabIndex = 0;
             // 
             // btnManagementEmployee
             // 
@@ -91,7 +91,7 @@
             this.gbContainer.Controls.Add(this.btnBack);
             this.gbContainer.Controls.Add(this.cmbFilter);
             this.gbContainer.Controls.Add(this.btnManagementEmployee);
-            this.gbContainer.Controls.Add(this.dgEmployees);
+            this.gbContainer.Controls.Add(this.dgvEmployees);
             this.gbContainer.Location = new System.Drawing.Point(12, 12);
             this.gbContainer.Name = "gbContainer";
             this.gbContainer.Size = new System.Drawing.Size(600, 450);
@@ -116,12 +116,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 471);
             this.Controls.Add(this.gbContainer);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MinimumSize = new System.Drawing.Size(640, 510);
             this.Name = "frmEmployees";
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Eemployees ";
-            ((System.ComponentModel.ISupportInitialize)(this.dgEmployees)).EndInit();
+            this.Activated += new System.EventHandler(this.frmEmployees_Activated);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).EndInit();
             this.gbContainer.ResumeLayout(false);
             this.gbContainer.PerformLayout();
             this.ResumeLayout(false);
@@ -130,7 +131,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgEmployees;
+        private System.Windows.Forms.DataGridView dgvEmployees;
         private System.Windows.Forms.Button btnManagementEmployee;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.ComboBox cmbFilter;
