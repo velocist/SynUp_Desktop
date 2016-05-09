@@ -34,9 +34,9 @@
             this.cmbFilter = new System.Windows.Forms.ComboBox();
             this.lblFilter = new System.Windows.Forms.Label();
             this.gbContainer = new System.Windows.Forms.GroupBox();
-            this.btnAddToTeam = new System.Windows.Forms.Button();
-            this.cmbTeamsToAdd = new System.Windows.Forms.ComboBox();
             this.lblTeams = new System.Windows.Forms.Label();
+            this.cmbTeamsToAdd = new System.Windows.Forms.ComboBox();
+            this.btnAddToTeam = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
             this.gbContainer.SuspendLayout();
             this.SuspendLayout();
@@ -108,33 +108,33 @@
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "List of Employees";
             // 
+            // lblTeams
+            // 
+            this.lblTeams.AutoSize = true;
+            this.lblTeams.Location = new System.Drawing.Point(309, 27);
+            this.lblTeams.Name = "lblTeams";
+            this.lblTeams.Size = new System.Drawing.Size(39, 13);
+            this.lblTeams.TabIndex = 6;
+            this.lblTeams.Text = "Teams";
+            // 
+            // cmbTeamsToAdd
+            // 
+            this.cmbTeamsToAdd.FormattingEnabled = true;
+            this.cmbTeamsToAdd.Location = new System.Drawing.Point(350, 24);
+            this.cmbTeamsToAdd.Name = "cmbTeamsToAdd";
+            this.cmbTeamsToAdd.Size = new System.Drawing.Size(144, 21);
+            this.cmbTeamsToAdd.TabIndex = 5;
+            // 
             // btnAddToTeam
             // 
             this.btnAddToTeam.Enabled = false;
-            this.btnAddToTeam.Location = new System.Drawing.Point(419, 418);
+            this.btnAddToTeam.Location = new System.Drawing.Point(500, 22);
             this.btnAddToTeam.Name = "btnAddToTeam";
             this.btnAddToTeam.Size = new System.Drawing.Size(94, 23);
             this.btnAddToTeam.TabIndex = 4;
             this.btnAddToTeam.Text = "Add to Team";
             this.btnAddToTeam.UseVisualStyleBackColor = true;
             this.btnAddToTeam.Click += new System.EventHandler(this.btnAddToTeam_Click);
-            // 
-            // cmbTeamsToAdd
-            // 
-            this.cmbTeamsToAdd.FormattingEnabled = true;
-            this.cmbTeamsToAdd.Location = new System.Drawing.Point(269, 420);
-            this.cmbTeamsToAdd.Name = "cmbTeamsToAdd";
-            this.cmbTeamsToAdd.Size = new System.Drawing.Size(144, 21);
-            this.cmbTeamsToAdd.TabIndex = 5;
-            // 
-            // lblTeams
-            // 
-            this.lblTeams.AutoSize = true;
-            this.lblTeams.Location = new System.Drawing.Point(228, 423);
-            this.lblTeams.Name = "lblTeams";
-            this.lblTeams.Size = new System.Drawing.Size(39, 13);
-            this.lblTeams.TabIndex = 6;
-            this.lblTeams.Text = "Teams";
             // 
             // frmEmployees
             // 

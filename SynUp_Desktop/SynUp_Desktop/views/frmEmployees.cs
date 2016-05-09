@@ -70,7 +70,19 @@ namespace SynUp_Desktop.views
         private void btnAddToTeam_Click(object sender, EventArgs e)
         {
             //TODO Mostrar dialogo con combo para elegir equipo, o Mostrar la lista de equipos
+            model.pojo.Employee _oSelectedEmployee = null;
+            if (dgvEmployees.SelectedRows.Count == 1)//If the row selected
+            {
+                int _iIndexSelected = dgvEmployees.SelectedRows[0].Index; // Recover the index of selected row
+                Object _cell = dgvEmployees.Rows[_iIndexSelected].Cells[1].Value;
+                if (_cell != null)
+                {
+                    String _strSelectedRowCode = _cell.ToString(); // Recover the code
+                    _oSelectedEmployee = Controller.EmployeeService.readEmployee(_strSelectedRowCode); // We look for the employee nif
+                    
 
+                }
+            }
         }
 
         /// <summary>
@@ -132,7 +144,7 @@ namespace SynUp_Desktop.views
         /// <summary>
         /// Fills the combobox with the values of the database.
         /// </summary>
-        public void fillComboTeams()
+        private void fillComboTeams()
         {
             BindingSource source = new BindingSource();
 
@@ -141,6 +153,16 @@ namespace SynUp_Desktop.views
             this.cmbTeamsToAdd.ValueMember = "Code";
         }
 
+        private void addToTeam()
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dgvEmployees_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -156,5 +178,7 @@ namespace SynUp_Desktop.views
             }
 
         }
+
+        
     }
 }
