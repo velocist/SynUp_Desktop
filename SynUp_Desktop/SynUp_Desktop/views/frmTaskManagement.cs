@@ -224,23 +224,34 @@ namespace SynUp_Desktop.views
             lblPriorityDate.ForeColor = Color.Black;
         }
 
+        /// <summary>
+        ///  Event that runs when the focus leaves the idTeam
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtIdTeam_Leave(object sender, EventArgs e)
         {
-            /*if (txtName.Text != "")
+            //TODO: Falta comprobar porque no se inserta el idTeam al insertar la Tasca
+            if (txtIdTeam.Text != "")
             {
                 String _iIdTeam = txtIdTeam.Text;
-                model.pojo.Task foundTeam = TaskService.readTask(_iIdTeam); // We look for if the task already exists
+                model.pojo.Team _oTeam = TeamService.readTeam(_iIdTeam); // We look for if the team already exists
 
-                if (foundTeam != null) // If the task exists, we show a message
+                if (_oTeam == null) // If the team exists, we show a message
                 {
-                    MessageBox.Show("This code already exists");
+                    MessageBox.Show("This team don't exists");
                     lblIdTeam.ForeColor = Color.Red;
                     lblIdTeam.Text = "Id Team*";
                 }
 
-            }*/
+            }
         }
 
+        /// <summary>
+        /// Event that runs when the textbox recibes the focus
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtIdTeam_Enter(object sender, EventArgs e)
         {
             lblIdTeam.Text = "Id Team";
