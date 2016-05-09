@@ -68,7 +68,7 @@ namespace SynUp_Desktop.views
         private void btnUpdateTask_Click(object sender, EventArgs e)
         {
             String _strCode = txtCode.Text;
-            String _strIdTeam = txtIdTeam.Text;
+            String _strIdTeam = cbIdTeams.Text;
             String _strProject = txtProject.Text;
             String _strName = txtName.Text;
             String _strDescription = txtDescription.Text;
@@ -97,7 +97,7 @@ namespace SynUp_Desktop.views
         private void btnCreateTask_Click(object sender, EventArgs e)
         {
             String _strCode = txtCode.Text;
-            String _strIdTeam = txtIdTeam.Text;
+            String _strIdTeam = cbIdTeams.Text;
             String _strProject = txtProject.Text;
             String _strName = txtName.Text;
             String _strDescription = txtDescription.Text;
@@ -213,33 +213,33 @@ namespace SynUp_Desktop.views
         //}
 
         #region TEXT CHANGED EVENTS 
-        /// <summary>
-        /// Even that runs everytime the IdTeam textbox is changed
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void txtIdTeam_TextChanged(object sender, EventArgs e)
-        {
-            if (txtIdTeam.Text != "")
-            {
-                String _iIdTeam = txtIdTeam.Text;
+        ///// <summary>
+        ///// Even that runs everytime the IdTeam textbox is changed
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void txtIdTeam_TextChanged(object sender, EventArgs e)
+        //{
+        //    if (txtIdTeam.Text != "")
+        //    {
+        //        String _iIdTeam = txtIdTeam.Text;
 
-                model.pojo.Team _oTeam = Controller.TeamService.readTeam(_iIdTeam); // We look for if the team already exists
+        //        model.pojo.Team _oTeam = Controller.TeamService.readTeam(_iIdTeam); // We look for if the team already exists
 
-                if (_oTeam == null) // If the team exists, we show a message
-                {
-                    //MessageBox.Show("This team don't exists");
-                    lblIdTeam.ForeColor = Color.Red;
-                    lblIdTeam.Text = "Id Team*";
-                }
-                else
-                {
-                    lblIdTeam.ForeColor = Color.Black;
-                    lblIdTeam.Text = "Id Team";
-                }
+        //        if (_oTeam == null) // If the team exists, we show a message
+        //        {
+        //            //MessageBox.Show("This team don't exists");
+        //            lblIdTeam.ForeColor = Color.Red;
+        //            lblIdTeam.Text = "Id Team*";
+        //        }
+        //        else
+        //        {
+        //            lblIdTeam.ForeColor = Color.Black;
+        //            lblIdTeam.Text = "Id Team";
+        //        }
 
-            }
-        }
+        //    }
+        //}
 
         /// <summary>
         /// Even that runs everytime the Code textbox is changed
@@ -326,10 +326,16 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void frmTaskManagement_Load(object sender, EventArgs e)
         {
+            BindingSource source = new BindingSource();
+            source.DataSource = Controller.TeamService.getAllTeams();
+            cbIdTeams.DataSource = source;
+            cbIdTeams.DisplayMember = "Name";
+            cbIdTeams.ValueMember = "Code";
+
             if (AuxTask != null)
             {
                 // We recover the data of selected task
-                this.txtIdTeam.Text = Convert.ToString(this.AuxTask.id_team);
+                //this.txtIdTeam.Text = Convert.ToString(this.AuxTask.id_team);
                 this.txtCode.Text = Convert.ToString(this.AuxTask.code);
                 this.txtName.Text = this.AuxTask.name;
                 this.txtDescription.Text = this.AuxTask.description;
@@ -375,7 +381,9 @@ namespace SynUp_Desktop.views
         /// </summary>
         private void clearValues()
         {
-            txtIdTeam.Text = "";
+            //txtIdTeam.Text = "";
+            
+            //cbIdTeams.SelectedIndex = 0;
             txtCode.Text = "";
             txtProject.Text = "";
             txtName.Text = "";

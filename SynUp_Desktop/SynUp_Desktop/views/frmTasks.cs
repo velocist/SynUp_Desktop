@@ -52,8 +52,7 @@ namespace SynUp_Desktop.views
                     String _strSelectedRowCode = _cell.ToString(); // Recover the code
                     _oSelectedTask = Controller.TaskService.readTask(_strSelectedRowCode); // We look for the task code
                     this.Controller.TaskMgtView.AuxTask = _oSelectedTask; // We assign the task to form task management
-                }
-                
+                }                
             }
 
             //this.Hide();
