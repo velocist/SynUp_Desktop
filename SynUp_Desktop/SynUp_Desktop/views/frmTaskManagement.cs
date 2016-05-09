@@ -68,14 +68,14 @@ namespace SynUp_Desktop.views
         private void btnUpdateTask_Click(object sender, EventArgs e)
         {
             String _strCode = txtCode.Text;
-            String _strIdTeam = cbIdTeams.Text;
+            String _strIdTeam = (String)cbIdTeams.SelectedValue;
             String _strProject = txtProject.Text;
             String _strName = txtName.Text;
             String _strDescription = txtDescription.Text;
             String _strLocalization = txtLocalization.Text;
             DateTime _dtPriorityDate = mcalPriorityDate.SelectionStart.Date;
 
-            Boolean _blUpdateOk = Controller.TaskService.updateTask(_strCode, _strName, _dtPriorityDate, _strDescription, _strLocalization, _strProject);
+            Boolean _blUpdateOk = Controller.TaskService.updateTask(_strCode, _strName, _dtPriorityDate, _strDescription, _strLocalization, _strProject, _strIdTeam);
 
             if (_blUpdateOk)
             {
@@ -97,14 +97,15 @@ namespace SynUp_Desktop.views
         private void btnCreateTask_Click(object sender, EventArgs e)
         {
             String _strCode = txtCode.Text;
-            String _strIdTeam = cbIdTeams.Text;
+            String _strIdTeam = (String)cbIdTeams.SelectedValue;
             String _strProject = txtProject.Text;
             String _strName = txtName.Text;
             String _strDescription = txtDescription.Text;
             String _strLocalization = txtLocalization.Text;
             DateTime _dtPriorityDate = mcalPriorityDate.SelectionStart.Date;
 
-            Boolean createOk = Controller.TaskService.createTask(_strCode, _strName, _dtPriorityDate, _strDescription, _strLocalization, _strProject);
+            Boolean createOk = Controller.TaskService.createTask(_strCode, _strName, _dtPriorityDate, _strDescription, _strLocalization, _strProject, _strIdTeam);
+            MessageBox.Show(_strIdTeam);
 
             if (createOk)
             {

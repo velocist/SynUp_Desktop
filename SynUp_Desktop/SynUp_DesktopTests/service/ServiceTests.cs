@@ -24,7 +24,7 @@ namespace SynUp_Desktop.service.Tests
             TaskService servei = new TaskService();
 
             //String code, String name, DateTime priorityDate, String description, String localization, String project
-            resultat = servei.createTask("3","Projecte",DateTime.Now,null,null,null);
+            resultat = servei.createTask("3","Projecte",DateTime.Now,null,null,null,null);
 
             Assert.AreEqual(true, resultat);     
             

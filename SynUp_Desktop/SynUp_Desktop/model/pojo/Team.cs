@@ -17,7 +17,6 @@ namespace SynUp_Desktop.model.pojo
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Team()
         {
-            this.Tasks = new HashSet<Task>();
             this.TeamHistories = new HashSet<TeamHistory>();
         }
     
@@ -25,8 +24,6 @@ namespace SynUp_Desktop.model.pojo
         public string code { get; set; }
         public string name { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Task> Tasks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TeamHistory> TeamHistories { get; set; }
     }

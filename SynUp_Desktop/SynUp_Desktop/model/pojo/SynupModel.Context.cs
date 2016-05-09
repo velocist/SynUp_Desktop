@@ -12,6 +12,8 @@ namespace SynUp_Desktop.model.pojo
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class synupEntities : DbContext
     {
@@ -27,7 +29,6 @@ namespace SynUp_Desktop.model.pojo
     
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<EmployeeLog> EmployeeLogs { get; set; }
-        public virtual DbSet<Last> Lasts { get; set; }
         public virtual DbSet<Task> Tasks { get; set; }
         public virtual DbSet<TaskHistory> TaskHistories { get; set; }
         public virtual DbSet<TaskHistoryLog> TaskHistoryLogs { get; set; }
@@ -36,5 +37,155 @@ namespace SynUp_Desktop.model.pojo
         public virtual DbSet<TeamHistory> TeamHistories { get; set; }
         public virtual DbSet<TeamLog> TeamLogs { get; set; }
         public virtual DbSet<TeamHistoryLog> TeamHistoryLogs { get; set; }
+    
+        public virtual ObjectResult<spEmpLogD_Result> spEmpLogD(Nullable<int> first, Nullable<int> last)
+        {
+            var firstParameter = first.HasValue ?
+                new ObjectParameter("first", first) :
+                new ObjectParameter("first", typeof(int));
+    
+            var lastParameter = last.HasValue ?
+                new ObjectParameter("last", last) :
+                new ObjectParameter("last", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spEmpLogD_Result>("spEmpLogD", firstParameter, lastParameter);
+        }
+    
+        public virtual ObjectResult<spEmpLogI_Result> spEmpLogI(Nullable<int> first, Nullable<int> last)
+        {
+            var firstParameter = first.HasValue ?
+                new ObjectParameter("first", first) :
+                new ObjectParameter("first", typeof(int));
+    
+            var lastParameter = last.HasValue ?
+                new ObjectParameter("last", last) :
+                new ObjectParameter("last", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spEmpLogI_Result>("spEmpLogI", firstParameter, lastParameter);
+        }
+    
+        public virtual ObjectResult<spEmpLogU_Result> spEmpLogU(Nullable<int> first, Nullable<int> last)
+        {
+            var firstParameter = first.HasValue ?
+                new ObjectParameter("first", first) :
+                new ObjectParameter("first", typeof(int));
+    
+            var lastParameter = last.HasValue ?
+                new ObjectParameter("last", last) :
+                new ObjectParameter("last", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spEmpLogU_Result>("spEmpLogU", firstParameter, lastParameter);
+        }
+    
+        public virtual ObjectResult<spLast_Result> spLast(Nullable<int> employeeId)
+        {
+            var employeeIdParameter = employeeId.HasValue ?
+                new ObjectParameter("employeeId", employeeId) :
+                new ObjectParameter("employeeId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spLast_Result>("spLast", employeeIdParameter);
+        }
+    
+        public virtual int spTasklogD(Nullable<int> employeeId, Nullable<int> first, Nullable<int> last)
+        {
+            var employeeIdParameter = employeeId.HasValue ?
+                new ObjectParameter("employeeId", employeeId) :
+                new ObjectParameter("employeeId", typeof(int));
+    
+            var firstParameter = first.HasValue ?
+                new ObjectParameter("first", first) :
+                new ObjectParameter("first", typeof(int));
+    
+            var lastParameter = last.HasValue ?
+                new ObjectParameter("last", last) :
+                new ObjectParameter("last", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spTasklogD", employeeIdParameter, firstParameter, lastParameter);
+        }
+    
+        public virtual int spTasklogI(Nullable<int> employeeId, Nullable<int> first, Nullable<int> last)
+        {
+            var employeeIdParameter = employeeId.HasValue ?
+                new ObjectParameter("employeeId", employeeId) :
+                new ObjectParameter("employeeId", typeof(int));
+    
+            var firstParameter = first.HasValue ?
+                new ObjectParameter("first", first) :
+                new ObjectParameter("first", typeof(int));
+    
+            var lastParameter = last.HasValue ?
+                new ObjectParameter("last", last) :
+                new ObjectParameter("last", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spTasklogI", employeeIdParameter, firstParameter, lastParameter);
+        }
+    
+        public virtual int spTasklogU(Nullable<int> employeeId, Nullable<int> first, Nullable<int> last)
+        {
+            var employeeIdParameter = employeeId.HasValue ?
+                new ObjectParameter("EmployeeId", employeeId) :
+                new ObjectParameter("EmployeeId", typeof(int));
+    
+            var firstParameter = first.HasValue ?
+                new ObjectParameter("first", first) :
+                new ObjectParameter("first", typeof(int));
+    
+            var lastParameter = last.HasValue ?
+                new ObjectParameter("last", last) :
+                new ObjectParameter("last", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spTasklogU", employeeIdParameter, firstParameter, lastParameter);
+        }
+    
+        public virtual int spTHisLogD(Nullable<int> employeeId, Nullable<int> first, Nullable<int> last)
+        {
+            var employeeIdParameter = employeeId.HasValue ?
+                new ObjectParameter("EmployeeId", employeeId) :
+                new ObjectParameter("EmployeeId", typeof(int));
+    
+            var firstParameter = first.HasValue ?
+                new ObjectParameter("first", first) :
+                new ObjectParameter("first", typeof(int));
+    
+            var lastParameter = last.HasValue ?
+                new ObjectParameter("last", last) :
+                new ObjectParameter("last", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spTHisLogD", employeeIdParameter, firstParameter, lastParameter);
+        }
+    
+        public virtual int spTHisLogI(Nullable<int> employeeId, Nullable<int> first, Nullable<int> last)
+        {
+            var employeeIdParameter = employeeId.HasValue ?
+                new ObjectParameter("EmployeeId", employeeId) :
+                new ObjectParameter("EmployeeId", typeof(int));
+    
+            var firstParameter = first.HasValue ?
+                new ObjectParameter("first", first) :
+                new ObjectParameter("first", typeof(int));
+    
+            var lastParameter = last.HasValue ?
+                new ObjectParameter("last", last) :
+                new ObjectParameter("last", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spTHisLogI", employeeIdParameter, firstParameter, lastParameter);
+        }
+    
+        public virtual int spTHisLogU(Nullable<int> employeeId, Nullable<int> first, Nullable<int> last)
+        {
+            var employeeIdParameter = employeeId.HasValue ?
+                new ObjectParameter("EmployeeId", employeeId) :
+                new ObjectParameter("EmployeeId", typeof(int));
+    
+            var firstParameter = first.HasValue ?
+                new ObjectParameter("first", first) :
+                new ObjectParameter("first", typeof(int));
+    
+            var lastParameter = last.HasValue ?
+                new ObjectParameter("last", last) :
+                new ObjectParameter("last", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spTHisLogU", employeeIdParameter, firstParameter, lastParameter);
+        }
     }
 }
