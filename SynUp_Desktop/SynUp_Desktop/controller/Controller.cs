@@ -21,6 +21,8 @@ namespace SynUp_Desktop.controller
         #region VARIABLES
         private TaskService _TaskService;
         private TeamService _TeamService;
+        private EmployeeService _EmployeeService;
+
         private frmAbout _AboutView;
         private frmStatistics _StatisticsView;
         private frmTasks _TasksView;
@@ -56,6 +58,19 @@ namespace SynUp_Desktop.controller
             set
             {
                 _TeamService = value;
+            }
+        }
+
+        public EmployeeService EmployeeService
+        {
+            get
+            {
+                return _EmployeeService;
+            }
+
+            set
+            {
+                _EmployeeService = value;
             }
         }
 
@@ -175,10 +190,7 @@ namespace SynUp_Desktop.controller
                 _TeamMgtView = value;
             }
         }
-
-
-
-
+        
         #endregion
 
     }
