@@ -115,7 +115,6 @@
             this.mcalPriorityDate.ShowTodayCircle = false;
             this.mcalPriorityDate.TabIndex = 5;
             this.mcalPriorityDate.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.mcalPriorityDate_DateChanged);
-            this.mcalPriorityDate.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.mcalPriorityDate_DateSelected);
             // 
             // lblCode
             // 

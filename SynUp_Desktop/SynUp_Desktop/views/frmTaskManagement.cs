@@ -158,91 +158,59 @@ namespace SynUp_Desktop.views
         //    //lblCode.ForeColor = Color.Black;
         //}
 
-        /// <summary>
-        /// Event that runs when the focus leaves the textbox
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void txtName_Leave(object sender, EventArgs e)
-        {
+        ///// <summary>
+        ///// Event that runs when the focus leaves the textbox
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void txtName_Leave(object sender, EventArgs e)
+        //{
 
-        }
+        //}
 
-        /// <summary>
-        /// Event that runs when the textbox recibes the focus
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void txtName_Enter(object sender, EventArgs e)
-        {
-            lblName.Text = "Name";
-            lblName.ForeColor = Color.Black;
-        }
+        ///// <summary>
+        ///// Event that runs when the textbox recibes the focus
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void txtName_Enter(object sender, EventArgs e)
+        //{
+        //    lblName.Text = "Name";
+        //    lblName.ForeColor = Color.Black;
+        //}
+        ///// <summary>
+        /////  Event that runs when the focus leaves the idTeam
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void txtIdTeam_Leave(object sender, EventArgs e)
+        //{
+        //    //TODO: Falta comprobar porque no se inserta el idTeam al insertar la Tasca --> PORQUE TEAM NO EXISTE I ES UNA FK
+        //    //if (txtIdTeam.Text != "")
+        //    //{
+        //    //    String _iIdTeam = txtIdTeam.Text;
+        //    //    model.pojo.Team _oTeam = Controller.TeamService.readTeam(_iIdTeam); // We look for if the team already exists
 
-        /// <summary>
-        /// Event that runs when date changes
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void mcalPriorityDate_DateChanged(object sender, DateRangeEventArgs e)
-        {
-            if (mcalPriorityDate.SelectionStart.Date < DateTime.Today)
-            {
-                //mcalPriorityDate.Focus();
-                lblPriorityDate.ForeColor = Color.Red;
-                lblPriorityDate.Text = "Priority Date*";
-                //MessageBox.Show("The date can not be past!");
-            } else
-            {
-                lblPriorityDate.ForeColor = Color.Black;
-                lblPriorityDate.Text = "Priority Date";
-            }
-        }
+        //    //    if (_oTeam == null) // If the team exists, we show a message
+        //    //    {
+        //    //        MessageBox.Show("This team don't exists");
+        //    //        lblIdTeam.ForeColor = Color.Red;
+        //    //        lblIdTeam.Text = "Id Team*";
+        //    //    }
 
-        /// <summary>
-        /// Event that runs when date selects
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void mcalPriorityDate_DateSelected(object sender, DateRangeEventArgs e)
-        {
-            lblPriorityDate.Text = "Priority Date";
-            lblPriorityDate.ForeColor = Color.Black;
-        }
+        //    //}
+        //}
 
-        /// <summary>
-        ///  Event that runs when the focus leaves the idTeam
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void txtIdTeam_Leave(object sender, EventArgs e)
-        {
-            //TODO: Falta comprobar porque no se inserta el idTeam al insertar la Tasca --> PORQUE TEAM NO EXISTE I ES UNA FK
-            //if (txtIdTeam.Text != "")
-            //{
-            //    String _iIdTeam = txtIdTeam.Text;
-            //    model.pojo.Team _oTeam = Controller.TeamService.readTeam(_iIdTeam); // We look for if the team already exists
-
-            //    if (_oTeam == null) // If the team exists, we show a message
-            //    {
-            //        MessageBox.Show("This team don't exists");
-            //        lblIdTeam.ForeColor = Color.Red;
-            //        lblIdTeam.Text = "Id Team*";
-            //    }
-
-            //}
-        }
-
-        /// <summary>
-        /// Event that runs when the textbox recibes the focus
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void txtIdTeam_Enter(object sender, EventArgs e)
-        {
-            lblIdTeam.Text = "Id Team";
-            lblIdTeam.ForeColor = Color.Black;
-        }
+        ///// <summary>
+        ///// Event that runs when the textbox recibes the focus
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void txtIdTeam_Enter(object sender, EventArgs e)
+        //{
+        //    lblIdTeam.Text = "Id Team";
+        //    lblIdTeam.ForeColor = Color.Black;
+        //}
 
         #region TEXT CHANGED EVENTS 
         /// <summary>
@@ -296,14 +264,43 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// 
+        /// Even that runs everytime the Name textbox is changed
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void txtName_TextChanged(object sender, EventArgs e)
         {
-            lblName.Text = "Name";
-            lblName.ForeColor = Color.Black;
+            if (txtName.Text.Equals("")) // If the name is empty, we show a message
+            {
+                lblName.Text = "Name*";
+                lblName.ForeColor = Color.Red;
+            }
+            else
+            {
+                lblName.Text = "Name";
+                lblName.ForeColor = Color.Black;
+            }
+        }
+
+        /// <summary>
+        /// Event that runs when date changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mcalPriorityDate_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            if (mcalPriorityDate.SelectionStart.Date < DateTime.Today)
+            {
+                //mcalPriorityDate.Focus();
+                lblPriorityDate.ForeColor = Color.Red;
+                lblPriorityDate.Text = "Priority Date*";
+                //MessageBox.Show("The date can not be past!");
+            }
+            else
+            {
+                lblPriorityDate.ForeColor = Color.Black;
+                lblPriorityDate.Text = "Priority Date";
+            }
         }
 
         #endregion
@@ -376,6 +373,6 @@ namespace SynUp_Desktop.views
             mcalPriorityDate.SelectionStart = DateTime.Today;
             mcalPriorityDate.SelectionEnd = DateTime.Today;
         }
-       
+
     }
 }
