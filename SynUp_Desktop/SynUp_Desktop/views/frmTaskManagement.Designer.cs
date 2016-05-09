@@ -30,7 +30,6 @@
         {
             this.gbContainer = new System.Windows.Forms.GroupBox();
             this.lblIdTeam = new System.Windows.Forms.Label();
-            this.txtIdTeam = new System.Windows.Forms.TextBox();
             this.txtProject = new System.Windows.Forms.TextBox();
             this.lblProject = new System.Windows.Forms.Label();
             this.mcalPriorityDate = new System.Windows.Forms.MonthCalendar();
@@ -48,13 +47,14 @@
             this.btnUpdateTask = new System.Windows.Forms.Button();
             this.btnCreateTask = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
+            this.cbIdTeams = new System.Windows.Forms.ComboBox();
             this.gbContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbContainer
             // 
+            this.gbContainer.Controls.Add(this.cbIdTeams);
             this.gbContainer.Controls.Add(this.lblIdTeam);
-            this.gbContainer.Controls.Add(this.txtIdTeam);
             this.gbContainer.Controls.Add(this.txtProject);
             this.gbContainer.Controls.Add(this.lblProject);
             this.gbContainer.Controls.Add(this.mcalPriorityDate);
@@ -82,14 +82,6 @@
             this.lblIdTeam.Size = new System.Drawing.Size(48, 13);
             this.lblIdTeam.TabIndex = 9;
             this.lblIdTeam.Text = "ID Team";
-            // 
-            // txtIdTeam
-            // 
-            this.txtIdTeam.Location = new System.Drawing.Point(202, 22);
-            this.txtIdTeam.Name = "txtIdTeam";
-            this.txtIdTeam.Size = new System.Drawing.Size(100, 20);
-            this.txtIdTeam.TabIndex = 10;
-            this.txtIdTeam.TextChanged += new System.EventHandler(this.txtIdTeam_TextChanged);
             // 
             // txtProject
             // 
@@ -242,6 +234,14 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // cbIdTeams
+            // 
+            this.cbIdTeams.FormattingEnabled = true;
+            this.cbIdTeams.Location = new System.Drawing.Point(203, 21);
+            this.cbIdTeams.Name = "cbIdTeams";
+            this.cbIdTeams.Size = new System.Drawing.Size(97, 21);
+            this.cbIdTeams.TabIndex = 10;
+            // 
             // frmTaskManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -283,7 +283,7 @@
         private System.Windows.Forms.Label lblProject;
         private System.Windows.Forms.Button btnCreateTask;
         private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.TextBox txtIdTeam;
         private System.Windows.Forms.Label lblIdTeam;
+        private System.Windows.Forms.ComboBox cbIdTeams;
     }
 }
