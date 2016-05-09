@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SynUp_Desktop.model.dao
 {
-    class TeamConnection
+    public static class TeamConnection
     {
         private static synupEntities database = new synupEntities();
 

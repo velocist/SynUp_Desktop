@@ -28,9 +28,11 @@ namespace SynUp_Desktop
             controller.Controller controller = new controller.Controller();
             service.TaskService taskservice = new service.TaskService();
             service.TeamService teamservice = new service.TeamService();
+            service.EmployeeService employeeService = new service.EmployeeService();
 
             controller.TaskService = taskservice;
             controller.TeamService = teamservice;
+            controller.EmployeeService = employeeService;
 
             frmAbout aboutView = new frmAbout();
             frmEmployeeManagement employeeMgtView = new frmEmployeeManagement();
