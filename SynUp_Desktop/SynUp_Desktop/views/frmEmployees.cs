@@ -14,6 +14,7 @@ namespace SynUp_Desktop.views
     /// <summary>
     /// Form of list employees
     /// </summary>
+    /// <Author>Cristina Caballero</Author>
     public partial class frmEmployees : Form
     {
         private Controller controller;
@@ -52,8 +53,8 @@ namespace SynUp_Desktop.views
                 if (_cell != null)
                 {
                     String _strSelectedRowCode = _cell.ToString(); // Recover the code
-                    _oSelectedEmployee = Controller.EmployeeService.readEmployee(_strSelectedRowCode); // We look for the task code
-                    this.Controller.EmployeeMgtView.AuxEmployee = _oSelectedEmployee; // We assign the task to form task management
+                    _oSelectedEmployee = Controller.EmployeeService.readEmployee(_strSelectedRowCode); // We look for the employee nif
+                    this.Controller.EmployeeMgtView.AuxEmployee = _oSelectedEmployee; // We assign the employee to form employee management
                 }
 
             }
@@ -69,6 +70,7 @@ namespace SynUp_Desktop.views
         private void btnAddToTeam_Click(object sender, EventArgs e)
         {
             //TODO Mostrar dialogo con combo para elegir equipo, o Mostrar la lista de equipos
+
         }
 
         /// <summary>
@@ -83,35 +85,76 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// 
+        /// Event triggered every time the view is displayed. 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void frmEmployees_Activated(object sender, EventArgs e)
         {
 
-            //The grid with all the tasks will load.
-            fillGridView();
+            //The grid with all the employees will load.
+            this.fillGridView();
+
+            //The combo with all the teams will load.
+            this.fillComboTeams();
 
             // DataGridView Configuration
-            dgvEmployees.Columns[0].Visible = false; // We hide id column
+            this.dgvEmployees.Columns[0].Visible = false; // We hide id column
+            this.dgvEmployees.Columns[7].Visible = false; // TeamsHistory
+            this.dgvEmployees.Columns[8].Visible = false; // TaskHistories
 
-            dgvEmployees.AutoResizeColumns();
-            dgvEmployees.RowHeadersVisible = false; // We hide the rowheader
-            dgvEmployees.ClearSelection(); // Cleer selection rows
+            this.dgvEmployees.AutoResizeColumns();
+            this.dgvEmployees.AllowUserToAddRows = false;
+            this.dgvEmployees.AllowUserToDeleteRows = false;
+            this.dgvEmployees.AllowUserToOrderColumns = false;
+            this.dgvEmployees.AllowUserToResizeRows = false;
+            this.dgvEmployees.Cursor = Cursors.Hand;
+            this.dgvEmployees.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            this.dgvEmployees.MultiSelect = false;
+            this.dgvEmployees.RowTemplate.ReadOnly = true;
+            this.dgvEmployees.RowHeadersVisible = false; // We hide the rowheader
+            this.dgvEmployees.ClearSelection(); // Clear selection rows
         }
 
         /// <summary>
-        /// 
+        /// Fills the DataGridView with the values of the database.
         /// </summary>
         private void fillGridView()
         {
             BindingSource source = new BindingSource();
             source.DataSource = Controller.EmployeeService.getAllEmployees();
 
-            dgvEmployees.DataSource = source;
+            this.dgvEmployees.DataSource = source;
 
             dgvEmployees.Refresh();
+        }
+
+        /// <summary>
+        /// Fills the combobox with the values of the database.
+        /// </summary>
+        public void fillComboTeams()
+        {
+            BindingSource source = new BindingSource();
+
+            this.cmbTeamsToAdd.DataSource = Controller.TeamService.getAllTeams();
+            this.cmbTeamsToAdd.DisplayMember = "Name";
+            this.cmbTeamsToAdd.ValueMember = "Code";
+        }
+
+        private void dgvEmployees_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (dgvEmployees.SelectedRows.Count == 1)
+            {
+                btnAddToTeam.Enabled = true;
+                cmbTeamsToAdd.Enabled = true;
+            }
+            else
+            {
+                btnAddToTeam.Enabled = false;
+                cmbTeamsToAdd.Enabled = false;
+            }
+
         }
     }
 }

@@ -92,7 +92,18 @@ namespace SynUp_Desktop.views
 
         private void frmTeams_Activated(object sender, EventArgs e)
         {
+            //The grid with all the tasks will load.
             fillGridView();
+
+            // DataGridView Configuration
+            dgvTeams.AutoResizeColumns();
+            dgvTeams.AllowUserToAddRows = false;
+            dgvTeams.AllowUserToDeleteRows = false;
+            dgvTeams.AllowUserToResizeRows = false;
+            dgvTeams.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvTeams.MultiSelect = false;
+            dgvTeams.RowHeadersVisible = false; // We hide the rowheader
+            dgvTeams.ClearSelection(); // Clear selection rows
         }
     }
 }
