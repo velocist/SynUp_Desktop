@@ -71,5 +71,42 @@ namespace SynUp_Desktop.service
         {
             return TaskConnection.updateTask(pTask);
         }
+
+        #region TEAM SERVICE
+        ///Note: Coloco aqui el servicio del team. Tenemos que decidir que hacer, si un archivo de servicio por cada o 
+        ///todos en el mismo.
+
+        public static bool createTeam(String code, String name)
+        {
+            Team newTeam = new Team
+            {
+                code = code,
+                name = name
+            };
+
+            return TeamConnection.createTeam(newTeam);
+        }
+
+        public static Team readTeam(String pCode)
+        {
+            return TeamConnection.readTeam(pCode);
+        }
+
+        public static bool updateTeam(Team pTeam)
+        {
+            return TeamConnection.updateTeam(pTeam);
+        }
+
+        public static Team deleteTeam(Team pTeam)
+        {
+            return TeamConnection.deleteTeam(pTeam);
+        }
+
+        public List<Team> getAllTeams()
+        {
+            return TeamConnection.readAllTeams();
+        }
+
+        #endregion
     }
 }

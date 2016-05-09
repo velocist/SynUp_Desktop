@@ -29,19 +29,20 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnDeleteToTeam = new System.Windows.Forms.Button();
+            this.btnAddToTeam = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvEmployeesOnTeam = new System.Windows.Forms.DataGridView();
             this.lblCode = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtCode = new System.Windows.Forms.TextBox();
             this.btnBack = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnDeleteTeam = new System.Windows.Forms.Button();
             this.btnUpdateTeam = new System.Windows.Forms.Button();
-            this.btnAddToTeam = new System.Windows.Forms.Button();
-            this.btnDeleteToTeam = new System.Windows.Forms.Button();
+            this.btnCreateTeam = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployeesOnTeam)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -49,7 +50,7 @@
             this.groupBox1.Controls.Add(this.btnDeleteToTeam);
             this.groupBox1.Controls.Add(this.btnAddToTeam);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.dataGridView1);
+            this.groupBox1.Controls.Add(this.dgvEmployeesOnTeam);
             this.groupBox1.Controls.Add(this.lblCode);
             this.groupBox1.Controls.Add(this.lblName);
             this.groupBox1.Controls.Add(this.txtName);
@@ -61,6 +62,25 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Team";
             // 
+            // btnDeleteToTeam
+            // 
+            this.btnDeleteToTeam.Location = new System.Drawing.Point(313, 330);
+            this.btnDeleteToTeam.Name = "btnDeleteToTeam";
+            this.btnDeleteToTeam.Size = new System.Drawing.Size(97, 23);
+            this.btnDeleteToTeam.TabIndex = 6;
+            this.btnDeleteToTeam.Text = "Delete to team";
+            this.btnDeleteToTeam.UseVisualStyleBackColor = true;
+            // 
+            // btnAddToTeam
+            // 
+            this.btnAddToTeam.Location = new System.Drawing.Point(193, 330);
+            this.btnAddToTeam.Name = "btnAddToTeam";
+            this.btnAddToTeam.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnAddToTeam.Size = new System.Drawing.Size(114, 23);
+            this.btnAddToTeam.TabIndex = 5;
+            this.btnAddToTeam.Text = "Add to team";
+            this.btnAddToTeam.UseVisualStyleBackColor = true;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -70,13 +90,13 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "List of employees";
             // 
-            // dataGridView1
+            // dgvEmployeesOnTeam
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 78);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(599, 168);
-            this.dataGridView1.TabIndex = 3;
+            this.dgvEmployeesOnTeam.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEmployeesOnTeam.Location = new System.Drawing.Point(6, 78);
+            this.dgvEmployeesOnTeam.Name = "dgvEmployeesOnTeam";
+            this.dgvEmployeesOnTeam.Size = new System.Drawing.Size(599, 168);
+            this.dgvEmployeesOnTeam.TabIndex = 3;
             // 
             // lblCode
             // 
@@ -109,6 +129,8 @@
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(170, 20);
             this.txtCode.TabIndex = 1;
+            this.txtCode.Enter += new System.EventHandler(this.txtCode_Enter);
+            this.txtCode.Leave += new System.EventHandler(this.txtCode_Leave);
             // 
             // btnBack
             // 
@@ -118,51 +140,46 @@
             this.btnBack.TabIndex = 20;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // btnDelete
+            // btnDeleteTeam
             // 
-            this.btnDelete.Location = new System.Drawing.Point(93, 377);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 43);
-            this.btnDelete.TabIndex = 19;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDeleteTeam.Location = new System.Drawing.Point(174, 377);
+            this.btnDeleteTeam.Name = "btnDeleteTeam";
+            this.btnDeleteTeam.Size = new System.Drawing.Size(75, 43);
+            this.btnDeleteTeam.TabIndex = 19;
+            this.btnDeleteTeam.Text = "Delete";
+            this.btnDeleteTeam.UseVisualStyleBackColor = true;
+            this.btnDeleteTeam.Click += new System.EventHandler(this.btnDeleteTeam_Click);
             // 
             // btnUpdateTeam
             // 
-            this.btnUpdateTeam.Location = new System.Drawing.Point(12, 377);
+            this.btnUpdateTeam.Location = new System.Drawing.Point(93, 377);
             this.btnUpdateTeam.Name = "btnUpdateTeam";
             this.btnUpdateTeam.Size = new System.Drawing.Size(75, 43);
             this.btnUpdateTeam.TabIndex = 18;
             this.btnUpdateTeam.Text = "Update";
             this.btnUpdateTeam.UseVisualStyleBackColor = true;
+            this.btnUpdateTeam.Click += new System.EventHandler(this.btnUpdateTeam_Click);
             // 
-            // btnAddToTeam
+            // btnCreateTeam
             // 
-            this.btnAddToTeam.Location = new System.Drawing.Point(193, 330);
-            this.btnAddToTeam.Name = "btnAddToTeam";
-            this.btnAddToTeam.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnAddToTeam.Size = new System.Drawing.Size(114, 23);
-            this.btnAddToTeam.TabIndex = 5;
-            this.btnAddToTeam.Text = "Add to team";
-            this.btnAddToTeam.UseVisualStyleBackColor = true;
-            // 
-            // btnDeleteToTeam
-            // 
-            this.btnDeleteToTeam.Location = new System.Drawing.Point(313, 330);
-            this.btnDeleteToTeam.Name = "btnDeleteToTeam";
-            this.btnDeleteToTeam.Size = new System.Drawing.Size(97, 23);
-            this.btnDeleteToTeam.TabIndex = 6;
-            this.btnDeleteToTeam.Text = "Delete to team";
-            this.btnDeleteToTeam.UseVisualStyleBackColor = true;
+            this.btnCreateTeam.Location = new System.Drawing.Point(12, 377);
+            this.btnCreateTeam.Name = "btnCreateTeam";
+            this.btnCreateTeam.Size = new System.Drawing.Size(75, 43);
+            this.btnCreateTeam.TabIndex = 21;
+            this.btnCreateTeam.Text = "Create";
+            this.btnCreateTeam.UseVisualStyleBackColor = true;
+            this.btnCreateTeam.Click += new System.EventHandler(this.btnCreateTeam_Click);
             // 
             // frmTeamManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(636, 432);
+            this.Controls.Add(this.btnCreateTeam);
             this.Controls.Add(this.btnBack);
-            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnDeleteTeam);
             this.Controls.Add(this.btnUpdateTeam);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -171,7 +188,7 @@
             this.Text = "SynUp - Team Management ";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployeesOnTeam)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -183,12 +200,13 @@
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtCode;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvEmployeesOnTeam;
         private System.Windows.Forms.Button btnUpdateTeam;
-        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnDeleteTeam;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnDeleteToTeam;
         private System.Windows.Forms.Button btnAddToTeam;
+        private System.Windows.Forms.Button btnCreateTeam;
     }
 }

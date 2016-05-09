@@ -73,8 +73,6 @@ namespace SynUp_Desktop.views
         /// <author>Pablo Ardèvol</author>
         private void fillGridView()
         {
-            ///Note: Revisar si se puedes escoger los nombres de las columnas y las que aparecen al hacer el binding.
-            /// He ocultado las dos primeras columnas. Lo he hecho de dos maneras para que veas como se puede hacer.
 
             BindingSource source = new BindingSource();
             source.DataSource = Controller.Service.getAllTasks();

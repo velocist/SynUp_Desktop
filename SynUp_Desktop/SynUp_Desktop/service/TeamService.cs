@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using SynUp_Desktop.model.pojo;
 using SynUp_Desktop.model.dao;
 
 namespace SynUp_Desktop.service
 {
-    class TeamService
+    public class TeamService
     {
         public static bool createTeam(String code, String name)
         {
@@ -24,7 +23,7 @@ namespace SynUp_Desktop.service
         public static Team readTeam(String pCode)
         {
             return TeamConnection.readTeam(pCode);
-        }        
+        }
 
         public static bool updateTeam(Team pTeam)
         {

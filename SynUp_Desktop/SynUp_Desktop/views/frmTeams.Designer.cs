@@ -57,28 +57,30 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(519, 418);
+            this.btnBack.Location = new System.Drawing.Point(519, 388);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(75, 23);
+            this.btnBack.Size = new System.Drawing.Size(75, 53);
             this.btnBack.TabIndex = 3;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // btnManagementTeams
             // 
-            this.btnManagementTeams.Location = new System.Drawing.Point(6, 418);
+            this.btnManagementTeams.Location = new System.Drawing.Point(6, 388);
             this.btnManagementTeams.Name = "btnManagementTeams";
-            this.btnManagementTeams.Size = new System.Drawing.Size(86, 23);
+            this.btnManagementTeams.Size = new System.Drawing.Size(86, 53);
             this.btnManagementTeams.TabIndex = 2;
             this.btnManagementTeams.Text = "Management";
             this.btnManagementTeams.UseVisualStyleBackColor = true;
+            this.btnManagementTeams.Click += new System.EventHandler(this.btnManagementTeams_Click);
             // 
             // dgvTeams
             // 
             this.dgvTeams.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTeams.Location = new System.Drawing.Point(9, 51);
             this.dgvTeams.Name = "dgvTeams";
-            this.dgvTeams.Size = new System.Drawing.Size(585, 360);
+            this.dgvTeams.Size = new System.Drawing.Size(585, 331);
             this.dgvTeams.TabIndex = 0;
             // 
             // gbContainer
@@ -105,6 +107,8 @@
             this.Name = "frmTeams";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Teams";
+            this.Activated += new System.EventHandler(this.frmTeams_Activated);
+            this.Load += new System.EventHandler(this.frmTeams_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTeams)).EndInit();
             this.gbContainer.ResumeLayout(false);
             this.gbContainer.PerformLayout();

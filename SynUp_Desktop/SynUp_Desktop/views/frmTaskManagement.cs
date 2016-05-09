@@ -15,6 +15,7 @@ namespace SynUp_Desktop.views
     /// <summary>
     /// Form of manage tasks
     /// </summary>
+    /// <Author>Cristina Caballero</Author>
     public partial class frmTaskManagement : Form
     {
         private Controller controller;
@@ -31,6 +32,7 @@ namespace SynUp_Desktop.views
                 controller = value;
             }
         }
+
         public frmTaskManagement()
         {
             InitializeComponent();
