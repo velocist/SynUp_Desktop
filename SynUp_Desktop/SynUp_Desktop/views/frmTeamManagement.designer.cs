@@ -129,8 +129,7 @@
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(170, 20);
             this.txtCode.TabIndex = 1;
-            this.txtCode.Enter += new System.EventHandler(this.txtCode_Enter);
-            this.txtCode.Leave += new System.EventHandler(this.txtCode_Leave);
+            this.txtCode.TextChanged += new System.EventHandler(this.txtCode_TextChanged);
             // 
             // btnBack
             // 
@@ -186,6 +185,7 @@
             this.Name = "frmTeamManagement";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Team Management ";
+            this.Activated += new System.EventHandler(this.frmTeamManagement_Activated);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployeesOnTeam)).EndInit();
