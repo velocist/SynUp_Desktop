@@ -79,8 +79,11 @@ namespace SynUp_Desktop.views
                 {
                     String _strSelectedRowCode = _cell.ToString(); // Recover the code
                     _oSelectedEmployee = Controller.EmployeeService.readEmployee(_strSelectedRowCode); // We look for the employee nif
-                    
 
+                    String _SelectedTeam = this.cmbTeamsToAdd.SelectedValue.ToString();
+                    model.pojo.Team _oTeam = this.Controller.TeamService.readTeam(_SelectedTeam);
+
+                    this.addToTeam(_oSelectedEmployee, _oTeam);
                 }
             }
         }
@@ -127,15 +130,15 @@ namespace SynUp_Desktop.views
             this.dgvEmployees.AllowUserToResizeRows = false; //Can't resize columns
             this.dgvEmployees.Cursor = Cursors.Hand; // Cursor hand type            
             this.dgvEmployees.MultiSelect = false; //Can't multiselect
-            this.dgvEmployees.RowTemplate.ReadOnly = true; 
+            this.dgvEmployees.RowTemplate.ReadOnly = true;
             this.dgvEmployees.RowHeadersVisible = false; // We hide the rowheader
             this.dgvEmployees.ClearSelection(); // Clear selection rows
 
             //Form Common Configurations            
             this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
-            
+
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -185,10 +188,28 @@ namespace SynUp_Desktop.views
         /// <summary>
         /// Add selected employee to team
         /// </summary>
-        private void addToTeam()
+        private void addToTeam(model.pojo.Employee pEmployee, model.pojo.Team pTeam)
         {
+            model.pojo.TeamHistory _oTeamHistory = new model.pojo.TeamHistory();
+
+            _oTeamHistory.id_employee = pEmployee.id;
+            _oTeamHistory.id_team = pTeam.id;
+            // _oTeamHistory.Employee = pEmployee;
+            //_oTeamHistory.Team = pTeam;
+            _oTeamHistory.entranceDay = DateTime.Today;
+            _oTeamHistory.exitDate = DateTime.Today;
+
+            Boolean _blAddOk = this.Controller.TeamService.addToTeam(pEmployee, pTeam);
+
+            if (_blAddOk)
+            {
+                MessageBox.Show("The employee has been added to team");
+            } else
+            {
+                MessageBox.Show("The employee hasn't been added to team");
+            }
 
         }
-        
+
     }
 }
