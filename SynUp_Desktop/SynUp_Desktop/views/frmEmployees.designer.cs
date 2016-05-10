@@ -35,17 +35,24 @@
             this.lblFilter = new System.Windows.Forms.Label();
             this.gbContainer = new System.Windows.Forms.GroupBox();
             this.btnAddToTeam = new System.Windows.Forms.Button();
+            this.cmbTeamsToAdd = new System.Windows.Forms.ComboBox();
+            this.lblTeams = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
             this.gbContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvEmployees
             // 
+            this.dgvEmployees.AllowUserToAddRows = false;
+            this.dgvEmployees.AllowUserToDeleteRows = false;
+            this.dgvEmployees.AllowUserToResizeRows = false;
             this.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEmployees.Location = new System.Drawing.Point(9, 51);
             this.dgvEmployees.Name = "dgvEmployees";
+            this.dgvEmployees.RowTemplate.ReadOnly = true;
             this.dgvEmployees.Size = new System.Drawing.Size(585, 360);
             this.dgvEmployees.TabIndex = 0;
+            this.dgvEmployees.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmployees_RowEnter);
             // 
             // btnManagementEmployee
             // 
@@ -86,6 +93,8 @@
             // 
             // gbContainer
             // 
+            this.gbContainer.Controls.Add(this.lblTeams);
+            this.gbContainer.Controls.Add(this.cmbTeamsToAdd);
             this.gbContainer.Controls.Add(this.btnAddToTeam);
             this.gbContainer.Controls.Add(this.lblFilter);
             this.gbContainer.Controls.Add(this.btnBack);
@@ -102,13 +111,30 @@
             // btnAddToTeam
             // 
             this.btnAddToTeam.Enabled = false;
-            this.btnAddToTeam.Location = new System.Drawing.Point(99, 418);
+            this.btnAddToTeam.Location = new System.Drawing.Point(419, 418);
             this.btnAddToTeam.Name = "btnAddToTeam";
             this.btnAddToTeam.Size = new System.Drawing.Size(94, 23);
             this.btnAddToTeam.TabIndex = 4;
             this.btnAddToTeam.Text = "Add to Team";
             this.btnAddToTeam.UseVisualStyleBackColor = true;
             this.btnAddToTeam.Click += new System.EventHandler(this.btnAddToTeam_Click);
+            // 
+            // cmbTeamsToAdd
+            // 
+            this.cmbTeamsToAdd.FormattingEnabled = true;
+            this.cmbTeamsToAdd.Location = new System.Drawing.Point(269, 420);
+            this.cmbTeamsToAdd.Name = "cmbTeamsToAdd";
+            this.cmbTeamsToAdd.Size = new System.Drawing.Size(144, 21);
+            this.cmbTeamsToAdd.TabIndex = 5;
+            // 
+            // lblTeams
+            // 
+            this.lblTeams.AutoSize = true;
+            this.lblTeams.Location = new System.Drawing.Point(228, 423);
+            this.lblTeams.Name = "lblTeams";
+            this.lblTeams.Size = new System.Drawing.Size(39, 13);
+            this.lblTeams.TabIndex = 6;
+            this.lblTeams.Text = "Teams";
             // 
             // frmEmployees
             // 
@@ -138,5 +164,7 @@
         private System.Windows.Forms.Label lblFilter;
         private System.Windows.Forms.GroupBox gbContainer;
         private System.Windows.Forms.Button btnAddToTeam;
+        private System.Windows.Forms.Label lblTeams;
+        private System.Windows.Forms.ComboBox cmbTeamsToAdd;
     }
 }

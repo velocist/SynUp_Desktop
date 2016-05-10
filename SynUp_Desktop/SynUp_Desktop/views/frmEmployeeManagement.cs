@@ -188,5 +188,39 @@ namespace SynUp_Desktop.views
             txtAdress.Text = "";
         }
 
+        private void frmEmployeeManagement_Load(object sender, EventArgs e)
+        {
+            /*BindingSource source = new BindingSource()
+
+            source.DataSource = Controller.TeamService.getAllTeams();
+            cmb.DataSource = source;
+            cbIdTeams.DisplayMember = "Name";
+            cbIdTeams.ValueMember = "Code";*/
+
+            if (AuxEmployee != null)
+            {
+                // We recover the data of selected employee
+                this.txtNif.Text = this.AuxEmployee.nif;
+                this.txtName.Text = this.AuxEmployee.name;
+                this.txtSurname.Text = this.AuxEmployee.surname;
+                this.txtPhone.Text = this.AuxEmployee.phone;
+                this.txtEmail.Text = this.AuxEmployee.email;
+                this.txtAdress.Text = this.AuxEmployee.adress;
+
+                this.btnCreate.Enabled = false; // We disable the button to create a task
+                this.txtNif.Enabled = false;
+            }
+            else
+            {
+                this.btnCreate.Enabled = true;
+                this.txtNif.Enabled = true;
+            }
+
+            ///Sets the tooltips for the view
+            ///Nota: Interesante poner las restricciones de la base de datos directamente.
+            ToolTip ToolTips = new ToolTip();
+            //ToolTip1.IsBalloon = true;
+            ToolTips.SetToolTip(this.lblNif, "Nif employee.");
+        }
     }
 }
