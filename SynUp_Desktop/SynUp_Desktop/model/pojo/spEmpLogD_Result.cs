@@ -13,12 +13,13 @@ namespace SynUp_Desktop.model.pojo
     
     public partial class spEmpLogD_Result
     {
-        public int id_employee { get; set; }
+        public string id_employee { get; set; }
         public Nullable<int> name { get; set; }
         public Nullable<int> surname { get; set; }
         public Nullable<int> nif { get; set; }
         public Nullable<int> phone { get; set; }
         public Nullable<int> email { get; set; }
         public Nullable<int> adress { get; set; }
+        public Nullable<int> password { get; set; }
     }
 }

@@ -15,14 +15,11 @@ namespace SynUp_Desktop.model.pojo
     public partial class TaskHistory
     {
         public int id { get; set; }
-        public int id_employee { get; set; }
-        public int id_task { get; set; }
+        public string id_employee { get; set; }
+        public string id_task { get; set; }
         public Nullable<System.DateTime> startDate { get; set; }
         public Nullable<System.DateTime> finishDate { get; set; }
         public string comment { get; set; }
         public byte isFinished { get; set; }
-    
-        public virtual Employee Employee { get; set; }
-        public virtual Task Task { get; set; }
     }
 }

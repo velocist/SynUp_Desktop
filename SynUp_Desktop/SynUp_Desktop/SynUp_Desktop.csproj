@@ -80,6 +80,24 @@
     <Compile Include="model\pojo\spLast_Result.cs">
       <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="model\pojo\spTasklogD_Result.cs">
+      <DependentUpon>SynupModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\spTasklogI_Result.cs">
+      <DependentUpon>SynupModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\spTasklogU_Result.cs">
+      <DependentUpon>SynupModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\spTHisLogD_Result.cs">
+      <DependentUpon>SynupModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\spTHisLogI_Result.cs">
+      <DependentUpon>SynupModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\spTHisLogU_Result.cs">
+      <DependentUpon>SynupModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="model\pojo\SynupModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -234,11 +252,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="model\pojo\SynupModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

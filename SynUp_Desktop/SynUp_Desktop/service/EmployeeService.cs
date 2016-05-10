@@ -104,15 +104,15 @@ namespace SynUp_Desktop.service
         }
 
         private Employee returnWithoutSpaces(Employee pEmployee)
-        {            
+        {
             if (pEmployee != null)
             {
                 pEmployee.nif = pEmployee.nif.Trim();
-                    pEmployee.name = pEmployee.name.Trim();
+                pEmployee.name = pEmployee.name.Trim();
                 pEmployee.surname = pEmployee.surname.Trim();
                 pEmployee.phone = pEmployee.phone.Trim();
                 pEmployee.email = pEmployee.email.Trim();
-                pEmployee.adress = pEmployee.adress.Trim();               
+                pEmployee.adress = pEmployee.adress.Trim();
             }
             return pEmployee;
         }

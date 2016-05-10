@@ -112,8 +112,8 @@ namespace SynUp_Desktop.views
 
             // DataGridView Configuration
             this.dgvEmployees.Columns[0].Visible = false; // We hide id column
-            this.dgvEmployees.Columns[7].Visible = false; // TeamsHistory
-            this.dgvEmployees.Columns[8].Visible = false; // TaskHistories
+            //this.dgvEmployees.Columns[7].Visible = false; // TeamsHistory
+            //this.dgvEmployees.Columns[8].Visible = false; // TaskHistories
 
             this.dgvEmployees.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
             this.dgvEmployees.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;

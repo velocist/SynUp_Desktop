@@ -20,5 +20,6 @@ namespace SynUp_Desktop.model.pojo
         public string phone { get; set; }
         public string email { get; set; }
         public string adress { get; set; }
+        public Nullable<int> password { get; set; }
     }
 }

@@ -15,8 +15,8 @@ namespace SynUp_Desktop.model.pojo
     public partial class TeamHistoryLog
     {
         public int id { get; set; }
-        public int id_team { get; set; }
-        public int id_employee { get; set; }
+        public string id_team { get; set; }
+        public string id_employee { get; set; }
         public string operation { get; set; }
         public System.DateTime when { get; set; }
     }

@@ -14,17 +14,8 @@ namespace SynUp_Desktop.model.pojo
     
     public partial class Team
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Team()
-        {
-            this.TeamHistories = new HashSet<TeamHistory>();
-        }
-    
         public int id { get; set; }
         public string code { get; set; }
         public string name { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TeamHistory> TeamHistories { get; set; }
     }
 }

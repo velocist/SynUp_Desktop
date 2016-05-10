@@ -15,10 +15,13 @@ namespace SynUp_Desktop.model.pojo
     public partial class TaskHistoryLog
     {
         public int id { get; set; }
-        public int id_task { get; set; }
-        public int id_employee { get; set; }
+        public string id_task { get; set; }
+        public string id_employee { get; set; }
         public string operation { get; set; }
         public System.DateTime when { get; set; }
         public int id_taskHistory { get; set; }
+    
+        public virtual TaskHistoryLog TaskHistoryLog1 { get; set; }
+        public virtual TaskHistoryLog TaskHistoryLog2 { get; set; }
     }
 }

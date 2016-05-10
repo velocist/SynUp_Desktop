@@ -29,7 +29,7 @@ namespace SynUp_Desktop.service
             Task newTask = new Task
             {
                 code = code,
-                code_team = team,
+                id_team = team,
                 name = name,
                 priorityDate = priorityDate,
                 description = description,
@@ -64,7 +64,7 @@ namespace SynUp_Desktop.service
             {
                 code = code,
                 name = name,
-                code_team = team,
+                id_team = team,
                 priorityDate = priorityDate,
                 description = description,
                 localization = localization,
@@ -115,6 +115,5 @@ namespace SynUp_Desktop.service
         {
             return TaskConnection.updateTask(pTask);
         }
-
     }
 }

@@ -86,11 +86,11 @@ namespace SynUp_Desktop.model.pojo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spLast_Result>("spLast", employeeIdParameter);
         }
     
-        public virtual int spTasklogD(Nullable<int> employeeId, Nullable<int> first, Nullable<int> last)
+        public virtual ObjectResult<spTasklogD_Result> spTasklogD(string employeeId, Nullable<int> first, Nullable<int> last)
         {
-            var employeeIdParameter = employeeId.HasValue ?
+            var employeeIdParameter = employeeId != null ?
                 new ObjectParameter("employeeId", employeeId) :
-                new ObjectParameter("employeeId", typeof(int));
+                new ObjectParameter("employeeId", typeof(string));
     
             var firstParameter = first.HasValue ?
                 new ObjectParameter("first", first) :
@@ -100,14 +100,14 @@ namespace SynUp_Desktop.model.pojo
                 new ObjectParameter("last", last) :
                 new ObjectParameter("last", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spTasklogD", employeeIdParameter, firstParameter, lastParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spTasklogD_Result>("spTasklogD", employeeIdParameter, firstParameter, lastParameter);
         }
     
-        public virtual int spTasklogI(Nullable<int> employeeId, Nullable<int> first, Nullable<int> last)
+        public virtual ObjectResult<spTasklogI_Result> spTasklogI(string employeeId, Nullable<int> first, Nullable<int> last)
         {
-            var employeeIdParameter = employeeId.HasValue ?
+            var employeeIdParameter = employeeId != null ?
                 new ObjectParameter("employeeId", employeeId) :
-                new ObjectParameter("employeeId", typeof(int));
+                new ObjectParameter("employeeId", typeof(string));
     
             var firstParameter = first.HasValue ?
                 new ObjectParameter("first", first) :
@@ -117,14 +117,14 @@ namespace SynUp_Desktop.model.pojo
                 new ObjectParameter("last", last) :
                 new ObjectParameter("last", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spTasklogI", employeeIdParameter, firstParameter, lastParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spTasklogI_Result>("spTasklogI", employeeIdParameter, firstParameter, lastParameter);
         }
     
-        public virtual int spTasklogU(Nullable<int> employeeId, Nullable<int> first, Nullable<int> last)
+        public virtual ObjectResult<spTasklogU_Result> spTasklogU(string employeeId, Nullable<int> first, Nullable<int> last)
         {
-            var employeeIdParameter = employeeId.HasValue ?
+            var employeeIdParameter = employeeId != null ?
                 new ObjectParameter("EmployeeId", employeeId) :
-                new ObjectParameter("EmployeeId", typeof(int));
+                new ObjectParameter("EmployeeId", typeof(string));
     
             var firstParameter = first.HasValue ?
                 new ObjectParameter("first", first) :
@@ -134,14 +134,14 @@ namespace SynUp_Desktop.model.pojo
                 new ObjectParameter("last", last) :
                 new ObjectParameter("last", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spTasklogU", employeeIdParameter, firstParameter, lastParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spTasklogU_Result>("spTasklogU", employeeIdParameter, firstParameter, lastParameter);
         }
     
-        public virtual int spTHisLogD(Nullable<int> employeeId, Nullable<int> first, Nullable<int> last)
+        public virtual ObjectResult<spTHisLogD_Result> spTHisLogD(string employeeId, Nullable<int> first, Nullable<int> last)
         {
-            var employeeIdParameter = employeeId.HasValue ?
+            var employeeIdParameter = employeeId != null ?
                 new ObjectParameter("EmployeeId", employeeId) :
-                new ObjectParameter("EmployeeId", typeof(int));
+                new ObjectParameter("EmployeeId", typeof(string));
     
             var firstParameter = first.HasValue ?
                 new ObjectParameter("first", first) :
@@ -151,14 +151,14 @@ namespace SynUp_Desktop.model.pojo
                 new ObjectParameter("last", last) :
                 new ObjectParameter("last", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spTHisLogD", employeeIdParameter, firstParameter, lastParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spTHisLogD_Result>("spTHisLogD", employeeIdParameter, firstParameter, lastParameter);
         }
     
-        public virtual int spTHisLogI(Nullable<int> employeeId, Nullable<int> first, Nullable<int> last)
+        public virtual ObjectResult<spTHisLogI_Result> spTHisLogI(string employeeId, Nullable<int> first, Nullable<int> last)
         {
-            var employeeIdParameter = employeeId.HasValue ?
+            var employeeIdParameter = employeeId != null ?
                 new ObjectParameter("EmployeeId", employeeId) :
-                new ObjectParameter("EmployeeId", typeof(int));
+                new ObjectParameter("EmployeeId", typeof(string));
     
             var firstParameter = first.HasValue ?
                 new ObjectParameter("first", first) :
@@ -168,14 +168,14 @@ namespace SynUp_Desktop.model.pojo
                 new ObjectParameter("last", last) :
                 new ObjectParameter("last", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spTHisLogI", employeeIdParameter, firstParameter, lastParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spTHisLogI_Result>("spTHisLogI", employeeIdParameter, firstParameter, lastParameter);
         }
     
-        public virtual int spTHisLogU(Nullable<int> employeeId, Nullable<int> first, Nullable<int> last)
+        public virtual ObjectResult<spTHisLogU_Result> spTHisLogU(string employeeId, Nullable<int> first, Nullable<int> last)
         {
-            var employeeIdParameter = employeeId.HasValue ?
+            var employeeIdParameter = employeeId != null ?
                 new ObjectParameter("EmployeeId", employeeId) :
-                new ObjectParameter("EmployeeId", typeof(int));
+                new ObjectParameter("EmployeeId", typeof(string));
     
             var firstParameter = first.HasValue ?
                 new ObjectParameter("first", first) :
@@ -185,7 +185,7 @@ namespace SynUp_Desktop.model.pojo
                 new ObjectParameter("last", last) :
                 new ObjectParameter("last", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("spTHisLogU", employeeIdParameter, firstParameter, lastParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spTHisLogU_Result>("spTHisLogU", employeeIdParameter, firstParameter, lastParameter);
         }
     }
 }

@@ -80,7 +80,7 @@ namespace SynUp_Desktop.model.dao
 
             modifiedTask.code = t.code;
             modifiedTask.description = t.description;
-            modifiedTask.code_team = t.code_team;
+            modifiedTask.id_team = t.id_team;
             modifiedTask.localization = t.localization;
             modifiedTask.name = t.name;
             modifiedTask.priorityDate = t.priorityDate;
@@ -103,9 +103,28 @@ namespace SynUp_Desktop.model.dao
             return query.SingleOrDefault();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static List<pojo.Task> readAllTasks()
         {
             return (from task in database.Tasks select task).ToList();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_date"></param>
+        /// <returns></returns>
+        public static List<pojo.Task> readTasksByDate(DateTime _dateStartPeriod, DateTime _dateFinishPeriod)
+        {
+            ///Check from TaskHistory the tasks that are active given the period of time. 
+            ///The tasks can't be finished in the given period.
+            ///
+            /*var query = from task in database.TaskHistories
+                        where task.*/
+            return null;
         }
 
 

@@ -11,15 +11,15 @@ namespace SynUp_Desktop.model.pojo
 {
     using System;
     
-    public partial class spEmpLogI_Result
+    public partial class spTasklogD_Result
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string surname { get; set; }
-        public string nif { get; set; }
-        public string phone { get; set; }
-        public string email { get; set; }
-        public string adress { get; set; }
-        public string password { get; set; }
+        public string id_task { get; set; }
+        public Nullable<int> id_team { get; set; }
+        public Nullable<int> code { get; set; }
+        public Nullable<int> description { get; set; }
+        public Nullable<int> localization { get; set; }
+        public Nullable<int> name { get; set; }
+        public Nullable<int> priorityDate { get; set; }
+        public Nullable<int> project { get; set; }
     }
 }

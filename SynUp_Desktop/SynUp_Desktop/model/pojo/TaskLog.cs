@@ -15,7 +15,7 @@ namespace SynUp_Desktop.model.pojo
     public partial class TaskLog
     {
         public int id { get; set; }
-        public int id_task { get; set; }
+        public string id_task { get; set; }
         public string operation { get; set; }
         public System.DateTime when { get; set; }
     }

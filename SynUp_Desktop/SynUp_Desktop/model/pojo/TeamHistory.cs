@@ -15,12 +15,9 @@ namespace SynUp_Desktop.model.pojo
     public partial class TeamHistory
     {
         public int id { get; set; }
-        public int id_employee { get; set; }
-        public int id_team { get; set; }
+        public string id_employee { get; set; }
+        public string id_team { get; set; }
         public System.DateTime entranceDay { get; set; }
         public Nullable<System.DateTime> exitDate { get; set; }
-    
-        public virtual Employee Employee { get; set; }
-        public virtual Team Team { get; set; }
     }
 }

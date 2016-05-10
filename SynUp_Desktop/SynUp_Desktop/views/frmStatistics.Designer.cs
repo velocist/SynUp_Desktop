@@ -62,14 +62,15 @@
             this.btnBack.TabIndex = 3;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // dgTasks
+            // dgStadistics
             // 
             this.dgStadistics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgStadistics.Location = new System.Drawing.Point(9, 51);
+            this.dgStadistics.Name = "dgStadistics";
             this.dgStadistics.Size = new System.Drawing.Size(585, 360);
             this.dgStadistics.TabIndex = 0;
-            this.dgStadistics.Name = "dgStadistics";
             // 
             // gbContainer
             // 
@@ -82,18 +83,18 @@
             this.gbContainer.Size = new System.Drawing.Size(600, 450);
             this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
-            this.gbContainer.Text = "List of Stadistics";
+            this.gbContainer.Text = "List of Statistics";
             // 
-            // frmTasks
+            // frmStatistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 471);
             this.Controls.Add(this.gbContainer);
             this.MinimumSize = new System.Drawing.Size(640, 510);
-            this.Name = "frmStadistics";
+            this.Name = "frmStatistics";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SynUp - Stadistics";
+            this.Text = "SynUp - Statistics";
             ((System.ComponentModel.ISupportInitialize)(this.dgStadistics)).EndInit();
             this.gbContainer.ResumeLayout(false);
             this.gbContainer.PerformLayout();
