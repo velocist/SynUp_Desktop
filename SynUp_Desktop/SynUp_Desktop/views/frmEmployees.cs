@@ -146,7 +146,6 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void dgvEmployees_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-
             if (dgvEmployees.SelectedRows.Count == 1)
             {
                 btnAddToTeam.Enabled = true;
@@ -191,23 +190,31 @@ namespace SynUp_Desktop.views
         private void addToTeam(model.pojo.Employee pEmployee, model.pojo.Team pTeam)
         {
             model.pojo.TeamHistory _oTeamHistory = new model.pojo.TeamHistory();
+            
+            model.pojo.TeamHistory _oTeamHistoryControl = this.Controller.TeamHistoryService.readTeam(pEmployee.nif, pTeam.code);
 
-            _oTeamHistory.id_employee = pEmployee.nif;
-            _oTeamHistory.id_team = pTeam.code;
-            // _oTeamHistory.Employee = pEmployee;
-            //_oTeamHistory.Team = pTeam;
-            _oTeamHistory.entranceDay = DateTime.Today;
-            _oTeamHistory.exitDate = DateTime.Today;
-
-            Boolean _blAddOk = this.Controller.TeamService.addToTeam(pEmployee, pTeam);
-
-            if (_blAddOk)
+            if (_oTeamHistoryControl == null)
             {
-                MessageBox.Show("The employee has been added to team");
+                _oTeamHistory.id_employee = pEmployee.nif;
+                _oTeamHistory.id_team = pTeam.code;
+                _oTeamHistory.entranceDay = DateTime.Today;
+                _oTeamHistory.exitDate = DateTime.Today;
+
+                Boolean _blAddOk = this.Controller.TeamService.addToTeam(pEmployee, pTeam);
+
+                if (_blAddOk)
+                {
+                    MessageBox.Show("The employee has been added to team");
+                }
+                else
+                {
+                    MessageBox.Show("The employee hasn't been added to team");
+                }
             } else
             {
-                MessageBox.Show("The employee hasn't been added to team");
+                MessageBox.Show("This employee has been already in team");
             }
+           
 
         }
 

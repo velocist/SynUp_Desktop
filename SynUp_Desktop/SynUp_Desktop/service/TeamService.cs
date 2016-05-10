@@ -37,12 +37,28 @@ namespace SynUp_Desktop.service
 
         public List<Team> getAllTeams()
         {
-            return TeamConnection.readAllTeams();
+            List<Team> _lstTeam = TeamConnection.readAllTeams();
+            foreach (Team _oTeamItem in _lstTeam)
+            {
+                this.returnWithoutSpaces(_oTeamItem);
+            }
+            return _lstTeam;
         }
 
         public bool addToTeam(Employee pEmployee, Team pTeam)
         {
             return TeamConnection.addToTeam(pEmployee, pTeam);
         }
+
+        private Team returnWithoutSpaces(Team pTeam)
+        {
+            if (pTeam != null)
+            {
+                pTeam.code = pTeam.code.Trim();
+                pTeam.name = pTeam.name.Trim();
+            }
+            return pTeam;
+        }
+
     }
 }
