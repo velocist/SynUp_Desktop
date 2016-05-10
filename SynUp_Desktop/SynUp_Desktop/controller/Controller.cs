@@ -22,6 +22,7 @@ namespace SynUp_Desktop.controller
         private TaskService _TaskService;
         private TeamService _TeamService;
         private EmployeeService _EmployeeService;
+        private TeamHistoryService _TeamHistoryService;
 
         private frmAbout _AboutView;
         private frmStatistics _StatisticsView;
@@ -71,6 +72,19 @@ namespace SynUp_Desktop.controller
             set
             {
                 _EmployeeService = value;
+            }
+        }
+
+        public TeamHistoryService TeamHistoryService
+        {
+            get
+            {
+                return _TeamHistoryService;
+            }
+
+            set
+            {
+                _TeamHistoryService = value;
             }
         }
 
@@ -190,7 +204,7 @@ namespace SynUp_Desktop.controller
                 _TeamMgtView = value;
             }
         }
-        
+
         #endregion
 
     }
