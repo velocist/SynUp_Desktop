@@ -192,8 +192,8 @@ namespace SynUp_Desktop.views
         {
             model.pojo.TeamHistory _oTeamHistory = new model.pojo.TeamHistory();
 
-            _oTeamHistory.id_employee = pEmployee.id;
-            _oTeamHistory.id_team = pTeam.id;
+            _oTeamHistory.id_employee = pEmployee.nif;
+            _oTeamHistory.id_team = pTeam.code;
             // _oTeamHistory.Employee = pEmployee;
             //_oTeamHistory.Team = pTeam;
             _oTeamHistory.entranceDay = DateTime.Today;

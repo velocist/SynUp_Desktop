@@ -122,7 +122,10 @@ namespace SynUp_Desktop.model.dao
             ///Check from TaskHistory the tasks that are active given the period of time. 
             ///The tasks can't be finished in the given period.
             ///
-            /*var query = from task in database.TaskHistories
+
+            /*var query = from task in database.Tasks
+                        join history in database.TaskHistories on task.code equals history.id_task into gr
+                        from history in gr.DefaultIfEmpty()
                         where task.*/
             return null;
         }
