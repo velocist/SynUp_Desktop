@@ -115,15 +115,16 @@ namespace SynUp_Desktop.views
             this.dgvEmployees.Columns[7].Visible = false; // TeamsHistory
             this.dgvEmployees.Columns[8].Visible = false; // TaskHistories
 
-            this.dgvEmployees.AutoResizeColumns();
-            this.dgvEmployees.AllowUserToAddRows = false;
-            this.dgvEmployees.AllowUserToDeleteRows = false;
-            this.dgvEmployees.AllowUserToOrderColumns = false;
-            this.dgvEmployees.AllowUserToResizeRows = false;
-            this.dgvEmployees.Cursor = Cursors.Hand;
-            this.dgvEmployees.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEmployees.MultiSelect = false;
-            this.dgvEmployees.RowTemplate.ReadOnly = true;
+            this.dgvEmployees.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill size the datagridview
+            this.dgvEmployees.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row
+            
+            this.dgvEmployees.AllowUserToAddRows = false; // Can't add rows
+            this.dgvEmployees.AllowUserToDeleteRows = false; // Can't delete rows
+            this.dgvEmployees.AllowUserToOrderColumns = false; //Can't order columns
+            this.dgvEmployees.AllowUserToResizeRows = false; //Can't resize columns
+            this.dgvEmployees.Cursor = Cursors.Hand; // Cursor hand type            
+            this.dgvEmployees.MultiSelect = false; //Can't multiselect
+            this.dgvEmployees.RowTemplate.ReadOnly = true; 
             this.dgvEmployees.RowHeadersVisible = false; // We hide the rowheader
             this.dgvEmployees.ClearSelection(); // Clear selection rows
         }
@@ -178,7 +179,6 @@ namespace SynUp_Desktop.views
             }
 
         }
-
         
     }
 }

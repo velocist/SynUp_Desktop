@@ -50,15 +50,15 @@
             this.dgvEmployees.Location = new System.Drawing.Point(9, 51);
             this.dgvEmployees.Name = "dgvEmployees";
             this.dgvEmployees.RowTemplate.ReadOnly = true;
-            this.dgvEmployees.Size = new System.Drawing.Size(585, 360);
+            this.dgvEmployees.Size = new System.Drawing.Size(787, 360);
             this.dgvEmployees.TabIndex = 0;
             this.dgvEmployees.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmployees_RowEnter);
             // 
             // btnManagementEmployee
             // 
-            this.btnManagementEmployee.Location = new System.Drawing.Point(6, 418);
+            this.btnManagementEmployee.Location = new System.Drawing.Point(18, 442);
             this.btnManagementEmployee.Name = "btnManagementEmployee";
-            this.btnManagementEmployee.Size = new System.Drawing.Size(86, 23);
+            this.btnManagementEmployee.Size = new System.Drawing.Size(86, 49);
             this.btnManagementEmployee.TabIndex = 2;
             this.btnManagementEmployee.Text = "Management";
             this.btnManagementEmployee.UseVisualStyleBackColor = true;
@@ -66,9 +66,9 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(519, 418);
+            this.btnBack.Location = new System.Drawing.Point(733, 442);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(75, 23);
+            this.btnBack.Size = new System.Drawing.Size(75, 49);
             this.btnBack.TabIndex = 3;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
@@ -97,13 +97,11 @@
             this.gbContainer.Controls.Add(this.cmbTeamsToAdd);
             this.gbContainer.Controls.Add(this.btnAddToTeam);
             this.gbContainer.Controls.Add(this.lblFilter);
-            this.gbContainer.Controls.Add(this.btnBack);
             this.gbContainer.Controls.Add(this.cmbFilter);
-            this.gbContainer.Controls.Add(this.btnManagementEmployee);
             this.gbContainer.Controls.Add(this.dgvEmployees);
             this.gbContainer.Location = new System.Drawing.Point(12, 12);
             this.gbContainer.Name = "gbContainer";
-            this.gbContainer.Size = new System.Drawing.Size(600, 450);
+            this.gbContainer.Size = new System.Drawing.Size(802, 424);
             this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "List of Employees";
@@ -111,7 +109,7 @@
             // lblTeams
             // 
             this.lblTeams.AutoSize = true;
-            this.lblTeams.Location = new System.Drawing.Point(309, 27);
+            this.lblTeams.Location = new System.Drawing.Point(474, 27);
             this.lblTeams.Name = "lblTeams";
             this.lblTeams.Size = new System.Drawing.Size(39, 13);
             this.lblTeams.TabIndex = 6;
@@ -120,15 +118,15 @@
             // cmbTeamsToAdd
             // 
             this.cmbTeamsToAdd.FormattingEnabled = true;
-            this.cmbTeamsToAdd.Location = new System.Drawing.Point(350, 24);
+            this.cmbTeamsToAdd.Location = new System.Drawing.Point(519, 24);
             this.cmbTeamsToAdd.Name = "cmbTeamsToAdd";
-            this.cmbTeamsToAdd.Size = new System.Drawing.Size(144, 21);
+            this.cmbTeamsToAdd.Size = new System.Drawing.Size(177, 21);
             this.cmbTeamsToAdd.TabIndex = 5;
             // 
             // btnAddToTeam
             // 
             this.btnAddToTeam.Enabled = false;
-            this.btnAddToTeam.Location = new System.Drawing.Point(500, 22);
+            this.btnAddToTeam.Location = new System.Drawing.Point(702, 22);
             this.btnAddToTeam.Name = "btnAddToTeam";
             this.btnAddToTeam.Size = new System.Drawing.Size(94, 23);
             this.btnAddToTeam.TabIndex = 4;
@@ -140,8 +138,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 471);
+            this.ClientSize = new System.Drawing.Size(822, 495);
             this.Controls.Add(this.gbContainer);
+            this.Controls.Add(this.btnBack);
+            this.Controls.Add(this.btnManagementEmployee);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MinimumSize = new System.Drawing.Size(640, 510);
             this.Name = "frmEmployees";
