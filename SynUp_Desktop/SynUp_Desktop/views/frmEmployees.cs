@@ -146,7 +146,6 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void dgvEmployees_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-
             if (dgvEmployees.SelectedRows.Count == 1)
             {
                 btnAddToTeam.Enabled = true;
@@ -192,10 +191,8 @@ namespace SynUp_Desktop.views
         {
             model.pojo.TeamHistory _oTeamHistory = new model.pojo.TeamHistory();
 
-            _oTeamHistory.id_employee = pEmployee.id;
-            _oTeamHistory.id_team = pTeam.id;
-            // _oTeamHistory.Employee = pEmployee;
-            //_oTeamHistory.Team = pTeam;
+            _oTeamHistory.id_employee = pEmployee.nif;
+            _oTeamHistory.id_team = pTeam.code;
             _oTeamHistory.entranceDay = DateTime.Today;
             _oTeamHistory.exitDate = DateTime.Today;
 
