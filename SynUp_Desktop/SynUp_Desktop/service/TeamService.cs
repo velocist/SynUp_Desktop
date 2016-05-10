@@ -40,5 +40,9 @@ namespace SynUp_Desktop.service
             return TeamConnection.readAllTeams();
         }
 
+        public bool addToTeam(Employee pEmployee, Team pTeam)
+        {
+            return TeamConnection.addToTeam(pEmployee, pTeam);
+        }
     }
 }

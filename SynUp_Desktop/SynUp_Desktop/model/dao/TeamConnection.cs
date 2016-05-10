@@ -93,5 +93,27 @@ namespace SynUp_Desktop.model.dao
             return (from team in database.Teams select team).ToList();
         }
 
+        public static bool addToTeam(pojo.Employee pEmployee, pojo.Team pTeam)
+        {
+            Boolean _blAddOk = false;
+            model.pojo.TeamHistory _oTeamHistory = new model.pojo.TeamHistory();
+
+            if (pEmployee != null && pTeam != null)
+            {
+
+                _oTeamHistory.id_employee = pEmployee.id;
+                _oTeamHistory.id_team = pTeam.id;
+                //_oTeamHistory.Employee = pEmployee;
+                //_oTeamHistory.Team = pTeam;
+                _oTeamHistory.entranceDay = DateTime.Today;
+                _oTeamHistory.exitDate = DateTime.Today;
+
+                database.TeamHistories.Add(_oTeamHistory);
+                _blAddOk = commitChanges();
+                
+            }
+
+            return _blAddOk;
+        }
     }
 }
