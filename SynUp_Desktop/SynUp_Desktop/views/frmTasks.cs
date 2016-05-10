@@ -113,6 +113,22 @@ namespace SynUp_Desktop.views
         {
             //The grid with all the tasks will load.
             fillGridView();
+
+            // DatagridView Common Configuration 
+            this.dgvTasks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
+            this.dgvTasks.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row            
+            this.dgvTasks.AllowUserToAddRows = false; // Can't add rows
+            this.dgvTasks.AllowUserToDeleteRows = false; // Can't delete rows
+            this.dgvTasks.AllowUserToOrderColumns = false; //Can't order columns
+            this.dgvTasks.AllowUserToResizeRows = false; //Can't resize columns
+            this.dgvTasks.Cursor = Cursors.Hand; // Cursor hand type            
+            this.dgvTasks.MultiSelect = false; //Can't multiselect
+            this.dgvTasks.RowTemplate.ReadOnly = true;
+            this.dgvTasks.RowHeadersVisible = false; // We hide the rowheader
+            this.dgvTasks.ClearSelection(); // Clear selection rows
+
+            //Form Common Configurations
+            this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
         }
     }
 }

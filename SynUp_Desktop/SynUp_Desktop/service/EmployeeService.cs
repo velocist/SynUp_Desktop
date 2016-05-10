@@ -66,7 +66,7 @@ namespace SynUp_Desktop.service
         /// <returns></returns>
         public Employee readEmployee(String pCode)
         {
-            return EmployeeConnection.readEmployee(pCode);
+            return this.returnWithoutSpaces(EmployeeConnection.readEmployee(pCode)); ;
         }
 
         /// <summary>
@@ -85,7 +85,12 @@ namespace SynUp_Desktop.service
         /// <returns></returns>
         public List<Employee> getAllEmployees()
         {
-            return EmployeeConnection.readAllEmployees();
+            List<Employee> _lstEmployee = EmployeeConnection.readAllEmployees();
+            foreach (Employee _oEmployeeItem in _lstEmployee)
+            {
+                this.returnWithoutSpaces(_oEmployeeItem);
+            }
+            return _lstEmployee;
         }
 
         /// <summary>
@@ -96,6 +101,20 @@ namespace SynUp_Desktop.service
         public bool updateEmployee(Employee pEmployee)
         {
             return EmployeeConnection.updateEmployee(pEmployee);
+        }
+
+        private Employee returnWithoutSpaces(Employee pEmployee)
+        {            
+            if (pEmployee != null)
+            {
+                pEmployee.nif = pEmployee.nif.Trim();
+                    pEmployee.name = pEmployee.name.Trim();
+                pEmployee.surname = pEmployee.surname.Trim();
+                pEmployee.phone = pEmployee.phone.Trim();
+                pEmployee.email = pEmployee.email.Trim();
+                pEmployee.adress = pEmployee.adress.Trim();               
+            }
+            return pEmployee;
         }
     }
 }

@@ -37,6 +37,7 @@ namespace SynUp_Desktop.views
             InitializeComponent();
         }
 
+        #region
         private void btnCreateTeam_Click(object sender, EventArgs e)
         {
 
@@ -58,20 +59,6 @@ namespace SynUp_Desktop.views
 
         }
 
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            this.AuxTeam = null;
-            this.clearValues();
-            this.Close();
-        }
-
-        private void clearValues()
-        {
-            txtCode.Text = "";
-            txtName.Text = "";
-
-        }
-
         private void btnDeleteTeam_Click(object sender, EventArgs e)
         {
             Team deleteTeam = Controller.TeamService.deleteTeam(AuxTeam);
@@ -80,7 +67,8 @@ namespace SynUp_Desktop.views
                 MessageBox.Show("This team was delete succesfully");
                 this.btnBack_Click(sender, e);
             }
-            else {
+            else
+            {
                 MessageBox.Show("This team wasn't delete succesfully");
             }
         }
@@ -90,29 +78,69 @@ namespace SynUp_Desktop.views
 
         }
 
-        private void txtCode_Leave(object sender, EventArgs e)
+        #endregion
+
+        private void btnBack_Click(object sender, EventArgs e)
         {
-            if (txtCode.Text.Equals("")) // We found that the textbox is not emtpty
+            this.AuxTeam = null;
+            this.clearValues();
+            this.Close();
+        }
+
+        private void frmTeamManagement_Activated(object sender, EventArgs e)
+        {
+
+
+            // DatagridView Common Configuration 
+            this.dgvEmployeesOnTeam.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
+            this.dgvEmployeesOnTeam.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row            
+            this.dgvEmployeesOnTeam.AllowUserToAddRows = false; // Can't add rows
+            this.dgvEmployeesOnTeam.AllowUserToDeleteRows = false; // Can't delete rows
+            this.dgvEmployeesOnTeam.AllowUserToOrderColumns = false; //Can't order columns
+            this.dgvEmployeesOnTeam.AllowUserToResizeRows = false; //Can't resize columns
+            this.dgvEmployeesOnTeam.Cursor = Cursors.Hand; // Cursor hand type            
+            this.dgvEmployeesOnTeam.MultiSelect = false; //Can't multiselect
+            this.dgvEmployeesOnTeam.RowTemplate.ReadOnly = true;
+            this.dgvEmployeesOnTeam.RowHeadersVisible = false; // We hide the rowheader
+            this.dgvEmployeesOnTeam.ClearSelection(); // Clear selection rows
+
+            //Form Common Configurations
+            this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+        }
+
+        /// <summary>
+        /// Clear values of textboxs
+        /// </summary>
+        private void clearValues()
+        {
+            this.txtCode.Text = "";
+            this.txtName.Text = "";
+            this.dgvEmployeesOnTeam.ClearSelection();
+        }
+
+        private void fillDataGrid()
+        {
+
+        }
+
+        private void txtCode_TextChanged(object sender, EventArgs e)
+        {
+            String _strIdCode = txtCode.Text;
+            Team _oTeam = Controller.TeamService.readTeam(_strIdCode);
+
+            if (txtCode.Text.Equals("") || _oTeam != null) // We found that the textbox is not emtpty
             {
                 lblCode.ForeColor = Color.Red;
                 lblCode.Text = "Code*";
             }
-
-            String _strIdCode = txtCode.Text;
-            Team _oTeam = Controller.TeamService.readTeam(_strIdCode); // We look for if the task already exists
-
-            if (_oTeam != null) // If the task exists, we show a message
+            else
             {
-                MessageBox.Show("This code already exists");
-                lblCode.Text = "Code*";
+                lblCode.Text = "Code";
+                lblCode.ForeColor = Color.Black;
             }
+            
         }
 
-        private void txtCode_Enter(object sender, EventArgs e)
-        {
-            lblCode.Text = "Code";
-            lblCode.ForeColor = Color.Black;
-        }
     }
 }
 

@@ -70,7 +70,19 @@ namespace SynUp_Desktop.views
         private void btnAddToTeam_Click(object sender, EventArgs e)
         {
             //TODO Mostrar dialogo con combo para elegir equipo, o Mostrar la lista de equipos
+            model.pojo.Employee _oSelectedEmployee = null;
+            if (dgvEmployees.SelectedRows.Count == 1)//If the row selected
+            {
+                int _iIndexSelected = dgvEmployees.SelectedRows[0].Index; // Recover the index of selected row
+                Object _cell = dgvEmployees.Rows[_iIndexSelected].Cells[1].Value;
+                if (_cell != null)
+                {
+                    String _strSelectedRowCode = _cell.ToString(); // Recover the code
+                    _oSelectedEmployee = Controller.EmployeeService.readEmployee(_strSelectedRowCode); // We look for the employee nif
+                    
 
+                }
+            }
         }
 
         /// <summary>
@@ -103,17 +115,46 @@ namespace SynUp_Desktop.views
             this.dgvEmployees.Columns[7].Visible = false; // TeamsHistory
             this.dgvEmployees.Columns[8].Visible = false; // TaskHistories
 
-            this.dgvEmployees.AutoResizeColumns();
-            this.dgvEmployees.AllowUserToAddRows = false;
-            this.dgvEmployees.AllowUserToDeleteRows = false;
-            this.dgvEmployees.AllowUserToOrderColumns = false;
-            this.dgvEmployees.AllowUserToResizeRows = false;
-            this.dgvEmployees.Cursor = Cursors.Hand;
-            this.dgvEmployees.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEmployees.MultiSelect = false;
-            this.dgvEmployees.RowTemplate.ReadOnly = true;
+            this.dgvEmployees.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+            this.dgvEmployees.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+
+            // DatagridView Common Configuration 
+            this.dgvEmployees.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
+            this.dgvEmployees.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row            
+            this.dgvEmployees.AllowUserToAddRows = false; // Can't add rows
+            this.dgvEmployees.AllowUserToDeleteRows = false; // Can't delete rows
+            this.dgvEmployees.AllowUserToOrderColumns = false; //Can't order columns
+            this.dgvEmployees.AllowUserToResizeRows = false; //Can't resize columns
+            this.dgvEmployees.Cursor = Cursors.Hand; // Cursor hand type            
+            this.dgvEmployees.MultiSelect = false; //Can't multiselect
+            this.dgvEmployees.RowTemplate.ReadOnly = true; 
             this.dgvEmployees.RowHeadersVisible = false; // We hide the rowheader
             this.dgvEmployees.ClearSelection(); // Clear selection rows
+
+            //Form Common Configurations            
+            this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgvEmployees_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (dgvEmployees.SelectedRows.Count == 1)
+            {
+                btnAddToTeam.Enabled = true;
+                cmbTeamsToAdd.Enabled = true;
+            }
+            else
+            {
+                btnAddToTeam.Enabled = false;
+                cmbTeamsToAdd.Enabled = false;
+            }
+
         }
 
         /// <summary>
@@ -132,7 +173,7 @@ namespace SynUp_Desktop.views
         /// <summary>
         /// Fills the combobox with the values of the database.
         /// </summary>
-        public void fillComboTeams()
+        private void fillComboTeams()
         {
             BindingSource source = new BindingSource();
 
@@ -141,20 +182,13 @@ namespace SynUp_Desktop.views
             this.cmbTeamsToAdd.ValueMember = "Code";
         }
 
-        private void dgvEmployees_RowEnter(object sender, DataGridViewCellEventArgs e)
+        /// <summary>
+        /// Add selected employee to team
+        /// </summary>
+        private void addToTeam()
         {
 
-            if (dgvEmployees.SelectedRows.Count == 1)
-            {
-                btnAddToTeam.Enabled = true;
-                cmbTeamsToAdd.Enabled = true;
-            }
-            else
-            {
-                btnAddToTeam.Enabled = false;
-                cmbTeamsToAdd.Enabled = false;
-            }
-
         }
+        
     }
 }

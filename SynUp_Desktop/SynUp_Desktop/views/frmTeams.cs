@@ -94,16 +94,22 @@ namespace SynUp_Desktop.views
         {
             //The grid with all the tasks will load.
             fillGridView();
+            
+            // DatagridView Common Configuration 
+            this.dgvTeams.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
+            this.dgvTeams.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row            
+            this.dgvTeams.AllowUserToAddRows = false; // Can't add rows
+            this.dgvTeams.AllowUserToDeleteRows = false; // Can't delete rows
+            this.dgvTeams.AllowUserToOrderColumns = false; //Can't order columns
+            this.dgvTeams.AllowUserToResizeRows = false; //Can't resize columns
+            this.dgvTeams.Cursor = Cursors.Hand; // Cursor hand type            
+            this.dgvTeams.MultiSelect = false; //Can't multiselect
+            this.dgvTeams.RowTemplate.ReadOnly = true;
+            this.dgvTeams.RowHeadersVisible = false; // We hide the rowheader
+            this.dgvTeams.ClearSelection(); // Clear selection rows
 
-            // DataGridView Configuration
-            dgvTeams.AutoResizeColumns();
-            dgvTeams.AllowUserToAddRows = false;
-            dgvTeams.AllowUserToDeleteRows = false;
-            dgvTeams.AllowUserToResizeRows = false;
-            dgvTeams.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvTeams.MultiSelect = false;
-            dgvTeams.RowHeadersVisible = false; // We hide the rowheader
-            dgvTeams.ClearSelection(); // Clear selection rows
+            //Form Common Configurations
+            this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
         }
     }
 }
