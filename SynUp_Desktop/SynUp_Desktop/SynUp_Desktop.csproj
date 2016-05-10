@@ -68,7 +68,16 @@
     <Compile Include="model\pojo\EmployeeLog.cs">
       <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="model\pojo\Last.cs">
+    <Compile Include="model\pojo\spEmpLogD_Result.cs">
+      <DependentUpon>SynupModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\spEmpLogI_Result.cs">
+      <DependentUpon>SynupModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\spEmpLogU_Result.cs">
+      <DependentUpon>SynupModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\spLast_Result.cs">
       <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\SynupModel.Context.cs">

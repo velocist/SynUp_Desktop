@@ -10,13 +10,11 @@
 namespace SynUp_Desktop.model.pojo
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TaskLog
+    public partial class spLast_Result
     {
-        public int id { get; set; }
-        public int id_task { get; set; }
-        public string operation { get; set; }
-        public System.DateTime when { get; set; }
+        public Nullable<int> emplogId { get; set; }
+        public Nullable<int> tasklogId { get; set; }
+        public Nullable<int> taskhistlogId { get; set; }
     }
 }

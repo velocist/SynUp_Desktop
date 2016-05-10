@@ -85,7 +85,7 @@ namespace SynUp_Desktop.views
             // DataGridView Configuration
 
             dgvTasks.Columns[0].Visible = false; // We hide id column
-            dgvTasks.Columns["id_team"].Visible = false; // We hide the id_team column
+            //dgvTasks.Columns["code_team"].Visible = true; // We hide the id_team column
 
             dgvTasks.Columns[2].HeaderText = "Code"; // We change the column name
             dgvTasks.Columns[3].HeaderText = "Name";
@@ -94,7 +94,7 @@ namespace SynUp_Desktop.views
             dgvTasks.Columns[6].Visible = false; // HeaderText = "Localization";
             dgvTasks.Columns[7].HeaderText = "Project";
             dgvTasks.Columns[8].Visible = false; // HeaderText = "Task Histories";
-            dgvTasks.Columns[9].Visible = false;// = "Team";
+            //dgvTasks.Columns[9].Visible = false;// = "Team";
 
             dgvTasks.AutoResizeColumns();
             dgvTasks.RowHeadersVisible = false; // We hide the rowheader

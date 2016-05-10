@@ -80,7 +80,7 @@ namespace SynUp_Desktop.model.dao
 
             modifiedTask.code = t.code;
             modifiedTask.description = t.description;
-            modifiedTask.id_team = t.id_team;
+            modifiedTask.code_team = t.code_team;
             modifiedTask.localization = t.localization;
             modifiedTask.name = t.name;
             modifiedTask.priorityDate = t.priorityDate;

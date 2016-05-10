@@ -24,17 +24,19 @@ namespace SynUp_Desktop.service
         /// <param name="project"></param>
         /// <author>Pablo A.</author>
         /// <returns>Whether if the task has been correctly created or not</returns>
-        public bool createTask(String code, String name, DateTime priorityDate, String description, String localization, String project)
+        public bool createTask(String code, String name, DateTime priorityDate, String description, String localization, String project, String team)
         {
             Task newTask = new Task
             {
                 code = code,
+                code_team = team,
                 name = name,
                 priorityDate = priorityDate,
                 description = description,
                 localization = localization,
                 project = project
             };
+            
 
             if (!string.IsNullOrWhiteSpace(code) && !string.IsNullOrWhiteSpace(name) && priorityDate != null)
             {
@@ -56,12 +58,13 @@ namespace SynUp_Desktop.service
         /// <param name="localization"></param>
         /// <param name="project"></param>
         /// <returns>Whether if the task has been correctly updated or not</returns>
-        public bool updateTask(String code, String name, DateTime priorityDate, String description, String localization, String project)
+        public bool updateTask(String code, String name, DateTime priorityDate, String description, String localization, String project, String team)
         {
             Task newTask = new Task
             {
                 code = code,
                 name = name,
+                code_team = team,
                 priorityDate = priorityDate,
                 description = description,
                 localization = localization,

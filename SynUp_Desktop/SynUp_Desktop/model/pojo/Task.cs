@@ -21,7 +21,7 @@ namespace SynUp_Desktop.model.pojo
         }
     
         public int id { get; set; }
-        public Nullable<int> id_team { get; set; }
+        public string code_team { get; set; }
         public string code { get; set; }
         public string name { get; set; }
         public System.DateTime priorityDate { get; set; }
@@ -31,6 +31,5 @@ namespace SynUp_Desktop.model.pojo
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TaskHistory> TaskHistories { get; set; }
-        public virtual Team Team { get; set; }
     }
 }
