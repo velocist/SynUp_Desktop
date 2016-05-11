@@ -81,7 +81,16 @@
     <Compile Include="model\pojo\spGetByDate_Result.cs">
       <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="model\pojo\spGetRankingEmployee_Result.cs">
+      <DependentUpon>SynupModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\spGetRankingTeam_Result.cs">
+      <DependentUpon>SynupModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="model\pojo\spLast_Result.cs">
+      <DependentUpon>SynupModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\spLogin_Result.cs">
       <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\spTasklogD_Result.cs">

@@ -37,7 +37,10 @@ namespace SynUp_Desktop.model.dao
         {
             pojo.Team _oTeam = readTeam(pTeam.code); //Finds the received team in the database. 
 
-            if (_oTeam == null) database.Teams.Add(pTeam); //If the team doesn't exist already in the database, it will be inserted.
+            if (_oTeam == null)//If the team doesn't exist already in the database, it will be inserted.
+            {
+                database.Teams.Add(pTeam);
+            }
 
             return commitChanges();
         }
@@ -109,7 +112,7 @@ namespace SynUp_Desktop.model.dao
 
                 database.TeamHistories.Add(_oTeamHistory);
                 _blAddOk = commitChanges();
-                
+
             }
 
             return _blAddOk;
