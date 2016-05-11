@@ -69,8 +69,8 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnAddToTeam_Click(object sender, EventArgs e)
         {
-            //TODO Mostrar dialogo con combo para elegir equipo, o Mostrar la lista de equipos
             model.pojo.Employee _oSelectedEmployee = null;
+            model.pojo.Team _oTeam = null;
             if (dgvEmployees.SelectedRows.Count == 1)//If the row selected
             {
                 int _iIndexSelected = dgvEmployees.SelectedRows[0].Index; // Recover the index of selected row
@@ -81,7 +81,7 @@ namespace SynUp_Desktop.views
                     _oSelectedEmployee = Controller.EmployeeService.readEmployee(_strSelectedRowCode); // We look for the employee nif
 
                     String _SelectedTeam = this.cmbTeamsToAdd.SelectedValue.ToString();
-                    model.pojo.Team _oTeam = this.Controller.TeamService.readTeam(_SelectedTeam);
+                    _oTeam = this.Controller.TeamService.readTeam(_SelectedTeam);
 
                     this.addToTeam(_oSelectedEmployee, _oTeam);
                 }
@@ -190,31 +190,37 @@ namespace SynUp_Desktop.views
         private void addToTeam(model.pojo.Employee pEmployee, model.pojo.Team pTeam)
         {
             model.pojo.TeamHistory _oTeamHistory = new model.pojo.TeamHistory();
-            
-            model.pojo.TeamHistory _oTeamHistoryControl = this.Controller.TeamHistoryService.readTeam(pEmployee.nif, pTeam.code);
+            model.pojo.TeamHistory _oTeamHistoryControl = null;
 
-            if (_oTeamHistoryControl == null)
+            if (pEmployee != null && pTeam != null)
             {
-                _oTeamHistory.id_employee = pEmployee.nif;
-                _oTeamHistory.id_team = pTeam.code;
-                _oTeamHistory.entranceDay = DateTime.Today;
-                _oTeamHistory.exitDate = DateTime.Today;
+                _oTeamHistoryControl = this.Controller.TeamHistoryService.readTeamHistory(pEmployee.nif, pTeam.code);
 
-                Boolean _blAddOk = this.Controller.TeamService.addToTeam(pEmployee, pTeam);
-
-                if (_blAddOk)
+                if (_oTeamHistoryControl == null)
                 {
-                    MessageBox.Show("The employee has been added to team");
+                    _oTeamHistory.id_employee = pEmployee.nif;
+                    _oTeamHistory.id_team = pTeam.code;
+                    _oTeamHistory.entranceDay = DateTime.Today;
+
+                    Boolean _blAddOk = this.Controller.TeamService.addToTeam(pEmployee, pTeam);
+
+                    if (_blAddOk)
+                    {
+                        MessageBox.Show("The employee has been added to team");
+                    }
+                    else
+                    {
+                        MessageBox.Show("The employee hasn't been added to team");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("The employee hasn't been added to team");
+                    MessageBox.Show("This employee has been already in team");
                 }
-            } else
-            {
-                MessageBox.Show("This employee has been already in team");
             }
-           
+
+
+
 
         }
 

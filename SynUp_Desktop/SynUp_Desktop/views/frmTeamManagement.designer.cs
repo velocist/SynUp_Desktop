@@ -41,6 +41,7 @@
             this.btnDeleteTeam = new System.Windows.Forms.Button();
             this.btnUpdateTeam = new System.Windows.Forms.Button();
             this.btnCreateTeam = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployeesOnTeam)).BeginInit();
             this.SuspendLayout();
@@ -171,11 +172,22 @@
             this.btnCreateTeam.UseVisualStyleBackColor = true;
             this.btnCreateTeam.Click += new System.EventHandler(this.btnCreateTeam_Click);
             // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(255, 377);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 43);
+            this.btnClear.TabIndex = 22;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // frmTeamManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(636, 432);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnCreateTeam);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnDeleteTeam);
@@ -208,5 +220,6 @@
         private System.Windows.Forms.Button btnDeleteToTeam;
         private System.Windows.Forms.Button btnAddToTeam;
         private System.Windows.Forms.Button btnCreateTeam;
+        private System.Windows.Forms.Button btnClear;
     }
 }

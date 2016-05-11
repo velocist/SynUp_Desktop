@@ -40,6 +40,19 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnManagementTeams_Click(object sender, EventArgs e)
         {
+            model.pojo.Team _oSelectedTeam = null;
+            if (this.dgvTeams.SelectedRows.Count == 1)//If the row selected
+            {
+                int _iIndexSelected = this.dgvTeams.SelectedRows[0].Index; // Recover the index of selected row
+                Object _cell = this.dgvTeams.Rows[_iIndexSelected].Cells[1].Value;
+                if (_cell != null)
+                {
+                    String _strSelectedRowCode = _cell.ToString(); // Recover the code
+                    _oSelectedTeam = Controller.TeamService.readTeam(_strSelectedRowCode); // We look for the employee nif
+                    this.Controller.TeamMgtView.AuxTeam = _oSelectedTeam; // We assign the team to form team management
+                }
+            }
+
             this.Controller.TeamMgtView.ShowDialog();
         }
 
@@ -53,26 +66,6 @@ namespace SynUp_Desktop.views
             this.Close();
         }
 
-        /// <summary>
-        /// Event that runs when the form loads
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void frmTeams_Load(object sender, EventArgs e)
-        {
-            fillGridView();
-
-            // DataGridView Configuration
-            dgvTeams.Columns[0].Visible = false; // We hide id column
-
-            dgvTeams.Columns[1].HeaderText = "Code"; // We change the column name
-            dgvTeams.Columns[2].HeaderText = "Name";
-
-            dgvTeams.AutoResizeColumns();
-            dgvTeams.RowHeadersVisible = false; // We hide the rowheader
-            dgvTeams.ClearSelection(); // Cleer selection rows
-        }
-        
         /// <summary>
         /// Fills the DataGridView with the values of the database.
         /// </summary>
@@ -94,7 +87,17 @@ namespace SynUp_Desktop.views
         {
             //The grid with all the tasks will load.
             fillGridView();
-            
+
+            // DataGridView Configuration
+            dgvTeams.Columns[0].Visible = false; // We hide id column
+
+            dgvTeams.Columns[1].HeaderText = "Code"; // We change the column name
+            dgvTeams.Columns[2].HeaderText = "Name";
+
+            dgvTeams.AutoResizeColumns();
+            dgvTeams.RowHeadersVisible = false; // We hide the rowheader
+            dgvTeams.ClearSelection(); // Cleer selection rows
+
             // DatagridView Common Configuration 
             this.dgvTeams.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
             this.dgvTeams.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row            

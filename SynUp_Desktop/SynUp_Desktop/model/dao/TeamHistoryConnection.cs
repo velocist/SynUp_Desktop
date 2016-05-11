@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SynUp_Desktop.model.dao
 {
-    class TeamHistoryConnection
+    public static class TeamHistoryConnection
     {
         private static synupEntities database = new synupEntities();
 
@@ -64,16 +64,16 @@ namespace SynUp_Desktop.model.dao
         /// </summary>
         /// <param name="pTeamHistory">Receives the teamHistory that will be updated.</param>
         /// <returns>Returns a boolean whether the teamHistory has been updated succesfully or not.</returns>
-        public static bool updateTeamHistory(String pNif, String pIdTeam, DateTime pEntranceDate, DateTime pExitDate)
+        public static bool updateTeamHistory(String pNif, String pCodeTeam, DateTime pEntranceDate, DateTime pExitDate)
         {
             pojo.TeamHistory modifiedTeamHistory = null;
 
-            modifiedTeamHistory = readTeamHistory(pNif, pIdTeam);
+            modifiedTeamHistory = readTeamHistory(pNif, pCodeTeam);
 
             if (modifiedTeamHistory != null)
             {
                 modifiedTeamHistory.id_employee = pNif;
-                modifiedTeamHistory.id_team = pIdTeam;
+                modifiedTeamHistory.id_team = pCodeTeam;
                 modifiedTeamHistory.entranceDay = pEntranceDate;
                 modifiedTeamHistory.exitDate = pExitDate;
 
@@ -83,6 +83,14 @@ namespace SynUp_Desktop.model.dao
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static List<TeamHistory> readAllTeamHistories()
+        {
+            return (from teamHistory in database.TeamHistories select teamHistory).ToList();
+        }
 
     }
 }

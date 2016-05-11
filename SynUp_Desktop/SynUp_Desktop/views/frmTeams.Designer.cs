@@ -108,7 +108,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Teams";
             this.Activated += new System.EventHandler(this.frmTeams_Activated);
-            this.Load += new System.EventHandler(this.frmTeams_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTeams)).EndInit();
             this.gbContainer.ResumeLayout(false);
             this.gbContainer.PerformLayout();

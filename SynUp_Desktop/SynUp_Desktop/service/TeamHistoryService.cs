@@ -7,7 +7,7 @@ namespace SynUp_Desktop.service
 {
     public class TeamHistoryService
     {
-        public TeamHistory readTeam(String pNif, String pCode)
+        public TeamHistory readTeamHistory(String pNif, String pCode)
         {
             return TeamHistoryConnection.readTeamHistory(pNif, pCode);
         }
@@ -17,14 +17,14 @@ namespace SynUp_Desktop.service
             return TeamHistoryConnection.updateTeamHistory(pNif, pCode, pEntranceDate, pExitDate);
         }
 
-        public TeamHistory deleteTeam(String pNif, String pCode)
+        public TeamHistory deleteTeamHistory(String pNif, String pCode)
         {
             return TeamHistoryConnection.deleteTeamHistory(pNif,pCode);
         }
 
-        public List<Team> getAllTeams()
+        public List<TeamHistory> getAllTeamHistories()
         {
-            return TeamConnection.readAllTeams();
+            return TeamHistoryConnection.readAllTeamHistories();
         }
     }
 }

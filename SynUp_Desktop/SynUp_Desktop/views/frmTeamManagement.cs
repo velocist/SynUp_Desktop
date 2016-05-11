@@ -37,7 +37,7 @@ namespace SynUp_Desktop.views
             InitializeComponent();
         }
 
-        #region
+        #region CRUD
         private void btnCreateTeam_Click(object sender, EventArgs e)
         {
 
@@ -80,6 +80,50 @@ namespace SynUp_Desktop.views
 
         #endregion
 
+        #region VALIDATIONS
+
+        private void txtCode_TextChanged(object sender, EventArgs e)
+        {
+            String _strIdCode = txtCode.Text;
+            Team _oTeam = Controller.TeamService.readTeam(_strIdCode);
+
+            if (txtCode.Text.Equals("") || _oTeam != null) // We found that the textbox is not empty
+            {
+                lblCode.ForeColor = Color.Red;
+                lblCode.Text = "Code*";
+            }
+            else
+            {
+                lblCode.Text = "Code";
+                lblCode.ForeColor = Color.Black;
+            }
+
+        }
+
+        #endregion
+
+        private void frmTeamManagement_Activated(object sender, EventArgs e)
+        {
+            if (this.AuxTeam != null)
+            {
+                // We recover the data of selected team
+                this.txtCode.Text = this.AuxTeam.code;
+                this.txtName.Text = this.AuxTeam.name;
+
+                this.btnCreateTeam.Enabled = false; // We disable the button to create a team
+                this.txtCode.Enabled = false;
+                //The grid with all the employees on team will load.
+                this.fillDataGrid();
+            }
+            else
+            {
+                this.btnCreateTeam.Enabled = true;
+                this.txtCode.Enabled = true;
+            }
+
+            this.dgvConfiguration();
+        }
+
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.AuxTeam = null;
@@ -87,10 +131,23 @@ namespace SynUp_Desktop.views
             this.Close();
         }
 
-        private void frmTeamManagement_Activated(object sender, EventArgs e)
+        private void btnClear_Click(object sender, EventArgs e)
         {
+            this.clearValues();
 
-
+            if (this.btnCreateTeam.Enabled == false)
+            {
+                this.btnCreateTeam.Enabled = true;
+                this.AuxTeam = null;
+                if (txtCode.Enabled == false) txtCode.Enabled = true;
+            }
+        }
+        
+        /// <summary>
+        /// Method that configurates the datagridview
+        /// </summary>
+        private void dgvConfiguration()
+        {
             // DatagridView Common Configuration 
             this.dgvEmployeesOnTeam.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
             this.dgvEmployeesOnTeam.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row            
@@ -116,31 +173,20 @@ namespace SynUp_Desktop.views
             this.txtCode.Text = "";
             this.txtName.Text = "";
             this.dgvEmployeesOnTeam.ClearSelection();
+
         }
 
         private void fillDataGrid()
         {
+            //TODO: Falta hacer el filtro para mostrar solo los empleados en ese equipo
+            BindingSource source = new BindingSource();
+            source.DataSource = this.Controller.TeamHistoryService.getAllTeamHistories();
 
+            this.dgvEmployeesOnTeam.DataSource = source;
+
+            dgvEmployeesOnTeam.Refresh();
         }
-
-        private void txtCode_TextChanged(object sender, EventArgs e)
-        {
-            String _strIdCode = txtCode.Text;
-            Team _oTeam = Controller.TeamService.readTeam(_strIdCode);
-
-            if (txtCode.Text.Equals("") || _oTeam != null) // We found that the textbox is not emtpty
-            {
-                lblCode.ForeColor = Color.Red;
-                lblCode.Text = "Code*";
-            }
-            else
-            {
-                lblCode.Text = "Code";
-                lblCode.ForeColor = Color.Black;
-            }
-            
-        }
-
+        
     }
 }
 

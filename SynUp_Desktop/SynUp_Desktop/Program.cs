@@ -25,15 +25,19 @@ namespace SynUp_Desktop
 
         private static Form init()
         {
+            //SERVICES
             controller.Controller controller = new controller.Controller();
             service.TaskService taskservice = new service.TaskService();
             service.TeamService teamservice = new service.TeamService();
             service.EmployeeService employeeService = new service.EmployeeService();
+            service.TeamHistoryService teamHistoryService = new service.TeamHistoryService();
 
             controller.TaskService = taskservice;
             controller.TeamService = teamservice;
             controller.EmployeeService = employeeService;
+            controller.TeamHistoryService = teamHistoryService;
 
+            // FORM
             frmAbout aboutView = new frmAbout();
             frmEmployeeManagement employeeMgtView = new frmEmployeeManagement();
             frmEmployees employeeView = new frmEmployees();
