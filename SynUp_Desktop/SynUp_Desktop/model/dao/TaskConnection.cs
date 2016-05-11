@@ -112,17 +112,18 @@ namespace SynUp_Desktop.model.dao
             return (from task in database.Tasks select task).ToList();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="_date"></param>
-        /// <returns></returns>
-        public static List<pojo.Task> readTasksByDate(DateTime _dateStartPeriod, DateTime _dateFinishPeriod)
-        {
-            ///Check from TaskHistory the tasks that are active given the period of time. 
-            ///The tasks can't be finished in the given period.
-            return database.spGetByDate(_dateStartPeriod, _dateFinishPeriod).ToList();
-        }
+        //DELETE - Pablo Ardèvol 11/5/16 - Method moved to the Statistics connection object.
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="_date"></param>
+        ///// <returns></returns>
+        //public static List<pojo.Task> readTasksByDate(DateTime _dateStartPeriod, DateTime _dateFinishPeriod)
+        //{
+        //    ///Check from TaskHistory the tasks that are active given the period of time. 
+        //    ///The tasks can't be finished in the given period.
+        //    return database.spGetByDate(_dateStartPeriod, _dateFinishPeriod).ToList();
+        //}
 
 
 

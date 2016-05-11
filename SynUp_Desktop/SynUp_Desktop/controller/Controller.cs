@@ -23,6 +23,7 @@ namespace SynUp_Desktop.controller
         private TeamService _TeamService;
         private EmployeeService _EmployeeService;
         private TeamHistoryService _TeamHistoryService;
+        private StatisticsService _StatisticsService;
 
         private frmAbout _AboutView;
         private frmStatistics _StatisticsView;
@@ -202,6 +203,19 @@ namespace SynUp_Desktop.controller
             set
             {
                 _TeamMgtView = value;
+            }
+        }
+
+        internal StatisticsService StatisticsService
+        {
+            get
+            {
+                return _StatisticsService;
+            }
+
+            set
+            {
+                _StatisticsService = value;
             }
         }
 

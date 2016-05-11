@@ -106,9 +106,10 @@ namespace SynUp_Desktop.service
             return TaskConnection.readAllTasks();
         }
 
-        public List<Task> getTasksByDate(DateTime begin, DateTime end)
-        {
-            return TaskConnection.readTasksByDate(begin, end);
-        }
+        //DELETE - Pablo Ardèvol - Method moved to the statistics service
+        //public List<Task> getTasksByDate(DateTime begin, DateTime end)
+        //{
+        //    return TaskConnection.readTasksByDate(begin, end);
+        //}
     }
 }

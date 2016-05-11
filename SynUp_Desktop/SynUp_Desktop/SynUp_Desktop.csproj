@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="controller\Controller.cs" />
     <Compile Include="model\dao\EmployeeConnection.cs" />
+    <Compile Include="model\dao\StatisticsConnection.cs" />
     <Compile Include="model\dao\TaskConnection.cs" />
     <Compile Include="model\dao\TeamConnection.cs" />
     <Compile Include="model\dao\TeamHistoryConnection.cs" />
@@ -160,6 +161,7 @@
       <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="service\EmployeeService.cs" />
+    <Compile Include="service\StatisticsService.cs" />
     <Compile Include="service\TaskService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

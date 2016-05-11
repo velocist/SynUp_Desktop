@@ -31,11 +31,13 @@ namespace SynUp_Desktop
             service.TeamService teamservice = new service.TeamService();
             service.EmployeeService employeeService = new service.EmployeeService();
             service.TeamHistoryService teamHistoryService = new service.TeamHistoryService();
+            service.StatisticsService statisticsService = new service.StatisticsService();
 
             controller.TaskService = taskservice;
             controller.TeamService = teamservice;
             controller.EmployeeService = employeeService;
             controller.TeamHistoryService = teamHistoryService;
+            controller.StatisticsService = statisticsService;
 
             // FORM
             frmAbout aboutView = new frmAbout();
