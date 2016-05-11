@@ -7,9 +7,8 @@
       <Schema Namespace="synupModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Employee">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="nif" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
           <Property Name="nif" Type="nchar" MaxLength="9" Nullable="false" />
           <Property Name="name" Type="nchar" MaxLength="20" />
           <Property Name="surname" Type="nchar" MaxLength="40" />
@@ -29,9 +28,8 @@
         </EntityType>
         <EntityType Name="Task">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="code" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_team" Type="nchar" MaxLength="10" />
           <Property Name="code" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="name" Type="nchar" MaxLength="20" Nullable="false" />
@@ -44,13 +42,13 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
           <Property Name="id_employee" Type="nchar" MaxLength="9" Nullable="false" />
           <Property Name="id_task" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="startDate" Type="date" />
           <Property Name="finishDate" Type="date" />
           <Property Name="comment" Type="text" />
           <Property Name="isFinished" Type="tinyint" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="TaskHistoryLog">
           <Key>
@@ -74,9 +72,8 @@
         </EntityType>
         <EntityType Name="Team">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="code" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="code" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="name" Type="nchar" MaxLength="20" />
         </EntityType>
@@ -115,33 +112,66 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
           <Property Name="operation" Type="nchar" MaxLength="1" Nullable="false" />
           <Property Name="when" Type="datetime" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'FK_Employee_TaskHistory' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK_Employee_TaskHistory" />-->
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'FK_Employee_TeamHistory' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK_Employee_TeamHistory" />-->
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'FK_Task_TaskHistory' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK_Task_TaskHistory" />-->
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'FK_Task_Team' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK_Task_Team" />-->
-        <Association Name="FK_TaskHistoryLog_TaskHistoryLog">
-          <End Role="TaskHistoryLog" Type="Self.TaskHistoryLog" Multiplicity="1" />
-          <End Role="TaskHistoryLog1" Type="Self.TaskHistoryLog" Multiplicity="0..1" />
+        <Association Name="FK_Employee_TaskHistory">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="TaskHistory" Type="Self.TaskHistory" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TaskHistoryLog">
-              <PropertyRef Name="id" />
+            <Principal Role="Employee">
+              <PropertyRef Name="nif" />
             </Principal>
-            <Dependent Role="TaskHistoryLog1">
-              <PropertyRef Name="id" />
+            <Dependent Role="TaskHistory">
+              <PropertyRef Name="id_employee" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK_Team_TeamHistory" />-->
+        <Association Name="FK_Employee_TeamHistory">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="TeamHistory" Type="Self.TeamHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="nif" />
+            </Principal>
+            <Dependent Role="TeamHistory">
+              <PropertyRef Name="id_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_TaskHistory">
+          <End Role="Task" Type="Self.Task" Multiplicity="1" />
+          <End Role="TaskHistory" Type="Self.TaskHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="TaskHistory">
+              <PropertyRef Name="id_task" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_Team">
+          <End Role="Team" Type="Self.Team" Multiplicity="0..1" />
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="id_team" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Team_TeamHistory">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="TeamHistory" Type="Self.TeamHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="TeamHistory">
+              <PropertyRef Name="id_team" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="spEmpLogD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="first" Type="int" Mode="In" />
           <Parameter Name="last" Type="int" Mode="In" />
@@ -153,6 +183,10 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
         <Function Name="spEmpLogU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="first" Type="int" Mode="In" />
           <Parameter Name="last" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spGetByDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="begin" Type="date" Mode="In" />
+          <Parameter Name="end" Type="date" Mode="In" />
         </Function>
         <Function Name="spLast" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="employeeId" Type="int" Mode="In" />
@@ -168,6 +202,21 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
           <Parameter Name="last" Type="int" Mode="In" />
         </Function>
         <Function Name="spTasklogU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmployeeId" Type="nchar" Mode="In" />
+          <Parameter Name="first" Type="int" Mode="In" />
+          <Parameter Name="last" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spTeamLogD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmployeeId" Type="nchar" Mode="In" />
+          <Parameter Name="first" Type="int" Mode="In" />
+          <Parameter Name="last" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spTeamLogI" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmployeeId" Type="nchar" Mode="In" />
+          <Parameter Name="first" Type="int" Mode="In" />
+          <Parameter Name="last" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spTeamLogU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EmployeeId" Type="nchar" Mode="In" />
           <Parameter Name="first" Type="int" Mode="In" />
           <Parameter Name="last" Type="int" Mode="In" />
@@ -206,9 +255,25 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
     [TeamHistoryLog].[when] AS [when]
     FROM [dbo].[TeamHistoryLog] AS [TeamHistoryLog]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK_TaskHistoryLog_TaskHistoryLog" Association="Self.FK_TaskHistoryLog_TaskHistoryLog">
-            <End Role="TaskHistoryLog" EntitySet="TaskHistoryLog" />
-            <End Role="TaskHistoryLog1" EntitySet="TaskHistoryLog" />
+          <AssociationSet Name="FK_Employee_TaskHistory" Association="Self.FK_Employee_TaskHistory">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="TaskHistory" EntitySet="TaskHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_TeamHistory" Association="Self.FK_Employee_TeamHistory">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="TeamHistory" EntitySet="TeamHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_TaskHistory" Association="Self.FK_Task_TaskHistory">
+            <End Role="Task" EntitySet="Task" />
+            <End Role="TaskHistory" EntitySet="TaskHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_Team" Association="Self.FK_Task_Team">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="Task" EntitySet="Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Team_TeamHistory" Association="Self.FK_Team_TeamHistory">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="TeamHistory" EntitySet="TeamHistory" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -218,9 +283,8 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
       <Schema Namespace="synupModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Employee">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="nif" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="nif" Type="String" MaxLength="9" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="surname" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
@@ -228,6 +292,8 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
           <Property Name="email" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
           <Property Name="adress" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="TaskHistories" Relationship="Self.FK_Employee_TaskHistory" FromRole="Employee" ToRole="TaskHistory" />
+          <NavigationProperty Name="TeamHistories" Relationship="Self.FK_Employee_TeamHistory" FromRole="Employee" ToRole="TeamHistory" />
         </EntityType>
         <EntityType Name="EmployeeLog">
           <Key>
@@ -240,9 +306,8 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
         </EntityType>
         <EntityType Name="Task">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="code" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_team" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
@@ -250,18 +315,22 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="localization" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="project" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="TaskHistories" Relationship="Self.FK_Task_TaskHistory" FromRole="Task" ToRole="TaskHistory" />
+          <NavigationProperty Name="Team" Relationship="Self.FK_Task_Team" FromRole="Task" ToRole="Team" />
         </EntityType>
         <EntityType Name="TaskHistory">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="id_employee" Type="String" MaxLength="9" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="id_task" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="startDate" Type="DateTime" Precision="0" />
           <Property Name="finishDate" Type="DateTime" Precision="0" />
           <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="isFinished" Type="Byte" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_TaskHistory" FromRole="TaskHistory" ToRole="Employee" />
+          <NavigationProperty Name="Task" Relationship="Self.FK_Task_TaskHistory" FromRole="TaskHistory" ToRole="Task" />
         </EntityType>
         <EntityType Name="TaskHistoryLog">
           <Key>
@@ -273,8 +342,6 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
           <Property Name="operation" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="when" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="id_taskHistory" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TaskHistoryLog1" Relationship="Self.FK_TaskHistoryLog_TaskHistoryLog" FromRole="TaskHistoryLog" ToRole="TaskHistoryLog1" />
-          <NavigationProperty Name="TaskHistoryLog2" Relationship="Self.FK_TaskHistoryLog_TaskHistoryLog" FromRole="TaskHistoryLog1" ToRole="TaskHistoryLog" />
         </EntityType>
         <EntityType Name="TaskLog">
           <Key>
@@ -287,11 +354,12 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
         </EntityType>
         <EntityType Name="Team">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="code" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Tasks" Relationship="Self.FK_Task_Team" FromRole="Team" ToRole="Task" />
+          <NavigationProperty Name="TeamHistories" Relationship="Self.FK_Team_TeamHistory" FromRole="Team" ToRole="TeamHistory" />
         </EntityType>
         <EntityType Name="TeamHistory">
           <Key>
@@ -302,6 +370,8 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
           <Property Name="id_team" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="entranceDay" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="exitDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_TeamHistory" FromRole="TeamHistory" ToRole="Employee" />
+          <NavigationProperty Name="Team" Relationship="Self.FK_Team_TeamHistory" FromRole="TeamHistory" ToRole="Team" />
         </EntityType>
         <EntityType Name="TeamLog">
           <Key>
@@ -326,15 +396,63 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
           <Property Name="operation" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="when" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <Association Name="FK_TaskHistoryLog_TaskHistoryLog">
-          <End Role="TaskHistoryLog" Type="Self.TaskHistoryLog" Multiplicity="1" />
-          <End Role="TaskHistoryLog1" Type="Self.TaskHistoryLog" Multiplicity="0..1" />
+        <Association Name="FK_Employee_TaskHistory">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="TaskHistory" Type="Self.TaskHistory" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TaskHistoryLog">
-              <PropertyRef Name="id" />
+            <Principal Role="Employee">
+              <PropertyRef Name="nif" />
             </Principal>
-            <Dependent Role="TaskHistoryLog1">
-              <PropertyRef Name="id" />
+            <Dependent Role="TaskHistory">
+              <PropertyRef Name="id_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_TeamHistory">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="TeamHistory" Type="Self.TeamHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="nif" />
+            </Principal>
+            <Dependent Role="TeamHistory">
+              <PropertyRef Name="id_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_TaskHistory">
+          <End Role="Task" Type="Self.Task" Multiplicity="1" />
+          <End Role="TaskHistory" Type="Self.TaskHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="TaskHistory">
+              <PropertyRef Name="id_task" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_Team">
+          <End Role="Team" Type="Self.Team" Multiplicity="0..1" />
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="id_team" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Team_TeamHistory">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="TeamHistory" Type="Self.TeamHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="TeamHistory">
+              <PropertyRef Name="id_team" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -349,9 +467,25 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
           <EntitySet Name="TeamHistories" EntityType="Self.TeamHistory" />
           <EntitySet Name="TeamLogs" EntityType="Self.TeamLog" />
           <EntitySet Name="TeamHistoryLogs" EntityType="Self.TeamHistoryLog" />
-          <AssociationSet Name="FK_TaskHistoryLog_TaskHistoryLog" Association="Self.FK_TaskHistoryLog_TaskHistoryLog">
-            <End Role="TaskHistoryLog" EntitySet="TaskHistoryLogs" />
-            <End Role="TaskHistoryLog1" EntitySet="TaskHistoryLogs" />
+          <AssociationSet Name="FK_Employee_TaskHistory" Association="Self.FK_Employee_TaskHistory">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="TaskHistory" EntitySet="TaskHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_TeamHistory" Association="Self.FK_Employee_TeamHistory">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="TeamHistory" EntitySet="TeamHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_TaskHistory" Association="Self.FK_Task_TaskHistory">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="TaskHistory" EntitySet="TaskHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_Team" Association="Self.FK_Task_Team">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="Task" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Team_TeamHistory" Association="Self.FK_Team_TeamHistory">
+            <End Role="Team" EntitySet="Teams" />
+            <End Role="TeamHistory" EntitySet="TeamHistories" />
           </AssociationSet>
           <FunctionImport Name="spEmpLogD" ReturnType="Collection(synupModel.spEmpLogD_Result)">
             <Parameter Name="first" Mode="In" Type="Int32" />
@@ -364,6 +498,10 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
           <FunctionImport Name="spEmpLogU" ReturnType="Collection(synupModel.spEmpLogU_Result)">
             <Parameter Name="first" Mode="In" Type="Int32" />
             <Parameter Name="last" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spGetByDate" EntitySet="Tasks" ReturnType="Collection(synupModel.Task)">
+            <Parameter Name="begin" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="spLast" ReturnType="Collection(synupModel.spLast_Result)">
             <Parameter Name="employeeId" Mode="In" Type="Int32" />
@@ -379,6 +517,21 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
             <Parameter Name="last" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spTasklogU" ReturnType="Collection(synupModel.spTasklogU_Result)">
+            <Parameter Name="EmployeeId" Mode="In" Type="String" />
+            <Parameter Name="first" Mode="In" Type="Int32" />
+            <Parameter Name="last" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spTeamLogD" ReturnType="Collection(synupModel.spTeamLogD_Result)">
+            <Parameter Name="EmployeeId" Mode="In" Type="String" />
+            <Parameter Name="first" Mode="In" Type="Int32" />
+            <Parameter Name="last" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spTeamLogI" ReturnType="Collection(synupModel.spTeamLogI_Result)">
+            <Parameter Name="EmployeeId" Mode="In" Type="String" />
+            <Parameter Name="first" Mode="In" Type="Int32" />
+            <Parameter Name="last" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spTeamLogU" ReturnType="Collection(synupModel.spTeamLogU_Result)">
             <Parameter Name="EmployeeId" Mode="In" Type="String" />
             <Parameter Name="first" Mode="In" Type="Int32" />
             <Parameter Name="last" Mode="In" Type="Int32" />
@@ -400,17 +553,15 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spEmpLogD_Result">
-          <Property Type="String" Name="id_employee" Nullable="false" MaxLength="9" />
+          <Property Type="String" Name="nif" Nullable="false" MaxLength="9" />
           <Property Type="Int32" Name="name" Nullable="true" />
           <Property Type="Int32" Name="surname" Nullable="true" />
-          <Property Type="Int32" Name="nif" Nullable="true" />
           <Property Type="Int32" Name="phone" Nullable="true" />
           <Property Type="Int32" Name="email" Nullable="true" />
           <Property Type="Int32" Name="adress" Nullable="true" />
           <Property Type="Int32" Name="password" Nullable="true" />
         </ComplexType>
         <ComplexType Name="spEmpLogI_Result">
-          <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="String" Name="name" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="surname" Nullable="true" MaxLength="40" />
           <Property Type="String" Name="nif" Nullable="false" MaxLength="9" />
@@ -420,24 +571,32 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
           <Property Type="String" Name="password" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="spEmpLogU_Result">
-          <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="String" Name="name" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="surname" Nullable="true" MaxLength="40" />
           <Property Type="String" Name="nif" Nullable="false" MaxLength="9" />
           <Property Type="String" Name="phone" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="email" Nullable="true" MaxLength="30" />
           <Property Type="String" Name="adress" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="password" Nullable="true" />
+          <Property Type="String" Name="password" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spGetByDate_Result">
+          <Property Type="String" Name="id_team" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="code" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="20" />
+          <Property Type="DateTime" Name="priorityDate" Nullable="false" />
+          <Property Type="String" Name="description" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="localization" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="project" Nullable="true" MaxLength="20" />
         </ComplexType>
         <ComplexType Name="spLast_Result">
           <Property Type="Int32" Name="emplogId" Nullable="true" />
           <Property Type="Int32" Name="tasklogId" Nullable="true" />
           <Property Type="Int32" Name="taskhistlogId" Nullable="true" />
+          <Property Type="Int32" Name="teamlogId" Nullable="true" />
         </ComplexType>
         <ComplexType Name="spTasklogD_Result">
-          <Property Type="String" Name="id_task" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="code" Nullable="false" MaxLength="10" />
           <Property Type="Int32" Name="id_team" Nullable="true" />
-          <Property Type="Int32" Name="code" Nullable="true" />
           <Property Type="Int32" Name="description" Nullable="true" />
           <Property Type="Int32" Name="localization" Nullable="true" />
           <Property Type="Int32" Name="name" Nullable="true" />
@@ -445,7 +604,6 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
           <Property Type="Int32" Name="project" Nullable="true" />
         </ComplexType>
         <ComplexType Name="spTasklogI_Result">
-          <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="String" Name="id_team" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="code" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="description" Nullable="true" MaxLength="Max" />
@@ -455,7 +613,6 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
           <Property Type="String" Name="project" Nullable="true" MaxLength="20" />
         </ComplexType>
         <ComplexType Name="spTasklogU_Result">
-          <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="String" Name="id_team" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="code" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="description" Nullable="true" MaxLength="Max" />
@@ -463,6 +620,18 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
           <Property Type="String" Name="name" Nullable="false" MaxLength="20" />
           <Property Type="DateTime" Name="priorityDate" Nullable="false" />
           <Property Type="String" Name="project" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="spTeamLogD_Result">
+          <Property Type="String" Name="id_team" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="name" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spTeamLogI_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="spTeamLogU_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="20" />
         </ComplexType>
         <ComplexType Name="spTHisLogD_Result">
           <Property Type="Int32" Name="id_taskHistory" Nullable="false" />
@@ -500,7 +669,6 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="synupModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nif" ColumnName="nif" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="surname" ColumnName="surname" />
@@ -524,7 +692,6 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
           <EntitySetMapping Name="Tasks">
             <EntityTypeMapping TypeName="synupModel.Task">
               <MappingFragment StoreEntitySet="Task">
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_team" ColumnName="id_team" />
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -538,13 +705,13 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
           <EntitySetMapping Name="TaskHistories">
             <EntityTypeMapping TypeName="synupModel.TaskHistory">
               <MappingFragment StoreEntitySet="TaskHistory">
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_employee" ColumnName="id_employee" />
                 <ScalarProperty Name="id_task" ColumnName="id_task" />
                 <ScalarProperty Name="startDate" ColumnName="startDate" />
                 <ScalarProperty Name="finishDate" ColumnName="finishDate" />
                 <ScalarProperty Name="comment" ColumnName="comment" />
                 <ScalarProperty Name="isFinished" ColumnName="isFinished" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -573,7 +740,6 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
           <EntitySetMapping Name="Teams">
             <EntityTypeMapping TypeName="synupModel.Team">
               <MappingFragment StoreEntitySet="Team">
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
@@ -614,10 +780,9 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
           <FunctionImportMapping FunctionImportName="spEmpLogD" FunctionName="synupModel.Store.spEmpLogD">
             <ResultMapping>
               <ComplexTypeMapping TypeName="synupModel.spEmpLogD_Result">
-                <ScalarProperty Name="id_employee" ColumnName="id_employee" />
+                <ScalarProperty Name="nif" ColumnName="nif" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="surname" ColumnName="surname" />
-                <ScalarProperty Name="nif" ColumnName="nif" />
                 <ScalarProperty Name="phone" ColumnName="phone" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="adress" ColumnName="adress" />
@@ -628,7 +793,6 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
           <FunctionImportMapping FunctionImportName="spEmpLogI" FunctionName="synupModel.Store.spEmpLogI">
             <ResultMapping>
               <ComplexTypeMapping TypeName="synupModel.spEmpLogI_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="surname" ColumnName="surname" />
                 <ScalarProperty Name="nif" ColumnName="nif" />
@@ -642,7 +806,6 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
           <FunctionImportMapping FunctionImportName="spEmpLogU" FunctionName="synupModel.Store.spEmpLogU">
             <ResultMapping>
               <ComplexTypeMapping TypeName="synupModel.spEmpLogU_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="surname" ColumnName="surname" />
                 <ScalarProperty Name="nif" ColumnName="nif" />
@@ -653,21 +816,23 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetByDate" FunctionName="synupModel.Store.spGetByDate">
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spLast" FunctionName="synupModel.Store.spLast">
             <ResultMapping>
               <ComplexTypeMapping TypeName="synupModel.spLast_Result">
                 <ScalarProperty Name="emplogId" ColumnName="emplogId" />
                 <ScalarProperty Name="tasklogId" ColumnName="tasklogId" />
                 <ScalarProperty Name="taskhistlogId" ColumnName="taskhistlogId" />
+                <ScalarProperty Name="teamlogId" ColumnName="teamlogId" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spTasklogD" FunctionName="synupModel.Store.spTasklogD">
             <ResultMapping>
               <ComplexTypeMapping TypeName="synupModel.spTasklogD_Result">
-                <ScalarProperty Name="id_task" ColumnName="id_task" />
-                <ScalarProperty Name="id_team" ColumnName="id_team" />
                 <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="id_team" ColumnName="id_team" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="localization" ColumnName="localization" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -679,7 +844,6 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
           <FunctionImportMapping FunctionImportName="spTasklogI" FunctionName="synupModel.Store.spTasklogI">
             <ResultMapping>
               <ComplexTypeMapping TypeName="synupModel.spTasklogI_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_team" ColumnName="id_team" />
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="description" ColumnName="description" />
@@ -693,7 +857,6 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
           <FunctionImportMapping FunctionImportName="spTasklogU" FunctionName="synupModel.Store.spTasklogU">
             <ResultMapping>
               <ComplexTypeMapping TypeName="synupModel.spTasklogU_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_team" ColumnName="id_team" />
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="description" ColumnName="description" />
@@ -701,6 +864,30 @@ warning 6035: The relationship 'FK_Team_TeamHistory' has columns that are not pa
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="priorityDate" ColumnName="priorityDate" />
                 <ScalarProperty Name="project" ColumnName="project" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spTeamLogD" FunctionName="synupModel.Store.spTeamLogD">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="synupModel.spTeamLogD_Result">
+                <ScalarProperty Name="id_team" ColumnName="id_team" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spTeamLogI" FunctionName="synupModel.Store.spTeamLogI">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="synupModel.spTeamLogI_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spTeamLogU" FunctionName="synupModel.Store.spTeamLogU">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="synupModel.spTeamLogU_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

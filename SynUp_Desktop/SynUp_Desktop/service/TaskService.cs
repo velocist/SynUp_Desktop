@@ -106,14 +106,9 @@ namespace SynUp_Desktop.service
             return TaskConnection.readAllTasks();
         }
 
-        /// <summary>
-        /// Method that returns a boolean if the task is updated
-        /// </summary>
-        /// <param name="pTask"></param>
-        /// <returns></returns>
-        public bool updateTask(Task pTask)
+        public List<Task> getTasksByDate(DateTime begin, DateTime end)
         {
-            return TaskConnection.updateTask(pTask);
+            return TaskConnection.readTasksByDate(begin, end);
         }
     }
 }

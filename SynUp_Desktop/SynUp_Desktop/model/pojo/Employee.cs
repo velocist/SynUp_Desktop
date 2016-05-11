@@ -14,7 +14,13 @@ namespace SynUp_Desktop.model.pojo
     
     public partial class Employee
     {
-        public int id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Employee()
+        {
+            this.TaskHistories = new HashSet<TaskHistory>();
+            this.TeamHistories = new HashSet<TeamHistory>();
+        }
+    
         public string nif { get; set; }
         public string name { get; set; }
         public string surname { get; set; }
@@ -22,5 +28,10 @@ namespace SynUp_Desktop.model.pojo
         public string email { get; set; }
         public string adress { get; set; }
         public string password { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TaskHistory> TaskHistories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TeamHistory> TeamHistories { get; set; }
     }
 }

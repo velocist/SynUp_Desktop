@@ -4,18 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6ab4c1ba7ccc44df9c2defcc1c0c8412" Name="Diagram1">
-        <EntityTypeShape EntityType="synupModel.Employee" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="synupModel.EmployeeLog" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="synupModel.Task" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="synupModel.TaskHistory" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="synupModel.TaskHistoryLog" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="synupModel.TaskLog" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="synupModel.Team" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="synupModel.TeamHistory" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="synupModel.TeamLog" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="synupModel.TeamHistoryLog" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
-        <AssociationConnector Association="synupModel.FK_TaskHistoryLog_TaskHistoryLog" ManuallyRouted="false" />
+      <Diagram DiagramId="4f89af4c9d97442aa5bbaefc1d5702a4" Name="Diagram1">
+        <EntityTypeShape EntityType="synupModel.Employee" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="synupModel.EmployeeLog" Width="1.5" PointX="3.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="synupModel.Task" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="synupModel.TaskHistory" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="synupModel.TaskHistoryLog" Width="1.5" PointX="5.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="synupModel.TaskLog" Width="1.5" PointX="7.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="synupModel.Team" Width="1.5" PointX="1.5" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="synupModel.TeamHistory" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="synupModel.TeamLog" Width="1.5" PointX="8.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="synupModel.TeamHistoryLog" Width="1.5" PointX="8.75" PointY="5.875" IsExpanded="true" />
+        <AssociationConnector Association="synupModel.FK_Employee_TaskHistory" ManuallyRouted="false" />
+        <AssociationConnector Association="synupModel.FK_Employee_TeamHistory" ManuallyRouted="false" />
+        <AssociationConnector Association="synupModel.FK_Task_TaskHistory" ManuallyRouted="false" />
+        <AssociationConnector Association="synupModel.FK_Task_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="synupModel.FK_Team_TeamHistory" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

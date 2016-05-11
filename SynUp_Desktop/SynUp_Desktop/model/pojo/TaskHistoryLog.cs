@@ -20,8 +20,5 @@ namespace SynUp_Desktop.model.pojo
         public string operation { get; set; }
         public System.DateTime when { get; set; }
         public int id_taskHistory { get; set; }
-    
-        public virtual TaskHistoryLog TaskHistoryLog1 { get; set; }
-        public virtual TaskHistoryLog TaskHistoryLog2 { get; set; }
     }
 }

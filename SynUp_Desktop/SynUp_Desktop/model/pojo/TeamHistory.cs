@@ -19,5 +19,8 @@ namespace SynUp_Desktop.model.pojo
         public string id_team { get; set; }
         public System.DateTime entranceDay { get; set; }
         public Nullable<System.DateTime> exitDate { get; set; }
+    
+        public virtual Employee Employee { get; set; }
+        public virtual Team Team { get; set; }
     }
 }

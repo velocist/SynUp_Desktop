@@ -36,5 +36,172 @@ namespace SynUp_Desktop.views
         {
             this.Close();
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //MessageBox.Show("" + cmbFilter.SelectedIndex);
+            hideAllComponents();
+
+            switch (cmbFilter.SelectedIndex)
+            {
+                case 0:
+                    //hideAllComponents();
+                    break;
+                case 1:
+                    showComponentsFirst();
+                    break;
+                case 2:
+                    showComponentsSecond();
+                    break;
+                case 3:
+                    showComponentsThird();
+                    break;
+                case 4:
+                    showComponentsForth();
+                    break;
+                case 5:
+                    showComponentsFifth();
+                    break;
+            }
+        }
+
+        #region SHOW COMPONENTS BY SELECTED FILTER
+
+        /// <summary>
+        /// Shows the components of the first filter (task available in a date)
+        /// </summary>
+        private void showComponentsFirst()
+        {
+            checkSearchButton();
+
+            setInstructions("Select the period to filter the tasks within:");
+            lblDate1.Visible = true;
+            lblDate2.Visible = true;
+
+            dtpBegin.Visible = true;
+            dtpEnd.Visible = true;
+        }
+
+        /// <summary>
+        /// Shows the components of the first filter (tasks in a team)
+        /// </summary>
+        private void showComponentsSecond()
+        {
+            checkSearchButton();
+            setInstructions("Select the team:");
+            cmbTeams.Visible = true;
+        }
+
+        /// <summary>
+        /// Shows the components of the first filter (task assigned to an employee)
+        /// </summary>
+        private void showComponentsThird()
+        {
+            checkSearchButton();
+            setInstructions("Select the employee:");
+            cmbEmployee.Visible = true;
+        }
+
+        /// <summary>
+        /// Shows the components of the first filter (tasks by state)
+        /// </summary>
+        private void showComponentsForth()
+        {
+            checkSearchButton();
+            setInstructions("Select the state you want to filter:");
+            cmbStates.Visible = true;
+        }
+
+        /// <summary>
+        /// Shows the components of the first filter (list of teams or emplyees ordered by most availabe tasks assigned)
+        /// </summary>
+        private void showComponentsFifth()
+        {
+            checkSearchButton();
+            setInstructions("Select the period and the object:");
+            lblDate1.Visible = true;
+            lblDate2.Visible = true;
+
+            dtpBegin.Visible = true;
+            dtpEnd.Visible = true;
+            cmbRanking.Visible = true;
+            //
+        }
+
+        #endregion
+
+        private void setInstructions(String text)
+        {
+            lblInstructions.Visible = true;
+            lblInstructions.Text = text;
+        }
+
+        /// <summary>
+        /// Hides all the filter components in the form.
+        /// </summary>
+        private void hideAllComponents()
+        {
+            btnSearch.Enabled = false;
+
+            //labels
+            lblDate1.Visible = false;
+            lblDate2.Visible = false;
+            lblInstructions.Visible = false;
+
+            //components
+            cmbEmployee.Visible = false;
+            cmbStates.Visible = false;
+            cmbTeams.Visible = false;
+            cmbRanking.Visible = false;
+            dtpBegin.Visible = false;
+            dtpEnd.Visible = false;
+        }
+
+        /// <summary>
+        /// Checks whether the search button is active or not
+        /// </summary>
+        private void checkSearchButton()
+        {
+            if(btnSearch.Enabled == false)
+            {
+                btnSearch.Enabled = true;
+            }
+        }
+
+        /// <summary>
+        /// Iniializes the form filling all the comboboxes with the respective data.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmStatistics_Load(object sender, EventArgs e)
+        {
+            hideAllComponents();
+
+            BindingSource source = new BindingSource();
+            source.DataSource = Controller.TeamService.getAllTeams();
+            cmbTeams.DataSource = source;
+            cmbTeams.DisplayMember = "Name";
+            cmbTeams.ValueMember = "code";
+            cmbTeams.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            source = new BindingSource();
+            source.DataSource = Controller.EmployeeService.getAllEmployees();
+            cmbEmployee.DataSource = source;
+            cmbEmployee.DisplayMember = "Name";
+            cmbEmployee.ValueMember = "nif";
+            cmbEmployee.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            cmbStates.SelectedIndex = 0;
+            cmbStates.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbRanking.SelectedIndex = 0;
+            cmbRanking.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbFilter.SelectedIndex = 0;
+            cmbFilter.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
     }
 }

@@ -78,6 +78,9 @@
     <Compile Include="model\pojo\spEmpLogU_Result.cs">
       <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="model\pojo\spGetByDate_Result.cs">
+      <DependentUpon>SynupModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="model\pojo\spLast_Result.cs">
       <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
@@ -88,6 +91,15 @@
       <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\spTasklogU_Result.cs">
+      <DependentUpon>SynupModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\spTeamLogD_Result.cs">
+      <DependentUpon>SynupModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\spTeamLogI_Result.cs">
+      <DependentUpon>SynupModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\spTeamLogU_Result.cs">
       <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\spTHisLogD_Result.cs">
@@ -261,7 +273,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="model\pojo\SynupModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

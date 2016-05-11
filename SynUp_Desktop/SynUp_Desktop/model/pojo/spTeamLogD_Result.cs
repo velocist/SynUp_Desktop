@@ -11,14 +11,9 @@ namespace SynUp_Desktop.model.pojo
 {
     using System;
     
-    public partial class spTasklogD_Result
+    public partial class spTeamLogD_Result
     {
-        public string code { get; set; }
-        public Nullable<int> id_team { get; set; }
-        public Nullable<int> description { get; set; }
-        public Nullable<int> localization { get; set; }
+        public string id_team { get; set; }
         public Nullable<int> name { get; set; }
-        public Nullable<int> priorityDate { get; set; }
-        public Nullable<int> project { get; set; }
     }
 }

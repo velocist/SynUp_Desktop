@@ -105,7 +105,7 @@ namespace SynUp_Desktop.views
             DateTime _dtPriorityDate = mcalPriorityDate.SelectionStart.Date;
 
             Boolean createOk = Controller.TaskService.createTask(_strCode, _strName, _dtPriorityDate, _strDescription, _strLocalization, _strProject, _strIdTeam);
-            MessageBox.Show(_strIdTeam);
+            //MessageBox.Show(_strIdTeam);
 
             if (createOk)
             {

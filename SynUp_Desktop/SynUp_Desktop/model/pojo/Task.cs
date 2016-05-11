@@ -14,7 +14,12 @@ namespace SynUp_Desktop.model.pojo
     
     public partial class Task
     {
-        public int id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Task()
+        {
+            this.TaskHistories = new HashSet<TaskHistory>();
+        }
+    
         public string id_team { get; set; }
         public string code { get; set; }
         public string name { get; set; }
@@ -22,5 +27,9 @@ namespace SynUp_Desktop.model.pojo
         public string description { get; set; }
         public string localization { get; set; }
         public string project { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TaskHistory> TaskHistories { get; set; }
+        public virtual Team Team { get; set; }
     }
 }
