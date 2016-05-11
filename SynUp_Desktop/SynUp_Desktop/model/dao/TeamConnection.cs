@@ -106,7 +106,6 @@ namespace SynUp_Desktop.model.dao
                 //_oTeamHistory.Employee = pEmployee;
                 //_oTeamHistory.Team = pTeam;
                 _oTeamHistory.entranceDay = DateTime.Today;
-                _oTeamHistory.exitDate = DateTime.Today;
 
                 database.TeamHistories.Add(_oTeamHistory);
                 _blAddOk = commitChanges();

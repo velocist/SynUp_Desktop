@@ -31,6 +31,7 @@ namespace SynUp_Desktop.views
         }
 
         public Team AuxTeam;
+        public Employee AuxEmployee;
 
         public frmTeamManagement()
         {
@@ -82,26 +83,39 @@ namespace SynUp_Desktop.views
 
         #region VALIDATIONS
 
+        /// <summary>
+        /// Event that runs when the text of textbox code changes.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtCode_TextChanged(object sender, EventArgs e)
         {
-            String _strIdCode = txtCode.Text;
-            Team _oTeam = Controller.TeamService.readTeam(_strIdCode);
+            if (this.AuxTeam == null)
+            {
+                String _strIdCode = txtCode.Text;
+                Team _oTeam = Controller.TeamService.readTeam(_strIdCode);
 
-            if (txtCode.Text.Equals("") || _oTeam != null) // We found that the textbox is not empty
-            {
-                lblCode.ForeColor = Color.Red;
-                lblCode.Text = "Code*";
-            }
-            else
-            {
-                lblCode.Text = "Code";
-                lblCode.ForeColor = Color.Black;
+                if (txtCode.Text.Equals("") || _oTeam != null) // We found that the textbox is not empty
+                {
+                    lblCode.ForeColor = Color.Red;
+                    lblCode.Text = "Code*";
+                }
+                else
+                {
+                    lblCode.Text = "Code";
+                    lblCode.ForeColor = Color.Black;
+                }
             }
 
         }
 
         #endregion
 
+        /// <summary>
+        /// Event that runs when the forms actives
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmTeamManagement_Activated(object sender, EventArgs e)
         {
             if (this.AuxTeam != null)
@@ -114,6 +128,7 @@ namespace SynUp_Desktop.views
                 this.txtCode.Enabled = false;
                 //The grid with all the employees on team will load.
                 this.fillDataGrid();
+                this.fillComboFilterEmployees();
             }
             else
             {
@@ -121,9 +136,40 @@ namespace SynUp_Desktop.views
                 this.txtCode.Enabled = true;
             }
 
+            this.btnAddToTeam.Enabled = false;
+            this.btnDeleteToTeam.Enabled = false;
             this.dgvConfiguration();
+
         }
 
+        /// <summary>
+        /// Event that runs when the row changes stat
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgvEmployeesOnTeam_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
+        {
+
+            if (this.dgvEmployeesOnTeam.SelectedRows.Count == 1)
+            {
+                int _iIndexSelected = this.dgvEmployeesOnTeam.SelectedRows[0].Index;
+                Object _cell = dgvEmployeesOnTeam.Rows[_iIndexSelected].Cells[1].Value;
+                if (_cell != null)
+                {
+                    String _strSelectedRowCode = _cell.ToString();
+                    this.AuxEmployee = this.Controller.EmployeeService.readEmployee(_strSelectedRowCode);
+                }
+
+                this.btnAddToTeam.Enabled = true;
+                this.btnDeleteToTeam.Enabled = true;
+            }
+        }
+
+        /// <summary>
+        /// Event that runs when the button back is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.AuxTeam = null;
@@ -131,6 +177,11 @@ namespace SynUp_Desktop.views
             this.Close();
         }
 
+        /// <summary>
+        /// Event that runs when the button clear is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClear_Click(object sender, EventArgs e)
         {
             this.clearValues();
@@ -142,7 +193,7 @@ namespace SynUp_Desktop.views
                 if (txtCode.Enabled == false) txtCode.Enabled = true;
             }
         }
-        
+
         /// <summary>
         /// Method that configurates the datagridview
         /// </summary>
@@ -172,21 +223,37 @@ namespace SynUp_Desktop.views
         {
             this.txtCode.Text = "";
             this.txtName.Text = "";
-            this.dgvEmployeesOnTeam.ClearSelection();
+            this.dgvEmployeesOnTeam.DataSource = null;
+            this.dgvEmployeesOnTeam.Refresh();
 
         }
 
+        /// <summary>
+        /// Method that configures the datagrid of employees in Team
+        /// </summary>
         private void fillDataGrid()
         {
-            //TODO: Falta hacer el filtro para mostrar solo los empleados en ese equipo
+            //TODO: Falta hacer el filtro para mostrar solo los empleados en ese equipo, i
             BindingSource source = new BindingSource();
-            source.DataSource = this.Controller.TeamHistoryService.getAllTeamHistories();
+            source.DataSource = this.Controller.TeamHistoryService.getAllTeamHistoriesByTeam(this.AuxTeam.code);
 
             this.dgvEmployeesOnTeam.DataSource = source;
 
             dgvEmployeesOnTeam.Refresh();
         }
-        
+
+        /// <summary>
+        /// Method that fill combobox filter of employees
+        /// </summary>
+        public void fillComboFilterEmployees()
+        {
+            this.cmbFilterEmployees.Items.Add("Current");
+            this.cmbFilterEmployees.Items.Add("Past");
+            this.cmbFilterEmployees.Items.Add("All");
+
+            this.cmbFilterEmployees.SelectedIndex = 0;
+        }
+
     }
 }
 

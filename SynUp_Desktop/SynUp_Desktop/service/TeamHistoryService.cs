@@ -19,12 +19,17 @@ namespace SynUp_Desktop.service
 
         public TeamHistory deleteTeamHistory(String pNif, String pCode)
         {
-            return TeamHistoryConnection.deleteTeamHistory(pNif,pCode);
+            return TeamHistoryConnection.deleteTeamHistory(pNif, pCode);
         }
 
         public List<TeamHistory> getAllTeamHistories()
         {
             return TeamHistoryConnection.readAllTeamHistories();
+        }
+
+        public List<TeamHistory> getAllTeamHistoriesByTeam(String pCodeTeam)
+        {
+            return TeamHistoryConnection.readAllTeamHistoriesByTeam(pCodeTeam);
         }
     }
 }

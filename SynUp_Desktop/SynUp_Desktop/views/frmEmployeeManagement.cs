@@ -51,6 +51,7 @@ namespace SynUp_Desktop.views
             String _strPhone = txtPhone.Text;
             String _strEmail = txtEmail.Text;
             String _strAdress = txtAdress.Text;
+            
 
             Boolean _blCreateOk = this.Controller.EmployeeService.createEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress);
 
