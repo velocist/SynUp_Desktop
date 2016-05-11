@@ -81,15 +81,24 @@ namespace SynUp_Desktop.model.dao
 
             return commitChanges();
         }
-
-
+        
         /// <summary>
-        /// 
+        /// Read all teamsHistories
         /// </summary>
         /// <returns></returns>
         public static List<TeamHistory> readAllTeamHistories()
         {
             return (from teamHistory in database.TeamHistories select teamHistory).ToList();
+        }
+
+        /// <summary>
+        /// Read the teamsHistories by team
+        /// </summary>
+        /// <param name="pCodeTeam"></param>
+        /// <returns></returns>
+        public static List<TeamHistory> readAllTeamHistoriesByTeam(String pCodeTeam)
+        {
+            return (from teamHistory in database.TeamHistories where teamHistory.id_team == pCodeTeam && teamHistory.exitDate == null select teamHistory).ToList();
         }
 
     }
