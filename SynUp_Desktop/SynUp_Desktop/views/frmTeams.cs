@@ -44,7 +44,7 @@ namespace SynUp_Desktop.views
             if (this.dgvTeams.SelectedRows.Count == 1)//If the row selected
             {
                 int _iIndexSelected = this.dgvTeams.SelectedRows[0].Index; // Recover the index of selected row
-                Object _cell = this.dgvTeams.Rows[_iIndexSelected].Cells[1].Value;
+                Object _cell = this.dgvTeams.Rows[_iIndexSelected].Cells[0].Value;
                 if (_cell != null)
                 {
                     String _strSelectedRowCode = _cell.ToString(); // Recover the code
@@ -89,15 +89,15 @@ namespace SynUp_Desktop.views
             fillGridView();
 
             // DataGridView Configuration
-            dgvTeams.Columns[0].Visible = false; // We hide id column
+            dgvTeams.Columns[0].HeaderText = "Code"; // We change the column name
+            dgvTeams.Columns[1].HeaderText = "Name";
 
-            dgvTeams.Columns[1].HeaderText = "Code"; // We change the column name
-            dgvTeams.Columns[2].HeaderText = "Name";
+            //DatagridView Common Configuration
+            this.dgvConfiguration();
+        }
 
-            dgvTeams.AutoResizeColumns();
-            dgvTeams.RowHeadersVisible = false; // We hide the rowheader
-            dgvTeams.ClearSelection(); // Cleer selection rows
-
+        private void dgvConfiguration()
+        {
             // DatagridView Common Configuration 
             this.dgvTeams.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
             this.dgvTeams.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row            
@@ -110,6 +110,7 @@ namespace SynUp_Desktop.views
             this.dgvTeams.RowTemplate.ReadOnly = true;
             this.dgvTeams.RowHeadersVisible = false; // We hide the rowheader
             this.dgvTeams.ClearSelection(); // Clear selection rows
+            this.dgvTeams.AutoResizeColumns();
 
             //Form Common Configurations
             this.FormBorderStyle = FormBorderStyle.FixedToolWindow;

@@ -74,7 +74,7 @@ namespace SynUp_Desktop.views
             if (dgvEmployees.SelectedRows.Count == 1)//If the row selected
             {
                 int _iIndexSelected = dgvEmployees.SelectedRows[0].Index; // Recover the index of selected row
-                Object _cell = dgvEmployees.Rows[_iIndexSelected].Cells[1].Value;
+                Object _cell = dgvEmployees.Rows[_iIndexSelected].Cells[0].Value;
                 if (_cell != null)
                 {
                     String _strSelectedRowCode = _cell.ToString(); // Recover the code
@@ -114,7 +114,7 @@ namespace SynUp_Desktop.views
             this.fillComboTeams();
 
             // DataGridView Configuration
-            this.dgvEmployees.Columns[0].Visible = false; // We hide id column
+            //this.dgvEmployees.Columns[0].Visible = false; // We hide id column
             //this.dgvEmployees.Columns[7].Visible = false; // TeamsHistory
             //this.dgvEmployees.Columns[8].Visible = false; // TaskHistories
 
