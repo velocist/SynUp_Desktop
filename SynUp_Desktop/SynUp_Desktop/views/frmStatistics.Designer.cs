@@ -31,19 +31,19 @@
             this.lblFilter = new System.Windows.Forms.Label();
             this.cmbFilter = new System.Windows.Forms.ComboBox();
             this.btnBack = new System.Windows.Forms.Button();
-            this.dgStadistics = new System.Windows.Forms.DataGridView();
+            this.dgvStadistics = new System.Windows.Forms.DataGridView();
             this.gbContainer = new System.Windows.Forms.GroupBox();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.dtpBegin = new System.Windows.Forms.DateTimePicker();
-            this.dtpEnd = new System.Windows.Forms.DateTimePicker();
-            this.lblDate1 = new System.Windows.Forms.Label();
-            this.lblDate2 = new System.Windows.Forms.Label();
-            this.lblInstructions = new System.Windows.Forms.Label();
-            this.cmbTeams = new System.Windows.Forms.ComboBox();
-            this.cmbEmployee = new System.Windows.Forms.ComboBox();
-            this.cmbStates = new System.Windows.Forms.ComboBox();
             this.cmbRanking = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgStadistics)).BeginInit();
+            this.cmbStates = new System.Windows.Forms.ComboBox();
+            this.cmbEmployee = new System.Windows.Forms.ComboBox();
+            this.cmbTeams = new System.Windows.Forms.ComboBox();
+            this.lblInstructions = new System.Windows.Forms.Label();
+            this.lblDate2 = new System.Windows.Forms.Label();
+            this.lblDate1 = new System.Windows.Forms.Label();
+            this.dtpEnd = new System.Windows.Forms.DateTimePicker();
+            this.dtpBegin = new System.Windows.Forms.DateTimePicker();
+            this.btnSearch = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStadistics)).BeginInit();
             this.gbContainer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,13 +82,13 @@
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // dgStadistics
+            // dgvStadistics
             // 
-            this.dgStadistics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgStadistics.Location = new System.Drawing.Point(9, 154);
-            this.dgStadistics.Name = "dgStadistics";
-            this.dgStadistics.Size = new System.Drawing.Size(585, 258);
-            this.dgStadistics.TabIndex = 0;
+            this.dgvStadistics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvStadistics.Location = new System.Drawing.Point(9, 154);
+            this.dgvStadistics.Name = "dgvStadistics";
+            this.dgvStadistics.Size = new System.Drawing.Size(585, 258);
+            this.dgvStadistics.TabIndex = 0;
             // 
             // gbContainer
             // 
@@ -105,7 +105,7 @@
             this.gbContainer.Controls.Add(this.lblFilter);
             this.gbContainer.Controls.Add(this.btnBack);
             this.gbContainer.Controls.Add(this.cmbFilter);
-            this.gbContainer.Controls.Add(this.dgStadistics);
+            this.gbContainer.Controls.Add(this.dgvStadistics);
             this.gbContainer.Location = new System.Drawing.Point(12, 12);
             this.gbContainer.Name = "gbContainer";
             this.gbContainer.Size = new System.Drawing.Size(600, 450);
@@ -113,72 +113,16 @@
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "List of Statistics";
             // 
-            // btnSearch
+            // cmbRanking
             // 
-            this.btnSearch.Location = new System.Drawing.Point(519, 125);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 4;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // dtpBegin
-            // 
-            this.dtpBegin.Location = new System.Drawing.Point(393, 57);
-            this.dtpBegin.Name = "dtpBegin";
-            this.dtpBegin.Size = new System.Drawing.Size(200, 20);
-            this.dtpBegin.TabIndex = 5;
-            // 
-            // dtpEnd
-            // 
-            this.dtpEnd.Location = new System.Drawing.Point(393, 93);
-            this.dtpEnd.Name = "dtpEnd";
-            this.dtpEnd.Size = new System.Drawing.Size(200, 20);
-            this.dtpEnd.TabIndex = 6;
-            // 
-            // lblDate1
-            // 
-            this.lblDate1.AutoSize = true;
-            this.lblDate1.Location = new System.Drawing.Point(310, 59);
-            this.lblDate1.Name = "lblDate1";
-            this.lblDate1.Size = new System.Drawing.Size(77, 13);
-            this.lblDate1.TabIndex = 7;
-            this.lblDate1.Text = "Between Start:";
-            // 
-            // lblDate2
-            // 
-            this.lblDate2.AutoSize = true;
-            this.lblDate2.Location = new System.Drawing.Point(358, 93);
-            this.lblDate2.Name = "lblDate2";
-            this.lblDate2.Size = new System.Drawing.Size(29, 13);
-            this.lblDate2.TabIndex = 8;
-            this.lblDate2.Text = "End:";
-            // 
-            // lblInstructions
-            // 
-            this.lblInstructions.AutoSize = true;
-            this.lblInstructions.Location = new System.Drawing.Point(310, 27);
-            this.lblInstructions.Name = "lblInstructions";
-            this.lblInstructions.Size = new System.Drawing.Size(55, 13);
-            this.lblInstructions.TabIndex = 9;
-            this.lblInstructions.Text = "Select the";
-            // 
-            // cmbTeams
-            // 
-            this.cmbTeams.FormattingEnabled = true;
-            this.cmbTeams.Location = new System.Drawing.Point(472, 24);
-            this.cmbTeams.Name = "cmbTeams";
-            this.cmbTeams.Size = new System.Drawing.Size(121, 21);
-            this.cmbTeams.TabIndex = 10;
-            // 
-            // cmbEmployee
-            // 
-            this.cmbEmployee.FormattingEnabled = true;
-            this.cmbEmployee.Location = new System.Drawing.Point(472, 24);
-            this.cmbEmployee.Name = "cmbEmployee";
-            this.cmbEmployee.Size = new System.Drawing.Size(121, 21);
-            this.cmbEmployee.TabIndex = 11;
+            this.cmbRanking.FormattingEnabled = true;
+            this.cmbRanking.Items.AddRange(new object[] {
+            "Teams",
+            "Employees"});
+            this.cmbRanking.Location = new System.Drawing.Point(393, 127);
+            this.cmbRanking.Name = "cmbRanking";
+            this.cmbRanking.Size = new System.Drawing.Size(121, 21);
+            this.cmbRanking.TabIndex = 13;
             // 
             // cmbStates
             // 
@@ -193,29 +137,85 @@
             this.cmbStates.Size = new System.Drawing.Size(121, 21);
             this.cmbStates.TabIndex = 12;
             // 
-            // cmbRanking
+            // cmbEmployee
             // 
-            this.cmbRanking.FormattingEnabled = true;
-            this.cmbRanking.Items.AddRange(new object[] {
-            "Teams",
-            "Employees"});
-            this.cmbRanking.Location = new System.Drawing.Point(393, 127);
-            this.cmbRanking.Name = "cmbRanking";
-            this.cmbRanking.Size = new System.Drawing.Size(121, 21);
-            this.cmbRanking.TabIndex = 13;
+            this.cmbEmployee.FormattingEnabled = true;
+            this.cmbEmployee.Location = new System.Drawing.Point(472, 24);
+            this.cmbEmployee.Name = "cmbEmployee";
+            this.cmbEmployee.Size = new System.Drawing.Size(121, 21);
+            this.cmbEmployee.TabIndex = 11;
+            // 
+            // cmbTeams
+            // 
+            this.cmbTeams.FormattingEnabled = true;
+            this.cmbTeams.Location = new System.Drawing.Point(472, 24);
+            this.cmbTeams.Name = "cmbTeams";
+            this.cmbTeams.Size = new System.Drawing.Size(121, 21);
+            this.cmbTeams.TabIndex = 10;
+            // 
+            // lblInstructions
+            // 
+            this.lblInstructions.AutoSize = true;
+            this.lblInstructions.Location = new System.Drawing.Point(310, 27);
+            this.lblInstructions.Name = "lblInstructions";
+            this.lblInstructions.Size = new System.Drawing.Size(55, 13);
+            this.lblInstructions.TabIndex = 9;
+            this.lblInstructions.Text = "Select the";
+            // 
+            // lblDate2
+            // 
+            this.lblDate2.AutoSize = true;
+            this.lblDate2.Location = new System.Drawing.Point(358, 93);
+            this.lblDate2.Name = "lblDate2";
+            this.lblDate2.Size = new System.Drawing.Size(29, 13);
+            this.lblDate2.TabIndex = 8;
+            this.lblDate2.Text = "End:";
+            // 
+            // lblDate1
+            // 
+            this.lblDate1.AutoSize = true;
+            this.lblDate1.Location = new System.Drawing.Point(310, 59);
+            this.lblDate1.Name = "lblDate1";
+            this.lblDate1.Size = new System.Drawing.Size(77, 13);
+            this.lblDate1.TabIndex = 7;
+            this.lblDate1.Text = "Between Start:";
+            // 
+            // dtpEnd
+            // 
+            this.dtpEnd.Location = new System.Drawing.Point(393, 93);
+            this.dtpEnd.Name = "dtpEnd";
+            this.dtpEnd.Size = new System.Drawing.Size(200, 20);
+            this.dtpEnd.TabIndex = 6;
+            // 
+            // dtpBegin
+            // 
+            this.dtpBegin.Location = new System.Drawing.Point(393, 57);
+            this.dtpBegin.Name = "dtpBegin";
+            this.dtpBegin.Size = new System.Drawing.Size(200, 20);
+            this.dtpBegin.TabIndex = 5;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(519, 125);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 4;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // frmStatistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 471);
+            this.ClientSize = new System.Drawing.Size(624, 472);
             this.Controls.Add(this.gbContainer);
             this.MinimumSize = new System.Drawing.Size(640, 510);
             this.Name = "frmStatistics";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Statistics";
             this.Load += new System.EventHandler(this.frmStatistics_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgStadistics)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvStadistics)).EndInit();
             this.gbContainer.ResumeLayout(false);
             this.gbContainer.PerformLayout();
             this.ResumeLayout(false);
@@ -227,7 +227,7 @@
         private System.Windows.Forms.Label lblFilter;
         private System.Windows.Forms.ComboBox cmbFilter;
         private System.Windows.Forms.Button btnBack;
-        private System.Windows.Forms.DataGridView dgStadistics;
+        private System.Windows.Forms.DataGridView dgvStadistics;
         private System.Windows.Forms.GroupBox gbContainer;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.DateTimePicker dtpBegin;

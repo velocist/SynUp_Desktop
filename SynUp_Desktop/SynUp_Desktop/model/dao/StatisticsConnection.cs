@@ -22,6 +22,35 @@ namespace SynUp_Desktop.model.dao
             return database.spGetByDate(_dateStartPeriod, _dateFinishPeriod).ToList();
         }
 
-        //public static List<pojo.Task> readTasks
+        public static List<pojo.Task> readTasksByEmployee(String _nif)
+        {
+            //pojo.Employee empFound = EmployeeConnection.readEmployee(_nif);
+
+            //Returns all the tasks an employee has had. 
+            var query = from record in database.TaskHistories
+                        join task in database.Tasks on record.id_task equals task.code
+                        where record.id_employee.Equals(_nif) && /*record.isFinished == 0 ||*/ record.finishDate == null
+                        select task;
+
+            return query.ToList();
+        }
+
+        public static List<pojo.Task> readTasksByTeam(String _code)
+        {
+            var query = from record in database.TaskHistories
+                        join task in database.Tasks on record.id_task equals task.code
+                        // --> THERE MUST BE ADDED A FIELD 'id_team' in the TaskHistory table to know in which team was an employee when the task was being done.
+                        //where record.id_employee.Equals(_code) && /*record.isFinished == 0 ||*/ record.finishDate == null
+                        select task;
+            return query.ToList();
+        }
+
+        public static List<pojo.Task> readTaskByState(String state)
+        {
+            return null;
+        }
+
+
+
     }
 }

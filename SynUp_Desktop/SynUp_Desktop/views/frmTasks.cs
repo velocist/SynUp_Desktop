@@ -88,8 +88,8 @@ namespace SynUp_Desktop.views
             //dgvTasks.Columns["code_team"].Visible = true; // We hide the id_team column
 
             //dgvTasks.Columns[2].HeaderText = "Code"; // We change the column name
-            //dgvTasks.Columns[3].HeaderText = "Name";
-            //dgvTasks.Columns[4].HeaderText = "Priority Date";
+           // dgvTasks.Columns[3].HeaderText = "Name";
+           //dgvTasks.Columns[4].HeaderText = "Priority Date";
            // dgvTasks.Columns[5].Visible = false; // HeaderText = "Description";
             //dgvTasks.Columns[6].Visible = false; // HeaderText = "Localization";
             dgvTasks.Columns[7].HeaderText = "Project";

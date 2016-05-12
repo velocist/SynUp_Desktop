@@ -13,5 +13,10 @@ namespace SynUp_Desktop.service
         {
             return StatisticsConnection.readTasksByDate(begin, end);
         }
+
+        public List<Task> getTasksbyTeam(String code)
+        {
+            return StatisticsConnection.readTasksByTeam(code);
+        }
     }
 }

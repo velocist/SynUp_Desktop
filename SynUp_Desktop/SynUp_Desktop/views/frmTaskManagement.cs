@@ -347,7 +347,7 @@ namespace SynUp_Desktop.views
                 this.btnCreateTask.Enabled = false; // We disable the button to create a task
                 this.txtCode.Enabled = false;
 
-                MessageBox.Show("EH IT IS NOT NULL");
+                //MessageBox.Show("EH IT IS NOT NULL");
 
             } else
             {

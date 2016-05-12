@@ -37,11 +37,56 @@ namespace SynUp_Desktop.views
             this.Close();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            switch (cmbFilter.SelectedIndex)
+            {
+                case 1:
+                    DateTime start = dtpBegin.Value.Date;
+                    DateTime end = dtpEnd.Value.Date;
 
+                    if (start != null && end != null && start.CompareTo(end) < 0)
+                    {
+                        fillDataGrid(Controller.StatisticsService.getTasksByDate(start, end));
+                    }
+                    else
+                    {
+                        MessageBox.Show("Wrong selected values - try again.");
+                    }
+                    break;
+                case 2:
+                    String strCode = (String)cmbTeams.SelectedValue;
+                    if(!strCode.Equals("") || strCode.Equals(null))
+                    {
+                        fillDataGrid(Controller.StatisticsService.getTasksbyTeam(strCode));
+                    } else
+                    {
+                        //Error message
+                        MessageBox.Show("Wrong selected values - try again.");
+                    }
+                    break;
+                case 3:
+                    //showComponentsThird();
+                    break;
+                case 4:
+                    //showComponentsForth();
+                    break;
+                case 5:
+                    //showComponentsFifth();
+                    break;
+            }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmbFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
             //MessageBox.Show("" + cmbFilter.SelectedIndex);
@@ -118,7 +163,7 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// Shows the components of the first filter (list of teams or emplyees ordered by most availabe tasks assigned)
+        /// Shows the components of the first filter (list of teams or employees ordered by most availabe tasks assigned)
         /// </summary>
         private void showComponentsFifth()
         {
@@ -202,6 +247,17 @@ namespace SynUp_Desktop.views
             cmbRanking.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbFilter.SelectedIndex = 0;
             cmbFilter.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_data">Will receive the lists that the datagrid will be filled with.</param>
+        private void fillDataGrid(Object _data)
+        {
+            BindingSource source = new BindingSource();
+            source.DataSource = _data;
+            dgvStadistics.DataSource = source;
         }
     }
 }
