@@ -45,7 +45,7 @@ namespace SynUp_Desktop.service
             return _lstTeam;
         }
 
-        public bool addToTeam(Employee pEmployee, Team pTeam)
+        public bool addToTeam(String pEmployee, String pTeam)
         {
             return TeamConnection.addToTeam(pEmployee, pTeam);
         }

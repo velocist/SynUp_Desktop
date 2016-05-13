@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SynUp_Desktop.model;
 using SynUp_Desktop.model.pojo;
+using System.Diagnostics;
 
 namespace SynUp_Desktop.model.dao
 {
@@ -31,6 +32,21 @@ namespace SynUp_Desktop.model.dao
             }
             catch (Exception e)
             {
+                Debug.WriteLine(e);
+                return false;
+            }
+        }
+
+        private static bool commitChanges(synupEntities _database)
+        {
+            try
+            {
+                _database.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
                 return false;
             }
         }
@@ -44,9 +60,17 @@ namespace SynUp_Desktop.model.dao
         {
             pojo.Task foundTask = readTask(t.code); //Finds the received task in the database.
 
-            if (foundTask == null) database.Tasks.Add(t); //If the task doesn't exist already in the database, it will be inserted.
+            if (foundTask == null)
+            {
+                //database.Tasks.Add(t); //If the task doesn't exist already in the database, it will be inserted.
+                using (var context = new synupEntities())
+                {
+                    context.Tasks.Add(t);
+                    return commitChanges(context);
+                }
+            }
 
-            return commitChanges();
+            return false;
         }
 
         /// <summary>
@@ -60,11 +84,16 @@ namespace SynUp_Desktop.model.dao
 
             if (foundTask != null) //If the task has been found - meaning that it exists:
             {
-                database.Tasks.Remove(foundTask); //Will be deleted.
+                //database.Tasks.Remove(foundTask); //Will be deleted.
+                using (var context = new synupEntities())
+                {
+                    context.Tasks.Remove(t);
+                    if (commitChanges(context)) return foundTask;
+                    else return null;
+                }
             }
 
-            if (commitChanges()) return foundTask; //If the changes are commited succesfully it will return the deleted Task.
-            else return null;
+            return null;
         }
 
         /// <summary>
@@ -74,19 +103,25 @@ namespace SynUp_Desktop.model.dao
         /// <returns>Returns a boolean whether the task has been updated succesfully or not.</returns>
         public static bool updateTask(pojo.Task t)
         {
-            pojo.Task modifiedTask;
+            pojo.Task modifiedTask = readTask(t.code);
 
-            modifiedTask = readTask(t.code);
+            if (modifiedTask != null)
+            {
+                using (var context = new synupEntities())
+                {
+                    modifiedTask.code = t.code;
+                    modifiedTask.description = t.description;
+                    modifiedTask.id_team = t.id_team;
+                    modifiedTask.localization = t.localization;
+                    modifiedTask.name = t.name;
+                    modifiedTask.priorityDate = t.priorityDate;
+                    modifiedTask.project = t.project;
 
-            modifiedTask.code = t.code;
-            modifiedTask.description = t.description;
-            modifiedTask.id_team = t.id_team;
-            modifiedTask.localization = t.localization;
-            modifiedTask.name = t.name;
-            modifiedTask.priorityDate = t.priorityDate;
-            modifiedTask.project = t.project;
+                    return commitChanges(context);
+                }
+            }
 
-            return commitChanges();
+            return false;
         }
 
         /// <summary>

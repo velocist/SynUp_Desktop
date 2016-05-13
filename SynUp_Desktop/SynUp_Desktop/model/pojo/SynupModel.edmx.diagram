@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4f89af4c9d97442aa5bbaefc1d5702a4" Name="Diagram1">
-        <EntityTypeShape EntityType="synupModel.Employee" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+      <Diagram DiagramId="121ed38c092f4276b94edb213c62608f" Name="Diagram1">
+        <EntityTypeShape EntityType="synupModel.Employee" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="synupModel.EmployeeLog" Width="1.5" PointX="3.75" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="synupModel.Task" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="synupModel.TaskHistory" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
@@ -15,11 +15,11 @@
         <EntityTypeShape EntityType="synupModel.TeamHistory" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="synupModel.TeamLog" Width="1.5" PointX="8.75" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="synupModel.TeamHistoryLog" Width="1.5" PointX="8.75" PointY="5.875" IsExpanded="true" />
-        <AssociationConnector Association="synupModel.FK_Employee_TaskHistory" ManuallyRouted="false" />
-        <AssociationConnector Association="synupModel.FK_Employee_TeamHistory" ManuallyRouted="false" />
-        <AssociationConnector Association="synupModel.FK_Task_TaskHistory" ManuallyRouted="false" />
+        <AssociationConnector Association="synupModel.FK_TaskHistory_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="synupModel.FK_TeamHistory_Employee" ManuallyRouted="false" />
         <AssociationConnector Association="synupModel.FK_Task_Team" ManuallyRouted="false" />
-        <AssociationConnector Association="synupModel.FK_Team_TeamHistory" ManuallyRouted="false" />
+        <AssociationConnector Association="synupModel.FK_TaskHistory_Task" ManuallyRouted="false" />
+        <AssociationConnector Association="synupModel.FK_TeamHistory_Team" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

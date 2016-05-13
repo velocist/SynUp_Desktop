@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="synupModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="synupModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="nif" />
@@ -113,6 +113,66 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
           <Property Name="operation" Type="nchar" MaxLength="1" Nullable="false" />
           <Property Name="when" Type="datetime" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Task_Team">
+          <End Role="Team" Type="Self.Team" Multiplicity="0..1" />
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="id_team" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskHistory_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="TaskHistory" Type="Self.TaskHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="nif" />
+            </Principal>
+            <Dependent Role="TaskHistory">
+              <PropertyRef Name="id_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskHistory_Task">
+          <End Role="Task" Type="Self.Task" Multiplicity="1" />
+          <End Role="TaskHistory" Type="Self.TaskHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="TaskHistory">
+              <PropertyRef Name="id_task" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamHistory_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="TeamHistory" Type="Self.TeamHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="nif" />
+            </Principal>
+            <Dependent Role="TeamHistory">
+              <PropertyRef Name="id_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamHistory_Team">
+          <End Role="Team" Type="Self.Team" Multiplicity="1" />
+          <End Role="TeamHistory" Type="Self.TeamHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="TeamHistory">
+              <PropertyRef Name="id_team" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="spEmpLogD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="first" Type="int" Mode="In" />
           <Parameter Name="last" Type="int" Mode="In" />
@@ -208,8 +268,29 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
     [TeamHistoryLog].[when] AS [when]
     FROM [dbo].[TeamHistoryLog] AS [TeamHistoryLog]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_Task_Team" Association="Self.FK_Task_Team">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="Task" EntitySet="Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskHistory_Employee" Association="Self.FK_TaskHistory_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="TaskHistory" EntitySet="TaskHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskHistory_Task" Association="Self.FK_TaskHistory_Task">
+            <End Role="Task" EntitySet="Task" />
+            <End Role="TaskHistory" EntitySet="TaskHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamHistory_Employee" Association="Self.FK_TeamHistory_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="TeamHistory" EntitySet="TeamHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamHistory_Team" Association="Self.FK_TeamHistory_Team">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="TeamHistory" EntitySet="TeamHistory" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="synupModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -224,9 +305,9 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
           <Property Name="email" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
           <Property Name="adress" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="TaskHistories" Relationship="Self.FK_Employee_TaskHistory" FromRole="Employee" ToRole="TaskHistory" />
-          <NavigationProperty Name="TeamHistories" Relationship="Self.FK_Employee_TeamHistory" FromRole="Employee" ToRole="TeamHistory" />
           <Property Name="username" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="TaskHistories" Relationship="Self.FK_TaskHistory_Employee" FromRole="Employee" ToRole="TaskHistory" />
+          <NavigationProperty Name="TeamHistories" Relationship="Self.FK_TeamHistory_Employee" FromRole="Employee" ToRole="TeamHistory" />
         </EntityType>
         <EntityType Name="EmployeeLog">
           <Key>
@@ -248,8 +329,8 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="localization" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="project" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="TaskHistories" Relationship="Self.FK_Task_TaskHistory" FromRole="Task" ToRole="TaskHistory" />
           <NavigationProperty Name="Team" Relationship="Self.FK_Task_Team" FromRole="Task" ToRole="Team" />
+          <NavigationProperty Name="TaskHistories" Relationship="Self.FK_TaskHistory_Task" FromRole="Task" ToRole="TaskHistory" />
         </EntityType>
         <EntityType Name="TaskHistory">
           <Key>
@@ -262,8 +343,8 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
           <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="isFinished" Type="Byte" Nullable="false" />
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_TaskHistory" FromRole="TaskHistory" ToRole="Employee" />
-          <NavigationProperty Name="Task" Relationship="Self.FK_Task_TaskHistory" FromRole="TaskHistory" ToRole="Task" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_TaskHistory_Employee" FromRole="TaskHistory" ToRole="Employee" />
+          <NavigationProperty Name="Task" Relationship="Self.FK_TaskHistory_Task" FromRole="TaskHistory" ToRole="Task" />
         </EntityType>
         <EntityType Name="TaskHistoryLog">
           <Key>
@@ -292,7 +373,7 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
           <Property Name="code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Tasks" Relationship="Self.FK_Task_Team" FromRole="Team" ToRole="Task" />
-          <NavigationProperty Name="TeamHistories" Relationship="Self.FK_Team_TeamHistory" FromRole="Team" ToRole="TeamHistory" />
+          <NavigationProperty Name="TeamHistories" Relationship="Self.FK_TeamHistory_Team" FromRole="Team" ToRole="TeamHistory" />
         </EntityType>
         <EntityType Name="TeamHistory">
           <Key>
@@ -303,8 +384,8 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
           <Property Name="id_team" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="entranceDay" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="exitDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_TeamHistory" FromRole="TeamHistory" ToRole="Employee" />
-          <NavigationProperty Name="Team" Relationship="Self.FK_Team_TeamHistory" FromRole="TeamHistory" ToRole="Team" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_TeamHistory_Employee" FromRole="TeamHistory" ToRole="Employee" />
+          <NavigationProperty Name="Team" Relationship="Self.FK_TeamHistory_Team" FromRole="TeamHistory" ToRole="Team" />
         </EntityType>
         <EntityType Name="TeamLog">
           <Key>
@@ -329,7 +410,7 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
           <Property Name="operation" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="when" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <Association Name="FK_Employee_TaskHistory">
+        <Association Name="FK_TaskHistory_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="TaskHistory" Type="Self.TaskHistory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -341,7 +422,7 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Employee_TeamHistory">
+        <Association Name="FK_TeamHistory_Employee">
           <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="TeamHistory" Type="Self.TeamHistory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -350,18 +431,6 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
             </Principal>
             <Dependent Role="TeamHistory">
               <PropertyRef Name="id_employee" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Task_TaskHistory">
-          <End Role="Task" Type="Self.Task" Multiplicity="1" />
-          <End Role="TaskHistory" Type="Self.TaskHistory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Task">
-              <PropertyRef Name="code" />
-            </Principal>
-            <Dependent Role="TaskHistory">
-              <PropertyRef Name="id_task" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -377,7 +446,19 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Team_TeamHistory">
+        <Association Name="FK_TaskHistory_Task">
+          <End Role="Task" Type="Self.Task" Multiplicity="1" />
+          <End Role="TaskHistory" Type="Self.TaskHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="code" />
+            </Principal>
+            <Dependent Role="TaskHistory">
+              <PropertyRef Name="id_task" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamHistory_Team">
           <End Role="Team" Type="Self.Team" Multiplicity="1" />
           <End Role="TeamHistory" Type="Self.TeamHistory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -400,23 +481,23 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
           <EntitySet Name="TeamHistories" EntityType="Self.TeamHistory" />
           <EntitySet Name="TeamLogs" EntityType="Self.TeamLog" />
           <EntitySet Name="TeamHistoryLogs" EntityType="Self.TeamHistoryLog" />
-          <AssociationSet Name="FK_Employee_TaskHistory" Association="Self.FK_Employee_TaskHistory">
+          <AssociationSet Name="FK_TaskHistory_Employee" Association="Self.FK_TaskHistory_Employee">
             <End Role="Employee" EntitySet="Employees" />
             <End Role="TaskHistory" EntitySet="TaskHistories" />
           </AssociationSet>
-          <AssociationSet Name="FK_Employee_TeamHistory" Association="Self.FK_Employee_TeamHistory">
+          <AssociationSet Name="FK_TeamHistory_Employee" Association="Self.FK_TeamHistory_Employee">
             <End Role="Employee" EntitySet="Employees" />
             <End Role="TeamHistory" EntitySet="TeamHistories" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Task_TaskHistory" Association="Self.FK_Task_TaskHistory">
-            <End Role="Task" EntitySet="Tasks" />
-            <End Role="TaskHistory" EntitySet="TaskHistories" />
           </AssociationSet>
           <AssociationSet Name="FK_Task_Team" Association="Self.FK_Task_Team">
             <End Role="Team" EntitySet="Teams" />
             <End Role="Task" EntitySet="Tasks" />
           </AssociationSet>
-          <AssociationSet Name="FK_Team_TeamHistory" Association="Self.FK_Team_TeamHistory">
+          <AssociationSet Name="FK_TaskHistory_Task" Association="Self.FK_TaskHistory_Task">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="TaskHistory" EntitySet="TaskHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamHistory_Team" Association="Self.FK_TeamHistory_Team">
             <End Role="Team" EntitySet="Teams" />
             <End Role="TeamHistory" EntitySet="TeamHistories" />
           </AssociationSet>
@@ -436,8 +517,20 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
             <Parameter Name="begin" Mode="In" Type="DateTime" />
             <Parameter Name="end" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="spGetRankingEmployee" ReturnType="Collection(synupModel.spGetRankingEmployee_Result)">
+            <Parameter Name="begin" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="spGetRankingTeam" ReturnType="Collection(synupModel.spGetRankingTeam_Result)">
+            <Parameter Name="begin" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+          </FunctionImport>
           <FunctionImport Name="spLast" ReturnType="Collection(synupModel.spLast_Result)">
-          <Parameter Name="employeeId" Mode="In" Type="Int32" />
+            <Parameter Name="employeeId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spLogin" ReturnType="Collection(synupModel.spLogin_Result)">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spTasklogD" ReturnType="Collection(synupModel.spTasklogD_Result)">
             <Parameter Name="employeeId" Mode="In" Type="String" />
@@ -484,18 +577,6 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
             <Parameter Name="first" Mode="In" Type="Int32" />
             <Parameter Name="last" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="spGetRankingEmployee" ReturnType="Collection(synupModel.spGetRankingEmployee_Result)">
-            <Parameter Name="begin" Mode="In" Type="DateTime" />
-            <Parameter Name="end" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="spGetRankingTeam" ReturnType="Collection(synupModel.spGetRankingTeam_Result)">
-            <Parameter Name="begin" Mode="In" Type="DateTime" />
-            <Parameter Name="end" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="spLogin" ReturnType="Collection(synupModel.spLogin_Result)">
-            <Parameter Name="username" Mode="In" Type="String" />
-            <Parameter Name="password" Mode="In" Type="String" />
-          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spEmpLogD_Result">
           <Property Type="String" Name="nif" Nullable="false" MaxLength="9" />
@@ -505,6 +586,7 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
           <Property Type="Int32" Name="email" Nullable="true" />
           <Property Type="Int32" Name="adress" Nullable="true" />
           <Property Type="Int32" Name="password" Nullable="true" />
+          <Property Type="Int32" Name="username" Nullable="true" />
         </ComplexType>
         <ComplexType Name="spEmpLogI_Result">
           <Property Type="String" Name="name" Nullable="true" MaxLength="20" />
@@ -514,6 +596,7 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
           <Property Type="String" Name="email" Nullable="true" MaxLength="30" />
           <Property Type="String" Name="adress" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="password" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="spEmpLogU_Result">
           <Property Type="String" Name="name" Nullable="true" MaxLength="20" />
@@ -523,6 +606,7 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
           <Property Type="String" Name="email" Nullable="true" MaxLength="30" />
           <Property Type="String" Name="adress" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="password" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="spGetByDate_Result">
           <Property Type="String" Name="id_team" Nullable="true" MaxLength="10" />
@@ -533,11 +617,31 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
           <Property Type="String" Name="localization" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="project" Nullable="true" MaxLength="20" />
         </ComplexType>
+        <ComplexType Name="spGetRankingEmployee_Result">
+          <Property Type="String" Name="nif" Nullable="false" MaxLength="9" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="tasks" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spGetRankingTeam_Result">
+          <Property Type="String" Name="code" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="tasks" Nullable="true" />
+        </ComplexType>
         <ComplexType Name="spLast_Result">
           <Property Type="Int32" Name="emplogId" Nullable="true" />
           <Property Type="Int32" Name="tasklogId" Nullable="true" />
           <Property Type="Int32" Name="taskhistlogId" Nullable="true" />
           <Property Type="Int32" Name="teamlogId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spLogin_Result">
+          <Property Type="String" Name="nif" Nullable="false" MaxLength="9" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="surname" Nullable="true" MaxLength="40" />
+          <Property Type="String" Name="phone" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="adress" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="password" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="spTasklogD_Result">
           <Property Type="String" Name="code" Nullable="false" MaxLength="10" />
@@ -571,11 +675,11 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
           <Property Type="Int32" Name="name" Nullable="true" />
         </ComplexType>
         <ComplexType Name="spTeamLogI_Result">
-          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="code" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="name" Nullable="true" MaxLength="20" />
         </ComplexType>
         <ComplexType Name="spTeamLogU_Result">
-          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="code" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="name" Nullable="true" MaxLength="20" />
         </ComplexType>
         <ComplexType Name="spTHisLogD_Result">
@@ -605,26 +709,6 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
           <Property Type="String" Name="comment" Nullable="true" MaxLength="Max" />
           <Property Type="Byte" Name="isFinished" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="spGetRankingEmployee_Result">
-          <Property Type="String" Name="nif" Nullable="false" MaxLength="9" />
-          <Property Type="String" Name="name" Nullable="true" MaxLength="20" />
-          <Property Type="Int32" Name="tasks" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="spGetRankingTeam_Result">
-          <Property Type="String" Name="code" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="name" Nullable="true" MaxLength="20" />
-          <Property Type="Int32" Name="tasks" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="spLogin_Result">
-          <Property Type="String" Name="nif" Nullable="false" MaxLength="9" />
-          <Property Type="String" Name="name" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="surname" Nullable="true" MaxLength="40" />
-          <Property Type="String" Name="phone" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="email" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="adress" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="password" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="username" Nullable="true" MaxLength="50" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -634,7 +718,6 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="synupModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
-                <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="nif" ColumnName="nif" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="surname" ColumnName="surname" />
@@ -642,6 +725,7 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="adress" ColumnName="adress" />
                 <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -753,6 +837,7 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="adress" ColumnName="adress" />
                 <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -766,6 +851,7 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="adress" ColumnName="adress" />
                 <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -779,10 +865,29 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="adress" ColumnName="adress" />
                 <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spGetByDate" FunctionName="synupModel.Store.spGetByDate">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetRankingEmployee" FunctionName="synupModel.Store.spGetRankingEmployee">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="synupModel.spGetRankingEmployee_Result">
+                <ScalarProperty Name="nif" ColumnName="nif" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="tasks" ColumnName="tasks" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spGetRankingTeam" FunctionName="synupModel.Store.spGetRankingTeam">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="synupModel.spGetRankingTeam_Result">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="tasks" ColumnName="tasks" />
+              </ComplexTypeMapping>
+            </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spLast" FunctionName="synupModel.Store.spLast">
             <ResultMapping>
@@ -791,6 +896,20 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
                 <ScalarProperty Name="tasklogId" ColumnName="tasklogId" />
                 <ScalarProperty Name="taskhistlogId" ColumnName="taskhistlogId" />
                 <ScalarProperty Name="teamlogId" ColumnName="teamlogId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spLogin" FunctionName="synupModel.Store.spLogin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="synupModel.spLogin_Result">
+                <ScalarProperty Name="nif" ColumnName="nif" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="adress" ColumnName="adress" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -844,7 +963,7 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
           <FunctionImportMapping FunctionImportName="spTeamLogI" FunctionName="synupModel.Store.spTeamLogI">
             <ResultMapping>
               <ComplexTypeMapping TypeName="synupModel.spTeamLogI_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="name" ColumnName="name" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -852,7 +971,7 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
           <FunctionImportMapping FunctionImportName="spTeamLogU" FunctionName="synupModel.Store.spTeamLogU">
             <ResultMapping>
               <ComplexTypeMapping TypeName="synupModel.spTeamLogU_Result">
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="name" ColumnName="name" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -893,38 +1012,6 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
                 <ScalarProperty Name="finishDate" ColumnName="finishDate" />
                 <ScalarProperty Name="comment" ColumnName="comment" />
                 <ScalarProperty Name="isFinished" ColumnName="isFinished" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spGetRankingEmployee" FunctionName="synupModel.Store.spGetRankingEmployee">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="synupModel.spGetRankingEmployee_Result">
-                <ScalarProperty Name="nif" ColumnName="nif" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="tasks" ColumnName="tasks" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spGetRankingTeam" FunctionName="synupModel.Store.spGetRankingTeam">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="synupModel.spGetRankingTeam_Result">
-                <ScalarProperty Name="code" ColumnName="code" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="tasks" ColumnName="tasks" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spLogin" FunctionName="synupModel.Store.spLogin">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="synupModel.spLogin_Result">
-                <ScalarProperty Name="nif" ColumnName="nif" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="surname" ColumnName="surname" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="adress" ColumnName="adress" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="username" ColumnName="username" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

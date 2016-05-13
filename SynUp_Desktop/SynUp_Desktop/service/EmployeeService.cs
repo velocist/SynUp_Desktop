@@ -107,12 +107,12 @@ namespace SynUp_Desktop.service
         {
             if (pEmployee != null)
             {
-                pEmployee.nif = pEmployee.nif.Trim();
-                pEmployee.name = pEmployee.name.Trim();
-                pEmployee.surname = pEmployee.surname.Trim();
-                pEmployee.phone = pEmployee.phone.Trim();
-                pEmployee.email = pEmployee.email.Trim();
-                pEmployee.adress = pEmployee.adress.Trim();
+                if(pEmployee.nif!=null)pEmployee.nif = pEmployee.nif.Trim();
+                if (pEmployee.name != null) pEmployee.name = pEmployee.name.Trim();
+                if (pEmployee.surname != null) pEmployee.surname = pEmployee.surname.Trim();
+                if (pEmployee.phone != null) pEmployee.phone = pEmployee.phone.Trim();
+                if (pEmployee.email != null) pEmployee.email = pEmployee.email.Trim();
+                if (pEmployee.adress != null) pEmployee.adress = pEmployee.adress.Trim();
             }
             return pEmployee;
         }

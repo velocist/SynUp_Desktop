@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SynUp_Desktop.model.pojo;
+using System.Diagnostics;
 
 namespace SynUp_Desktop.model.dao
 {
@@ -24,6 +25,25 @@ namespace SynUp_Desktop.model.dao
             }
             catch (Exception e)
             {
+                Debug.WriteLine(e);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Saves the changes done over the database.
+        /// </summary>
+        /// <returns>Returns a boolean depending in whether the operation is completed succesfully or not.</returns>
+        private static bool commitChanges(synupEntities _database)
+        {
+            try
+            {
+                _database.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
                 return false;
             }
         }
@@ -37,9 +57,17 @@ namespace SynUp_Desktop.model.dao
         {
             pojo.Employee _oEmployee = readEmployee(pEmployee.nif); //Finds the received employee in the database. 
 
-            if (_oEmployee == null) database.Employees.Add(pEmployee); //If the employee doesn't exist already in the database, it will be inserted.
+            if (_oEmployee == null)
+            {
+                using(var context = new synupEntities())
+                {
+                    context.Employees.Add(pEmployee); //If the employee doesn't exist already in the database, it will be inserted.
+                    return commitChanges(context);
+                }
+                
+            }
 
-            return commitChanges();
+            return false;
         }
 
         /// <summary>

@@ -28,6 +28,19 @@ namespace SynUp_Desktop.model.dao
             }
         }
 
+        private static bool commitChanges(synupEntities _database)
+        {
+            try
+            {
+                _database.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
         /// <summary>
         /// Creates a given team.
         /// </summary>
@@ -35,14 +48,20 @@ namespace SynUp_Desktop.model.dao
         /// <returns>Returns a boolean depending in the outcome of the insert - true if it is successfull</returns>
         public static bool createTeam(pojo.Team pTeam)
         {
+            //openConnection();
+
             pojo.Team _oTeam = readTeam(pTeam.code); //Finds the received team in the database. 
 
             if (_oTeam == null)//If the team doesn't exist already in the database, it will be inserted.
             {
-                database.Teams.Add(pTeam);
+                using (var context = new synupEntities())
+                {
+                    context.Teams.Add(pTeam);
+                    return commitChanges(context);
+                }
             }
 
-            return commitChanges();
+            return false;
         }
 
         /// <summary>
@@ -84,11 +103,14 @@ namespace SynUp_Desktop.model.dao
 
             if (_oTeam != null) //If the team has been found - meaning that it exists:
             {
-                database.Teams.Remove(_oTeam); //Will be deleted.
+                using (var context = new synupEntities())
+                {
+                    context.Teams.Remove(_oTeam); //Will be deleted.
+                    if (commitChanges(context)) return _oTeam; //If the changes are commited succesfully it will return the deleted Team.
+                    else return null;
+                }
             }
-
-            if (commitChanges()) return _oTeam; //If the changes are commited succesfully it will return the deleted Team.
-            else return null;
+            return null;
         }
 
         public static List<pojo.Team> readAllTeams()
@@ -96,26 +118,47 @@ namespace SynUp_Desktop.model.dao
             return (from team in database.Teams select team).ToList();
         }
 
-        public static bool addToTeam(pojo.Employee pEmployee, pojo.Team pTeam)
+        public static bool addToTeam(/*pojo.Employee pEmployee, pojo.Team pTeam*/ String _EmpNif, String _TeamCode)
         {
-            Boolean _blAddOk = false;
             model.pojo.TeamHistory _oTeamHistory = new model.pojo.TeamHistory();
 
-            if (pEmployee != null && pTeam != null)
+            if (_EmpNif != null && _TeamCode != null)
             {
 
-                _oTeamHistory.id_employee = pEmployee.nif;
-                _oTeamHistory.id_team = pTeam.code;
+                _oTeamHistory.id_employee = _EmpNif;
+                _oTeamHistory.id_team = _TeamCode;
                 //_oTeamHistory.Employee = pEmployee;
                 //_oTeamHistory.Team = pTeam;
                 _oTeamHistory.entranceDay = DateTime.Today;
 
-                database.TeamHistories.Add(_oTeamHistory);
-                _blAddOk = commitChanges();
+                //database.TeamHistories.Add(_oTeamHistory);
+                using (var q = new synupEntities())
+                {
+                    q.TeamHistories.Add(_oTeamHistory);
+                    return commitChanges(q);
+                }
 
             }
 
-            return _blAddOk;
+            return false;
+        }
+
+        /// <summary>
+        /// To-DO // CHECK THAT THE TEAM THAT IS DELETED WONT HAVE ANY FOREIGN KEYS THAT REFERENCE IT
+        /// </summary>
+        /// <param name="team"></param>
+        private static void checkTeamMembers(Team team)
+        {
+            //Shows the employees that are currently in the given team.
+            var query = from th in database.TeamHistories
+                        join emp in database.Employees on th.id_employee equals emp.nif
+                        where th.id_team.Equals(team.code) && th.exitDate == null
+                        select emp;
+
+            foreach (var member in query)
+            {
+                
+            }
         }
     }
 }
