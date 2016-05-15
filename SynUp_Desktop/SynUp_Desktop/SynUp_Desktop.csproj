@@ -65,82 +65,100 @@
     <Compile Include="model\dao\TeamConnection.cs" />
     <Compile Include="model\dao\TeamHistoryConnection.cs" />
     <Compile Include="model\pojo\Employee.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\EmployeeLog.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
-    </Compile>
-    <Compile Include="model\pojo\ModelSynUp.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelSynUp.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="model\pojo\ModelSynUp.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
-    </Compile>
-    <Compile Include="model\pojo\ModelSynUp.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelSynUp.edmx</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\spEmpLogD_Result.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\spEmpLogI_Result.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\spEmpLogU_Result.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\spGetByDate_Result.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\spGetRankingEmployee_Result.cs">
+      <DependentUpon>SynupModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\spGetRankingTeam_Result.cs">
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\spLast_Result.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\spLogin_Result.cs">
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\spTasklogD_Result.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\spTasklogI_Result.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\spTasklogU_Result.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\spTeamLogD_Result.cs">
+      <DependentUpon>SynupModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\spTeamLogI_Result.cs">
+      <DependentUpon>SynupModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\spTeamLogU_Result.cs">
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\spTHisLogD_Result.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\spTHisLogI_Result.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\spTHisLogU_Result.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\SynupModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SynupModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\SynupModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SynupModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\SynupModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SynupModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\Task.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\TaskHistory.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\TaskHistoryLog.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\TaskLog.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\Team.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\TeamHistory.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\TeamHistoryLog.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\TeamLog.cs">
-      <DependentUpon>ModelSynUp.tt</DependentUpon>
+      <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="service\EmployeeService.cs" />
     <Compile Include="service\StatisticsService.cs" />
@@ -240,12 +258,12 @@
     <EmbeddedResource Include="views\frmTeams.resx">
       <DependentUpon>frmTeams.cs</DependentUpon>
     </EmbeddedResource>
-    <EntityDeploy Include="model\pojo\ModelSynUp.edmx">
+    <EntityDeploy Include="model\pojo\SynupModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelSynUp.Designer.cs</LastGenOutput>
+      <LastGenOutput>SynupModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="model\pojo\ModelSynUp.edmx.diagram">
-      <DependentUpon>ModelSynUp.edmx</DependentUpon>
+    <None Include="model\pojo\SynupModel.edmx.diagram">
+      <DependentUpon>SynupModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -266,17 +284,16 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="model\pojo\ModelSynUp.Context.tt">
+    <Content Include="model\pojo\SynupModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelSynUp.edmx</DependentUpon>
-      <LastGenOutput>ModelSynUp.Context.cs</LastGenOutput>
+      <DependentUpon>SynupModel.edmx</DependentUpon>
+      <LastGenOutput>SynupModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="model\pojo\ModelSynUp.tt">
+    <Content Include="model\pojo\SynupModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelSynUp.edmx</DependentUpon>
-      <LastGenOutput>ModelSynUp.cs</LastGenOutput>
+      <DependentUpon>SynupModel.edmx</DependentUpon>
+      <LastGenOutput>SynupModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

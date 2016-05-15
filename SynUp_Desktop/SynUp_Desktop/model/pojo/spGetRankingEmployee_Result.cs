@@ -11,14 +11,10 @@ namespace SynUp_Desktop.model.pojo
 {
     using System;
     
-    public partial class spGetByDate_Result
+    public partial class spGetRankingEmployee_Result
     {
-        public string id_team { get; set; }
-        public string code { get; set; }
+        public string nif { get; set; }
         public string name { get; set; }
-        public System.DateTime priorityDate { get; set; }
-        public string description { get; set; }
-        public string localization { get; set; }
-        public string project { get; set; }
+        public Nullable<int> tasks { get; set; }
     }
 }
