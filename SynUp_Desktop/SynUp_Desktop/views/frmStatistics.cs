@@ -227,6 +227,22 @@ namespace SynUp_Desktop.views
         {
             hideAllComponents();
 
+            init();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_data">Will receive the lists that the datagrid will be filled with.</param>
+        private void fillDataGrid(Object _data)
+        {
+            BindingSource source = new BindingSource();
+            source.DataSource = _data;
+            dgvStadistics.DataSource = source;
+        }
+
+        private void init()
+        {
             BindingSource source = new BindingSource();
             source.DataSource = Controller.TeamService.getAllTeams();
             cmbTeams.DataSource = source;
@@ -247,17 +263,11 @@ namespace SynUp_Desktop.views
             cmbRanking.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbFilter.SelectedIndex = 0;
             cmbFilter.DropDownStyle = ComboBoxStyle.DropDownList;
-        }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="_data">Will receive the lists that the datagrid will be filled with.</param>
-        private void fillDataGrid(Object _data)
-        {
-            BindingSource source = new BindingSource();
-            source.DataSource = _data;
-            dgvStadistics.DataSource = source;
+            string dateFormat = "dddd dd, MMMM yyyy";
+
+            dtpBegin.CustomFormat = dateFormat;
+            dtpEnd.CustomFormat = dateFormat;
         }
     }
 }

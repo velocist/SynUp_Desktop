@@ -28,8 +28,8 @@ namespace SynUp_Desktop.model.pojo
         public string localization { get; set; }
         public string project { get; set; }
     
+        public virtual Team Team { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TaskHistory> TaskHistories { get; set; }
-        public virtual Team Team { get; set; }
     }
 }

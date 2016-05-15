@@ -336,8 +336,8 @@ namespace SynUp_Desktop.views
             if (AuxTask != null)
             {
                 // We recover the data of selected task
-                //this.txtIdTeam.Text = Convert.ToString(this.AuxTask.id_team);
-                this.txtCode.Text = Convert.ToString(this.AuxTask.code);
+                this.cbIdTeams.SelectedIndex = cbIdTeams.FindString(this.AuxTask.id_team);
+                this.txtCode.Text = this.AuxTask.code;
                 this.txtName.Text = this.AuxTask.name;
                 this.txtDescription.Text = this.AuxTask.description;
                 this.txtLocalization.Text = this.AuxTask.localization;
@@ -346,9 +346,6 @@ namespace SynUp_Desktop.views
 
                 this.btnCreateTask.Enabled = false; // We disable the button to create a task
                 this.txtCode.Enabled = false;
-
-                //MessageBox.Show("EH IT IS NOT NULL");
-
             } else
             {
                 this.btnCreateTask.Enabled = true;

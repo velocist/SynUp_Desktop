@@ -103,6 +103,32 @@ namespace SynUp_Desktop.model.pojo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Task>("spGetByDate", mergeOption, beginParameter, endParameter);
         }
     
+        public virtual ObjectResult<spGetRankingEmployee_Result> spGetRankingEmployee(Nullable<System.DateTime> begin, Nullable<System.DateTime> end)
+        {
+            var beginParameter = begin.HasValue ?
+                new ObjectParameter("begin", begin) :
+                new ObjectParameter("begin", typeof(System.DateTime));
+    
+            var endParameter = end.HasValue ?
+                new ObjectParameter("end", end) :
+                new ObjectParameter("end", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetRankingEmployee_Result>("spGetRankingEmployee", beginParameter, endParameter);
+        }
+    
+        public virtual ObjectResult<spGetRankingTeam_Result> spGetRankingTeam(Nullable<System.DateTime> begin, Nullable<System.DateTime> end)
+        {
+            var beginParameter = begin.HasValue ?
+                new ObjectParameter("begin", begin) :
+                new ObjectParameter("begin", typeof(System.DateTime));
+    
+            var endParameter = end.HasValue ?
+                new ObjectParameter("end", end) :
+                new ObjectParameter("end", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetRankingTeam_Result>("spGetRankingTeam", beginParameter, endParameter);
+        }
+    
         public virtual ObjectResult<spLast_Result> spLast(Nullable<int> employeeId)
         {
             var employeeIdParameter = employeeId.HasValue ?
@@ -110,6 +136,19 @@ namespace SynUp_Desktop.model.pojo
                 new ObjectParameter("employeeId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spLast_Result>("spLast", employeeIdParameter);
+        }
+    
+        public virtual ObjectResult<spLogin_Result> spLogin(string username, string password)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spLogin_Result>("spLogin", usernameParameter, passwordParameter);
         }
     
         public virtual ObjectResult<spTasklogD_Result> spTasklogD(string employeeId, Nullable<int> first, Nullable<int> last)
@@ -263,45 +302,6 @@ namespace SynUp_Desktop.model.pojo
                 new ObjectParameter("last", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spTHisLogU_Result>("spTHisLogU", employeeIdParameter, firstParameter, lastParameter);
-        }
-    
-        public virtual ObjectResult<spGetRankingEmployee_Result> spGetRankingEmployee(Nullable<System.DateTime> begin, Nullable<System.DateTime> end)
-        {
-            var beginParameter = begin.HasValue ?
-                new ObjectParameter("begin", begin) :
-                new ObjectParameter("begin", typeof(System.DateTime));
-    
-            var endParameter = end.HasValue ?
-                new ObjectParameter("end", end) :
-                new ObjectParameter("end", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetRankingEmployee_Result>("spGetRankingEmployee", beginParameter, endParameter);
-        }
-    
-        public virtual ObjectResult<spGetRankingTeam_Result> spGetRankingTeam(Nullable<System.DateTime> begin, Nullable<System.DateTime> end)
-        {
-            var beginParameter = begin.HasValue ?
-                new ObjectParameter("begin", begin) :
-                new ObjectParameter("begin", typeof(System.DateTime));
-    
-            var endParameter = end.HasValue ?
-                new ObjectParameter("end", end) :
-                new ObjectParameter("end", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetRankingTeam_Result>("spGetRankingTeam", beginParameter, endParameter);
-        }
-    
-        public virtual ObjectResult<spLogin_Result> spLogin(string username, string password)
-        {
-            var usernameParameter = username != null ?
-                new ObjectParameter("username", username) :
-                new ObjectParameter("username", typeof(string));
-    
-            var passwordParameter = password != null ?
-                new ObjectParameter("password", password) :
-                new ObjectParameter("password", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spLogin_Result>("spLogin", usernameParameter, passwordParameter);
         }
     }
 }

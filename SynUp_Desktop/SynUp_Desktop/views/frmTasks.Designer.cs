@@ -57,7 +57,7 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(515, 418);
+            this.btnBack.Location = new System.Drawing.Point(515, 417);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(75, 23);
             this.btnBack.TabIndex = 3;
@@ -67,7 +67,7 @@
             // 
             // btnManagementTasks
             // 
-            this.btnManagementTasks.Location = new System.Drawing.Point(6, 418);
+            this.btnManagementTasks.Location = new System.Drawing.Point(9, 417);
             this.btnManagementTasks.Name = "btnManagementTasks";
             this.btnManagementTasks.Size = new System.Drawing.Size(86, 23);
             this.btnManagementTasks.TabIndex = 2;
@@ -116,6 +116,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Tasks ";
             this.Activated += new System.EventHandler(this.frmTasks_Activated);
+            this.Load += new System.EventHandler(this.frmTasks_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTasks)).EndInit();
             this.gbContainer.ResumeLayout(false);
             this.gbContainer.PerformLayout();

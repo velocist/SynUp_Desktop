@@ -49,7 +49,7 @@ namespace SynUp_Desktop.views
 
             {
                 int _iIndexSelected = dgvEmployees.SelectedRows[0].Index; // Recover the index of selected row
-                Object _cell = dgvEmployees.Rows[_iIndexSelected].Cells[1].Value;
+                Object _cell = dgvEmployees.Rows[_iIndexSelected].Cells[0].Value;
                 if (_cell != null)
                 {
                     String _strSelectedRowCode = _cell.ToString(); // Recover the code
@@ -71,6 +71,7 @@ namespace SynUp_Desktop.views
         {
             model.pojo.Employee _oSelectedEmployee = null;
             model.pojo.Team _oTeam = null;
+
             if (dgvEmployees.SelectedRows.Count == 1)//If the row selected
             {
                 int _iIndexSelected = dgvEmployees.SelectedRows[0].Index; // Recover the index of selected row
@@ -118,24 +119,25 @@ namespace SynUp_Desktop.views
             //this.dgvEmployees.Columns[7].Visible = false; // TeamsHistory
             //this.dgvEmployees.Columns[8].Visible = false; // TaskHistories
 
-            this.dgvEmployees.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
-            this.dgvEmployees.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+            //this.dgvEmployees.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+            //this.dgvEmployees.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
 
             // DatagridView Common Configuration 
-            this.dgvEmployees.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
-            this.dgvEmployees.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row            
-            this.dgvEmployees.AllowUserToAddRows = false; // Can't add rows
-            this.dgvEmployees.AllowUserToDeleteRows = false; // Can't delete rows
-            this.dgvEmployees.AllowUserToOrderColumns = false; //Can't order columns
-            this.dgvEmployees.AllowUserToResizeRows = false; //Can't resize columns
-            this.dgvEmployees.Cursor = Cursors.Hand; // Cursor hand type            
-            this.dgvEmployees.MultiSelect = false; //Can't multiselect
-            this.dgvEmployees.RowTemplate.ReadOnly = true;
-            this.dgvEmployees.RowHeadersVisible = false; // We hide the rowheader
-            this.dgvEmployees.ClearSelection(); // Clear selection rows
+            dgvEmployees.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
+            dgvEmployees.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row     
+            dgvEmployees.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvEmployees.AllowUserToAddRows = false; // Can't add rows
+            dgvEmployees.AllowUserToDeleteRows = false; // Can't delete rows
+            dgvEmployees.AllowUserToOrderColumns = false; //Can order columns
+            dgvEmployees.AllowUserToResizeRows = false; //Can't resize columns
+            dgvEmployees.Cursor = Cursors.Hand; // Cursor hand type            
+            dgvEmployees.MultiSelect = false; //Can't multiselect
+            dgvEmployees.RowTemplate.ReadOnly = true;
+            dgvEmployees.RowHeadersVisible = false; // We hide the rowheader
+            dgvEmployees.ClearSelection(); // Clear selection rows
 
-            //Form Common Configurations            
-            this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            //Form Common Configurations
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
 
         }
 
@@ -166,10 +168,7 @@ namespace SynUp_Desktop.views
         {
             BindingSource source = new BindingSource();
             source.DataSource = Controller.EmployeeService.getAllEmployees();
-
             this.dgvEmployees.DataSource = source;
-
-            dgvEmployees.Refresh();
         }
 
         /// <summary>
@@ -181,7 +180,7 @@ namespace SynUp_Desktop.views
 
             this.cmbTeamsToAdd.DataSource = Controller.TeamService.getAllTeams();
             this.cmbTeamsToAdd.DisplayMember = "Name";
-            this.cmbTeamsToAdd.ValueMember = "Code";
+            this.cmbTeamsToAdd.ValueMember = "code";
         }
 
         /// <summary>
@@ -189,7 +188,7 @@ namespace SynUp_Desktop.views
         /// </summary>
         private void addToTeam(model.pojo.Employee pEmployee, model.pojo.Team pTeam)
         {
-            model.pojo.TeamHistory _oTeamHistory = new model.pojo.TeamHistory();
+            //model.pojo.TeamHistory _oTeamHistory = new model.pojo.TeamHistory();
             model.pojo.TeamHistory _oTeamHistoryControl = null;
 
             if (pEmployee != null && pTeam != null)
@@ -198,24 +197,25 @@ namespace SynUp_Desktop.views
 
                 if (_oTeamHistoryControl == null)
                 {
-                    _oTeamHistory.id_employee = pEmployee.nif;
-                    _oTeamHistory.id_team = pTeam.code;
-                    _oTeamHistory.entranceDay = DateTime.Today;
+                    //USELESS
+                    //_oTeamHistory.id_employee = pEmployee.nif;
+                    //_oTeamHistory.id_team = pTeam.code;
+                    //_oTeamHistory.entranceDay = DateTime.Today;
 
-                    Boolean _blAddOk = this.Controller.TeamService.addToTeam(pEmployee, pTeam);
+                    Boolean _blAddOk = this.Controller.TeamService.addToTeam(pEmployee.nif, pTeam.code);
 
                     if (_blAddOk)
                     {
-                        MessageBox.Show("The employee has been added to team");
+                        MessageBox.Show("The employee has been added to the team");
                     }
                     else
                     {
-                        MessageBox.Show("The employee hasn't been added to team");
+                        MessageBox.Show("The employee hasn't been added to the team");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("This employee has been already in team");
+                    MessageBox.Show("This employee is already in the team");
                 }
             }
 

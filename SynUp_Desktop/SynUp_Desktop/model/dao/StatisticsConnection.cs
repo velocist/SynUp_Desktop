@@ -22,6 +22,16 @@ namespace SynUp_Desktop.model.dao
             return database.spGetByDate(_dateStartPeriod, _dateFinishPeriod).ToList();
         }
 
+        public static List<pojo.spGetRankingTeam_Result> readRankingTeams(DateTime _dateStartPeriod, DateTime _dateFinishPeriod)
+        {
+            return database.spGetRankingTeam(_dateStartPeriod, _dateFinishPeriod).ToList();
+        }
+
+        public static List<pojo.spGetRankingEmployee_Result> readRankingEmployee(DateTime _dateStartPeriod, DateTime _dateFinishPeriod)
+        {
+            return database.spGetRankingEmployee(_dateStartPeriod, _dateFinishPeriod).ToList();
+        }
+
         public static List<pojo.Task> readTasksByEmployee(String _nif)
         {
             //pojo.Employee empFound = EmployeeConnection.readEmployee(_nif);
@@ -29,7 +39,7 @@ namespace SynUp_Desktop.model.dao
             //Returns all the tasks an employee has had. 
             var query = from record in database.TaskHistories
                         join task in database.Tasks on record.id_task equals task.code
-                        where record.id_employee.Equals(_nif) && /*record.isFinished == 0 ||*/ record.finishDate == null
+                        where record.id_employee.Equals(_nif)
                         select task;
 
             return query.ToList();
@@ -39,15 +49,45 @@ namespace SynUp_Desktop.model.dao
         {
             var query = from record in database.TaskHistories
                         join task in database.Tasks on record.id_task equals task.code
-                        // --> THERE MUST BE ADDED A FIELD 'id_team' in the TaskHistory table to know in which team was an employee when the task was being done.
-                        //where record.id_employee.Equals(_code) && /*record.isFinished == 0 ||*/ record.finishDate == null
+                        where task.id_team.Equals(_code) 
                         select task;
             return query.ToList();
         }
 
-        public static List<pojo.Task> readTaskByState(String state)
+        public static List<pojo.Task> readUnselectedTasks()
         {
-            return null;
+            var query = from task in database.Tasks
+                        join th in database.TaskHistories on task.code equals th.id_task
+                        where th.startDate == null
+                        select task;
+            return query.ToList();
+        }
+
+        public static List<pojo.Task> readOngoingTasks()
+        {
+            var query = from task in database.Tasks
+                        join th in database.TaskHistories on task.code equals th.id_task
+                        where th.startDate != null && th.isFinished != 0
+                        select task;
+            return query.ToList();
+        }
+
+        public static List<pojo.Task> readFinishedTasks()
+        {
+            var query = from task in database.Tasks
+                        join th in database.TaskHistories on task.code equals th.id_task
+                        where th.isFinished == 1
+                        select task;
+            return query.ToList();
+        }
+
+        public static List<pojo.Task> readAbandonnedTasks()
+        {
+            var query = from task in database.Tasks
+                        join th in database.TaskHistories on task.code equals th.id_task
+                        where th.finishDate != null && th.isFinished != 0
+                        select task;
+            return query.ToList();
         }
 
 

@@ -36,7 +36,7 @@ namespace SynUp_Desktop.service
                 localization = localization,
                 project = project
             };
-            
+
 
             if (!string.IsNullOrWhiteSpace(code) && !string.IsNullOrWhiteSpace(name) && priorityDate != null)
             {
@@ -88,7 +88,8 @@ namespace SynUp_Desktop.service
         /// <returns></returns>
         public Task readTask(String pCode)
         {
-            return TaskConnection.readTask(pCode);
+            Task tReturn = TaskConnection.readTask(pCode);
+            return returnWithoutSpaces(tReturn);
         }
 
         /// <summary>
@@ -103,7 +104,12 @@ namespace SynUp_Desktop.service
 
         public List<Task> getAllTasks()
         {
-            return TaskConnection.readAllTasks();
+            List<Task> taskList = TaskConnection.readAllTasks();
+            foreach(Task _t in taskList)
+            {
+                returnWithoutSpaces(_t);
+            }
+            return taskList;
         }
 
         //DELETE - Pablo Ardèvol - Method moved to the statistics service
@@ -111,5 +117,19 @@ namespace SynUp_Desktop.service
         //{
         //    return TaskConnection.readTasksByDate(begin, end);
         //}
+
+        private Task returnWithoutSpaces(Task pTask)
+        {
+            if (pTask != null)
+            {
+                if (pTask.code != null) pTask.code = pTask.code.Trim();
+                if (pTask.name != null) pTask.name = pTask.name.Trim();
+                if (pTask.description != null) pTask.description = pTask.description.Trim();
+                if (pTask.id_team != null) pTask.id_team = pTask.id_team.Trim();
+                if (pTask.localization != null) pTask.localization = pTask.localization.Trim();
+                if (pTask.project != null) pTask.project = pTask.project.Trim();
+            }
+            return pTask;
+        }
     }
 }

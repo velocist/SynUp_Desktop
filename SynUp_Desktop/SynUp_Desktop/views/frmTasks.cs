@@ -47,12 +47,12 @@ namespace SynUp_Desktop.views
             {
                 int _iIndexSelected = dgvTasks.SelectedRows[0].Index; // Recover the index of selected row
                 Object _cell = dgvTasks.Rows[_iIndexSelected].Cells[1].Value; //Modified: Pablo Ardèvol, Cells[2] to Cell[1] due to Database Change 
-                if(_cell != null)
+                if (_cell != null)
                 {
                     String _strSelectedRowCode = (String)_cell;//_cell.ToString(); // Recover the code
                     _oSelectedTask = Controller.TaskService.readTask(_strSelectedRowCode); // We look for the task code
                     this.Controller.TaskMgtView.AuxTask = _oSelectedTask; // We assign the task to form task management
-                }                
+                }
             }
 
             //this.Hide();
@@ -74,33 +74,39 @@ namespace SynUp_Desktop.views
         /// Fills the DataGridView with the values of the database.
         /// </summary>
         /// <author>Pablo Ardèvol</author>
-        private void fillGridView()
+        private void initGridView()
         {
-
-            BindingSource source = new BindingSource();
-            source.DataSource = Controller.TaskService.getAllTasks();
-
-            dgvTasks.DataSource = source;
-
-            // DataGridView Configuration
+            ///DataGridView Configuration
+            fillGrid();
 
             dgvTasks.Columns[0].Visible = false; // We hide id column
             //dgvTasks.Columns["code_team"].Visible = true; // We hide the id_team column
+            dgvTasks.Columns[1].HeaderText = "Code"; // We change the column name
+            dgvTasks.Columns[2].HeaderText = "Name";
+            dgvTasks.Columns[3].HeaderText = "Priority Date";
+            dgvTasks.Columns[4].Visible = false; // HeaderText = "Description";
+            dgvTasks.Columns[5].Visible = false; // HeaderText = "Localization";
+            dgvTasks.Columns[6].HeaderText = "Project";
+            dgvTasks.Columns[7].Visible = false; // HeaderText = "Team";
+            dgvTasks.Columns[8].Visible = false; // HeaderText = "Task Histories";
+            
+            // DatagridView Common Configuration 
 
-            //dgvTasks.Columns[2].HeaderText = "Code"; // We change the column name
-           // dgvTasks.Columns[3].HeaderText = "Name";
-           //dgvTasks.Columns[4].HeaderText = "Priority Date";
-           // dgvTasks.Columns[5].Visible = false; // HeaderText = "Description";
-            //dgvTasks.Columns[6].Visible = false; // HeaderText = "Localization";
-            dgvTasks.Columns[7].HeaderText = "Project";
-            //dgvTasks.Columns[8].Visible = false; // HeaderText = "Task Histories";
-            //dgvTasks.Columns[9].Visible = false;// = "Team";
-
-            dgvTasks.AutoResizeColumns();
+            dgvTasks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
+            dgvTasks.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row     
+            dgvTasks.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvTasks.AllowUserToAddRows = false; // Can't add rows
+            dgvTasks.AllowUserToDeleteRows = false; // Can't delete rows
+            dgvTasks.AllowUserToOrderColumns = false; //Can order columns
+            dgvTasks.AllowUserToResizeRows = false; //Can't resize columns
+            dgvTasks.Cursor = Cursors.Hand; // Cursor hand type            
+            dgvTasks.MultiSelect = false; //Can't multiselect
+            dgvTasks.RowTemplate.ReadOnly = true;
             dgvTasks.RowHeadersVisible = false; // We hide the rowheader
-            dgvTasks.ClearSelection(); // Cleer selection rows
+            dgvTasks.ClearSelection(); // Clear selection rows
 
-            dgvTasks.Refresh();
+            //Form Common Configurations
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
 
         }
 
@@ -110,25 +116,24 @@ namespace SynUp_Desktop.views
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void frmTasks_Activated(object sender, EventArgs e)
+        {            
+            fillGrid();
+            dgvTasks.ClearSelection(); // Clear selection rows.
+            dgvTasks.Refresh(); //Refresh the view.
+        }
+
+        private void frmTasks_Load(object sender, EventArgs e)
+        {
+            initGridView();            
+        }
+
+        private void fillGrid()
         {
             //The grid with all the tasks will load.
-            fillGridView();
-
-            // DatagridView Common Configuration 
-            this.dgvTasks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
-            this.dgvTasks.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row            
-            this.dgvTasks.AllowUserToAddRows = false; // Can't add rows
-            this.dgvTasks.AllowUserToDeleteRows = false; // Can't delete rows
-            this.dgvTasks.AllowUserToOrderColumns = false; //Can't order columns
-            this.dgvTasks.AllowUserToResizeRows = false; //Can't resize columns
-            this.dgvTasks.Cursor = Cursors.Hand; // Cursor hand type            
-            this.dgvTasks.MultiSelect = false; //Can't multiselect
-            this.dgvTasks.RowTemplate.ReadOnly = true;
-            this.dgvTasks.RowHeadersVisible = false; // We hide the rowheader
-            this.dgvTasks.ClearSelection(); // Clear selection rows
-
-            //Form Common Configurations
-            this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            BindingSource source = new BindingSource();
+            source.DataSource = Controller.TaskService.getAllTasks();
+            dgvTasks.DataSource = source;
+            dgvTasks.Refresh();
         }
     }
 }

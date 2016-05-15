@@ -146,7 +146,7 @@
             this.MinimumSize = new System.Drawing.Size(640, 510);
             this.Name = "frmEmployees";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SynUp - Eemployees ";
+            this.Text = "SynUp - Employees ";
             this.Activated += new System.EventHandler(this.frmEmployees_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).EndInit();
             this.gbContainer.ResumeLayout(false);
