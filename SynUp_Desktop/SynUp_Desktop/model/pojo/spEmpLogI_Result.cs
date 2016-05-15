@@ -13,6 +13,7 @@ namespace SynUp_Desktop.model.pojo
     
     public partial class spEmpLogI_Result
     {
+        public int id { get; set; }
         public string name { get; set; }
         public string surname { get; set; }
         public string nif { get; set; }

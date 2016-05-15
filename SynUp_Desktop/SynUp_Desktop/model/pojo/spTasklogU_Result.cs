@@ -13,6 +13,7 @@ namespace SynUp_Desktop.model.pojo
     
     public partial class spTasklogU_Result
     {
+        public int id { get; set; }
         public string id_team { get; set; }
         public string code { get; set; }
         public string description { get; set; }
