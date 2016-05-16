@@ -103,11 +103,16 @@ namespace SynUp_Desktop.service
             return EmployeeConnection.updateEmployee(pEmployee);
         }
 
+        /// <summary>
+        /// Method that returns the strings without spaces
+        /// </summary>
+        /// <param name="pEmployee">The object Employee we want to remove the spaces</param>
+        /// <returns>Returns de object Employee</returns>
         private Employee returnWithoutSpaces(Employee pEmployee)
         {
             if (pEmployee != null)
             {
-                if(pEmployee.nif!=null)pEmployee.nif = pEmployee.nif.Trim();
+                if (pEmployee.nif != null) pEmployee.nif = pEmployee.nif.Trim();
                 if (pEmployee.name != null) pEmployee.name = pEmployee.name.Trim();
                 if (pEmployee.surname != null) pEmployee.surname = pEmployee.surname.Trim();
                 if (pEmployee.phone != null) pEmployee.phone = pEmployee.phone.Trim();
