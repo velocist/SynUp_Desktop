@@ -13,7 +13,7 @@ namespace SynUp_Desktop.model.pojo
     
     public partial class spTHisLogD_Result
     {
-        public int id_taskHistory { get; set; }
+        public int id { get; set; }
         public string id_employee { get; set; }
         public string id_task { get; set; }
         public Nullable<int> startDate { get; set; }

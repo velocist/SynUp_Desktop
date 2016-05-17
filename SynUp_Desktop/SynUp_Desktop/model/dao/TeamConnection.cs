@@ -1,6 +1,7 @@
 ﻿using SynUp_Desktop.model.pojo;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,7 @@ namespace SynUp_Desktop.model.dao
             }
             catch (Exception e)
             {
+                Debug.WriteLine(e);
                 return false;
             }
         }
@@ -37,6 +39,7 @@ namespace SynUp_Desktop.model.dao
             }
             catch (Exception e)
             {
+                Debug.WriteLine(e);
                 return false;
             }
         }

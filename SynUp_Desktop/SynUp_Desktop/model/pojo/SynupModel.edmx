@@ -9,42 +9,42 @@
           <Key>
             <PropertyRef Name="nif" />
           </Key>
-          <Property Name="nif" Type="nchar" MaxLength="9" Nullable="false" />
-          <Property Name="name" Type="nchar" MaxLength="20" />
-          <Property Name="surname" Type="nchar" MaxLength="40" />
-          <Property Name="phone" Type="nchar" MaxLength="20" />
-          <Property Name="email" Type="nchar" MaxLength="30" />
-          <Property Name="adress" Type="nchar" MaxLength="100" />
-          <Property Name="password" Type="nchar" MaxLength="50" />
-          <Property Name="username" Type="nchar" MaxLength="50" />
+          <Property Name="nif" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="20" />
+          <Property Name="surname" Type="varchar" MaxLength="40" />
+          <Property Name="phone" Type="varchar" MaxLength="20" />
+          <Property Name="email" Type="varchar" MaxLength="30" />
+          <Property Name="adress" Type="varchar" MaxLength="100" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+          <Property Name="username" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="EmployeeLog">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id_employee" Type="nchar" MaxLength="9" Nullable="false" />
-          <Property Name="operation" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="id_employee" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="operation" Type="varchar" MaxLength="1" Nullable="false" />
           <Property Name="when" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Task">
           <Key>
             <PropertyRef Name="code" />
           </Key>
-          <Property Name="id_team" Type="nchar" MaxLength="10" />
-          <Property Name="code" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="name" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="id_team" Type="varchar" MaxLength="10" />
+          <Property Name="code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="priorityDate" Type="date" Nullable="false" />
           <Property Name="description" Type="text" />
-          <Property Name="localization" Type="nchar" MaxLength="20" />
-          <Property Name="project" Type="nchar" MaxLength="20" />
+          <Property Name="localization" Type="varchar" MaxLength="20" />
+          <Property Name="project" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="TaskHistory">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id_employee" Type="nchar" MaxLength="9" Nullable="false" />
-          <Property Name="id_task" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="id_employee" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="id_task" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="startDate" Type="date" />
           <Property Name="finishDate" Type="date" />
           <Property Name="comment" Type="text" />
@@ -56,9 +56,9 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id_task" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="id_employee" Type="nchar" MaxLength="9" Nullable="false" />
-          <Property Name="operation" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="id_task" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="id_employee" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="operation" Type="varchar" MaxLength="1" Nullable="false" />
           <Property Name="when" Type="datetime" Nullable="false" />
           <Property Name="id_taskHistory" Type="int" Nullable="false" />
         </EntityType>
@@ -67,24 +67,24 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id_task" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="operation" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="id_task" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="operation" Type="varchar" MaxLength="1" Nullable="false" />
           <Property Name="when" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Team">
           <Key>
             <PropertyRef Name="code" />
           </Key>
-          <Property Name="code" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="name" Type="nchar" MaxLength="20" />
+          <Property Name="code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="TeamHistory">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id_employee" Type="nchar" MaxLength="9" Nullable="false" />
-          <Property Name="id_team" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="id_employee" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="id_team" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="entranceDay" Type="date" Nullable="false" />
           <Property Name="exitDate" Type="date" />
         </EntityType>
@@ -99,9 +99,9 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
             <PropertyRef Name="when" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id_team" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="id_employee" Type="nchar" MaxLength="9" Nullable="false" />
-          <Property Name="operation" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="id_team" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="id_employee" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="operation" Type="varchar" MaxLength="1" Nullable="false" />
           <Property Name="when" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="TeamLog">
@@ -109,8 +109,8 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id_team" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="operation" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="id_team" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="operation" Type="varchar" MaxLength="1" Nullable="false" />
           <Property Name="when" Type="datetime" Nullable="false" />
         </EntityType>
         <Association Name="FK_Task_Team">
@@ -197,9 +197,7 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
           <Parameter Name="begin" Type="date" Mode="In" />
           <Parameter Name="end" Type="date" Mode="In" />
         </Function>
-        <Function Name="spLast" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="employeeId" Type="int" Mode="In" />
-        </Function>
+        <Function Name="spLast" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="spLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="username" Type="nchar" Mode="In" />
           <Parameter Name="password" Type="nchar" Mode="In" />
@@ -298,14 +296,14 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
           <Key>
             <PropertyRef Name="nif" />
           </Key>
-          <Property Name="nif" Type="String" MaxLength="9" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="surname" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
-          <Property Name="phone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
-          <Property Name="adress" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-          <Property Name="password" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="username" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="nif" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="surname" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="adress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TaskHistories" Relationship="Self.FK_TaskHistory_Employee" FromRole="Employee" ToRole="TaskHistory" />
           <NavigationProperty Name="TeamHistories" Relationship="Self.FK_TeamHistory_Employee" FromRole="Employee" ToRole="TeamHistory" />
         </EntityType>
@@ -314,21 +312,21 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_employee" Type="String" MaxLength="9" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="operation" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="id_employee" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="operation" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="when" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="Task">
           <Key>
             <PropertyRef Name="code" />
           </Key>
-          <Property Name="id_team" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="id_team" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="priorityDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="localization" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="project" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="localization" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="project" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Team" Relationship="Self.FK_Task_Team" FromRole="Task" ToRole="Team" />
           <NavigationProperty Name="TaskHistories" Relationship="Self.FK_TaskHistory_Task" FromRole="Task" ToRole="TaskHistory" />
         </EntityType>
@@ -336,8 +334,8 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id_employee" Type="String" MaxLength="9" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="id_task" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="id_employee" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_task" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="startDate" Type="DateTime" Precision="0" />
           <Property Name="finishDate" Type="DateTime" Precision="0" />
           <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -351,9 +349,9 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_task" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="id_employee" Type="String" MaxLength="9" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="operation" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="id_task" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_employee" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="operation" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="when" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="id_taskHistory" Type="Int32" Nullable="false" />
         </EntityType>
@@ -362,16 +360,16 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_task" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="operation" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="id_task" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="operation" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="when" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="Team">
           <Key>
             <PropertyRef Name="code" />
           </Key>
-          <Property Name="code" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Tasks" Relationship="Self.FK_Task_Team" FromRole="Team" ToRole="Task" />
           <NavigationProperty Name="TeamHistories" Relationship="Self.FK_TeamHistory_Team" FromRole="Team" ToRole="TeamHistory" />
         </EntityType>
@@ -380,8 +378,8 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_employee" Type="String" MaxLength="9" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="id_team" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="id_employee" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_team" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="entranceDay" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="exitDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_TeamHistory_Employee" FromRole="TeamHistory" ToRole="Employee" />
@@ -392,8 +390,8 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_team" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="operation" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="id_team" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="operation" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="when" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="TeamHistoryLog">
@@ -405,9 +403,9 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
             <PropertyRef Name="when" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_team" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="id_employee" Type="String" MaxLength="9" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="operation" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="id_team" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_employee" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="operation" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="when" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <Association Name="FK_TaskHistory_Employee">
@@ -525,9 +523,7 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
             <Parameter Name="begin" Mode="In" Type="DateTime" />
             <Parameter Name="end" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="spLast" ReturnType="Collection(synupModel.spLast_Result)">
-            <Parameter Name="employeeId" Mode="In" Type="Int32" />
-          </FunctionImport>
+          <FunctionImport Name="spLast" ReturnType="Collection(synupModel.spLast_Result)" />
           <FunctionImport Name="spLogin" ReturnType="Collection(synupModel.spLogin_Result)">
             <Parameter Name="username" Mode="In" Type="String" />
             <Parameter Name="password" Mode="In" Type="String" />
@@ -671,7 +667,7 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
           <Property Type="String" Name="project" Nullable="true" MaxLength="20" />
         </ComplexType>
         <ComplexType Name="spTeamLogD_Result">
-          <Property Type="String" Name="id_team" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="code" Nullable="false" MaxLength="10" />
           <Property Type="Int32" Name="name" Nullable="true" />
         </ComplexType>
         <ComplexType Name="spTeamLogI_Result">
@@ -683,8 +679,8 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
           <Property Type="String" Name="name" Nullable="true" MaxLength="20" />
         </ComplexType>
         <ComplexType Name="spTHisLogD_Result">
-          <Property Type="Int32" Name="id_taskHistory" Nullable="false" />
-          <Property Type="String" Name="id_employee" Nullable="false" MaxLength="9" />
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="id_employee" Nullable="false" MaxLength="10" />
           <Property Type="String" Name="id_task" Nullable="false" MaxLength="10" />
           <Property Type="Int32" Name="startDate" Nullable="true" />
           <Property Type="Int32" Name="finishDate" Nullable="true" />
@@ -955,7 +951,7 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
           <FunctionImportMapping FunctionImportName="spTeamLogD" FunctionName="synupModel.Store.spTeamLogD">
             <ResultMapping>
               <ComplexTypeMapping TypeName="synupModel.spTeamLogD_Result">
-                <ScalarProperty Name="id_team" ColumnName="id_team" />
+                <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="name" ColumnName="name" />
               </ComplexTypeMapping>
             </ResultMapping>
@@ -979,7 +975,7 @@ warning 6002: The table/view 'synup.dbo.TeamHistoryLog' does not have a primary 
           <FunctionImportMapping FunctionImportName="spTHisLogD" FunctionName="synupModel.Store.spTHisLogD">
             <ResultMapping>
               <ComplexTypeMapping TypeName="synupModel.spTHisLogD_Result">
-                <ScalarProperty Name="id_taskHistory" ColumnName="id_taskHistory" />
+                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="id_employee" ColumnName="id_employee" />
                 <ScalarProperty Name="id_task" ColumnName="id_task" />
                 <ScalarProperty Name="startDate" ColumnName="startDate" />

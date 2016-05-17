@@ -129,13 +129,9 @@ namespace SynUp_Desktop.model.pojo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetRankingTeam_Result>("spGetRankingTeam", beginParameter, endParameter);
         }
     
-        public virtual ObjectResult<spLast_Result> spLast(Nullable<int> employeeId)
+        public virtual ObjectResult<spLast_Result> spLast()
         {
-            var employeeIdParameter = employeeId.HasValue ?
-                new ObjectParameter("employeeId", employeeId) :
-                new ObjectParameter("employeeId", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spLast_Result>("spLast", employeeIdParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spLast_Result>("spLast");
         }
     
         public virtual ObjectResult<spLogin_Result> spLogin(string username, string password)
