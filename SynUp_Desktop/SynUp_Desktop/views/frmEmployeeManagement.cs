@@ -55,7 +55,9 @@ namespace SynUp_Desktop.views
 
             Boolean _blCreateOk = this.Controller.EmployeeService.createEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress);
 
-            if (_blCreateOk)
+            utilities.clMessageBox _msgBox = new utilities.clMessageBox("create", "employee", _blCreateOk, this);
+            
+            /*if (_blCreateOk)
             {
                 MessageBox.Show("The employee was created succesfully!");
                 this.btnBack_Click(sender, e);
@@ -63,7 +65,7 @@ namespace SynUp_Desktop.views
             else
             {
                 MessageBox.Show("The employee wasn't created succesfully!");
-            }
+            }*/
         }
 
         /// <summary>
@@ -265,6 +267,8 @@ namespace SynUp_Desktop.views
         }
 
 
+
+
         /* DELETE: Cambio por el evento Activated
        /// <summary>
        /// Event that runs when the form is loaded
@@ -305,4 +309,5 @@ namespace SynUp_Desktop.views
        */
 
     }
+    
 }
