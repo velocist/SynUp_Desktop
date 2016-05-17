@@ -76,8 +76,8 @@ namespace SynUp_Desktop.views
 
         private void btnUpdateTeam_Click(object sender, EventArgs e)
         {
-            String _strName = txtName.Text;
-            Boolean _blUpdateOk = this.Controller.TeamService.updateTeam(;
+            /*String _strName = txtName.Text;
+            Boolean _blUpdateOk = this.Controller.TeamService.updateTeam();
 
             if (_blUpdateOk)
             {
@@ -87,7 +87,7 @@ namespace SynUp_Desktop.views
             else
             {
                 MessageBox.Show("The employee wasn't updated succesfully!");
-            }
+            }*/
         }
 
         #endregion
