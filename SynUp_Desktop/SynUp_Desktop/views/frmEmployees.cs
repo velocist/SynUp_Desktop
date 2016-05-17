@@ -122,31 +122,16 @@ namespace SynUp_Desktop.views
             //this.dgvEmployees.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
             //this.dgvEmployees.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
 
-            // DatagridView Common Configuration 
-            dgvEmployees.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
-            dgvEmployees.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row     
-            dgvEmployees.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvEmployees.AllowUserToAddRows = false; // Can't add rows
-            dgvEmployees.AllowUserToDeleteRows = false; // Can't delete rows
-            dgvEmployees.AllowUserToOrderColumns = false; //Can order columns
-            dgvEmployees.AllowUserToResizeRows = false; //Can't resize columns
-            dgvEmployees.Cursor = Cursors.Hand; // Cursor hand type            
-            dgvEmployees.MultiSelect = false; //Can't multiselect
-            dgvEmployees.RowTemplate.ReadOnly = true;
-            dgvEmployees.RowHeadersVisible = false; // We hide the rowheader
-            dgvEmployees.ClearSelection(); // Clear selection rows
-
-            //Form Common Configurations
-            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            this.dgvConfiguration();
 
         }
-
+                
         /// <summary>
-        /// 
+        /// Event that runs when the row state change
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvEmployees_RowEnter(object sender, DataGridViewCellEventArgs e)
+        private void dgvEmployees_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
         {
             if (dgvEmployees.SelectedRows.Count == 1)
             {
@@ -158,9 +143,8 @@ namespace SynUp_Desktop.views
                 btnAddToTeam.Enabled = false;
                 cmbTeamsToAdd.Enabled = false;
             }
-
         }
-
+        
         /// <summary>
         /// Fills the DataGridView with the values of the database.
         /// </summary>
@@ -218,11 +202,51 @@ namespace SynUp_Desktop.views
                     MessageBox.Show("This employee is already in the team");
                 }
             }
+        }
+        
+        /// <summary>
+        /// Configurates dataGridView
+        /// </summary>
+        private void dgvConfiguration()
+        {
+            // DatagridView Common Configuration 
+            dgvEmployees.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
+            dgvEmployees.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row     
+            dgvEmployees.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvEmployees.AllowUserToAddRows = false; // Can't add rows
+            dgvEmployees.AllowUserToDeleteRows = false; // Can't delete rows
+            dgvEmployees.AllowUserToOrderColumns = false; //Can order columns
+            dgvEmployees.AllowUserToResizeRows = false; //Can't resize columns
+            dgvEmployees.Cursor = Cursors.Hand; // Cursor hand type            
+            dgvEmployees.MultiSelect = false; //Can't multiselect
+            dgvEmployees.RowTemplate.ReadOnly = true;
+            dgvEmployees.RowHeadersVisible = false; // We hide the rowheader
+            dgvEmployees.ClearSelection(); // Clear selection rows
 
-
-
+            //Form Common Configurations
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+        }
+        
+        /* DELETE: Cambio evento por RowsStateChange. 17/05/2016-1131
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dgvEmployees_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvEmployees.SelectedRows.Count == 1)
+            {
+                btnAddToTeam.Enabled = true;
+                cmbTeamsToAdd.Enabled = true;
+            }
+            else
+            {
+                btnAddToTeam.Enabled = false;
+                cmbTeamsToAdd.Enabled = false;
+            }
 
         }
-
+        */
     }
 }

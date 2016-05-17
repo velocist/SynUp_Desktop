@@ -129,15 +129,19 @@ namespace SynUp_Desktop.views
                 //The grid with all the employees on team will load.
                 this.fillDataGrid();
                 this.fillComboFilterEmployees();
+                this.btnDeleteTeam.Enabled = true;
+                this.btnUpdateTeam.Enabled = true;
             }
             else
             {
                 this.btnCreateTeam.Enabled = true;
                 this.txtCode.Enabled = true;
+                this.btnDeleteTeam.Enabled = false;
+                this.btnUpdateTeam.Enabled = false;
             }
 
-            this.btnAddToTeam.Enabled = false;
-            this.btnDeleteToTeam.Enabled = false;
+            //this.btnAddToTeam.Enabled = false;
+            //this.btnDeleteToTeam.Enabled = false;
             this.dgvConfiguration();
 
         }
@@ -149,7 +153,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void dgvEmployeesOnTeam_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
         {
-
+            
             if (this.dgvEmployeesOnTeam.SelectedRows.Count == 1)
             {
                 int _iIndexSelected = this.dgvEmployeesOnTeam.SelectedRows[0].Index;
@@ -191,6 +195,9 @@ namespace SynUp_Desktop.views
                 this.btnCreateTeam.Enabled = true;
                 this.AuxTeam = null;
                 if (txtCode.Enabled == false) txtCode.Enabled = true;
+                this.btnDeleteTeam.Enabled = false;
+                this.btnUpdateTeam.Enabled = false;
+
             }
         }
 
@@ -247,13 +254,14 @@ namespace SynUp_Desktop.views
         /// </summary>
         public void fillComboFilterEmployees()
         {
+            this.cmbFilterEmployees.Items.Clear();
             this.cmbFilterEmployees.Items.Add("Current");
             this.cmbFilterEmployees.Items.Add("Past");
             this.cmbFilterEmployees.Items.Add("All");
 
             this.cmbFilterEmployees.SelectedIndex = 0;
         }
-
+        
     }
 }
 

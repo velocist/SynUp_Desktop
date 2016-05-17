@@ -10,15 +10,15 @@ namespace SynUp_Desktop.service
     public class EmployeeService
     {
         /// <summary>
-        /// 
+        /// Method that creates a employee given it's atributes
         /// </summary>
-        /// <param name="nif"></param>
-        /// <param name="name"></param>
-        /// <param name="surname"></param>
-        /// <param name="phone"></param>
-        /// <param name="email"></param>
-        /// <param name="adress"></param>
-        /// <returns></returns>
+        /// <param name="nif">Employee nif</param>
+        /// <param name="name">Employee name</param>
+        /// <param name="surname">Employee surname</param>
+        /// <param name="phone">Employee phone</param>
+        /// <param name="email">Employee email</param>
+        /// <param name="adress">Employee adress</param>
+        /// <returns>Whether if the employee has been correctly created or not</returns>
         public bool createEmployee(String pNif, String pName, String pSurname, String pPhone, String pEmail, String pAdress)
         {
             Employee newEmployee = new Employee

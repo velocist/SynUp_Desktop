@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblFilterEmployee = new System.Windows.Forms.Label();
+            this.cmbFilterEmployees = new System.Windows.Forms.ComboBox();
             this.btnDeleteToTeam = new System.Windows.Forms.Button();
             this.btnAddToTeam = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,8 +44,6 @@
             this.btnUpdateTeam = new System.Windows.Forms.Button();
             this.btnCreateTeam = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
-            this.cmbFilterEmployees = new System.Windows.Forms.ComboBox();
-            this.lblFilterEmployee = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployeesOnTeam)).BeginInit();
             this.SuspendLayout();
@@ -66,6 +66,23 @@
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Team";
+            // 
+            // lblFilterEmployee
+            // 
+            this.lblFilterEmployee.AutoSize = true;
+            this.lblFilterEmployee.Location = new System.Drawing.Point(7, 335);
+            this.lblFilterEmployee.Name = "lblFilterEmployee";
+            this.lblFilterEmployee.Size = new System.Drawing.Size(82, 13);
+            this.lblFilterEmployee.TabIndex = 8;
+            this.lblFilterEmployee.Text = "Filter employees";
+            // 
+            // cmbFilterEmployees
+            // 
+            this.cmbFilterEmployees.FormattingEnabled = true;
+            this.cmbFilterEmployees.Location = new System.Drawing.Point(95, 332);
+            this.cmbFilterEmployees.Name = "cmbFilterEmployees";
+            this.cmbFilterEmployees.Size = new System.Drawing.Size(121, 21);
+            this.cmbFilterEmployees.TabIndex = 7;
             // 
             // btnDeleteToTeam
             // 
@@ -186,23 +203,6 @@
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
-            // 
-            // cmbFilterEmployees
-            // 
-            this.cmbFilterEmployees.FormattingEnabled = true;
-            this.cmbFilterEmployees.Location = new System.Drawing.Point(95, 332);
-            this.cmbFilterEmployees.Name = "cmbFilterEmployees";
-            this.cmbFilterEmployees.Size = new System.Drawing.Size(121, 21);
-            this.cmbFilterEmployees.TabIndex = 7;
-            // 
-            // lblFilterEmployee
-            // 
-            this.lblFilterEmployee.AutoSize = true;
-            this.lblFilterEmployee.Location = new System.Drawing.Point(7, 335);
-            this.lblFilterEmployee.Name = "lblFilterEmployee";
-            this.lblFilterEmployee.Size = new System.Drawing.Size(82, 13);
-            this.lblFilterEmployee.TabIndex = 8;
-            this.lblFilterEmployee.Text = "Filter employees";
             // 
             // frmTeamManagement
             // 

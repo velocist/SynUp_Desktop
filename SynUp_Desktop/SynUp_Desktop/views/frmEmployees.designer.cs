@@ -51,8 +51,8 @@
             this.dgvEmployees.Name = "dgvEmployees";
             this.dgvEmployees.RowTemplate.ReadOnly = true;
             this.dgvEmployees.Size = new System.Drawing.Size(787, 360);
-            this.dgvEmployees.TabIndex = 0;
-            this.dgvEmployees.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmployees_RowEnter);
+            this.dgvEmployees.TabIndex = 0;            
+            this.dgvEmployees.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dgvEmployees_RowStateChanged);
             // 
             // btnManagementEmployee
             // 
