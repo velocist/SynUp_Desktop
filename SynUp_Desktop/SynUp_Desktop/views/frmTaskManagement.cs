@@ -249,18 +249,21 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void txtCode_TextChanged(object sender, EventArgs e)
         {
-            String _strIdCode = txtCode.Text;
-            model.pojo.Task foundTask = Controller.TaskService.readTask(_strIdCode); // We look for if the task already exists
+            if (AuxTask == null)
+            {
+                String _strIdCode = txtCode.Text;
+                model.pojo.Task foundTask = Controller.TaskService.readTask(_strIdCode); // We look for if the task already exists
 
-            if (foundTask != null || txtCode.Text.Equals("")) // If the task exists, we show a message
-            {
-                lblCode.ForeColor = Color.Red;
-                lblCode.Text = "Code*";
-            }
-            else
-            {
-                lblCode.Text = "Code";
-                lblCode.ForeColor = Color.Black;
+                if (txtCode.Text.Equals("") || foundTask != null/* && AuxTask == null*/) // If the task exists, we show a message
+                {
+                    lblCode.ForeColor = Color.Red;
+                    lblCode.Text = "Code*";
+                }
+                else
+                {
+                    lblCode.Text = "Code";
+                    lblCode.ForeColor = Color.Black;
+                }
             }
         }
 
@@ -346,7 +349,8 @@ namespace SynUp_Desktop.views
 
                 this.btnCreateTask.Enabled = false; // We disable the button to create a task
                 this.txtCode.Enabled = false;
-            } else
+            }
+            else
             {
                 this.btnCreateTask.Enabled = true;
                 this.txtCode.Enabled = true;
@@ -383,7 +387,7 @@ namespace SynUp_Desktop.views
         private void clearValues()
         {
             //txtIdTeam.Text = "";
-            
+
             //cbIdTeams.SelectedIndex = 0;
             txtCode.Text = "";
             txtProject.Text = "";

@@ -86,8 +86,7 @@ namespace SynUp_Desktop.model.dao
 
                 if (foundTask != null) //If the task has been found - meaning that it exists:
                 {
-                    var entry = context.Entry(foundTask);
-                    if (entry.State == System.Data.Entity.EntityState.Detached) context.Tasks.Attach(foundTask);
+                    tryAttach(context, foundTask);
 
                     context.Tasks.Remove(foundTask);
                     if (commitChanges(context)) return foundTask;
@@ -98,6 +97,12 @@ namespace SynUp_Desktop.model.dao
             return null;
         }
 
+        private static void tryAttach(synupEntities _context, pojo.Task _task)
+        {
+            var entry = _context.Entry(_task);
+            if (entry.State == System.Data.Entity.EntityState.Detached) _context.Tasks.Attach(_task);
+        }
+
         /// <summary>
         /// Updates a given task with the new parameters of it.
         /// </summary>
@@ -105,12 +110,14 @@ namespace SynUp_Desktop.model.dao
         /// <returns>Returns a boolean whether the task has been updated succesfully or not.</returns>
         public static bool updateTask(pojo.Task t)
         {
-            pojo.Task modifiedTask = readTask(t.code);
-
-            if (modifiedTask != null)
+            using (var context = new synupEntities())
             {
-                using (var context = new synupEntities())
+                pojo.Task modifiedTask = readTask(t.code, context);
+
+                if (modifiedTask != null)
                 {
+                    tryAttach(context, modifiedTask);
+
                     modifiedTask.code = t.code;
                     modifiedTask.description = t.description;
                     modifiedTask.id_team = t.id_team;
