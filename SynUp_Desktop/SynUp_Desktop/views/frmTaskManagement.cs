@@ -75,16 +75,22 @@ namespace SynUp_Desktop.views
             String _strLocalization = txtLocalization.Text;
             DateTime _dtPriorityDate = mcalPriorityDate.SelectionStart.Date;
 
-            Boolean _blUpdateOk = Controller.TaskService.updateTask(_strCode, _strName, _dtPriorityDate, _strDescription, _strLocalization, _strProject, _strIdTeam);
+            Boolean _blUpdateOk = false;
 
-            if (_blUpdateOk)
+            if (checkCorrectValues())
             {
-                MessageBox.Show("The task was updated succesfully!");
-                this.btnBack_Click(sender, e);
-            }
-            else
-            {
-                MessageBox.Show("The task wasn't updated.");
+                _blUpdateOk = Controller.TaskService.updateTask(_strCode, _strName, _dtPriorityDate,
+                                                                _strDescription, _strLocalization,
+                                                                _strProject, _strIdTeam);
+                if (_blUpdateOk)
+                {
+                    MessageBox.Show("The task was updated succesfully!");
+                    this.btnBack_Click(sender, e);
+                }
+                else
+                {
+                    MessageBox.Show("The task wasn't updated.");
+                }
             }
         }
 
@@ -104,17 +110,22 @@ namespace SynUp_Desktop.views
             String _strLocalization = txtLocalization.Text;
             DateTime _dtPriorityDate = mcalPriorityDate.SelectionStart.Date;
 
-            Boolean createOk = Controller.TaskService.createTask(_strCode, _strName, _dtPriorityDate, _strDescription, _strLocalization, _strProject, _strIdTeam);
-            //MessageBox.Show(_strIdTeam);
+            Boolean createOk = false;
 
-            if (createOk)
+            if (checkCorrectValues())
             {
-                MessageBox.Show("The task was created succesfully!");
-                this.btnBack_Click(sender, e);
-            }
-            else
-            {
-                MessageBox.Show("The task wasn't created!");
+                createOk = Controller.TaskService.createTask(_strCode, _strName, _dtPriorityDate, _strDescription,
+                                                             _strLocalization, _strProject, _strIdTeam);
+
+                if (createOk)
+                {
+                    MessageBox.Show("The task was created succesfully!");
+                    this.btnBack_Click(sender, e);
+                }
+                else
+                {
+                    MessageBox.Show("The task wasn't created!");
+                }
             }
 
         }
@@ -254,7 +265,7 @@ namespace SynUp_Desktop.views
                 String _strIdCode = txtCode.Text;
                 model.pojo.Task foundTask = Controller.TaskService.readTask(_strIdCode); // We look for if the task already exists
 
-                if (txtCode.Text.Equals("") || foundTask != null/* && AuxTask == null*/) // If the task exists, we show a message
+                if (txtCode.Text.Equals("") || foundTask != null) // If the task exists, we show a message
                 {
                     lblCode.ForeColor = Color.Red;
                     lblCode.Text = "Code*";
@@ -330,9 +341,8 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void frmTaskManagement_Load(object sender, EventArgs e)
         {
-            BindingSource source = new BindingSource();
-            source.DataSource = Controller.TeamService.getAllTeams();
-            cbIdTeams.DataSource = source;
+            
+            cbIdTeams.DataSource = Controller.TeamService.getAllTeams();
             cbIdTeams.DisplayMember = "Name";
             cbIdTeams.ValueMember = "Code";
 
@@ -349,6 +359,8 @@ namespace SynUp_Desktop.views
 
                 this.btnCreateTask.Enabled = false; // We disable the button to create a task
                 this.txtCode.Enabled = false;
+                lblCode.ForeColor = Color.Black;
+                lblCode.Text = "Code";
             }
             else
             {
@@ -396,6 +408,23 @@ namespace SynUp_Desktop.views
             txtLocalization.Text = "";
             mcalPriorityDate.SelectionStart = DateTime.Today;
             mcalPriorityDate.SelectionEnd = DateTime.Today;
+        }
+
+        /// <summary>
+        /// Checks whether the values are correct or not depending of the validations performed.
+        /// </summary>
+        /// <returns></returns>
+        private bool checkCorrectValues()
+        {
+            bool _correct = false;
+            if (lblCode.ForeColor != Color.Red && lblName.ForeColor != Color.Red/* && lblPriorityDate.ForeColor != Color.Red*/)
+            {
+                if (AuxTask.priorityDate < DateTime.Today) _correct = true;
+            }
+
+            if (_correct == false) MessageBox.Show("Incorrect fields. Check them before commiting the changes.");
+
+            return _correct;
         }
 
     }

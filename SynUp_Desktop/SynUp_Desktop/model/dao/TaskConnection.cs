@@ -17,7 +17,7 @@ namespace SynUp_Desktop.model.dao
     ///<Date>04/05/2016_1713</Date>
     public static class TaskConnection
     {
-        private static synupEntities database = new synupEntities();
+        
 
         /// <summary>
         /// Saves the changes done over the database.
@@ -27,7 +27,7 @@ namespace SynUp_Desktop.model.dao
         {
             try
             {
-                database.SaveChanges();
+                //database.SaveChanges();
                 return true;
             }
             catch (Exception e)
@@ -116,9 +116,8 @@ namespace SynUp_Desktop.model.dao
 
                 if (modifiedTask != null)
                 {
-                    tryAttach(context, modifiedTask);
-
-                    modifiedTask.code = t.code;
+                    //tryAttach(context, modifiedTask);
+                    //modifiedTask.code = t.code;
                     modifiedTask.description = t.description;
                     modifiedTask.id_team = t.id_team;
                     modifiedTask.localization = t.localization;
@@ -140,7 +139,7 @@ namespace SynUp_Desktop.model.dao
         /// <returns>If the code is already on the database it will return the Task, otherwise it will return a null.</returns>
         public static pojo.Task readTask(String code)
         {
-            var query = from task in database.Tasks
+            var query = from task in new synupEntities().Tasks
                         where task.code == code
                         select task;
 
@@ -162,7 +161,8 @@ namespace SynUp_Desktop.model.dao
         /// <returns></returns>
         public static List<pojo.Task> readAllTasks()
         {
-            return (from task in database.Tasks select task).ToList();
+
+            return (from task in new synupEntities().Tasks select task).ToList();
         }
 
         //DELETE - Pablo Ardèvol 11/5/16 - Method moved to the Statistics connection object.
