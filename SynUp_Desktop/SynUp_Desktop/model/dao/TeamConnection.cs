@@ -89,7 +89,7 @@ namespace SynUp_Desktop.model.dao
 
             using (var context = new synupEntities())
             {
-                _oTeam = pTeam;
+                _oTeam.name = pTeam.name;                
                 return commitChanges();
             }
         }
@@ -107,6 +107,8 @@ namespace SynUp_Desktop.model.dao
             {
                 using (var context = new synupEntities())
                 {
+                    tryAttach(context, _oTeam);
+
                     context.Teams.Remove(_oTeam); //Will be deleted.
                     if (commitChanges(context)) return _oTeam; //If the changes are commited succesfully it will return the deleted Team.
                     else return null;
@@ -161,6 +163,17 @@ namespace SynUp_Desktop.model.dao
             {
 
             }
+        }
+
+        /// <summary>
+        /// Attachs teams
+        /// </summary>
+        /// <param name="pContext"></param>
+        /// <param name="pTeam">The object which were attachs</param>
+        private static void tryAttach(synupEntities pContext, pojo.Team pTeam)
+        {
+            var entry = pContext.Entry(pTeam);
+            if (entry.State == System.Data.Entity.EntityState.Detached) pContext.Teams.Attach(pTeam);
         }
     }
 }
