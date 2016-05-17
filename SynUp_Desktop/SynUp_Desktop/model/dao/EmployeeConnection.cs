@@ -59,12 +59,12 @@ namespace SynUp_Desktop.model.dao
 
             if (_oEmployee == null)
             {
-                using(var context = new synupEntities())
+                using (var context = new synupEntities())
                 {
                     context.Employees.Add(pEmployee); //If the employee doesn't exist already in the database, it will be inserted.
                     return commitChanges(context);
                 }
-                
+
             }
 
             return false;
@@ -75,10 +75,19 @@ namespace SynUp_Desktop.model.dao
         /// </summary>
         /// <param name="pNif">Code key of the employee</param>
         /// <returns>If the code is already on the database it will return the Employee, otherwise it will return a null.</returns>
-        public static pojo.Employee readEmployee(String pNif)
+        public static pojo.Employee readEmployee(String _pNif, synupEntities _database)
+        {
+            var query = from employee in _database.Employees
+                        where employee.nif == _pNif
+                        select employee;
+
+            return query.SingleOrDefault();
+        }
+
+        public static pojo.Employee readEmployee(String _pNif)
         {
             var query = from employee in database.Employees
-                        where employee.nif == pNif
+                        where employee.nif == _pNif
                         select employee;
 
             return query.SingleOrDefault();
@@ -91,16 +100,25 @@ namespace SynUp_Desktop.model.dao
         /// <returns>Returns a boolean whether the employee has been updated succesfully or not.</returns>
         public static bool updateEmployee(pojo.Employee pEmployee)
         {
-            pojo.Employee _oEmployee = readEmployee(pEmployee.nif);
+            using (var context = new synupEntities())
+            {
+                pojo.Employee _oEmployee = readEmployee(pEmployee.nif, context);
 
-            _oEmployee.nif = pEmployee.nif;
-            _oEmployee.name = pEmployee.name;
-            _oEmployee.surname = pEmployee.surname;
-            _oEmployee.phone = pEmployee.phone;
-            _oEmployee.email = pEmployee.email;
-            _oEmployee.adress = pEmployee.adress;
+                if (_oEmployee != null)
+                {
 
-            return commitChanges();
+                    _oEmployee.nif = pEmployee.nif;
+                    _oEmployee.name = pEmployee.name;
+                    _oEmployee.surname = pEmployee.surname;
+                    _oEmployee.phone = pEmployee.phone;
+                    _oEmployee.email = pEmployee.email;
+                    _oEmployee.adress = pEmployee.adress;
+
+                    return commitChanges(context);
+                }
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -110,15 +128,21 @@ namespace SynUp_Desktop.model.dao
         /// <returns></returns>
         public static pojo.Employee deleteEmployee(pojo.Employee pEmployee)
         {
-            pojo.Employee _oEmployee = readEmployee(pEmployee.nif); //Finds the received employee in the database.
-
-            if (_oEmployee != null) //If the employee has been found - meaning that it exists:
+            using (var context = new synupEntities())
             {
-                database.Employees.Remove(_oEmployee); //Will be deleted.
+                pojo.Employee _oEmployee = readEmployee(pEmployee.nif, context); //Finds the received employee in the database.
+
+                if (_oEmployee != null) //If the employee has been found - meaning that it exists:
+                {
+
+                    context.Employees.Remove(_oEmployee); //Will be deleted.
+                    if (commitChanges(context)) return _oEmployee; //If the changes are commited succesfully it will return the deleted Employee.
+                    else return null;
+                }
+
             }
 
-            if (commitChanges()) return _oEmployee; //If the changes are commited succesfully it will return the deleted Employee.
-            else return null;
+            return null;
         }
 
         public static List<pojo.Employee> readAllEmployees()

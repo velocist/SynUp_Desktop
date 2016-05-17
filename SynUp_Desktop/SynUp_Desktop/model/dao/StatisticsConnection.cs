@@ -11,6 +11,7 @@ namespace SynUp_Desktop.model.dao
     /// Connection for the statistics form. 
     /// All the methods will retrieve data from the database given the filters in the view.
     /// </summary>
+    /// <author></author>
     class StatisticsConnection
     {
         private static synupEntities database = new synupEntities();

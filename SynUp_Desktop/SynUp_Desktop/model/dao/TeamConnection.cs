@@ -87,9 +87,11 @@ namespace SynUp_Desktop.model.dao
         {
             pojo.Team _oTeam = readTeam(pTeam.code);
 
-            _oTeam = pTeam;
-
-            return commitChanges();
+            using (var context = new synupEntities())
+            {
+                _oTeam = pTeam;
+                return commitChanges();
+            }
         }
 
         /// <summary>
@@ -124,16 +126,16 @@ namespace SynUp_Desktop.model.dao
 
             if (_EmpNif != null && _TeamCode != null)
             {
-
-                _oTeamHistory.id_employee = _EmpNif;
-                _oTeamHistory.id_team = _TeamCode;
-                //_oTeamHistory.Employee = pEmployee;
-                //_oTeamHistory.Team = pTeam;
-                _oTeamHistory.entranceDay = DateTime.Today;
-
-                //database.TeamHistories.Add(_oTeamHistory);
                 using (var q = new synupEntities())
                 {
+                    _oTeamHistory.id_employee = _EmpNif;
+                    _oTeamHistory.id_team = _TeamCode;
+                    //_oTeamHistory.Employee = pEmployee;
+                    //_oTeamHistory.Team = pTeam;
+                    _oTeamHistory.entranceDay = DateTime.Today;
+
+                    //database.TeamHistories.Add(_oTeamHistory);
+
                     q.TeamHistories.Add(_oTeamHistory);
                     return commitChanges(q);
                 }
@@ -157,7 +159,7 @@ namespace SynUp_Desktop.model.dao
 
             foreach (var member in query)
             {
-                
+
             }
         }
     }

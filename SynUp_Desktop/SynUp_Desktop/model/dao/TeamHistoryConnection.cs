@@ -27,6 +27,19 @@ namespace SynUp_Desktop.model.dao
             }
         }
 
+        private static bool commitChanges(synupEntities _database)
+        {
+            try
+            {
+                _database.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
         /// <summary>
         /// Given the code, it is searched in the database and will return the first result.
         /// </summary>
@@ -52,11 +65,14 @@ namespace SynUp_Desktop.model.dao
 
             if (foundTeamHistory != null) //If the teamHistory has been found - meaning that it exists:
             {
-                database.TeamHistories.Remove(foundTeamHistory); //Will be deleted.
+                using(var context = new synupEntities())
+                {
+                    context.TeamHistories.Remove(foundTeamHistory); //Will be deleted.
+                    if (commitChanges(context)) return foundTeamHistory; //If the changes are commited succesfully it will return the deleted TeamHistory.
+                    else return null;
+                }                
             }
-
-            if (commitChanges()) return foundTeamHistory; //If the changes are commited succesfully it will return the deleted TeamHistory.
-            else return null;
+            return null;
         }
 
         /// <summary>
@@ -70,16 +86,19 @@ namespace SynUp_Desktop.model.dao
 
             modifiedTeamHistory = readTeamHistory(pNif, pCodeTeam);
 
-            if (modifiedTeamHistory != null)
+            using (var context = new synupEntities())
             {
-                modifiedTeamHistory.id_employee = pNif;
-                modifiedTeamHistory.id_team = pCodeTeam;
-                modifiedTeamHistory.entranceDay = pEntranceDate;
-                modifiedTeamHistory.exitDate = pExitDate;
+                if (modifiedTeamHistory != null)
+                {
+                    modifiedTeamHistory.id_employee = pNif;
+                    modifiedTeamHistory.id_team = pCodeTeam;
+                    modifiedTeamHistory.entranceDay = pEntranceDate;
+                    modifiedTeamHistory.exitDate = pExitDate;
 
+                }
+
+                return commitChanges(context);
             }
-
-            return commitChanges();
         }
         
         /// <summary>
@@ -98,7 +117,8 @@ namespace SynUp_Desktop.model.dao
         /// <returns></returns>
         public static List<TeamHistory> readAllTeamHistoriesByTeam(String pCodeTeam)
         {
-            return (from teamHistory in database.TeamHistories where teamHistory.id_team == pCodeTeam && teamHistory.exitDate == null select teamHistory).ToList();
+            return (from teamHistory in database.TeamHistories
+                    where teamHistory.id_team == pCodeTeam && teamHistory.exitDate == null select teamHistory).ToList();
         }
 
     }

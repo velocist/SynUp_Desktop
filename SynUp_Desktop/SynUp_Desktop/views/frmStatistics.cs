@@ -38,7 +38,7 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// 
+        /// Search action performed after the user selects a filter and its parameters. 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -56,28 +56,64 @@ namespace SynUp_Desktop.views
                     }
                     else
                     {
-                        MessageBox.Show("Wrong selected values - try again.");
+                        MessageBox.Show("Wrong selected values.");
                     }
                     break;
                 case 2:
                     String strCode = (String)cmbTeams.SelectedValue;
-                    if(!strCode.Equals("") || strCode.Equals(null))
+                    if (!strCode.Equals("") || !strCode.Equals(null))
                     {
-                        fillDataGrid(Controller.StatisticsService.getTasksbyTeam(strCode));
-                    } else
+                        fillDataGrid(Controller.StatisticsService.getTasksByTeam(strCode));
+                    }
+                    else
                     {
-                        //Error message
-                        MessageBox.Show("Wrong selected values - try again.");
+                        MessageBox.Show("Wrong selected values.");
                     }
                     break;
                 case 3:
-                    //showComponentsThird();
+                    String strNif = (String)cmbEmployee.SelectedValue;
+                    if (!strNif.Equals("") || !strNif.Equals(null))
+                    {
+                        fillDataGrid(Controller.StatisticsService.getTasksByEmployee(strNif));
+                    }
+                    else
+                    {
+                        MessageBox.Show("Wrong selected values.");
+                    }
                     break;
                 case 4:
-                    //showComponentsForth();
+                    String strState = cmbStates.SelectedItem.ToString();
+                    if (!strState.Equals("") || strState.Equals(null))
+                    {
+                        fillDataGrid(Controller.StatisticsService.getTasksByState(strState));
+                    }
+                    else
+                    {
+                        MessageBox.Show("Wrong selected values.");
+                    }
                     break;
                 case 5:
-                    //showComponentsFifth();
+                    start = dtpBegin.Value.Date;
+                    end = dtpEnd.Value.Date;
+                    String strFilter = cmbRanking.SelectedItem.ToString();
+
+                    if (start != null && end != null && start.CompareTo(end) < 0 && (!strFilter.Equals("") || !strFilter.Equals(null)))
+                    {
+                        strFilter = strFilter.ToLower().Trim();
+                        switch (strFilter)
+                        {
+                            case "employees":
+                                fillDataGrid(Controller.StatisticsService.getRankingEmployees(start,end));
+                                break;
+                            case "teams":
+                                fillDataGrid(Controller.StatisticsService.getRankingTeams(start, end));
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Wrong selected values.");
+                    }
                     break;
             }
         }
@@ -89,14 +125,10 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void cmbFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //MessageBox.Show("" + cmbFilter.SelectedIndex);
             hideAllComponents();
 
             switch (cmbFilter.SelectedIndex)
             {
-                case 0:
-                    //hideAllComponents();
-                    break;
                 case 1:
                     showComponentsFirst();
                     break;
@@ -212,7 +244,7 @@ namespace SynUp_Desktop.views
         /// </summary>
         private void checkSearchButton()
         {
-            if(btnSearch.Enabled == false)
+            if (btnSearch.Enabled == false)
             {
                 btnSearch.Enabled = true;
             }

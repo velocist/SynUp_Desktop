@@ -80,14 +80,16 @@ namespace SynUp_Desktop.model.dao
         /// <returns>Returns the task that has been deleted.</returns>
         public static pojo.Task deleteTask(pojo.Task t)
         {
-            pojo.Task foundTask = readTask(t.code); //Finds the received task in the database.
-
-            if (foundTask != null) //If the task has been found - meaning that it exists:
+            using (var context = new synupEntities())
             {
-                //database.Tasks.Remove(foundTask); //Will be deleted.
-                using (var context = new synupEntities())
+                pojo.Task foundTask = readTask(t.code, context); //Finds the received task in the database.
+
+                if (foundTask != null) //If the task has been found - meaning that it exists:
                 {
-                    context.Tasks.Remove(t);
+                    var entry = context.Entry(foundTask);
+                    if (entry.State == System.Data.Entity.EntityState.Detached) context.Tasks.Attach(foundTask);
+
+                    context.Tasks.Remove(foundTask);
                     if (commitChanges(context)) return foundTask;
                     else return null;
                 }
@@ -130,6 +132,15 @@ namespace SynUp_Desktop.model.dao
         /// <param name="code">Code key of the task.</param>
         /// <returns>If the code is already on the database it will return the Task, otherwise it will return a null.</returns>
         public static pojo.Task readTask(String code)
+        {
+            var query = from task in database.Tasks
+                        where task.code == code
+                        select task;
+
+            return query.SingleOrDefault();
+        }
+
+        public static pojo.Task readTask(String code, synupEntities database)
         {
             var query = from task in database.Tasks
                         where task.code == code

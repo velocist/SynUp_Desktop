@@ -93,7 +93,7 @@
             this.btnStadistics.Name = "btnStadistics";
             this.btnStadistics.Size = new System.Drawing.Size(240, 23);
             this.btnStadistics.TabIndex = 4;
-            this.btnStadistics.Text = "Stadistics";
+            this.btnStadistics.Text = "Statistics";
             this.btnStadistics.UseVisualStyleBackColor = true;
             this.btnStadistics.Click += new System.EventHandler(this.btnStadistics_Click);
             // 
