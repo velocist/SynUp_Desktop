@@ -81,6 +81,15 @@ namespace SynUp_Desktop.model.dao
             return query.SingleOrDefault();
         }
 
+        public static pojo.Team readTeam(String pCode, synupEntities seContext)
+        {
+            var query = from team in seContext.Teams
+                        where team.code == pCode
+                        select team;
+
+            return query.SingleOrDefault();
+        }
+
         /// <summary>
         /// Receives the team that is meant to be updated
         /// </summary>
@@ -88,12 +97,12 @@ namespace SynUp_Desktop.model.dao
         /// <returns>Returns a boolean whether the team has been updated succesfully or not.</returns>
         public static bool updateTeam(pojo.Team pTeam)
         {
-            pojo.Team _oTeam = readTeam(pTeam.code);
-
             using (var context = new synupEntities())
             {
-                _oTeam.name = pTeam.name;                
-                return commitChanges();
+                pojo.Team _oTeam = readTeam(pTeam.code, context);
+                tryAttach(context, _oTeam);
+                _oTeam.name = pTeam.name;
+                return commitChanges(context);
             }
         }
 
@@ -104,14 +113,13 @@ namespace SynUp_Desktop.model.dao
         /// <returns></returns>
         public static pojo.Team deleteTeam(pojo.Team pTeam)
         {
-            pojo.Team _oTeam = readTeam(pTeam.code); //Finds the received team in the database.
-
-            if (_oTeam != null) //If the team has been found - meaning that it exists:
+            using (var context = new synupEntities())
             {
-                using (var context = new synupEntities())
+                pojo.Team _oTeam = readTeam(pTeam.code, context); //Finds the received team in the database.
+
+                if (_oTeam != null) //If the team has been found - meaning that it exists:
                 {
                     tryAttach(context, _oTeam);
-
                     context.Teams.Remove(_oTeam); //Will be deleted.
                     if (commitChanges(context)) return _oTeam; //If the changes are commited succesfully it will return the deleted Team.
                     else return null;

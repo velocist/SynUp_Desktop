@@ -29,9 +29,14 @@ namespace SynUp_Desktop.service
             return TeamConnection.readTeam(pCode);
         }
 
-        public bool updateTeam(Team pTeam)
+        public bool updateTeam(String pCode, String sTeam_name)
         {
-            return TeamConnection.updateTeam(pTeam);
+            Team _newTeam = new Team
+            {
+                code = pCode,
+                name = sTeam_name
+            };
+            return TeamConnection.updateTeam(_newTeam);
         }
 
         public Team deleteTeam(Team pTeam)

@@ -76,18 +76,19 @@ namespace SynUp_Desktop.views
 
         private void btnUpdateTeam_Click(object sender, EventArgs e)
         {
-            /*String _strName = txtName.Text;
-            Boolean _blUpdateOk = this.Controller.TeamService.updateTeam();
+            String _strName = txtName.Text;
+            String _strCode = txtCode.Text;
+            Boolean _blUpdateOk = this.Controller.TeamService.updateTeam(_strCode,_strName);
 
             if (_blUpdateOk)
             {
-                MessageBox.Show("The employee was updated succesfully!");
+                MessageBox.Show("The team was updated succesfully!");
                 this.btnBack_Click(sender, e);
             }
             else
             {
-                MessageBox.Show("The employee wasn't updated succesfully!");
-            }*/
+                MessageBox.Show("The team wasn't updated succesfully!");
+            }
         }
 
         #endregion
