@@ -51,7 +51,7 @@ namespace SynUp_Desktop.views
             String _strPhone = txtPhone.Text;
             String _strEmail = txtEmail.Text;
             String _strAdress = txtAdress.Text;
-            
+
 
             Boolean _blCreateOk = this.Controller.EmployeeService.createEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress);
 
@@ -145,6 +145,30 @@ namespace SynUp_Desktop.views
             }
         }
 
+        /// <summary>
+        /// Event that runs when the text of email is changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+            if (txtEmail.Text != "")
+            {
+                String _strEmail = txtEmail.Text;
+
+                if (!_strEmail.Contains("@")) // If the team exists, we show a message
+                {
+                    //MessageBox.Show("This team don't exists");
+                    lblEmail.ForeColor = Color.Red;
+                    lblEmail.Text = "Email*";
+                }
+                else
+                {
+                    lblEmail.ForeColor = Color.Black;
+                    lblEmail.Text = "Email";
+                }
+            }
+        }
         #endregion
 
         /// <summary>
@@ -178,9 +202,10 @@ namespace SynUp_Desktop.views
                 this.btnDeleteEmployee.Enabled = false;
             }
 
-                        this.setToolTips(); //Sets the tooltips for the view
+            this.setToolTips(); //Sets the tooltips for the view
+
         }
-               
+
         /// <summary>
         /// Event that runs when the button is clicked to return back
         /// </summary>
@@ -234,7 +259,11 @@ namespace SynUp_Desktop.views
             ToolTip ToolTips = new ToolTip();
             //ToolTip1.IsBalloon = true;
             ToolTips.SetToolTip(this.lblNif, "Nif employee.");
+            ToolTips.SetToolTip(this.lblPhone, "+(XX)XXXXXXXXX\n or XXXXXXXXX");
+            ToolTips.SetToolTip(this.lblEmail, "exemple@domain.com");
+
         }
+
 
         /* DELETE: Cambio por el evento Activated
        /// <summary>
