@@ -7,15 +7,16 @@ using System.Windows.Forms;
 
 namespace SynUp_Desktop.utilities
 {
-    public class clMessageBox
+    public static class clMessageBox
     {
-        private MessageBox msgBox;
+        //realmente necesitamos el atributo?
+        /*private static MessageBox msgBox;
 
-        public MessageBox MsgBox
+        public static MessageBox MsgBox
         {
             get { return msgBox; }
             set { msgBox = value; }
-        }
+        }*/
 
         /// <summary>
         /// 
@@ -24,9 +25,9 @@ namespace SynUp_Desktop.utilities
         /// <param name="pObject">The object</param>
         /// <param name="pCorrect">If the action was correctly or wrong</param>
         /// <param name="pNameForm">The name of form which send the action</param>
-        public clMessageBox(String pAction, String pObject, Boolean pCorrect, Form pForm)
+        public static void showMessage(String pAction, String pObject, Boolean pCorrect, Form pForm)
         {
-
+            //Nombre del método cambiado a showMessage para hacerlo más "userfriendly"
             String _strMessage = null;
             MessageBoxIcon _iconMessageBox;
 
@@ -47,7 +48,7 @@ namespace SynUp_Desktop.utilities
         }
 
 
-        private void configureMessageBox(MessageBox pMessageBox)
+        private static void configureMessageBox(MessageBox pMessageBox)
         {
 
 

@@ -1,5 +1,6 @@
 ﻿using SynUp_Desktop.controller;
 using SynUp_Desktop.model.pojo;
+using SynUp_Desktop.utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,8 +8,10 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace SynUp_Desktop.views
 {
@@ -55,8 +58,9 @@ namespace SynUp_Desktop.views
 
             Boolean _blCreateOk = this.Controller.EmployeeService.createEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress);
 
-            utilities.clMessageBox _msgBox = new utilities.clMessageBox("create", "employee", _blCreateOk, this);
-            
+            /*utilities.clMessageBox _msgBox = new utilities.*//// MODIFICATION - Pablo, 170516, clMessageBox made static to access the methods without having to create an object of the class.
+            clMessageBox.showMessage("create", "employee", _blCreateOk, this);
+
             /*if (_blCreateOk)
             {
                 MessageBox.Show("The employee was created succesfully!");
@@ -126,24 +130,25 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void txtNif_TextChanged(object sender, EventArgs e)
         {
-            if (txtNif.Text != "")
+            string _strNifExpression = "\\d{8}-[a-zA-Z]";
+
+            if (AuxEmployee == null)
             {
-                String _strNif = txtNif.Text;
+                string _strNif = "";
+                if(txtNif.Text!=null) _strNif = txtNif.Text;
+                Employee _oEmployee = Controller.EmployeeService.readEmployee(_strNif); // We look for if the employee already exists
 
-                model.pojo.Employee _oEmployee = this.Controller.EmployeeService.readEmployee(_strNif); // We look for if the team already exists
-
-                if (_oEmployee == null) // If the team exists, we show a message
+                if (_oEmployee != null && Regex.Match(_strNif, _strNifExpression).Success) // If the employee exists, we show a message
                 {
                     //MessageBox.Show("This team don't exists");
                     lblNif.ForeColor = Color.Red;
-                    lblNif.Text = "Id Team*";
+                    lblNif.Text = "NIF*";
                 }
                 else
                 {
                     lblNif.ForeColor = Color.Black;
-                    lblNif.Text = "Id Team";
+                    lblNif.Text = "NIF";
                 }
-
             }
         }
 
@@ -154,13 +159,13 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void txtEmail_TextChanged(object sender, EventArgs e)
         {
+            string _strEmailExpression = "^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
             if (txtEmail.Text != "")
             {
                 String _strEmail = txtEmail.Text;
 
-                if (!_strEmail.Contains("@")) // If the team exists, we show a message
+                if (!Regex.Match(_strEmail, _strEmailExpression).Success) // If the team exists, we show a message
                 {
-                    //MessageBox.Show("This team don't exists");
                     lblEmail.ForeColor = Color.Red;
                     lblEmail.Text = "Email*";
                 }
@@ -170,6 +175,11 @@ namespace SynUp_Desktop.views
                     lblEmail.Text = "Email";
                 }
             }
+        }
+
+        private void validateFields()
+        {
+
         }
         #endregion
 
@@ -260,8 +270,8 @@ namespace SynUp_Desktop.views
             ///Nota: Interesante poner las restricciones de la base de datos directamente.
             ToolTip ToolTips = new ToolTip();
             //ToolTip1.IsBalloon = true;
-            ToolTips.SetToolTip(this.lblNif, "Nif employee.");
-            ToolTips.SetToolTip(this.lblPhone, "+(XX)XXXXXXXXX\n or XXXXXXXXX");
+            ToolTips.SetToolTip(this.lblNif, "NIF Employee.\n[00000000-A]");
+            ToolTips.SetToolTip(this.lblPhone, "+(00)000000000\n or 000000000");
             ToolTips.SetToolTip(this.lblEmail, "exemple@domain.com");
 
         }
@@ -309,5 +319,5 @@ namespace SynUp_Desktop.views
        */
 
     }
-    
+
 }

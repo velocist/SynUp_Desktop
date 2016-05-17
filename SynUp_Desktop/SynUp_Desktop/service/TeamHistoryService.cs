@@ -53,7 +53,7 @@ namespace SynUp_Desktop.service
             {
                 this.returnWithoutSpaces(_t);
             }
-                return _lstTeamHistory;
+            return _lstTeamHistory;
         }
 
         /// <summary>
