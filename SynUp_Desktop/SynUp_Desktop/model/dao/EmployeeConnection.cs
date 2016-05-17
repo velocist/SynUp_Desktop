@@ -134,6 +134,7 @@ namespace SynUp_Desktop.model.dao
 
                 if (_oEmployee != null) //If the employee has been found - meaning that it exists:
                 {
+                    tryAttach(context, _oEmployee);
 
                     context.Employees.Remove(_oEmployee); //Will be deleted.
                     if (commitChanges(context)) return _oEmployee; //If the changes are commited succesfully it will return the deleted Employee.
@@ -150,5 +151,15 @@ namespace SynUp_Desktop.model.dao
             return (from employee in database.Employees select employee).ToList();
         }
 
+        /// <summary>
+        /// Attachs employees
+        /// </summary>
+        /// <param name="pContext"></param>
+        /// <param name="pEmployee">The object which were attachs</param>
+        private static void tryAttach(synupEntities pContext, pojo.Employee pEmployee)
+        {
+            var entry = pContext.Entry(pEmployee);
+            if (entry.State == System.Data.Entity.EntityState.Detached) pContext.Employees.Attach(pEmployee);
+        }
     }
 }

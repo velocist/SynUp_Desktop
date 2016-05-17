@@ -67,6 +67,7 @@ namespace SynUp_Desktop.model.dao
             {
                 using(var context = new synupEntities())
                 {
+                    tryAttach(context, foundTeamHistory);
                     context.TeamHistories.Remove(foundTeamHistory); //Will be deleted.
                     if (commitChanges(context)) return foundTeamHistory; //If the changes are commited succesfully it will return the deleted TeamHistory.
                     else return null;
@@ -121,5 +122,15 @@ namespace SynUp_Desktop.model.dao
                     where teamHistory.id_team == pCodeTeam && teamHistory.exitDate == null select teamHistory).ToList();
         }
 
+        /// <summary>
+        /// Attachs teams
+        /// </summary>
+        /// <param name="pContext"></param>
+        /// <param name="pTeamHistory">The object which were attachs</param>
+        private static void tryAttach(synupEntities pContext, pojo.TeamHistory pTeamHistory)
+        {
+            var entry = pContext.Entry(pTeamHistory);
+            if (entry.State == System.Data.Entity.EntityState.Detached) pContext.TeamHistories.Attach(pTeamHistory);
+        }
     }
 }
