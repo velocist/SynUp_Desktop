@@ -63,6 +63,7 @@ namespace SynUp_Desktop.views
                     String strCode = (String)cmbTeams.SelectedValue;
                     if (!strCode.Equals("") || !strCode.Equals(null))
                     {
+                        MessageBox.Show(strCode);
                         fillDataGrid(Controller.StatisticsService.getTasksByTeam(strCode));
                     }
                     else

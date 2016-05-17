@@ -130,15 +130,16 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void txtNif_TextChanged(object sender, EventArgs e)
         {
-            string _strNifExpression = "\\d{8}-[a-zA-Z]";
+            string _strNifExpression = "\\d{8}[a-zA-Z]";
 
             if (AuxEmployee == null)
             {
                 string _strNif = "";
                 if(txtNif.Text!=null) _strNif = txtNif.Text;
+
                 Employee _oEmployee = Controller.EmployeeService.readEmployee(_strNif); // We look for if the employee already exists
 
-                if (_oEmployee != null && Regex.Match(_strNif, _strNifExpression).Success) // If the employee exists, we show a message
+                if (_oEmployee != null && !Regex.Match(_strNif, _strNifExpression).Success) // If the employee exists, we show a message
                 {
                     //MessageBox.Show("This team don't exists");
                     lblNif.ForeColor = Color.Red;

@@ -341,7 +341,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void frmTaskManagement_Load(object sender, EventArgs e)
         {
-            
+
             cbIdTeams.DataSource = Controller.TeamService.getAllTeams();
             cbIdTeams.DisplayMember = "Name";
             cbIdTeams.ValueMember = "Code";
@@ -419,7 +419,16 @@ namespace SynUp_Desktop.views
             bool _correct = false;
             if (lblCode.ForeColor != Color.Red && lblName.ForeColor != Color.Red/* && lblPriorityDate.ForeColor != Color.Red*/)
             {
-                if (AuxTask.priorityDate != null) _correct = true;
+                if (AuxTask != null)
+                {
+                    /*if (AuxTask.priorityDate > mcalPriorityDate.SelectionStart.Date)
+                    {*/
+                        _correct = true;
+                    //}
+                } else if (lblPriorityDate.ForeColor != Color.Red)
+                {
+                    _correct = true;
+                }
             }
 
             if (_correct == false) MessageBox.Show("Incorrect fields. Check them before commiting the changes.");
