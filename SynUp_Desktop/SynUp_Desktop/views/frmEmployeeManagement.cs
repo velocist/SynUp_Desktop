@@ -94,7 +94,7 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// 
+        /// Event that runs when the button is clicked to delete a employee
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -148,18 +148,12 @@ namespace SynUp_Desktop.views
         #endregion
 
         /// <summary>
-        /// Event that runs when the form is loaded
+        /// Event that runs when the forms activated
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void frmEmployeeManagement_Load(object sender, EventArgs e)
+        private void frmEmployeeManagement_Activated(object sender, EventArgs e)
         {
-            /*BindingSource source = new BindingSource()
-
-            source.DataSource = Controller.TeamService.getAllTeams();
-            cmb.DataSource = source;
-            cbIdTeams.DisplayMember = "Name";
-            cbIdTeams.ValueMember = "Code";*/
 
             if (AuxEmployee != null)
             {
@@ -173,20 +167,20 @@ namespace SynUp_Desktop.views
 
                 this.btnCreate.Enabled = false; // We disable the button to create a task
                 this.txtNif.Enabled = false;
+                this.btnUpdateEmployee.Enabled = true;
+                this.btnDeleteEmployee.Enabled = true;
             }
             else
             {
                 this.btnCreate.Enabled = true;
                 this.txtNif.Enabled = true;
+                this.btnUpdateEmployee.Enabled = false;
+                this.btnDeleteEmployee.Enabled = false;
             }
 
-            ///Sets the tooltips for the view
-            ///Nota: Interesante poner las restricciones de la base de datos directamente.
-            ToolTip ToolTips = new ToolTip();
-            //ToolTip1.IsBalloon = true;
-            ToolTips.SetToolTip(this.lblNif, "Nif employee.");
+                        this.setToolTips(); //Sets the tooltips for the view
         }
-
+               
         /// <summary>
         /// Event that runs when the button is clicked to return back
         /// </summary>
@@ -213,6 +207,8 @@ namespace SynUp_Desktop.views
                 this.btnCreate.Enabled = true;
                 this.AuxEmployee = null;
                 if (txtNif.Enabled == false) txtNif.Enabled = true;
+                this.btnUpdateEmployee.Enabled = false;
+                this.btnDeleteEmployee.Enabled = false;
             }
         }
 
@@ -228,6 +224,56 @@ namespace SynUp_Desktop.views
             txtEmail.Text = "";
             txtAdress.Text = "";
         }
+
+        /// <summary>
+        /// Method that sets the tooltips for the view
+        /// </summary>
+        private void setToolTips()
+        {
+            ///Nota: Interesante poner las restricciones de la base de datos directamente.
+            ToolTip ToolTips = new ToolTip();
+            //ToolTip1.IsBalloon = true;
+            ToolTips.SetToolTip(this.lblNif, "Nif employee.");
+        }
+
+        /* DELETE: Cambio por el evento Activated
+       /// <summary>
+       /// Event that runs when the form is loaded
+       /// </summary>
+       /// <param name="sender"></param>
+       /// <param name="e"></param>
+       private void frmEmployeeManagement_Load(object sender, EventArgs e)
+       {
+           if (AuxEmployee != null)
+           {
+               // We recover the data of selected employee
+               this.txtNif.Text = this.AuxEmployee.nif;
+               this.txtName.Text = this.AuxEmployee.name;
+               this.txtSurname.Text = this.AuxEmployee.surname;
+               this.txtPhone.Text = this.AuxEmployee.phone;
+               this.txtEmail.Text = this.AuxEmployee.email;
+               this.txtAdress.Text = this.AuxEmployee.adress;
+
+               this.btnCreate.Enabled = false; // We disable the button to create a task
+               this.txtNif.Enabled = false;
+               this.btnUpdateEmployee.Enabled = true;
+               this.btnDeleteEmployee.Enabled = true;
+           }
+           else
+           {
+               this.btnCreate.Enabled = true;
+               this.txtNif.Enabled = true;
+               this.btnUpdateEmployee.Enabled = false;
+               this.btnDeleteEmployee.Enabled = false;
+           }
+
+           ///Sets the tooltips for the view
+           ///Nota: Interesante poner las restricciones de la base de datos directamente.
+           ToolTip ToolTips = new ToolTip();
+           //ToolTip1.IsBalloon = true;
+           ToolTips.SetToolTip(this.lblNif, "Nif employee.");
+       }
+       */
 
     }
 }
