@@ -56,8 +56,8 @@ namespace SynUp_Desktop.views
                     _oSelectedEmployee = Controller.EmployeeService.readEmployee(_strSelectedRowCode); // We look for the employee nif
                     this.Controller.EmployeeMgtView.AuxEmployee = _oSelectedEmployee; // We assign the employee to form employee management
                 }
-
             }
+
 
             this.Controller.EmployeeMgtView.ShowDialog();
         }
@@ -107,25 +107,12 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void frmEmployees_Activated(object sender, EventArgs e)
         {
-
-            //The grid with all the employees will load.
-            this.fillGridView();
-
-            //The combo with all the teams will load.
-            this.fillComboTeams();
-
-            // DataGridView Configuration
-            //this.dgvEmployees.Columns[0].Visible = false; // We hide id column
-            //this.dgvEmployees.Columns[7].Visible = false; // TeamsHistory
-            //this.dgvEmployees.Columns[8].Visible = false; // TaskHistories
-
-            //this.dgvEmployees.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
-            //this.dgvEmployees.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
-
-            this.dgvConfiguration();
-
+            //MessageBox.Show("Activated");
+            this.fillGridView(); //The grid with all the employees will load.
+            dgvEmployees.ClearSelection(); // Clear selection rows.
+            dgvEmployees.Refresh(); //Refresh the view.                    
         }
-                
+
         /// <summary>
         /// Event that runs when the row state change
         /// </summary>
@@ -137,6 +124,26 @@ namespace SynUp_Desktop.views
             {
                 btnAddToTeam.Enabled = true;
                 cmbTeamsToAdd.Enabled = true;
+
+                int _iIndexSelected = dgvEmployees.SelectedRows[0].Index; // Recover the index of selected row
+                Object _cell = dgvEmployees.Rows[_iIndexSelected].Cells[0].Value;
+                if (_cell != null)
+                {
+                    String _strSelectedRowCode = _cell.ToString(); // Recover the code
+                    model.pojo.Employee _oSelectedEmployee = Controller.EmployeeService.readEmployee(_strSelectedRowCode); // We look for the employee nif
+
+                    //MessageBox.Show(_oSelectedEmployee.nif);
+
+                    //if(_oSelectedEmployee.TeamHistories)
+
+                    //this.cmbTeamsToAdd.SelectedValue
+
+                    /*String _SelectedTeam = this.cmbTeamsToAdd.SelectedValue.ToString();
+                    _oTeam = this.Controller.TeamService.readTeam(_SelectedTeam);
+
+                    this.addToTeam(_oSelectedEmployee, _oTeam);*/
+                }
+
             }
             else
             {
@@ -144,7 +151,7 @@ namespace SynUp_Desktop.views
                 cmbTeamsToAdd.Enabled = false;
             }
         }
-        
+
         /// <summary>
         /// Fills the DataGridView with the values of the database.
         /// </summary>
@@ -153,6 +160,7 @@ namespace SynUp_Desktop.views
             BindingSource source = new BindingSource();
             source.DataSource = Controller.EmployeeService.getAllEmployees();
             this.dgvEmployees.DataSource = source;
+            dgvEmployees.Refresh();
         }
 
         /// <summary>
@@ -161,7 +169,6 @@ namespace SynUp_Desktop.views
         private void fillComboTeams()
         {
             BindingSource source = new BindingSource();
-
             this.cmbTeamsToAdd.DataSource = Controller.TeamService.getAllTeams();
             this.cmbTeamsToAdd.DisplayMember = "Name";
             this.cmbTeamsToAdd.ValueMember = "code";
@@ -203,7 +210,7 @@ namespace SynUp_Desktop.views
                 }
             }
         }
-        
+
         /// <summary>
         /// Configurates dataGridView
         /// </summary>
@@ -223,10 +230,33 @@ namespace SynUp_Desktop.views
             dgvEmployees.RowHeadersVisible = false; // We hide the rowheader
             dgvEmployees.ClearSelection(); // Clear selection rows
 
+
             //Form Common Configurations
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
+
+            // DataGridView Configuration
+            //this.dgvEmployees.Columns[0].Visible = false; // We hide id column
+            //this.dgvEmployees.Columns[7].Visible = false; // TeamsHistory
+            //this.dgvEmployees.Columns[8].Visible = false; // TaskHistories
+
+            //this.dgvEmployees.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+            //this.dgvEmployees.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader; 
+
+            //The combo with all the teams will load.
+            this.fillComboTeams();
         }
-        
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmEmployees_Load(object sender, EventArgs e)
+        {
+            dgvConfiguration();
+            frmEmployees_Activated(sender, e);
+        }
+
         /* DELETE: Cambio evento por RowsStateChange. 17/05/2016-1131
         /// <summary>
         /// 

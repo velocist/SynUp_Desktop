@@ -134,6 +134,7 @@ namespace SynUp_Desktop.views
             source.DataSource = Controller.TaskService.getAllTasks();
             dgvTasks.DataSource = source;
             dgvTasks.Refresh();
+            this.Refresh();
         }
     }
 }
