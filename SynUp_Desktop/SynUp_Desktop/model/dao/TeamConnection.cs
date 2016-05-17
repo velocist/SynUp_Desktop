@@ -89,7 +89,7 @@ namespace SynUp_Desktop.model.dao
 
             using (var context = new synupEntities())
             {
-                _oTeam = pTeam;
+                _oTeam.name = pTeam.name;                
                 return commitChanges();
             }
         }

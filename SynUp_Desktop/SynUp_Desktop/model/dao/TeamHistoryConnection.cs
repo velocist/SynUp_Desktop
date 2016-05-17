@@ -91,9 +91,9 @@ namespace SynUp_Desktop.model.dao
             {
                 if (modifiedTeamHistory != null)
                 {
-                    modifiedTeamHistory.id_employee = pNif;
-                    modifiedTeamHistory.id_team = pCodeTeam;
-                    modifiedTeamHistory.entranceDay = pEntranceDate;
+                    //modifiedTeamHistory.id_employee = pNif;
+                    //modifiedTeamHistory.id_team = pCodeTeam;
+                    //modifiedTeamHistory.entranceDay = pEntranceDate;
                     modifiedTeamHistory.exitDate = pExitDate;
 
                 }

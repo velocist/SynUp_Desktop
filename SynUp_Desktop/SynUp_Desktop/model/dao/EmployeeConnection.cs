@@ -106,8 +106,6 @@ namespace SynUp_Desktop.model.dao
 
                 if (_oEmployee != null)
                 {
-
-                    _oEmployee.nif = pEmployee.nif;
                     _oEmployee.name = pEmployee.name;
                     _oEmployee.surname = pEmployee.surname;
                     _oEmployee.phone = pEmployee.phone;
