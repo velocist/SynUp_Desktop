@@ -213,7 +213,7 @@ namespace SynUp_Desktop.views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnBack_Click(object sender, EventArgs e)
+        public void btnBack_Click(object sender, EventArgs e)
         {
             this.AuxEmployee = null;
             this.clearValues();

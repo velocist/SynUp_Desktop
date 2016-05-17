@@ -24,7 +24,7 @@ namespace SynUp_Desktop.utilities
         /// <param name="pObject">The object</param>
         /// <param name="pCorrect">If the action was correctly or wrong</param>
         /// <param name="pNameForm">The name of form which send the action</param>
-        public clMessageBox(String pAction, String pObject, Boolean pCorrect, Form pNameForm)
+        public clMessageBox(String pAction, String pObject, Boolean pCorrect, Form pForm)
         {
 
             String _strMessage = null;
@@ -34,6 +34,7 @@ namespace SynUp_Desktop.utilities
             {
                 _strMessage = "The " + pObject + " was " + pAction + " succesfully";
                 _iconMessageBox = MessageBoxIcon.Information;
+                pForm.Close();
                 
             }
             else
@@ -42,7 +43,7 @@ namespace SynUp_Desktop.utilities
                 _iconMessageBox = MessageBoxIcon.Error;
             }
 
-            MessageBox.Show(_strMessage, pNameForm.Text, MessageBoxButtons.OK, _iconMessageBox);
+            MessageBox.Show(_strMessage, pForm.Text, MessageBoxButtons.OK, _iconMessageBox);
         }
 
 
