@@ -73,10 +73,10 @@ namespace SynUp_Desktop.views
             model.pojo.Employee _oSelectedEmployee = null;
             model.pojo.Team _oTeam = null;
 
-            if (dgvEmployees.SelectedRows.Count == 1)//If the row selected
+            if (this.dgvEmployees.SelectedRows.Count == 1)//If the row selected
             {
-                int _iIndexSelected = dgvEmployees.SelectedRows[0].Index; // Recover the index of selected row
-                Object _cell = dgvEmployees.Rows[_iIndexSelected].Cells[0].Value;
+                int _iIndexSelected = this.dgvEmployees.SelectedRows[0].Index; // Recover the index of selected row
+                Object _cell = this.dgvEmployees.Rows[_iIndexSelected].Cells[0].Value;
                 if (_cell != null)
                 {
                     String _strSelectedRowCode = _cell.ToString(); // Recover the code
@@ -184,6 +184,7 @@ namespace SynUp_Desktop.views
             this.cmbTeamsToAdd.DataSource = Controller.TeamService.getAllTeams();
             this.cmbTeamsToAdd.DisplayMember = "Name";
             this.cmbTeamsToAdd.ValueMember = "code";
+
         }
 
         /// <summary>
@@ -206,15 +207,8 @@ namespace SynUp_Desktop.views
                     //_oTeamHistory.entranceDay = DateTime.Today;
 
                     Boolean _blAdd = this.Controller.TeamService.addToTeam(pEmployee.nif, pTeam.code);
-                    clMessageBox.showMessage("has been added", "employee", _blAdd, this);
-                    /*if (_blAddOk)
-                    {
-                        MessageBox.Show("The employee has been added to the team");
-                    }
-                    else
-                    {
-                        MessageBox.Show("The employee hasn't been added to the team");
-                    }*/
+                    clMessageBox.showMessage(clMessageBox.ACTIONTYPE.ADD, "employee", _blAdd, this);
+
                 }
                 else
                 {

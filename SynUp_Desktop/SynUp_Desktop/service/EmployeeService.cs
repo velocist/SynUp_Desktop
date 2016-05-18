@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using SynUp_Desktop.model.pojo;
 using SynUp_Desktop.model.dao;
+using System.Diagnostics;
 
 namespace SynUp_Desktop.service
 {
@@ -19,7 +20,7 @@ namespace SynUp_Desktop.service
         /// <param name="email">Employee email</param>
         /// <param name="adress">Employee adress</param>
         /// <returns>Whether if the employee has been correctly created or not</returns>
-        public bool createEmployee(String pNif, String pName, String pSurname, String pPhone, String pEmail, String pAdress, String pUsername)
+        public bool createEmployee(String pNif, String pName, String pSurname, String pPhone, String pEmail, String pAdress)
         {
             Employee newEmployee = new Employee
             {
@@ -29,6 +30,7 @@ namespace SynUp_Desktop.service
                 phone = pPhone,
                 email = pEmail,
                 adress = pAdress,
+                //Como los ponemos por default no con el nif i el email no hace falta pedirlos en los parametros
                 username = pEmail,//Default initial username
                 password = pNif //Default initial password
 

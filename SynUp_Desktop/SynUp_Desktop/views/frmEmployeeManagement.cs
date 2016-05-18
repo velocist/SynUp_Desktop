@@ -54,23 +54,12 @@ namespace SynUp_Desktop.views
             String _strPhone = txtPhone.Text;
             String _strEmail = txtEmail.Text;
             String _strAdress = txtAdress.Text;
-            String _strUsername = txtAdress.Text;
 
-
-            Boolean _blCreateOk = this.Controller.EmployeeService.createEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress,_strUsername);
+            Boolean _blCreateOk = this.Controller.EmployeeService.createEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress);
 
             /*utilities.clMessageBox _msgBox = new utilities.*//// MODIFICATION - Pablo, 170516, clMessageBox made static to access the methods without having to create an object of the class.
-            clMessageBox.showMessage("create", "employee", _blCreateOk, this);
-
-            /*if (_blCreateOk)
-            {
-                MessageBox.Show("The employee was created succesfully!");
-                this.btnBack_Click(sender, e);
-            }
-            else
-            {
-                MessageBox.Show("The employee wasn't created succesfully!");
-            }*/
+            clMessageBox.showMessage(clMessageBox.ACTIONTYPE.CREATE, "employee", _blCreateOk, this);
+            
         }
 
         /// <summary>
@@ -89,16 +78,8 @@ namespace SynUp_Desktop.views
             String _strUsername = txtUsername.Text;
 
             Boolean _blUpdateOk = this.Controller.EmployeeService.updateEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress,_strUsername);
-            clMessageBox.showMessage("update", "employee", _blUpdateOk, this);
-            /*if (_blUpdateOk)
-            {
-                MessageBox.Show("The employee was updated succesfully!");
-                this.btnBack_Click(sender, e);
-            }
-            else
-            {
-                MessageBox.Show("The employee wasn't updated succesfully!");
-            }*/
+            clMessageBox.showMessage(clMessageBox.ACTIONTYPE.UPDATE, "employee", _blUpdateOk, this);
+            
         }
 
         /// <summary>
@@ -120,7 +101,7 @@ namespace SynUp_Desktop.views
                 _blDelete = false;
             }
 
-            clMessageBox.showMessage("delete", "employee", _blDelete, this);
+            clMessageBox.showMessage(clMessageBox.ACTIONTYPE.DELETE, "employee", _blDelete, this);
         }
 
         #endregion

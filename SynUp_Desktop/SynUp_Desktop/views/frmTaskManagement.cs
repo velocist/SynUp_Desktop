@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SynUp_Desktop.service;
+using SynUp_Desktop.utilities;
 
 namespace SynUp_Desktop.views
 {
@@ -49,15 +50,18 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnDeleteTask_Click(object sender, EventArgs e)
         {
+            Boolean _blDelete = false;
             model.pojo.Task deleteTask = Controller.TaskService.deleteTask(AuxTask);
+
             if (deleteTask != null)
             {
-                MessageBox.Show("This task was delete succesfully");
-                this.btnBack_Click(sender, e);
+                _blDelete = true;
             }
-            else {
-                MessageBox.Show("This task wasn't delete succesfully");
+            else
+            {
+                _blDelete = false;
             }
+            clMessageBox.showMessage(clMessageBox.ACTIONTYPE.DELETE, "task", _blDelete, this);
         }
 
         /// <summary>
@@ -75,22 +79,16 @@ namespace SynUp_Desktop.views
             String _strLocalization = txtLocalization.Text;
             DateTime _dtPriorityDate = mcalPriorityDate.SelectionStart.Date;
 
-            Boolean _blUpdateOk = false;
+            Boolean _blUpdate = false;
 
             if (checkCorrectValues())
             {
-                _blUpdateOk = Controller.TaskService.updateTask(_strCode, _strName, _dtPriorityDate,
+                _blUpdate = Controller.TaskService.updateTask(_strCode, _strName, _dtPriorityDate,
                                                                 _strDescription, _strLocalization,
                                                                 _strProject, _strIdTeam);
-                if (_blUpdateOk)
-                {
-                    MessageBox.Show("The task was updated succesfully!");
-                    this.btnBack_Click(sender, e);
-                }
-                else
-                {
-                    MessageBox.Show("The task wasn't updated.");
-                }
+
+                clMessageBox.showMessage(clMessageBox.ACTIONTYPE.UPDATE, "task", _blUpdate, this);
+
             }
         }
 
@@ -110,22 +108,15 @@ namespace SynUp_Desktop.views
             String _strLocalization = txtLocalization.Text;
             DateTime _dtPriorityDate = mcalPriorityDate.SelectionStart.Date;
 
-            Boolean createOk = false;
+            Boolean _blCreate = false;
 
             if (checkCorrectValues())
             {
-                createOk = Controller.TaskService.createTask(_strCode, _strName, _dtPriorityDate, _strDescription,
+                _blCreate = Controller.TaskService.createTask(_strCode, _strName, _dtPriorityDate, _strDescription,
                                                              _strLocalization, _strProject, _strIdTeam);
 
-                if (createOk)
-                {
-                    MessageBox.Show("The task was created succesfully!");
-                    this.btnBack_Click(sender, e);
-                }
-                else
-                {
-                    MessageBox.Show("The task wasn't created!");
-                }
+                clMessageBox.showMessage(clMessageBox.ACTIONTYPE.CREATE, "task", _blCreate, this);
+
             }
 
         }
@@ -423,9 +414,10 @@ namespace SynUp_Desktop.views
                 {
                     /*if (AuxTask.priorityDate > mcalPriorityDate.SelectionStart.Date)
                     {*/
-                        _correct = true;
+                    _correct = true;
                     //}
-                } else if (lblPriorityDate.ForeColor != Color.Red)
+                }
+                else if (lblPriorityDate.ForeColor != Color.Red)
                 {
                     _correct = true;
                 }

@@ -65,7 +65,7 @@ namespace SynUp_Desktop.model.dao
             }
 
             return false;
-        }
+        }        
 
         /// <summary>
         /// Given the code, it is searched in the database and will return the first result.

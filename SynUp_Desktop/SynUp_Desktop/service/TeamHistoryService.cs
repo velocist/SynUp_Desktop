@@ -26,9 +26,9 @@ namespace SynUp_Desktop.service
         /// <param name="pEntranceDate">The entrance date to update</param>
         /// <param name="pExitDate">The exit date to update </param>
         /// <returns>Whether if the teamHistory has been correctly updated or not</returns>
-        public bool updateTeamHistory(String pNif, String pCode, DateTime pEntranceDate, DateTime pExitDate)
+        public bool updateTeamHistory(String pNif, String pCode/*, DateTime pEntranceDate*/, DateTime pExitDate)
         {
-            return TeamHistoryConnection.updateTeamHistory(pNif, pCode, pEntranceDate, pExitDate);
+            return TeamHistoryConnection.updateTeamHistory(pNif, pCode/*, pEntranceDate*/, pExitDate);
         }
 
         /// <summary>

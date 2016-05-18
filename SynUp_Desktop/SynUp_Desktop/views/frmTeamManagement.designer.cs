@@ -92,6 +92,7 @@
             this.btnDeleteToTeam.TabIndex = 6;
             this.btnDeleteToTeam.Text = "Delete to team";
             this.btnDeleteToTeam.UseVisualStyleBackColor = true;
+            this.btnDeleteToTeam.Click += new System.EventHandler(this.btnDeleteToTeam_Click);
             // 
             // btnAddToTeam
             // 
@@ -102,6 +103,7 @@
             this.btnAddToTeam.TabIndex = 5;
             this.btnAddToTeam.Text = "Add to team";
             this.btnAddToTeam.UseVisualStyleBackColor = true;
+            this.btnAddToTeam.Click += new System.EventHandler(this.btnAddToTeam_Click);
             // 
             // label1
             // 

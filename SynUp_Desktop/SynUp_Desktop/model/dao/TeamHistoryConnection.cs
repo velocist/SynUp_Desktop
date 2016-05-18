@@ -84,7 +84,7 @@ namespace SynUp_Desktop.model.dao
         /// </summary>
         /// <param name="pTeamHistory">Receives the teamHistory that will be updated.</param>
         /// <returns>Returns a boolean whether the teamHistory has been updated succesfully or not.</returns>
-        public static bool updateTeamHistory(String pNif, String pCodeTeam, DateTime pEntranceDate, DateTime pExitDate)
+        public static bool updateTeamHistory(String pNif, String pCodeTeam/*, DateTime pEntranceDate,*/, DateTime pExitDate)
         {
             pojo.TeamHistory modifiedTeamHistory = null;
 

@@ -40,6 +40,12 @@ namespace SynUp_Desktop.views
         }
 
         #region CRUD
+
+        /// <summary>
+        /// Event that runs when the button create is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCreateTeam_Click(object sender, EventArgs e)
         {
 
@@ -47,10 +53,15 @@ namespace SynUp_Desktop.views
             String _strName = txtName.Text;
 
             Boolean _blCreate = Controller.TeamService.createTeam(_strCode, _strName);
-            clMessageBox.showMessage("create", "team", _blCreate, this);
+            clMessageBox.showMessage(clMessageBox.ACTIONTYPE.CREATE, "team", _blCreate, this);
 
         }
 
+        /// <summary>
+        /// Event that runs when the button delete is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDeleteTeam_Click(object sender, EventArgs e)
         {
             Boolean _blDelete = false;
@@ -63,15 +74,20 @@ namespace SynUp_Desktop.views
             {
                 _blDelete = false;
             }
-            clMessageBox.showMessage("delete", "team", _blDelete, this);
+            clMessageBox.showMessage(clMessageBox.ACTIONTYPE.DELETE, "team", _blDelete, this);
         }
 
+        /// <summary>
+        /// Event that runs when the button update is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnUpdateTeam_Click(object sender, EventArgs e)
         {
             String _strName = txtName.Text;
             String _strCode = txtCode.Text;
             Boolean _blUpdate = this.Controller.TeamService.updateTeam(_strCode, _strName);
-            clMessageBox.showMessage("update", "team", _blUpdate, this);
+            clMessageBox.showMessage(clMessageBox.ACTIONTYPE.UPDATE, "team", _blUpdate, this);
         }
 
         #endregion
@@ -256,6 +272,59 @@ namespace SynUp_Desktop.views
             this.cmbFilterEmployees.SelectedIndex = 0;
         }
 
+        private void btnAddToTeam_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void btnDeleteToTeam_Click(object sender, EventArgs e)
+        {
+            model.pojo.Employee _oSelectedEmployee = null;
+
+            if (this.dgvEmployeesOnTeam.SelectedRows.Count == 1)//If the row selected
+            {
+                int _iIndexSelected = this.dgvEmployeesOnTeam.SelectedRows[0].Index; // Recover the index of selected row
+                Object _cell = this.dgvEmployeesOnTeam.Rows[_iIndexSelected].Cells[1].Value;
+                if (_cell != null)
+                {
+                    String _strSelectedRowCode = _cell.ToString(); // Recover the code
+                    _oSelectedEmployee = Controller.EmployeeService.readEmployee(_strSelectedRowCode); // We look for the employee nif
+
+                    this.deleteToTeam(_oSelectedEmployee, AuxTeam);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Deleted selected employee to team
+        /// </summary>
+        private void deleteToTeam(model.pojo.Employee pEmployee, model.pojo.Team pTeam)
+        {
+            //model.pojo.TeamHistory _oTeamHistory = new model.pojo.TeamHistory();
+            model.pojo.TeamHistory _oTeamHistoryControl = null;
+
+            if (pEmployee != null && pTeam != null)
+            {
+                _oTeamHistoryControl = this.Controller.TeamHistoryService.readTeamHistory(pEmployee.nif, pTeam.code);
+
+                if (_oTeamHistoryControl != null)
+                {
+                    //USELESS
+                    //_oTeamHistory.id_employee = pEmployee.nif;
+                    //_oTeamHistory.id_team = pTeam.code;
+                    //_oTeamHistory.entranceDay = DateTime.Today;
+
+                    Boolean _blUpdateHistory = this.Controller.TeamHistoryService.updateTeamHistory(pEmployee.nif, pTeam.code, DateTime.Now);
+                    clMessageBox.showMessage(clMessageBox.ACTIONTYPE.EXCLUDE, "employee", _blUpdateHistory, this);
+
+                }
+                else
+                {
+                    MessageBox.Show("This employee is already in the team");
+                }
+            }
+        }
     }
 }
 
