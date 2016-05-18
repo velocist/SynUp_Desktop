@@ -1,4 +1,5 @@
 ﻿using SynUp_Desktop.controller;
+using SynUp_Desktop.utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,6 +33,23 @@ namespace SynUp_Desktop.views
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Iniializes the form filling all the comboboxes with the respective data.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmStatistics_Load(object sender, EventArgs e)
+        {
+            hideAllComponents();
+
+            init();
+        }
+
+        /// <summary>
+        /// Event that runs when the button back is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -44,83 +62,29 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            //TODO: He modificado para que cada uno este en un metodo. Mas modular
             switch (cmbFilter.SelectedIndex)
             {
                 case 1:
-                    DateTime start = dtpBegin.Value.Date;
-                    DateTime end = dtpEnd.Value.Date;
-
-                    if (start != null && end != null && start.CompareTo(end) < 0)
-                    {
-                        fillDataGrid(Controller.StatisticsService.getTasksByDate(start, end));
-                    }
-                    else
-                    {
-                        MessageBox.Show("Wrong selected values.");
-                    }
+                    this.filterByDate();
                     break;
                 case 2:
-                    String strCode = (String)cmbTeams.SelectedValue;
-                    if (!strCode.Equals("") || !strCode.Equals(null))
-                    {
-                        MessageBox.Show(strCode);
-                        fillDataGrid(Controller.StatisticsService.getTasksByTeam(strCode));
-                    }
-                    else
-                    {
-                        MessageBox.Show("Wrong selected values.");
-                    }
+                    this.filterByTeam();
                     break;
                 case 3:
-                    String strNif = (String)cmbEmployee.SelectedValue;
-                    if (!strNif.Equals("") || !strNif.Equals(null))
-                    {
-                        fillDataGrid(Controller.StatisticsService.getTasksByEmployee(strNif));
-                    }
-                    else
-                    {
-                        MessageBox.Show("Wrong selected values.");
-                    }
+                    this.filterByEmployee();
                     break;
                 case 4:
-                    String strState = cmbStates.SelectedItem.ToString();
-                    if (!strState.Equals("") || strState.Equals(null))
-                    {
-                        fillDataGrid(Controller.StatisticsService.getTasksByState(strState));
-                    }
-                    else
-                    {
-                        MessageBox.Show("Wrong selected values.");
-                    }
+                    this.filterByState();
                     break;
                 case 5:
-                    start = dtpBegin.Value.Date;
-                    end = dtpEnd.Value.Date;
-                    String strFilter = cmbRanking.SelectedItem.ToString();
-
-                    if (start != null && end != null && start.CompareTo(end) < 0 && (!strFilter.Equals("") || !strFilter.Equals(null)))
-                    {
-                        strFilter = strFilter.ToLower().Trim();
-                        switch (strFilter)
-                        {
-                            case "employees":
-                                fillDataGrid(Controller.StatisticsService.getRankingEmployees(start,end));
-                                break;
-                            case "teams":
-                                fillDataGrid(Controller.StatisticsService.getRankingTeams(start, end));
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Wrong selected values.");
-                    }
+                    this.filterRanking();
                     break;
             }
         }
-
+        
         /// <summary>
-        /// 
+        /// Event that runs when the selected index changed
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -212,6 +176,104 @@ namespace SynUp_Desktop.views
         }
 
         #endregion
+        
+        #region METHOD'S FILTERS
+        /// <summary>
+        /// Method that filter tasks by date
+        /// </summary>
+        private void filterByDate()
+        {
+            DateTime start = dtpBegin.Value.Date;
+            DateTime end = dtpEnd.Value.Date;
+
+            if (start != null && end != null && start.CompareTo(end) < 0)
+            {
+                fillDataGrid(Controller.StatisticsService.getTasksByDate(start, end));
+            }
+            else
+            {
+                clMessageBox.showMessage(clMessageBox.ACTIONTYPE.WRONG, null, false, this);
+            }
+        }
+
+        /// <summary>
+        ///  Method that filter tasks by team
+        /// </summary>
+        private void filterByTeam()
+        {
+            String strCode = (String)cmbTeams.SelectedValue;
+            if (!strCode.Equals("") || !strCode.Equals(null))
+            {
+                MessageBox.Show(strCode);
+                fillDataGrid(Controller.StatisticsService.getTasksByTeam(strCode));
+            }
+            else
+            {
+                clMessageBox.showMessage(clMessageBox.ACTIONTYPE.WRONG, null, false, this);
+            }
+        }
+
+        /// <summary>
+        ///  Method that filter tasks by employee
+        /// </summary>
+        private void filterByEmployee()
+        {
+            String strNif = (String)cmbEmployee.SelectedValue;
+            if (!strNif.Equals("") || !strNif.Equals(null))
+            {
+                fillDataGrid(Controller.StatisticsService.getTasksByEmployee(strNif));
+            }
+            else
+            {
+                clMessageBox.showMessage(clMessageBox.ACTIONTYPE.WRONG, null, false, this);
+            }
+        }
+
+        /// <summary>
+        ///  Method that filter tasks by state
+        /// </summary>
+        private void filterByState()
+        {
+            String strState = cmbStates.SelectedItem.ToString();
+            if (!strState.Equals("") || strState.Equals(null))
+            {
+                fillDataGrid(Controller.StatisticsService.getTasksByState(strState));
+            }
+            else
+            {
+                clMessageBox.showMessage(clMessageBox.ACTIONTYPE.WRONG, null, false, this);
+            }
+        }
+
+        /// <summary>
+        ///  Method that show ranking
+        /// </summary>
+        private void filterRanking()
+        {
+            DateTime start = dtpBegin.Value.Date;
+            DateTime end = dtpEnd.Value.Date;
+            String strFilter = cmbRanking.SelectedItem.ToString();
+
+            if (start != null && end != null && start.CompareTo(end) < 0 && (!strFilter.Equals("") || !strFilter.Equals(null)))
+            {
+                strFilter = strFilter.ToLower().Trim();
+                switch (strFilter)
+                {
+                    case "employees":
+                        fillDataGrid(Controller.StatisticsService.getRankingEmployees(start, end));
+                        break;
+                    case "teams":
+                        fillDataGrid(Controller.StatisticsService.getRankingTeams(start, end));
+                        break;
+                }
+            }
+            else
+            {
+                clMessageBox.showMessage(clMessageBox.ACTIONTYPE.WRONG, null, false, this);
+            }
+        }
+
+        #endregion
 
         private void setInstructions(String text)
         {
@@ -252,18 +314,6 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// Iniializes the form filling all the comboboxes with the respective data.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void frmStatistics_Load(object sender, EventArgs e)
-        {
-            hideAllComponents();
-
-            init();
-        }
-
-        /// <summary>
         /// 
         /// </summary>
         /// <param name="_data">Will receive the lists that the datagrid will be filled with.</param>
@@ -271,7 +321,7 @@ namespace SynUp_Desktop.views
         {
             BindingSource source = new BindingSource();
             source.DataSource = _data;
-            dgvStadistics.DataSource = source;
+            this.dgvStadistics.DataSource = source;
         }
 
         private void init()

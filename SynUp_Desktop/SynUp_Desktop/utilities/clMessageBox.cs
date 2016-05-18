@@ -30,7 +30,8 @@ namespace SynUp_Desktop.utilities
             EXCLUDE,
             ASSIGN,
             UNASSIGN,
-            EXIST
+            EXIST,
+            WRONG
             
         };
 
@@ -80,6 +81,9 @@ namespace SynUp_Desktop.utilities
                     break;
                 case "EXIST":
                     _strAction = "is already exists";
+                    break;
+                case "WRONG":                    
+                    _strAction = "Wrong selected values.";
                     break;
 
             }
