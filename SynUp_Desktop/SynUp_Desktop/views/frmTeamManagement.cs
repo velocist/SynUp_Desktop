@@ -1,15 +1,8 @@
 ﻿using SynUp_Desktop.controller;
 using SynUp_Desktop.model.pojo;
-using SynUp_Desktop.service;
 using SynUp_Desktop.utilities;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SynUp_Desktop.views
@@ -132,8 +125,8 @@ namespace SynUp_Desktop.views
             if (this.AuxTeam != null)
             {
                 // We recover the data of selected team
-                this.txtCode.Text = this.AuxTeam.code;
-                this.txtName.Text = this.AuxTeam.name;
+                this.txtCode.Text = this.AuxTeam.code.Trim();
+                this.txtName.Text = this.AuxTeam.name.Trim();
 
                 this.btnCreateTeam.Enabled = false; // We disable the button to create a team
                 this.txtCode.Enabled = false;

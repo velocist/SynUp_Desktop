@@ -101,13 +101,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 471);
+            this.ClientSize = new System.Drawing.Size(624, 472);
             this.Controls.Add(this.gbContainer);
             this.MinimumSize = new System.Drawing.Size(640, 510);
             this.Name = "frmTeams";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Teams";
             this.Activated += new System.EventHandler(this.frmTeams_Activated);
+            this.Load += new System.EventHandler(this.frmTeams_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTeams)).EndInit();
             this.gbContainer.ResumeLayout(false);
             this.gbContainer.PerformLayout();

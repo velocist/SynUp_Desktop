@@ -43,7 +43,6 @@ namespace SynUp_Desktop.views
         {
             model.pojo.Task _oSelectedTask = null;
             if (dgvTasks.SelectedRows.Count == 1)//If the row selected
-
             {
                 int _iIndexSelected = dgvTasks.SelectedRows[0].Index; // Recover the index of selected row
                 Object _cell = dgvTasks.Rows[_iIndexSelected].Cells[1].Value; //Modified: Pablo Ardèvol, Cells[2] to Cell[1] due to Database Change 
@@ -71,13 +70,14 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// Fills the DataGridView with the values of the database.
+        /// DataGridView Configuration
         /// </summary>
         /// <author>Pablo Ardèvol</author>
         private void initGridView()
         {
-            ///DataGridView Configuration
             fillGrid();
+
+            //Column configuration
 
             dgvTasks.Columns[0].Visible = false; // We hide id column
             //dgvTasks.Columns["code_team"].Visible = true; // We hide the id_team column

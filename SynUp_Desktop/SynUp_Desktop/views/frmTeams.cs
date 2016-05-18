@@ -1,12 +1,6 @@
 ﻿using SynUp_Desktop.controller;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SynUp_Desktop.views
@@ -53,7 +47,9 @@ namespace SynUp_Desktop.views
                 }
             }
 
+            //this.Hide();
             this.Controller.TeamMgtView.ShowDialog();
+            //this.Show();
         }
 
         /// <summary>
@@ -67,41 +63,22 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// Fills the DataGridView with the values of the database.
+        /// DataGridView configuration.
         /// </summary>
-        private void fillGridView()
+        private void initGridView()
         {
-            ///Note: Revisar si se puedes escoger los nombres de las columnas y las que aparecen al hacer el binding.
-            /// He ocultado las dos primeras columnas. Lo he hecho de dos maneras para que veas como se puede hacer.
-
-            BindingSource source = new BindingSource();
-            source.DataSource = Controller.TeamService.getAllTeams();
-
-            this.dgvTeams.DataSource = source;
-
-            this.dgvTeams.Refresh();
-
-        }
-
-        private void frmTeams_Activated(object sender, EventArgs e)
-        {
-            //The grid with all the tasks will load.
             this.fillGridView();
 
-            // DataGridView Configuration
+            //Column configuration
+
             this.dgvTeams.Columns[0].HeaderText = "Code"; // We change the column name
             this.dgvTeams.Columns[1].HeaderText = "Name";
             this.dgvTeams.Columns[2].Visible = false;
             this.dgvTeams.Columns[3].Visible = false;
-            this.dgvTeams.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
 
-            //DatagridView Common Configuration
-            this.dgvConfiguration();
-        }
-
-        private void dgvConfiguration()
-        {
             // DatagridView Common Configuration 
+
+            this.dgvTeams.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.dgvTeams.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
             this.dgvTeams.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row            
             this.dgvTeams.AllowUserToAddRows = false; // Can't add rows
@@ -117,6 +94,39 @@ namespace SynUp_Desktop.views
 
             //Form Common Configurations
             this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+        }
+
+        private void frmTeams_Activated(object sender, EventArgs e)
+        {
+            //The grid with all the teams will load.
+            //dgvTeams.DataSource = null;
+            initGridView();
+            //dgvTeams.EndEdit();
+            
+
+            //this.fillGridView();
+            //dgvTeams.ClearSelection();
+            //dgvTeams.Update();
+            //dgvTeams.Refresh();
+        }
+
+        private void frmTeams_Load(object sender, EventArgs e)
+        {
+            initGridView();
+        }
+
+        /// <summary>
+        /// Fills the DataGridView with the values of the database.
+        /// </summary>
+        private void fillGridView()
+        {
+            if (dgvTeams.DataSource != null) dgvTeams.DataSource = new List<String>();
+
+            BindingSource source = new BindingSource();
+            source.DataSource = Controller.TeamService.getAllTeams();
+            this.dgvTeams.DataSource = source;
+            this.dgvTeams.Refresh();
+            this.Refresh();
         }
     }
 }

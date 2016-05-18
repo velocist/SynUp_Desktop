@@ -10,7 +10,7 @@ namespace SynUp_Desktop.model.dao
 {
     public static class TeamConnection
     {
-        private static synupEntities database = new synupEntities();
+        //private static synupEntities database = new synupEntities();
 
         /// <summary>
         /// Saves the changes done over the database.
@@ -20,7 +20,7 @@ namespace SynUp_Desktop.model.dao
         {
             try
             {
-                database.SaveChanges();
+                new synupEntities().SaveChanges();
                 return true;
             }
             catch (Exception e)
@@ -74,7 +74,7 @@ namespace SynUp_Desktop.model.dao
         /// <returns>If the code is already on the database it will return the Team, otherwise it will return a null.</returns>
         public static pojo.Team readTeam(String pCode)
         {
-            var query = from team in database.Teams
+            var query = from team in new synupEntities().Teams
                         where team.code == pCode
                         select team;
 
@@ -130,7 +130,7 @@ namespace SynUp_Desktop.model.dao
 
         public static List<pojo.Team> readAllTeams()
         {
-            return (from team in database.Teams select team).ToList();
+            return (from team in new synupEntities().Teams select team).ToList();
         }
 
         public static bool addToTeam(/*pojo.Employee pEmployee, pojo.Team pTeam*/ String _EmpNif, String _TeamCode)
@@ -162,11 +162,11 @@ namespace SynUp_Desktop.model.dao
         /// To-DO // CHECK THAT THE TEAM THAT IS DELETED WONT HAVE ANY FOREIGN KEYS THAT REFERENCE IT
         /// </summary>
         /// <param name="team"></param>
-        private static void checkTeamMembers(Team team)
+        private static void checkTeamMembers(Team team, synupEntities context)
         {
             //Shows the employees that are currently in the given team.
-            var query = from th in database.TeamHistories
-                        join emp in database.Employees on th.id_employee equals emp.nif
+            var query = from th in context.TeamHistories
+                        join emp in context.Employees on th.id_employee equals emp.nif
                         where th.id_team.Equals(team.code) && th.exitDate == null
                         select emp;
 

@@ -10,7 +10,7 @@ namespace SynUp_Desktop.model.dao
 {
     public static class EmployeeConnection
     {
-        private static synupEntities database = new synupEntities();
+        //private static synupEntities database = new synupEntities();
 
         /// <summary>
         /// Saves the changes done over the database.
@@ -20,7 +20,7 @@ namespace SynUp_Desktop.model.dao
         {
             try
             {
-                database.SaveChanges();
+                new synupEntities().SaveChanges();
                 return true;
             }
             catch (Exception e)
@@ -86,7 +86,7 @@ namespace SynUp_Desktop.model.dao
 
         public static pojo.Employee readEmployee(String _pNif)
         {
-            var query = from employee in database.Employees
+            var query = from employee in new synupEntities().Employees
                         where employee.nif == _pNif
                         select employee;
 
@@ -148,7 +148,7 @@ namespace SynUp_Desktop.model.dao
 
         public static List<pojo.Employee> readAllEmployees()
         {
-            return (from employee in database.Employees select employee).ToList();
+            return (from employee in new synupEntities().Employees select employee).ToList();
         }
 
         /// <summary>
