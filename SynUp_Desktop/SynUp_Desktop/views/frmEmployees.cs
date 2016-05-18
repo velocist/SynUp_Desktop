@@ -1,4 +1,5 @@
 ﻿using SynUp_Desktop.controller;
+using SynUp_Desktop.utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -109,8 +110,19 @@ namespace SynUp_Desktop.views
         {
             //MessageBox.Show("Activated");
             this.fillGridView(); //The grid with all the employees will load.
-            dgvEmployees.ClearSelection(); // Clear selection rows.
-            dgvEmployees.Refresh(); //Refresh the view.                    
+            this.dgvEmployees.ClearSelection(); // Clear selection rows.
+            this.dgvEmployees.Refresh(); //Refresh the view.               
+
+            // DataGridView Configuration
+            //this.dgvEmployees.Columns[0].Visible = false; // We hide id column
+            this.dgvEmployees.Columns[8].Visible = false; // TeamsHistory
+            this.dgvEmployees.Columns[9].Visible = false; // TaskHistories
+
+            this.dgvEmployees.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+            //this.dgvEmployees.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader; 
+
+            //The combo with all the teams will load.
+            this.fillComboTeams();
         }
 
         /// <summary>
@@ -193,16 +205,16 @@ namespace SynUp_Desktop.views
                     //_oTeamHistory.id_team = pTeam.code;
                     //_oTeamHistory.entranceDay = DateTime.Today;
 
-                    Boolean _blAddOk = this.Controller.TeamService.addToTeam(pEmployee.nif, pTeam.code);
-
-                    if (_blAddOk)
+                    Boolean _blAdd = this.Controller.TeamService.addToTeam(pEmployee.nif, pTeam.code);
+                    clMessageBox.showMessage("has been added", "employee", _blAdd, this);
+                    /*if (_blAddOk)
                     {
                         MessageBox.Show("The employee has been added to the team");
                     }
                     else
                     {
                         MessageBox.Show("The employee hasn't been added to the team");
-                    }
+                    }*/
                 }
                 else
                 {
@@ -234,16 +246,6 @@ namespace SynUp_Desktop.views
             //Form Common Configurations
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
 
-            // DataGridView Configuration
-            //this.dgvEmployees.Columns[0].Visible = false; // We hide id column
-            //this.dgvEmployees.Columns[7].Visible = false; // TeamsHistory
-            //this.dgvEmployees.Columns[8].Visible = false; // TaskHistories
-
-            //this.dgvEmployees.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
-            //this.dgvEmployees.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader; 
-
-            //The combo with all the teams will load.
-            this.fillComboTeams();
         }
 
         /// <summary>
@@ -253,8 +255,8 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void frmEmployees_Load(object sender, EventArgs e)
         {
-            dgvConfiguration();
-            frmEmployees_Activated(sender, e);
+            this.dgvConfiguration();
+            this.frmEmployees_Activated(sender, e);
         }
 
         /* DELETE: Cambio evento por RowsStateChange. 17/05/2016-1131

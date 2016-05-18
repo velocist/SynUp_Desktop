@@ -111,6 +111,8 @@ namespace SynUp_Desktop.model.dao
                     _oEmployee.phone = pEmployee.phone;
                     _oEmployee.email = pEmployee.email;
                     _oEmployee.adress = pEmployee.adress;
+                    _oEmployee.username = pEmployee.username;
+                    _oEmployee.password = _oEmployee.password;
 
                     return commitChanges(context);
                 }

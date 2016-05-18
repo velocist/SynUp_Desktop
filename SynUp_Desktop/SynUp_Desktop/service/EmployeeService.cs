@@ -19,7 +19,7 @@ namespace SynUp_Desktop.service
         /// <param name="email">Employee email</param>
         /// <param name="adress">Employee adress</param>
         /// <returns>Whether if the employee has been correctly created or not</returns>
-        public bool createEmployee(String pNif, String pName, String pSurname, String pPhone, String pEmail, String pAdress)
+        public bool createEmployee(String pNif, String pName, String pSurname, String pPhone, String pEmail, String pAdress, String pUsername)
         {
             Employee newEmployee = new Employee
             {
@@ -28,7 +28,10 @@ namespace SynUp_Desktop.service
                 surname = pSurname,
                 phone = pPhone,
                 email = pEmail,
-                adress = pAdress
+                adress = pAdress,
+                username = pEmail,//Default initial username
+                password = pNif //Default initial password
+
             };
 
             return EmployeeConnection.createEmployee(newEmployee);
@@ -44,7 +47,7 @@ namespace SynUp_Desktop.service
         /// <param name="email"></param>
         /// <param name="adress"></param>
         /// <returns></returns>
-        public bool updateEmployee(String pNif, String pName, String pSurname, String pPhone, String pEmail, String pAdress)
+        public bool updateEmployee(String pNif, String pName, String pSurname, String pPhone, String pEmail, String pAdress,String pUsername)
         {
             Employee newEmployee = new Employee
             {
@@ -53,7 +56,8 @@ namespace SynUp_Desktop.service
                 surname = pSurname,
                 phone = pPhone,
                 email = pEmail,
-                adress = pAdress
+                adress = pAdress,
+                username = pUsername
             };
 
             return EmployeeConnection.updateEmployee(newEmployee);
@@ -118,6 +122,8 @@ namespace SynUp_Desktop.service
                 if (pEmployee.phone != null) pEmployee.phone = pEmployee.phone.Trim();
                 if (pEmployee.email != null) pEmployee.email = pEmployee.email.Trim();
                 if (pEmployee.adress != null) pEmployee.adress = pEmployee.adress.Trim();
+                if (pEmployee.username != null) pEmployee.username = pEmployee.username.Trim();
+                if (pEmployee.password != null) pEmployee.password = pEmployee.password.Trim();
             }
             return pEmployee;
         }

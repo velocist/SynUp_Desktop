@@ -77,20 +77,23 @@ namespace SynUp_Desktop.views
             BindingSource source = new BindingSource();
             source.DataSource = Controller.TeamService.getAllTeams();
 
-            dgvTeams.DataSource = source;
+            this.dgvTeams.DataSource = source;
 
-            dgvTeams.Refresh();
+            this.dgvTeams.Refresh();
 
         }
 
         private void frmTeams_Activated(object sender, EventArgs e)
         {
             //The grid with all the tasks will load.
-            fillGridView();
+            this.fillGridView();
 
             // DataGridView Configuration
-            dgvTeams.Columns[0].HeaderText = "Code"; // We change the column name
-            dgvTeams.Columns[1].HeaderText = "Name";
+            this.dgvTeams.Columns[0].HeaderText = "Code"; // We change the column name
+            this.dgvTeams.Columns[1].HeaderText = "Name";
+            this.dgvTeams.Columns[2].Visible = false;
+            this.dgvTeams.Columns[3].Visible = false;
+            this.dgvTeams.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
 
             //DatagridView Common Configuration
             this.dgvConfiguration();

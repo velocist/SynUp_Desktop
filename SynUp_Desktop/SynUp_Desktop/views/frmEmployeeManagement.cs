@@ -54,9 +54,10 @@ namespace SynUp_Desktop.views
             String _strPhone = txtPhone.Text;
             String _strEmail = txtEmail.Text;
             String _strAdress = txtAdress.Text;
+            String _strUsername = txtAdress.Text;
 
 
-            Boolean _blCreateOk = this.Controller.EmployeeService.createEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress);
+            Boolean _blCreateOk = this.Controller.EmployeeService.createEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress,_strUsername);
 
             /*utilities.clMessageBox _msgBox = new utilities.*//// MODIFICATION - Pablo, 170516, clMessageBox made static to access the methods without having to create an object of the class.
             clMessageBox.showMessage("create", "employee", _blCreateOk, this);
@@ -85,10 +86,11 @@ namespace SynUp_Desktop.views
             String _strPhone = txtPhone.Text;
             String _strEmail = txtEmail.Text;
             String _strAdress = txtAdress.Text;
+            String _strUsername = txtUsername.Text;
 
-            Boolean _blUpdateOk = this.Controller.EmployeeService.updateEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress);
-
-            if (_blUpdateOk)
+            Boolean _blUpdateOk = this.Controller.EmployeeService.updateEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress,_strUsername);
+            clMessageBox.showMessage("update", "employee", _blUpdateOk, this);
+            /*if (_blUpdateOk)
             {
                 MessageBox.Show("The employee was updated succesfully!");
                 this.btnBack_Click(sender, e);
@@ -96,7 +98,7 @@ namespace SynUp_Desktop.views
             else
             {
                 MessageBox.Show("The employee wasn't updated succesfully!");
-            }
+            }*/
         }
 
         /// <summary>
@@ -106,17 +108,19 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnDeleteEmployee_Click(object sender, EventArgs e)
         {
+            Boolean _blDelete = false;
             model.pojo.Employee _oDeleteEmployee = this.Controller.EmployeeService.deleteEmployee(AuxEmployee);
 
             if (_oDeleteEmployee != null)
             {
-                MessageBox.Show("This employee was delete succesfully");
-                this.btnBack_Click(sender, e);
+                _blDelete = true;
             }
             else
             {
-                MessageBox.Show("This employee wasn't delete succesfully");
+                _blDelete = false;
             }
+
+            clMessageBox.showMessage("delete", "employee", _blDelete, this);
         }
 
         #endregion
@@ -135,13 +139,12 @@ namespace SynUp_Desktop.views
             if (AuxEmployee == null)
             {
                 string _strNif = "";
-                if(txtNif.Text!=null) _strNif = txtNif.Text;
+                if (txtNif.Text != null) _strNif = txtNif.Text;
 
                 Employee _oEmployee = Controller.EmployeeService.readEmployee(_strNif); // We look for if the employee already exists
 
-                if (_oEmployee != null && !Regex.Match(_strNif, _strNifExpression).Success) // If the employee exists, we show a message
-                {
-                    //MessageBox.Show("This team don't exists");
+                if (_oEmployee != null || !Regex.Match(_strNif, _strNifExpression).Success && txtNif.Text != "") // If the employee exists, we show a message
+                {                    
                     lblNif.ForeColor = Color.Red;
                     lblNif.Text = "NIF*";
                 }
@@ -165,7 +168,7 @@ namespace SynUp_Desktop.views
             {
                 String _strEmail = txtEmail.Text;
 
-                if (!Regex.Match(_strEmail, _strEmailExpression).Success) // If the team exists, we show a message
+                if (!Regex.Match(_strEmail, _strEmailExpression).Success || txtEmail.Text == "") // If the team exists, we show a message
                 {
                     lblEmail.ForeColor = Color.Red;
                     lblEmail.Text = "Email*";
@@ -201,6 +204,7 @@ namespace SynUp_Desktop.views
                 this.txtPhone.Text = this.AuxEmployee.phone;
                 this.txtEmail.Text = this.AuxEmployee.email;
                 this.txtAdress.Text = this.AuxEmployee.adress;
+                this.txtUsername.Text = this.AuxEmployee.username;
 
                 this.btnCreate.Enabled = false; // We disable the button to create a task
                 this.txtNif.Enabled = false;
@@ -261,6 +265,7 @@ namespace SynUp_Desktop.views
             txtPhone.Text = "";
             txtEmail.Text = "";
             txtAdress.Text = "";
+            txtUsername.Text = "";
         }
 
         /// <summary>
@@ -276,9 +281,7 @@ namespace SynUp_Desktop.views
             ToolTips.SetToolTip(this.lblEmail, "exemple@domain.com");
 
         }
-
-
-
+        
 
         /* DELETE: Cambio por el evento Activated
        /// <summary>

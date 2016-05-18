@@ -43,6 +43,8 @@
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtAdress = new System.Windows.Forms.TextBox();
             this.gbContainer = new System.Windows.Forms.GroupBox();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.lblUsername = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
@@ -51,20 +53,20 @@
             // 
             // btnUpdateEmployee
             // 
-            this.btnUpdateEmployee.Location = new System.Drawing.Point(93, 200);
+            this.btnUpdateEmployee.Location = new System.Drawing.Point(94, 200);
             this.btnUpdateEmployee.Name = "btnUpdateEmployee";
             this.btnUpdateEmployee.Size = new System.Drawing.Size(75, 39);
-            this.btnUpdateEmployee.TabIndex = 8;
+            this.btnUpdateEmployee.TabIndex = 9;
             this.btnUpdateEmployee.Text = "Update";
             this.btnUpdateEmployee.UseVisualStyleBackColor = true;
             this.btnUpdateEmployee.Click += new System.EventHandler(this.btnUpdateEmployee_Click);
             // 
             // btnDeleteEmployee
             // 
-            this.btnDeleteEmployee.Location = new System.Drawing.Point(174, 200);
+            this.btnDeleteEmployee.Location = new System.Drawing.Point(175, 200);
             this.btnDeleteEmployee.Name = "btnDeleteEmployee";
             this.btnDeleteEmployee.Size = new System.Drawing.Size(75, 39);
-            this.btnDeleteEmployee.TabIndex = 79;
+            this.btnDeleteEmployee.TabIndex = 10;
             this.btnDeleteEmployee.Text = "Delete";
             this.btnDeleteEmployee.UseVisualStyleBackColor = true;
             this.btnDeleteEmployee.Click += new System.EventHandler(this.btnDeleteEmployee_Click);
@@ -81,7 +83,7 @@
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(10, 69);
+            this.lblName.Location = new System.Drawing.Point(10, 57);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(35, 13);
             this.lblName.TabIndex = 0;
@@ -90,7 +92,7 @@
             // lblSurname
             // 
             this.lblSurname.AutoSize = true;
-            this.lblSurname.Location = new System.Drawing.Point(157, 69);
+            this.lblSurname.Location = new System.Drawing.Point(157, 57);
             this.lblSurname.Name = "lblSurname";
             this.lblSurname.Size = new System.Drawing.Size(49, 13);
             this.lblSurname.TabIndex = 5;
@@ -99,7 +101,7 @@
             // lblPhone
             // 
             this.lblPhone.AutoSize = true;
-            this.lblPhone.Location = new System.Drawing.Point(7, 99);
+            this.lblPhone.Location = new System.Drawing.Point(7, 87);
             this.lblPhone.Name = "lblPhone";
             this.lblPhone.Size = new System.Drawing.Size(38, 13);
             this.lblPhone.TabIndex = 0;
@@ -108,7 +110,7 @@
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(9, 126);
+            this.lblEmail.Location = new System.Drawing.Point(9, 114);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(32, 13);
             this.lblEmail.TabIndex = 0;
@@ -117,7 +119,7 @@
             // lblAdress
             // 
             this.lblAdress.AutoSize = true;
-            this.lblAdress.Location = new System.Drawing.Point(6, 154);
+            this.lblAdress.Location = new System.Drawing.Point(6, 142);
             this.lblAdress.Name = "lblAdress";
             this.lblAdress.Size = new System.Drawing.Size(39, 13);
             this.lblAdress.TabIndex = 0;
@@ -133,28 +135,28 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(50, 66);
+            this.txtName.Location = new System.Drawing.Point(50, 54);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(100, 20);
             this.txtName.TabIndex = 2;
             // 
             // txtSurname
             // 
-            this.txtSurname.Location = new System.Drawing.Point(210, 66);
+            this.txtSurname.Location = new System.Drawing.Point(210, 54);
             this.txtSurname.Name = "txtSurname";
             this.txtSurname.Size = new System.Drawing.Size(230, 20);
             this.txtSurname.TabIndex = 3;
             // 
             // txtPhone
             // 
-            this.txtPhone.Location = new System.Drawing.Point(50, 96);
+            this.txtPhone.Location = new System.Drawing.Point(50, 84);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(100, 20);
             this.txtPhone.TabIndex = 4;
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(50, 123);
+            this.txtEmail.Location = new System.Drawing.Point(50, 111);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(390, 20);
             this.txtEmail.TabIndex = 5;
@@ -162,13 +164,15 @@
             // 
             // txtAdress
             // 
-            this.txtAdress.Location = new System.Drawing.Point(50, 149);
+            this.txtAdress.Location = new System.Drawing.Point(50, 137);
             this.txtAdress.Name = "txtAdress";
             this.txtAdress.Size = new System.Drawing.Size(390, 20);
             this.txtAdress.TabIndex = 6;
             // 
             // gbContainer
             // 
+            this.gbContainer.Controls.Add(this.txtUsername);
+            this.gbContainer.Controls.Add(this.lblUsername);
             this.gbContainer.Controls.Add(this.lblNif);
             this.gbContainer.Controls.Add(this.lblName);
             this.gbContainer.Controls.Add(this.txtAdress);
@@ -188,32 +192,49 @@
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "Employee Data";
             // 
+            // txtUsername
+            // 
+            this.txtUsername.Enabled = false;
+            this.txtUsername.Location = new System.Drawing.Point(332, 28);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(107, 20);
+            this.txtUsername.TabIndex = 7;
+            // 
+            // lblUsername
+            // 
+            this.lblUsername.AutoSize = true;
+            this.lblUsername.Location = new System.Drawing.Point(271, 32);
+            this.lblUsername.Name = "lblUsername";
+            this.lblUsername.Size = new System.Drawing.Size(55, 13);
+            this.lblUsername.TabIndex = 7;
+            this.lblUsername.Text = "Username";
+            // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(381, 200);
+            this.btnBack.Location = new System.Drawing.Point(382, 200);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(75, 39);
-            this.btnBack.TabIndex = 10;
+            this.btnBack.TabIndex = 12;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(12, 200);
+            this.btnCreate.Location = new System.Drawing.Point(13, 200);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(75, 39);
-            this.btnCreate.TabIndex = 7;
+            this.btnCreate.TabIndex = 8;
             this.btnCreate.Text = "Create";
             this.btnCreate.UseVisualStyleBackColor = true;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(255, 200);
+            this.btnClear.Location = new System.Drawing.Point(256, 200);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 39);
-            this.btnClear.TabIndex = 80;
+            this.btnClear.TabIndex = 11;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
@@ -261,5 +282,7 @@
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.Label lblUsername;
     }
 }

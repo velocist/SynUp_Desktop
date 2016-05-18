@@ -1,6 +1,7 @@
 ﻿using SynUp_Desktop.controller;
 using SynUp_Desktop.model.pojo;
 using SynUp_Desktop.service;
+using SynUp_Desktop.utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -45,50 +46,32 @@ namespace SynUp_Desktop.views
             String _strCode = txtCode.Text;
             String _strName = txtName.Text;
 
-            Boolean createOk = Controller.TeamService.createTeam(_strCode, _strName);
-
-            if (createOk)
-            {
-                MessageBox.Show("The team was created succesfully!");
-                this.btnBack_Click(sender, e);
-            }
-            else
-            {
-                MessageBox.Show("The team wasn't created succesfully!");
-            }
-
+            Boolean _blCreate = Controller.TeamService.createTeam(_strCode, _strName);
+            clMessageBox.showMessage("create", "team", _blCreate, this);
 
         }
 
         private void btnDeleteTeam_Click(object sender, EventArgs e)
         {
+            Boolean _blDelete = false;
             Team deleteTeam = Controller.TeamService.deleteTeam(AuxTeam);
             if (deleteTeam != null)
             {
-                MessageBox.Show("This team was delete succesfully");
-                this.btnBack_Click(sender, e);
+                _blDelete = true;
             }
             else
             {
-                MessageBox.Show("This team wasn't delete succesfully");
+                _blDelete = false;
             }
+            clMessageBox.showMessage("delete", "team", _blDelete, this);
         }
 
         private void btnUpdateTeam_Click(object sender, EventArgs e)
         {
             String _strName = txtName.Text;
             String _strCode = txtCode.Text;
-            Boolean _blUpdateOk = this.Controller.TeamService.updateTeam(_strCode,_strName);
-
-            if (_blUpdateOk)
-            {
-                MessageBox.Show("The team was updated succesfully!");
-                this.btnBack_Click(sender, e);
-            }
-            else
-            {
-                MessageBox.Show("The team wasn't updated succesfully!");
-            }
+            Boolean _blUpdate = this.Controller.TeamService.updateTeam(_strCode, _strName);
+            clMessageBox.showMessage("update", "team", _blUpdate, this);
         }
 
         #endregion
@@ -152,9 +135,8 @@ namespace SynUp_Desktop.views
                 this.btnUpdateTeam.Enabled = false;
             }
 
-            //this.btnAddToTeam.Enabled = false;
-            //this.btnDeleteToTeam.Enabled = false;
             this.dgvConfiguration();
+            this.dgvEmployeesOnTeam.Refresh();
 
         }
 
@@ -165,7 +147,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void dgvEmployeesOnTeam_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
         {
-            
+
             if (this.dgvEmployeesOnTeam.SelectedRows.Count == 1)
             {
                 int _iIndexSelected = this.dgvEmployeesOnTeam.SelectedRows[0].Index;
@@ -273,7 +255,7 @@ namespace SynUp_Desktop.views
 
             this.cmbFilterEmployees.SelectedIndex = 0;
         }
-        
+
     }
 }
 
