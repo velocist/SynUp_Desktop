@@ -197,7 +197,7 @@ namespace SynUp_Desktop.views
 
             if (pEmployee != null && pTeam != null)
             {
-                _oTeamHistoryControl = this.Controller.TeamHistoryService.readTeamHistory(pEmployee.nif, pTeam.code);
+                _oTeamHistoryControl = null;// this.Controller.TeamHistoryService.readTeamHistory(pEmployee.nif, pTeam.code);
 
                 if (_oTeamHistoryControl == null)
                 {
@@ -208,7 +208,6 @@ namespace SynUp_Desktop.views
 
                     Boolean _blAdd = this.Controller.TeamService.addToTeam(pEmployee.nif, pTeam.code);
                     clMessageBox.showMessage(clMessageBox.ACTIONTYPE.ADD, "employee", _blAdd, this);
-
                 }
                 else
                 {

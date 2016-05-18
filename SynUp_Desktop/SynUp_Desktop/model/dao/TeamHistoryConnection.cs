@@ -9,7 +9,7 @@ namespace SynUp_Desktop.model.dao
 {
     public static class TeamHistoryConnection
     {
-        private static synupEntities database = new synupEntities();
+        //private static synupEntities database = new synupEntities();
 
         /// <summary>
         /// Saves the changes done over the database.
@@ -19,7 +19,7 @@ namespace SynUp_Desktop.model.dao
         {
             try
             {
-                database.SaveChanges();
+                new synupEntities().SaveChanges();
                 return true;
             }
             catch (Exception e)
@@ -48,9 +48,23 @@ namespace SynUp_Desktop.model.dao
         /// </summary>
         /// <param name="code">Code key of the teamHistory.</param>
         /// <returns>If the code is already on the database it will return the TeamHistory, otherwise it will return a null.</returns>
+        public static pojo.TeamHistory readTeamHistory(String pNif, String pCodeTeam, synupEntities seContext)
+        {
+            var query = from teamHistory in seContext.TeamHistories
+                        where teamHistory.id_employee == pNif && teamHistory.id_team == pCodeTeam
+                        select teamHistory;
+
+            return query.SingleOrDefault();
+        }
+
+        /// <summary>
+        /// Given the code, it is searched in the database and will return the first result.
+        /// </summary>
+        /// <param name="code">Code key of the teamHistory.</param>
+        /// <returns>If the code is already on the database it will return the TeamHistory, otherwise it will return a null.</returns>
         public static pojo.TeamHistory readTeamHistory(String pNif, String pCodeTeam)
         {
-            var query = from teamHistory in database.TeamHistories
+            var query = from teamHistory in new synupEntities().TeamHistories
                         where teamHistory.id_employee == pNif && teamHistory.id_team == pCodeTeam
                         select teamHistory;
 
@@ -64,17 +78,17 @@ namespace SynUp_Desktop.model.dao
         /// <returns>Returns the teamHistory that has been deleted.</returns>
         public static pojo.TeamHistory deleteTeamHistory(String pNif, String pCode)
         {
-            pojo.TeamHistory foundTeamHistory = readTeamHistory(pNif,pCode); //Finds the received teamHistory in the database.
-
-            if (foundTeamHistory != null) //If the teamHistory has been found - meaning that it exists:
+            using (var context = new synupEntities())
             {
-                using(var context = new synupEntities())
+                pojo.TeamHistory foundTeamHistory = readTeamHistory(pNif, pCode, context); //Finds the received teamHistory in the database.
+
+                if (foundTeamHistory != null) //If the teamHistory has been found - meaning that it exists:
                 {
                     tryAttach(context, foundTeamHistory);
                     context.TeamHistories.Remove(foundTeamHistory); //Will be deleted.
                     if (commitChanges(context)) return foundTeamHistory; //If the changes are commited succesfully it will return the deleted TeamHistory.
                     else return null;
-                }                
+                }
             }
             return null;
         }
@@ -86,14 +100,16 @@ namespace SynUp_Desktop.model.dao
         /// <returns>Returns a boolean whether the teamHistory has been updated succesfully or not.</returns>
         public static bool updateTeamHistory(String pNif, String pCodeTeam/*, DateTime pEntranceDate,*/, DateTime pExitDate)
         {
-            pojo.TeamHistory modifiedTeamHistory = null;
-
-            modifiedTeamHistory = readTeamHistory(pNif, pCodeTeam);
-
             using (var context = new synupEntities())
             {
+                pojo.TeamHistory modifiedTeamHistory = null;
+
+                modifiedTeamHistory = readTeamHistory(pNif, pCodeTeam, context);
+
+
                 if (modifiedTeamHistory != null)
                 {
+                    tryAttach(context, modifiedTeamHistory);
                     //modifiedTeamHistory.id_employee = pNif;
                     //modifiedTeamHistory.id_team = pCodeTeam;
                     //modifiedTeamHistory.entranceDay = pEntranceDate;
@@ -104,14 +120,14 @@ namespace SynUp_Desktop.model.dao
                 return commitChanges(context);
             }
         }
-        
+
         /// <summary>
         /// Read all teamsHistories
         /// </summary>
         /// <returns></returns>
         public static List<TeamHistory> readAllTeamHistories()
         {
-            return (from teamHistory in database.TeamHistories select teamHistory).ToList();
+            return (from teamHistory in new synupEntities().TeamHistories select teamHistory).ToList();
         }
 
         /// <summary>
@@ -121,8 +137,9 @@ namespace SynUp_Desktop.model.dao
         /// <returns></returns>
         public static List<TeamHistory> readAllTeamHistoriesByTeam(String pCodeTeam)
         {
-            return (from teamHistory in database.TeamHistories
-                    where teamHistory.id_team == pCodeTeam && teamHistory.exitDate == null select teamHistory).ToList();
+            return (from teamHistory in new synupEntities().TeamHistories
+                    where teamHistory.id_team == pCodeTeam && teamHistory.exitDate == null
+                    select teamHistory).ToList();
         }
 
         /// <summary>

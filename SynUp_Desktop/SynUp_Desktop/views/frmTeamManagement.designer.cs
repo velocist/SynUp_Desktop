@@ -32,7 +32,6 @@
             this.lblFilterEmployee = new System.Windows.Forms.Label();
             this.cmbFilterEmployees = new System.Windows.Forms.ComboBox();
             this.btnDeleteToTeam = new System.Windows.Forms.Button();
-            this.btnAddToTeam = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvEmployeesOnTeam = new System.Windows.Forms.DataGridView();
             this.lblCode = new System.Windows.Forms.Label();
@@ -53,7 +52,6 @@
             this.groupBox1.Controls.Add(this.lblFilterEmployee);
             this.groupBox1.Controls.Add(this.cmbFilterEmployees);
             this.groupBox1.Controls.Add(this.btnDeleteToTeam);
-            this.groupBox1.Controls.Add(this.btnAddToTeam);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.dgvEmployeesOnTeam);
             this.groupBox1.Controls.Add(this.lblCode);
@@ -86,24 +84,13 @@
             // 
             // btnDeleteToTeam
             // 
-            this.btnDeleteToTeam.Location = new System.Drawing.Point(342, 330);
+            this.btnDeleteToTeam.Location = new System.Drawing.Point(234, 330);
             this.btnDeleteToTeam.Name = "btnDeleteToTeam";
             this.btnDeleteToTeam.Size = new System.Drawing.Size(97, 23);
             this.btnDeleteToTeam.TabIndex = 6;
-            this.btnDeleteToTeam.Text = "Delete to team";
+            this.btnDeleteToTeam.Text = "Delete from team";
             this.btnDeleteToTeam.UseVisualStyleBackColor = true;
             this.btnDeleteToTeam.Click += new System.EventHandler(this.btnDeleteToTeam_Click);
-            // 
-            // btnAddToTeam
-            // 
-            this.btnAddToTeam.Location = new System.Drawing.Point(222, 330);
-            this.btnAddToTeam.Name = "btnAddToTeam";
-            this.btnAddToTeam.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnAddToTeam.Size = new System.Drawing.Size(114, 23);
-            this.btnAddToTeam.TabIndex = 5;
-            this.btnAddToTeam.Text = "Add to team";
-            this.btnAddToTeam.UseVisualStyleBackColor = true;
-            this.btnAddToTeam.Click += new System.EventHandler(this.btnAddToTeam_Click);
             // 
             // label1
             // 
@@ -242,7 +229,6 @@
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnDeleteToTeam;
-        private System.Windows.Forms.Button btnAddToTeam;
         private System.Windows.Forms.Button btnCreateTeam;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.ComboBox cmbFilterEmployees;

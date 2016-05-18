@@ -127,14 +127,15 @@ namespace SynUp_Desktop.views
                 // We recover the data of selected team
                 this.txtCode.Text = this.AuxTeam.code.Trim();
                 this.txtName.Text = this.AuxTeam.name.Trim();
-
-                this.btnCreateTeam.Enabled = false; // We disable the button to create a team
-                this.txtCode.Enabled = false;
+                
                 //The grid with all the employees on team will load.
                 this.fillDataGrid();
                 this.fillComboFilterEmployees();
+
                 this.btnDeleteTeam.Enabled = true;
                 this.btnUpdateTeam.Enabled = true;
+                this.btnCreateTeam.Enabled = false; // We disable the button to create a team
+                this.txtCode.Enabled = false;
             }
             else
             {
@@ -167,7 +168,7 @@ namespace SynUp_Desktop.views
                     this.AuxEmployee = this.Controller.EmployeeService.readEmployee(_strSelectedRowCode);
                 }
 
-                this.btnAddToTeam.Enabled = true;
+                //this.btnAddToTeam.Enabled = true;
                 this.btnDeleteToTeam.Enabled = true;
             }
         }
@@ -284,7 +285,7 @@ namespace SynUp_Desktop.views
                     String _strSelectedRowCode = _cell.ToString(); // Recover the code
                     _oSelectedEmployee = Controller.EmployeeService.readEmployee(_strSelectedRowCode); // We look for the employee nif
 
-                    this.deleteToTeam(_oSelectedEmployee, AuxTeam);
+                    this.deleteFromTeam(_oSelectedEmployee, AuxTeam);
                 }
             }
         }
@@ -292,7 +293,7 @@ namespace SynUp_Desktop.views
         /// <summary>
         /// Deleted selected employee to team
         /// </summary>
-        private void deleteToTeam(model.pojo.Employee pEmployee, model.pojo.Team pTeam)
+        private void deleteFromTeam(model.pojo.Employee pEmployee, model.pojo.Team pTeam)
         {
             //model.pojo.TeamHistory _oTeamHistory = new model.pojo.TeamHistory();
             model.pojo.TeamHistory _oTeamHistoryControl = null;
