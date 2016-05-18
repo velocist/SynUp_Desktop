@@ -48,8 +48,7 @@ namespace SynUp_Desktop.model.dao
 
         public static List<pojo.Task> readTasksByTeam(String _code)
         {
-            var query = from record in database.TaskHistories
-                        join task in database.Tasks on record.id_task equals task.code
+            var query = from  task in database.Tasks
                         where task.id_team.Equals(_code) 
                         select task;
             return query.ToList();
