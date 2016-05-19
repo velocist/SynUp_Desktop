@@ -90,6 +90,15 @@ namespace SynUp_Desktop.model.dao
             return query.ToList();
         }
 
+        public static List<pojo.Task> readCancelledTasks()
+        {
+            var query = from task in database.Tasks
+                        join th in database.TaskHistories on task.code equals th.id_task
+                        where th.finishDate != null && th.isFinished != 0
+                        select task;
+            return query.ToList();
+        }
+
 
 
     }

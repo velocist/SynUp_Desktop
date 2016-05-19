@@ -25,17 +25,17 @@ namespace SynUp_Desktop.service
         /// <param name="project">The project name task to create</param>
         /// <author>Pablo A.</author>
         /// <returns>Whether if the task has been correctly created or not</returns>
-        public bool createTask(String code, String name, DateTime priorityDate, String description, String localization, String project, String team)
+        public bool createTask(String code, String name, DateTime priorityDate, String description, String localization, String project, String team, int importance)
         {
             Task newTask = new Task
             {
-                code = code,
+                code = code.Trim(),
                 id_team = team,
-                name = name,
+                name = name.Trim(),
                 priorityDate = priorityDate,
-                description = description,
-                localization = localization,
-                project = project
+                description = description.Trim(),
+                localization = localization.Trim(),
+                project = project.Trim()
             };
 
 

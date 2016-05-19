@@ -53,6 +53,9 @@ namespace SynUp_Desktop.service
                 case "abandonned":
                     _resultList = StatisticsConnection.readAbandonnedTasks();
                     break;
+                case "cancelled":
+                    _resultList = StatisticsConnection.readCancelledTasks();
+                    break;
             }
 
             return _resultList;
