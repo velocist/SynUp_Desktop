@@ -35,15 +35,23 @@ namespace SynUp_Desktop.model.dao
             ///((th.startDate is null) or
             ///(th.startDate is null and th.finishDate is null)
             ///
-            /*var query = (from task in database.Tasks
-                         join th in database.TaskHistories on task.code equals th.id_task into th_gr
-                         from th in th_gr.DefaultIfEmpty()
-                         select new
-                         {
-                             task
-                         };).*/
+            //var firstQuery = (from task in database.Tasks
+            //                  join th in database.TaskHistories on task.code equals th.id_task into th_gr
+            //                  from th in th_gr.DefaultIfEmpty()
+            //                  select task).ToList();
 
-            return null;
+            return (from task in database.Tasks
+                    join th in database.TaskHistories on task.code equals th.id_task
+                    where th.startDate >= _dateStartPeriod && th.finishDate <= _dateFinishPeriod
+                    where task.state != (int)TaskState.CANCELLED && task.state != (int)TaskState.FINISHED
+                    select task).ToList();
+
+            //foreach(var q in secondQuery)
+            //{
+            //    firstQuery.Add(q);
+            //}
+
+            //return firstQuery;//firstQuery.Union(secondQuery);
         }
 
         public static List<pojo.spGetRankingTeam_Result> readRankingTeams(DateTime _dateStartPeriod, DateTime _dateFinishPeriod)
@@ -71,8 +79,8 @@ namespace SynUp_Desktop.model.dao
 
         public static List<pojo.Task> readTasksByTeam(String _code)
         {
-            var query = from  task in database.Tasks
-                        where task.id_team.Equals(_code) 
+            var query = from task in database.Tasks
+                        where task.id_team.Equals(_code)
                         select task;
             return query.ToList();
         }
