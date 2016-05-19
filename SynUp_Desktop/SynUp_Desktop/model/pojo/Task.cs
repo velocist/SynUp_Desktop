@@ -27,6 +27,8 @@ namespace SynUp_Desktop.model.pojo
         public string description { get; set; }
         public string localization { get; set; }
         public string project { get; set; }
+        public Nullable<int> priority { get; set; }
+        public Nullable<int> state { get; set; }
     
         public virtual Team Team { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -17,17 +17,12 @@ namespace SynUp_Desktop.service.Tests
         /// <author>Pablo Ardèvol Garcia</author>
         [TestMethod()]
         public void createTaskTest()
-        {
-            
+        {            
             bool resultat = false;
-
             TaskService servei = new TaskService();
-
             //String code, String name, DateTime priorityDate, String description, String localization, String project
-            resultat = servei.createTask("3","Projecte",DateTime.Now,null,null,null,null);
-
-            Assert.AreEqual(true, resultat);     
-            
+            resultat = servei.createTask("3","Projecte",DateTime.Now,null,null,null,null,0);
+            Assert.AreEqual(true, resultat);                 
         }
     }
 }

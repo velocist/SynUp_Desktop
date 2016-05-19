@@ -1,5 +1,6 @@
 ﻿using SynUp_Desktop.model.dao;
 using SynUp_Desktop.model.pojo;
+using SynUp_Desktop.utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,25 +38,28 @@ namespace SynUp_Desktop.service
         public List<Task> getTasksByState(String state)
         {
             state = state.ToLower().Trim();
-            List<Task> _resultList = null;
+            int _state = -1;
 
             switch (state)
             {
                 case "not selected":
-                    _resultList = StatisticsConnection.readUnselectedTasks();
+                    _state = (int)TaskState.UNSELECTED;
                     break;
                 case "ongoing":
-                    _resultList = StatisticsConnection.readOngoingTasks();
+                    _state = (int)TaskState.ONGOING;
                     break;
                 case "finished":
-                    _resultList = StatisticsConnection.readFinishedTasks();
+                    _state = (int)TaskState.FINISHED;
                     break;
-                case "abandonned":
-                    _resultList = StatisticsConnection.readAbandonnedTasks();
+                case "abandoned":
+                    _state = (int)TaskState.ABANDONED;
+                    break;
+                case "cancelled":
+                    _state = (int)TaskState.CANCELLED;
                     break;
             }
 
-            return _resultList;
+            return StatisticsConnection.readStatusTasks(_state);
         }
     }
 }

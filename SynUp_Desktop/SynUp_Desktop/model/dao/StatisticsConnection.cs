@@ -1,4 +1,5 @@
 ﻿using SynUp_Desktop.model.pojo;
+using SynUp_Desktop.utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,17 +21,39 @@ namespace SynUp_Desktop.model.dao
         {
             ///Check from TaskHistory the tasks that are active given the period of time. 
             ///The tasks can't be finished in the given period.
-            return database.spGetByDate(_dateStartPeriod, _dateFinishPeriod).ToList();
+            //return database.spGetByDate(_dateStartPeriod, _dateFinishPeriod).ToList();
+
+            ///select t.* 
+            ///from Task as t
+            ///left join TaskHistory as th on t.code = th.id_task
+            ///where th.id is null
+            ///union all
+            ///select t.*
+            ///from Task as t
+            ///inner join TaskHistory as th on t.code = th.id_task
+            ///where th.startDate between @begin and @end and
+            ///((th.startDate is null) or
+            ///(th.startDate is null and th.finishDate is null)
+            ///
+            /*var query = (from task in database.Tasks
+                         join th in database.TaskHistories on task.code equals th.id_task into th_gr
+                         from th in th_gr.DefaultIfEmpty()
+                         select new
+                         {
+                             task
+                         };).*/
+
+            return null;
         }
 
         public static List<pojo.spGetRankingTeam_Result> readRankingTeams(DateTime _dateStartPeriod, DateTime _dateFinishPeriod)
         {
-            return database.spGetRankingTeam(_dateStartPeriod, _dateFinishPeriod).ToList();
+            return database.spGetRankingTeam(_dateStartPeriod, _dateFinishPeriod).OrderByDescending(x => x.tasks).ToList();
         }
 
         public static List<pojo.spGetRankingEmployee_Result> readRankingEmployee(DateTime _dateStartPeriod, DateTime _dateFinishPeriod)
         {
-            return database.spGetRankingEmployee(_dateStartPeriod, _dateFinishPeriod).ToList();
+            return database.spGetRankingEmployee(_dateStartPeriod, _dateFinishPeriod).OrderByDescending(x => x.tasks).ToList();
         }
 
         public static List<pojo.Task> readTasksByEmployee(String _nif)
@@ -54,38 +77,10 @@ namespace SynUp_Desktop.model.dao
             return query.ToList();
         }
 
-        public static List<pojo.Task> readUnselectedTasks()
+        public static List<pojo.Task> readStatusTasks(int _state)
         {
             var query = from task in database.Tasks
-                        join th in database.TaskHistories on task.code equals th.id_task
-                        where th.startDate == null
-                        select task;
-            return query.ToList();
-        }
-
-        public static List<pojo.Task> readOngoingTasks()
-        {
-            var query = from task in database.Tasks
-                        join th in database.TaskHistories on task.code equals th.id_task
-                        where th.startDate != null && th.isFinished != 0
-                        select task;
-            return query.ToList();
-        }
-
-        public static List<pojo.Task> readFinishedTasks()
-        {
-            var query = from task in database.Tasks
-                        join th in database.TaskHistories on task.code equals th.id_task
-                        where th.isFinished == 1
-                        select task;
-            return query.ToList();
-        }
-
-        public static List<pojo.Task> readAbandonnedTasks()
-        {
-            var query = from task in database.Tasks
-                        join th in database.TaskHistories on task.code equals th.id_task
-                        where th.finishDate != null && th.isFinished != 0
+                        where task.state == _state
                         select task;
             return query.ToList();
         }

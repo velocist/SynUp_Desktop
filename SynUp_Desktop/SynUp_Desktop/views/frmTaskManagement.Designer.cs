@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gbContainer = new System.Windows.Forms.GroupBox();
+            this.cbIdTeams = new System.Windows.Forms.ComboBox();
             this.lblIdTeam = new System.Windows.Forms.Label();
             this.txtProject = new System.Windows.Forms.TextBox();
             this.lblProject = new System.Windows.Forms.Label();
@@ -47,12 +48,19 @@
             this.btnUpdateTask = new System.Windows.Forms.Button();
             this.btnCreateTask = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
-            this.cbIdTeams = new System.Windows.Forms.ComboBox();
+            this.lblState = new System.Windows.Forms.Label();
+            this.lblImportance = new System.Windows.Forms.Label();
+            this.cbImportance = new System.Windows.Forms.ComboBox();
+            this.txtState = new System.Windows.Forms.Label();
             this.gbContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbContainer
             // 
+            this.gbContainer.Controls.Add(this.txtState);
+            this.gbContainer.Controls.Add(this.cbImportance);
+            this.gbContainer.Controls.Add(this.lblImportance);
+            this.gbContainer.Controls.Add(this.lblState);
             this.gbContainer.Controls.Add(this.cbIdTeams);
             this.gbContainer.Controls.Add(this.lblIdTeam);
             this.gbContainer.Controls.Add(this.txtProject);
@@ -69,10 +77,18 @@
             this.gbContainer.Controls.Add(this.txtCode);
             this.gbContainer.Location = new System.Drawing.Point(12, 12);
             this.gbContainer.Name = "gbContainer";
-            this.gbContainer.Size = new System.Drawing.Size(535, 274);
+            this.gbContainer.Size = new System.Drawing.Size(535, 302);
             this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "Task Data";
+            // 
+            // cbIdTeams
+            // 
+            this.cbIdTeams.FormattingEnabled = true;
+            this.cbIdTeams.Location = new System.Drawing.Point(203, 21);
+            this.cbIdTeams.Name = "cbIdTeams";
+            this.cbIdTeams.Size = new System.Drawing.Size(97, 21);
+            this.cbIdTeams.TabIndex = 10;
             // 
             // lblIdTeam
             // 
@@ -85,9 +101,9 @@
             // 
             // txtProject
             // 
-            this.txtProject.Location = new System.Drawing.Point(351, 23);
+            this.txtProject.Location = new System.Drawing.Point(360, 23);
             this.txtProject.Name = "txtProject";
-            this.txtProject.Size = new System.Drawing.Size(170, 20);
+            this.txtProject.Size = new System.Drawing.Size(161, 20);
             this.txtProject.TabIndex = 8;
             // 
             // lblProject
@@ -101,7 +117,7 @@
             // 
             // mcalPriorityDate
             // 
-            this.mcalPriorityDate.Location = new System.Drawing.Point(329, 98);
+            this.mcalPriorityDate.Location = new System.Drawing.Point(9, 100);
             this.mcalPriorityDate.MinDate = new System.DateTime(2016, 1, 1, 0, 0, 0, 0);
             this.mcalPriorityDate.Name = "mcalPriorityDate";
             this.mcalPriorityDate.ShowTodayCircle = false;
@@ -119,9 +135,9 @@
             // 
             // txtLocalization
             // 
-            this.txtLocalization.Location = new System.Drawing.Point(72, 240);
+            this.txtLocalization.Location = new System.Drawing.Point(360, 49);
             this.txtLocalization.Name = "txtLocalization";
-            this.txtLocalization.Size = new System.Drawing.Size(240, 20);
+            this.txtLocalization.Size = new System.Drawing.Size(161, 20);
             this.txtLocalization.TabIndex = 6;
             // 
             // lblName
@@ -135,16 +151,17 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(9, 98);
+            this.txtDescription.Location = new System.Drawing.Point(222, 100);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(303, 130);
+            this.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtDescription.Size = new System.Drawing.Size(299, 160);
             this.txtDescription.TabIndex = 4;
             // 
             // lblPriorityDate
             // 
             this.lblPriorityDate.AutoSize = true;
-            this.lblPriorityDate.Location = new System.Drawing.Point(326, 82);
+            this.lblPriorityDate.Location = new System.Drawing.Point(6, 78);
             this.lblPriorityDate.Name = "lblPriorityDate";
             this.lblPriorityDate.Size = new System.Drawing.Size(64, 13);
             this.lblPriorityDate.TabIndex = 0;
@@ -153,7 +170,7 @@
             // lblDescription
             // 
             this.lblDescription.AutoSize = true;
-            this.lblDescription.Location = new System.Drawing.Point(6, 82);
+            this.lblDescription.Location = new System.Drawing.Point(219, 78);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(60, 13);
             this.lblDescription.TabIndex = 0;
@@ -161,32 +178,32 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(44, 49);
+            this.txtName.Location = new System.Drawing.Point(57, 49);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(477, 20);
+            this.txtName.Size = new System.Drawing.Size(243, 20);
             this.txtName.TabIndex = 3;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // lblLocalization
             // 
             this.lblLocalization.AutoSize = true;
-            this.lblLocalization.Location = new System.Drawing.Point(6, 244);
+            this.lblLocalization.Location = new System.Drawing.Point(306, 52);
             this.lblLocalization.Name = "lblLocalization";
-            this.lblLocalization.Size = new System.Drawing.Size(63, 13);
+            this.lblLocalization.Size = new System.Drawing.Size(48, 13);
             this.lblLocalization.TabIndex = 0;
-            this.lblLocalization.Text = "Localization";
+            this.lblLocalization.Text = "Location";
             // 
             // txtCode
             // 
-            this.txtCode.Location = new System.Drawing.Point(44, 22);
+            this.txtCode.Location = new System.Drawing.Point(57, 22);
             this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(99, 20);
+            this.txtCode.Size = new System.Drawing.Size(86, 20);
             this.txtCode.TabIndex = 2;
             this.txtCode.TextChanged += new System.EventHandler(this.txtCode_TextChanged);
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(472, 292);
+            this.btnBack.Location = new System.Drawing.Point(472, 320);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(75, 39);
             this.btnBack.TabIndex = 9;
@@ -196,7 +213,7 @@
             // 
             // btnDeleteTask
             // 
-            this.btnDeleteTask.Location = new System.Drawing.Point(174, 292);
+            this.btnDeleteTask.Location = new System.Drawing.Point(174, 320);
             this.btnDeleteTask.Name = "btnDeleteTask";
             this.btnDeleteTask.Size = new System.Drawing.Size(75, 39);
             this.btnDeleteTask.TabIndex = 8;
@@ -206,7 +223,7 @@
             // 
             // btnUpdateTask
             // 
-            this.btnUpdateTask.Location = new System.Drawing.Point(93, 292);
+            this.btnUpdateTask.Location = new System.Drawing.Point(93, 320);
             this.btnUpdateTask.Name = "btnUpdateTask";
             this.btnUpdateTask.Size = new System.Drawing.Size(75, 39);
             this.btnUpdateTask.TabIndex = 7;
@@ -216,7 +233,7 @@
             // 
             // btnCreateTask
             // 
-            this.btnCreateTask.Location = new System.Drawing.Point(12, 292);
+            this.btnCreateTask.Location = new System.Drawing.Point(12, 320);
             this.btnCreateTask.Name = "btnCreateTask";
             this.btnCreateTask.Size = new System.Drawing.Size(75, 39);
             this.btnCreateTask.TabIndex = 10;
@@ -226,7 +243,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(255, 292);
+            this.btnClear.Location = new System.Drawing.Point(255, 320);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 38);
             this.btnClear.TabIndex = 11;
@@ -234,19 +251,52 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
-            // cbIdTeams
+            // lblState
             // 
-            this.cbIdTeams.FormattingEnabled = true;
-            this.cbIdTeams.Location = new System.Drawing.Point(203, 21);
-            this.cbIdTeams.Name = "cbIdTeams";
-            this.cbIdTeams.Size = new System.Drawing.Size(97, 21);
-            this.cbIdTeams.TabIndex = 10;
+            this.lblState.AutoSize = true;
+            this.lblState.Location = new System.Drawing.Point(306, 78);
+            this.lblState.Name = "lblState";
+            this.lblState.Size = new System.Drawing.Size(35, 13);
+            this.lblState.TabIndex = 12;
+            this.lblState.Text = "State:";
+            // 
+            // lblImportance
+            // 
+            this.lblImportance.Location = new System.Drawing.Point(6, 271);
+            this.lblImportance.Name = "lblImportance";
+            this.lblImportance.Size = new System.Drawing.Size(64, 13);
+            this.lblImportance.TabIndex = 14;
+            this.lblImportance.Text = "Importance";
+            // 
+            // cbImportance
+            // 
+            this.cbImportance.FormattingEnabled = true;
+            this.cbImportance.Items.AddRange(new object[] {
+            " ",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.cbImportance.Location = new System.Drawing.Point(76, 268);
+            this.cbImportance.Name = "cbImportance";
+            this.cbImportance.Size = new System.Drawing.Size(125, 21);
+            this.cbImportance.TabIndex = 15;
+            // 
+            // txtState
+            // 
+            this.txtState.AutoSize = true;
+            this.txtState.Location = new System.Drawing.Point(357, 78);
+            this.txtState.Name = "txtState";
+            this.txtState.Size = new System.Drawing.Size(10, 13);
+            this.txtState.TabIndex = 16;
+            this.txtState.Text = " ";
             // 
             // frmTaskManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(559, 339);
+            this.ClientSize = new System.Drawing.Size(557, 366);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnCreateTask);
             this.Controls.Add(this.btnBack);
@@ -285,5 +335,9 @@
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Label lblIdTeam;
         private System.Windows.Forms.ComboBox cbIdTeams;
+        private System.Windows.Forms.ComboBox cbImportance;
+        private System.Windows.Forms.Label lblImportance;
+        private System.Windows.Forms.Label lblState;
+        private System.Windows.Forms.Label txtState;
     }
 }

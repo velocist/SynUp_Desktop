@@ -108,15 +108,17 @@ namespace SynUp_Desktop.views
             String _strLocalization = txtLocalization.Text;
             DateTime _dtPriorityDate = mcalPriorityDate.SelectionStart.Date;
 
+            int _nImportance = 1;
+            if (cbImportance.SelectedItem != null && !cbImportance.Equals(" ")) _nImportance = Int32.Parse(cbImportance.SelectedItem.ToString());
+
             Boolean _blCreate = false;
 
             if (checkCorrectValues())
             {
                 _blCreate = Controller.TaskService.createTask(_strCode, _strName, _dtPriorityDate, _strDescription,
-                                                             _strLocalization, _strProject, _strIdTeam);
+                                                             _strLocalization, _strProject, _strIdTeam, _nImportance);
 
                 clMessageBox.showMessage(clMessageBox.ACTIONTYPE.CREATE, "task", _blCreate, this);
-
             }
 
         }
@@ -256,7 +258,7 @@ namespace SynUp_Desktop.views
                 String _strIdCode = txtCode.Text;
                 model.pojo.Task foundTask = Controller.TaskService.readTask(_strIdCode); // We look for if the task already exists
 
-                if (txtCode.Text.Equals("") || foundTask != null) // If the task exists, we show a message
+                if (txtCode.Text.Equals("") || foundTask != null) // If the task exists and the string is empty, we show a message
                 {
                     lblCode.ForeColor = Color.Red;
                     lblCode.Text = "Code*";
@@ -276,7 +278,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void txtName_TextChanged(object sender, EventArgs e)
         {
-            if (txtName.Text.Equals("")) // If the name is empty, we show a message
+            if (txtName.Text.Equals("") || txtName.Text == null) // If the name is empty, we show a message
             {
                 lblName.Text = "Name*";
                 lblName.ForeColor = Color.Red;
@@ -295,12 +297,10 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void mcalPriorityDate_DateChanged(object sender, DateRangeEventArgs e)
         {
-            if (mcalPriorityDate.SelectionStart.Date < DateTime.Today)
+            if (mcalPriorityDate.SelectionStart.Date < DateTime.Today || mcalPriorityDate.SelectionStart == null)
             {
-                //mcalPriorityDate.Focus();
                 lblPriorityDate.ForeColor = Color.Red;
                 lblPriorityDate.Text = "Priority Date*";
-                //MessageBox.Show("The date can not be past!");
             }
             else
             {
@@ -347,11 +347,14 @@ namespace SynUp_Desktop.views
                 this.txtLocalization.Text = this.AuxTask.localization;
                 this.mcalPriorityDate.SelectionStart = this.AuxTask.priorityDate;
                 this.txtProject.Text = this.AuxTask.project;
+                //this.txtState.Text = this.AuxTask.state;
 
                 this.btnCreateTask.Enabled = false; // We disable the button to create a task
                 this.txtCode.Enabled = false;
                 lblCode.ForeColor = Color.Black;
                 lblCode.Text = "Code";
+                lblName.Text = "Name";
+                lblName.ForeColor = Color.Black;
             }
             else
             {
@@ -379,6 +382,8 @@ namespace SynUp_Desktop.views
             if (this.btnCreateTask.Enabled == false)
             {
                 this.btnCreateTask.Enabled = true;
+                this.btnDeleteTask.Enabled = false;
+                this.btnUpdateTask.Enabled = false;
                 this.AuxTask = null;
                 if (txtCode.Enabled == false) txtCode.Enabled = true;
             }
@@ -410,20 +415,13 @@ namespace SynUp_Desktop.views
             bool _correct = false;
             if (lblCode.ForeColor != Color.Red && lblName.ForeColor != Color.Red/* && lblPriorityDate.ForeColor != Color.Red*/)
             {
-                if (AuxTask != null)
-                {
-                    /*if (AuxTask.priorityDate > mcalPriorityDate.SelectionStart.Date)
-                    {*/
-                    _correct = true;
-                    //}
-                }
-                else if (lblPriorityDate.ForeColor != Color.Red)
+                if (AuxTask != null || lblPriorityDate.ForeColor != Color.Red)
                 {
                     _correct = true;
                 }
             }
 
-            if (_correct == false) MessageBox.Show("Incorrect fields. Check them before commiting the changes.");
+            if (!_correct) MessageBox.Show("Incorrect fields. Check them before commiting the changes.");
 
             return _correct;
         }

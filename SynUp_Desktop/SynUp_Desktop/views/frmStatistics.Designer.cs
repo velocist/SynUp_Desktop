@@ -74,7 +74,7 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(519, 418);
+            this.btnBack.Location = new System.Drawing.Point(519, 421);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(75, 23);
             this.btnBack.TabIndex = 3;
@@ -87,7 +87,7 @@
             this.dgvStadistics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvStadistics.Location = new System.Drawing.Point(9, 154);
             this.dgvStadistics.Name = "dgvStadistics";
-            this.dgvStadistics.Size = new System.Drawing.Size(585, 258);
+            this.dgvStadistics.Size = new System.Drawing.Size(585, 261);
             this.dgvStadistics.TabIndex = 0;
             // 
             // gbContainer
@@ -119,7 +119,7 @@
             this.cmbRanking.Items.AddRange(new object[] {
             "Teams",
             "Employees"});
-            this.cmbRanking.Location = new System.Drawing.Point(393, 127);
+            this.cmbRanking.Location = new System.Drawing.Point(387, 127);
             this.cmbRanking.Name = "cmbRanking";
             this.cmbRanking.Size = new System.Drawing.Size(121, 21);
             this.cmbRanking.TabIndex = 13;
@@ -131,8 +131,9 @@
             "Not selected",
             "Ongoing",
             "Finished",
-            "Abandonned"});
-            this.cmbStates.Location = new System.Drawing.Point(472, 24);
+            "Abandonned",
+            "Cancelled"});
+            this.cmbStates.Location = new System.Drawing.Point(387, 24);
             this.cmbStates.Name = "cmbStates";
             this.cmbStates.Size = new System.Drawing.Size(121, 21);
             this.cmbStates.TabIndex = 12;
@@ -140,7 +141,7 @@
             // cmbEmployee
             // 
             this.cmbEmployee.FormattingEnabled = true;
-            this.cmbEmployee.Location = new System.Drawing.Point(472, 24);
+            this.cmbEmployee.Location = new System.Drawing.Point(387, 24);
             this.cmbEmployee.Name = "cmbEmployee";
             this.cmbEmployee.Size = new System.Drawing.Size(121, 21);
             this.cmbEmployee.TabIndex = 11;
@@ -148,7 +149,7 @@
             // cmbTeams
             // 
             this.cmbTeams.FormattingEnabled = true;
-            this.cmbTeams.Location = new System.Drawing.Point(472, 24);
+            this.cmbTeams.Location = new System.Drawing.Point(388, 24);
             this.cmbTeams.Name = "cmbTeams";
             this.cmbTeams.Size = new System.Drawing.Size(121, 21);
             this.cmbTeams.TabIndex = 10;
@@ -156,7 +157,7 @@
             // lblInstructions
             // 
             this.lblInstructions.AutoSize = true;
-            this.lblInstructions.Location = new System.Drawing.Point(310, 27);
+            this.lblInstructions.Location = new System.Drawing.Point(225, 27);
             this.lblInstructions.Name = "lblInstructions";
             this.lblInstructions.Size = new System.Drawing.Size(55, 13);
             this.lblInstructions.TabIndex = 9;
@@ -165,7 +166,7 @@
             // lblDate2
             // 
             this.lblDate2.AutoSize = true;
-            this.lblDate2.Location = new System.Drawing.Point(358, 93);
+            this.lblDate2.Location = new System.Drawing.Point(225, 93);
             this.lblDate2.Name = "lblDate2";
             this.lblDate2.Size = new System.Drawing.Size(29, 13);
             this.lblDate2.TabIndex = 8;
@@ -174,7 +175,7 @@
             // lblDate1
             // 
             this.lblDate1.AutoSize = true;
-            this.lblDate1.Location = new System.Drawing.Point(310, 59);
+            this.lblDate1.Location = new System.Drawing.Point(225, 59);
             this.lblDate1.Name = "lblDate1";
             this.lblDate1.Size = new System.Drawing.Size(77, 13);
             this.lblDate1.TabIndex = 7;
@@ -182,14 +183,14 @@
             // 
             // dtpEnd
             // 
-            this.dtpEnd.Location = new System.Drawing.Point(393, 93);
+            this.dtpEnd.Location = new System.Drawing.Point(308, 93);
             this.dtpEnd.Name = "dtpEnd";
             this.dtpEnd.Size = new System.Drawing.Size(200, 20);
             this.dtpEnd.TabIndex = 6;
             // 
             // dtpBegin
             // 
-            this.dtpBegin.Location = new System.Drawing.Point(393, 57);
+            this.dtpBegin.Location = new System.Drawing.Point(308, 57);
             this.dtpBegin.Name = "dtpBegin";
             this.dtpBegin.Size = new System.Drawing.Size(200, 20);
             this.dtpBegin.TabIndex = 5;

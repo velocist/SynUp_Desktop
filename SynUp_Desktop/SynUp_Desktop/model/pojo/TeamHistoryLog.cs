@@ -19,5 +19,6 @@ namespace SynUp_Desktop.model.pojo
         public string id_employee { get; set; }
         public string operation { get; set; }
         public System.DateTime when { get; set; }
+        public Nullable<int> id_teamHistory { get; set; }
     }
 }
