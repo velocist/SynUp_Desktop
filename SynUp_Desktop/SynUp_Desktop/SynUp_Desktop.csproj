@@ -79,9 +79,6 @@
     <Compile Include="model\pojo\spEmpLogU_Result.cs">
       <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="model\pojo\spGetByDate_Result.cs">
-      <DependentUpon>SynupModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="model\pojo\spGetRankingEmployee_Result.cs">
       <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
@@ -110,6 +107,15 @@
       <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\spTeamLogU_Result.cs">
+      <DependentUpon>SynupModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\spTeHisLogD_Result.cs">
+      <DependentUpon>SynupModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\spTeHisLogI_Result.cs">
+      <DependentUpon>SynupModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model\pojo\spTeHisLogU_Result.cs">
       <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
     <Compile Include="model\pojo\spTHisLogD_Result.cs">
@@ -168,6 +174,7 @@
     <Compile Include="service\TeamHistoryService.cs" />
     <Compile Include="service\TeamService.cs" />
     <Compile Include="utilities\clMessageBox.cs" />
+    <Compile Include="utilities\TaskState.cs" />
     <Compile Include="views\frmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
