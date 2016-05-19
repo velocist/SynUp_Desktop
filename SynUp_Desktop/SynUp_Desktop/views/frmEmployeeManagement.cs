@@ -240,14 +240,21 @@ namespace SynUp_Desktop.views
         /// </summary>
         private void clearValues()
         {
-            txtNif.Text = "";
-            txtName.Text = "";
-            txtSurname.Text = "";
-            txtPhone.Text = "";
-            txtEmail.Text = "";
-            txtAdress.Text = "";
-            txtUsername.Text = "";
+            foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
+            {
+                if (_control is GroupBox)
+                {
+                    foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
+                    {
+                        if (_inGroupBox is TextBox)
+                        {
+                            _inGroupBox.Text = "";
+                        }
+                    }
+                }
+            }
         }
+
 
         /// <summary>
         /// Method that sets the tooltips for the view
@@ -263,10 +270,11 @@ namespace SynUp_Desktop.views
 
         }
 
+        #region HELP
         private Boolean _blHelp = false;
 
         /// <summary>
-        /// 
+        /// Event that runs when the button help is clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -276,35 +284,43 @@ namespace SynUp_Desktop.views
             {
                 _blHelp = false;
                 this.Height = 290;
+                this.walkingControls(true);
             }
             else
             {
                 _blHelp = true;
                 this.Height = 360;
 
-                foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
-                {
-                    if (_control is GroupBox)
-                    {
-                        foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
-                        {
-                            if (_inGroupBox is TextBox)
-                            {
-                                _inGroupBox.Enabled = false;
-                            }
-                            else if (_inGroupBox is Label)
-                            {
-                                _inGroupBox.ForeColor = Color.Red;
-                            }
-                            _inGroupBox.MouseHover += new EventHandler(messageHelps_MouseHover);
-                        }
-                    }
-                    else if (_control is Button)
-                    {
-                        _control.BackColor = Color.Red;
-                        _control.MouseHover += new EventHandler(messageHelps_MouseHover);
-                    }
+            }
+        }
 
+        /// <summary>
+        /// Method that walkings all controls in form
+        /// </summary>
+        /// <param name="pEnabled"></param>
+        private void walkingControls(Boolean pEnabled)
+        {
+            foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
+            {
+                if (_control is GroupBox)
+                {
+                    foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
+                    {
+                        if (_inGroupBox is TextBox)
+                        {
+                            _inGroupBox.Enabled = pEnabled;
+                        }
+                        else if (_inGroupBox is Label)
+                        {
+                            _inGroupBox.ForeColor = Color.Red;
+                        }
+                        _inGroupBox.MouseHover += new EventHandler(messageHelps_MouseHover);
+                    }
+                }
+                else if (_control is Button)
+                {
+                    _control.BackColor = Color.Red;
+                    _control.MouseHover += new EventHandler(messageHelps_MouseHover);
                 }
             }
         }
@@ -365,6 +381,8 @@ namespace SynUp_Desktop.views
 
             }
         }
+
+        #endregion
     }
 
 
