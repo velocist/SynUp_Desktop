@@ -48,12 +48,16 @@
             this.btnBack = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
+            this.btnHelp = new System.Windows.Forms.Button();
+            this.lblHelpMessage = new System.Windows.Forms.Label();
+            this.gbHelp = new System.Windows.Forms.GroupBox();
             this.gbContainer.SuspendLayout();
+            this.gbHelp.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnUpdateEmployee
             // 
-            this.btnUpdateEmployee.Location = new System.Drawing.Point(94, 200);
+            this.btnUpdateEmployee.Location = new System.Drawing.Point(91, 201);
             this.btnUpdateEmployee.Name = "btnUpdateEmployee";
             this.btnUpdateEmployee.Size = new System.Drawing.Size(75, 39);
             this.btnUpdateEmployee.TabIndex = 9;
@@ -63,7 +67,7 @@
             // 
             // btnDeleteEmployee
             // 
-            this.btnDeleteEmployee.Location = new System.Drawing.Point(175, 200);
+            this.btnDeleteEmployee.Location = new System.Drawing.Point(172, 201);
             this.btnDeleteEmployee.Name = "btnDeleteEmployee";
             this.btnDeleteEmployee.Size = new System.Drawing.Size(75, 39);
             this.btnDeleteEmployee.TabIndex = 10;
@@ -187,7 +191,7 @@
             this.gbContainer.Controls.Add(this.txtNif);
             this.gbContainer.Location = new System.Drawing.Point(12, 12);
             this.gbContainer.Name = "gbContainer";
-            this.gbContainer.Size = new System.Drawing.Size(445, 182);
+            this.gbContainer.Size = new System.Drawing.Size(445, 183);
             this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "Employee Data";
@@ -211,7 +215,7 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(382, 200);
+            this.btnBack.Location = new System.Drawing.Point(379, 201);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(75, 39);
             this.btnBack.TabIndex = 12;
@@ -221,7 +225,7 @@
             // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(13, 200);
+            this.btnCreate.Location = new System.Drawing.Point(10, 201);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(75, 39);
             this.btnCreate.TabIndex = 8;
@@ -231,7 +235,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(256, 200);
+            this.btnClear.Location = new System.Drawing.Point(253, 201);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 39);
             this.btnClear.TabIndex = 11;
@@ -239,18 +243,49 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // btnHelp
+            // 
+            this.btnHelp.Location = new System.Drawing.Point(335, 216);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(28, 23);
+            this.btnHelp.TabIndex = 13;
+            this.btnHelp.Text = "?";
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnHelp_MouseClick);
+            // 
+            // lblHelpMessage
+            // 
+            this.lblHelpMessage.AutoSize = true;
+            this.lblHelpMessage.Location = new System.Drawing.Point(7, 19);
+            this.lblHelpMessage.Name = "lblHelpMessage";
+            this.lblHelpMessage.Size = new System.Drawing.Size(82, 13);
+            this.lblHelpMessage.TabIndex = 0;
+            this.lblHelpMessage.Text = "Message help...";
+            // 
+            // gbHelp
+            // 
+            this.gbHelp.Controls.Add(this.lblHelpMessage);
+            this.gbHelp.Location = new System.Drawing.Point(8, 255);
+            this.gbHelp.Name = "gbHelp";
+            this.gbHelp.Size = new System.Drawing.Size(444, 54);
+            this.gbHelp.TabIndex = 0;
+            this.gbHelp.TabStop = false;
+            this.gbHelp.Text = "Help";
+            // 
             // frmEmployeeManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(469, 251);
+            this.Controls.Add(this.gbHelp);
+            this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnCreate);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.gbContainer);
             this.Controls.Add(this.btnUpdateEmployee);
             this.Controls.Add(this.btnDeleteEmployee);
-            this.MaximumSize = new System.Drawing.Size(485, 290);
+            this.MaximumSize = new System.Drawing.Size(485, 360);
             this.MinimumSize = new System.Drawing.Size(485, 290);
             this.Name = "frmEmployeeManagement";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -258,6 +293,8 @@
             this.Activated += new System.EventHandler(this.frmEmployeeManagement_Activated);
             this.gbContainer.ResumeLayout(false);
             this.gbContainer.PerformLayout();
+            this.gbHelp.ResumeLayout(false);
+            this.gbHelp.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -284,5 +321,8 @@
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Label lblUsername;
+        private System.Windows.Forms.Button btnHelp;
+        private System.Windows.Forms.Label lblHelpMessage;
+        private System.Windows.Forms.GroupBox gbHelp;
     }
 }
