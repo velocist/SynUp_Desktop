@@ -59,7 +59,7 @@ namespace SynUp_Desktop.views
 
             /*utilities.clMessageBox _msgBox = new utilities.*//// MODIFICATION - Pablo, 170516, clMessageBox made static to access the methods without having to create an object of the class.
             clMessageBox.showMessage(clMessageBox.ACTIONTYPE.CREATE, "employee", _blCreateOk, this);
-            
+
         }
 
         /// <summary>
@@ -77,9 +77,9 @@ namespace SynUp_Desktop.views
             String _strAdress = txtAdress.Text;
             String _strUsername = txtUsername.Text;
 
-            Boolean _blUpdateOk = this.Controller.EmployeeService.updateEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress,_strUsername);
+            Boolean _blUpdateOk = this.Controller.EmployeeService.updateEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress, _strUsername);
             clMessageBox.showMessage(clMessageBox.ACTIONTYPE.UPDATE, "employee", _blUpdateOk, this);
-            
+
         }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace SynUp_Desktop.views
                 Employee _oEmployee = Controller.EmployeeService.readEmployee(_strNif); // We look for if the employee already exists
 
                 if (_oEmployee != null || !Regex.Match(_strNif, _strNifExpression).Success && txtNif.Text != "") // If the employee exists, we show a message
-                {                    
+                {
                     lblNif.ForeColor = Color.Red;
                     lblNif.Text = "NIF*";
                 }
@@ -262,47 +262,150 @@ namespace SynUp_Desktop.views
             ToolTips.SetToolTip(this.lblEmail, "exemple@domain.com");
 
         }
-        
 
-        /* DELETE: Cambio por el evento Activated
-       /// <summary>
-       /// Event that runs when the form is loaded
-       /// </summary>
-       /// <param name="sender"></param>
-       /// <param name="e"></param>
-       private void frmEmployeeManagement_Load(object sender, EventArgs e)
-       {
-           if (AuxEmployee != null)
-           {
-               // We recover the data of selected employee
-               this.txtNif.Text = this.AuxEmployee.nif;
-               this.txtName.Text = this.AuxEmployee.name;
-               this.txtSurname.Text = this.AuxEmployee.surname;
-               this.txtPhone.Text = this.AuxEmployee.phone;
-               this.txtEmail.Text = this.AuxEmployee.email;
-               this.txtAdress.Text = this.AuxEmployee.adress;
+        private Boolean _blHelp = false;
 
-               this.btnCreate.Enabled = false; // We disable the button to create a task
-               this.txtNif.Enabled = false;
-               this.btnUpdateEmployee.Enabled = true;
-               this.btnDeleteEmployee.Enabled = true;
-           }
-           else
-           {
-               this.btnCreate.Enabled = true;
-               this.txtNif.Enabled = true;
-               this.btnUpdateEmployee.Enabled = false;
-               this.btnDeleteEmployee.Enabled = false;
-           }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnHelp_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (_blHelp)
+            {
+                _blHelp = false;
+                this.Height = 290;
+            }
+            else
+            {
+                _blHelp = true;
+                this.Height = 360;
 
-           ///Sets the tooltips for the view
-           ///Nota: Interesante poner las restricciones de la base de datos directamente.
-           ToolTip ToolTips = new ToolTip();
-           //ToolTip1.IsBalloon = true;
-           ToolTips.SetToolTip(this.lblNif, "Nif employee.");
-       }
-       */
+                foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
+                {
+                    if (_control is GroupBox)
+                    {
+                        foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
+                        {
+                            if (_inGroupBox is TextBox)
+                            {
+                                _inGroupBox.Enabled = false;
+                            }
+                            else if (_inGroupBox is Label)
+                            {
+                                _inGroupBox.ForeColor = Color.Red;
+                            }
+                            _inGroupBox.MouseHover += new EventHandler(messageHelps_MouseHover);
+                        }
+                    }
+                    else if (_control is Button)
+                    {
+                        _control.BackColor = Color.Red;
+                        _control.MouseHover += new EventHandler(messageHelps_MouseHover);
+                    }
 
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event that runs when the mouse hover on components
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void messageHelps_MouseHover(object sender, EventArgs e)
+        {
+            if (_blHelp)
+            {
+                if (sender.Equals(lblNif) || sender.Equals(txtNif))
+                {
+                    this.lblHelpMessage.Text = "Message help label NIF";
+                }
+                else if (sender.Equals(lblName) || sender.Equals(txtName))
+                {
+                    this.lblHelpMessage.Text = "Message help label NAME";
+                }
+                else if (sender.Equals(lblSurname) || sender.Equals(txtSurname))
+                {
+                    this.lblHelpMessage.Text = "Message help label SURNAME";
+                }
+                else if (sender.Equals(lblPhone) || sender.Equals(txtPhone))
+                {
+                    this.lblHelpMessage.Text = "Message help label PHONE";
+                }
+                else if (sender.Equals(lblEmail) || sender.Equals(txtEmail))
+                {
+                    this.lblHelpMessage.Text = "Message help label EMAIL";
+                }
+                else if (sender.Equals(lblUsername) || sender.Equals(txtUsername))
+                {
+                    this.lblHelpMessage.Text = "Message help label USERNAME";
+                }
+                else if (sender.Equals(btnCreate))
+                {
+                    this.lblHelpMessage.Text = "Message help Button";
+                }
+                else if (sender.Equals(btnUpdateEmployee))
+                {
+                    this.lblHelpMessage.Text = "Message help Button";
+                }
+                else if (sender.Equals(btnDeleteEmployee))
+                {
+                    this.lblHelpMessage.Text = "Message help Button";
+                }
+                else if (sender.Equals(btnClear))
+                {
+                    this.lblHelpMessage.Text = "Message help Button";
+                }
+                else if (sender.Equals(btnBack))
+                {
+                    this.lblHelpMessage.Text = "Message help Button";
+                }
+
+            }
+        }
     }
 
+
+    /* DELETE: Cambio por el evento Activated
+   /// <summary>
+   /// Event that runs when the form is loaded
+   /// </summary>
+   /// <param name="sender"></param>
+   /// <param name="e"></param>
+   private void frmEmployeeManagement_Load(object sender, EventArgs e)
+   {
+       if (AuxEmployee != null)
+       {
+           // We recover the data of selected employee
+           this.txtNif.Text = this.AuxEmployee.nif;
+           this.txtName.Text = this.AuxEmployee.name;
+           this.txtSurname.Text = this.AuxEmployee.surname;
+           this.txtPhone.Text = this.AuxEmployee.phone;
+           this.txtEmail.Text = this.AuxEmployee.email;
+           this.txtAdress.Text = this.AuxEmployee.adress;
+
+           this.btnCreate.Enabled = false; // We disable the button to create a task
+           this.txtNif.Enabled = false;
+           this.btnUpdateEmployee.Enabled = true;
+           this.btnDeleteEmployee.Enabled = true;
+       }
+       else
+       {
+           this.btnCreate.Enabled = true;
+           this.txtNif.Enabled = true;
+           this.btnUpdateEmployee.Enabled = false;
+           this.btnDeleteEmployee.Enabled = false;
+       }
+
+       ///Sets the tooltips for the view
+       ///Nota: Interesante poner las restricciones de la base de datos directamente.
+       ToolTip ToolTips = new ToolTip();
+       //ToolTip1.IsBalloon = true;
+       ToolTips.SetToolTip(this.lblNif, "Nif employee.");
+   }
+   */
+
 }
+
