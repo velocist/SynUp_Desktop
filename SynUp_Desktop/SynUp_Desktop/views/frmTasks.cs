@@ -124,7 +124,7 @@ namespace SynUp_Desktop.views
 
         private void frmTasks_Load(object sender, EventArgs e)
         {
-            initGridView();            
+            initGridView();
         }
 
         private void fillGrid()

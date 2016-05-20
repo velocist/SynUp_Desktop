@@ -113,6 +113,10 @@ namespace SynUp_Desktop.utilities
                         {
                             _inGroupBox.Text = "";
                         }
+                        if (_inGroupBox is Label)
+                        {
+                            _inGroupBox.ForeColor = Color.Black;
+                        }
                     }
                 }
             }

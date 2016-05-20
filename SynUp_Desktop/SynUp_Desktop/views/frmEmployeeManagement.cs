@@ -115,7 +115,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void txtNif_TextChanged(object sender, EventArgs e)
         {
-            string _strNifExpression = "\\d{8}[a-zA-Z]";
+            string _strNifExpression = "^\\d{8}[a-zA-Z]{1}$";
 
             if (AuxEmployee == null)
             {
@@ -124,15 +124,13 @@ namespace SynUp_Desktop.views
 
                 Employee _oEmployee = Controller.EmployeeService.readEmployee(_strNif); // We look for if the employee already exists
 
-                if (_oEmployee != null || !Regex.Match(_strNif, _strNifExpression).Success && txtNif.Text != "") // If the employee exists, we show a message
+                if (_oEmployee != null || !Regex.Match(_strNif, _strNifExpression).Success || txtNif.Text.Equals("")) // If the employee exists, we show a message
                 {
                     lblNif.ForeColor = Color.Red;
-                    lblNif.Text = "NIF*";
                 }
                 else
                 {
                     lblNif.ForeColor = Color.Black;
-                    lblNif.Text = "NIF";
                 }
             }
         }
@@ -152,12 +150,10 @@ namespace SynUp_Desktop.views
                 if (!Regex.Match(_strEmail, _strEmailExpression).Success || txtEmail.Text == "") // If the team exists, we show a message
                 {
                     lblEmail.ForeColor = Color.Red;
-                    lblEmail.Text = "Email*";
                 }
                 else
                 {
                     lblEmail.ForeColor = Color.Black;
-                    lblEmail.Text = "Email";
                 }
             }
         }
@@ -265,7 +261,7 @@ namespace SynUp_Desktop.views
             ToolTip ToolTips = new ToolTip();
             //ToolTip1.IsBalloon = true;
             ToolTips.SetToolTip(this.lblNif, "NIF Employee.\n[00000000-A]");
-            ToolTips.SetToolTip(this.lblPhone, "+(00)000000000\n or 000000000");
+            ToolTips.SetToolTip(this.lblPhone, "000000000");
             ToolTips.SetToolTip(this.lblEmail, "exemple@domain.com");
 
         }

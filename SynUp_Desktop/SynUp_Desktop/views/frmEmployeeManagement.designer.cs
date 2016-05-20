@@ -146,9 +146,9 @@
             // 
             // txtSurname
             // 
-            this.txtSurname.Location = new System.Drawing.Point(210, 54);
+            this.txtSurname.Location = new System.Drawing.Point(218, 54);
             this.txtSurname.Name = "txtSurname";
-            this.txtSurname.Size = new System.Drawing.Size(230, 20);
+            this.txtSurname.Size = new System.Drawing.Size(221, 20);
             this.txtSurname.TabIndex = 3;
             // 
             // txtPhone
@@ -199,15 +199,15 @@
             // txtUsername
             // 
             this.txtUsername.Enabled = false;
-            this.txtUsername.Location = new System.Drawing.Point(332, 28);
+            this.txtUsername.Location = new System.Drawing.Point(218, 28);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(107, 20);
+            this.txtUsername.Size = new System.Drawing.Size(221, 20);
             this.txtUsername.TabIndex = 7;
             // 
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(271, 32);
+            this.lblUsername.Location = new System.Drawing.Point(157, 31);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(55, 13);
             this.lblUsername.TabIndex = 7;

@@ -337,6 +337,9 @@ namespace SynUp_Desktop.views
             cbIdTeams.DisplayMember = "Name";
             cbIdTeams.ValueMember = "Code";
 
+            cbIdTeams.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbImportance.DropDownStyle = ComboBoxStyle.DropDownList;
+
             if (AuxTask != null)
             {
                 // We recover the data of selected task
@@ -347,14 +350,15 @@ namespace SynUp_Desktop.views
                 this.txtLocalization.Text = this.AuxTask.localization;
                 this.mcalPriorityDate.SelectionStart = this.AuxTask.priorityDate;
                 this.txtProject.Text = this.AuxTask.project;
-                //this.txtState.Text = this.AuxTask.state;
+                this.txtState.Text = ((TaskState)this.AuxTask.state).ToString(); //getState(AuxTask);
 
                 this.btnCreateTask.Enabled = false; // We disable the button to create a task
                 this.txtCode.Enabled = false;
+
                 lblCode.ForeColor = Color.Black;
-                lblCode.Text = "Code";
-                lblName.Text = "Name";
+                lblCode.Text = "Code";                
                 lblName.ForeColor = Color.Black;
+                lblName.Text = "Name";
             }
             else
             {
@@ -425,6 +429,30 @@ namespace SynUp_Desktop.views
 
             return _correct;
         }
+
+        //private string getState(model.pojo.Task _task)
+        //{
+        //    string state = "";
+        //    switch (_task.state)
+        //    {
+        //        case (int)TaskState.UNSELECTED:
+        //            state = "Unselected";
+        //            break;
+        //        case (int)TaskState.ONGOING:
+        //            state = "Ongoing";
+        //            break;
+        //        case (int)TaskState.ABANDONED:
+        //            state = "Abandoned";
+        //            break;
+        //        case (int)TaskState.FINISHED:
+        //            state = "Finished";
+        //            break;
+        //        case (int)TaskState.CANCELLED:
+        //            state = "Cancelled";
+        //            break;
+        //    }
+        //    return state;
+        //}
 
     }
 }
