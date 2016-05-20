@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.gbContainer = new System.Windows.Forms.GroupBox();
+            this.txtState = new System.Windows.Forms.Label();
+            this.cbImportance = new System.Windows.Forms.ComboBox();
+            this.lblImportance = new System.Windows.Forms.Label();
+            this.lblState = new System.Windows.Forms.Label();
             this.cbIdTeams = new System.Windows.Forms.ComboBox();
             this.lblIdTeam = new System.Windows.Forms.Label();
             this.txtProject = new System.Windows.Forms.TextBox();
@@ -43,15 +47,11 @@
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblLocalization = new System.Windows.Forms.Label();
             this.txtCode = new System.Windows.Forms.TextBox();
-            this.btnBack = new System.Windows.Forms.Button();
             this.btnDeleteTask = new System.Windows.Forms.Button();
             this.btnUpdateTask = new System.Windows.Forms.Button();
             this.btnCreateTask = new System.Windows.Forms.Button();
-            this.btnClear = new System.Windows.Forms.Button();
-            this.lblState = new System.Windows.Forms.Label();
-            this.lblImportance = new System.Windows.Forms.Label();
-            this.cbImportance = new System.Windows.Forms.ComboBox();
-            this.txtState = new System.Windows.Forms.Label();
+            this.btnBack = new SynUp_Desktop.utilities.GenericButton();
+            this.btnClear = new SynUp_Desktop.utilities.GenericButton();
             this.gbContainer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,6 +81,48 @@
             this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "Task Data";
+            // 
+            // txtState
+            // 
+            this.txtState.AutoSize = true;
+            this.txtState.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtState.Location = new System.Drawing.Point(357, 78);
+            this.txtState.Name = "txtState";
+            this.txtState.Size = new System.Drawing.Size(73, 13);
+            this.txtState.TabIndex = 16;
+            this.txtState.Text = "NULL STATE";
+            // 
+            // cbImportance
+            // 
+            this.cbImportance.FormattingEnabled = true;
+            this.cbImportance.Items.AddRange(new object[] {
+            " ",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.cbImportance.Location = new System.Drawing.Point(76, 268);
+            this.cbImportance.Name = "cbImportance";
+            this.cbImportance.Size = new System.Drawing.Size(125, 21);
+            this.cbImportance.TabIndex = 15;
+            // 
+            // lblImportance
+            // 
+            this.lblImportance.Location = new System.Drawing.Point(6, 271);
+            this.lblImportance.Name = "lblImportance";
+            this.lblImportance.Size = new System.Drawing.Size(64, 13);
+            this.lblImportance.TabIndex = 14;
+            this.lblImportance.Text = "Importance";
+            // 
+            // lblState
+            // 
+            this.lblState.AutoSize = true;
+            this.lblState.Location = new System.Drawing.Point(306, 78);
+            this.lblState.Name = "lblState";
+            this.lblState.Size = new System.Drawing.Size(35, 13);
+            this.lblState.TabIndex = 12;
+            this.lblState.Text = "State:";
             // 
             // cbIdTeams
             // 
@@ -129,9 +171,9 @@
             this.lblCode.AutoSize = true;
             this.lblCode.Location = new System.Drawing.Point(6, 26);
             this.lblCode.Name = "lblCode";
-            this.lblCode.Size = new System.Drawing.Size(32, 13);
+            this.lblCode.Size = new System.Drawing.Size(36, 13);
             this.lblCode.TabIndex = 0;
-            this.lblCode.Text = "Code";
+            this.lblCode.Text = "Code*";
             // 
             // txtLocalization
             // 
@@ -145,9 +187,9 @@
             this.lblName.AutoSize = true;
             this.lblName.Location = new System.Drawing.Point(6, 53);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(35, 13);
+            this.lblName.Size = new System.Drawing.Size(39, 13);
             this.lblName.TabIndex = 0;
-            this.lblName.Text = "Name";
+            this.lblName.Text = "Name*";
             // 
             // txtDescription
             // 
@@ -201,16 +243,6 @@
             this.txtCode.TabIndex = 2;
             this.txtCode.TextChanged += new System.EventHandler(this.txtCode_TextChanged);
             // 
-            // btnBack
-            // 
-            this.btnBack.Location = new System.Drawing.Point(472, 320);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(75, 39);
-            this.btnBack.TabIndex = 9;
-            this.btnBack.Text = "Back";
-            this.btnBack.UseVisualStyleBackColor = true;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            // 
             // btnDeleteTask
             // 
             this.btnDeleteTask.Location = new System.Drawing.Point(174, 320);
@@ -241,56 +273,31 @@
             this.btnCreateTask.UseVisualStyleBackColor = true;
             this.btnCreateTask.Click += new System.EventHandler(this.btnCreateTask_Click);
             // 
+            // btnBack
+            // 
+            this.btnBack.AutoSize = true;
+            this.btnBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnBack.ButtonText = "Back";
+            this.btnBack.isExit = true;
+            this.btnBack.Location = new System.Drawing.Point(472, 320);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(0);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Parent = this;
+            this.btnBack.Size = new System.Drawing.Size(75, 40);
+            this.btnBack.TabIndex = 12;
+            // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(255, 320);
+            this.btnClear.AutoSize = true;
+            this.btnClear.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnClear.ButtonText = "Clear";
+            this.btnClear.isExit = false;
+            this.btnClear.Location = new System.Drawing.Point(252, 320);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(0);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(75, 38);
-            this.btnClear.TabIndex = 11;
-            this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = true;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
-            // 
-            // lblState
-            // 
-            this.lblState.AutoSize = true;
-            this.lblState.Location = new System.Drawing.Point(306, 78);
-            this.lblState.Name = "lblState";
-            this.lblState.Size = new System.Drawing.Size(35, 13);
-            this.lblState.TabIndex = 12;
-            this.lblState.Text = "State:";
-            // 
-            // lblImportance
-            // 
-            this.lblImportance.Location = new System.Drawing.Point(6, 271);
-            this.lblImportance.Name = "lblImportance";
-            this.lblImportance.Size = new System.Drawing.Size(64, 13);
-            this.lblImportance.TabIndex = 14;
-            this.lblImportance.Text = "Importance";
-            // 
-            // cbImportance
-            // 
-            this.cbImportance.FormattingEnabled = true;
-            this.cbImportance.Items.AddRange(new object[] {
-            " ",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5"});
-            this.cbImportance.Location = new System.Drawing.Point(76, 268);
-            this.cbImportance.Name = "cbImportance";
-            this.cbImportance.Size = new System.Drawing.Size(125, 21);
-            this.cbImportance.TabIndex = 15;
-            // 
-            // txtState
-            // 
-            this.txtState.AutoSize = true;
-            this.txtState.Location = new System.Drawing.Point(357, 78);
-            this.txtState.Name = "txtState";
-            this.txtState.Size = new System.Drawing.Size(10, 13);
-            this.txtState.TabIndex = 16;
-            this.txtState.Text = " ";
+            this.btnClear.Parent = this;
+            this.btnClear.Size = new System.Drawing.Size(75, 40);
+            this.btnClear.TabIndex = 13;
             // 
             // frmTaskManagement
             // 
@@ -298,8 +305,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(557, 366);
             this.Controls.Add(this.btnClear);
-            this.Controls.Add(this.btnCreateTask);
             this.Controls.Add(this.btnBack);
+            this.Controls.Add(this.btnCreateTask);
             this.Controls.Add(this.gbContainer);
             this.Controls.Add(this.btnUpdateTask);
             this.Controls.Add(this.btnDeleteTask);
@@ -311,6 +318,7 @@
             this.gbContainer.ResumeLayout(false);
             this.gbContainer.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -326,18 +334,18 @@
         private System.Windows.Forms.TextBox txtLocalization;
         private System.Windows.Forms.Button btnDeleteTask;
         private System.Windows.Forms.Label lblCode;
-        private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.GroupBox gbContainer;
         private System.Windows.Forms.MonthCalendar mcalPriorityDate;
         private System.Windows.Forms.TextBox txtProject;
         private System.Windows.Forms.Label lblProject;
         private System.Windows.Forms.Button btnCreateTask;
-        private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Label lblIdTeam;
         private System.Windows.Forms.ComboBox cbIdTeams;
         private System.Windows.Forms.ComboBox cbImportance;
         private System.Windows.Forms.Label lblImportance;
         private System.Windows.Forms.Label lblState;
         private System.Windows.Forms.Label txtState;
+        private utilities.GenericButton btnBack;
+        private utilities.GenericButton btnClear;
     }
 }

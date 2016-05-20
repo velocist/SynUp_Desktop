@@ -78,6 +78,8 @@ namespace SynUp_Desktop.views
             String _strDescription = txtDescription.Text;
             String _strLocalization = txtLocalization.Text;
             DateTime _dtPriorityDate = mcalPriorityDate.SelectionStart.Date;
+            int _nImportance = 0;
+            if (cbImportance.SelectedItem != null && !cbImportance.Equals(" ")) _nImportance = Int32.Parse(cbImportance.SelectedItem.ToString());
 
             Boolean _blUpdate = false;
 
@@ -85,7 +87,7 @@ namespace SynUp_Desktop.views
             {
                 _blUpdate = Controller.TaskService.updateTask(_strCode, _strName, _dtPriorityDate,
                                                                 _strDescription, _strLocalization,
-                                                                _strProject, _strIdTeam);
+                                                                _strProject, _strIdTeam, _nImportance);
 
                 clMessageBox.showMessage(clMessageBox.ACTIONTYPE.UPDATE, "task", _blUpdate, this);
 
@@ -108,7 +110,7 @@ namespace SynUp_Desktop.views
             String _strLocalization = txtLocalization.Text;
             DateTime _dtPriorityDate = mcalPriorityDate.SelectionStart.Date;
 
-            int _nImportance = 1;
+            int _nImportance = 0;
             if (cbImportance.SelectedItem != null && !cbImportance.Equals(" ")) _nImportance = Int32.Parse(cbImportance.SelectedItem.ToString());
 
             Boolean _blCreate = false;
@@ -261,11 +263,11 @@ namespace SynUp_Desktop.views
                 if (txtCode.Text.Equals("") || foundTask != null) // If the task exists and the string is empty, we show a message
                 {
                     lblCode.ForeColor = Color.Red;
-                    lblCode.Text = "Code*";
+                    //lblCode.Text = "Code*";
                 }
                 else
                 {
-                    lblCode.Text = "Code";
+                    //lblCode.Text = "Code";
                     lblCode.ForeColor = Color.Black;
                 }
             }
@@ -280,12 +282,12 @@ namespace SynUp_Desktop.views
         {
             if (txtName.Text.Equals("") || txtName.Text == null) // If the name is empty, we show a message
             {
-                lblName.Text = "Name*";
+                //lblName.Text = "Name*";
                 lblName.ForeColor = Color.Red;
             }
             else
             {
-                lblName.Text = "Name";
+                //lblName.Text = "Name";
                 lblName.ForeColor = Color.Black;
             }
         }
@@ -428,7 +430,7 @@ namespace SynUp_Desktop.views
             txtLocalization.Text = "";
             mcalPriorityDate.SelectionStart = DateTime.Today;
             mcalPriorityDate.SelectionEnd = DateTime.Today;
-        }        
+        }
 
         //private string getState(model.pojo.Task _task)
         //{

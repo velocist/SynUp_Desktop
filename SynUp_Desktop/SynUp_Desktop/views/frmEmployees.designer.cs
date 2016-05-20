@@ -30,13 +30,13 @@
         {
             this.dgvEmployees = new System.Windows.Forms.DataGridView();
             this.btnManagementEmployee = new System.Windows.Forms.Button();
-            this.btnBack = new System.Windows.Forms.Button();
             this.cmbFilter = new System.Windows.Forms.ComboBox();
             this.lblFilter = new System.Windows.Forms.Label();
             this.gbContainer = new System.Windows.Forms.GroupBox();
             this.lblTeams = new System.Windows.Forms.Label();
             this.cmbTeamsToAdd = new System.Windows.Forms.ComboBox();
             this.btnAddToTeam = new System.Windows.Forms.Button();
+            this.btnClose = new SynUp_Desktop.utilities.GenericButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
             this.gbContainer.SuspendLayout();
             this.SuspendLayout();
@@ -63,16 +63,6 @@
             this.btnManagementEmployee.Text = "Management";
             this.btnManagementEmployee.UseVisualStyleBackColor = true;
             this.btnManagementEmployee.Click += new System.EventHandler(this.btnManagementEmployee_Click);
-            // 
-            // btnBack
-            // 
-            this.btnBack.Location = new System.Drawing.Point(733, 442);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(75, 49);
-            this.btnBack.TabIndex = 3;
-            this.btnBack.Text = "Back";
-            this.btnBack.UseVisualStyleBackColor = true;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // cmbFilter
             // 
@@ -134,13 +124,26 @@
             this.btnAddToTeam.UseVisualStyleBackColor = true;
             this.btnAddToTeam.Click += new System.EventHandler(this.btnAddToTeam_Click);
             // 
+            // btnClose
+            // 
+            this.btnClose.AutoSize = true;
+            this.btnClose.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnClose.ButtonText = "Back";
+            this.btnClose.isExit = true;
+            this.btnClose.Location = new System.Drawing.Point(738, 446);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(0);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Parent = this;
+            this.btnClose.Size = new System.Drawing.Size(75, 40);
+            this.btnClose.TabIndex = 3;
+            // 
             // frmEmployees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(822, 495);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.gbContainer);
-            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnManagementEmployee);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MinimumSize = new System.Drawing.Size(640, 510);
@@ -153,6 +156,7 @@
             this.gbContainer.ResumeLayout(false);
             this.gbContainer.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -160,12 +164,12 @@
 
         private System.Windows.Forms.DataGridView dgvEmployees;
         private System.Windows.Forms.Button btnManagementEmployee;
-        private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.ComboBox cmbFilter;
         private System.Windows.Forms.Label lblFilter;
         private System.Windows.Forms.GroupBox gbContainer;
         private System.Windows.Forms.Button btnAddToTeam;
         private System.Windows.Forms.Label lblTeams;
         private System.Windows.Forms.ComboBox cmbTeamsToAdd;
+        private utilities.GenericButton btnClose;
     }
 }

@@ -35,18 +35,11 @@ namespace SynUp_Desktop.service
                 priorityDate = priorityDate,
                 description = description.Trim(),
                 localization = localization.Trim(),
-                project = project.Trim()
+                project = project.Trim(),
+                priority = importance,
+                state = 0
             };
-
-
-            if (!string.IsNullOrWhiteSpace(code) && !string.IsNullOrWhiteSpace(name) && priorityDate != null)
-            {
-                return TaskConnection.createTask(newTask);
-            }
-            else
-            {
-                return false;
-            }
+            return TaskConnection.createTask(newTask);
         }
 
         /// <summary>
@@ -59,7 +52,7 @@ namespace SynUp_Desktop.service
         /// <param name="localization">The localization task to update</param>
         /// <param name="project">The project name task to update</param>
         /// <returns>Whether if the task has been correctly updated or not</returns>
-        public bool updateTask(String code, String name, DateTime priorityDate, String description, String localization, String project, String team)
+        public bool updateTask(String code, String name, DateTime priorityDate, String description, String localization, String project, String team, int importance)
         {
             Task newTask = new Task
             {
@@ -69,17 +62,11 @@ namespace SynUp_Desktop.service
                 priorityDate = priorityDate,
                 description = description,
                 localization = localization,
-                project = project
+                project = project,
+                priority = importance
             };
 
-            if (!string.IsNullOrWhiteSpace(code) && !string.IsNullOrWhiteSpace(name) && priorityDate != null)
-            {
-                return TaskConnection.updateTask(newTask);
-            }
-            else
-            {
-                return false;
-            }
+            return TaskConnection.updateTask(newTask);
         }
 
         /// <summary>

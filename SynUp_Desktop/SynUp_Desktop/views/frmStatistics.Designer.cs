@@ -30,7 +30,6 @@
         {
             this.lblFilter = new System.Windows.Forms.Label();
             this.cmbFilter = new System.Windows.Forms.ComboBox();
-            this.btnBack = new System.Windows.Forms.Button();
             this.dgvStadistics = new System.Windows.Forms.DataGridView();
             this.gbContainer = new System.Windows.Forms.GroupBox();
             this.cmbRanking = new System.Windows.Forms.ComboBox();
@@ -43,6 +42,7 @@
             this.dtpEnd = new System.Windows.Forms.DateTimePicker();
             this.dtpBegin = new System.Windows.Forms.DateTimePicker();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.btnBack = new SynUp_Desktop.utilities.GenericButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStadistics)).BeginInit();
             this.gbContainer.SuspendLayout();
             this.SuspendLayout();
@@ -72,26 +72,17 @@
             this.cmbFilter.TabIndex = 1;
             this.cmbFilter.SelectedIndexChanged += new System.EventHandler(this.cmbFilter_SelectedIndexChanged);
             // 
-            // btnBack
-            // 
-            this.btnBack.Location = new System.Drawing.Point(519, 421);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(75, 23);
-            this.btnBack.TabIndex = 3;
-            this.btnBack.Text = "Back";
-            this.btnBack.UseVisualStyleBackColor = true;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            // 
             // dgvStadistics
             // 
             this.dgvStadistics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvStadistics.Location = new System.Drawing.Point(9, 154);
             this.dgvStadistics.Name = "dgvStadistics";
-            this.dgvStadistics.Size = new System.Drawing.Size(585, 261);
+            this.dgvStadistics.Size = new System.Drawing.Size(585, 226);
             this.dgvStadistics.TabIndex = 0;
             // 
             // gbContainer
             // 
+            this.gbContainer.Controls.Add(this.btnBack);
             this.gbContainer.Controls.Add(this.cmbRanking);
             this.gbContainer.Controls.Add(this.cmbStates);
             this.gbContainer.Controls.Add(this.cmbEmployee);
@@ -103,7 +94,6 @@
             this.gbContainer.Controls.Add(this.dtpBegin);
             this.gbContainer.Controls.Add(this.btnSearch);
             this.gbContainer.Controls.Add(this.lblFilter);
-            this.gbContainer.Controls.Add(this.btnBack);
             this.gbContainer.Controls.Add(this.cmbFilter);
             this.gbContainer.Controls.Add(this.dgvStadistics);
             this.gbContainer.Location = new System.Drawing.Point(12, 12);
@@ -197,13 +187,26 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(519, 125);
+            this.btnSearch.Location = new System.Drawing.Point(519, 93);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.Size = new System.Drawing.Size(75, 55);
             this.btnSearch.TabIndex = 4;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // btnBack
+            // 
+            this.btnBack.AutoSize = true;
+            this.btnBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnBack.ButtonText = "Back";
+            this.btnBack.isExit = true;
+            this.btnBack.Location = new System.Drawing.Point(522, 407);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(0);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Parent = this;
+            this.btnBack.Size = new System.Drawing.Size(75, 40);
+            this.btnBack.TabIndex = 14;
             // 
             // frmStatistics
             // 
@@ -227,7 +230,6 @@
 
         private System.Windows.Forms.Label lblFilter;
         private System.Windows.Forms.ComboBox cmbFilter;
-        private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.DataGridView dgvStadistics;
         private System.Windows.Forms.GroupBox gbContainer;
         private System.Windows.Forms.Button btnSearch;
@@ -240,5 +242,6 @@
         private System.Windows.Forms.ComboBox cmbStates;
         private System.Windows.Forms.ComboBox cmbEmployee;
         private System.Windows.Forms.ComboBox cmbRanking;
+        private utilities.GenericButton btnBack;
     }
 }

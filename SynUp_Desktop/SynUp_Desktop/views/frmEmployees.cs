@@ -235,7 +235,6 @@ namespace SynUp_Desktop.views
             dgvEmployees.RowHeadersVisible = false; // We hide the rowheader
             dgvEmployees.ClearSelection(); // Clear selection rows
 
-
             //Form Common Configurations
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
 
