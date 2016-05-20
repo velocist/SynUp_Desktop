@@ -32,6 +32,7 @@
             this.cmbFilter = new System.Windows.Forms.ComboBox();
             this.dgvStadistics = new System.Windows.Forms.DataGridView();
             this.gbContainer = new System.Windows.Forms.GroupBox();
+            this.btnBack = new SynUp_Desktop.utilities.GenericButton();
             this.cmbRanking = new System.Windows.Forms.ComboBox();
             this.cmbStates = new System.Windows.Forms.ComboBox();
             this.cmbEmployee = new System.Windows.Forms.ComboBox();
@@ -42,7 +43,6 @@
             this.dtpEnd = new System.Windows.Forms.DateTimePicker();
             this.dtpBegin = new System.Windows.Forms.DateTimePicker();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.btnBack = new SynUp_Desktop.utilities.GenericButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStadistics)).BeginInit();
             this.gbContainer.SuspendLayout();
             this.SuspendLayout();
@@ -103,6 +103,19 @@
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "List of Statistics";
             // 
+            // btnBack
+            // 
+            this.btnBack.AutoSize = true;
+            this.btnBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnBack.ButtonText = "Back";
+            this.btnBack.isExit = true;
+            this.btnBack.Location = new System.Drawing.Point(522, 407);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(0);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Parent = this;
+            this.btnBack.Size = new System.Drawing.Size(75, 40);
+            this.btnBack.TabIndex = 14;
+            // 
             // cmbRanking
             // 
             this.cmbRanking.FormattingEnabled = true;
@@ -121,7 +134,7 @@
             "Not selected",
             "Ongoing",
             "Finished",
-            "Abandonned",
+            "Abandoned",
             "Cancelled"});
             this.cmbStates.Location = new System.Drawing.Point(387, 24);
             this.cmbStates.Name = "cmbStates";
@@ -194,19 +207,6 @@
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // btnBack
-            // 
-            this.btnBack.AutoSize = true;
-            this.btnBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnBack.ButtonText = "Back";
-            this.btnBack.isExit = true;
-            this.btnBack.Location = new System.Drawing.Point(522, 407);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(0);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Parent = this;
-            this.btnBack.Size = new System.Drawing.Size(75, 40);
-            this.btnBack.TabIndex = 14;
             // 
             // frmStatistics
             // 

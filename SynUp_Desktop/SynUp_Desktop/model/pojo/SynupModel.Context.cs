@@ -77,6 +77,19 @@ namespace SynUp_Desktop.model.pojo
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spEmpLogU_Result>("spEmpLogU", firstParameter, lastParameter);
         }
     
+        public virtual ObjectResult<spGetByDate_Result> spGetByDate(Nullable<System.DateTime> begin, Nullable<System.DateTime> end)
+        {
+            var beginParameter = begin.HasValue ?
+                new ObjectParameter("begin", begin) :
+                new ObjectParameter("begin", typeof(System.DateTime));
+    
+            var endParameter = end.HasValue ?
+                new ObjectParameter("end", end) :
+                new ObjectParameter("end", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spGetByDate_Result>("spGetByDate", beginParameter, endParameter);
+        }
+    
         public virtual ObjectResult<spGetRankingEmployee_Result> spGetRankingEmployee(Nullable<System.DateTime> begin, Nullable<System.DateTime> end)
         {
             var beginParameter = begin.HasValue ?

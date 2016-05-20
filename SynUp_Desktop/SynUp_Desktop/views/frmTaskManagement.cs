@@ -79,7 +79,7 @@ namespace SynUp_Desktop.views
             String _strLocalization = txtLocalization.Text;
             DateTime _dtPriorityDate = mcalPriorityDate.SelectionStart.Date;
 
-            int _nImportance = Int32.Parse(cbImportance.SelectedItem.ToString()) ;
+            int _nImportance = Int32.Parse(cbImportance.SelectedItem.ToString());
 
             //int _nImportance = (int)Int32.TryParse(cbImportance.SelectedItem);
 

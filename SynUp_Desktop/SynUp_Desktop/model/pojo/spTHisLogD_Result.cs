@@ -19,5 +19,6 @@ namespace SynUp_Desktop.model.pojo
         public Nullable<int> startDate { get; set; }
         public Nullable<int> finishDate { get; set; }
         public Nullable<int> comment { get; set; }
+        public int isFinished { get; set; }
     }
 }
