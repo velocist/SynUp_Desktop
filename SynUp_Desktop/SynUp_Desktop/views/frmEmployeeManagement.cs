@@ -99,8 +99,11 @@ namespace SynUp_Desktop.views
             String _strAdress = txtAdress.Text;
             String _strUsername = txtUsername.Text;
 
-            Boolean _blUpdateOk = this.Controller.EmployeeService.updateEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress, _strUsername);
-            clMessageBox.showMessage(clMessageBox.ACTIONTYPE.UPDATE, "employee", _blUpdateOk, this);
+            if (validateFields())
+            {
+                Boolean _blUpdateOk = this.Controller.EmployeeService.updateEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress, _strUsername);
+                clMessageBox.showMessage(clMessageBox.ACTIONTYPE.UPDATE, "employee", _blUpdateOk, this);
+            }
 
         }
 
@@ -138,8 +141,6 @@ namespace SynUp_Desktop.views
         private void txtNif_TextChanged(object sender, EventArgs e)
         {
             this.checkDNI();
-
-            /*string _strNifExpression = "\\d{8}[a-zA-Z]";
 
             if (AuxEmployee == null)
             {
@@ -235,7 +236,7 @@ namespace SynUp_Desktop.views
                 if (!Regex.Match(_strEmail, _strEmailExpression).Success) // If the team exists, we show a message
                 {
                     lblEmail.ForeColor = Color.Red;
-                    _blEmail = false;
+                    lblEmail.Text = "Email*";
                 }
                 else
                 {
@@ -260,7 +261,17 @@ namespace SynUp_Desktop.views
             {
                 _blCorrect = true;
             }
+        private bool validateFields()
+        {
+            bool blValid = false;
+            if (lblNif.ForeColor != Color.Red && lblEmail.ForeColor != Color.Red)
+            {
+                blValid = true;
+            }
 
+            if (!blValid) MessageBox.Show("MEC MEC NOT SO OK..");
+
+            return blValid;
             return _blCorrect;
         }
 
@@ -311,7 +322,7 @@ namespace SynUp_Desktop.views
             ToolTip ToolTips = new ToolTip();
             //ToolTip1.IsBalloon = true;
             ToolTips.SetToolTip(this.lblNif, "NIF Employee.\n[00000000-A]");
-            ToolTips.SetToolTip(this.lblPhone, "+(00)000000000\n or 000000000");
+            ToolTips.SetToolTip(this.lblPhone, "000000000");
             ToolTips.SetToolTip(this.lblEmail, "exemple@domain.com");
 
         }
