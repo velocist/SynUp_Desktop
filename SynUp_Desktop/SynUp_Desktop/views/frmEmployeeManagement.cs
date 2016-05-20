@@ -56,31 +56,31 @@ namespace SynUp_Desktop.views
             String _strAdress = txtAdress.Text;
 
             Boolean _blCreateOk;
-
-            if (this.validateFields())
+            if (txtNif.Text != "" && txtEmail.Text != "")
             {
-                _blCreateOk = this.Controller.EmployeeService.createEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress);
-                /*utilities.clMessageBox _msgBox = new utilities.*//// MODIFICATION - Pablo, 170516, clMessageBox made static to access the methods without having to create an object of the class.
-                clMessageBox.showMessage(clMessageBox.ACTIONTYPE.CREATE, "employee", _blCreateOk, this);
+                if (this.validateFields())
+                {
+
+                    _blCreateOk = this.Controller.EmployeeService.createEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress);
+                    /*utilities.clMessageBox _msgBox = new utilities.*//// MODIFICATION - Pablo, 170516, clMessageBox made static to access the methods without having to create an object of the class.
+                    clMessageBox.showMessage(clMessageBox.ACTIONTYPE.CREATE, "employee", _blCreateOk, this);
+                }
             }
-            else if (txtNif.Text == "" || txtEmail.Text == "")
+            else if (this.txtNif.Text == "" || this.txtEmail.Text == "")
+            {
+                this.messageWrong();
+            }
+
+            /*else if (txtNif.Text == "")
             {
                 foreach (Control _control in this.gbContainer.Controls)
                 {
                     if (_control.Text.Equals("") && _control.Name.Equals(txtNif) || _control.Text.Equals("") && _control.Name.Equals(txtEmail))
                     {
-                        this.btnHelp_MouseClick(this.txtEmail, null);
+                        this.messageWrong();
                     }
                 }
-                _blHelp = false;
-                this.btnHelp_MouseClick(this, null);
-            }
-            /*else
-            {
-                this.btnHelp_MouseClick(this.txtNif, null);
             }*/
-
-
 
         }
 
@@ -141,6 +141,8 @@ namespace SynUp_Desktop.views
         private void txtNif_TextChanged(object sender, EventArgs e)
         {
             this.checkDNI();
+
+            #region //DELETE:Cristina C. 20/05/2016 Move to private method
             /*
             if (AuxEmployee == null)
             {
@@ -161,8 +163,8 @@ namespace SynUp_Desktop.views
                 {
                     lblNif.ForeColor = Color.Black;
                 }
-            }
-            */
+            }*/
+            #endregion
         }
 
         /// <summary>
@@ -172,9 +174,9 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void txtEmail_TextChanged(object sender, EventArgs e)
         {
-            Boolean _correctFields;
+            this.checkEmail();
 
-            _correctFields = this.validateFields();
+            #region //DELETE:Cristina C. 20/05/2016 Move to private method
             /*Boolean _blCorrect = false;
             string _strEmail = "";
 
@@ -183,7 +185,7 @@ namespace SynUp_Desktop.views
                 String _strEmailExpression = "^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
                 _strEmail = txtEmail.Text;
 
-                if (!Regex.Match(_strEmail, _strEmailExpression).Success ) // If the team exists, we show a message
+                if (!Regex.Match(_strEmail, _strEmailExpression).Success) // If the team exists, we show a message
                 {
                     lblEmail.ForeColor = Color.Red;
                     _blCorrect = false;
@@ -194,7 +196,13 @@ namespace SynUp_Desktop.views
                     _blCorrect = true;
                 }
             }*/
+            #endregion
         }
+
+        /// <summary>
+        /// Method that checks if the dni is correct
+        /// </summary>
+        /// <returns></returns>
         private Boolean checkDNI()
         {
             Boolean _blNif = false;
@@ -202,68 +210,79 @@ namespace SynUp_Desktop.views
             {
                 string _strNif = "";
 
-                if (txtNif.Text != "")
-                {
-                    String _strNifExpression = "\\d{8}[a-zA-Z]";
-                    _strNif = txtNif.Text;
-                    Employee _oEmployee = Controller.EmployeeService.readEmployee(_strNif); // We look for if the employee already exists
+                //if (txtNif.Text != "")
+                //{
+                String _strNifExpression = "^\\d{8}[a-zA-Z]$";
+                _strNif = txtNif.Text;
+                Employee _oEmployee = Controller.EmployeeService.readEmployee(_strNif); // We look for if the employee already exists
 
-                    if (_oEmployee != null || !Regex.Match(_strNif, _strNifExpression).Success) // If the employee exists, we show a message
-                    {
-                        lblNif.ForeColor = Color.Red;
-                        _blNif = false;
-                    }
-                    else
-                    {
-                        lblNif.ForeColor = Color.Black;
-                        _blNif = true;
-                    }
+                if (_oEmployee != null || !Regex.Match(_strNif, _strNifExpression).Success) // If the employee exists, we show a message
+                {
+                    lblNif.ForeColor = Color.Red;
+                    _blNif = false;
                 }
+                else
+                {
+                    lblNif.ForeColor = Color.Black;
+                    _blNif = true;
+                }
+                //}
 
             }
             return _blNif;
         }
 
+        /// <summary>
+        /// Method that checks if the email is correct
+        /// </summary>
+        /// <returns></returns>
         private Boolean checkEmail()
         {
             Boolean _blEmail = false;
             string _strEmail = "";
-            //TODO Tenemos que tener en cuenta si se inserta un correo ya introducido, o cambiamos el usuario por el dni
-            if (txtEmail.Text != "")
-            {
-                String _strEmailExpression = "^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
-                _strEmail = txtEmail.Text;
 
-                if (!Regex.Match(_strEmail, _strEmailExpression).Success) // If the team exists, we show a message
-                {
-                    lblEmail.ForeColor = Color.Red;
-                    lblEmail.Text = "Email*";
-                }
-                else
-                {
-                    lblEmail.ForeColor = Color.Black;
-                    _blEmail = true;
-                }
+            //if (txtEmail.Text != "")
+            //{
+            String _strEmailExpression = "^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
+            _strEmail = txtEmail.Text;
+
+            if (!Regex.Match(_strEmail, _strEmailExpression).Success) // If the team exists, we show a message
+            {
+                lblEmail.ForeColor = Color.Red;
+                _blEmail = false;
+                //lblEmail.Text = "Email";
             }
+            else
+            {
+                lblEmail.ForeColor = Color.Black;
+                _blEmail = true;
+            }
+            //}
 
             return _blEmail;
         }
 
+        /// <summary>
+        /// Method that validartes fields
+        /// </summary>
+        /// <returns></returns>
         private bool validateFields()
         {
+            Boolean _blCorrect = false;
+            Boolean _blNif = false, _blEmail = false;
 
-            /*Boolean _blCorrect = false;
-        Boolean _blNif = false, _blEmail = false;
+            _blNif = this.checkDNI();
 
-        _blNif = this.checkDNI();
-
-        _blEmail = this.checkEmail();
+            _blEmail = this.checkEmail();
 
             if (_blNif && _blEmail)
             {
                 _blCorrect = true;
             }
-    */
+
+            return _blCorrect;
+
+            /*
             bool blValid = false;
             if (lblNif.ForeColor != Color.Red && lblEmail.ForeColor != Color.Red)
             {
@@ -272,8 +291,8 @@ namespace SynUp_Desktop.views
 
             if (!blValid) MessageBox.Show("MEC MEC NOT SO OK..");
 
-            return blValid;
-            //return _blCorrect;
+            return blValid;*/
+
         }
 
         #endregion
@@ -348,24 +367,18 @@ namespace SynUp_Desktop.views
             }
             else
             {
+                _blHelp = true;
                 this.Height = 360;
-                if (sender.Equals(txtNif) || sender.Equals(txtEmail))
-                {
-                    this.changeIconMessage(2);
-                    this.lblHelpMessage.Text = "El nif i/o el email no puede estar vacío.";
-                }
-                /*if (sender.Equals(txtEmail))
-                {
-                    this.changeIconMessage(2);
-                    this.lblHelpMessage.Text = "El correo no puede estar vacío.";
-                }*/
-                if (!sender.Equals(txtNif) && !sender.Equals(txtEmail))
-                {
-                    _blHelp = true;
-                    this.walkingControls(false);
-                }
-
+                this.walkingControls(false);
             }
+        }
+
+        private void messageWrong()
+        {
+            this.Height = 360;
+            this.changeIconMessage(2);
+            this.lblHelpMessage.Text = "El nif i/o el email no puede estar vacío.";
+
         }
 
         /// <summary>
@@ -452,7 +465,7 @@ namespace SynUp_Desktop.views
                     this.changeIconMessage(3);
                     this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
                 }
-                
+
             }
         }
 
