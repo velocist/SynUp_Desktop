@@ -55,11 +55,12 @@ namespace SynUp_Desktop.views
             String _strEmail = txtEmail.Text;
             String _strAdress = txtAdress.Text;
 
-            Boolean _blCreateOk = this.Controller.EmployeeService.createEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress);
-
-            /*utilities.clMessageBox _msgBox = new utilities.*//// MODIFICATION - Pablo, 170516, clMessageBox made static to access the methods without having to create an object of the class.
-            clMessageBox.showMessage(clMessageBox.ACTIONTYPE.CREATE, "employee", _blCreateOk, this);
-
+            if (validateFields())
+            {
+                Boolean _blCreateOk = this.Controller.EmployeeService.createEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress);
+                /*utilities.clMessageBox _msgBox = new utilities.*//// MODIFICATION - Pablo, 170516, clMessageBox made static to access the methods without having to create an object of the class.
+                clMessageBox.showMessage(clMessageBox.ACTIONTYPE.CREATE, "employee", _blCreateOk, this);
+            }
         }
 
         /// <summary>
@@ -77,8 +78,11 @@ namespace SynUp_Desktop.views
             String _strAdress = txtAdress.Text;
             String _strUsername = txtUsername.Text;
 
-            Boolean _blUpdateOk = this.Controller.EmployeeService.updateEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress, _strUsername);
-            clMessageBox.showMessage(clMessageBox.ACTIONTYPE.UPDATE, "employee", _blUpdateOk, this);
+            if (validateFields())
+            {
+                Boolean _blUpdateOk = this.Controller.EmployeeService.updateEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress, _strUsername);
+                clMessageBox.showMessage(clMessageBox.ACTIONTYPE.UPDATE, "employee", _blUpdateOk, this);
+            }
 
         }
 
@@ -158,9 +162,17 @@ namespace SynUp_Desktop.views
             }
         }
 
-        private void validateFields()
+        private bool validateFields()
         {
+            bool blValid = false;
+            if (lblNif.ForeColor != Color.Red && lblEmail.ForeColor != Color.Red)
+            {
+                blValid = true;
+            }
 
+            if (!blValid) MessageBox.Show("MEC MEC NOT SO OK..");
+
+            return blValid;
         }
         #endregion
 

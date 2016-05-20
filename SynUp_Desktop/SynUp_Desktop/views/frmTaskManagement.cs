@@ -311,6 +311,26 @@ namespace SynUp_Desktop.views
 
         #endregion
 
+        /// <summary>
+        /// Checks whether the values are correct or not depending of the validations performed.
+        /// </summary>
+        /// <returns></returns>
+        private bool checkCorrectValues()
+        {
+            bool _correct = false;
+            if (lblCode.ForeColor != Color.Red && lblName.ForeColor != Color.Red/* && lblPriorityDate.ForeColor != Color.Red*/)
+            {
+                if (AuxTask != null || lblPriorityDate.ForeColor != Color.Red)
+                {
+                    _correct = true;
+                }
+            }
+
+            if (!_correct) MessageBox.Show("Incorrect fields. Check them before commiting the changes.");
+
+            return _correct;
+        }
+
         #endregion
 
         /// <summary>
@@ -408,27 +428,7 @@ namespace SynUp_Desktop.views
             txtLocalization.Text = "";
             mcalPriorityDate.SelectionStart = DateTime.Today;
             mcalPriorityDate.SelectionEnd = DateTime.Today;
-        }
-
-        /// <summary>
-        /// Checks whether the values are correct or not depending of the validations performed.
-        /// </summary>
-        /// <returns></returns>
-        private bool checkCorrectValues()
-        {
-            bool _correct = false;
-            if (lblCode.ForeColor != Color.Red && lblName.ForeColor != Color.Red/* && lblPriorityDate.ForeColor != Color.Red*/)
-            {
-                if (AuxTask != null || lblPriorityDate.ForeColor != Color.Red)
-                {
-                    _correct = true;
-                }
-            }
-
-            if (!_correct) MessageBox.Show("Incorrect fields. Check them before commiting the changes.");
-
-            return _correct;
-        }
+        }        
 
         //private string getState(model.pojo.Task _task)
         //{
