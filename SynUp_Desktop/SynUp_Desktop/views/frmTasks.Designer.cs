@@ -30,10 +30,10 @@
         {
             this.lblFilter = new System.Windows.Forms.Label();
             this.cmbFilter = new System.Windows.Forms.ComboBox();
-            this.btnBack = new System.Windows.Forms.Button();
             this.btnManagementTasks = new System.Windows.Forms.Button();
             this.dgvTasks = new System.Windows.Forms.DataGridView();
             this.gbContainer = new System.Windows.Forms.GroupBox();
+            this.btnBack = new SynUp_Desktop.utilities.GenericButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTasks)).BeginInit();
             this.gbContainer.SuspendLayout();
             this.SuspendLayout();
@@ -55,21 +55,11 @@
             this.cmbFilter.Size = new System.Drawing.Size(152, 21);
             this.cmbFilter.TabIndex = 1;
             // 
-            // btnBack
-            // 
-            this.btnBack.Location = new System.Drawing.Point(515, 417);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(75, 23);
-            this.btnBack.TabIndex = 3;
-            this.btnBack.Text = "Back";
-            this.btnBack.UseVisualStyleBackColor = true;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            // 
             // btnManagementTasks
             // 
-            this.btnManagementTasks.Location = new System.Drawing.Point(9, 417);
+            this.btnManagementTasks.Location = new System.Drawing.Point(9, 407);
             this.btnManagementTasks.Name = "btnManagementTasks";
-            this.btnManagementTasks.Size = new System.Drawing.Size(86, 23);
+            this.btnManagementTasks.Size = new System.Drawing.Size(85, 40);
             this.btnManagementTasks.TabIndex = 2;
             this.btnManagementTasks.Text = "Management";
             this.btnManagementTasks.UseVisualStyleBackColor = true;
@@ -87,13 +77,13 @@
             this.dgvTasks.Name = "dgvTasks";
             this.dgvTasks.RowTemplate.ReadOnly = true;
             this.dgvTasks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTasks.Size = new System.Drawing.Size(581, 360);
+            this.dgvTasks.Size = new System.Drawing.Size(581, 353);
             this.dgvTasks.TabIndex = 0;
             // 
             // gbContainer
             // 
-            this.gbContainer.Controls.Add(this.lblFilter);
             this.gbContainer.Controls.Add(this.btnBack);
+            this.gbContainer.Controls.Add(this.lblFilter);
             this.gbContainer.Controls.Add(this.cmbFilter);
             this.gbContainer.Controls.Add(this.btnManagementTasks);
             this.gbContainer.Controls.Add(this.dgvTasks);
@@ -103,6 +93,19 @@
             this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "List of Tasks";
+            // 
+            // btnBack
+            // 
+            this.btnBack.AutoSize = true;
+            this.btnBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnBack.ButtonText = "Back";
+            this.btnBack.isExit = true;
+            this.btnBack.Location = new System.Drawing.Point(518, 407);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(0);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Parent = this;
+            this.btnBack.Size = new System.Drawing.Size(75, 40);
+            this.btnBack.TabIndex = 3;
             // 
             // frmTasks
             // 
@@ -128,9 +131,9 @@
 
         private System.Windows.Forms.Label lblFilter;
         private System.Windows.Forms.ComboBox cmbFilter;
-        private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnManagementTasks;
         private System.Windows.Forms.DataGridView dgvTasks;
         private System.Windows.Forms.GroupBox gbContainer;
+        private utilities.GenericButton btnBack;
     }
 }

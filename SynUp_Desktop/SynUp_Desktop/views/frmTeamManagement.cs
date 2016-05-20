@@ -102,11 +102,11 @@ namespace SynUp_Desktop.views
                 if (txtCode.Text.Equals("") || _oTeam != null) // We found that the textbox is not empty
                 {
                     lblCode.ForeColor = Color.Red;
-                    lblCode.Text = "Code*";
+                    //lblCode.Text = "Code*";
                 }
                 else
                 {
-                    lblCode.Text = "Code";
+                    //lblCode.Text = "Code";
                     lblCode.ForeColor = Color.Black;
                 }
             }
@@ -127,7 +127,7 @@ namespace SynUp_Desktop.views
                 // We recover the data of selected team
                 this.txtCode.Text = this.AuxTeam.code.Trim();
                 this.txtName.Text = this.AuxTeam.name.Trim();
-                
+
                 //The grid with all the employees on team will load.
                 this.fillDataGrid();
                 this.fillComboFilterEmployees();
@@ -265,13 +265,7 @@ namespace SynUp_Desktop.views
 
             this.cmbFilterEmployees.SelectedIndex = 0;
         }
-
-        private void btnAddToTeam_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
+        
         private void btnDeleteToTeam_Click(object sender, EventArgs e)
         {
             model.pojo.Employee _oSelectedEmployee = null;
@@ -318,6 +312,19 @@ namespace SynUp_Desktop.views
                     MessageBox.Show("This employee is already in the team");
                 }
             }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Not implemented.\n# Poner ventana con los employees y el que se seleccione se añada");
+            //Controller.EmployeeView.ShowDialog();
+        }
+
+        private void frmTeamManagement_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            AuxEmployee = null;
+            AuxTeam = null;
+            btnClear_Click(sender, e);
         }
     }
 }

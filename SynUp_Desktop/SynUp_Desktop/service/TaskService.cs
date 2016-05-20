@@ -5,6 +5,7 @@ using System.Text;
 using SynUp_Desktop.model;
 using SynUp_Desktop.model.pojo;
 using SynUp_Desktop.model.dao;
+using SynUp_Desktop.utilities;
 
 namespace SynUp_Desktop.service
 {
@@ -37,7 +38,7 @@ namespace SynUp_Desktop.service
                 localization = localization.Trim(),
                 project = project.Trim(),
                 priority = importance,
-                state = 0
+                state = (int)TaskState.UNSELECTED
             };
             return TaskConnection.createTask(newTask);
         }

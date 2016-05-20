@@ -221,6 +221,8 @@ namespace SynUp_Desktop.views
         /// </summary>
         private void dgvConfiguration()
         {
+            cmbTeamsToAdd.DropDownStyle = ComboBoxStyle.DropDownList;
+
             // DatagridView Common Configuration 
             dgvEmployees.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
             dgvEmployees.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row     

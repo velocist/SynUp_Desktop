@@ -30,10 +30,10 @@
         {
             this.lblFilter = new System.Windows.Forms.Label();
             this.cmbFilter = new System.Windows.Forms.ComboBox();
-            this.btnBack = new System.Windows.Forms.Button();
             this.btnManagementTeams = new System.Windows.Forms.Button();
             this.dgvTeams = new System.Windows.Forms.DataGridView();
             this.gbContainer = new System.Windows.Forms.GroupBox();
+            this.btnBack = new SynUp_Desktop.utilities.GenericButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTeams)).BeginInit();
             this.gbContainer.SuspendLayout();
             this.SuspendLayout();
@@ -55,21 +55,11 @@
             this.cmbFilter.Size = new System.Drawing.Size(152, 21);
             this.cmbFilter.TabIndex = 1;
             // 
-            // btnBack
-            // 
-            this.btnBack.Location = new System.Drawing.Point(519, 388);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(75, 53);
-            this.btnBack.TabIndex = 3;
-            this.btnBack.Text = "Back";
-            this.btnBack.UseVisualStyleBackColor = true;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            // 
             // btnManagementTeams
             // 
-            this.btnManagementTeams.Location = new System.Drawing.Point(6, 388);
+            this.btnManagementTeams.Location = new System.Drawing.Point(9, 407);
             this.btnManagementTeams.Name = "btnManagementTeams";
-            this.btnManagementTeams.Size = new System.Drawing.Size(86, 53);
+            this.btnManagementTeams.Size = new System.Drawing.Size(85, 40);
             this.btnManagementTeams.TabIndex = 2;
             this.btnManagementTeams.Text = "Management";
             this.btnManagementTeams.UseVisualStyleBackColor = true;
@@ -80,13 +70,13 @@
             this.dgvTeams.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTeams.Location = new System.Drawing.Point(9, 51);
             this.dgvTeams.Name = "dgvTeams";
-            this.dgvTeams.Size = new System.Drawing.Size(585, 331);
+            this.dgvTeams.Size = new System.Drawing.Size(585, 347);
             this.dgvTeams.TabIndex = 0;
             // 
             // gbContainer
             // 
-            this.gbContainer.Controls.Add(this.lblFilter);
             this.gbContainer.Controls.Add(this.btnBack);
+            this.gbContainer.Controls.Add(this.lblFilter);
             this.gbContainer.Controls.Add(this.cmbFilter);
             this.gbContainer.Controls.Add(this.btnManagementTeams);
             this.gbContainer.Controls.Add(this.dgvTeams);
@@ -96,6 +86,19 @@
             this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "List of Teams";
+            // 
+            // btnBack
+            // 
+            this.btnBack.AutoSize = true;
+            this.btnBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnBack.ButtonText = "Back";
+            this.btnBack.isExit = true;
+            this.btnBack.Location = new System.Drawing.Point(519, 407);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(0);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Parent = this;
+            this.btnBack.Size = new System.Drawing.Size(75, 40);
+            this.btnBack.TabIndex = 3;
             // 
             // frmTeams
             // 
@@ -120,9 +123,9 @@
 
         private System.Windows.Forms.Label lblFilter;
         private System.Windows.Forms.ComboBox cmbFilter;
-        private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnManagementTeams;
         private System.Windows.Forms.DataGridView dgvTeams;
         private System.Windows.Forms.GroupBox gbContainer;
+        private utilities.GenericButton btnBack;
     }
 }

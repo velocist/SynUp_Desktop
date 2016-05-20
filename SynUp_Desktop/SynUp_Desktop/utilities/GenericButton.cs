@@ -101,6 +101,9 @@ namespace SynUp_Desktop.utilities
             else clearFields();
         }
 
+        /// <summary>
+        /// Clears all the fields of the form.
+        /// </summary>
         private void clearFields()
         {
             foreach (Control _control in Parent.Controls) //Recorremos los componentes del formulario
@@ -109,14 +112,16 @@ namespace SynUp_Desktop.utilities
                 {
                     foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
                     {
-                        if (_inGroupBox is TextBox)
+                        if (_inGroupBox is TextBox) //If the control is a textbox
                         {
-                            _inGroupBox.Text = "";
+                            if (!_inGroupBox.Enabled) _inGroupBox.Enabled = true; //if it is a disabled control
+                            _inGroupBox.Text = ""; //sets the text empty
                         }
-                        if (_inGroupBox is Label)
+                        if (_inGroupBox is Label) //If the control is a label
                         {
-                            _inGroupBox.ForeColor = Color.Black;
+                            _inGroupBox.ForeColor = Color.Black; //Will reset it's validation changed color.
                         }
+
                     }
                 }
             }

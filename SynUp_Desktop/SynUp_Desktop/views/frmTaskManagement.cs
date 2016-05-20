@@ -78,8 +78,10 @@ namespace SynUp_Desktop.views
             String _strDescription = txtDescription.Text;
             String _strLocalization = txtLocalization.Text;
             DateTime _dtPriorityDate = mcalPriorityDate.SelectionStart.Date;
-            int _nImportance = 0;
-            if (cbImportance.SelectedItem != null && !cbImportance.Equals(" ")) _nImportance = Int32.Parse(cbImportance.SelectedItem.ToString());
+
+            int _nImportance = Int32.Parse(cbImportance.SelectedItem.ToString()) ;
+
+            //int _nImportance = (int)Int32.TryParse(cbImportance.SelectedItem);
 
             Boolean _blUpdate = false;
 
@@ -365,7 +367,9 @@ namespace SynUp_Desktop.views
             if (AuxTask != null)
             {
                 // We recover the data of selected task
-                this.cbIdTeams.SelectedIndex = cbIdTeams.FindString(this.AuxTask.id_team);
+                if(this.AuxTask.id_team!=null) this.cbIdTeams.SelectedIndex = cbIdTeams.FindString(this.AuxTask.id_team.Trim());
+                this.cbImportance.SelectedIndex = (int)this.AuxTask.priority;
+
                 this.txtCode.Text = this.AuxTask.code;
                 this.txtName.Text = this.AuxTask.name;
                 this.txtDescription.Text = this.AuxTask.description;
@@ -430,6 +434,12 @@ namespace SynUp_Desktop.views
             txtLocalization.Text = "";
             mcalPriorityDate.SelectionStart = DateTime.Today;
             mcalPriorityDate.SelectionEnd = DateTime.Today;
+        }
+
+        private void frmTaskManagement_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            AuxTask = null;
+            btnClear_Click(sender, e);
         }
 
         //private string getState(model.pojo.Task _task)

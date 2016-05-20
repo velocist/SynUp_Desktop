@@ -87,8 +87,10 @@ namespace SynUp_Desktop.views
             dgvTasks.Columns[4].Visible = false; // HeaderText = "Description";
             dgvTasks.Columns[5].Visible = false; // HeaderText = "Localization";
             dgvTasks.Columns[6].HeaderText = "Project";
-            dgvTasks.Columns[7].Visible = false; // HeaderText = "Team";
-            dgvTasks.Columns[8].Visible = false; // HeaderText = "Task Histories";
+            dgvTasks.Columns[5].Visible = false; // HeaderText = "Localization";
+            dgvTasks.Columns[6].Visible = false;
+            dgvTasks.Columns[9].Visible = false; // HeaderText = "Team";
+            dgvTasks.Columns[10].Visible = false; // HeaderText = "Task Histories";
             
             // DatagridView Common Configuration 
 
@@ -119,7 +121,7 @@ namespace SynUp_Desktop.views
         {            
             fillGrid();
             dgvTasks.ClearSelection(); // Clear selection rows.
-            dgvTasks.Refresh(); //Refresh the view.
+            dgvTasks.Refresh(); //Refresh the view.            
         }
 
         private void frmTasks_Load(object sender, EventArgs e)

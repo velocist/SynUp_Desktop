@@ -96,7 +96,7 @@
             // 
             this.cbImportance.FormattingEnabled = true;
             this.cbImportance.Items.AddRange(new object[] {
-            " ",
+            "0",
             "1",
             "2",
             "3",
@@ -314,6 +314,7 @@
             this.Name = "frmTaskManagement";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Task Management ";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmTaskManagement_FormClosing);
             this.Load += new System.EventHandler(this.frmTaskManagement_Load);
             this.gbContainer.ResumeLayout(false);
             this.gbContainer.PerformLayout();

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using SynUp_Desktop.model;
 using SynUp_Desktop.model.pojo;
 using System.Diagnostics;
+using SynUp_Desktop.utilities;
 
 namespace SynUp_Desktop.model.dao
 {
@@ -17,7 +18,7 @@ namespace SynUp_Desktop.model.dao
     ///<Date>04/05/2016_1713</Date>
     public static class TaskConnection
     {
-        
+
 
         /// <summary>
         /// Saves the changes done over the database.
@@ -86,10 +87,12 @@ namespace SynUp_Desktop.model.dao
 
                 if (foundTask != null) //If the task has been found - meaning that it exists:
                 {
-                    tryAttach(context, foundTask);
-
-                    context.Tasks.Remove(foundTask);
-                    if (commitChanges(context)) return foundTask;
+                    foundTask.state = (int)TaskState.CANCELLED;
+                    if (updateTask(foundTask))
+                    {
+                        if (commitChanges(context)) return foundTask;
+                        else return null;
+                    }
                     else return null;
                 }
             }
@@ -117,6 +120,7 @@ namespace SynUp_Desktop.model.dao
                 if (modifiedTask != null)
                 {
                     //tryAttach(context, modifiedTask);
+                    //tryAttach(context, modifiedTask);
                     //modifiedTask.code = t.code;
                     modifiedTask.description = t.description;
                     modifiedTask.id_team = t.id_team;
@@ -124,6 +128,7 @@ namespace SynUp_Desktop.model.dao
                     modifiedTask.name = t.name;
                     modifiedTask.priorityDate = t.priorityDate;
                     modifiedTask.project = t.project;
+                    modifiedTask.priority = t.priority;
 
                     return commitChanges(context);
                 }
@@ -162,7 +167,7 @@ namespace SynUp_Desktop.model.dao
         public static List<pojo.Task> readAllTasks()
         {
 
-            return (from task in new synupEntities().Tasks select task).ToList();
+            return (from task in new synupEntities().Tasks where task.state != (int)TaskState.CANCELLED select task).OrderByDescending(x=>x.priorityDate).OrderByDescending(x=>x.priority).ToList();
         }
 
         //DELETE - Pablo Ardèvol 11/5/16 - Method moved to the Statistics connection object.

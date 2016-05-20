@@ -56,9 +56,9 @@
             // 
             // btnManagementEmployee
             // 
-            this.btnManagementEmployee.Location = new System.Drawing.Point(18, 442);
+            this.btnManagementEmployee.Location = new System.Drawing.Point(21, 446);
             this.btnManagementEmployee.Name = "btnManagementEmployee";
-            this.btnManagementEmployee.Size = new System.Drawing.Size(86, 49);
+            this.btnManagementEmployee.Size = new System.Drawing.Size(85, 40);
             this.btnManagementEmployee.TabIndex = 2;
             this.btnManagementEmployee.Text = "Management";
             this.btnManagementEmployee.UseVisualStyleBackColor = true;
@@ -91,7 +91,7 @@
             this.gbContainer.Controls.Add(this.dgvEmployees);
             this.gbContainer.Location = new System.Drawing.Point(12, 12);
             this.gbContainer.Name = "gbContainer";
-            this.gbContainer.Size = new System.Drawing.Size(802, 424);
+            this.gbContainer.Size = new System.Drawing.Size(803, 424);
             this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "List of Employees";
@@ -130,7 +130,7 @@
             this.btnClose.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnClose.ButtonText = "Back";
             this.btnClose.isExit = true;
-            this.btnClose.Location = new System.Drawing.Point(738, 446);
+            this.btnClose.Location = new System.Drawing.Point(733, 446);
             this.btnClose.Margin = new System.Windows.Forms.Padding(0);
             this.btnClose.Name = "btnClose";
             this.btnClose.Parent = this;
@@ -141,7 +141,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(822, 495);
+            this.ClientSize = new System.Drawing.Size(824, 495);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.gbContainer);
             this.Controls.Add(this.btnManagementEmployee);
