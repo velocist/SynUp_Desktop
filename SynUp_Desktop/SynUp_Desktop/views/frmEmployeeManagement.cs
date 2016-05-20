@@ -141,7 +141,7 @@ namespace SynUp_Desktop.views
         private void txtNif_TextChanged(object sender, EventArgs e)
         {
             this.checkDNI();
-
+            /*
             if (AuxEmployee == null)
             {
                 string _strNif = "";
@@ -161,7 +161,8 @@ namespace SynUp_Desktop.views
                 {
                     lblNif.ForeColor = Color.Black;
                 }
-            }*/
+            }
+            */
         }
 
         /// <summary>
@@ -250,19 +251,19 @@ namespace SynUp_Desktop.views
 
         private bool validateFields()
         {
-            Boolean _blCorrect = false;
-            Boolean _blNif = false, _blEmail = false;
 
-            _blNif = this.checkDNI();
+            /*Boolean _blCorrect = false;
+        Boolean _blNif = false, _blEmail = false;
 
-            _blEmail = this.checkEmail();
+        _blNif = this.checkDNI();
+
+        _blEmail = this.checkEmail();
 
             if (_blNif && _blEmail)
             {
                 _blCorrect = true;
             }
-        private bool validateFields()
-        {
+    */
             bool blValid = false;
             if (lblNif.ForeColor != Color.Red && lblEmail.ForeColor != Color.Red)
             {
@@ -272,7 +273,7 @@ namespace SynUp_Desktop.views
             if (!blValid) MessageBox.Show("MEC MEC NOT SO OK..");
 
             return blValid;
-            return _blCorrect;
+            //return _blCorrect;
         }
 
         #endregion
@@ -451,8 +452,7 @@ namespace SynUp_Desktop.views
                     this.changeIconMessage(3);
                     this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
                 }
-
-
+                
             }
         }
 
