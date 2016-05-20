@@ -34,8 +34,9 @@
             // btnGeneric
             // 
             this.btnGeneric.Location = new System.Drawing.Point(0, 0);
+            this.btnGeneric.Margin = new System.Windows.Forms.Padding(0);
             this.btnGeneric.Name = "btnGeneric";
-            this.btnGeneric.Size = new System.Drawing.Size(75, 23);
+            this.btnGeneric.Size = new System.Drawing.Size(75, 40);
             this.btnGeneric.TabIndex = 0;
             this.btnGeneric.UseVisualStyleBackColor = true;
             this.btnGeneric.Click += new System.EventHandler(this.btnGeneric_Click);
@@ -47,8 +48,9 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.btnGeneric);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "GenericButton";
-            this.Size = new System.Drawing.Size(78, 26);
+            this.Size = new System.Drawing.Size(75, 40);
             this.ResumeLayout(false);
 
         }

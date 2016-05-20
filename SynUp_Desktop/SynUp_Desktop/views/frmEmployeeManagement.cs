@@ -55,10 +55,32 @@ namespace SynUp_Desktop.views
             String _strEmail = txtEmail.Text;
             String _strAdress = txtAdress.Text;
 
-            Boolean _blCreateOk = this.Controller.EmployeeService.createEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress);
+            Boolean _blCreateOk;
 
-            /*utilities.clMessageBox _msgBox = new utilities.*//// MODIFICATION - Pablo, 170516, clMessageBox made static to access the methods without having to create an object of the class.
-            clMessageBox.showMessage(clMessageBox.ACTIONTYPE.CREATE, "employee", _blCreateOk, this);
+            if (this.validateFields())
+            {
+                _blCreateOk = this.Controller.EmployeeService.createEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress);
+                /*utilities.clMessageBox _msgBox = new utilities.*//// MODIFICATION - Pablo, 170516, clMessageBox made static to access the methods without having to create an object of the class.
+                clMessageBox.showMessage(clMessageBox.ACTIONTYPE.CREATE, "employee", _blCreateOk, this);
+            }
+            else if (txtNif.Text == "" || txtEmail.Text == "")
+            {
+                foreach (Control _control in this.gbContainer.Controls)
+                {
+                    if (_control.Text.Equals("") && _control.Name.Equals(txtNif) || _control.Text.Equals("") && _control.Name.Equals(txtEmail))
+                    {
+                        this.btnHelp_MouseClick(this.txtEmail, null);
+                    }
+                }
+                _blHelp = false;
+                this.btnHelp_MouseClick(this, null);
+            }
+            /*else
+            {
+                this.btnHelp_MouseClick(this.txtNif, null);
+            }*/
+
+
 
         }
 
@@ -115,7 +137,9 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void txtNif_TextChanged(object sender, EventArgs e)
         {
-            string _strNifExpression = "\\d{8}[a-zA-Z]";
+            this.checkDNI();
+
+            /*string _strNifExpression = "\\d{8}[a-zA-Z]";
 
             if (AuxEmployee == null)
             {
@@ -124,17 +148,19 @@ namespace SynUp_Desktop.views
 
                 Employee _oEmployee = Controller.EmployeeService.readEmployee(_strNif); // We look for if the employee already exists
 
-                if (_oEmployee != null || !Regex.Match(_strNif, _strNifExpression).Success && txtNif.Text != "") // If the employee exists, we show a message
+                if (_oEmployee != null || !Regex.Match(_strNif, _strNifExpression).Success) // If the employee exists, we show a message
                 {
                     lblNif.ForeColor = Color.Red;
-                    lblNif.Text = "NIF*";
+                }
+                else if (txtNif.Text == "" || txtEmail.Text == "")
+                {
+                    this.btnHelp_MouseClick(this, null);
                 }
                 else
                 {
                     lblNif.ForeColor = Color.Black;
-                    lblNif.Text = "NIF";
                 }
-            }
+            }*/
         }
 
         /// <summary>
@@ -144,28 +170,100 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void txtEmail_TextChanged(object sender, EventArgs e)
         {
-            string _strEmailExpression = "^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
+            Boolean _correctFields;
+
+            _correctFields = this.validateFields();
+            /*Boolean _blCorrect = false;
+            string _strEmail = "";
+
             if (txtEmail.Text != "")
             {
-                String _strEmail = txtEmail.Text;
+                String _strEmailExpression = "^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
+                _strEmail = txtEmail.Text;
 
-                if (!Regex.Match(_strEmail, _strEmailExpression).Success || txtEmail.Text == "") // If the team exists, we show a message
+                if (!Regex.Match(_strEmail, _strEmailExpression).Success ) // If the team exists, we show a message
                 {
                     lblEmail.ForeColor = Color.Red;
-                    lblEmail.Text = "Email*";
+                    _blCorrect = false;
                 }
                 else
                 {
                     lblEmail.ForeColor = Color.Black;
-                    lblEmail.Text = "Email";
+                    _blCorrect = true;
+                }
+            }*/
+        }
+        private Boolean checkDNI()
+        {
+            Boolean _blNif = false;
+            if (AuxEmployee == null) //Si el empleado auxiliar es null, comprobamos las expresiones de DNI i correo
+            {
+                string _strNif = "";
+
+                if (txtNif.Text != "")
+                {
+                    String _strNifExpression = "\\d{8}[a-zA-Z]";
+                    _strNif = txtNif.Text;
+                    Employee _oEmployee = Controller.EmployeeService.readEmployee(_strNif); // We look for if the employee already exists
+
+                    if (_oEmployee != null || !Regex.Match(_strNif, _strNifExpression).Success) // If the employee exists, we show a message
+                    {
+                        lblNif.ForeColor = Color.Red;
+                        _blNif = false;
+                    }
+                    else
+                    {
+                        lblNif.ForeColor = Color.Black;
+                        _blNif = true;
+                    }
+                }
+
+            }
+            return _blNif;
+        }
+
+        private Boolean checkEmail()
+        {
+            Boolean _blEmail = false;
+            string _strEmail = "";
+            //TODO Tenemos que tener en cuenta si se inserta un correo ya introducido, o cambiamos el usuario por el dni
+            if (txtEmail.Text != "")
+            {
+                String _strEmailExpression = "^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$";
+                _strEmail = txtEmail.Text;
+
+                if (!Regex.Match(_strEmail, _strEmailExpression).Success) // If the team exists, we show a message
+                {
+                    lblEmail.ForeColor = Color.Red;
+                    _blEmail = false;
+                }
+                else
+                {
+                    lblEmail.ForeColor = Color.Black;
+                    _blEmail = true;
                 }
             }
+
+            return _blEmail;
         }
 
-        private void validateFields()
+        private bool validateFields()
         {
+            Boolean _blCorrect = false;
+            Boolean _blNif = false, _blEmail = false;
 
+            _blNif = this.checkDNI();
+
+            _blEmail = this.checkEmail();
+
+            if (_blNif && _blEmail)
+            {
+                _blCorrect = true;
+            }
+
+            return _blCorrect;
         }
+
         #endregion
 
         /// <summary>
@@ -205,58 +303,6 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// Event that runs when the button is clicked to return back
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public void btnBack_Click(object sender, EventArgs e)
-        {
-            this.AuxEmployee = null;
-            this.clearValues();
-            this.Close();
-        }
-
-        /// <summary>
-        /// Event that runs when the button clear is clicked
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            this.clearValues();
-
-            if (this.btnCreate.Enabled == false)
-            {
-                this.btnCreate.Enabled = true;
-                this.AuxEmployee = null;
-                if (txtNif.Enabled == false) txtNif.Enabled = true;
-                this.btnUpdateEmployee.Enabled = false;
-                this.btnDeleteEmployee.Enabled = false;
-            }
-        }
-
-        /// <summary>
-        /// Method that cleans values
-        /// </summary>
-        private void clearValues()
-        {
-            foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
-            {
-                if (_control is GroupBox)
-                {
-                    foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
-                    {
-                        if (_inGroupBox is TextBox)
-                        {
-                            _inGroupBox.Text = "";
-                        }
-                    }
-                }
-            }
-        }
-
-
-        /// <summary>
         /// Method that sets the tooltips for the view
         /// </summary>
         private void setToolTips()
@@ -271,6 +317,7 @@ namespace SynUp_Desktop.views
         }
 
         #region HELP
+
         private Boolean _blHelp = false;
 
         /// <summary>
@@ -284,12 +331,116 @@ namespace SynUp_Desktop.views
             {
                 _blHelp = false;
                 this.Height = 290;
+                this.lblHelpMessage.Text = "";
                 this.walkingControls(true);
             }
             else
             {
-                _blHelp = true;
                 this.Height = 360;
+                if (sender.Equals(txtNif) || sender.Equals(txtEmail))
+                {
+                    this.changeIconMessage(2);
+                    this.lblHelpMessage.Text = "El nif i/o el email no puede estar vacío.";
+                }
+                /*if (sender.Equals(txtEmail))
+                {
+                    this.changeIconMessage(2);
+                    this.lblHelpMessage.Text = "El correo no puede estar vacío.";
+                }*/
+                if (!sender.Equals(txtNif) && !sender.Equals(txtEmail))
+                {
+                    _blHelp = true;
+                    this.walkingControls(false);
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// Event that runs when the mouse leaves labels
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void messageHelps_MouseLeave(object sender, EventArgs e)
+        {
+            if (_blHelp)
+            {
+                this.lblHelpMessage.Text = null;
+            }
+        }
+
+        /// <summary>
+        /// Event that runs when the mouse hover on components
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void messageHelps_MouseHover(object sender, EventArgs e)
+        {
+            if (_blHelp)
+            {
+
+                if (sender.Equals(lblNif) || sender.Equals(txtNif))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Documento nacional de identidad. No puede estar vacío y tiene que ser válido."
+                        + "En caso de tener que cambiar el DNI contacte con el administrador de la base de datos.";
+                }
+                else if (sender.Equals(lblName) || sender.Equals(txtName))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Nombre del trabajador.";
+                }
+                else if (sender.Equals(lblSurname) || sender.Equals(txtSurname))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Apellidos del trabajador.";
+                }
+                else if (sender.Equals(lblPhone) || sender.Equals(txtPhone))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Número de contacto del trabajador.";
+                }
+                else if (sender.Equals(lblEmail) || sender.Equals(txtEmail))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Correo electrónico del trabajador. Se utilizará como nombre de usuario en el aplicación mobil";
+                }
+                else if (sender.Equals(lblAdress) || sender.Equals(txtAdress))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Dirección postal del trabajador.";
+                }
+                else if (sender.Equals(lblUsername) || sender.Equals(txtUsername))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Nombre de usuario que utiliza en la aplicación. Solamente puede ser modificado por el propio trabajador desde la app.";
+                }
+                else if (sender.Equals(btnCreate))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Clicke aquí para crear un nuevo trabajador.";
+                }
+                else if (sender.Equals(btnUpdateEmployee))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Clicke aquí para modificar los datos del trabajador.";
+                }
+                else if (sender.Equals(btnDeleteEmployee))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Clicke aquí para para eliminar el trabajador.";
+                }
+                else if (sender.Equals(btnClear))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Clicke aquí para limpiar los valores del formulario.";
+                }
+                else if (sender.Equals(btnBack))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
+                }
+
 
             }
         }
@@ -306,124 +457,150 @@ namespace SynUp_Desktop.views
                 {
                     foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
                     {
-                        if (_inGroupBox is TextBox)
+                        if (_inGroupBox is TextBox && _inGroupBox.Name != txtUsername.Name)
                         {
                             _inGroupBox.Enabled = pEnabled;
                         }
                         else if (_inGroupBox is Label)
                         {
-                            _inGroupBox.ForeColor = Color.Red;
+                            //_inGroupBox.ForeColor = Color.Red;
                         }
                         _inGroupBox.MouseHover += new EventHandler(messageHelps_MouseHover);
+                        _inGroupBox.MouseLeave += new EventHandler(messageHelps_MouseLeave);
                     }
                 }
-                else if (_control is Button)
+                else if (_control is Button || _control is GenericButton)
                 {
-                    _control.BackColor = Color.Red;
+                    //_control.BackColor = Color.Red;
                     _control.MouseHover += new EventHandler(messageHelps_MouseHover);
+                    _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
                 }
             }
         }
 
         /// <summary>
-        /// Event that runs when the mouse hover on components
+        /// Method that changes the icon message
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void messageHelps_MouseHover(object sender, EventArgs e)
+        /// <param name="pIcon"></param>
+        private void changeIconMessage(int pIcon)
         {
-            if (_blHelp)
+            String _strFilename = null;
+            Bitmap _image = null;
+
+            if (pIcon == 1)
             {
-                if (sender.Equals(lblNif) || sender.Equals(txtNif))
-                {
-                    this.lblHelpMessage.Text = "Message help label NIF";
-                }
-                else if (sender.Equals(lblName) || sender.Equals(txtName))
-                {
-                    this.lblHelpMessage.Text = "Message help label NAME";
-                }
-                else if (sender.Equals(lblSurname) || sender.Equals(txtSurname))
-                {
-                    this.lblHelpMessage.Text = "Message help label SURNAME";
-                }
-                else if (sender.Equals(lblPhone) || sender.Equals(txtPhone))
-                {
-                    this.lblHelpMessage.Text = "Message help label PHONE";
-                }
-                else if (sender.Equals(lblEmail) || sender.Equals(txtEmail))
-                {
-                    this.lblHelpMessage.Text = "Message help label EMAIL";
-                }
-                else if (sender.Equals(lblUsername) || sender.Equals(txtUsername))
-                {
-                    this.lblHelpMessage.Text = "Message help label USERNAME";
-                }
-                else if (sender.Equals(btnCreate))
-                {
-                    this.lblHelpMessage.Text = "Message help Button";
-                }
-                else if (sender.Equals(btnUpdateEmployee))
-                {
-                    this.lblHelpMessage.Text = "Message help Button";
-                }
-                else if (sender.Equals(btnDeleteEmployee))
-                {
-                    this.lblHelpMessage.Text = "Message help Button";
-                }
-                else if (sender.Equals(btnClear))
-                {
-                    this.lblHelpMessage.Text = "Message help Button";
-                }
-                else if (sender.Equals(btnBack))
-                {
-                    this.lblHelpMessage.Text = "Message help Button";
-                }
+                _strFilename = Application.StartupPath + "\\warning.png";
+            }
+            else if (pIcon == 2)
+            {
+                _strFilename = Application.StartupPath + "\\error.png";
+            }
+            else if (pIcon == 3)
+            {
+                _strFilename = Application.StartupPath + "\\information.png";
 
             }
+            //Configurates de icon message
+            _image = new Bitmap(_strFilename);
+            this.pbxIconMessage.Image = _image;
+
         }
 
         #endregion
+
     }
 
-
-    /* DELETE: Cambio por el evento Activated
-   /// <summary>
-   /// Event that runs when the form is loaded
-   /// </summary>
-   /// <param name="sender"></param>
-   /// <param name="e"></param>
-   private void frmEmployeeManagement_Load(object sender, EventArgs e)
-   {
-       if (AuxEmployee != null)
-       {
-           // We recover the data of selected employee
-           this.txtNif.Text = this.AuxEmployee.nif;
-           this.txtName.Text = this.AuxEmployee.name;
-           this.txtSurname.Text = this.AuxEmployee.surname;
-           this.txtPhone.Text = this.AuxEmployee.phone;
-           this.txtEmail.Text = this.AuxEmployee.email;
-           this.txtAdress.Text = this.AuxEmployee.adress;
-
-           this.btnCreate.Enabled = false; // We disable the button to create a task
-           this.txtNif.Enabled = false;
-           this.btnUpdateEmployee.Enabled = true;
-           this.btnDeleteEmployee.Enabled = true;
-       }
-       else
-       {
-           this.btnCreate.Enabled = true;
-           this.txtNif.Enabled = true;
-           this.btnUpdateEmployee.Enabled = false;
-           this.btnDeleteEmployee.Enabled = false;
-       }
-
-       ///Sets the tooltips for the view
-       ///Nota: Interesante poner las restricciones de la base de datos directamente.
-       ToolTip ToolTips = new ToolTip();
-       //ToolTip1.IsBalloon = true;
-       ToolTips.SetToolTip(this.lblNif, "Nif employee.");
-   }
-   */
-
 }
+
+/* DELETE: Cambio por el evento Activated
+/// <summary>
+/// Event that runs when the form is loaded
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
+private void frmEmployeeManagement_Load(object sender, EventArgs e)
+{
+   if (AuxEmployee != null)
+   {
+       // We recover the data of selected employee
+       this.txtNif.Text = this.AuxEmployee.nif;
+       this.txtName.Text = this.AuxEmployee.name;
+       this.txtSurname.Text = this.AuxEmployee.surname;
+       this.txtPhone.Text = this.AuxEmployee.phone;
+       this.txtEmail.Text = this.AuxEmployee.email;
+       this.txtAdress.Text = this.AuxEmployee.adress;
+
+       this.btnCreate.Enabled = false; // We disable the button to create a task
+       this.txtNif.Enabled = false;
+       this.btnUpdateEmployee.Enabled = true;
+       this.btnDeleteEmployee.Enabled = true;
+   }
+   else
+   {
+       this.btnCreate.Enabled = true;
+       this.txtNif.Enabled = true;
+       this.btnUpdateEmployee.Enabled = false;
+       this.btnDeleteEmployee.Enabled = false;
+   }
+
+   ///Sets the tooltips for the view
+   ///Nota: Interesante poner las restricciones de la base de datos directamente.
+   ToolTip ToolTips = new ToolTip();
+   //ToolTip1.IsBalloon = true;
+   ToolTips.SetToolTip(this.lblNif, "Nif employee.");
+}
+*/
+
+/* DELETE: Cristina C. 19/05/2016 - Lo hemos cambiado por un usercontrol
+     * /// <summary>
+    /// Event that runs when the button is clicked to return back
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    public void btnBack_Click(object sender, EventArgs e)
+    {
+        this.AuxEmployee = null;
+        this.clearValues();
+        this.Close();
+    }
+
+    /// <summary>
+    /// Event that runs when the button clear is clicked
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void btnClear_Click(object sender, EventArgs e)
+    {
+        this.clearValues();
+
+        if (this.btnCreate.Enabled == false)
+        {
+            this.btnCreate.Enabled = true;
+            this.AuxEmployee = null;
+            if (txtNif.Enabled == false) txtNif.Enabled = true;
+            this.btnUpdateEmployee.Enabled = false;
+            this.btnDeleteEmployee.Enabled = false;
+        }
+    }
+
+    /// <summary>
+    /// Method that cleans values
+    /// </summary>
+    private void clearValues()
+    {
+        foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
+        {
+            if (_control is GroupBox)
+            {
+                foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
+                {
+                    if (_inGroupBox is TextBox)
+                    {
+                        _inGroupBox.Text = "";
+                    }
+                }
+            }
+        }
+    }
+    */
 

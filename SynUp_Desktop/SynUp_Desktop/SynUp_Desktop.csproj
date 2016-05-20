@@ -302,6 +302,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Error.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Information.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="model\pojo\SynupModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SynupModel.edmx</DependentUpon>
@@ -311,6 +317,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SynupModel.edmx</DependentUpon>
       <LastGenOutput>SynupModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Warning.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
