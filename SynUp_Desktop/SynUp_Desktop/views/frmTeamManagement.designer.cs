@@ -69,7 +69,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(340, 330);
+            this.btnAdd.Location = new System.Drawing.Point(328, 330);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(81, 23);
             this.btnAdd.TabIndex = 9;
@@ -80,7 +80,7 @@
             // lblFilterEmployee
             // 
             this.lblFilterEmployee.AutoSize = true;
-            this.lblFilterEmployee.Location = new System.Drawing.Point(7, 335);
+            this.lblFilterEmployee.Location = new System.Drawing.Point(7, 340);
             this.lblFilterEmployee.Name = "lblFilterEmployee";
             this.lblFilterEmployee.Size = new System.Drawing.Size(82, 13);
             this.lblFilterEmployee.TabIndex = 8;
@@ -96,7 +96,7 @@
             // 
             // btnDeleteToTeam
             // 
-            this.btnDeleteToTeam.Location = new System.Drawing.Point(234, 330);
+            this.btnDeleteToTeam.Location = new System.Drawing.Point(222, 330);
             this.btnDeleteToTeam.Name = "btnDeleteToTeam";
             this.btnDeleteToTeam.Size = new System.Drawing.Size(100, 23);
             this.btnDeleteToTeam.TabIndex = 6;
@@ -107,7 +107,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 59);
+            this.label1.Location = new System.Drawing.Point(6, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(88, 13);
             this.label1.TabIndex = 4;
@@ -116,9 +116,9 @@
             // dgvEmployeesOnTeam
             // 
             this.dgvEmployeesOnTeam.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEmployeesOnTeam.Location = new System.Drawing.Point(6, 78);
+            this.dgvEmployeesOnTeam.Location = new System.Drawing.Point(6, 66);
             this.dgvEmployeesOnTeam.Name = "dgvEmployeesOnTeam";
-            this.dgvEmployeesOnTeam.Size = new System.Drawing.Size(599, 246);
+            this.dgvEmployeesOnTeam.Size = new System.Drawing.Size(599, 258);
             this.dgvEmployeesOnTeam.TabIndex = 3;
             this.dgvEmployeesOnTeam.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dgvEmployeesOnTeam_RowStateChanged);
             // 
@@ -215,14 +215,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(636, 432);
+            this.ClientSize = new System.Drawing.Size(634, 431);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnCreateTeam);
             this.Controls.Add(this.btnDeleteTeam);
             this.Controls.Add(this.btnUpdateTeam);
             this.Controls.Add(this.groupBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "frmTeamManagement";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Team Management ";

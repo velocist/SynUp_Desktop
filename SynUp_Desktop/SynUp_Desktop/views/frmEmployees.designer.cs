@@ -30,8 +30,6 @@
         {
             this.dgvEmployees = new System.Windows.Forms.DataGridView();
             this.btnManagementEmployee = new System.Windows.Forms.Button();
-            this.cmbFilter = new System.Windows.Forms.ComboBox();
-            this.lblFilter = new System.Windows.Forms.Label();
             this.gbContainer = new System.Windows.Forms.GroupBox();
             this.lblTeams = new System.Windows.Forms.Label();
             this.cmbTeamsToAdd = new System.Windows.Forms.ComboBox();
@@ -65,35 +63,16 @@
             this.btnManagementEmployee.Location = new System.Drawing.Point(21, 446);
             this.btnManagementEmployee.Name = "btnManagementEmployee";
             this.btnManagementEmployee.Size = new System.Drawing.Size(85, 40);
-            this.btnManagementEmployee.TabIndex = 2;
+            this.btnManagementEmployee.TabIndex = 3;
             this.btnManagementEmployee.Text = "Management";
             this.btnManagementEmployee.UseVisualStyleBackColor = true;
             this.btnManagementEmployee.Click += new System.EventHandler(this.btnManagementEmployee_Click);
-            // 
-            // cmbFilter
-            // 
-            this.cmbFilter.FormattingEnabled = true;
-            this.cmbFilter.Location = new System.Drawing.Point(41, 24);
-            this.cmbFilter.Name = "cmbFilter";
-            this.cmbFilter.Size = new System.Drawing.Size(152, 21);
-            this.cmbFilter.TabIndex = 1;
-            // 
-            // lblFilter
-            // 
-            this.lblFilter.AutoSize = true;
-            this.lblFilter.Location = new System.Drawing.Point(6, 27);
-            this.lblFilter.Name = "lblFilter";
-            this.lblFilter.Size = new System.Drawing.Size(29, 13);
-            this.lblFilter.TabIndex = 0;
-            this.lblFilter.Text = "Filter";
             // 
             // gbContainer
             // 
             this.gbContainer.Controls.Add(this.lblTeams);
             this.gbContainer.Controls.Add(this.cmbTeamsToAdd);
             this.gbContainer.Controls.Add(this.btnAddToTeam);
-            this.gbContainer.Controls.Add(this.lblFilter);
-            this.gbContainer.Controls.Add(this.cmbFilter);
             this.gbContainer.Controls.Add(this.dgvEmployees);
             this.gbContainer.Location = new System.Drawing.Point(12, 12);
             this.gbContainer.Name = "gbContainer";
@@ -105,27 +84,27 @@
             // lblTeams
             // 
             this.lblTeams.AutoSize = true;
-            this.lblTeams.Location = new System.Drawing.Point(474, 27);
+            this.lblTeams.Location = new System.Drawing.Point(6, 26);
             this.lblTeams.Name = "lblTeams";
             this.lblTeams.Size = new System.Drawing.Size(39, 13);
-            this.lblTeams.TabIndex = 6;
+            this.lblTeams.TabIndex = 0;
             this.lblTeams.Text = "Teams";
             // 
             // cmbTeamsToAdd
             // 
             this.cmbTeamsToAdd.FormattingEnabled = true;
-            this.cmbTeamsToAdd.Location = new System.Drawing.Point(519, 24);
+            this.cmbTeamsToAdd.Location = new System.Drawing.Point(51, 23);
             this.cmbTeamsToAdd.Name = "cmbTeamsToAdd";
             this.cmbTeamsToAdd.Size = new System.Drawing.Size(177, 21);
-            this.cmbTeamsToAdd.TabIndex = 5;
+            this.cmbTeamsToAdd.TabIndex = 1;
             // 
             // btnAddToTeam
             // 
             this.btnAddToTeam.Enabled = false;
-            this.btnAddToTeam.Location = new System.Drawing.Point(702, 22);
+            this.btnAddToTeam.Location = new System.Drawing.Point(234, 21);
             this.btnAddToTeam.Name = "btnAddToTeam";
             this.btnAddToTeam.Size = new System.Drawing.Size(94, 23);
-            this.btnAddToTeam.TabIndex = 4;
+            this.btnAddToTeam.TabIndex = 2;
             this.btnAddToTeam.Text = "Add to Team";
             this.btnAddToTeam.UseVisualStyleBackColor = true;
             this.btnAddToTeam.Click += new System.EventHandler(this.btnAddToTeam_Click);
@@ -141,7 +120,7 @@
             this.btnClose.Name = "btnClose";
             this.btnClose.Parent = this;
             this.btnClose.Size = new System.Drawing.Size(75, 40);
-            this.btnClose.TabIndex = 3;
+            this.btnClose.TabIndex = 5;
             // 
             // gbHelp
             // 
@@ -150,7 +129,7 @@
             this.gbHelp.Location = new System.Drawing.Point(112, 429);
             this.gbHelp.Name = "gbHelp";
             this.gbHelp.Size = new System.Drawing.Size(584, 57);
-            this.gbHelp.TabIndex = 14;
+            this.gbHelp.TabIndex = 0;
             this.gbHelp.TabStop = false;
             this.gbHelp.Text = "Help";
             // 
@@ -159,7 +138,7 @@
             this.pbxIconMessage.Location = new System.Drawing.Point(5, 18);
             this.pbxIconMessage.Name = "pbxIconMessage";
             this.pbxIconMessage.Size = new System.Drawing.Size(25, 25);
-            this.pbxIconMessage.TabIndex = 1;
+            this.pbxIconMessage.TabIndex = 0;
             this.pbxIconMessage.TabStop = false;
             // 
             // lblHelpMessage
@@ -178,7 +157,7 @@
             this.btnHelp.Location = new System.Drawing.Point(702, 463);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(28, 23);
-            this.btnHelp.TabIndex = 15;
+            this.btnHelp.TabIndex = 4;
             this.btnHelp.Text = "?";
             this.btnHelp.UseVisualStyleBackColor = true;
             this.btnHelp.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnHelp_MouseClick);
@@ -215,8 +194,6 @@
 
         private System.Windows.Forms.DataGridView dgvEmployees;
         private System.Windows.Forms.Button btnManagementEmployee;
-        private System.Windows.Forms.ComboBox cmbFilter;
-        private System.Windows.Forms.Label lblFilter;
         private System.Windows.Forms.GroupBox gbContainer;
         private System.Windows.Forms.Button btnAddToTeam;
         private System.Windows.Forms.Label lblTeams;

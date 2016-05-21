@@ -304,14 +304,14 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void messageHelps_MouseHover(object sender, EventArgs e)
         {
-            //if (_blHelp)
-            //{
+            if (_blHelp)
+            {
                 this.changeIconMessage(3);
                 if (sender.Equals(this.btnManagementEmployee))
                 {
                     this.lblHelpMessage.Text = "Clicke aquí para acceder al formulario de trabajador.";
                 }
-                else if (sender.Equals(this.btnAddToTeam) || sender.Equals(this.lblTeams))
+                else if (sender.Equals(this.lblTeams))
                 {
                     this.lblHelpMessage.Text = "Clicke aquí para añadir el trabajador a un equipo.";
                 }
@@ -323,8 +323,7 @@ namespace SynUp_Desktop.views
                 {
                     this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
                 }
-
-            //}
+            }
         }
 
         /// <summary>
