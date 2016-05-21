@@ -331,7 +331,7 @@ namespace SynUp_Desktop.views
             }
 
             this.setToolTips(); //Sets the tooltips for the view
-
+            this._blHelp = false;
         }
 
         /// <summary>
@@ -396,7 +396,6 @@ namespace SynUp_Desktop.views
             {
                 _blHelp = true;
                 this.Height = 360;
-                //this.walkingControls(false);
             }
         }
 
@@ -559,6 +558,7 @@ namespace SynUp_Desktop.views
             this.lblHelpMessage.Text = "El nif i/o el email no puede estar vacío.";
 
         }
+        
         #endregion
 
     }

@@ -157,7 +157,6 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void dgvEmployeesOnTeam_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
         {
-
             if (this.dgvEmployeesOnTeam.SelectedRows.Count == 1)
             {
                 int _iIndexSelected = this.dgvEmployeesOnTeam.SelectedRows[0].Index;

@@ -39,6 +39,40 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
+        /// Event that runs when the form is loaded
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmEmployees_Load(object sender, EventArgs e)
+        {
+            this.dgvConfiguration();
+            this.frmEmployees_Activated(sender, e);
+        }
+
+        /// <summary>
+        /// Event triggered every time the view is displayed. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmEmployees_Activated(object sender, EventArgs e)
+        {
+            //The grid with all the employees will load.
+            this.fillGridView(); 
+            this.dgvEmployees.ClearSelection(); // Clear selection rows.
+            this.dgvEmployees.Refresh(); //Refresh the view.               
+
+            //The combo with all the teams will load.
+            this.fillComboTeams();
+
+            //TODO: Voy a probar de limpiar el auxiliar de empleado desde aqui a ver si no falla. FUNCIONA
+            this.Controller.EmployeeMgtView.AuxEmployee = null;
+
+            //We configures the groupbox help
+            this._blHelp = false;
+            this.gbHelp.Visible = false;
+        }
+
+        /// <summary>
         /// Event that runs when the button is clicked to manage employees
         /// </summary>
         /// <param name="sender"></param>
@@ -94,46 +128,6 @@ namespace SynUp_Desktop.views
 
                 }
             }
-        }
-
-        /// <summary>
-        /// Event that runs when the form is loaded
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void frmEmployees_Load(object sender, EventArgs e)
-        {
-            this.dgvConfiguration();
-            this.frmEmployees_Activated(sender, e);
-        }
-
-        /// <summary>
-        /// Event triggered every time the view is displayed. 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void frmEmployees_Activated(object sender, EventArgs e)
-        {
-            this.fillGridView(); //The grid with all the employees will load.
-            this.dgvEmployees.ClearSelection(); // Clear selection rows.
-            this.dgvEmployees.Refresh(); //Refresh the view.               
-
-            // DataGridView Configuration
-            //this.dgvEmployees.Columns[0].Visible = false; // We hide id column
-            this.dgvEmployees.Columns[8].Visible = false; // TeamsHistory
-            this.dgvEmployees.Columns[9].Visible = false; // TaskHistories
-
-            this.dgvEmployees.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
-            //this.dgvEmployees.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader; 
-
-            //The combo with all the teams will load.
-            this.fillComboTeams();
-
-            //TODO: Voy a probar de limpiar el auxiliar de empleado desde aqui a ver si no falla. FUNCIONA
-            this.Controller.EmployeeMgtView.AuxEmployee = null;
-
-            this._blHelp = false;
-            this.gbHelp.Visible = false;
         }
 
         /// <summary>
@@ -236,6 +230,16 @@ namespace SynUp_Desktop.views
             this.cmbTeamsToAdd.DropDownStyle = ComboBoxStyle.DropDownList;
             this.cmbTeamsToAdd.SelectedItem = -1;
 
+            this.fillGridView();
+
+            // DataGridView Configuration
+            //this.dgvEmployees.Columns[0].Visible = false; // We hide id column
+            this.dgvEmployees.Columns[8].Visible = false; // TeamsHistory
+            this.dgvEmployees.Columns[9].Visible = false; // TaskHistories
+
+            this.dgvEmployees.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+            //this.dgvEmployees.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader; 
+
             // DatagridView Common Configuration 
             this.dgvEmployees.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
             this.dgvEmployees.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row     
@@ -251,7 +255,9 @@ namespace SynUp_Desktop.views
             this.dgvEmployees.ClearSelection(); // Clear selection rows
 
             //Form Common Configurations
-            this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = FormBorderStyle.Fixed3D;
+            this.MinimizeBox = false;
+            this.MaximizeBox = false;
         }
 
         #region HELP
@@ -319,7 +325,7 @@ namespace SynUp_Desktop.views
                 {
                     this.lblHelpMessage.Text = "Lista de todos los empleados existentes en la base de datos.";
                 }
-                else if (sender.Equals(this.btnClose))
+                else if (sender.Equals(this.btnBack))
                 {
                     this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
                 }
@@ -388,6 +394,10 @@ namespace SynUp_Desktop.views
 
         #endregion
 
+        private void btnBack_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

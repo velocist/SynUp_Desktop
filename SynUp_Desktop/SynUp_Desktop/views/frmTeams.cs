@@ -7,6 +7,9 @@ using System.Windows.Forms;
 
 namespace SynUp_Desktop.views
 {
+    /// <summary>
+    /// Form of list teams
+    /// </summary>
     public partial class frmTeams : Form
     {
         private Controller controller;
@@ -30,6 +33,38 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
+        /// Event that runs when the form is loaded
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmTeams_Load(object sender, EventArgs e)
+        {
+            this.dgvConfiguration();
+            this.frmTeams_Activated(sender, e);
+        }
+
+        /// <summary>
+        /// Event that runs when the form is activated
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmTeams_Activated(object sender, EventArgs e)
+        {
+            //The grid with all the teams will load.
+            this.fillGridView();
+            this.dgvTeams.ClearSelection();
+            this.dgvTeams.Refresh();
+
+            //Cleans the auxiliars of form team
+            this.Controller.TeamMgtView.AuxEmployee = null;
+            this.Controller.TeamMgtView.AuxTeam = null;
+
+            //We configures the groupbox help
+            this._blHelp = false;
+            this.gbHelp.Visible = false;
+        }
+
+        /// <summary>
         /// Shows the management view window of the teams.
         /// </summary>
         /// <param name="sender"></param>
@@ -49,44 +84,27 @@ namespace SynUp_Desktop.views
                 }
             }
 
-            //this.Hide();
             this.Controller.TeamMgtView.ShowDialog();
-            //this.Show();
         }
-
+        
         /// <summary>
-        /// Event that runs when the form is activated
+        /// Fills the DataGridView with the values of the database.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void frmTeams_Activated(object sender, EventArgs e)
+        private void fillGridView()
         {
-            //The grid with all the teams will load.
-            //dgvTeams.DataSource = null;
-            initGridView();
-            //dgvTeams.EndEdit();
+            if (dgvTeams.DataSource != null) dgvTeams.DataSource = new List<String>();
 
-
-            //this.fillGridView();
-            //dgvTeams.ClearSelection();
-            //dgvTeams.Update();
-            //dgvTeams.Refresh();
-        }
-
-        /// <summary>
-        /// Event that runs when the form is loaded
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void frmTeams_Load(object sender, EventArgs e)
-        {
-            initGridView();
+            BindingSource source = new BindingSource();
+            source.DataSource = Controller.TeamService.getAllTeams();
+            this.dgvTeams.DataSource = source;
+            this.dgvTeams.Refresh();
+            this.Refresh();
         }
 
         /// <summary>
         /// DataGridView configuration.
         /// </summary>
-        private void initGridView()
+        private void dgvConfiguration()
         {
             this.fillGridView();
 
@@ -114,21 +132,9 @@ namespace SynUp_Desktop.views
             this.dgvTeams.AutoResizeColumns();
 
             //Form Common Configurations
-            this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
-        }
-
-        /// <summary>
-        /// Fills the DataGridView with the values of the database.
-        /// </summary>
-        private void fillGridView()
-        {
-            if (dgvTeams.DataSource != null) dgvTeams.DataSource = new List<String>();
-
-            BindingSource source = new BindingSource();
-            source.DataSource = Controller.TeamService.getAllTeams();
-            this.dgvTeams.DataSource = source;
-            this.dgvTeams.Refresh();
-            this.Refresh();
+            this.FormBorderStyle = FormBorderStyle.Fixed3D;
+            this.MinimizeBox = false;
+            this.MaximizeBox = false;
         }
 
         #region HELP
@@ -142,7 +148,22 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnHelp_MouseClick(object sender, MouseEventArgs e)
         {
-
+            if (_blHelp)
+            {
+                _blHelp = false;
+                this.lblHelpMessage.Text = "";
+                this.changeIconMessage(0);
+                this.walkingControls(true);
+                this.gbHelp.Visible = false;
+            }
+            else
+            {
+                _blHelp = true;
+                this.lblHelpMessage.Text = "";
+                this.changeIconMessage(0);
+                this.walkingControls(false);
+                this.gbHelp.Visible = true;
+            }
         }
 
         /// <summary>
@@ -245,11 +266,6 @@ namespace SynUp_Desktop.views
         }
 
         #endregion
-
-        private void btnManagementTeams_Click_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }
 
