@@ -156,7 +156,7 @@
             // 
             // pbxIconMessage
             // 
-            this.pbxIconMessage.Location = new System.Drawing.Point(5, 15);
+            this.pbxIconMessage.Location = new System.Drawing.Point(5, 18);
             this.pbxIconMessage.Name = "pbxIconMessage";
             this.pbxIconMessage.Size = new System.Drawing.Size(25, 25);
             this.pbxIconMessage.TabIndex = 1;
@@ -166,7 +166,7 @@
             // 
             this.lblHelpMessage.AutoSize = true;
             this.lblHelpMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHelpMessage.Location = new System.Drawing.Point(35, 16);
+            this.lblHelpMessage.Location = new System.Drawing.Point(35, 22);
             this.lblHelpMessage.MaximumSize = new System.Drawing.Size(430, 40);
             this.lblHelpMessage.Name = "lblHelpMessage";
             this.lblHelpMessage.Size = new System.Drawing.Size(82, 13);

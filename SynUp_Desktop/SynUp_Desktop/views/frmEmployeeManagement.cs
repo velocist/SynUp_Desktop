@@ -388,6 +388,7 @@ namespace SynUp_Desktop.views
             {
                 _blHelp = false;
                 this.Height = 290;
+                this.changeIconMessage(0);
                 this.lblHelpMessage.Text = "";
                 this.walkingControls(true);
             }
@@ -395,7 +396,7 @@ namespace SynUp_Desktop.views
             {
                 _blHelp = true;
                 this.Height = 360;
-                this.walkingControls(false);
+                //this.walkingControls(false);
             }
         }
 
@@ -408,6 +409,7 @@ namespace SynUp_Desktop.views
         {
             if (_blHelp)
             {
+                this.changeIconMessage(0);
                 this.lblHelpMessage.Text = null;
             }
         }
@@ -499,21 +501,17 @@ namespace SynUp_Desktop.views
                 {
                     foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
                     {
-                        if (_inGroupBox is TextBox && _inGroupBox.Name != txtUsername.Name)
-                        {
-                            _inGroupBox.Enabled = pEnabled;
-                        }
-                        else if (_inGroupBox is Label)
-                        {
-                            //_inGroupBox.ForeColor = Color.Red;
-                        }
                         _inGroupBox.MouseHover += new EventHandler(messageHelps_MouseHover);
                         _inGroupBox.MouseLeave += new EventHandler(messageHelps_MouseLeave);
                     }
                 }
-                else if (_control is Button || _control is GenericButton)
+                if (_control is Button)
                 {
-                    //_control.BackColor = Color.Red;
+                    _control.MouseHover += new EventHandler(messageHelps_MouseHover);
+                    _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
+                }
+                if (_control is GenericButton)
+                {
                     _control.MouseHover += new EventHandler(messageHelps_MouseHover);
                     _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
                 }
@@ -543,7 +541,10 @@ namespace SynUp_Desktop.views
 
             }
             //Configurates de icon message
-            _image = new Bitmap(_strFilename);
+            if (_strFilename != null)
+            {
+                _image = new Bitmap(_strFilename);
+            }
             this.pbxIconMessage.Image = _image;
 
         }

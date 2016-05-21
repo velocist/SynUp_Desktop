@@ -114,7 +114,6 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void frmEmployees_Activated(object sender, EventArgs e)
         {
-            //MessageBox.Show("Activated");
             this.fillGridView(); //The grid with all the employees will load.
             this.dgvEmployees.ClearSelection(); // Clear selection rows.
             this.dgvEmployees.Refresh(); //Refresh the view.               
@@ -130,8 +129,11 @@ namespace SynUp_Desktop.views
             //The combo with all the teams will load.
             this.fillComboTeams();
 
-            //TODO: Voy a probar de limpiar el auxiliar de empleado desde aqui a ver si no falla 
+            //TODO: Voy a probar de limpiar el auxiliar de empleado desde aqui a ver si no falla. FUNCIONA
             this.Controller.EmployeeMgtView.AuxEmployee = null;
+
+            this._blHelp = false;
+            this.gbHelp.Visible = false;
         }
 
         /// <summary>
@@ -267,12 +269,17 @@ namespace SynUp_Desktop.views
             {
                 _blHelp = false;
                 this.lblHelpMessage.Text = "";
+                this.changeIconMessage(0);
                 this.walkingControls(true);
+                this.gbHelp.Visible = false;
             }
             else
             {
                 _blHelp = true;
+                this.lblHelpMessage.Text = "";
+                this.changeIconMessage(0);
                 this.walkingControls(false);
+                this.gbHelp.Visible = true;
             }
         }
 
@@ -286,7 +293,7 @@ namespace SynUp_Desktop.views
             if (_blHelp)
             {
                 this.changeIconMessage(0);
-                this.lblHelpMessage.Text = null;
+                this.lblHelpMessage.Text = "";
             }
         }
 
@@ -297,8 +304,9 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void messageHelps_MouseHover(object sender, EventArgs e)
         {
-            if (_blHelp)
-            {
+            //if (_blHelp)
+            //{
+                this.changeIconMessage(3);
                 if (sender.Equals(this.btnManagementEmployee))
                 {
                     this.lblHelpMessage.Text = "Clicke aquí para acceder al formulario de trabajador.";
@@ -316,7 +324,7 @@ namespace SynUp_Desktop.views
                     this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
                 }
 
-            }
+            //}
         }
 
         /// <summary>
@@ -327,17 +335,20 @@ namespace SynUp_Desktop.views
         {
             foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
             {
-                
                 if (_control is GroupBox)
                 {
                     foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
                     {
                         _inGroupBox.MouseHover += new EventHandler(messageHelps_MouseHover);
                         _inGroupBox.MouseLeave += new EventHandler(messageHelps_MouseLeave);
-                        //   _inGroupBox.BackColor = Color.Red;
                     }
                 }
-                else if (_control is Button || _control is GenericButton)
+                if (_control is Button)
+                {
+                    _control.MouseHover += new EventHandler(messageHelps_MouseHover);
+                    _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
+                }
+                if (_control is GenericButton)
                 {
                     _control.MouseHover += new EventHandler(messageHelps_MouseHover);
                     _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
@@ -371,8 +382,8 @@ namespace SynUp_Desktop.views
             if (_strFilename != null)
             {
                 _image = new Bitmap(_strFilename);
-                this.pbxIconMessage.Image = _image;
             }
+            this.pbxIconMessage.Image = _image;
 
         }
 
