@@ -37,8 +37,14 @@
             this.cmbTeamsToAdd = new System.Windows.Forms.ComboBox();
             this.btnAddToTeam = new System.Windows.Forms.Button();
             this.btnClose = new SynUp_Desktop.utilities.GenericButton();
+            this.gbHelp = new System.Windows.Forms.GroupBox();
+            this.pbxIconMessage = new System.Windows.Forms.PictureBox();
+            this.lblHelpMessage = new System.Windows.Forms.Label();
+            this.btnHelp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
             this.gbContainer.SuspendLayout();
+            this.gbHelp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxIconMessage)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvEmployees
@@ -91,7 +97,7 @@
             this.gbContainer.Controls.Add(this.dgvEmployees);
             this.gbContainer.Location = new System.Drawing.Point(12, 12);
             this.gbContainer.Name = "gbContainer";
-            this.gbContainer.Size = new System.Drawing.Size(803, 424);
+            this.gbContainer.Size = new System.Drawing.Size(803, 414);
             this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "List of Employees";
@@ -137,12 +143,54 @@
             this.btnClose.Size = new System.Drawing.Size(75, 40);
             this.btnClose.TabIndex = 3;
             // 
+            // gbHelp
+            // 
+            this.gbHelp.Controls.Add(this.pbxIconMessage);
+            this.gbHelp.Controls.Add(this.lblHelpMessage);
+            this.gbHelp.Location = new System.Drawing.Point(112, 429);
+            this.gbHelp.Name = "gbHelp";
+            this.gbHelp.Size = new System.Drawing.Size(584, 57);
+            this.gbHelp.TabIndex = 14;
+            this.gbHelp.TabStop = false;
+            this.gbHelp.Text = "Help";
+            // 
+            // pbxIconMessage
+            // 
+            this.pbxIconMessage.Location = new System.Drawing.Point(5, 15);
+            this.pbxIconMessage.Name = "pbxIconMessage";
+            this.pbxIconMessage.Size = new System.Drawing.Size(25, 25);
+            this.pbxIconMessage.TabIndex = 1;
+            this.pbxIconMessage.TabStop = false;
+            // 
+            // lblHelpMessage
+            // 
+            this.lblHelpMessage.AutoSize = true;
+            this.lblHelpMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHelpMessage.Location = new System.Drawing.Point(35, 16);
+            this.lblHelpMessage.MaximumSize = new System.Drawing.Size(430, 40);
+            this.lblHelpMessage.Name = "lblHelpMessage";
+            this.lblHelpMessage.Size = new System.Drawing.Size(82, 13);
+            this.lblHelpMessage.TabIndex = 0;
+            this.lblHelpMessage.Text = "Message help...";
+            // 
+            // btnHelp
+            // 
+            this.btnHelp.Location = new System.Drawing.Point(702, 463);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(28, 23);
+            this.btnHelp.TabIndex = 15;
+            this.btnHelp.Text = "?";
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnHelp_MouseClick);
+            // 
             // frmEmployees
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(824, 495);
+            this.Controls.Add(this.gbHelp);
             this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.gbContainer);
             this.Controls.Add(this.btnManagementEmployee);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -155,6 +203,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).EndInit();
             this.gbContainer.ResumeLayout(false);
             this.gbContainer.PerformLayout();
+            this.gbHelp.ResumeLayout(false);
+            this.gbHelp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxIconMessage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -171,5 +222,9 @@
         private System.Windows.Forms.Label lblTeams;
         private System.Windows.Forms.ComboBox cmbTeamsToAdd;
         private utilities.GenericButton btnClose;
+        private System.Windows.Forms.GroupBox gbHelp;
+        private System.Windows.Forms.PictureBox pbxIconMessage;
+        private System.Windows.Forms.Label lblHelpMessage;
+        private System.Windows.Forms.Button btnHelp;
     }
 }

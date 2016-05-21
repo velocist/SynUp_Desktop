@@ -327,10 +327,36 @@ namespace SynUp_Desktop.views
                 this.txtNif.Enabled = true;
                 this.btnUpdateEmployee.Enabled = false;
                 this.btnDeleteEmployee.Enabled = false;
+                this.clearValues();
             }
 
             this.setToolTips(); //Sets the tooltips for the view
 
+        }
+
+        /// <summary>
+        /// Method that cleans values
+        /// </summary>
+        private void clearValues()
+        {
+            foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
+            {
+                if (_control is GroupBox)
+                {
+                    foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
+                    {
+                        if (_inGroupBox is TextBox)
+                        {
+                            _inGroupBox.Text = "";
+
+                        }
+                        if (_inGroupBox is Label)
+                        {
+                            _inGroupBox.ForeColor = Color.Black;
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -372,7 +398,7 @@ namespace SynUp_Desktop.views
                 this.walkingControls(false);
             }
         }
-              
+
         /// <summary>
         /// Event that runs when the mouse leaves labels
         /// </summary>
@@ -521,7 +547,7 @@ namespace SynUp_Desktop.views
             this.pbxIconMessage.Image = _image;
 
         }
-        
+
         /// <summary>
         /// 
         /// </summary>

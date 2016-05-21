@@ -129,6 +129,9 @@ namespace SynUp_Desktop.views
 
             //The combo with all the teams will load.
             this.fillComboTeams();
+
+            //TODO: Voy a probar de limpiar el auxiliar de empleado desde aqui a ver si no falla 
+            this.Controller.EmployeeMgtView.AuxEmployee = null;
         }
 
         /// <summary>
@@ -248,6 +251,133 @@ namespace SynUp_Desktop.views
             //Form Common Configurations
             this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
         }
+
+        #region HELP
+
+        private Boolean _blHelp = false;
+
+        /// <summary>
+        /// Event that runs when the button help is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnHelp_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (_blHelp)
+            {
+                _blHelp = false;
+                this.lblHelpMessage.Text = "";
+                this.walkingControls(true);
+            }
+            else
+            {
+                _blHelp = true;
+                this.walkingControls(false);
+            }
+        }
+
+        /// <summary>
+        /// Event that runs when the mouse leaves labels
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void messageHelps_MouseLeave(object sender, EventArgs e)
+        {
+            if (_blHelp)
+            {
+                this.changeIconMessage(0);
+                this.lblHelpMessage.Text = null;
+            }
+        }
+
+        /// <summary>
+        /// Event that runs when the mouse hover on components
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void messageHelps_MouseHover(object sender, EventArgs e)
+        {
+            if (_blHelp)
+            {
+                if (sender.Equals(this.btnManagementEmployee))
+                {
+                    this.lblHelpMessage.Text = "Clicke aquí para acceder al formulario de trabajador.";
+                }
+                else if (sender.Equals(this.btnAddToTeam) || sender.Equals(this.lblTeams))
+                {
+                    this.lblHelpMessage.Text = "Clicke aquí para añadir el trabajador a un equipo.";
+                }
+                else if (sender.Equals(this.dgvEmployees))
+                {
+                    this.lblHelpMessage.Text = "Lista de todos los empleados existentes en la base de datos.";
+                }
+                else if (sender.Equals(this.btnClose))
+                {
+                    this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// Method that walkings all controls in form
+        /// </summary>
+        /// <param name="pEnabled"></param>
+        private void walkingControls(Boolean pEnabled)
+        {
+            foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
+            {
+                
+                if (_control is GroupBox)
+                {
+                    foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
+                    {
+                        _inGroupBox.MouseHover += new EventHandler(messageHelps_MouseHover);
+                        _inGroupBox.MouseLeave += new EventHandler(messageHelps_MouseLeave);
+                        //   _inGroupBox.BackColor = Color.Red;
+                    }
+                }
+                else if (_control is Button || _control is GenericButton)
+                {
+                    _control.MouseHover += new EventHandler(messageHelps_MouseHover);
+                    _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Method that changes the icon message
+        /// </summary>
+        /// <param name="pIcon"></param>
+        private void changeIconMessage(int pIcon)
+        {
+            String _strFilename = null;
+            Bitmap _image = null;
+
+            if (pIcon == 1)
+            {
+                _strFilename = Application.StartupPath + "\\warning.png";
+            }
+            else if (pIcon == 2)
+            {
+                _strFilename = Application.StartupPath + "\\error.png";
+            }
+            else if (pIcon == 3)
+            {
+                _strFilename = Application.StartupPath + "\\information.png";
+
+            }
+            //Configurates de icon message
+            if (_strFilename != null)
+            {
+                _image = new Bitmap(_strFilename);
+                this.pbxIconMessage.Image = _image;
+            }
+
+        }
+
+        #endregion
+
     }
 }
 
