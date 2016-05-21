@@ -92,7 +92,7 @@ namespace SynUp_Desktop.views
         /// </summary>
         private void fillGridView()
         {
-            if (dgvTeams.DataSource != null) dgvTeams.DataSource = new List<String>();
+            if (dgvTeams.DataSource == null) dgvTeams.DataSource = new List<String>();
 
             BindingSource source = new BindingSource();
             source.DataSource = Controller.TeamService.getAllTeams();

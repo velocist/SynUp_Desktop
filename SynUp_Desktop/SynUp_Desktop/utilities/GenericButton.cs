@@ -97,7 +97,11 @@ namespace SynUp_Desktop.utilities
         /// <param name="e"></param>
         private void btnGeneric_Click(object sender, EventArgs e)
         {
-            if (isExit) Parent.Close();
+            if (isExit)
+            {
+                Parent.Close();
+                clearFields();
+            }
             else clearFields();
         }
 
@@ -121,7 +125,6 @@ namespace SynUp_Desktop.utilities
                         {
                             _inGroupBox.ForeColor = Color.Black; //Will reset it's validation changed color.
                         }
-
                     }
                 }
             }

@@ -2,11 +2,15 @@
 using SynUp_Desktop.model.pojo;
 using SynUp_Desktop.utilities;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace SynUp_Desktop.views
 {
+    /// <summary>
+    /// Form of management team
+    /// </summary>
     public partial class frmTeamManagement : Form
     {
         private Controller controller;
@@ -115,6 +119,16 @@ namespace SynUp_Desktop.views
 
         #endregion
 
+        private void frmTeamManagement_Load(object sender, EventArgs e)
+        {
+            //Form Common Configurations
+            this.FormBorderStyle = FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+
+            this.dgvConfiguration();
+        }
+
         /// <summary>
         /// Event that runs when the forms actives
         /// </summary>
@@ -145,9 +159,22 @@ namespace SynUp_Desktop.views
                 this.btnUpdateTeam.Enabled = false;
             }
 
-            this.dgvConfiguration();
             this.dgvEmployeesOnTeam.Refresh();
 
+            this._blHelp = false;
+
+        }
+
+        /// <summary>
+        /// Event that runs when tre form is closed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmTeamManagement_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.AuxEmployee = null;
+            this.AuxTeam = null;
+            this.btnClear_Click(sender, e);
         }
 
         /// <summary>
@@ -173,24 +200,17 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// Event that runs when the button back is clicked
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            this.AuxTeam = null;
-            this.clearValues();
-            this.Close();
-        }
-
-        /// <summary>
         /// Event that runs when the button clear is clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnClear_Click(object sender, EventArgs e)
         {
+            //Note: he tenido que agregarlo porque el datagrid no se reseteaba con la funcion del generico. 
+            //He probado de añadirle la condicion del datagridview pero no ha hecho nada.
+            this.clearValues();
+
+            /*DELETE: Cristina C. Ya lo hace el boton generico
             this.clearValues();
 
             if (this.btnCreateTeam.Enabled == false)
@@ -201,69 +221,14 @@ namespace SynUp_Desktop.views
                 this.btnDeleteTeam.Enabled = false;
                 this.btnUpdateTeam.Enabled = false;
 
-            }
+            }*/
         }
 
         /// <summary>
-        /// Method that configurates the datagridview
+        /// 
         /// </summary>
-        private void dgvConfiguration()
-        {
-            // DatagridView Common Configuration 
-            this.dgvEmployeesOnTeam.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
-            this.dgvEmployeesOnTeam.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row            
-            this.dgvEmployeesOnTeam.AllowUserToAddRows = false; // Can't add rows
-            this.dgvEmployeesOnTeam.AllowUserToDeleteRows = false; // Can't delete rows
-            this.dgvEmployeesOnTeam.AllowUserToOrderColumns = false; //Can't order columns
-            this.dgvEmployeesOnTeam.AllowUserToResizeRows = false; //Can't resize columns
-            this.dgvEmployeesOnTeam.Cursor = Cursors.Hand; // Cursor hand type            
-            this.dgvEmployeesOnTeam.MultiSelect = false; //Can't multiselect
-            this.dgvEmployeesOnTeam.RowTemplate.ReadOnly = true;
-            this.dgvEmployeesOnTeam.RowHeadersVisible = false; // We hide the rowheader
-            this.dgvEmployeesOnTeam.ClearSelection(); // Clear selection rows
-
-            //Form Common Configurations
-            this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
-        }
-
-        /// <summary>
-        /// Clear values of textboxs
-        /// </summary>
-        private void clearValues()
-        {
-            this.txtCode.Text = "";
-            this.txtName.Text = "";
-            this.dgvEmployeesOnTeam.DataSource = null;
-            this.dgvEmployeesOnTeam.Refresh();
-
-        }
-
-        /// <summary>
-        /// Method that configures the datagrid of employees in Team
-        /// </summary>
-        private void fillDataGrid()
-        {
-            BindingSource source = new BindingSource();
-            source.DataSource = this.Controller.TeamHistoryService.getAllTeamHistoriesByTeam(this.AuxTeam.code);
-
-            this.dgvEmployeesOnTeam.DataSource = source;
-
-            dgvEmployeesOnTeam.Refresh();
-        }
-
-        /// <summary>
-        /// Method that fill combobox filter of employees
-        /// </summary>
-        public void fillComboFilterEmployees()
-        {
-            this.cmbFilterEmployees.Items.Clear();
-            this.cmbFilterEmployees.Items.Add("Current");
-            this.cmbFilterEmployees.Items.Add("Past");
-            this.cmbFilterEmployees.Items.Add("All");
-
-            this.cmbFilterEmployees.SelectedIndex = 0;
-        }
-        
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDeleteToTeam_Click(object sender, EventArgs e)
         {
             model.pojo.Employee _oSelectedEmployee = null;
@@ -280,6 +245,82 @@ namespace SynUp_Desktop.views
                     this.deleteFromTeam(_oSelectedEmployee, AuxTeam);
                 }
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Not implemented.\n# Poner ventana con los employees y el que se seleccione se añada");
+            //Controller.EmployeeView.ShowDialog();
+        }
+
+        /// <summary>
+        /// Method that configurates the datagridview
+        /// </summary>
+        private void dgvConfiguration()
+        {
+            this.fillDataGrid();
+
+            // DatagridView Common Configuration 
+            this.dgvEmployeesOnTeam.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
+            this.dgvEmployeesOnTeam.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row            
+            this.dgvEmployeesOnTeam.AllowUserToAddRows = false; // Can't add rows
+            this.dgvEmployeesOnTeam.AllowUserToDeleteRows = false; // Can't delete rows
+            this.dgvEmployeesOnTeam.AllowUserToOrderColumns = false; //Can't order columns
+            this.dgvEmployeesOnTeam.AllowUserToResizeRows = false; //Can't resize columns
+            this.dgvEmployeesOnTeam.Cursor = Cursors.Hand; // Cursor hand type            
+            this.dgvEmployeesOnTeam.MultiSelect = false; //Can't multiselect
+            this.dgvEmployeesOnTeam.RowTemplate.ReadOnly = true;
+            this.dgvEmployeesOnTeam.RowHeadersVisible = false; // We hide the rowheader
+            this.dgvEmployeesOnTeam.ClearSelection(); // Clear selection rows          
+        }
+
+        /// <summary>
+        /// Clear values of textboxs
+        /// </summary>
+        private void clearValues()
+        {
+            this.AuxEmployee = null;
+            this.AuxTeam = null;
+            this.dgvEmployeesOnTeam.DataSource = null;
+            this.dgvConfiguration();
+            this.dgvEmployeesOnTeam.Refresh();
+
+        }
+
+        /// <summary>
+        /// Method that configures the datagrid of employees in Team
+        /// </summary>
+        private void fillDataGrid()
+        {
+            BindingSource source = new BindingSource();
+            if (this.dgvEmployeesOnTeam.DataSource == null)
+            {
+                this.dgvEmployeesOnTeam.DataSource = new List<String>();
+            }
+            else
+            {
+                source.DataSource = this.Controller.TeamHistoryService.getAllTeamHistoriesByTeam(this.AuxTeam.code);
+            }
+            this.dgvEmployeesOnTeam.DataSource = source;
+            this.dgvEmployeesOnTeam.Refresh();
+        }
+
+        /// <summary>
+        /// Method that fill combobox filter of employees
+        /// </summary>
+        public void fillComboFilterEmployees()
+        {
+            this.cmbFilterEmployees.Items.Clear();
+            this.cmbFilterEmployees.Items.Add("Current");
+            this.cmbFilterEmployees.Items.Add("Past");
+            this.cmbFilterEmployees.Items.Add("All");
+
+            this.cmbFilterEmployees.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -312,18 +353,189 @@ namespace SynUp_Desktop.views
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+
+        #region HELP
+
+        private Boolean _blHelp = false;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnHelp_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Not implemented.\n# Poner ventana con los employees y el que se seleccione se añada");
-            //Controller.EmployeeView.ShowDialog();
+            if (_blHelp)
+            {
+                _blHelp = false;
+                this.Height = 460;
+                this.changeIconMessage(0);
+                this.lblHelpMessage.Text = "";
+                this.walkingControls(true);
+            }
+            else
+            {
+                _blHelp = true;
+                this.Height = 520;
+            }
         }
 
-        private void frmTeamManagement_FormClosing(object sender, FormClosingEventArgs e)
+        /// <summary>
+        /// Event that runs when the mouse leaves labels
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void messageHelps_MouseLeave(object sender, EventArgs e)
         {
-            AuxEmployee = null;
-            AuxTeam = null;
-            btnClear_Click(sender, e);
+            if (_blHelp)
+            {
+                this.changeIconMessage(0);
+                this.lblHelpMessage.Text = null;
+            }
         }
+
+        /// <summary>
+        /// Event that runs when the mouse hover on components
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void messageHelps_MouseHover(object sender, EventArgs e)
+        {
+            if (_blHelp)
+            {
+
+                if (sender.Equals(lblCode) || sender.Equals(txtCode))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Documento nacional de identidad. No puede estar vacío y tiene que ser válido."
+                        + "En caso de tener que cambiar el DNI contacte con el administrador de la base de datos.";
+                }
+                else if (sender.Equals(lblName) || sender.Equals(txtName))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Nombre del trabajador.";
+                }
+                else if (sender.Equals(lblName) || sender.Equals(txtName))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Apellidos del trabajador.";
+                }
+                else if (sender.Equals(btnCreateTeam))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Clicke aquí para crear un nuevo trabajador.";
+                }
+                else if (sender.Equals(btnUpdateTeam))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Clicke aquí para modificar los datos del trabajador.";
+                }
+                else if (sender.Equals(btnDeleteTeam))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Clicke aquí para para eliminar el trabajador.";
+                }
+                else if (sender.Equals(btnClear))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Clicke aquí para limpiar los valores del formulario.";
+                }
+                else if (sender.Equals(btnBack))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// Method that walkings all controls in form
+        /// </summary>
+        /// <param name="pEnabled"></param>
+        private void walkingControls(Boolean pEnabled)
+        {
+            foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
+            {
+                if (_control is GroupBox)
+                {
+                    foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
+                    {
+                        _inGroupBox.MouseHover += new EventHandler(messageHelps_MouseHover);
+                        _inGroupBox.MouseLeave += new EventHandler(messageHelps_MouseLeave);
+                    }
+                }
+                if (_control is Button)
+                {
+                    _control.MouseHover += new EventHandler(messageHelps_MouseHover);
+                    _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
+                }
+                if (_control is GenericButton)
+                {
+                    _control.MouseHover += new EventHandler(messageHelps_MouseHover);
+                    _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Method that changes the icon message
+        /// </summary>
+        /// <param name="pIcon"></param>
+        private void changeIconMessage(int pIcon)
+        {
+            String _strFilename = null;
+            Bitmap _image = null;
+
+            if (pIcon == 1)
+            {
+                _strFilename = Application.StartupPath + "\\warning.png";
+            }
+            else if (pIcon == 2)
+            {
+                _strFilename = Application.StartupPath + "\\error.png";
+            }
+            else if (pIcon == 3)
+            {
+                _strFilename = Application.StartupPath + "\\information.png";
+
+            }
+            //Configurates de icon message
+            if (_strFilename != null)
+            {
+                _image = new Bitmap(_strFilename);
+            }
+            this.pbxIconMessage.Image = _image;
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void messageWrong()
+        {
+            this.Height = 360;
+            this.changeIconMessage(2);
+            this.lblHelpMessage.Text = "El nif i/o el email no puede estar vacío.";
+
+        }
+
+        #endregion
+
+
     }
 }
+
+/*DELETE: Cristina C. 21/05/2016 Move to generic button
+    /// <summary>
+    /// Event that runs when the button back is clicked
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void btnBack_Click(object sender, EventArgs e)
+    {
+        this.AuxTeam = null;
+        this.clearValues();
+        this.Close();
+    }*/
 

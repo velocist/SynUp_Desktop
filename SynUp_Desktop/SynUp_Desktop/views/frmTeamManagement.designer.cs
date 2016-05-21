@@ -42,10 +42,16 @@
             this.btnDeleteTeam = new System.Windows.Forms.Button();
             this.btnUpdateTeam = new System.Windows.Forms.Button();
             this.btnCreateTeam = new System.Windows.Forms.Button();
-            this.btnBack = new SynUp_Desktop.utilities.GenericButton();
+            this.btnHelp = new System.Windows.Forms.Button();
+            this.gbHelp = new System.Windows.Forms.GroupBox();
+            this.pbxIconMessage = new System.Windows.Forms.PictureBox();
+            this.lblHelpMessage = new System.Windows.Forms.Label();
             this.btnClear = new SynUp_Desktop.utilities.GenericButton();
+            this.btnBack = new SynUp_Desktop.utilities.GenericButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployeesOnTeam)).BeginInit();
+            this.gbHelp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxIconMessage)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -185,18 +191,45 @@
             this.btnCreateTeam.UseVisualStyleBackColor = true;
             this.btnCreateTeam.Click += new System.EventHandler(this.btnCreateTeam_Click);
             // 
-            // btnBack
+            // btnHelp
             // 
-            this.btnBack.AutoSize = true;
-            this.btnBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnBack.ButtonText = "Back";
-            this.btnBack.isExit = true;
-            this.btnBack.Location = new System.Drawing.Point(549, 380);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(0);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Parent = this;
-            this.btnBack.Size = new System.Drawing.Size(75, 40);
-            this.btnBack.TabIndex = 23;
+            this.btnHelp.Location = new System.Drawing.Point(518, 397);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(28, 23);
+            this.btnHelp.TabIndex = 25;
+            this.btnHelp.Text = "?";
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            // 
+            // gbHelp
+            // 
+            this.gbHelp.Controls.Add(this.pbxIconMessage);
+            this.gbHelp.Controls.Add(this.lblHelpMessage);
+            this.gbHelp.Location = new System.Drawing.Point(12, 426);
+            this.gbHelp.Name = "gbHelp";
+            this.gbHelp.Size = new System.Drawing.Size(612, 52);
+            this.gbHelp.TabIndex = 26;
+            this.gbHelp.TabStop = false;
+            this.gbHelp.Text = "Help";
+            // 
+            // pbxIconMessage
+            // 
+            this.pbxIconMessage.Location = new System.Drawing.Point(5, 15);
+            this.pbxIconMessage.Name = "pbxIconMessage";
+            this.pbxIconMessage.Size = new System.Drawing.Size(25, 25);
+            this.pbxIconMessage.TabIndex = 1;
+            this.pbxIconMessage.TabStop = false;
+            // 
+            // lblHelpMessage
+            // 
+            this.lblHelpMessage.AutoSize = true;
+            this.lblHelpMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHelpMessage.Location = new System.Drawing.Point(35, 16);
+            this.lblHelpMessage.MaximumSize = new System.Drawing.Size(430, 40);
+            this.lblHelpMessage.Name = "lblHelpMessage";
+            this.lblHelpMessage.Size = new System.Drawing.Size(82, 13);
+            this.lblHelpMessage.TabIndex = 0;
+            this.lblHelpMessage.Text = "Message help...";
             // 
             // btnClear
             // 
@@ -210,12 +243,28 @@
             this.btnClear.Parent = this;
             this.btnClear.Size = new System.Drawing.Size(75, 40);
             this.btnClear.TabIndex = 24;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // btnBack
+            // 
+            this.btnBack.AutoSize = true;
+            this.btnBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnBack.ButtonText = "Back";
+            this.btnBack.isExit = true;
+            this.btnBack.Location = new System.Drawing.Point(549, 380);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(0);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Parent = this;
+            this.btnBack.Size = new System.Drawing.Size(75, 40);
+            this.btnBack.TabIndex = 23;
             // 
             // frmTeamManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(634, 431);
+            this.ClientSize = new System.Drawing.Size(634, 426);
+            this.Controls.Add(this.gbHelp);
+            this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnCreateTeam);
@@ -224,14 +273,20 @@
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(650, 520);
+            this.MinimumSize = new System.Drawing.Size(650, 465);
             this.Name = "frmTeamManagement";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Team Management ";
             this.Activated += new System.EventHandler(this.frmTeamManagement_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmTeamManagement_FormClosing);
+            this.Load += new System.EventHandler(this.frmTeamManagement_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployeesOnTeam)).EndInit();
+            this.gbHelp.ResumeLayout(false);
+            this.gbHelp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxIconMessage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -255,5 +310,9 @@
         private utilities.GenericButton btnBack;
         private utilities.GenericButton btnClear;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnHelp;
+        private System.Windows.Forms.GroupBox gbHelp;
+        private System.Windows.Forms.PictureBox pbxIconMessage;
+        private System.Windows.Forms.Label lblHelpMessage;
     }
 }

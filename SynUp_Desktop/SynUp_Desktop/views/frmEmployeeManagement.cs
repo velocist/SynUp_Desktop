@@ -60,7 +60,6 @@ namespace SynUp_Desktop.views
             {
                 if (this.validateFields())
                 {
-
                     _blCreateOk = this.Controller.EmployeeService.createEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress);
                     /*utilities.clMessageBox _msgBox = new utilities.*//// MODIFICATION - Pablo, 170516, clMessageBox made static to access the methods without having to create an object of the class.
                     clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "employee", _blCreateOk, this);
@@ -99,10 +98,18 @@ namespace SynUp_Desktop.views
             String _strAdress = txtAdress.Text;
             String _strUsername = txtUsername.Text;
 
-            if (validateFields())
+            Boolean _blCreateOk;
+            if (txtEmail.Text != "")
             {
-                Boolean _blUpdateOk = this.Controller.EmployeeService.updateEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress, _strUsername);
-                clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.UPDATE, "employee", _blUpdateOk, this);
+                if (this.checkEmail())
+                {
+                    Boolean _blUpdateOk = this.Controller.EmployeeService.updateEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress, _strUsername);
+                    clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.UPDATE, "employee", _blUpdateOk, this);
+                }
+            }
+            else if (this.txtEmail.Text == "")
+            {
+                this.messageWrong();
             }
 
         }
@@ -558,11 +565,10 @@ namespace SynUp_Desktop.views
             this.lblHelpMessage.Text = "El nif i/o el email no puede estar vacío.";
 
         }
-        
+
         #endregion
 
     }
-
 }
 
 /* DELETE: Cambio por el evento Activated
