@@ -244,7 +244,6 @@ namespace SynUp_Desktop.views
         /// </summary>
         private void fillDataGrid()
         {
-            //TODO: Falta hacer el filtro para mostrar solo los empleados en ese equipo, i
             BindingSource source = new BindingSource();
             source.DataSource = this.Controller.TeamHistoryService.getAllTeamHistoriesByTeam(this.AuxTeam.code);
 

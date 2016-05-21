@@ -47,7 +47,6 @@ namespace SynUp_Desktop.views
         {
             model.pojo.Employee _oSelectedEmployee = null;
             if (dgvEmployees.SelectedRows.Count == 1)//If the row selected
-
             {
                 int _iIndexSelected = dgvEmployees.SelectedRows[0].Index; // Recover the index of selected row
                 Object _cell = dgvEmployees.Rows[_iIndexSelected].Cells[0].Value;
@@ -58,8 +57,6 @@ namespace SynUp_Desktop.views
                     this.Controller.EmployeeMgtView.AuxEmployee = _oSelectedEmployee; // We assign the employee to form employee management
                 }
             }
-
-
             this.Controller.EmployeeMgtView.ShowDialog();
         }
 
@@ -91,14 +88,14 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// Event that runs when the button is clicked to return back
+        /// Event that runs when the form is loaded
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnBack_Click(object sender, EventArgs e)
+        private void frmEmployees_Load(object sender, EventArgs e)
         {
-            this.Close();
-            this.Controller.MainView.Show();
+            this.dgvConfiguration();
+            this.frmEmployees_Activated(sender, e);
         }
 
         /// <summary>
@@ -144,15 +141,18 @@ namespace SynUp_Desktop.views
                     String _strSelectedRowCode = _cell.ToString(); // Recover the code
                     model.pojo.Employee _oSelectedEmployee = Controller.EmployeeService.readEmployee(_strSelectedRowCode); // We look for the employee nif
 
-                    //MessageBox.Show(_oSelectedEmployee.nif);
+                    //TODO: Cambiar el combo en caso de que el empleado este en un equipo
+                    model.pojo.TeamHistory _oCurrentTeamHistory = this.Controller.TeamHistoryService.getCurrentTeamHistoryByEmployee(_strSelectedRowCode);
 
+                    if (_oCurrentTeamHistory != null)
+                    {
+                        this.cmbTeamsToAdd.SelectedValue = _strSelectedRowCode;
+                    }
+                    /* MessageBox.Show(_oSelectedEmployee.nif);
                     //if(_oSelectedEmployee.TeamHistories)
-
                     //this.cmbTeamsToAdd.SelectedValue
-
-                    /*String _SelectedTeam = this.cmbTeamsToAdd.SelectedValue.ToString();
+                    //String _SelectedTeam = this.cmbTeamsToAdd.SelectedValue.ToString();
                     _oTeam = this.Controller.TeamService.readTeam(_SelectedTeam);
-
                     this.addToTeam(_oSelectedEmployee, _oTeam);*/
                 }
 
@@ -170,21 +170,20 @@ namespace SynUp_Desktop.views
         private void fillGridView()
         {
             BindingSource source = new BindingSource();
-            source.DataSource = Controller.EmployeeService.getAllEmployees();
+            source.DataSource = this.Controller.EmployeeService.getAllEmployees();
             this.dgvEmployees.DataSource = source;
-            dgvEmployees.Refresh();
+            this.dgvEmployees.Refresh();
         }
 
         /// <summary>
         /// Fills the combobox with the values of the database.
         /// </summary>
         private void fillComboTeams()
-        {
+        {            
             BindingSource source = new BindingSource();
-            this.cmbTeamsToAdd.DataSource = Controller.TeamService.getAllTeams();
+            this.cmbTeamsToAdd.DataSource = this.Controller.TeamService.getAllTeams();
             this.cmbTeamsToAdd.DisplayMember = "Name";
             this.cmbTeamsToAdd.ValueMember = "code";
-
         }
 
         /// <summary>
@@ -221,58 +220,60 @@ namespace SynUp_Desktop.views
         /// </summary>
         private void dgvConfiguration()
         {
-            cmbTeamsToAdd.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.cmbTeamsToAdd.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.cmbTeamsToAdd.SelectedItem = -1;
 
             // DatagridView Common Configuration 
-            dgvEmployees.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
-            dgvEmployees.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row     
-            dgvEmployees.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvEmployees.AllowUserToAddRows = false; // Can't add rows
-            dgvEmployees.AllowUserToDeleteRows = false; // Can't delete rows
-            dgvEmployees.AllowUserToOrderColumns = false; //Can order columns
-            dgvEmployees.AllowUserToResizeRows = false; //Can't resize columns
-            dgvEmployees.Cursor = Cursors.Hand; // Cursor hand type            
-            dgvEmployees.MultiSelect = false; //Can't multiselect
-            dgvEmployees.RowTemplate.ReadOnly = true;
-            dgvEmployees.RowHeadersVisible = false; // We hide the rowheader
-            dgvEmployees.ClearSelection(); // Clear selection rows
+            this.dgvEmployees.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
+            this.dgvEmployees.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row     
+            this.dgvEmployees.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            this.dgvEmployees.AllowUserToAddRows = false; // Can't add rows
+            this.dgvEmployees.AllowUserToDeleteRows = false; // Can't delete rows
+            this.dgvEmployees.AllowUserToOrderColumns = false; //Can order columns
+            this.dgvEmployees.AllowUserToResizeRows = false; //Can't resize columns
+            this.dgvEmployees.Cursor = Cursors.Hand; // Cursor hand type            
+            this.dgvEmployees.MultiSelect = false; //Can't multiselect
+            this.dgvEmployees.RowTemplate.ReadOnly = true;
+            this.dgvEmployees.RowHeadersVisible = false; // We hide the rowheader
+            this.dgvEmployees.ClearSelection(); // Clear selection rows
 
             //Form Common Configurations
-            FormBorderStyle = FormBorderStyle.FixedToolWindow;
-
+            this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void frmEmployees_Load(object sender, EventArgs e)
-        {
-            this.dgvConfiguration();
-            this.frmEmployees_Activated(sender, e);
-        }
-
-        /* DELETE: Cambio evento por RowsStateChange. 17/05/2016-1131
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void dgvEmployees_RowEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dgvEmployees.SelectedRows.Count == 1)
-            {
-                btnAddToTeam.Enabled = true;
-                cmbTeamsToAdd.Enabled = true;
-            }
-            else
-            {
-                btnAddToTeam.Enabled = false;
-                cmbTeamsToAdd.Enabled = false;
-            }
-
-        }
-        */
     }
 }
+
+/* DELETE: Cambio evento por RowsStateChange. 17/05/2016-1131
+/// <summary>
+/// 
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
+private void dgvEmployees_RowEnter(object sender, DataGridViewCellEventArgs e)
+{
+    if (dgvEmployees.SelectedRows.Count == 1)
+    {
+        btnAddToTeam.Enabled = true;
+        cmbTeamsToAdd.Enabled = true;
+    }
+    else
+    {
+        btnAddToTeam.Enabled = false;
+        cmbTeamsToAdd.Enabled = false;
+    }
+
+}
+*/
+
+/* DELETE: Cristina C. 21052016 Change for generic button
+/// <summary>
+/// Event that runs when the button is clicked to return back
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
+private void btnBack_Click(object sender, EventArgs e)
+{
+this.Close();
+this.Controller.MainView.Show();
+}
+*/

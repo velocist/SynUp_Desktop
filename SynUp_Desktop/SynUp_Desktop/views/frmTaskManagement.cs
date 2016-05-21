@@ -194,7 +194,6 @@ namespace SynUp_Desktop.views
         ///// <param name="e"></param>
         //private void txtIdTeam_Leave(object sender, EventArgs e)
         //{
-        //    //TODO: Falta comprobar porque no se inserta el idTeam al insertar la Tasca --> PORQUE TEAM NO EXISTE I ES UNA FK
         //    //if (txtIdTeam.Text != "")
         //    //{
         //    //    String _iIdTeam = txtIdTeam.Text;

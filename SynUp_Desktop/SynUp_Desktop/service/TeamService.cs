@@ -13,6 +13,12 @@ namespace SynUp_Desktop.service
     /// <CreationDate>16/05/2016</Creation>
     public class TeamService
     {
+        /// <summary>
+        /// Method that creates a Team
+        /// </summary>
+        /// <param name="code">The code team</param>
+        /// <param name="name">The name team</param>
+        /// <returns>Returns object Team</returns>
         public bool createTeam(String code, String name)
         {
             Team newTeam = new Team
@@ -24,11 +30,22 @@ namespace SynUp_Desktop.service
             return TeamConnection.createTeam(newTeam);
         }
 
+        /// <summary>
+        /// Method that returns a Team if it found
+        /// </summary>
+        /// <param name="pCode">The code team</param>
+        /// <returns>Returns object Team </returns>
         public Team readTeam(String pCode)
         {
             return TeamConnection.readTeam(pCode);
         }
 
+        /// <summary>
+        /// Method that updates a team with 
+        /// </summary>
+        /// <param name="pCode"></param>
+        /// <param name="sTeam_name"></param>
+        /// <returns>Return true if it deleted, or false if it not updated</returns>
         public bool updateTeam(String pCode, String sTeam_name)
         {
             Team _newTeam = new Team
@@ -39,11 +56,20 @@ namespace SynUp_Desktop.service
             return TeamConnection.updateTeam(_newTeam);
         }
 
+        /// <summary>
+        /// Method that deletes a Team
+        /// </summary>
+        /// <param name="pTeam">The Team to delete</param>
+        /// <returns></returns>
         public Team deleteTeam(Team pTeam)
         {
             return TeamConnection.deleteTeam(pTeam);
         }
 
+        /// <summary>
+        /// MEthod that gets all teams
+        /// </summary>
+        /// <returns></returns>
         public List<Team> getAllTeams()
         {
             List<Team> _lstTeam = TeamConnection.readAllTeams();
@@ -54,9 +80,15 @@ namespace SynUp_Desktop.service
             return _lstTeam;
         }
 
-        public bool addToTeam(String pEmployee, String pTeam)
+        /// <summary>
+        /// Method that adds a employee in a team
+        /// </summary>
+        /// <param name="pNifEmployee"></param>
+        /// <param name="pCodeTeam"></param>
+        /// <returns>Return true if it added in team, or false if it not added in team</returns>
+        public bool addToTeam(String pNifEmployee, String pCodeTeam)
         {
-            return TeamConnection.addToTeam(pEmployee, pTeam);
+            return TeamConnection.addToTeam(pNifEmployee, pCodeTeam);
         }
 
         /// <summary>

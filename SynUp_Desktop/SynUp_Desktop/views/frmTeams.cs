@@ -53,13 +53,32 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// Event that runs when clicked botton back
+        /// Event that runs when the form is activated
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnBack_Click(object sender, EventArgs e)
+        private void frmTeams_Activated(object sender, EventArgs e)
         {
-            this.Close();
+            //The grid with all the teams will load.
+            //dgvTeams.DataSource = null;
+            initGridView();
+            //dgvTeams.EndEdit();
+
+
+            //this.fillGridView();
+            //dgvTeams.ClearSelection();
+            //dgvTeams.Update();
+            //dgvTeams.Refresh();
+        }
+
+        /// <summary>
+        /// Event that runs when the form is loaded
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmTeams_Load(object sender, EventArgs e)
+        {
+            initGridView();
         }
 
         /// <summary>
@@ -96,25 +115,6 @@ namespace SynUp_Desktop.views
             this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
         }
 
-        private void frmTeams_Activated(object sender, EventArgs e)
-        {
-            //The grid with all the teams will load.
-            //dgvTeams.DataSource = null;
-            initGridView();
-            //dgvTeams.EndEdit();
-            
-
-            //this.fillGridView();
-            //dgvTeams.ClearSelection();
-            //dgvTeams.Update();
-            //dgvTeams.Refresh();
-        }
-
-        private void frmTeams_Load(object sender, EventArgs e)
-        {
-            initGridView();
-        }
-
         /// <summary>
         /// Fills the DataGridView with the values of the database.
         /// </summary>
@@ -130,3 +130,15 @@ namespace SynUp_Desktop.views
         }
     }
 }
+
+/* DELETE: Cristina C. 21052016 Change for generic button
+  /// <summary>
+        /// Event that runs when clicked botton back
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+*/

@@ -372,15 +372,7 @@ namespace SynUp_Desktop.views
                 this.walkingControls(false);
             }
         }
-
-        private void messageWrong()
-        {
-            this.Height = 360;
-            this.changeIconMessage(2);
-            this.lblHelpMessage.Text = "El nif i/o el email no puede estar vacío.";
-
-        }
-
+              
         /// <summary>
         /// Event that runs when the mouse leaves labels
         /// </summary>
@@ -529,7 +521,17 @@ namespace SynUp_Desktop.views
             this.pbxIconMessage.Image = _image;
 
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        private void messageWrong()
+        {
+            this.Height = 360;
+            this.changeIconMessage(2);
+            this.lblHelpMessage.Text = "El nif i/o el email no puede estar vacío.";
 
+        }
         #endregion
 
     }

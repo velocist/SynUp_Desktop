@@ -143,6 +143,20 @@ namespace SynUp_Desktop.model.dao
         }
 
         /// <summary>
+        /// Read the teamsHistories by employee
+        /// </summary>
+        /// <param name="pNifEmployee"></param>
+        /// <returns></returns>
+        public static TeamHistory getCurrentTeamHistoryByEmployee(String pNifEmployee)
+        {
+           var query= from teamHistory in new synupEntities().TeamHistories
+                    where teamHistory.id_team == pNifEmployee && teamHistory.exitDate == null
+                    select teamHistory;
+
+            return query.SingleOrDefault();
+        }
+
+        /// <summary>
         /// Attachs teams
         /// </summary>
         /// <param name="pContext"></param>

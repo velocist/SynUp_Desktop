@@ -62,7 +62,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            //TODO: He modificado para que cada uno este en un metodo. Mas modular
+            //Note: He modificado para que cada uno este en un metodo. Mas modular
             switch (cmbFilter.SelectedIndex)
             {
                 case 1:

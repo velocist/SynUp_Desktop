@@ -66,6 +66,10 @@ namespace SynUp_Desktop.service
             return TeamHistoryConnection.readAllTeamHistoriesByTeam(pCodeTeam);
         }
 
+        public TeamHistory getCurrentTeamHistoryByEmployee(String pNifEmployee)
+        {
+            return TeamHistoryConnection.getCurrentTeamHistoryByEmployee(pNifEmployee);
+        }
         /// <summary>
         /// Method that returns the strings without spaces
         /// </summary>
