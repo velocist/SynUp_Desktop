@@ -192,7 +192,7 @@ namespace SynUp_Desktop.views
             }
             else
             {
-                clMessageBox.showMessage(clMessageBox.ACTIONTYPE.WRONG, null, false, this);
+                clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
             }
         }
 
@@ -209,7 +209,7 @@ namespace SynUp_Desktop.views
             }
             else
             {
-                clMessageBox.showMessage(clMessageBox.ACTIONTYPE.WRONG, null, false, this);
+                clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
             }
         }
 
@@ -225,7 +225,7 @@ namespace SynUp_Desktop.views
             }
             else
             {
-                clMessageBox.showMessage(clMessageBox.ACTIONTYPE.WRONG, null, false, this);
+                clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
             }
         }
 
@@ -241,7 +241,7 @@ namespace SynUp_Desktop.views
             }
             else
             {
-                clMessageBox.showMessage(clMessageBox.ACTIONTYPE.WRONG, null, false, this);
+                clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
             }
         }
 
@@ -269,7 +269,7 @@ namespace SynUp_Desktop.views
             }
             else
             {
-                clMessageBox.showMessage(clMessageBox.ACTIONTYPE.WRONG, null, false, this);
+                clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
             }
         }
 

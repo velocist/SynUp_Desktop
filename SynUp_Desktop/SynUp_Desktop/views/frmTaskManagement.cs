@@ -61,7 +61,7 @@ namespace SynUp_Desktop.views
             {
                 _blDelete = false;
             }
-            clMessageBox.showMessage(clMessageBox.ACTIONTYPE.DELETE, "task", _blDelete, this);
+            clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.DELETE, "task", _blDelete, this);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace SynUp_Desktop.views
                                                                 _strDescription, _strLocalization,
                                                                 _strProject, _strIdTeam, _nImportance);
 
-                clMessageBox.showMessage(clMessageBox.ACTIONTYPE.UPDATE, "task", _blUpdate, this);
+                clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.UPDATE, "task", _blUpdate, this);
 
             }
         }
@@ -122,7 +122,7 @@ namespace SynUp_Desktop.views
                 _blCreate = Controller.TaskService.createTask(_strCode, _strName, _dtPriorityDate, _strDescription,
                                                              _strLocalization, _strProject, _strIdTeam, _nImportance);
 
-                clMessageBox.showMessage(clMessageBox.ACTIONTYPE.CREATE, "task", _blCreate, this);
+                clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "task", _blCreate, this);
             }
 
         }

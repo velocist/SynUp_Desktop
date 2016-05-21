@@ -150,7 +150,7 @@ namespace SynUp_Desktop.model.dao
         public static TeamHistory getCurrentTeamHistoryByEmployee(String pNifEmployee)
         {
            var query= from teamHistory in new synupEntities().TeamHistories
-                    where teamHistory.id_team == pNifEmployee && teamHistory.exitDate == null
+                    where teamHistory.id_employee == pNifEmployee && teamHistory.exitDate == null
                     select teamHistory;
 
             return query.SingleOrDefault();

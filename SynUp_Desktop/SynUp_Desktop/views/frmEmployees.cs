@@ -82,7 +82,16 @@ namespace SynUp_Desktop.views
                     String _SelectedTeam = this.cmbTeamsToAdd.SelectedValue.ToString();
                     _oTeam = this.Controller.TeamService.readTeam(_SelectedTeam);
 
-                    this.addToTeam(_oSelectedEmployee, _oTeam);
+                    model.pojo.TeamHistory _oCurrentTeam = this.Controller.TeamHistoryService.getCurrentTeamHistoryByEmployee(_oSelectedEmployee.nif); //We look if the employee already in team
+                    if (_oCurrentTeam == null)
+                    {
+                        this.addToTeam(_oSelectedEmployee, _oTeam);
+                    }
+                    else
+                    {
+                        clMessageBox.showMessage(clMessageBox.MESSAGE.INTEAM, "employee", this);
+                    }
+
                 }
             }
         }
@@ -141,12 +150,12 @@ namespace SynUp_Desktop.views
                     String _strSelectedRowCode = _cell.ToString(); // Recover the code
                     model.pojo.Employee _oSelectedEmployee = Controller.EmployeeService.readEmployee(_strSelectedRowCode); // We look for the employee nif
 
-                    //TODO: Cambiar el combo en caso de que el empleado este en un equipo
+                    //TODO: Comprobar porque no acaba de ir bien
                     model.pojo.TeamHistory _oCurrentTeamHistory = this.Controller.TeamHistoryService.getCurrentTeamHistoryByEmployee(_strSelectedRowCode);
 
                     if (_oCurrentTeamHistory != null)
                     {
-                        this.cmbTeamsToAdd.SelectedValue = _strSelectedRowCode;
+                        this.cmbTeamsToAdd.SelectedValue = _oCurrentTeamHistory.id_team;
                     }
                     /* MessageBox.Show(_oSelectedEmployee.nif);
                     //if(_oSelectedEmployee.TeamHistories)
@@ -155,7 +164,6 @@ namespace SynUp_Desktop.views
                     _oTeam = this.Controller.TeamService.readTeam(_SelectedTeam);
                     this.addToTeam(_oSelectedEmployee, _oTeam);*/
                 }
-
             }
             else
             {
@@ -179,7 +187,7 @@ namespace SynUp_Desktop.views
         /// Fills the combobox with the values of the database.
         /// </summary>
         private void fillComboTeams()
-        {            
+        {
             BindingSource source = new BindingSource();
             this.cmbTeamsToAdd.DataSource = this.Controller.TeamService.getAllTeams();
             this.cmbTeamsToAdd.DisplayMember = "Name";
@@ -206,7 +214,7 @@ namespace SynUp_Desktop.views
                     //_oTeamHistory.entranceDay = DateTime.Today;
 
                     Boolean _blAdd = this.Controller.TeamService.addToTeam(pEmployee.nif, pTeam.code);
-                    clMessageBox.showMessage(clMessageBox.ACTIONTYPE.ADD, "employee", _blAdd, this);
+                    clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.ADD, "employee", _blAdd, this);
                 }
                 else
                 {

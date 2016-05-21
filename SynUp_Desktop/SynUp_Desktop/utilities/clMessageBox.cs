@@ -30,10 +30,18 @@ namespace SynUp_Desktop.utilities
             EXCLUDE,
             ASSIGN,
             UNASSIGN,
-            EXIST,
-            WRONG
-            
+
+
+
         };
+
+        public enum MESSAGE
+        {
+            EXIST,
+            INTEAM,
+            WRONG,
+
+        }
 
         /// <summary>
         /// Methot that returns text action
@@ -53,7 +61,7 @@ namespace SynUp_Desktop.utilities
             else
             {
                 _strHasBeen = " hasn't been ";
-            }            
+            }
 
             //Un poco chapuza pero efectivo.. =P
             switch (pActionType.ToString())
@@ -79,28 +87,21 @@ namespace SynUp_Desktop.utilities
                 case "UNASSIGNED":
                     _strAction = _strHasBeen + "unassigned" + _strSuccesfully;
                     break;
-                case "EXIST":
-                    _strAction = "is already exists";
-                    break;
-                case "WRONG":                    
-                    _strAction = "Wrong selected values.";
-                    break;
-
             }
 
             return _strAction;
         }
 
         /// <summary>
-        /// Method that shows a message
+        /// Method that shows a message action
         /// </summary>
         /// <param name="pAction">The action that was realized Values:[created,deleted,updated,added,deleted,assigned,unassigned]</param>
         /// <param name="pObject">The object</param>
         /// <param name="pCorrect">If the action was correctly or wrong</param>
         /// <param name="pNameForm">The name of form which send the action</param>
-        public static void showMessage(ACTIONTYPE pAction, String pObject, Boolean pCorrect, Form pForm)
+        public static void showMessageAction(ACTIONTYPE pAction, String pObject, Boolean pCorrect, Form pForm)
         {
-            //Nombre del método cambiado a showMessage para hacerlo más "userfriendly"
+            //Nombre del método cambiado a showMessageAction para hacerlo más "userfriendly"
             String _strMessage = null;
             MessageBoxIcon _iconMessageBox;
 
@@ -122,6 +123,42 @@ namespace SynUp_Desktop.utilities
 
         }
 
+        public static void showMessage(MESSAGE pMessage, String pObject, Form pForm)
+        {
+            String _strMessage = messageToString(pMessage, pObject);
+            MessageBoxIcon _iconMessageBox = MessageBoxIcon.Information;
+
+            if (pMessage.Equals("WRONG"))
+            {
+                _iconMessageBox = MessageBoxIcon.Warning;
+            }
+
+            MessageBox.Show(_strMessage, pForm.Text, MessageBoxButtons.OK, _iconMessageBox);
+        }
+        /// <summary>
+        /// Method that shows a message
+        /// </summary>
+        /// <param name="pMessage"></param>
+        /// <returns></returns>
+        private static String messageToString(MESSAGE pMessage, String pObject)
+        {
+            String _strMessage = null;
+            String _strInitialMessage = "This " + pObject;
+            switch (pMessage.ToString())
+            {
+                case "EXIST":
+                    _strMessage = _strInitialMessage + " already exists";
+                    break;
+                case "INTEAM":
+                    _strMessage = _strInitialMessage + " already on the team";
+                    break;
+                case "WRONG":
+                    _strMessage = "Wrong selected values.";
+                    break;
+
+            }
+            return _strMessage;
+        }
         private static void configureMessageBox(MessageBox pMessageBox)
         {
 

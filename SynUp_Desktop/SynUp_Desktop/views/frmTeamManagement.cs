@@ -46,7 +46,7 @@ namespace SynUp_Desktop.views
             String _strName = txtName.Text;
 
             Boolean _blCreate = Controller.TeamService.createTeam(_strCode, _strName);
-            clMessageBox.showMessage(clMessageBox.ACTIONTYPE.CREATE, "team", _blCreate, this);
+            clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "team", _blCreate, this);
 
         }
 
@@ -67,7 +67,7 @@ namespace SynUp_Desktop.views
             {
                 _blDelete = false;
             }
-            clMessageBox.showMessage(clMessageBox.ACTIONTYPE.DELETE, "team", _blDelete, this);
+            clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.DELETE, "team", _blDelete, this);
         }
 
         /// <summary>
@@ -80,7 +80,7 @@ namespace SynUp_Desktop.views
             String _strName = txtName.Text;
             String _strCode = txtCode.Text;
             Boolean _blUpdate = this.Controller.TeamService.updateTeam(_strCode, _strName);
-            clMessageBox.showMessage(clMessageBox.ACTIONTYPE.UPDATE, "team", _blUpdate, this);
+            clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.UPDATE, "team", _blUpdate, this);
         }
 
         #endregion
@@ -303,7 +303,7 @@ namespace SynUp_Desktop.views
                     //_oTeamHistory.entranceDay = DateTime.Today;
 
                     Boolean _blUpdateHistory = this.Controller.TeamHistoryService.updateTeamHistory(pEmployee.nif, pTeam.code, DateTime.Now);
-                    clMessageBox.showMessage(clMessageBox.ACTIONTYPE.EXCLUDE, "employee", _blUpdateHistory, this);
+                    clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.EXCLUDE, "employee", _blUpdateHistory, this);
 
                 }
                 else
