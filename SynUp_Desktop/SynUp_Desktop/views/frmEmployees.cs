@@ -47,7 +47,7 @@ namespace SynUp_Desktop.views
         private void frmEmployees_Load(object sender, EventArgs e)
         {
             this.dgvConfiguration();
-            this.frmEmployees_Activated(sender, e);
+            //this.frmEmployees_Activated(sender, e);
 
             //Form Common Configurations
             this.FormBorderStyle = FormBorderStyle.Fixed3D;
@@ -250,6 +250,14 @@ namespace SynUp_Desktop.views
 
             // DataGridView Configuration
             //this.dgvEmployees.Columns[0].Visible = false; // We hide id column
+            this.dgvEmployees.Columns[0].HeaderText = "NIF";
+            this.dgvEmployees.Columns[1].HeaderText = "Name";
+            this.dgvEmployees.Columns[2].HeaderText = "Surname";
+            this.dgvEmployees.Columns[3].Visible = false;
+            this.dgvEmployees.Columns[4].HeaderText = "Email";
+            this.dgvEmployees.Columns[5].Visible = false;
+            this.dgvEmployees.Columns[6].Visible = false; 
+            this.dgvEmployees.Columns[7].Visible = false; 
             this.dgvEmployees.Columns[8].Visible = false; // TeamsHistory
             this.dgvEmployees.Columns[9].Visible = false; // TaskHistories
 

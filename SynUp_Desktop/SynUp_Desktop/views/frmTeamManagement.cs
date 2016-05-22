@@ -14,6 +14,9 @@ namespace SynUp_Desktop.views
     public partial class frmTeamManagement : Form
     {
         private Controller controller;
+        private Team auxTeam;
+        private Employee auxEmployee;
+        private Boolean _blHelp = false;
 
         public Controller Controller
         {
@@ -28,8 +31,31 @@ namespace SynUp_Desktop.views
             }
         }
 
-        public Team AuxTeam;
-        public Employee AuxEmployee;
+        public Team AuxTeam
+        {
+            get
+            {
+                return auxTeam;
+            }
+
+            set
+            {
+                auxTeam = value;
+            }
+        }
+
+        public Employee AuxEmployee
+        {
+            get
+            {
+                return auxEmployee;
+            }
+
+            set
+            {
+                auxEmployee = value;
+            }
+        }
 
         public frmTeamManagement()
         {
@@ -49,8 +75,11 @@ namespace SynUp_Desktop.views
             String _strCode = txtCode.Text;
             String _strName = txtName.Text;
 
-            Boolean _blCreate = Controller.TeamService.createTeam(_strCode, _strName);
-            clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "team", _blCreate, this);
+            if (checkCode())
+            {
+                Boolean _blCreate = Controller.TeamService.createTeam(_strCode, _strName);
+                clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "team", _blCreate, this);
+            }
 
         }
 
@@ -62,16 +91,21 @@ namespace SynUp_Desktop.views
         private void btnDeleteTeam_Click(object sender, EventArgs e)
         {
             Boolean _blDelete = false;
-            Team deleteTeam = Controller.TeamService.deleteTeam(AuxTeam);
-            if (deleteTeam != null)
+
+            if (confirmationDialog("Are you sure you want to delete this team?"))
             {
-                _blDelete = true;
+                Team deleteTeam = Controller.TeamService.deleteTeam(AuxTeam);
+                if (deleteTeam != null)
+                {
+                    _blDelete = true;
+                }
+                else
+                {
+                    _blDelete = false;
+                }
+                clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.DELETE, "team", _blDelete, this);
             }
-            else
-            {
-                _blDelete = false;
-            }
-            clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.DELETE, "team", _blDelete, this);
+
         }
 
         /// <summary>
@@ -83,8 +117,13 @@ namespace SynUp_Desktop.views
         {
             String _strName = txtName.Text;
             String _strCode = txtCode.Text;
-            Boolean _blUpdate = this.Controller.TeamService.updateTeam(_strCode, _strName);
-            clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.UPDATE, "team", _blUpdate, this);
+
+            if (confirmationDialog("Are you sure you want to update this team?"))
+            {
+                Boolean _blUpdate = this.Controller.TeamService.updateTeam(_strCode, _strName);
+                clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.UPDATE, "team", _blUpdate, this);
+            }
+
         }
 
         #endregion
@@ -98,6 +137,11 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void txtCode_TextChanged(object sender, EventArgs e)
         {
+            this.checkCode();
+        }
+
+        private bool checkCode()
+        {
             if (this.AuxTeam == null)
             {
                 String _strIdCode = txtCode.Text;
@@ -107,14 +151,19 @@ namespace SynUp_Desktop.views
                 {
                     lblCode.ForeColor = Color.Red;
                     //lblCode.Text = "Code*";
+                    return false;
                 }
                 else
                 {
                     //lblCode.Text = "Code";
                     lblCode.ForeColor = Color.Black;
+                    return true;
                 }
             }
-
+            else
+            {
+                return true;
+            }
         }
 
         #endregion
@@ -131,16 +180,6 @@ namespace SynUp_Desktop.views
             this.MinimizeBox = false;
             this.MaximizeBox = false;
 
-            this.dgvConfiguration();
-        }
-
-        /// <summary>
-        /// Event that runs when the forms actives
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void frmTeamManagement_Activated(object sender, EventArgs e)
-        {
             if (this.AuxTeam != null)
             {
                 // We recover the data of selected team
@@ -149,7 +188,7 @@ namespace SynUp_Desktop.views
 
                 //The grid with all the employees on team will load.
                 this.fillDataGrid();
-                this.fillComboFilterEmployees();
+                //this.fillComboFilterEmployees();
 
                 this.btnDeleteTeam.Enabled = true;
                 this.btnUpdateTeam.Enabled = true;
@@ -167,6 +206,43 @@ namespace SynUp_Desktop.views
             this.dgvEmployeesOnTeam.Refresh();
 
             this._blHelp = false;
+
+            this.dgvConfiguration();
+        }
+
+        /// <summary>
+        /// Event that runs when the forms actives
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmTeamManagement_Activated(object sender, EventArgs e)
+        {
+            //if (this.AuxTeam != null)
+            //{
+            //    // We recover the data of selected team
+            //    this.txtCode.Text = this.AuxTeam.code.Trim();
+            //    this.txtName.Text = this.AuxTeam.name.Trim();
+
+            //    //The grid with all the employees on team will load.
+            //    this.fillDataGrid();
+            //    this.fillComboFilterEmployees();
+
+            //    this.btnDeleteTeam.Enabled = true;
+            //    this.btnUpdateTeam.Enabled = true;
+            //    this.btnCreateTeam.Enabled = false; // We disable the button to create a team
+            //    this.txtCode.Enabled = false;
+            //}
+            //else
+            //{
+            //    this.btnCreateTeam.Enabled = true;
+            //    this.txtCode.Enabled = true;
+            //    this.btnDeleteTeam.Enabled = false;
+            //    this.btnUpdateTeam.Enabled = false;
+            //}
+
+            //this.dgvEmployeesOnTeam.Refresh();
+
+            //this._blHelp = false;
 
         }
 
@@ -242,7 +318,7 @@ namespace SynUp_Desktop.views
             if (this.dgvEmployeesOnTeam.SelectedRows.Count == 1)//If the row selected
             {
                 int _iIndexSelected = this.dgvEmployeesOnTeam.SelectedRows[0].Index; // Recover the index of selected row
-                Object _cell = this.dgvEmployeesOnTeam.Rows[_iIndexSelected].Cells[1].Value;
+                Object _cell = this.dgvEmployeesOnTeam.Rows[_iIndexSelected].Cells[0].Value; //Gets the NIF
                 if (_cell != null)
                 {
                     String _strSelectedRowCode = _cell.ToString(); // Recover the code
@@ -282,7 +358,10 @@ namespace SynUp_Desktop.views
             this.dgvEmployeesOnTeam.MultiSelect = false; //Can't multiselect
             this.dgvEmployeesOnTeam.RowTemplate.ReadOnly = true;
             this.dgvEmployeesOnTeam.RowHeadersVisible = false; // We hide the rowheader
-            this.dgvEmployeesOnTeam.ClearSelection(); // Clear selection rows          
+            this.dgvEmployeesOnTeam.ClearSelection(); // Clear selection rows   
+
+            //Column configuration
+            //dgvEmployeesOnTeam.Columns[0].Visible = false;       
         }
 
         /*/// <summary>
@@ -307,24 +386,26 @@ namespace SynUp_Desktop.views
             //if (this.dgvEmployeesOnTeam.DataSource == null) source.DataSource = new List<String>();
             if (this.AuxTeam != null)
             {
-                source.DataSource = this.Controller.TeamHistoryService.getAllTeamHistoriesByTeam(this.AuxTeam.code);
+                source.DataSource = this.Controller.TeamHistoryService.getMembersInATeam(this.AuxTeam.code);
             }
             this.dgvEmployeesOnTeam.DataSource = source;
             this.dgvEmployeesOnTeam.Refresh();
         }
 
+        /* NOT IMPLEMENTED
         /// <summary>
         /// Method that fill combobox filter of employees
         /// </summary>
-        public void fillComboFilterEmployees()
-        {
-            this.cmbFilterEmployees.Items.Clear();
-            this.cmbFilterEmployees.Items.Add("Current");
-            this.cmbFilterEmployees.Items.Add("Past");
-            this.cmbFilterEmployees.Items.Add("All");
+        //public void fillComboFilterEmployees()
+        //{
+        //    this.cmbFilterEmployees.Items.Clear();
+        //    this.cmbFilterEmployees.Items.Add("Current");
+        //    this.cmbFilterEmployees.Items.Add("Past");
+        //    this.cmbFilterEmployees.Items.Add("All");
 
-            this.cmbFilterEmployees.SelectedIndex = 0;
-        }
+        //    this.cmbFilterEmployees.SelectedIndex = 0;
+        //}
+        */
 
         /// <summary>
         /// Deleted selected employee to team
@@ -349,16 +430,24 @@ namespace SynUp_Desktop.views
                     clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.EXCLUDE, "employee", _blUpdateHistory, this);
 
                 }
-                else
-                {
-                    MessageBox.Show("This employee is already in the team");
-                }
+                //else
+                //{
+                //    MessageBox.Show("This employee is already in the team");
+                //}
             }
         }
 
-        #region HELP
+        /// <summary>
+        /// Confirmation dialog that will let the user confirm they action or cancel it.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns>Button click</returns>
+        private bool confirmationDialog(string message)
+        {
+            return (MessageBox.Show(message, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
+        }
 
-        private Boolean _blHelp = false;
+        #region HELP        
 
         /// <summary>
         /// 
@@ -441,11 +530,11 @@ namespace SynUp_Desktop.views
                     this.changeIconMessage(3);
                     this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
                 }
-                else if (sender.Equals(lblFilterEmployee) || sender.Equals(cmbFilterEmployees))
+                /*else if (sender.Equals(lblFilterEmployee) || sender.Equals(cmbFilterEmployees))
                 {
                     this.changeIconMessage(3);
                     this.lblHelpMessage.Text = "Filtrar empleados por";
-                }
+                }*/
                 else if (sender.Equals(btnAdd))
                 {
                     this.changeIconMessage(3);
@@ -521,6 +610,18 @@ namespace SynUp_Desktop.views
 
         #endregion
 
+        /// <summary>
+        /// Sets all the variables of the form to Null and empties the datagridView.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnClear_Click(object sender, EventArgs e)
+        {            
+            auxTeam = null;
+            auxEmployee = null;
+            dgvEmployeesOnTeam.DataSource = null;
+            dgvEmployeesOnTeam.Refresh();
+        }
     }
 }
 

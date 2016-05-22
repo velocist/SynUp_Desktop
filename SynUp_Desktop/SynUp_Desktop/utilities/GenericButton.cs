@@ -125,14 +125,14 @@ namespace SynUp_Desktop.utilities
                         {
                             _inGroupBox.ForeColor = Color.Black; //Will reset it's validation changed color.
                         }
-                        if (_inGroupBox is DataGridView) //TODO: Mirar haber como podemos incluirlo aqui
+                        /*if (_inGroupBox is DataGridView) //TODO: Mirar haber como podemos incluirlo aqui
                         {
                             _inGroupBox.Controls.Clear();
                             _inGroupBox.Refresh();
-                        }
+                        }*/
                     }
                 }
-                if (_control is Button && _control.Name != "btnHelp")
+                /*if (_control is Button && _control.Name != "btnHelp")
                 {
                     if (_control.Name.StartsWith("btnC")) {
                         if (!_control.Enabled) _control.Enabled = true;
@@ -142,7 +142,7 @@ namespace SynUp_Desktop.utilities
                         if (_control.Enabled) _control.Enabled = false;
                     }
 
-                }
+                }*/
             }
         }
     }

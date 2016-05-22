@@ -166,7 +166,7 @@ namespace SynUp_Desktop.model.dao
         /// <returns></returns>
         public static List<pojo.Task> readAllTasks()
         {
-            return (from task in new synupEntities().Tasks where task.state != (int)TaskState.CANCELLED select task).OrderByDescending(x=>x.priority).OrderByDescending(x => x.priorityDate).ToList();
+            return (from task in new synupEntities().Tasks where task.state != (int)TaskState.CANCELLED select task)./*OrderByDescending(x=>x.priority).*/OrderByDescending(x => x.priorityDate).ToList();
         }
 
         //DELETE - Pablo Ardèvol 11/5/16 - Method moved to the Statistics connection object.

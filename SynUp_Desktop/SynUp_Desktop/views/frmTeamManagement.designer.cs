@@ -31,8 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTeamManagement));
             this.gbContainer = new System.Windows.Forms.GroupBox();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.lblFilterEmployee = new System.Windows.Forms.Label();
-            this.cmbFilterEmployees = new System.Windows.Forms.ComboBox();
             this.btnDeleteToTeam = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvEmployeesOnTeam = new System.Windows.Forms.DataGridView();
@@ -55,11 +53,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxIconMessage)).BeginInit();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // gbContainer
             // 
             this.gbContainer.Controls.Add(this.btnAdd);
-            this.gbContainer.Controls.Add(this.lblFilterEmployee);
-            this.gbContainer.Controls.Add(this.cmbFilterEmployees);
             this.gbContainer.Controls.Add(this.btnDeleteToTeam);
             this.gbContainer.Controls.Add(this.label1);
             this.gbContainer.Controls.Add(this.dgvEmployeesOnTeam);
@@ -68,7 +64,7 @@
             this.gbContainer.Controls.Add(this.txtName);
             this.gbContainer.Controls.Add(this.txtCode);
             this.gbContainer.Location = new System.Drawing.Point(12, 12);
-            this.gbContainer.Name = "groupBox1";
+            this.gbContainer.Name = "gbContainer";
             this.gbContainer.Size = new System.Drawing.Size(612, 359);
             this.gbContainer.TabIndex = 17;
             this.gbContainer.TabStop = false;
@@ -76,38 +72,21 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(328, 330);
+            this.btnAdd.Location = new System.Drawing.Point(506, 330);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(81, 23);
+            this.btnAdd.Size = new System.Drawing.Size(99, 23);
             this.btnAdd.TabIndex = 9;
-            this.btnAdd.Text = "Add to Team";
+            this.btnAdd.Text = "Add Employees";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // lblFilterEmployee
-            // 
-            this.lblFilterEmployee.AutoSize = true;
-            this.lblFilterEmployee.Location = new System.Drawing.Point(7, 335);
-            this.lblFilterEmployee.Name = "lblFilterEmployee";
-            this.lblFilterEmployee.Size = new System.Drawing.Size(82, 13);
-            this.lblFilterEmployee.TabIndex = 8;
-            this.lblFilterEmployee.Text = "Filter employees";
-            // 
-            // cmbFilterEmployees
-            // 
-            this.cmbFilterEmployees.FormattingEnabled = true;
-            this.cmbFilterEmployees.Location = new System.Drawing.Point(95, 331);
-            this.cmbFilterEmployees.Name = "cmbFilterEmployees";
-            this.cmbFilterEmployees.Size = new System.Drawing.Size(121, 21);
-            this.cmbFilterEmployees.TabIndex = 7;
-            // 
             // btnDeleteToTeam
             // 
-            this.btnDeleteToTeam.Location = new System.Drawing.Point(222, 330);
+            this.btnDeleteToTeam.Location = new System.Drawing.Point(400, 330);
             this.btnDeleteToTeam.Name = "btnDeleteToTeam";
             this.btnDeleteToTeam.Size = new System.Drawing.Size(100, 23);
             this.btnDeleteToTeam.TabIndex = 6;
-            this.btnDeleteToTeam.Text = "Delete from Team";
+            this.btnDeleteToTeam.Text = "Delete Employee";
             this.btnDeleteToTeam.UseVisualStyleBackColor = true;
             this.btnDeleteToTeam.Click += new System.EventHandler(this.btnDeleteToTeam_Click);
             // 
@@ -134,9 +113,9 @@
             this.lblCode.AutoSize = true;
             this.lblCode.Location = new System.Drawing.Point(6, 26);
             this.lblCode.Name = "lblCode";
-            this.lblCode.Size = new System.Drawing.Size(32, 13);
+            this.lblCode.Size = new System.Drawing.Size(36, 13);
             this.lblCode.TabIndex = 0;
-            this.lblCode.Text = "Code";
+            this.lblCode.Text = "Code*";
             // 
             // lblName
             // 
@@ -244,6 +223,7 @@
             this.btnClear.Parent = this;
             this.btnClear.Size = new System.Drawing.Size(75, 40);
             this.btnClear.TabIndex = 10;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnBack
             // 
@@ -262,7 +242,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(630, 422);
+            this.ClientSize = new System.Drawing.Size(630, 423);
             this.Controls.Add(this.gbHelp);
             this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.btnClear);
@@ -307,8 +287,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnDeleteToTeam;
         private System.Windows.Forms.Button btnCreateTeam;
-        private System.Windows.Forms.ComboBox cmbFilterEmployees;
-        private System.Windows.Forms.Label lblFilterEmployee;
         private utilities.GenericButton btnBack;
         private utilities.GenericButton btnClear;
         private System.Windows.Forms.Button btnAdd;

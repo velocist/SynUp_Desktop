@@ -33,43 +33,6 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// Event that runs when the form is loaded
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void frmTeams_Load(object sender, EventArgs e)
-        {
-            this.dgvConfiguration();
-            this.frmTeams_Activated(sender, e);
-
-            //Form Common Configurations
-            this.FormBorderStyle = FormBorderStyle.Fixed3D;
-            this.MinimizeBox = false;
-            this.MaximizeBox = false;
-        }
-
-        /// <summary>
-        /// Event that runs when the form is activated
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void frmTeams_Activated(object sender, EventArgs e)
-        {
-            //The grid with all the teams will load.
-            this.fillGridView();
-            this.dgvTeams.ClearSelection();
-            this.dgvTeams.Refresh();
-
-            //Cleans the auxiliars of form team
-            this.Controller.TeamMgtView.AuxEmployee = null;
-            this.Controller.TeamMgtView.AuxTeam = null;
-
-            //We configures the groupbox help
-            this._blHelp = false;
-            this.gbHelp.Visible = false;
-        }
-
-        /// <summary>
         /// Shows the management view window of the teams.
         /// </summary>
         /// <param name="sender"></param>
@@ -86,27 +49,14 @@ namespace SynUp_Desktop.views
                     String _strSelectedRowCode = _cell.ToString(); // Recover the code
                     _oSelectedTeam = Controller.TeamService.readTeam(_strSelectedRowCode); // We look for the employee nif
                     this.Controller.TeamMgtView.AuxTeam = _oSelectedTeam; // We assign the team to form team management
-                } else
-                {
-                    this.Controller.TeamMgtView.AuxTeam = null;
                 }
+                //else
+                //{
+                //    this.Controller.TeamMgtView.AuxTeam = null;
+                //}
             }
 
             this.Controller.TeamMgtView.ShowDialog();
-        }
-
-        /// <summary>
-        /// Fills the DataGridView with the values of the database.
-        /// </summary>
-        private void fillGridView()
-        {
-            if (dgvTeams.DataSource == null) dgvTeams.DataSource = new List<String>();
-
-            BindingSource source = new BindingSource();
-            source.DataSource = Controller.TeamService.getAllTeams();
-            this.dgvTeams.DataSource = source;
-            this.dgvTeams.Refresh();
-            this.Refresh();
         }
 
         /// <summary>
@@ -114,7 +64,12 @@ namespace SynUp_Desktop.views
         /// </summary>
         private void dgvConfiguration()
         {
-            this.fillGridView();
+            this.fillGrid();
+
+            //Form Common Configurations
+            this.FormBorderStyle = FormBorderStyle.Fixed3D;
+            this.MinimizeBox = false;
+            this.MaximizeBox = false;
 
             //Column configuration
 
@@ -139,6 +94,58 @@ namespace SynUp_Desktop.views
             this.dgvTeams.ClearSelection(); // Clear selection rows
             this.dgvTeams.AutoResizeColumns();
         }
+
+        /// <summary>
+        /// Event that runs when the form is loaded
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmTeams_Load(object sender, EventArgs e)
+        {
+            this.dgvConfiguration();
+            //this.frmTeams_Activated(sender, e);
+
+           
+        }
+
+        /// <summary>
+        /// Event that runs when the form is activated
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmTeams_Activated(object sender, EventArgs e)
+        {
+            //The grid with all the teams will load.
+            this.fillGrid();
+            this.dgvTeams.ClearSelection();
+            this.dgvTeams.Refresh();
+
+            //Cleans the auxiliars of form team
+            /*this.Controller.TeamMgtView.AuxEmployee = null;
+            this.Controller.TeamMgtView.AuxTeam = null;
+
+            //We configures the groupbox help
+            this._blHelp = false;
+            this.gbHelp.Visible = false;*/
+        }
+
+
+
+        /// <summary>
+        /// Fills the DataGridView with the values of the database.
+        /// </summary>
+        private void fillGrid()
+        {
+            if (dgvTeams.DataSource == null) dgvTeams.DataSource = new List<String>();
+
+            BindingSource source = new BindingSource();
+            source.DataSource = Controller.TeamService.getAllTeams();
+            this.dgvTeams.DataSource = source;
+            this.dgvTeams.Refresh();
+            this.Refresh();
+        }
+
+
 
         #region HELP
 

@@ -149,11 +149,41 @@ namespace SynUp_Desktop.model.dao
         /// <returns></returns>
         public static TeamHistory getCurrentTeamHistoryByEmployee(String pNifEmployee)
         {
-           var query= from teamHistory in new synupEntities().TeamHistories
-                    where teamHistory.id_employee == pNifEmployee && teamHistory.exitDate == null
-                    select teamHistory;
+            var query = from teamHistory in new synupEntities().TeamHistories
+                        where teamHistory.id_employee == pNifEmployee && teamHistory.exitDate == null
+                        select teamHistory;
 
             return query.SingleOrDefault();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_codeTeam"></param>
+        /// <returns></returns>
+        public static List<pojo.TeamMember> readTeamMembers(String _codeTeam)
+        {
+            using (var context = new synupEntities())
+            {
+                List<TeamMember> toReturn = new List<TeamMember>();
+
+                var query = from employee in context.Employees
+                            join record in context.TeamHistories on employee.nif equals record.id_employee
+                            where record.id_team.Equals(_codeTeam) && record.exitDate == null
+                            select new
+                            {
+                                Emp = employee,
+                                His = record
+                            };
+
+                foreach (var s in query)
+                {
+                    TeamMember tm = new TeamMember(s.Emp.nif, s.Emp.name, s.Emp.surname, s.His.entranceDay);
+                    toReturn.Add(tm);
+                }
+
+                return toReturn;
+            }
         }
 
         /// <summary>

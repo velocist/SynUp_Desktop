@@ -149,7 +149,7 @@ namespace SynUp_Desktop.model.dao
         public static List<pojo.Employee> readAllEmployees()
         {
             return (from employee in new synupEntities().Employees select employee).ToList();
-        }
+        }         
 
         /// <summary>
         /// Attachs employees

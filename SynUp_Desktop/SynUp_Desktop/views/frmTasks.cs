@@ -64,18 +64,23 @@ namespace SynUp_Desktop.views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        //private void btnBack_Click(object sender, EventArgs e)
+        //{
+        //    this.Close();
+        //}
 
         /// <summary>
         /// DataGridView Configuration
         /// </summary>
         /// <author>Pablo Ardèvol</author>
-        private void initGridView()
+        private void dgvConfiguration()
         {
             fillGrid();
+
+            //Form Common Configurations
+            this.FormBorderStyle = FormBorderStyle.Fixed3D;
+            this.MinimizeBox = false;
+            this.MaximizeBox = false;
 
             //Column configuration
 
@@ -128,7 +133,7 @@ namespace SynUp_Desktop.views
 
         private void frmTasks_Load(object sender, EventArgs e)
         {
-            initGridView();
+            dgvConfiguration();
         }
 
         private void fillGrid()

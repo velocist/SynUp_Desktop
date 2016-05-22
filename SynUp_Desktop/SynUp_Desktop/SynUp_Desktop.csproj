@@ -169,6 +169,7 @@
     <Compile Include="model\pojo\TeamLog.cs">
       <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="model\pojo\TeamMember.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
