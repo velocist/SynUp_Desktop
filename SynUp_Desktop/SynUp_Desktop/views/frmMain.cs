@@ -67,5 +67,6 @@ namespace SynUp_Desktop.views
         {
             this.Controller.AboutView.ShowDialog();
         }
+        
     }
 }

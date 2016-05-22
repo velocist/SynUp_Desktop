@@ -41,6 +41,11 @@ namespace SynUp_Desktop.views
         {
             this.dgvConfiguration();
             this.frmTeams_Activated(sender, e);
+
+            //Form Common Configurations
+            this.FormBorderStyle = FormBorderStyle.Fixed3D;
+            this.MinimizeBox = false;
+            this.MaximizeBox = false;
         }
 
         /// <summary>
@@ -86,7 +91,7 @@ namespace SynUp_Desktop.views
 
             this.Controller.TeamMgtView.ShowDialog();
         }
-        
+
         /// <summary>
         /// Fills the DataGridView with the values of the database.
         /// </summary>
@@ -130,11 +135,6 @@ namespace SynUp_Desktop.views
             this.dgvTeams.RowHeadersVisible = false; // We hide the rowheader
             this.dgvTeams.ClearSelection(); // Clear selection rows
             this.dgvTeams.AutoResizeColumns();
-
-            //Form Common Configurations
-            this.FormBorderStyle = FormBorderStyle.Fixed3D;
-            this.MinimizeBox = false;
-            this.MaximizeBox = false;
         }
 
         #region HELP

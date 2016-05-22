@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -47,6 +48,11 @@ namespace SynUp_Desktop.views
         {
             this.dgvConfiguration();
             this.frmEmployees_Activated(sender, e);
+
+            //Form Common Configurations
+            this.FormBorderStyle = FormBorderStyle.Fixed3D;
+            this.MinimizeBox = false;
+            this.MaximizeBox = false;
         }
 
         /// <summary>
@@ -57,7 +63,7 @@ namespace SynUp_Desktop.views
         private void frmEmployees_Activated(object sender, EventArgs e)
         {
             //The grid with all the employees will load.
-            this.fillGridView(); 
+            this.fillGridView();
             this.dgvEmployees.ClearSelection(); // Clear selection rows.
             this.dgvEmployees.Refresh(); //Refresh the view.               
 
@@ -252,12 +258,7 @@ namespace SynUp_Desktop.views
             this.dgvEmployees.MultiSelect = false; //Can't multiselect
             this.dgvEmployees.RowTemplate.ReadOnly = true;
             this.dgvEmployees.RowHeadersVisible = false; // We hide the rowheader
-            this.dgvEmployees.ClearSelection(); // Clear selection rows
-
-            //Form Common Configurations
-            this.FormBorderStyle = FormBorderStyle.Fixed3D;
-            this.MinimizeBox = false;
-            this.MaximizeBox = false;
+            this.dgvEmployees.ClearSelection(); // Clear selection rows            
         }
 
         #region HELP
@@ -396,6 +397,14 @@ namespace SynUp_Desktop.views
 
         private void btnBack_Load(object sender, EventArgs e)
         {
+            this.dgvConfiguration();
+            this.frmEmployees_Activated(sender, e);
+
+            //Form Common Configurations
+            this.FormBorderStyle = FormBorderStyle.Fixed3D;
+            this.MinimizeBox = false;
+            this.MaximizeBox = false;
+            this.ShowInTaskbar = true;
 
         }
     }

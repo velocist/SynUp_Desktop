@@ -119,12 +119,17 @@ namespace SynUp_Desktop.views
 
         #endregion
 
+        /// <summary>
+        /// Event that runs when the forms loaded
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmTeamManagement_Load(object sender, EventArgs e)
         {
             //Form Common Configurations
             this.FormBorderStyle = FormBorderStyle.Fixed3D;
-            this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MaximizeBox = false;
 
             this.dgvConfiguration();
         }
@@ -352,8 +357,7 @@ namespace SynUp_Desktop.views
                 }
             }
         }
-
-
+        
         #region HELP
 
         private Boolean _blHelp = false;

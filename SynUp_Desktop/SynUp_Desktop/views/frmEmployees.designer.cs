@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEmployees));
             this.dgvEmployees = new System.Windows.Forms.DataGridView();
             this.btnManagementEmployee = new System.Windows.Forms.Button();
             this.gbContainer = new System.Windows.Forms.GroupBox();
@@ -174,8 +175,11 @@
             this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.gbContainer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(840, 555);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(840, 555);
             this.Name = "frmEmployees";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Employees ";

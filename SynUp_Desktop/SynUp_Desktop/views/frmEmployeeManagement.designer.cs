@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEmployeeManagement));
             this.btnUpdateEmployee = new System.Windows.Forms.Button();
             this.btnDeleteEmployee = new System.Windows.Forms.Button();
             this.lblNif = new System.Windows.Forms.Label();
@@ -308,7 +309,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(469, 251);
+            this.ClientSize = new System.Drawing.Size(465, 252);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.gbHelp);
@@ -317,12 +318,17 @@
             this.Controls.Add(this.gbContainer);
             this.Controls.Add(this.btnUpdateEmployee);
             this.Controls.Add(this.btnDeleteEmployee);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(485, 360);
-            this.MinimumSize = new System.Drawing.Size(485, 290);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(485, 295);
             this.Name = "frmEmployeeManagement";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Employee Management";
             this.Activated += new System.EventHandler(this.frmEmployeeManagement_Activated);
+            this.Load += new System.EventHandler(this.frmEmployeeManagement_Load);
             this.gbContainer.ResumeLayout(false);
             this.gbContainer.PerformLayout();
             this.gbHelp.ResumeLayout(false);

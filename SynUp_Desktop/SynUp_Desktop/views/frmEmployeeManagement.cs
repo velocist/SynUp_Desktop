@@ -305,6 +305,21 @@ namespace SynUp_Desktop.views
         #endregion
 
         /// <summary>
+        /// Event that runs when the forms loaded
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmEmployeeManagement_Load(object sender, EventArgs e)
+        {
+
+            //Form Common Configurations
+            this.FormBorderStyle = FormBorderStyle.Fixed3D;
+            this.MinimizeBox = false;
+            this.MaximizeBox = false;
+            //this.ShowInTaskbar = false;
+        }
+
+        /// <summary>
         /// Event that runs when the forms activated
         /// </summary>
         /// <param name="sender"></param>
@@ -556,7 +571,7 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// 
+        /// Methd that sohws message wrong
         /// </summary>
         private void messageWrong()
         {

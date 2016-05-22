@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTeamManagement));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.lblFilterEmployee = new System.Windows.Forms.Label();
@@ -205,9 +206,9 @@
             // 
             this.gbHelp.Controls.Add(this.pbxIconMessage);
             this.gbHelp.Controls.Add(this.lblHelpMessage);
-            this.gbHelp.Location = new System.Drawing.Point(12, 426);
+            this.gbHelp.Location = new System.Drawing.Point(12, 419);
             this.gbHelp.Name = "gbHelp";
-            this.gbHelp.Size = new System.Drawing.Size(612, 52);
+            this.gbHelp.Size = new System.Drawing.Size(612, 56);
             this.gbHelp.TabIndex = 26;
             this.gbHelp.TabStop = false;
             this.gbHelp.Text = "Help";
@@ -262,7 +263,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(634, 426);
+            this.ClientSize = new System.Drawing.Size(634, 481);
             this.Controls.Add(this.gbHelp);
             this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.btnClear);
@@ -271,9 +272,11 @@
             this.Controls.Add(this.btnDeleteTeam);
             this.Controls.Add(this.btnUpdateTeam);
             this.Controls.Add(this.groupBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(650, 520);
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(650, 465);
             this.Name = "frmTeamManagement";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

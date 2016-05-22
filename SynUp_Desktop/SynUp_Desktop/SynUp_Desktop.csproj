@@ -169,6 +169,11 @@
     <Compile Include="model\pojo\TeamLog.cs">
       <DependentUpon>SynupModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="service\EmployeeService.cs" />
     <Compile Include="service\StatisticsService.cs" />
     <Compile Include="service\TaskService.cs" />
@@ -240,14 +245,9 @@
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="utilities\GenericButton.resx">
       <DependentUpon>GenericButton.cs</DependentUpon>
     </EmbeddedResource>
@@ -305,10 +305,13 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Error.png">
+    <None Include="Resources\LogoPNG.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="views\images\Error.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Information.png">
+    <Content Include="views\images\Information.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="model\pojo\SynupModel.Context.tt">
@@ -321,10 +324,15 @@
       <DependentUpon>SynupModel.edmx</DependentUpon>
       <LastGenOutput>SynupModel.cs</LastGenOutput>
     </Content>
-    <Content Include="Warning.png">
+    <Content Include="Resources\SynUp.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="views\images\SynUp.png" />
+    <Content Include="views\images\Warning.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

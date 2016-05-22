@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTeams));
             this.dgvTeams = new System.Windows.Forms.DataGridView();
             this.gbContainer = new System.Windows.Forms.GroupBox();
             this.btnHelp = new System.Windows.Forms.Button();
@@ -127,13 +128,18 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 472);
+            this.ClientSize = new System.Drawing.Size(625, 472);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.gbHelp);
             this.Controls.Add(this.btnManagementTeams);
             this.Controls.Add(this.gbContainer);
-            this.MinimumSize = new System.Drawing.Size(640, 510);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(645, 515);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(645, 515);
             this.Name = "frmTeams";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Teams";
