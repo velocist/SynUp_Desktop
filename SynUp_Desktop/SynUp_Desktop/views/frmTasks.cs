@@ -89,9 +89,11 @@ namespace SynUp_Desktop.views
             dgvTasks.Columns[6].HeaderText = "Project";
             dgvTasks.Columns[5].Visible = false; // HeaderText = "Localization";
             dgvTasks.Columns[6].Visible = false;
+            dgvTasks.Columns[7].Visible = false; //priority
+            dgvTasks.Columns[8].Visible = false; //state
             dgvTasks.Columns[9].Visible = false; // HeaderText = "Team";
             dgvTasks.Columns[10].Visible = false; // HeaderText = "Task Histories";
-            
+
             // DatagridView Common Configuration 
 
             dgvTasks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
@@ -118,7 +120,7 @@ namespace SynUp_Desktop.views
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void frmTasks_Activated(object sender, EventArgs e)
-        {            
+        {
             fillGrid();
             dgvTasks.ClearSelection(); // Clear selection rows.
             dgvTasks.Refresh(); //Refresh the view.            

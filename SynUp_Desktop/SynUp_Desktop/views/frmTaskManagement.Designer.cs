@@ -50,8 +50,8 @@
             this.btnDeleteTask = new System.Windows.Forms.Button();
             this.btnUpdateTask = new System.Windows.Forms.Button();
             this.btnCreateTask = new System.Windows.Forms.Button();
-            this.btnBack = new SynUp_Desktop.utilities.GenericButton();
             this.btnClear = new SynUp_Desktop.utilities.GenericButton();
+            this.btnBack = new SynUp_Desktop.utilities.GenericButton();
             this.gbContainer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,11 +86,12 @@
             // 
             this.txtState.AutoSize = true;
             this.txtState.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtState.Location = new System.Drawing.Point(357, 78);
+            this.txtState.Location = new System.Drawing.Point(448, 78);
             this.txtState.Name = "txtState";
             this.txtState.Size = new System.Drawing.Size(73, 13);
             this.txtState.TabIndex = 16;
             this.txtState.Text = "NULL STATE";
+            this.txtState.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // cbImportance
             // 
@@ -102,7 +103,7 @@
             "3",
             "4",
             "5"});
-            this.cbImportance.Location = new System.Drawing.Point(76, 268);
+            this.cbImportance.Location = new System.Drawing.Point(111, 268);
             this.cbImportance.Name = "cbImportance";
             this.cbImportance.Size = new System.Drawing.Size(125, 21);
             this.cbImportance.TabIndex = 15;
@@ -118,11 +119,11 @@
             // lblState
             // 
             this.lblState.AutoSize = true;
-            this.lblState.Location = new System.Drawing.Point(306, 78);
+            this.lblState.Location = new System.Drawing.Point(357, 78);
             this.lblState.Name = "lblState";
-            this.lblState.Size = new System.Drawing.Size(35, 13);
+            this.lblState.Size = new System.Drawing.Size(85, 13);
             this.lblState.TabIndex = 12;
-            this.lblState.Text = "State:";
+            this.lblState.Text = "State of the task";
             // 
             // cbIdTeams
             // 
@@ -193,11 +194,11 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(222, 100);
+            this.txtDescription.Location = new System.Drawing.Point(248, 100);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtDescription.Size = new System.Drawing.Size(299, 160);
+            this.txtDescription.Size = new System.Drawing.Size(273, 160);
             this.txtDescription.TabIndex = 4;
             // 
             // lblPriorityDate
@@ -205,14 +206,14 @@
             this.lblPriorityDate.AutoSize = true;
             this.lblPriorityDate.Location = new System.Drawing.Point(6, 78);
             this.lblPriorityDate.Name = "lblPriorityDate";
-            this.lblPriorityDate.Size = new System.Drawing.Size(64, 13);
+            this.lblPriorityDate.Size = new System.Drawing.Size(68, 13);
             this.lblPriorityDate.TabIndex = 0;
-            this.lblPriorityDate.Text = "Priority Date";
+            this.lblPriorityDate.Text = "Priority Date*";
             // 
             // lblDescription
             // 
             this.lblDescription.AutoSize = true;
-            this.lblDescription.Location = new System.Drawing.Point(219, 78);
+            this.lblDescription.Location = new System.Drawing.Point(245, 78);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(60, 13);
             this.lblDescription.TabIndex = 0;
@@ -273,19 +274,6 @@
             this.btnCreateTask.UseVisualStyleBackColor = true;
             this.btnCreateTask.Click += new System.EventHandler(this.btnCreateTask_Click);
             // 
-            // btnBack
-            // 
-            this.btnBack.AutoSize = true;
-            this.btnBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnBack.ButtonText = "Back";
-            this.btnBack.isExit = true;
-            this.btnBack.Location = new System.Drawing.Point(472, 320);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(0);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Parent = this;
-            this.btnBack.Size = new System.Drawing.Size(75, 40);
-            this.btnBack.TabIndex = 12;
-            // 
             // btnClear
             // 
             this.btnClear.AutoSize = true;
@@ -298,6 +286,20 @@
             this.btnClear.Parent = this;
             this.btnClear.Size = new System.Drawing.Size(75, 40);
             this.btnClear.TabIndex = 13;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // btnBack
+            // 
+            this.btnBack.AutoSize = true;
+            this.btnBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnBack.ButtonText = "Back";
+            this.btnBack.isExit = true;
+            this.btnBack.Location = new System.Drawing.Point(472, 320);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(0);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Parent = this;
+            this.btnBack.Size = new System.Drawing.Size(75, 40);
+            this.btnBack.TabIndex = 12;
             // 
             // frmTaskManagement
             // 
