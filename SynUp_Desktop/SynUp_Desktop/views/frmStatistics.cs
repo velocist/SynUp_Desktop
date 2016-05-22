@@ -177,7 +177,7 @@ namespace SynUp_Desktop.views
 
         #endregion
         
-        #region METHOD'S FILTERS
+        #region FILTER METHODS
         /// <summary>
         /// Method that filter tasks by date
         /// </summary>
@@ -189,6 +189,7 @@ namespace SynUp_Desktop.views
             if (start != null && end != null && start.CompareTo(end) < 0)
             {
                 fillDataGrid(Controller.StatisticsService.getTasksByDate(start, end));
+                dgvConfigurationTasks();                
             }
             else
             {
@@ -204,8 +205,9 @@ namespace SynUp_Desktop.views
             String strCode = (String)cmbTeams.SelectedValue;
             if (!strCode.Equals("") || !strCode.Equals(null))
             {
-                MessageBox.Show(strCode);
+                //MessageBox.Show(strCode);
                 fillDataGrid(Controller.StatisticsService.getTasksByTeam(strCode));
+                dgvConfigurationTasks();
             }
             else
             {
@@ -222,6 +224,7 @@ namespace SynUp_Desktop.views
             if (!strNif.Equals("") || !strNif.Equals(null))
             {
                 fillDataGrid(Controller.StatisticsService.getTasksByEmployee(strNif));
+                dgvConfigurationTasks();
             }
             else
             {
@@ -238,6 +241,7 @@ namespace SynUp_Desktop.views
             if (!strState.Equals("") || strState.Equals(null))
             {
                 fillDataGrid(Controller.StatisticsService.getTasksByState(strState));
+                dgvConfigurationTasks();
             }
             else
             {
@@ -275,6 +279,44 @@ namespace SynUp_Desktop.views
 
         #endregion
 
+        private void dgvConfigurationTasks()
+        {
+            //Column configuration
+            dgvStadistics.Columns[0].Visible = false; // We hide id column
+            //dgvTasks.Columns["code_team"].Visible = true; // We hide the id_team column
+            dgvStadistics.Columns[1].HeaderText = "Code"; // We change the column name
+            dgvStadistics.Columns[2].HeaderText = "Name";
+            dgvStadistics.Columns[3].HeaderText = "Priority Date";
+            dgvStadistics.Columns[4].Visible = false; // HeaderText = "Description";
+            dgvStadistics.Columns[5].Visible = false; // HeaderText = "Localization";
+            dgvStadistics.Columns[6].HeaderText = "Project";
+            dgvStadistics.Columns[7].HeaderText = "Priority"; //priority
+            dgvStadistics.Columns[8].HeaderText = "State"; //state
+            dgvStadistics.Columns[9].Visible = false; // HeaderText = "Team";
+            dgvStadistics.Columns[10].Visible = false; // HeaderText = "Task Histories";
+        }
+
+        private void dgvConfiguration()
+        {
+            // DatagridView Common Configuration
+            dgvStadistics.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
+            dgvStadistics.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row     
+            dgvStadistics.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvStadistics.AllowUserToAddRows = false; // Can't add rows
+            dgvStadistics.AllowUserToDeleteRows = false; // Can't delete rows
+            dgvStadistics.AllowUserToOrderColumns = false; //Can order columns
+            dgvStadistics.AllowUserToResizeRows = false; //Can't resize columns
+            dgvStadistics.Cursor = Cursors.Hand; // Cursor hand type            
+            dgvStadistics.MultiSelect = false; //Can't multiselect
+            dgvStadistics.RowTemplate.ReadOnly = true;
+            dgvStadistics.RowHeadersVisible = false; // We hide the rowheader
+            dgvStadistics.ClearSelection(); // Clear selection rows
+
+            this.FormBorderStyle = FormBorderStyle.Fixed3D;
+            this.MinimizeBox = false;
+            this.MaximizeBox = false;
+        }
+
         private void setInstructions(String text)
         {
             lblInstructions.Visible = true;
@@ -300,6 +342,8 @@ namespace SynUp_Desktop.views
             cmbRanking.Visible = false;
             dtpBegin.Visible = false;
             dtpEnd.Visible = false;
+            chtStatistics.Visible = false;
+
         }
 
         /// <summary>
@@ -322,6 +366,14 @@ namespace SynUp_Desktop.views
             BindingSource source = new BindingSource();
             source.DataSource = _data;
             this.dgvStadistics.DataSource = source;
+
+            this.chtStatistics.DataSource = source;
+
+            //chtStatistics.Series["state"].Points.AddXY("Max",33);
+            //chtStatistics.Update();
+            chtStatistics.DataBind();
+            this.chtStatistics.Visible = true;
+            
         }
 
         private void init()
@@ -351,6 +403,10 @@ namespace SynUp_Desktop.views
 
             dtpBegin.CustomFormat = dateFormat;
             dtpEnd.CustomFormat = dateFormat;
+
+            chtStatistics.Visible = false;
+
+            dgvConfiguration();
         }
     }
 }
