@@ -10,9 +10,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SynUp_Desktop.service;
 using SynUp_Desktop.model.pojo;
+using SynUp_Desktop.utilities;
 
 namespace SynUp_Desktop.views
 {
+    /// <summary>
+    /// The forms of list tasks
+    /// </summary>
     public partial class frmTasks : Form
     {
         private Controller controller;
@@ -29,9 +33,29 @@ namespace SynUp_Desktop.views
                 controller = value;
             }
         }
+
         public frmTasks()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Event that runs when the form loaded
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmTasks_Load(object sender, EventArgs e)
+        {
+            this.dgvConfiguration();
+            this.fillGrid();
+
+            //Form Common Configurations
+            FormBorderStyle = FormBorderStyle.Fixed3D;
+            this.MinimizeBox = false;
+            this.MaximizeBox = false;
+
+            blHELP = false;
+            this.gbHelp.Visible = false;
         }
 
         /// <summary>
@@ -60,25 +84,14 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// Event that runs when clicked
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        /// <summary>
         /// DataGridView Configuration
         /// </summary>
         /// <author>Pablo Ardèvol</author>
-        private void initGridView()
+        private void dgvConfiguration()
         {
-            fillGrid();
+            this.fillGrid();
 
             //Column configuration
-
             dgvTasks.Columns[0].Visible = false; // We hide id column
             //dgvTasks.Columns["code_team"].Visible = true; // We hide the id_team column
             dgvTasks.Columns[1].HeaderText = "Code"; // We change the column name
@@ -107,38 +120,173 @@ namespace SynUp_Desktop.views
             dgvTasks.MultiSelect = false; //Can't multiselect
             dgvTasks.RowTemplate.ReadOnly = true;
             dgvTasks.RowHeadersVisible = false; // We hide the rowheader
-            dgvTasks.ClearSelection(); // Clear selection rows
-
-            //Form Common Configurations
-            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            dgvTasks.ClearSelection(); // Clear selection rows            
 
         }
 
         /// <summary>
+        /// Method that fill the grid
+        /// </summary>
+        private void fillGrid()
+        {
+            //The grid with all the tasks will load.
+            BindingSource source = new BindingSource();
+            source.DataSource = Controller.TaskService.getAllTasks();
+            this.dgvTasks.DataSource = source;
+            this.dgvTasks.Refresh();
+            this.Refresh();
+        }
+
+        #region HELP
+
+        Boolean blHELP;
+
+        private void btnHelp_MouseClick(object sender, EventArgs e)
+        {
+            if (blHELP)
+            {
+                blHELP = false;
+                this.lblHelpMessage.Text = "";
+                this.changeIconMessage(0);
+                this.walkingControls(true);
+                this.gbHelp.Visible = false;
+            }
+            else
+            {
+                blHELP = true;
+                this.lblHelpMessage.Text = "";
+                this.changeIconMessage(0);
+                this.walkingControls(false);
+                this.gbHelp.Visible = true;
+            }
+        }
+
+        /// <summary>
+        /// Event that runs when the mouse leaves labels
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void messageHelps_MouseLeave(object sender, EventArgs e)
+        {
+            if (blHELP)
+            {
+                this.changeIconMessage(0);
+                this.lblHelpMessage.Text = "";
+            }
+        }
+
+        /// <summary>
+        /// Event that runs when the mouse hover on components
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void messageHelps_MouseHover(object sender, EventArgs e)
+        {
+            if (blHELP)
+            {
+                this.changeIconMessage(3);
+                if (sender.Equals(this.btnManagementTasks))
+                {
+                    this.lblHelpMessage.Text = "Clicke aquí para acceder al formulario de las tareas.";
+                }
+                else if (sender.Equals(this.dgvTasks))
+                {
+                    this.lblHelpMessage.Text = "Lista de todas las tareas existentes en la base de datos.";
+                }
+                else if (sender.Equals(this.btnBack))
+                {
+                    this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
+                }
+            }
+        }
+
+        /// <summary>
+        /// Method that walkings all controls in form
+        /// </summary>
+        /// <param name="pEnabled"></param>
+        private void walkingControls(Boolean pEnabled)
+        {
+            foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
+            {
+                if (_control is GroupBox)
+                {
+                    foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
+                    {
+                        _inGroupBox.MouseHover += new EventHandler(messageHelps_MouseHover);
+                        _inGroupBox.MouseLeave += new EventHandler(messageHelps_MouseLeave);
+                    }
+                }
+                if (_control is Button)
+                {
+                    _control.MouseHover += new EventHandler(messageHelps_MouseHover);
+                    _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
+                }
+                if (_control is GenericButton)
+                {
+                    _control.MouseHover += new EventHandler(messageHelps_MouseHover);
+                    _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Method that changes the icon message
+        /// </summary>
+        /// <param name="pIcon"></param>
+        private void changeIconMessage(int pIcon)
+        {
+            String _strFilename = null;
+            Bitmap _image = null;
+
+            if (pIcon == 1)
+            {
+                _strFilename = Application.StartupPath + "\\views\\images\\warning.png";
+            }
+            else if (pIcon == 2)
+            {
+                _strFilename = Application.StartupPath + "\\views\\images\\error.png";
+            }
+            else if (pIcon == 3)
+            {
+                _strFilename = Application.StartupPath + "\\views\\images\\information.png";
+
+            }
+            //Configurates de icon message
+            if (_strFilename != null)
+            {
+                _image = new Bitmap(_strFilename);
+            }
+            this.pbxIconMessage.Image = _image;
+
+        }
+
+        #endregion
+
+    }
+}
+
+/*DELETE: Cristina C. To event load      
+         /// <summary>
         /// Event triggered every time the view is displayed. 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void frmTasks_Activated(object sender, EventArgs e)
         {
-            fillGrid();
-            dgvTasks.ClearSelection(); // Clear selection rows.
-            dgvTasks.Refresh(); //Refresh the view.            
+            this.fillGrid();
+            this.dgvTasks.ClearSelection(); // Clear selection rows.
+            this.dgvTasks.Refresh(); //Refresh the view.            
         }
+*/
 
-        private void frmTasks_Load(object sender, EventArgs e)
-        {
-            initGridView();
-        }
-
-        private void fillGrid()
-        {
-            //The grid with all the tasks will load.
-            BindingSource source = new BindingSource();
-            source.DataSource = Controller.TaskService.getAllTasks();
-            dgvTasks.DataSource = source;
-            dgvTasks.Refresh();
-            this.Refresh();
-        }
-    }
+/* DELETE: Genereic button
+/// <summary>
+/// Event that runs when clicked
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
+private void btnBack_Click(object sender, EventArgs e)
+{
+    this.Close();
 }
+*/

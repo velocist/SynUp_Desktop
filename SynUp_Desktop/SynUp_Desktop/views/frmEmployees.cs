@@ -53,6 +53,7 @@ namespace SynUp_Desktop.views
             this.FormBorderStyle = FormBorderStyle.Fixed3D;
             this.MinimizeBox = false;
             this.MaximizeBox = false;
+
         }
 
         /// <summary>
