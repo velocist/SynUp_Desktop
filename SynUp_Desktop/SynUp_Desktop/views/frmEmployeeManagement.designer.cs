@@ -150,9 +150,9 @@
             // 
             // txtSurname
             // 
-            this.txtSurname.Location = new System.Drawing.Point(210, 54);
+            this.txtSurname.Location = new System.Drawing.Point(218, 54);
             this.txtSurname.Name = "txtSurname";
-            this.txtSurname.Size = new System.Drawing.Size(230, 20);
+            this.txtSurname.Size = new System.Drawing.Size(222, 20);
             this.txtSurname.TabIndex = 3;
             // 
             // txtPhone
@@ -204,27 +204,27 @@
             // lblMessageMandatory
             // 
             this.lblMessageMandatory.AutoSize = true;
-            this.lblMessageMandatory.Location = new System.Drawing.Point(300, 167);
+            this.lblMessageMandatory.Location = new System.Drawing.Point(308, 167);
             this.lblMessageMandatory.Name = "lblMessageMandatory";
-            this.lblMessageMandatory.Size = new System.Drawing.Size(139, 13);
+            this.lblMessageMandatory.Size = new System.Drawing.Size(131, 13);
             this.lblMessageMandatory.TabIndex = 0;
-            this.lblMessageMandatory.Text = "* This fields are mandatories";
+            this.lblMessageMandatory.Text = "* This fields are mandatory";
             // 
             // txtUsername
             // 
             this.txtUsername.Enabled = false;
-            this.txtUsername.Location = new System.Drawing.Point(268, 28);
+            this.txtUsername.Location = new System.Drawing.Point(218, 28);
             this.txtUsername.MaxLength = 500;
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.ReadOnly = true;
-            this.txtUsername.Size = new System.Drawing.Size(170, 20);
+            this.txtUsername.Size = new System.Drawing.Size(221, 20);
             this.txtUsername.TabIndex = 0;
             this.txtUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(207, 31);
+            this.lblUsername.Location = new System.Drawing.Point(157, 31);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(55, 13);
             this.lblUsername.TabIndex = 7;
@@ -310,7 +310,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(465, 252);
+            this.ClientSize = new System.Drawing.Size(465, 253);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.gbHelp);
@@ -328,7 +328,6 @@
             this.Name = "frmEmployeeManagement";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Employee Management";
-            this.Activated += new System.EventHandler(this.frmEmployeeManagement_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEmployeeManagement_FormClosing);
             this.Load += new System.EventHandler(this.frmEmployeeManagement_Load);
             this.gbContainer.ResumeLayout(false);

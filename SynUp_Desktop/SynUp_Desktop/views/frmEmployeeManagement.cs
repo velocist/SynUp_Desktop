@@ -56,7 +56,7 @@ namespace SynUp_Desktop.views
             String _strAdress = txtAdress.Text;
 
             Boolean _blCreateOk;
-            if (txtNif.Text != "" && txtEmail.Text != "")
+            if (!txtNif.Text.Equals("") && !txtEmail.Text.Equals("")) //Pablo Ardèvol 22/05 1553, Método pulido.  -- == se convierte en Equals para strings.      
             {
                 if (this.validateFields())
                 {
@@ -98,8 +98,8 @@ namespace SynUp_Desktop.views
             String _strAdress = txtAdress.Text;
             String _strUsername = txtUsername.Text;
 
-            Boolean _blCreateOk;
-            if (txtEmail.Text != "")
+            
+            if (!txtEmail.Text.Equals(""))
             {
                 if (this.checkEmail())
                 {
@@ -107,10 +107,7 @@ namespace SynUp_Desktop.views
                     clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.UPDATE, "employee", _blUpdateOk, this);
                 }
             }
-            else if (this.txtEmail.Text == "")
-            {
-                this.messageWrong();
-            }
+            else this.messageWrong(); //Pablo Ardèvol 22/05 1552, Método pulido.             
 
         }
 
@@ -275,21 +272,19 @@ namespace SynUp_Desktop.views
         /// <returns></returns>
         private bool validateFields()
         {
-            Boolean _blCorrect = false;
+            /* Boolean _blCorrect = false;
             Boolean _blNif = false, _blEmail = false;
 
             _blNif = this.checkDNI();
 
             _blEmail = this.checkEmail();
 
-            if (_blNif && _blEmail)
+            if (checkDNI() && checkEmail())
             {
                 _blCorrect = true;
             }
 
-            return _blCorrect;
-
-            /*
+            
             bool blValid = false;
             if (lblNif.ForeColor != Color.Red && lblEmail.ForeColor != Color.Red)
             {
@@ -298,7 +293,10 @@ namespace SynUp_Desktop.views
 
             if (!blValid) MessageBox.Show("MEC MEC NOT SO OK..");
 
-            return blValid;*/
+            return blValid; */
+
+            ///Pablo Ardèvol 22/05 1559, Método simplificado
+            return checkDNI() && checkEmail();
 
         }
 
@@ -315,15 +313,7 @@ namespace SynUp_Desktop.views
             this.FormBorderStyle = FormBorderStyle.Fixed3D;
             this.MinimizeBox = false;
             this.MaximizeBox = false;
-        }
 
-        /// <summary>
-        /// Event that runs when the forms activated
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void frmEmployeeManagement_Activated(object sender, EventArgs e)
-        {
             if (AuxEmployee != null)
             {
                 // We recover the data of selected employee
@@ -353,6 +343,43 @@ namespace SynUp_Desktop.views
             this._blHelp = false;
         }
 
+        /// <summary>
+        /// Event that runs when the forms activated
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /* DEPRECATED METHOD - Moved to the formLoad
+         * private void frmEmployeeManagement_Activated(object sender, EventArgs e)
+        {
+            //if (AuxEmployee != null)
+            //{
+            //    // We recover the data of selected employee
+            //    this.txtNif.Text = this.AuxEmployee.nif;
+            //    this.txtName.Text = this.AuxEmployee.name;
+            //    this.txtSurname.Text = this.AuxEmployee.surname;
+            //    this.txtPhone.Text = this.AuxEmployee.phone;
+            //    this.txtEmail.Text = this.AuxEmployee.email;
+            //    this.txtAdress.Text = this.AuxEmployee.adress;
+            //    this.txtUsername.Text = this.AuxEmployee.username;
+
+            //    this.btnCreate.Enabled = false; // We disable the button to create a task
+            //    this.txtNif.Enabled = false;
+            //    this.btnUpdateEmployee.Enabled = true;
+            //    this.btnDeleteEmployee.Enabled = true;
+            //}
+            //else
+            //{
+            //    this.btnCreate.Enabled = true;
+            //    this.txtNif.Enabled = true;
+            //    this.btnUpdateEmployee.Enabled = false;
+            //    this.btnDeleteEmployee.Enabled = false;
+            //    //this.clearValues();
+            //}
+
+            //this.setToolTips(); //Sets the tooltips for the view
+            //this._blHelp = false;
+        }*/
+
         private void frmEmployeeManagement_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.AuxEmployee = null;
@@ -362,7 +389,7 @@ namespace SynUp_Desktop.views
         /// <summary>
         /// Method that cleans values
         /// </summary>
-        private void clearValues()
+        /*private void clearValues() DEPRECATED METHOD.
         {
             this.btnCreate.Enabled = true;
             this.btnUpdateEmployee.Enabled = false;
@@ -385,8 +412,8 @@ namespace SynUp_Desktop.views
                         }
                     }
                 }
-            }*/
-        }
+            }
+        }*/
 
         /// <summary>
         /// Method that sets the tooltips for the view
@@ -400,6 +427,16 @@ namespace SynUp_Desktop.views
             ToolTips.SetToolTip(this.lblPhone, "000000000");
             ToolTips.SetToolTip(this.lblEmail, "exemple@domain.com");
 
+        }
+
+        /// <summary>
+        /// Confirmation dialog that will let the user confirm they action or cancel it.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns>Button click</returns>
+        private bool confirmationDialog(string message)
+        {
+            return (MessageBox.Show(message, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
         }
 
         #region HELP
@@ -585,7 +622,6 @@ namespace SynUp_Desktop.views
             this.Height = 360;
             this.changeIconMessage(2);
             this.lblHelpMessage.Text = "El nif i/o el email no puede estar vacío.";
-
         }
 
         #endregion

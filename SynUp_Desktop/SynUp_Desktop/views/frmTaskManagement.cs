@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SynUp_Desktop.service;
 using SynUp_Desktop.utilities;
+using SynUp_Desktop.model.pojo;
 
 namespace SynUp_Desktop.views
 {
@@ -20,6 +21,7 @@ namespace SynUp_Desktop.views
     public partial class frmTaskManagement : Form
     {
         private Controller controller;
+        private model.pojo.Task auxTask;
 
         public Controller Controller
         {
@@ -34,12 +36,23 @@ namespace SynUp_Desktop.views
             }
         }
 
+        public model.pojo.Task AuxTask
+        {
+            get
+            {
+                return auxTask;
+            }
+
+            set
+            {
+                auxTask = value;
+            }
+        }
+
         public frmTaskManagement()
         {
             InitializeComponent();
-        }
-
-        public model.pojo.Task AuxTask;
+        }        
 
         #region CRUD
 
@@ -148,22 +161,24 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void txtCode_TextChanged(object sender, EventArgs e)
         {
-            if (AuxTask == null)
-            {
-                String _strIdCode = txtCode.Text;
-                model.pojo.Task foundTask = Controller.TaskService.readTask(_strIdCode); // We look for if the task already exists
+            //if (AuxTask == null)
+            //{
+            //    String _strIdCode = txtCode.Text;
+            //    model.pojo.Task foundTask = Controller.TaskService.readTask(_strIdCode); // We look for if the task already exists
 
-                if (!checkCode() || foundTask != null) // If the task exists and the string is empty, we show a message
-                {
-                    lblCode.ForeColor = Color.Red;
-                    //lblCode.Text = "Code*";
-                }
-                else
-                {
-                    //lblCode.Text = "Code";
-                    lblCode.ForeColor = Color.Black;
-                }
-            }
+            //    if (!checkCode() || foundTask != null) // If the task exists and the string is empty, we show a message
+            //    {
+            //        lblCode.ForeColor = Color.Red;
+            //        //lblCode.Text = "Code*";
+            //    }
+            //    else
+            //    {
+            //        //lblCode.Text = "Code";
+            //        lblCode.ForeColor = Color.Black;
+            //    }
+            //}
+
+            this.checkCode();
         }
 
         /// <summary>
@@ -173,16 +188,18 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void txtName_TextChanged(object sender, EventArgs e)
         {
-            if (!checkName() || txtName.Text == null) // If the name is empty, we show a message
-            {
-                //lblName.Text = "Name*";
-                lblName.ForeColor = Color.Red;
-            }
-            else
-            {
-                //lblName.Text = "Name";
-                lblName.ForeColor = Color.Black;
-            }
+            //if (!checkName() || txtName.Text == null) // If the name is empty, we show a message
+            //{
+            //    //lblName.Text = "Name*";
+            //    lblName.ForeColor = Color.Red;
+            //}
+            //else
+            //{
+            //    //lblName.Text = "Name";
+            //    lblName.ForeColor = Color.Black;
+            //}
+
+            this.checkName();
         }
 
         /// <summary>
@@ -212,8 +229,8 @@ namespace SynUp_Desktop.views
         /// <returns></returns>
         private bool checkCorrectValues()
         {
-            bool _correct = false;
-            if (lblCode.ForeColor != Color.Red && checkCode() && checkName() && lblName.ForeColor != Color.Red/* && lblPriorityDate.ForeColor != Color.Red*/)
+            /*bool _correct = false;
+            if (checkCode() && checkName() && lblName.ForeColor != Color.Red/* && lblPriorityDate.ForeColor != Color.Red)
             {
                 if (AuxTask != null || lblPriorityDate.ForeColor != Color.Red)
                 {
@@ -221,7 +238,9 @@ namespace SynUp_Desktop.views
                 }
             }
 
-            //clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "employee", _blCreateOk, this);
+            //clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "employee", _blCreateOk, this);*/
+
+            bool _correct = checkName() && checkCode();
 
             if (!_correct) clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
 
@@ -230,12 +249,43 @@ namespace SynUp_Desktop.views
 
         private bool checkCode()
         {
-            return !txtCode.Text.Equals("");
+            if (AuxTask == null)
+            {
+                String _strIdCode = txtCode.Text;
+                model.pojo.Task foundTask = Controller.TaskService.readTask(_strIdCode); // We look for if the task already exists
+
+                if (txtCode.Text.Equals("") || foundTask != null) // If the task exists and the string is empty, we show a message
+                {
+                    lblCode.ForeColor = Color.Red;
+                    return false;
+                    //lblCode.Text = "Code*";
+                }
+                else
+                {
+                    //lblCode.Text = "Code";
+                    lblCode.ForeColor = Color.Black;
+                    return true;
+                }
+            } else
+            {
+                return true;
+            }
         }
 
         private bool checkName()
         {
-            return !txtName.Text.Equals("");
+            if (txtName.Text.Equals("") || txtName.Text == null) // If the name is empty, we show a message
+            {
+                //lblName.Text = "Name*";
+                lblName.ForeColor = Color.Red;
+                return false;
+            }
+            else
+            {
+                //lblName.Text = "Name";
+                lblName.ForeColor = Color.Black;
+                return true;
+            }
         }
 
         #endregion        
