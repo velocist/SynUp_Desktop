@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTaskManagement));
             this.gbContainer = new System.Windows.Forms.GroupBox();
             this.txtState = new System.Windows.Forms.Label();
             this.cbImportance = new System.Windows.Forms.ComboBox();
@@ -52,7 +53,13 @@
             this.btnCreateTask = new System.Windows.Forms.Button();
             this.btnClear = new SynUp_Desktop.utilities.GenericButton();
             this.btnBack = new SynUp_Desktop.utilities.GenericButton();
+            this.btnHelp = new System.Windows.Forms.Button();
+            this.gbHelp = new System.Windows.Forms.GroupBox();
+            this.pbxIconMessage = new System.Windows.Forms.PictureBox();
+            this.lblHelpMessage = new System.Windows.Forms.Label();
             this.gbContainer.SuspendLayout();
+            this.gbHelp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxIconMessage)).BeginInit();
             this.SuspendLayout();
             // 
             // gbContainer
@@ -301,11 +308,53 @@
             this.btnBack.Size = new System.Drawing.Size(75, 40);
             this.btnBack.TabIndex = 12;
             // 
+            // btnHelp
+            // 
+            this.btnHelp.Location = new System.Drawing.Point(441, 336);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(28, 23);
+            this.btnHelp.TabIndex = 14;
+            this.btnHelp.Text = "?";
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnHelp_MouseClick);
+            // 
+            // gbHelp
+            // 
+            this.gbHelp.Controls.Add(this.pbxIconMessage);
+            this.gbHelp.Controls.Add(this.lblHelpMessage);
+            this.gbHelp.Location = new System.Drawing.Point(12, 365);
+            this.gbHelp.Name = "gbHelp";
+            this.gbHelp.Size = new System.Drawing.Size(533, 55);
+            this.gbHelp.TabIndex = 15;
+            this.gbHelp.TabStop = false;
+            this.gbHelp.Text = "Help";
+            // 
+            // pbxIconMessage
+            // 
+            this.pbxIconMessage.Location = new System.Drawing.Point(5, 15);
+            this.pbxIconMessage.Name = "pbxIconMessage";
+            this.pbxIconMessage.Size = new System.Drawing.Size(25, 25);
+            this.pbxIconMessage.TabIndex = 1;
+            this.pbxIconMessage.TabStop = false;
+            // 
+            // lblHelpMessage
+            // 
+            this.lblHelpMessage.AutoSize = true;
+            this.lblHelpMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHelpMessage.Location = new System.Drawing.Point(35, 16);
+            this.lblHelpMessage.MaximumSize = new System.Drawing.Size(430, 40);
+            this.lblHelpMessage.Name = "lblHelpMessage";
+            this.lblHelpMessage.Size = new System.Drawing.Size(82, 13);
+            this.lblHelpMessage.TabIndex = 0;
+            this.lblHelpMessage.Text = "Message help...";
+            // 
             // frmTaskManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(557, 366);
+            this.ClientSize = new System.Drawing.Size(555, 362);
+            this.Controls.Add(this.gbHelp);
+            this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnCreateTask);
@@ -313,6 +362,11 @@
             this.Controls.Add(this.btnUpdateTask);
             this.Controls.Add(this.btnDeleteTask);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(575, 470);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(575, 405);
             this.Name = "frmTaskManagement";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Task Management ";
@@ -320,6 +374,9 @@
             this.Load += new System.EventHandler(this.frmTaskManagement_Load);
             this.gbContainer.ResumeLayout(false);
             this.gbContainer.PerformLayout();
+            this.gbHelp.ResumeLayout(false);
+            this.gbHelp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxIconMessage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -350,5 +407,9 @@
         private System.Windows.Forms.Label txtState;
         private utilities.GenericButton btnBack;
         private utilities.GenericButton btnClear;
+        private System.Windows.Forms.Button btnHelp;
+        private System.Windows.Forms.GroupBox gbHelp;
+        private System.Windows.Forms.PictureBox pbxIconMessage;
+        private System.Windows.Forms.Label lblHelpMessage;
     }
 }
