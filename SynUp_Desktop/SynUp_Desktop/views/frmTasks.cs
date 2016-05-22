@@ -264,11 +264,6 @@ namespace SynUp_Desktop.views
             else if (pIcon == 3)
             {
                 _strFilename = Application.StartupPath + "\\views\\images\\information.png";
-        private void frmTasks_Load(object sender, EventArgs e)
-        {
-            dgvConfiguration();
-        }
-
             }
             //Configurates de icon message
             if (_strFilename != null)
