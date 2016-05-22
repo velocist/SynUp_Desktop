@@ -52,7 +52,7 @@ namespace SynUp_Desktop.views
         public frmTaskManagement()
         {
             InitializeComponent();
-        }        
+        }
 
         #region CRUD
 
@@ -266,7 +266,8 @@ namespace SynUp_Desktop.views
                     lblCode.ForeColor = Color.Black;
                     return true;
                 }
-            } else
+            }
+            else
             {
                 return true;
             }
@@ -343,7 +344,9 @@ namespace SynUp_Desktop.views
             //ToolTip1.IsBalloon = true;
             //ToolTips.SetToolTip(this.lblCode, "Task code.");
             //ToolTips.SetToolTip(lblDescription, "Description of the task.");
-        }        
+
+            this.blHELP = false;
+        }
 
         private void frmTaskManagement_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -366,6 +369,187 @@ namespace SynUp_Desktop.views
             AuxTask = null;
             lblCode.ForeColor = Color.Red;
         }
+
+        #region HELP
+
+        private Boolean blHELP = false;
+
+        private void btnHelp_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (blHELP)
+            {
+                blHELP = false;
+                this.Height = 405;
+                this.changeIconMessage(0);
+                this.lblHelpMessage.Text = "";
+                this.walkingControls();
+            }
+            else
+            {
+                blHELP = true;
+                this.Height = 470;
+                this.walkingControls();
+            }
+        }
+
+        /// <summary>
+        /// Event that runs when the mouse leaves labels
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void messageHelps_MouseLeave(object sender, EventArgs e)
+        {
+            if (blHELP)
+            {
+                this.changeIconMessage(0);
+                this.lblHelpMessage.Text = null;
+            }
+        }
+
+        /// <summary>
+        /// Event that runs when the mouse hover on components
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void messageHelps_MouseHover(object sender, EventArgs e)
+        {
+            if (blHELP)
+            {
+
+                if (sender.Equals(lblCode) || sender.Equals(txtCode))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "ambiar el DNI contacte con el administrador de la base de datos.";
+                }
+                else if (sender.Equals(lblName) || sender.Equals(txtName))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Nombre de la tarea.";
+                }
+                else if (sender.Equals(lblLocalization) || sender.Equals(txtLocalization))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Apellidos del trabajador.";
+                }
+                else if (sender.Equals(lblProject) || sender.Equals(txtProject))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Número de contacto del trabajador.";
+                }
+                else if (sender.Equals(lblPriorityDate) || sender.Equals(mcalPriorityDate))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Correo electrónico del trabajador. Se utilizará como nombre de usuario en el aplicación mobil";
+                }
+                else if (sender.Equals(lblDescription) || sender.Equals(txtDescription))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Dirección postal del trabajador.";
+                }
+                else if (sender.Equals(lblState) || sender.Equals(txtState))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Nombre de usuario que utiliza en la aplicación. Solamente puede ser modificado por el propio trabajador desde la app.";
+                }
+                else if (sender.Equals(lblImportance) || sender.Equals(cbImportance))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Nombre de usuario que utiliza en la aplicación. Solamente puede ser modificado por el propio trabajador desde la app.";
+                }
+                else if (sender.Equals(lblIdTeam) || sender.Equals(cbIdTeams))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Nombre de usuario que utiliza en la aplicación. Solamente puede ser modificado por el propio trabajador desde la app.";
+                }
+                else if (sender.Equals(btnCreateTask))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Clicke aquí para crear un nuevo trabajador.";
+                }
+                else if (sender.Equals(btnUpdateTask))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Clicke aquí para modificar los datos del trabajador.";
+                }
+                else if (sender.Equals(btnDeleteTask))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Clicke aquí para para eliminar el trabajador.";
+                }
+                else if (sender.Equals(btnClear))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Clicke aquí para limpiar los valores del formulario.";
+                }
+                else if (sender.Equals(btnBack))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// Method that walkings all controls in form
+        /// </summary>
+        /// <param name="pEnabled"></param>
+        private void walkingControls()
+        {
+            foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
+            {
+                if (_control is GroupBox)
+                {
+                    foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
+                    {
+                        _inGroupBox.MouseHover += new EventHandler(messageHelps_MouseHover);
+                        _inGroupBox.MouseLeave += new EventHandler(messageHelps_MouseLeave);
+                    }
+                }
+                if (_control is Button)
+                {
+                    _control.MouseHover += new EventHandler(messageHelps_MouseHover);
+                    _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
+                }
+                if (_control is GenericButton)
+                {
+                    _control.MouseHover += new EventHandler(messageHelps_MouseHover);
+                    _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Method that changes the icon message
+        /// </summary>
+        /// <param name="pIcon"></param>
+        private void changeIconMessage(int pIcon)
+        {
+            String _strFilename = null;
+            Bitmap _image = null;
+
+            if (pIcon == 1)
+            {
+                _strFilename = Application.StartupPath + "\\views\\images\\warning.png";
+            }
+            else if (pIcon == 2)
+            {
+                _strFilename = Application.StartupPath + "\\views\\images\\error.png";
+            }
+            else if (pIcon == 3)
+            {
+                _strFilename = Application.StartupPath + "\\views\\images\\information.png";
+            }
+            //Configurates de icon message
+            if (_strFilename != null)
+            {
+                _image = new Bitmap(_strFilename);
+            }
+            this.pbxIconMessage.Image = _image;
+
+        }
+
+        #endregion
 
         #region DEPRECATED METHODS
 
@@ -559,6 +743,7 @@ namespace SynUp_Desktop.views
         //}
 
         #endregion
+
 
     }
 }
