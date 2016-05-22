@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTeamManagement));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbContainer = new System.Windows.Forms.GroupBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.lblFilterEmployee = new System.Windows.Forms.Label();
             this.cmbFilterEmployees = new System.Windows.Forms.ComboBox();
@@ -49,7 +49,7 @@
             this.lblHelpMessage = new System.Windows.Forms.Label();
             this.btnClear = new SynUp_Desktop.utilities.GenericButton();
             this.btnBack = new SynUp_Desktop.utilities.GenericButton();
-            this.groupBox1.SuspendLayout();
+            this.gbContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployeesOnTeam)).BeginInit();
             this.gbHelp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxIconMessage)).BeginInit();
@@ -57,22 +57,22 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnAdd);
-            this.groupBox1.Controls.Add(this.lblFilterEmployee);
-            this.groupBox1.Controls.Add(this.cmbFilterEmployees);
-            this.groupBox1.Controls.Add(this.btnDeleteToTeam);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.dgvEmployeesOnTeam);
-            this.groupBox1.Controls.Add(this.lblCode);
-            this.groupBox1.Controls.Add(this.lblName);
-            this.groupBox1.Controls.Add(this.txtName);
-            this.groupBox1.Controls.Add(this.txtCode);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(612, 359);
-            this.groupBox1.TabIndex = 17;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Team";
+            this.gbContainer.Controls.Add(this.btnAdd);
+            this.gbContainer.Controls.Add(this.lblFilterEmployee);
+            this.gbContainer.Controls.Add(this.cmbFilterEmployees);
+            this.gbContainer.Controls.Add(this.btnDeleteToTeam);
+            this.gbContainer.Controls.Add(this.label1);
+            this.gbContainer.Controls.Add(this.dgvEmployeesOnTeam);
+            this.gbContainer.Controls.Add(this.lblCode);
+            this.gbContainer.Controls.Add(this.lblName);
+            this.gbContainer.Controls.Add(this.txtName);
+            this.gbContainer.Controls.Add(this.txtCode);
+            this.gbContainer.Location = new System.Drawing.Point(12, 12);
+            this.gbContainer.Name = "groupBox1";
+            this.gbContainer.Size = new System.Drawing.Size(612, 359);
+            this.gbContainer.TabIndex = 17;
+            this.gbContainer.TabStop = false;
+            this.gbContainer.Text = "Team";
             // 
             // btnAdd
             // 
@@ -87,7 +87,7 @@
             // lblFilterEmployee
             // 
             this.lblFilterEmployee.AutoSize = true;
-            this.lblFilterEmployee.Location = new System.Drawing.Point(7, 340);
+            this.lblFilterEmployee.Location = new System.Drawing.Point(7, 335);
             this.lblFilterEmployee.Name = "lblFilterEmployee";
             this.lblFilterEmployee.Size = new System.Drawing.Size(82, 13);
             this.lblFilterEmployee.TabIndex = 8;
@@ -96,7 +96,7 @@
             // cmbFilterEmployees
             // 
             this.cmbFilterEmployees.FormattingEnabled = true;
-            this.cmbFilterEmployees.Location = new System.Drawing.Point(95, 332);
+            this.cmbFilterEmployees.Location = new System.Drawing.Point(95, 331);
             this.cmbFilterEmployees.Name = "cmbFilterEmployees";
             this.cmbFilterEmployees.Size = new System.Drawing.Size(121, 21);
             this.cmbFilterEmployees.TabIndex = 7;
@@ -200,15 +200,15 @@
             this.btnHelp.TabIndex = 25;
             this.btnHelp.Text = "?";
             this.btnHelp.UseVisualStyleBackColor = true;
-            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_MouseClick);
             // 
             // gbHelp
             // 
             this.gbHelp.Controls.Add(this.pbxIconMessage);
             this.gbHelp.Controls.Add(this.lblHelpMessage);
-            this.gbHelp.Location = new System.Drawing.Point(12, 419);
+            this.gbHelp.Location = new System.Drawing.Point(12, 423);
             this.gbHelp.Name = "gbHelp";
-            this.gbHelp.Size = new System.Drawing.Size(612, 56);
+            this.gbHelp.Size = new System.Drawing.Size(612, 52);
             this.gbHelp.TabIndex = 26;
             this.gbHelp.TabStop = false;
             this.gbHelp.Text = "Help";
@@ -243,8 +243,7 @@
             this.btnClear.Name = "btnClear";
             this.btnClear.Parent = this;
             this.btnClear.Size = new System.Drawing.Size(75, 40);
-            this.btnClear.TabIndex = 24;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            this.btnClear.TabIndex = 10;
             // 
             // btnBack
             // 
@@ -257,13 +256,13 @@
             this.btnBack.Name = "btnBack";
             this.btnBack.Parent = this;
             this.btnBack.Size = new System.Drawing.Size(75, 40);
-            this.btnBack.TabIndex = 23;
+            this.btnBack.TabIndex = 12;
             // 
             // frmTeamManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(634, 481);
+            this.ClientSize = new System.Drawing.Size(630, 422);
             this.Controls.Add(this.gbHelp);
             this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.btnClear);
@@ -271,7 +270,7 @@
             this.Controls.Add(this.btnCreateTeam);
             this.Controls.Add(this.btnDeleteTeam);
             this.Controls.Add(this.btnUpdateTeam);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbContainer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -284,8 +283,8 @@
             this.Activated += new System.EventHandler(this.frmTeamManagement_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmTeamManagement_FormClosing);
             this.Load += new System.EventHandler(this.frmTeamManagement_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbContainer.ResumeLayout(false);
+            this.gbContainer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployeesOnTeam)).EndInit();
             this.gbHelp.ResumeLayout(false);
             this.gbHelp.PerformLayout();
@@ -297,7 +296,7 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbContainer;
         private System.Windows.Forms.Label lblCode;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.TextBox txtName;

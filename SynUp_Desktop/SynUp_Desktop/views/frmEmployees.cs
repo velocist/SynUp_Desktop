@@ -71,7 +71,7 @@ namespace SynUp_Desktop.views
             this.fillComboTeams();
 
             //TODO: Voy a probar de limpiar el auxiliar de empleado desde aqui a ver si no falla. FUNCIONA
-            this.Controller.EmployeeMgtView.AuxEmployee = null;
+            //this.Controller.EmployeeMgtView.AuxEmployee = null;
 
             //We configures the groupbox help
             this._blHelp = false;
@@ -134,6 +134,16 @@ namespace SynUp_Desktop.views
 
                 }
             }
+        }
+
+        /// <summary>
+        /// Event that forms is closed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmEmployees_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _blHelp = false;
         }
 
         /// <summary>
@@ -373,15 +383,15 @@ namespace SynUp_Desktop.views
 
             if (pIcon == 1)
             {
-                _strFilename = Application.StartupPath + "\\warning.png";
+                _strFilename = Application.StartupPath + "\\views\\images\\warning.png";
             }
             else if (pIcon == 2)
             {
-                _strFilename = Application.StartupPath + "\\error.png";
+                _strFilename = Application.StartupPath + "\\views\\images\\error.png";
             }
             else if (pIcon == 3)
             {
-                _strFilename = Application.StartupPath + "\\information.png";
+                _strFilename = Application.StartupPath + "\\views\\images\\information.png";
 
             }
             //Configurates de icon message
@@ -393,20 +403,10 @@ namespace SynUp_Desktop.views
 
         }
 
+
         #endregion
 
-        private void btnBack_Load(object sender, EventArgs e)
-        {
-            this.dgvConfiguration();
-            this.frmEmployees_Activated(sender, e);
 
-            //Form Common Configurations
-            this.FormBorderStyle = FormBorderStyle.Fixed3D;
-            this.MinimizeBox = false;
-            this.MaximizeBox = false;
-            this.ShowInTaskbar = true;
-
-        }
     }
 }
 

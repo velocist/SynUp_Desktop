@@ -86,6 +86,9 @@ namespace SynUp_Desktop.views
                     String _strSelectedRowCode = _cell.ToString(); // Recover the code
                     _oSelectedTeam = Controller.TeamService.readTeam(_strSelectedRowCode); // We look for the employee nif
                     this.Controller.TeamMgtView.AuxTeam = _oSelectedTeam; // We assign the team to form team management
+                } else
+                {
+                    this.Controller.TeamMgtView.AuxTeam = null;
                 }
             }
 
@@ -245,15 +248,15 @@ namespace SynUp_Desktop.views
 
             if (pIcon == 1)
             {
-                _strFilename = Application.StartupPath + "\\warning.png";
+                _strFilename = Application.StartupPath + "\\views\\images\\warning.png";
             }
             else if (pIcon == 2)
             {
-                _strFilename = Application.StartupPath + "\\error.png";
+                _strFilename = Application.StartupPath + "\\views\\images\\error.png";
             }
             else if (pIcon == 3)
             {
-                _strFilename = Application.StartupPath + "\\information.png";
+                _strFilename = Application.StartupPath + "\\views\\images\\information.png";
 
             }
             //Configurates de icon message

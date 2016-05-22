@@ -311,12 +311,10 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void frmEmployeeManagement_Load(object sender, EventArgs e)
         {
-
             //Form Common Configurations
             this.FormBorderStyle = FormBorderStyle.Fixed3D;
             this.MinimizeBox = false;
             this.MaximizeBox = false;
-            //this.ShowInTaskbar = false;
         }
 
         /// <summary>
@@ -326,7 +324,6 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void frmEmployeeManagement_Activated(object sender, EventArgs e)
         {
-
             if (AuxEmployee != null)
             {
                 // We recover the data of selected employee
@@ -349,11 +346,17 @@ namespace SynUp_Desktop.views
                 this.txtNif.Enabled = true;
                 this.btnUpdateEmployee.Enabled = false;
                 this.btnDeleteEmployee.Enabled = false;
-                this.clearValues();
+                //this.clearValues();
             }
 
             this.setToolTips(); //Sets the tooltips for the view
             this._blHelp = false;
+        }
+
+        private void frmEmployeeManagement_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.AuxEmployee = null;
+            _blHelp = false;
         }
 
         /// <summary>
@@ -361,7 +364,11 @@ namespace SynUp_Desktop.views
         /// </summary>
         private void clearValues()
         {
-            foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
+            this.btnCreate.Enabled = true;
+            this.btnUpdateEmployee.Enabled = false;
+            this.btnDeleteEmployee.Enabled = false;
+            this.txtNif.Enabled = true;
+            /*foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
             {
                 if (_control is GroupBox)
                 {
@@ -378,7 +385,7 @@ namespace SynUp_Desktop.views
                         }
                     }
                 }
-            }
+            }*/
         }
 
         /// <summary>
@@ -412,12 +419,13 @@ namespace SynUp_Desktop.views
                 this.Height = 290;
                 this.changeIconMessage(0);
                 this.lblHelpMessage.Text = "";
-                this.walkingControls(true);
+                this.walkingControls();
             }
             else
             {
                 _blHelp = true;
                 this.Height = 360;
+                this.walkingControls();
             }
         }
 
@@ -514,7 +522,7 @@ namespace SynUp_Desktop.views
         /// Method that walkings all controls in form
         /// </summary>
         /// <param name="pEnabled"></param>
-        private void walkingControls(Boolean pEnabled)
+        private void walkingControls()
         {
             foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
             {
@@ -550,16 +558,15 @@ namespace SynUp_Desktop.views
 
             if (pIcon == 1)
             {
-                _strFilename = Application.StartupPath + "\\warning.png";
+                _strFilename = Application.StartupPath + "\\views\\images\\warning.png";
             }
             else if (pIcon == 2)
             {
-                _strFilename = Application.StartupPath + "\\error.png";
+                _strFilename = Application.StartupPath + "\\views\\images\\error.png";
             }
             else if (pIcon == 3)
             {
-                _strFilename = Application.StartupPath + "\\information.png";
-
+                _strFilename = Application.StartupPath + "\\views\\images\\information.png";
             }
             //Configurates de icon message
             if (_strFilename != null)

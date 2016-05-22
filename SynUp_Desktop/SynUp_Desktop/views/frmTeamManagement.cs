@@ -179,7 +179,7 @@ namespace SynUp_Desktop.views
         {
             this.AuxEmployee = null;
             this.AuxTeam = null;
-            this.btnClear_Click(sender, e);
+            //this.btnClear_Click(sender, e);
         }
 
         /// <summary>
@@ -204,7 +204,7 @@ namespace SynUp_Desktop.views
             }
         }
 
-        /// <summary>
+        /*/// <summary>
         /// Event that runs when the button clear is clicked
         /// </summary>
         /// <param name="sender"></param>
@@ -213,9 +213,10 @@ namespace SynUp_Desktop.views
         {
             //Note: he tenido que agregarlo porque el datagrid no se reseteaba con la funcion del generico. 
             //He probado de añadirle la condicion del datagridview pero no ha hecho nada.
+            // Ya esta arreglado
             this.clearValues();
 
-            /*DELETE: Cristina C. Ya lo hace el boton generico
+            /*kDELETE: Cristina C. Ya lo hace el boton generico
             this.clearValues();
 
             if (this.btnCreateTeam.Enabled == false)
@@ -226,11 +227,11 @@ namespace SynUp_Desktop.views
                 this.btnDeleteTeam.Enabled = false;
                 this.btnUpdateTeam.Enabled = false;
 
-            }*/
+            }
         }
-
+    */
         /// <summary>
-        /// 
+        /// Event that rusn when the button delete to team is clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -284,7 +285,7 @@ namespace SynUp_Desktop.views
             this.dgvEmployeesOnTeam.ClearSelection(); // Clear selection rows          
         }
 
-        /// <summary>
+        /*/// <summary>
         /// Clear values of textboxs
         /// </summary>
         private void clearValues()
@@ -295,7 +296,7 @@ namespace SynUp_Desktop.views
             this.dgvConfiguration();
             this.dgvEmployeesOnTeam.Refresh();
 
-        }
+        }*/
 
         /// <summary>
         /// Method that configures the datagrid of employees in Team
@@ -303,11 +304,8 @@ namespace SynUp_Desktop.views
         private void fillDataGrid()
         {
             BindingSource source = new BindingSource();
-            if (this.dgvEmployeesOnTeam.DataSource == null)
-            {
-                this.dgvEmployeesOnTeam.DataSource = new List<String>();
-            }
-            else
+            //if (this.dgvEmployeesOnTeam.DataSource == null) source.DataSource = new List<String>();
+            if (this.AuxTeam != null)
             {
                 source.DataSource = this.Controller.TeamHistoryService.getAllTeamHistoriesByTeam(this.AuxTeam.code);
             }
@@ -357,7 +355,7 @@ namespace SynUp_Desktop.views
                 }
             }
         }
-        
+
         #region HELP
 
         private Boolean _blHelp = false;
@@ -367,7 +365,7 @@ namespace SynUp_Desktop.views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnHelp_Click(object sender, EventArgs e)
+        private void btnHelp_MouseClick(object sender, EventArgs e)
         {
             if (_blHelp)
             {
@@ -375,12 +373,13 @@ namespace SynUp_Desktop.views
                 this.Height = 460;
                 this.changeIconMessage(0);
                 this.lblHelpMessage.Text = "";
-                this.walkingControls(true);
+                this.walkingControls();
             }
             else
             {
                 _blHelp = true;
                 this.Height = 520;
+                this.walkingControls();
             }
         }
 
@@ -407,37 +406,30 @@ namespace SynUp_Desktop.views
         {
             if (_blHelp)
             {
-
                 if (sender.Equals(lblCode) || sender.Equals(txtCode))
                 {
                     this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Documento nacional de identidad. No puede estar vacío y tiene que ser válido."
-                        + "En caso de tener que cambiar el DNI contacte con el administrador de la base de datos.";
+                    this.lblHelpMessage.Text = "Codigo de equipo";
                 }
                 else if (sender.Equals(lblName) || sender.Equals(txtName))
                 {
                     this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Nombre del trabajador.";
-                }
-                else if (sender.Equals(lblName) || sender.Equals(txtName))
-                {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Apellidos del trabajador.";
+                    this.lblHelpMessage.Text = "Nombre del del equipo.";
                 }
                 else if (sender.Equals(btnCreateTeam))
                 {
                     this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Clicke aquí para crear un nuevo trabajador.";
+                    this.lblHelpMessage.Text = "Clicke aquí para crear un nuevo equipo.";
                 }
                 else if (sender.Equals(btnUpdateTeam))
                 {
                     this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Clicke aquí para modificar los datos del trabajador.";
+                    this.lblHelpMessage.Text = "Clicke aquí para modificar los datos del equipo.";
                 }
                 else if (sender.Equals(btnDeleteTeam))
                 {
                     this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Clicke aquí para para eliminar el trabajador.";
+                    this.lblHelpMessage.Text = "Clicke aquí para para eliminar el equipo.";
                 }
                 else if (sender.Equals(btnClear))
                 {
@@ -449,6 +441,21 @@ namespace SynUp_Desktop.views
                     this.changeIconMessage(3);
                     this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
                 }
+                else if (sender.Equals(lblFilterEmployee) || sender.Equals(cmbFilterEmployees))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Filtrar empleados por";
+                }
+                else if (sender.Equals(btnAdd))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Clicka aquí para añadir al equipo";
+                }
+                else if (sender.Equals(btnDeleteToTeam))
+                {
+                    this.changeIconMessage(3);
+                    this.lblHelpMessage.Text = "Clicka aquí para eliminar del equipo";
+                }
 
             }
         }
@@ -457,7 +464,7 @@ namespace SynUp_Desktop.views
         /// Method that walkings all controls in form
         /// </summary>
         /// <param name="pEnabled"></param>
-        private void walkingControls(Boolean pEnabled)
+        private void walkingControls()
         {
             foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
             {
@@ -493,16 +500,15 @@ namespace SynUp_Desktop.views
 
             if (pIcon == 1)
             {
-                _strFilename = Application.StartupPath + "\\warning.png";
+                _strFilename = Application.StartupPath + "\\views\\images\\warning.png";
             }
             else if (pIcon == 2)
             {
-                _strFilename = Application.StartupPath + "\\error.png";
+                _strFilename = Application.StartupPath + "\\views\\images\\error.png";
             }
             else if (pIcon == 3)
             {
-                _strFilename = Application.StartupPath + "\\information.png";
-
+                _strFilename = Application.StartupPath + "\\views\\images\\information.png";
             }
             //Configurates de icon message
             if (_strFilename != null)
@@ -513,19 +519,7 @@ namespace SynUp_Desktop.views
 
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        private void messageWrong()
-        {
-            this.Height = 360;
-            this.changeIconMessage(2);
-            this.lblHelpMessage.Text = "El nif i/o el email no puede estar vacío.";
-
-        }
-
         #endregion
-
 
     }
 }

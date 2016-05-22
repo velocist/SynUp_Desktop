@@ -216,6 +216,7 @@
             this.txtUsername.Location = new System.Drawing.Point(268, 28);
             this.txtUsername.MaxLength = 500;
             this.txtUsername.Name = "txtUsername";
+            this.txtUsername.ReadOnly = true;
             this.txtUsername.Size = new System.Drawing.Size(170, 20);
             this.txtUsername.TabIndex = 0;
             this.txtUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -328,6 +329,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Employee Management";
             this.Activated += new System.EventHandler(this.frmEmployeeManagement_Activated);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEmployeeManagement_FormClosing);
             this.Load += new System.EventHandler(this.frmEmployeeManagement_Load);
             this.gbContainer.ResumeLayout(false);
             this.gbContainer.PerformLayout();
