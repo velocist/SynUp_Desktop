@@ -523,7 +523,6 @@ namespace SynUp_Desktop.views
                     //this.changeIconMessage(3);
                     //this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
                 }
-
             }
         }
 
@@ -555,9 +554,7 @@ namespace SynUp_Desktop.views
                 }
             }
         }
-
-
-
+        
         /// <summary>
         /// Methd that sohws message wrong
         /// </summary>
@@ -703,3 +700,39 @@ private void frmEmployeeManagement_Load(object sender, EventArgs e)
     //this.setToolTips(); //Sets the tooltips for the view
     //this._blHelp = false;
 }*/
+
+/* DELETE: Pablo Ardèvol 230516 - Se mueve a la classe utilities.Help
+
+/// <summary>
+    /// Method that changes the icon message
+    /// </summary>
+    /// <param name="pIcon"></param>
+    private void changeIconMessage(int pIcon)
+    {
+        String _strFilename = null;
+        Bitmap _image = null;
+
+        if (pIcon == (int)HelpIcon.WARNING)
+        {
+            _strFilename = Application.StartupPath + Literal.WARNING_ICON;
+        }
+        else if (pIcon == (int)HelpIcon.ERROR)
+        {
+            _strFilename = Application.StartupPath + Literal.ERROR_ICON;
+        }
+        else if (pIcon == (int)HelpIcon.INFORMATION)
+        {
+            _strFilename = Application.StartupPath + Literal.INFORMATION_ICON;
+        }
+
+        //Configurates de icon message
+        if (_strFilename != null)
+        {
+            _image = new Bitmap(_strFilename);
+        }
+
+        this.pbxIconMessage.Image = _image;
+
+    }
+
+*/
