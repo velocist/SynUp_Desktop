@@ -80,6 +80,10 @@ namespace SynUp_Desktop.views
                 Boolean _blCreate = Controller.TeamService.createTeam(_strCode, _strName);
                 clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "team", _blCreate, this);
             }
+            else
+            {
+                clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
+            }
 
         }
 
@@ -92,7 +96,7 @@ namespace SynUp_Desktop.views
         {
             Boolean _blDelete = false;
 
-            if (confirmationDialog("Are you sure you want to delete this team?"))
+            if (Util.confirmationDialog(Literal.CONFIRMATION_DELETE_TEAM))
             {
                 Team deleteTeam = Controller.TeamService.deleteTeam(AuxTeam);
                 if (deleteTeam != null)
@@ -118,12 +122,18 @@ namespace SynUp_Desktop.views
             String _strName = txtName.Text;
             String _strCode = txtCode.Text;
 
-            if (confirmationDialog("Are you sure you want to update this team?"))
+            if (checkCode())
             {
-                Boolean _blUpdate = this.Controller.TeamService.updateTeam(_strCode, _strName);
-                clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.UPDATE, "team", _blUpdate, this);
+                if (Util.confirmationDialog(Literal.CONFIRMATION_UPDATE_TEAM))
+                {
+                    Boolean _blUpdate = this.Controller.TeamService.updateTeam(_strCode, _strName);
+                    clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.UPDATE, "team", _blUpdate, this);
+                }
             }
-
+            else
+            {
+                clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
+            }
         }
 
         #endregion
@@ -255,6 +265,7 @@ namespace SynUp_Desktop.views
         {
             this.AuxEmployee = null;
             this.AuxTeam = null;
+            _blHelp = false;
             //this.btnClear_Click(sender, e);
         }
 
@@ -280,32 +291,7 @@ namespace SynUp_Desktop.views
             }
         }
 
-        /*/// <summary>
-        /// Event that runs when the button clear is clicked
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            //Note: he tenido que agregarlo porque el datagrid no se reseteaba con la funcion del generico. 
-            //He probado de añadirle la condicion del datagridview pero no ha hecho nada.
-            // Ya esta arreglado
-            this.clearValues();
 
-            /*kDELETE: Cristina C. Ya lo hace el boton generico
-            this.clearValues();
-
-            if (this.btnCreateTeam.Enabled == false)
-            {
-                this.btnCreateTeam.Enabled = true;
-                this.AuxTeam = null;
-                if (txtCode.Enabled == false) txtCode.Enabled = true;
-                this.btnDeleteTeam.Enabled = false;
-                this.btnUpdateTeam.Enabled = false;
-
-            }
-        }
-    */
         /// <summary>
         /// Event that rusn when the button delete to team is clicked
         /// </summary>
@@ -336,7 +322,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Not implemented.\n# Poner ventana con los employees y el que se seleccione se añada");
+            MessageBox.Show("Not implemented.\n#Poner ventana con los employees y el que se seleccione se añada");
             //Controller.EmployeeView.ShowDialog();
         }
 
@@ -364,19 +350,6 @@ namespace SynUp_Desktop.views
             //dgvEmployeesOnTeam.Columns[0].Visible = false;       
         }
 
-        /*/// <summary>
-        /// Clear values of textboxs
-        /// </summary>
-        private void clearValues()
-        {
-            this.AuxEmployee = null;
-            this.AuxTeam = null;
-            this.dgvEmployeesOnTeam.DataSource = null;
-            this.dgvConfiguration();
-            this.dgvEmployeesOnTeam.Refresh();
-
-        }*/
-
         /// <summary>
         /// Method that configures the datagrid of employees in Team
         /// </summary>
@@ -391,21 +364,6 @@ namespace SynUp_Desktop.views
             this.dgvEmployeesOnTeam.DataSource = source;
             this.dgvEmployeesOnTeam.Refresh();
         }
-
-        /* NOT IMPLEMENTED
-        /// <summary>
-        /// Method that fill combobox filter of employees
-        /// </summary>
-        //public void fillComboFilterEmployees()
-        //{
-        //    this.cmbFilterEmployees.Items.Clear();
-        //    this.cmbFilterEmployees.Items.Add("Current");
-        //    this.cmbFilterEmployees.Items.Add("Past");
-        //    this.cmbFilterEmployees.Items.Add("All");
-
-        //    this.cmbFilterEmployees.SelectedIndex = 0;
-        //}
-        */
 
         /// <summary>
         /// Deleted selected employee to team
@@ -437,16 +395,6 @@ namespace SynUp_Desktop.views
             }
         }
 
-        /// <summary>
-        /// Confirmation dialog that will let the user confirm they action or cancel it.
-        /// </summary>
-        /// <param name="message"></param>
-        /// <returns>Button click</returns>
-        private bool confirmationDialog(string message)
-        {
-            return (MessageBox.Show(message, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
-        }
-
         #region HELP        
 
         /// <summary>
@@ -456,20 +404,9 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnHelp_MouseClick(object sender, EventArgs e)
         {
-            if (_blHelp)
-            {
-                _blHelp = false;
-                this.Height = 460;
-                this.changeIconMessage(0);
-                this.lblHelpMessage.Text = "";
-                this.walkingControls();
-            }
-            else
-            {
-                _blHelp = true;
-                this.Height = 520;
-                this.walkingControls();
-            }
+            _blHelp = utilities.Help.hideShowHelp(_blHelp, this);
+            if (_blHelp) this.HelpMessage("", (int)HelpIcon.WARNING);
+            this.walkingControls();
         }
 
         /// <summary>
@@ -481,8 +418,7 @@ namespace SynUp_Desktop.views
         {
             if (_blHelp)
             {
-                this.changeIconMessage(0);
-                this.lblHelpMessage.Text = null;
+                this.HelpMessage("", (int)HelpIcon.WARNING);
             }
         }
 
@@ -495,40 +431,36 @@ namespace SynUp_Desktop.views
         {
             if (_blHelp)
             {
+                int _icon = (int)HelpIcon.INFORMATION;
+                String _message = "";
+
                 if (sender.Equals(lblCode) || sender.Equals(txtCode))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Codigo de equipo";
+                    _message = Literal.INFO_CODE_TEAM;
                 }
                 else if (sender.Equals(lblName) || sender.Equals(txtName))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Nombre del del equipo.";
+                    _message = Literal.INFO_NAME_TEAM;
                 }
                 else if (sender.Equals(btnCreateTeam))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Clicke aquí para crear un nuevo equipo.";
+                    _message = Literal.INFO_BTN_CREATE;
                 }
                 else if (sender.Equals(btnUpdateTeam))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Clicke aquí para modificar los datos del equipo.";
+                    _message = Literal.INFO_BTN_UPDATE;
                 }
                 else if (sender.Equals(btnDeleteTeam))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Clicke aquí para para eliminar el equipo.";
+                    _message = Literal.INFO_BTN_DELETE;
                 }
                 else if (sender.Equals(btnClear))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Clicke aquí para limpiar los valores del formulario.";
+                    _message = Literal.INFO_BTN_CLEAR;
                 }
                 else if (sender.Equals(btnBack))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
+                    _message = Literal.INFO_BTN_BACK;
                 }
                 /*else if (sender.Equals(lblFilterEmployee) || sender.Equals(cmbFilterEmployees))
                 {
@@ -537,15 +469,14 @@ namespace SynUp_Desktop.views
                 }*/
                 else if (sender.Equals(btnAdd))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Clicka aquí para añadir al equipo";
+                    _message = Literal.INFO_ADD_TEAM;
                 }
                 else if (sender.Equals(btnDeleteToTeam))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Clicka aquí para eliminar del equipo";
+                    _message = Literal.INFO_DELETE_TEAM;
                 }
 
+                this.HelpMessage(_message, _icon);
             }
         }
 
@@ -579,33 +510,13 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// Method that changes the icon message
+        /// Methd that sohws message wrong
         /// </summary>
-        /// <param name="pIcon"></param>
-        private void changeIconMessage(int pIcon)
+        private void HelpMessage(String message, int icon)
         {
-            String _strFilename = null;
-            Bitmap _image = null;
-
-            if (pIcon == 1)
-            {
-                _strFilename = Application.StartupPath + "\\views\\images\\warning.png";
-            }
-            else if (pIcon == 2)
-            {
-                _strFilename = Application.StartupPath + "\\views\\images\\error.png";
-            }
-            else if (pIcon == 3)
-            {
-                _strFilename = Application.StartupPath + "\\views\\images\\information.png";
-            }
-            //Configurates de icon message
-            if (_strFilename != null)
-            {
-                _image = new Bitmap(_strFilename);
-            }
-            this.pbxIconMessage.Image = _image;
-
+            this.Height = 360;
+            this.pbxIconMessage.Image = utilities.Help.changeIconMessage(icon);
+            this.lblHelpMessage.Text = message;
         }
 
         #endregion
@@ -616,7 +527,7 @@ namespace SynUp_Desktop.views
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnClear_Click(object sender, EventArgs e)
-        {            
+        {
             auxTeam = null;
             auxEmployee = null;
             dgvEmployeesOnTeam.DataSource = null;
@@ -637,4 +548,93 @@ namespace SynUp_Desktop.views
         this.clearValues();
         this.Close();
     }*/
+
+/* DELETED CLEARVALUES
+  /// <summary>
+  /// Clear values of textboxs
+  /// </summary>
+  private void clearValues()
+  {
+      this.AuxEmployee = null;
+      this.AuxTeam = null;
+      this.dgvEmployeesOnTeam.DataSource = null;
+      this.dgvConfiguration();
+      this.dgvEmployeesOnTeam.Refresh();
+
+  }*/
+
+/* NOT IMPLEMENTED
+   /// <summary>
+   /// Method that fill combobox filter of employees
+   /// </summary>
+   //public void fillComboFilterEmployees()
+   //{
+   //    this.cmbFilterEmployees.Items.Clear();
+   //    this.cmbFilterEmployees.Items.Add("Current");
+   //    this.cmbFilterEmployees.Items.Add("Past");
+   //    this.cmbFilterEmployees.Items.Add("All");
+
+   //    this.cmbFilterEmployees.SelectedIndex = 0;
+   //}
+   */
+
+/*DELETED - CLEAR BUTTON
+    /// <summary> 
+    /// Event that runs when the button clear is clicked
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void btnClear_Click(object sender, EventArgs e)
+    {
+        //Note: he tenido que agregarlo porque el datagrid no se reseteaba con la funcion del generico. 
+        //He probado de añadirle la condicion del datagridview pero no ha hecho nada.
+        // Ya esta arreglado
+        this.clearValues();
+
+        /*kDELETE: Cristina C. Ya lo hace el boton generico
+        this.clearValues();
+
+        if (this.btnCreateTeam.Enabled == false)
+        {
+            this.btnCreateTeam.Enabled = true;
+            this.AuxTeam = null;
+            if (txtCode.Enabled == false) txtCode.Enabled = true;
+            this.btnDeleteTeam.Enabled = false;
+            this.btnUpdateTeam.Enabled = false;
+
+        }
+    }
+*/
+
+/* DELETED MOVED TO utilities
+   /// <summary>
+   /// Method that changes the icon message
+   /// </summary>
+   /// <param name="pIcon"></param>
+   private void changeIconMessage(int pIcon)
+   {
+       String _strFilename = null;
+       Bitmap _image = null;
+
+       if (pIcon == 1)
+       {
+           _strFilename = Application.StartupPath + "\\views\\images\\warning.png";
+       }
+       else if (pIcon == 2)
+       {
+           _strFilename = Application.StartupPath + "\\views\\images\\error.png";
+       }
+       else if (pIcon == 3)
+       {
+           _strFilename = Application.StartupPath + "\\views\\images\\information.png";
+       }
+       //Configurates de icon message
+       if (_strFilename != null)
+       {
+           _image = new Bitmap(_strFilename);
+       }
+       this.pbxIconMessage.Image = _image;
+
+   }
+   */
 

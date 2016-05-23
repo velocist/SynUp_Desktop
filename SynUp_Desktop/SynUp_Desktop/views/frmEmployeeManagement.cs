@@ -368,37 +368,7 @@ namespace SynUp_Desktop.views
         {
             this.AuxEmployee = null;
             _blHelp = false;
-        }
-
-        /*DEPRECATED METHOD. - Moved to the generic button
-        /// <summary>
-        /// Method that cleans values
-        /// </summary>        
-        private void clearValues() 
-        {
-            this.btnCreate.Enabled = true;
-            this.btnUpdateEmployee.Enabled = false;
-            this.btnDeleteEmployee.Enabled = false;
-            this.txtNif.Enabled = true;
-            /*foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
-            {
-                if (_control is GroupBox)
-                {
-                    foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
-                    {
-                        if (_inGroupBox is TextBox)
-                        {
-                            _inGroupBox.Text = "";
-
-                        }
-                        if (_inGroupBox is Label)
-                        {
-                            _inGroupBox.ForeColor = Color.Black;
-                        }
-                    }
-                }
-            }
-        }*/
+        }       
 
         /// <summary>
         /// Method that sets the tooltips for the view
@@ -741,3 +711,33 @@ private void frmEmployeeManagement_Load(object sender, EventArgs e)
     }
 
 */
+
+/*DEPRECATED METHOD. - Moved to the generic button
+   /// <summary>
+   /// Method that cleans values
+   /// </summary>        
+   private void clearValues() 
+   {
+       this.btnCreate.Enabled = true;
+       this.btnUpdateEmployee.Enabled = false;
+       this.btnDeleteEmployee.Enabled = false;
+       this.txtNif.Enabled = true;
+       /*foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
+       {
+           if (_control is GroupBox)
+           {
+               foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
+               {
+                   if (_inGroupBox is TextBox)
+                   {
+                       _inGroupBox.Text = "";
+
+                   }
+                   if (_inGroupBox is Label)
+                   {
+                       _inGroupBox.ForeColor = Color.Black;
+                   }
+               }
+           }
+       }
+   }*/

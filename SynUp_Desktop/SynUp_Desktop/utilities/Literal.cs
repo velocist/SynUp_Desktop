@@ -37,6 +37,11 @@ namespace SynUp_Desktop.utilities
         public static readonly string INFO_IMPORTANCE_TASK = "";
         public static readonly string INFO_IDTEAM_TASK = "";
 
+        public static readonly string INFO_CODE_TEAM = "";
+        public static readonly string INFO_NAME_TEAM = "";
+        public static readonly string INFO_ADD_TEAM = "";
+        public static readonly string INFO_DELETE_TEAM = "";
+
         public static readonly string INFO_BTN_CREATE = "Click here to create it.";
         public static readonly string INFO_BTN_UPDATE = "Click here to update it.";
         public static readonly string INFO_BTN_DELETE = "Click here to delete it.";
