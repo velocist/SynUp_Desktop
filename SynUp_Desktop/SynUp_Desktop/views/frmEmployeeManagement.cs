@@ -56,16 +56,18 @@ namespace SynUp_Desktop.views
             String _strAdress = txtAdress.Text;
 
             Boolean _blCreateOk;
-            if (!txtNif.Text.Equals("") && !txtEmail.Text.Equals("")) //Pablo Ardèvol 22/05 1553, Método pulido.  -- == se convierte en Equals para strings.      
-            {
+            //Note: Lo he quitado porque sino no comprobaba al cambiar el texto del nif y se podia poner uno existente 
+            //y que no salia en rojo.
+            //if (!txtNif.Text.Equals("") && !txtEmail.Text.Equals("")) //Pablo Ardèvol 22/05 1553, Método pulido.  -- == se convierte en Equals para strings.      
+            //{
                 if (this.validateFields())
                 {
                     _blCreateOk = this.Controller.EmployeeService.createEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress);
                     /*utilities.clMessageBox _msgBox = new utilities.*//// MODIFICATION - Pablo, 170516, clMessageBox made static to access the methods without having to create an object of the class.
                     clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "employee", _blCreateOk, this);
                 }
-            }
-            else if (this.txtNif.Text == "" || this.txtEmail.Text == "")
+            //}
+            else if (txtNif.Text.Equals("") || txtEmail.Text.Equals(""))
             {
                 this.messageWrong();
             }
@@ -98,7 +100,7 @@ namespace SynUp_Desktop.views
             String _strAdress = txtAdress.Text;
             String _strUsername = txtUsername.Text;
 
-            
+
             if (!txtEmail.Text.Equals(""))
             {
                 if (this.checkEmail())
@@ -214,23 +216,23 @@ namespace SynUp_Desktop.views
             {
                 string _strNif = "";
 
-                //if (txtNif.Text != "")
-                //{
-                String _strNifExpression = "^\\d{8}[a-zA-Z]$";
-                _strNif = txtNif.Text;
-                Employee _oEmployee = Controller.EmployeeService.readEmployee(_strNif); // We look for if the employee already exists
+                if (txtNif.Text != "")
+                {
+                    String _strNifExpression = "^\\d{8}[a-zA-Z]$";
+                    _strNif = txtNif.Text;
+                    Employee _oEmployee = Controller.EmployeeService.readEmployee(_strNif); // We look for if the employee already exists
 
-                if (_oEmployee != null || !Regex.Match(_strNif, _strNifExpression).Success) // If the employee exists, we show a message
-                {
-                    lblNif.ForeColor = Color.Red;
-                    _blNif = false;
+                    if (_oEmployee != null || !Regex.Match(_strNif, _strNifExpression).Success) // If the employee exists, we show a message
+                    {
+                        lblNif.ForeColor = Color.Red;
+                        _blNif = false;
+                    }
+                    else
+                    {
+                        lblNif.ForeColor = Color.Black;
+                        _blNif = true;
+                    }
                 }
-                else
-                {
-                    lblNif.ForeColor = Color.Black;
-                    _blNif = true;
-                }
-                //}
 
             }
             return _blNif;
@@ -272,7 +274,7 @@ namespace SynUp_Desktop.views
         /// <returns></returns>
         private bool validateFields()
         {
-            /* Boolean _blCorrect = false;
+            Boolean _blCorrect = false;
             Boolean _blNif = false, _blEmail = false;
 
             _blNif = this.checkDNI();
@@ -283,9 +285,9 @@ namespace SynUp_Desktop.views
             {
                 _blCorrect = true;
             }
+            return _blCorrect;
 
-            
-            bool blValid = false;
+            /*bool blValid = false;
             if (lblNif.ForeColor != Color.Red && lblEmail.ForeColor != Color.Red)
             {
                 blValid = true;
@@ -296,7 +298,7 @@ namespace SynUp_Desktop.views
             return blValid; */
 
             ///Pablo Ardèvol 22/05 1559, Método simplificado
-            return checkDNI() && checkEmail();
+            //return checkDNI() && checkEmail();
 
         }
 
@@ -343,42 +345,6 @@ namespace SynUp_Desktop.views
             this._blHelp = false;
         }
 
-        /// <summary>
-        /// Event that runs when the forms activated
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /* DEPRECATED METHOD - Moved to the formLoad
-         * private void frmEmployeeManagement_Activated(object sender, EventArgs e)
-        {
-            //if (AuxEmployee != null)
-            //{
-            //    // We recover the data of selected employee
-            //    this.txtNif.Text = this.AuxEmployee.nif;
-            //    this.txtName.Text = this.AuxEmployee.name;
-            //    this.txtSurname.Text = this.AuxEmployee.surname;
-            //    this.txtPhone.Text = this.AuxEmployee.phone;
-            //    this.txtEmail.Text = this.AuxEmployee.email;
-            //    this.txtAdress.Text = this.AuxEmployee.adress;
-            //    this.txtUsername.Text = this.AuxEmployee.username;
-
-            //    this.btnCreate.Enabled = false; // We disable the button to create a task
-            //    this.txtNif.Enabled = false;
-            //    this.btnUpdateEmployee.Enabled = true;
-            //    this.btnDeleteEmployee.Enabled = true;
-            //}
-            //else
-            //{
-            //    this.btnCreate.Enabled = true;
-            //    this.txtNif.Enabled = true;
-            //    this.btnUpdateEmployee.Enabled = false;
-            //    this.btnDeleteEmployee.Enabled = false;
-            //    //this.clearValues();
-            //}
-
-            //this.setToolTips(); //Sets the tooltips for the view
-            //this._blHelp = false;
-        }*/
 
         private void frmEmployeeManagement_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -721,3 +687,39 @@ private void frmEmployeeManagement_Load(object sender, EventArgs e)
     }
     */
 
+/// <summary>
+/// Event that runs when the forms activated
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
+/* DEPRECATED METHOD - Moved to the formLoad
+ * private void frmEmployeeManagement_Activated(object sender, EventArgs e)
+{
+    //if (AuxEmployee != null)
+    //{
+    //    // We recover the data of selected employee
+    //    this.txtNif.Text = this.AuxEmployee.nif;
+    //    this.txtName.Text = this.AuxEmployee.name;
+    //    this.txtSurname.Text = this.AuxEmployee.surname;
+    //    this.txtPhone.Text = this.AuxEmployee.phone;
+    //    this.txtEmail.Text = this.AuxEmployee.email;
+    //    this.txtAdress.Text = this.AuxEmployee.adress;
+    //    this.txtUsername.Text = this.AuxEmployee.username;
+
+    //    this.btnCreate.Enabled = false; // We disable the button to create a task
+    //    this.txtNif.Enabled = false;
+    //    this.btnUpdateEmployee.Enabled = true;
+    //    this.btnDeleteEmployee.Enabled = true;
+    //}
+    //else
+    //{
+    //    this.btnCreate.Enabled = true;
+    //    this.txtNif.Enabled = true;
+    //    this.btnUpdateEmployee.Enabled = false;
+    //    this.btnDeleteEmployee.Enabled = false;
+    //    //this.clearValues();
+    //}
+
+    //this.setToolTips(); //Sets the tooltips for the view
+    //this._blHelp = false;
+}*/
