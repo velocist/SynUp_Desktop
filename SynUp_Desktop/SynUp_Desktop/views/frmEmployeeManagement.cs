@@ -60,16 +60,17 @@ namespace SynUp_Desktop.views
             //y que no salia en rojo.
             //if (!txtNif.Text.Equals("") && !txtEmail.Text.Equals("")) //Pablo Ardèvol 22/05 1553, Método pulido.  -- == se convierte en Equals para strings.      
             //{
-                if (this.validateFields())
-                {
-                    _blCreateOk = this.Controller.EmployeeService.createEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress);
-                    /*utilities.clMessageBox _msgBox = new utilities.*//// MODIFICATION - Pablo, 170516, clMessageBox made static to access the methods without having to create an object of the class.
-                    clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "employee", _blCreateOk, this);
-                }
+            if (this.validateFields())
+            {
+                _blCreateOk = this.Controller.EmployeeService.createEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress);
+                /*utilities.clMessageBox _msgBox = new utilities.*//// MODIFICATION - Pablo, 170516, clMessageBox made static to access the methods without having to create an object of the class.
+                clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "employee", _blCreateOk, this);
+            }
             //}
             else if (txtNif.Text.Equals("") || txtEmail.Text.Equals(""))
             {
-                this.messageWrong();
+                //this.messageWrong();
+                this.HelpMessage(Literal.ERROR_VALIDATION_EMPLOYEE, (int)HelpIcon.WARNING);
             }
 
             /*else if (txtNif.Text == "")
@@ -109,7 +110,7 @@ namespace SynUp_Desktop.views
                     clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.UPDATE, "employee", _blUpdateOk, this);
                 }
             }
-            else this.messageWrong(); //Pablo Ardèvol 22/05 1552, Método pulido.             
+            else this.HelpMessage(Literal.ERROR_VALIDATION_EMPLOYEE, (int)HelpIcon.WARNING); //Pablo Ardèvol 22/05 1552, Método pulido.             
 
         }
 
@@ -420,8 +421,9 @@ namespace SynUp_Desktop.views
             {
                 _blHelp = false;
                 this.Height = 290;
-                this.changeIconMessage(0);
-                this.lblHelpMessage.Text = "";
+                this.HelpMessage("",(int)HelpIcon.WARNING);
+                //this.changeIconMessage(0);
+                //this.lblHelpMessage.Text = "";
                 this.walkingControls();
             }
             else
@@ -441,8 +443,9 @@ namespace SynUp_Desktop.views
         {
             if (_blHelp)
             {
-                this.changeIconMessage(0);
-                this.lblHelpMessage.Text = null;
+                this.HelpMessage("", (int)HelpIcon.WARNING);
+                //this.changeIconMessage(0);
+                //this.lblHelpMessage.Text = null;
             }
         }
 
@@ -456,66 +459,69 @@ namespace SynUp_Desktop.views
             if (_blHelp)
             {
 
+                int _info = (int)HelpIcon.INFORMATION;
+
                 if (sender.Equals(lblNif) || sender.Equals(txtNif))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Documento nacional de identidad. No puede estar vacío y tiene que ser válido."
-                        + "En caso de tener que cambiar el DNI contacte con el administrador de la base de datos.";
+                    HelpMessage(Literal.INFO_NIF_EMPLOYEE,_info);
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Documento nacional de identidad. No puede estar vacío y tiene que ser válido."
+                    //    + "En caso de tener que cambiar el DNI contacte con el administrador de la base de datos.";
                 }
                 else if (sender.Equals(lblName) || sender.Equals(txtName))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Nombre del trabajador.";
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Nombre del trabajador.";
                 }
                 else if (sender.Equals(lblSurname) || sender.Equals(txtSurname))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Apellidos del trabajador.";
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Apellidos del trabajador.";
                 }
                 else if (sender.Equals(lblPhone) || sender.Equals(txtPhone))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Número de contacto del trabajador.";
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Número de contacto del trabajador.";
                 }
                 else if (sender.Equals(lblEmail) || sender.Equals(txtEmail))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Correo electrónico del trabajador. Se utilizará como nombre de usuario en el aplicación mobil";
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Correo electrónico del trabajador. Se utilizará como nombre de usuario en el aplicación mobil";
                 }
                 else if (sender.Equals(lblAdress) || sender.Equals(txtAdress))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Dirección postal del trabajador.";
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Dirección postal del trabajador.";
                 }
                 else if (sender.Equals(lblUsername) || sender.Equals(txtUsername))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Nombre de usuario que utiliza en la aplicación. Solamente puede ser modificado por el propio trabajador desde la app.";
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Nombre de usuario que utiliza en la aplicación. Solamente puede ser modificado por el propio trabajador desde la app.";
                 }
                 else if (sender.Equals(btnCreate))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Clicke aquí para crear un nuevo trabajador.";
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Clicke aquí para crear un nuevo trabajador.";
                 }
                 else if (sender.Equals(btnUpdateEmployee))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Clicke aquí para modificar los datos del trabajador.";
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Clicke aquí para modificar los datos del trabajador.";
                 }
                 else if (sender.Equals(btnDeleteEmployee))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Clicke aquí para para eliminar el trabajador.";
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Clicke aquí para para eliminar el trabajador.";
                 }
                 else if (sender.Equals(btnClear))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Clicke aquí para limpiar los valores del formulario.";
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Clicke aquí para limpiar los valores del formulario.";
                 }
                 else if (sender.Equals(btnBack))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
                 }
 
             }
@@ -550,45 +556,17 @@ namespace SynUp_Desktop.views
             }
         }
 
-        /// <summary>
-        /// Method that changes the icon message
-        /// </summary>
-        /// <param name="pIcon"></param>
-        private void changeIconMessage(int pIcon)
-        {
-            String _strFilename = null;
-            Bitmap _image = null;
 
-            if (pIcon == 1)
-            {
-                _strFilename = Application.StartupPath + "\\views\\images\\warning.png";
-            }
-            else if (pIcon == 2)
-            {
-                _strFilename = Application.StartupPath + "\\views\\images\\error.png";
-            }
-            else if (pIcon == 3)
-            {
-                _strFilename = Application.StartupPath + "\\views\\images\\information.png";
-            }
-            //Configurates de icon message
-            if (_strFilename != null)
-            {
-                _image = new Bitmap(_strFilename);
-            }
-            this.pbxIconMessage.Image = _image;
-
-        }
 
         /// <summary>
         /// Methd that sohws message wrong
         /// </summary>
-        private void messageWrong()
+        private void HelpMessage(String message, int icon)
         {
             this.Height = 360;
-            this.changeIconMessage(2);
-            this.lblHelpMessage.Text = "El nif i/o el email no puede estar vacío.";
-        }
+            this.pbxIconMessage.Image = utilities.Help.changeIconMessage(icon);
+            this.lblHelpMessage.Text = message;
+        }       
 
         #endregion
 
@@ -687,12 +665,14 @@ private void frmEmployeeManagement_Load(object sender, EventArgs e)
     }
     */
 
-/// <summary>
+/* DEPRECATED METHOD - Moved to the formLoad
+
+    /// <summary>
 /// Event that runs when the forms activated
 /// </summary>
 /// <param name="sender"></param>
 /// <param name="e"></param>
-/* DEPRECATED METHOD - Moved to the formLoad
+
  * private void frmEmployeeManagement_Activated(object sender, EventArgs e)
 {
     //if (AuxEmployee != null)

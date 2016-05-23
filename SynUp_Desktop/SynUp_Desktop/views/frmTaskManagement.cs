@@ -549,6 +549,16 @@ namespace SynUp_Desktop.views
 
         }
 
+        /// <summary>
+        /// Methd that sohws message wrong
+        /// </summary>
+        private void messageWrong()
+        {
+            this.Height = 360;
+            this.changeIconMessage(2);
+            this.lblHelpMessage.Text = "El nif i/o el email no puede estar vacío.";
+        }
+
         #endregion
 
         #region DEPRECATED METHODS
