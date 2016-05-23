@@ -40,6 +40,8 @@
             this.btnGeneric.TabIndex = 0;
             this.btnGeneric.UseVisualStyleBackColor = true;
             this.btnGeneric.Click += new System.EventHandler(this.btnGeneric_Click);
+            this.btnGeneric.MouseLeave += new System.EventHandler(this.btnGeneric_MouseLeave);
+            this.btnGeneric.MouseHover += new System.EventHandler(this.btnGeneric_MouseHover);
             // 
             // GenericButton
             // 
