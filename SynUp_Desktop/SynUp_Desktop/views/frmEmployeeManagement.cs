@@ -19,6 +19,8 @@ namespace SynUp_Desktop.views
     {
         private Controller controller;
         private Boolean _blHelp = false;
+        private int maxHeight = 360;
+        private int minHeight = 290;
 
         public Controller Controller
         {
@@ -299,7 +301,11 @@ namespace SynUp_Desktop.views
             if (checkDNI() && checkEmail())
             {
                 _blCorrect = true;
+            } else
+            {
+                this.HelpMessage(Literal.ERROR_VALIDATION_EMPLOYEE, (int)HelpIcon.ERROR);
             }
+
             return _blCorrect;
 
             /*bool blValid = false;
@@ -314,7 +320,6 @@ namespace SynUp_Desktop.views
 
             ///Pablo Ardèvol 22/05 1559, Método simplificado
             //return checkDNI() && checkEmail();
-
         }
 
         #endregion
@@ -360,6 +365,12 @@ namespace SynUp_Desktop.views
             this._blHelp = false;
         }
 
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            AuxEmployee = null;
+            _blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -394,7 +405,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnHelp_MouseClick(object sender, MouseEventArgs e)
         {
-            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, 290 , 360);
+            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, minHeight , maxHeight);
             if (_blHelp) this.HelpMessage("", (int)HelpIcon.WARNING);
             this.walkingControls();
         }
@@ -536,13 +547,12 @@ namespace SynUp_Desktop.views
         /// </summary>
         private void HelpMessage(String message, int icon)
         {
-            this.Height = 360;
+            this.Height = maxHeight;
             this.pbxIconMessage.Image = utilities.Help.changeIconMessage(icon);
             this.lblHelpMessage.Text = message;
         }
 
-        #endregion
-
+        #endregion        
     }
 }
 

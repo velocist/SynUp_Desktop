@@ -23,6 +23,8 @@ namespace SynUp_Desktop.views
         private Controller controller;
         private model.pojo.Task auxTask;
         private Boolean _blHelp;
+        private int minHeight = 410;
+        private int maxHeight = 480;
 
         public Controller Controller
         {
@@ -243,7 +245,7 @@ namespace SynUp_Desktop.views
 
             bool _correct = checkName() && checkCode();
 
-            if (!_correct) clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
+            if (!_correct) this.HelpMessage(Literal.ERROR_VALIDATION_TASK, (int)HelpIcon.ERROR); //clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
 
             return _correct;
         }
@@ -377,8 +379,7 @@ namespace SynUp_Desktop.views
         private void btnClear_Click(object sender, EventArgs e)
         {
             AuxTask = null;
-            lblCode.ForeColor = Color.Red;
-            _blHelp = false;
+            _blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);
         }
 
         #region HELP        
@@ -390,7 +391,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnHelp_MouseClick(object sender, MouseEventArgs e)
         {
-            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, 410, 470);
+            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, minHeight, maxHeight);
             if (_blHelp) this.HelpMessage("", (int)HelpIcon.WARNING);
             this.walkingControls();
         }
@@ -546,9 +547,10 @@ namespace SynUp_Desktop.views
         /// </summary>
         private void HelpMessage(String message, int icon)
         {
-            this.Height = 470;
+            this.Height = maxHeight;
             this.pbxIconMessage.Image = utilities.Help.changeIconMessage(icon);
             this.lblHelpMessage.Text = message;
+            _blHelp = true;
         }
 
         #endregion        

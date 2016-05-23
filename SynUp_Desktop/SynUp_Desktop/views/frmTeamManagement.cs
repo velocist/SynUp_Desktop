@@ -17,6 +17,8 @@ namespace SynUp_Desktop.views
         private Team auxTeam;
         private Employee auxEmployee;
         private Boolean _blHelp = false;
+        private int minHeight = 466;
+        private int maxHeight = 537;
 
         public Controller Controller
         {
@@ -71,20 +73,14 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnCreateTeam_Click(object sender, EventArgs e)
         {
-
             String _strCode = txtCode.Text;
             String _strName = txtName.Text;
 
-            if (checkCode())
+            if (validateValues())
             {
                 Boolean _blCreate = Controller.TeamService.createTeam(_strCode, _strName);
                 clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "team", _blCreate, this);
             }
-            else
-            {
-                clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
-            }
-
         }
 
         /// <summary>
@@ -122,17 +118,13 @@ namespace SynUp_Desktop.views
             String _strName = txtName.Text;
             String _strCode = txtCode.Text;
 
-            if (checkCode())
+            if (validateValues())
             {
                 if (Util.confirmationDialog(Literal.CONFIRMATION_UPDATE_TEAM))
                 {
                     Boolean _blUpdate = this.Controller.TeamService.updateTeam(_strCode, _strName);
                     clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.UPDATE, "team", _blUpdate, this);
                 }
-            }
-            else
-            {
-                clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
             }
         }
 
@@ -174,6 +166,15 @@ namespace SynUp_Desktop.views
             {
                 return true;
             }
+        }
+
+        private bool validateValues()
+        {
+            bool _valid = checkCode();
+
+            if (!_valid) this.HelpMessage(Literal.ERROR_VALIDATION_TEAM, (int)HelpIcon.ERROR); ;
+
+            return _valid;
         }
 
         #endregion
@@ -404,7 +405,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnHelp_MouseClick(object sender, EventArgs e)
         {
-            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, 466, 537);
+            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, minHeight, maxHeight);
             if (_blHelp) this.HelpMessage("", (int)HelpIcon.WARNING);
             this.walkingControls();
         }
@@ -514,7 +515,7 @@ namespace SynUp_Desktop.views
         /// </summary>
         private void HelpMessage(String message, int icon)
         {
-            //this.Height = 360;
+            this.Height = maxHeight;
             this.pbxIconMessage.Image = utilities.Help.changeIconMessage(icon);
             this.lblHelpMessage.Text = message;
         }
@@ -532,6 +533,7 @@ namespace SynUp_Desktop.views
             auxEmployee = null;
             dgvEmployeesOnTeam.DataSource = null;
             dgvEmployeesOnTeam.Refresh();
+            _blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);
         }
     }
 }

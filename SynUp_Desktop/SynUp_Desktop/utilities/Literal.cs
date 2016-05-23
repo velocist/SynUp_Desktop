@@ -48,7 +48,6 @@ namespace SynUp_Desktop.utilities
         public static readonly string INFO_BTN_CLEAR = "Click here to clear all the values of the form.";
         public static readonly string INFO_BTN_BACK = "click here to close the form and return to the previous view.";
 
-
         //public static readonly string CONFIRMATION_CREATE_EMPLOYEE = "Are you sure you want to insert this employee?";
         public static readonly string CONFIRMATION_UPDATE_EMPLOYEE = "Are you sure you want to update this employee?";
         public static readonly string CONFIRMATION_DELETE_EMPLOYEE = "Are you sure you want to delete this employee?";
@@ -56,6 +55,11 @@ namespace SynUp_Desktop.utilities
         public static readonly string CONFIRMATION_DELETE_TASK= "Are you sure you want to delete this task?";
         public static readonly string CONFIRMATION_UPDATE_TEAM= "Are you sure you want to update this team?";
         public static readonly string CONFIRMATION_DELETE_TEAM= "Are you sure you want to delete this team?";
+
+        public static readonly string WARNING_DATEDIFF_STATISTICS = "End date must be bigger than the start date.";
+        public static readonly string WARNING_UNSELECTED_STATISTICS = "Select a correct item from the expandable list.";
+        public static readonly string WARNING_EMPTY_STATISTICS = "No items where retrieved.";
+
 
     }
 }

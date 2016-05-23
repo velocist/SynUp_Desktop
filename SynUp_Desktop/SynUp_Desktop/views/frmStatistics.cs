@@ -18,6 +18,8 @@ namespace SynUp_Desktop.views
     public partial class frmStatistics : Form
     {
         private Controller controller;
+        private int minHeight = 510;
+        private int maxHeight = 570;
 
         private Boolean _blHelp = false; //Global variable that indicates whether this active support
 
@@ -189,14 +191,15 @@ namespace SynUp_Desktop.views
             DateTime start = dtpBegin.Value.Date;
             DateTime end = dtpEnd.Value.Date;
 
-            if (start != null && end != null && start.CompareTo(end) < 0)
+            if (start != null && end != null && start.CompareTo(end) <= 0)
             {
                 this.fillDataGrid(Controller.StatisticsService.getTasksByDate(start, end));
                 this.dgvConfigurationTasks();
             }
             else
             {
-                clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
+                this.HelpMessage(Literal.WARNING_DATEDIFF_STATISTICS, (int)HelpIcon.WARNING);
+                //clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
             }
         }
 
@@ -214,7 +217,8 @@ namespace SynUp_Desktop.views
             }
             else
             {
-                clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
+                //clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
+                this.HelpMessage(Literal.WARNING_UNSELECTED_STATISTICS, (int)HelpIcon.WARNING);
             }
         }
 
@@ -231,7 +235,8 @@ namespace SynUp_Desktop.views
             }
             else
             {
-                clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
+                //clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
+                this.HelpMessage(Literal.WARNING_UNSELECTED_STATISTICS, (int)HelpIcon.WARNING);
             }
         }
 
@@ -248,7 +253,8 @@ namespace SynUp_Desktop.views
             }
             else
             {
-                clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
+                //clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
+                this.HelpMessage(Literal.WARNING_UNSELECTED_STATISTICS, (int)HelpIcon.WARNING);
             }
         }
 
@@ -261,7 +267,7 @@ namespace SynUp_Desktop.views
             DateTime end = dtpEnd.Value.Date;
             String strFilter = cmbRanking.SelectedItem.ToString();
 
-            if (start != null && end != null && start.CompareTo(end) < 0 && (!strFilter.Equals("") || !strFilter.Equals(null)))
+            if (start != null && end != null && start.CompareTo(end) <= 0 && (!strFilter.Equals("") || !strFilter.Equals(null)))
             {
                 strFilter = strFilter.ToLower().Trim();
                 switch (strFilter)
@@ -276,7 +282,8 @@ namespace SynUp_Desktop.views
             }
             else
             {
-                clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
+                //clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
+                this.HelpMessage(Literal.WARNING_UNSELECTED_STATISTICS + " or " + Literal.WARNING_DATEDIFF_STATISTICS, (int)HelpIcon.WARNING);
             }
         }
 
@@ -350,6 +357,9 @@ namespace SynUp_Desktop.views
             this.dtpEnd.Visible = false;
             this.chtStatistics.Visible = false;
 
+            this.HelpMessage("", (int)HelpIcon.INFORMATION);
+            _blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);
+
         }
 
         /// <summary>
@@ -369,16 +379,21 @@ namespace SynUp_Desktop.views
         /// <param name="_data">Will receive the lists that the datagrid will be filled with.</param>
         private void fillDataGrid(Object _data)
         {
+            //if(_data=null) 
+
             BindingSource source = new BindingSource();
             source.DataSource = _data;
             this.dgvStadistics.DataSource = source;
 
-            this.chtStatistics.DataSource = source;
+            if(this.dgvStadistics.RowCount<=0) this.HelpMessage(Literal.WARNING_EMPTY_STATISTICS, (int)HelpIcon.WARNING);
+            else _blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);
 
-            //chtStatistics.Series["state"].Points.AddXY("Max",33);
-            //chtStatistics.Update();
-            this.chtStatistics.DataBind();
-            this.chtStatistics.Visible = true;
+            /* this.chtStatistics.DataSource = source;
+
+             //chtStatistics.Series["state"].Points.AddXY("Max",33);
+             //chtStatistics.Update();
+             this.chtStatistics.DataBind();
+             this.chtStatistics.Visible = true;*/
 
         }
 
@@ -429,21 +444,8 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnHelp_MouseClick(object sender, MouseEventArgs e)
         {
-            //if (_blHelp)
-            //{
-            //    _blHelp = false;
-            //    this.Height = 510;
-            //}
-            //else
-            //{
-            //    _blHelp = true;                
-            //    this.Height = 565;
-            //}
 
-            //this.HelpMessage("", (int)HelpIcon.WARNING);
-            //this.walkingControls();
-
-            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, 510, 565);
+            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, minHeight, maxHeight);
             if (_blHelp) this.HelpMessage("", (int)HelpIcon.WARNING);
             this.walkingControls();
         }
@@ -528,11 +530,6 @@ namespace SynUp_Desktop.views
                 {
                     foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
                     {
-                        if (_control is GenericButton)
-                        {
-                            _control.MouseHover += new EventHandler(messageHelps_MouseHover);
-                            _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
-                        }
                         _inGroupBox.MouseHover += new EventHandler(messageHelps_MouseHover);
                         _inGroupBox.MouseLeave += new EventHandler(messageHelps_MouseLeave);
                     }
@@ -555,7 +552,7 @@ namespace SynUp_Desktop.views
         /// </summary>
         private void HelpMessage(String message, int icon)
         {
-            this.Height = 565;
+            this.Height = maxHeight;
             this.pbxIconMessage.Image = utilities.Help.changeIconMessage(icon);
             this.lblHelpMessage.Text = message;
         }
