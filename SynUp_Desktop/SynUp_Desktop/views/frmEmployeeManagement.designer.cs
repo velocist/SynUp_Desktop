@@ -204,11 +204,11 @@
             // lblMessageMandatory
             // 
             this.lblMessageMandatory.AutoSize = true;
-            this.lblMessageMandatory.Location = new System.Drawing.Point(308, 167);
+            this.lblMessageMandatory.Location = new System.Drawing.Point(348, 167);
             this.lblMessageMandatory.Name = "lblMessageMandatory";
-            this.lblMessageMandatory.Size = new System.Drawing.Size(131, 13);
+            this.lblMessageMandatory.Size = new System.Drawing.Size(91, 13);
             this.lblMessageMandatory.TabIndex = 0;
-            this.lblMessageMandatory.Text = "* This fields are mandatory";
+            this.lblMessageMandatory.Text = "* Mandatory fields";
             // 
             // txtUsername
             // 

@@ -57,6 +57,7 @@
             this.gbHelp = new System.Windows.Forms.GroupBox();
             this.pbxIconMessage = new System.Windows.Forms.PictureBox();
             this.lblHelpMessage = new System.Windows.Forms.Label();
+            this.lblMandatory = new System.Windows.Forms.Label();
             this.gbContainer.SuspendLayout();
             this.gbHelp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxIconMessage)).BeginInit();
@@ -64,6 +65,7 @@
             // 
             // gbContainer
             // 
+            this.gbContainer.Controls.Add(this.lblMandatory);
             this.gbContainer.Controls.Add(this.txtState);
             this.gbContainer.Controls.Add(this.cbImportance);
             this.gbContainer.Controls.Add(this.lblImportance);
@@ -348,6 +350,17 @@
             this.lblHelpMessage.TabIndex = 0;
             this.lblHelpMessage.Text = "Message help...";
             // 
+            // lblMandatory
+            // 
+            this.lblMandatory.AutoSize = true;
+            this.lblMandatory.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblMandatory.Location = new System.Drawing.Point(430, 271);
+            this.lblMandatory.Name = "lblMandatory";
+            this.lblMandatory.Size = new System.Drawing.Size(91, 13);
+            this.lblMandatory.TabIndex = 17;
+            this.lblMandatory.Text = "* Mandatory fields";
+            this.lblMandatory.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // frmTaskManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -411,5 +424,6 @@
         private System.Windows.Forms.GroupBox gbHelp;
         private System.Windows.Forms.PictureBox pbxIconMessage;
         private System.Windows.Forms.Label lblHelpMessage;
+        private System.Windows.Forms.Label lblMandatory;
     }
 }

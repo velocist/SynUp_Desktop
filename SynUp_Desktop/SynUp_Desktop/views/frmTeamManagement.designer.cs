@@ -47,6 +47,7 @@
             this.lblHelpMessage = new System.Windows.Forms.Label();
             this.btnClear = new SynUp_Desktop.utilities.GenericButton();
             this.btnBack = new SynUp_Desktop.utilities.GenericButton();
+            this.lblMandatory = new System.Windows.Forms.Label();
             this.gbContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployeesOnTeam)).BeginInit();
             this.gbHelp.SuspendLayout();
@@ -55,6 +56,7 @@
             // 
             // gbContainer
             // 
+            this.gbContainer.Controls.Add(this.lblMandatory);
             this.gbContainer.Controls.Add(this.btnAdd);
             this.gbContainer.Controls.Add(this.btnDeleteToTeam);
             this.gbContainer.Controls.Add(this.label1);
@@ -238,6 +240,15 @@
             this.btnBack.Size = new System.Drawing.Size(75, 40);
             this.btnBack.TabIndex = 12;
             // 
+            // lblMandatory
+            // 
+            this.lblMandatory.AutoSize = true;
+            this.lblMandatory.Location = new System.Drawing.Point(7, 335);
+            this.lblMandatory.Name = "lblMandatory";
+            this.lblMandatory.Size = new System.Drawing.Size(91, 13);
+            this.lblMandatory.TabIndex = 10;
+            this.lblMandatory.Text = "* Mandatory fields";
+            // 
             // frmTeamManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -294,5 +305,6 @@
         private System.Windows.Forms.GroupBox gbHelp;
         private System.Windows.Forms.PictureBox pbxIconMessage;
         private System.Windows.Forms.Label lblHelpMessage;
+        private System.Windows.Forms.Label lblMandatory;
     }
 }

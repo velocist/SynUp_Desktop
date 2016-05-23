@@ -322,8 +322,8 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Not implemented.\n#Poner ventana con los employees y el que se seleccione se añada");
-            //Controller.EmployeeView.ShowDialog();
+            //MessageBox.Show("Not implemented.\n#Poner ventana con los employees y el que se seleccione se añada");
+            Controller.EmployeeView.ShowDialog();
         }
 
         /// <summary>
