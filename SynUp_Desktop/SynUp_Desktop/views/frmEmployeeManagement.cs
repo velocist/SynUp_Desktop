@@ -369,7 +369,7 @@ namespace SynUp_Desktop.views
         {
             this.AuxEmployee = null;
             _blHelp = false;
-        }       
+        }
 
         /// <summary>
         /// Method that sets the tooltips for the view
@@ -394,7 +394,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnHelp_MouseClick(object sender, MouseEventArgs e)
         {
-            _blHelp = utilities.Help.hideShowHelp(_blHelp, this);
+            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, 290 , 360);
             if (_blHelp) this.HelpMessage("", (int)HelpIcon.WARNING);
             this.walkingControls();
         }

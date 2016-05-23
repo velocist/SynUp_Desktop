@@ -50,11 +50,11 @@ namespace SynUp_Desktop.utilities
         /// </summary>
         /// <param name="_blHelp"></param>
         /// <param name="_FrParent"></param>
-        public static bool hideShowHelp(bool _blHelp, Form _FrParent)
+        public static bool hideShowHelp(bool _blHelp, Form _FrParent, int _minHeight, int _maxHeight)
         {
             if (_blHelp)
             {
-                _FrParent.Height = 290;
+                _FrParent.Height = _minHeight;
                 //_FrParent.HelpMessage("", (int)HelpIcon.WARNING);
                 //this.changeIconMessage(0);
                 //this.lblHelpMessage.Text = "";
@@ -62,7 +62,7 @@ namespace SynUp_Desktop.utilities
             }
             else
             {
-                _FrParent.Height = 360;
+                _FrParent.Height = _maxHeight;
                 //_FrParent.walkingControls();
             }
 
