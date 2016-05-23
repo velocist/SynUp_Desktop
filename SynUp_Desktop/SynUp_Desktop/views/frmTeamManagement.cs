@@ -515,7 +515,6 @@ namespace SynUp_Desktop.views
         /// </summary>
         private void HelpMessage(String message, int icon)
         {
-            //this.Height = 360;
             this.Height = maxHeight;
             this.pbxIconMessage.Image = utilities.Help.changeIconMessage(icon);
             this.lblHelpMessage.Text = message;
