@@ -132,7 +132,9 @@ namespace SynUp_Desktop.utilities
                         }*/
                     }
                 }
-                /*if (_control is Button && _control.Name != "btnHelp")
+                //Nota: Si quitas esto al limpiar el formulario los botones de crear quedan inhabilitados
+                // y los de updatear y eliminar quedan habilitados. Nos interesa que haga lo contrario
+                if (_control is Button && _control.Name != "btnHelp")
                 {
                     if (_control.Name.StartsWith("btnC")) {
                         if (!_control.Enabled) _control.Enabled = true;
@@ -142,7 +144,7 @@ namespace SynUp_Desktop.utilities
                         if (_control.Enabled) _control.Enabled = false;
                     }
 
-                }*/
+                }
             }
         }
     }
