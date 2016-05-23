@@ -365,6 +365,12 @@ namespace SynUp_Desktop.views
             this._blHelp = false;
         }
 
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            AuxEmployee = null;
+            _blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -546,8 +552,7 @@ namespace SynUp_Desktop.views
             this.lblHelpMessage.Text = message;
         }
 
-        #endregion
-
+        #endregion        
     }
 }
 

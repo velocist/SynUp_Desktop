@@ -305,6 +305,7 @@
             this.btnClear.Parent = this;
             this.btnClear.Size = new System.Drawing.Size(75, 40);
             this.btnClear.TabIndex = 14;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // frmEmployeeManagement
             // 

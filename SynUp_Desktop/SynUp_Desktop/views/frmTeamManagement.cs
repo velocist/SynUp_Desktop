@@ -534,6 +534,7 @@ namespace SynUp_Desktop.views
             auxEmployee = null;
             dgvEmployeesOnTeam.DataSource = null;
             dgvEmployeesOnTeam.Refresh();
+            _blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);
         }
     }
 }

@@ -379,8 +379,7 @@ namespace SynUp_Desktop.views
         private void btnClear_Click(object sender, EventArgs e)
         {
             AuxTask = null;
-            lblCode.ForeColor = Color.Red;
-            _blHelp = false;
+            _blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);
         }
 
         #region HELP        
