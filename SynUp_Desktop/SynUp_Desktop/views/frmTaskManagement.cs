@@ -22,6 +22,7 @@ namespace SynUp_Desktop.views
     {
         private Controller controller;
         private model.pojo.Task auxTask;
+        private Boolean blHelp;
 
         public Controller Controller
         {
@@ -47,7 +48,7 @@ namespace SynUp_Desktop.views
             {
                 auxTask = value;
             }
-        }
+        }        
 
         public frmTaskManagement()
         {
@@ -65,7 +66,7 @@ namespace SynUp_Desktop.views
         {
             Boolean _blDelete = false;
 
-            if (confirmationDialog("Are you sure you want to cancel this task?"))
+            if (Util.confirmationDialog(Literal.CONFIRMATION_DELETE_TASK))
             {
 
                 model.pojo.Task deleteTask = Controller.TaskService.deleteTask(AuxTask);
@@ -106,7 +107,7 @@ namespace SynUp_Desktop.views
 
             if (checkCorrectValues())
             {
-                if (confirmationDialog("Are you sure you want to update this task?"))
+                if (Util.confirmationDialog(Literal.CONFIRMATION_UPDATE_TASK))
                 {
                     _blUpdate = Controller.TaskService.updateTask(_strCode, _strName, _dtPriorityDate,
                                                                _strDescription, _strLocalization,
@@ -345,15 +346,17 @@ namespace SynUp_Desktop.views
             //ToolTips.SetToolTip(this.lblCode, "Task code.");
             //ToolTips.SetToolTip(lblDescription, "Description of the task.");
 
-            this.blHELP = false;
+            this.blHelp = false;
         }
 
         private void frmTaskManagement_FormClosing(object sender, FormClosingEventArgs e)
         {
             AuxTask = null;
+            blHelp = false;
             //btnClear_Click(sender, e);
         }
 
+        /* Moved to Util 230516 Pablo Ardèvol
         /// <summary>
         /// Confirmation dialog that will let the user confirm they action or cancel it.
         /// </summary>
@@ -363,33 +366,31 @@ namespace SynUp_Desktop.views
         {
             return (MessageBox.Show(message, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
         }
+        */
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClear_Click(object sender, EventArgs e)
         {
             AuxTask = null;
             lblCode.ForeColor = Color.Red;
         }
 
-        #region HELP
+        #region HELP        
 
-        private Boolean blHELP = false;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnHelp_MouseClick(object sender, MouseEventArgs e)
         {
-            if (blHELP)
-            {
-                blHELP = false;
-                this.Height = 405;
-                this.changeIconMessage(0);
-                this.lblHelpMessage.Text = "";
-                this.walkingControls();
-            }
-            else
-            {
-                blHELP = true;
-                this.Height = 470;
-                this.walkingControls();
-            }
+            blHelp = utilities.Help.hideShowHelp(blHelp, this);
+            if (blHelp) this.HelpMessage("", (int)HelpIcon.WARNING);
+            this.walkingControls();
         }
 
         /// <summary>
@@ -399,10 +400,9 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void messageHelps_MouseLeave(object sender, EventArgs e)
         {
-            if (blHELP)
+            if (blHelp)
             {
-                this.changeIconMessage(0);
-                this.lblHelpMessage.Text = null;
+                this.HelpMessage("", (int)HelpIcon.WARNING);
             }
         }
 
@@ -413,79 +413,99 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void messageHelps_MouseHover(object sender, EventArgs e)
         {
-            if (blHELP)
+            if (blHelp)
             {
+
+                int _icon = (int)HelpIcon.INFORMATION;
+                String _message = "";
 
                 if (sender.Equals(lblCode) || sender.Equals(txtCode))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "ambiar el DNI contacte con el administrador de la base de datos.";
+                    _message = Literal.INFO_CODE_TASK;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Cambiar el DNI contacte con el administrador de la base de datos.";
                 }
                 else if (sender.Equals(lblName) || sender.Equals(txtName))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Nombre de la tarea.";
+                    _message = Literal.INFO_NAME_TASK;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Nombre de la tarea.";
                 }
                 else if (sender.Equals(lblLocalization) || sender.Equals(txtLocalization))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Apellidos del trabajador.";
+                    _message = Literal.INFO_LOCATION_TASK;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Apellidos del trabajador.";
                 }
                 else if (sender.Equals(lblProject) || sender.Equals(txtProject))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Número de contacto del trabajador.";
+                    _message = Literal.INFO_PROJECT_TASK;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Número de contacto del trabajador.";
                 }
                 else if (sender.Equals(lblPriorityDate) || sender.Equals(mcalPriorityDate))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Correo electrónico del trabajador. Se utilizará como nombre de usuario en el aplicación mobil";
+                    _message = Literal.INFO_DATE_TASK;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Correo electrónico del trabajador. Se utilizará como nombre de usuario en el aplicación mobil";
                 }
                 else if (sender.Equals(lblDescription) || sender.Equals(txtDescription))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Dirección postal del trabajador.";
+                    _message = Literal.INFO_DESC_TASK;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Dirección postal del trabajador.";
                 }
                 else if (sender.Equals(lblState) || sender.Equals(txtState))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Nombre de usuario que utiliza en la aplicación. Solamente puede ser modificado por el propio trabajador desde la app.";
+                    _message = Literal.INFO_STATE_TASK;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Nombre de usuario que utiliza en la aplicación. Solamente puede ser modificado por el propio trabajador desde la app.";
                 }
                 else if (sender.Equals(lblImportance) || sender.Equals(cbImportance))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Nombre de usuario que utiliza en la aplicación. Solamente puede ser modificado por el propio trabajador desde la app.";
+                    _message = Literal.INFO_IMPORTANCE_TASK;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Nombre de usuario que utiliza en la aplicación. Solamente puede ser modificado por el propio trabajador desde la app.";
                 }
                 else if (sender.Equals(lblIdTeam) || sender.Equals(cbIdTeams))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Nombre de usuario que utiliza en la aplicación. Solamente puede ser modificado por el propio trabajador desde la app.";
+                    _message = Literal.INFO_IDTEAM_TASK;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Nombre de usuario que utiliza en la aplicación. Solamente puede ser modificado por el propio trabajador desde la app.";
                 }
                 else if (sender.Equals(btnCreateTask))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Clicke aquí para crear un nuevo trabajador.";
+                    _message = Literal.INFO_BTN_CREATE;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Clicke aquí para crear un nuevo trabajador.";
                 }
                 else if (sender.Equals(btnUpdateTask))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Clicke aquí para modificar los datos del trabajador.";
+                    _message = Literal.INFO_BTN_UPDATE;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Clicke aquí para modificar los datos del trabajador.";
                 }
                 else if (sender.Equals(btnDeleteTask))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Clicke aquí para para eliminar el trabajador.";
+                    _message = Literal.INFO_BTN_DELETE;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Clicke aquí para para eliminar el trabajador.";
                 }
                 else if (sender.Equals(btnClear))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Clicke aquí para limpiar los valores del formulario.";
+                    _message = Literal.INFO_BTN_CLEAR;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Clicke aquí para limpiar los valores del formulario.";
                 }
                 else if (sender.Equals(btnBack))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
+                    _message = Literal.INFO_BTN_BACK;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
                 }
+
+
+                this.HelpMessage(_message, _icon);
 
             }
         }
@@ -519,6 +539,7 @@ namespace SynUp_Desktop.views
             }
         }
 
+        /* DELETED AND MOVED TO utilities.Help -- 230516 Pablo Ardèvol
         /// <summary>
         /// Method that changes the icon message
         /// </summary>
@@ -548,15 +569,28 @@ namespace SynUp_Desktop.views
             this.pbxIconMessage.Image = _image;
 
         }
+        */
 
+        /* CHANGED BY HELPMESSAGE 23/05/16 - Pablo Ardèvol
         /// <summary>
         /// Methd that sohws message wrong
         /// </summary>
         private void messageWrong()
         {
+        this.Height = 360;
+        this.changeIconMessage(2);
+        this.lblHelpMessage.Text = "El nif i/o el email no puede estar vacío.";
+        }
+        */
+
+        /// <summary>
+        /// Methd that sohws message wrong
+        /// </summary>
+        private void HelpMessage(String message, int icon)
+        {
             this.Height = 360;
-            this.changeIconMessage(2);
-            this.lblHelpMessage.Text = "El nif i/o el email no puede estar vacío.";
+            this.pbxIconMessage.Image = utilities.Help.changeIconMessage(icon);
+            this.lblHelpMessage.Text = message;
         }
 
         #endregion

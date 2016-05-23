@@ -18,6 +18,7 @@ namespace SynUp_Desktop.views
     public partial class frmEmployeeManagement : Form
     {
         private Controller controller;
+        private Boolean _blHelp = false;
 
         public Controller Controller
         {
@@ -60,11 +61,13 @@ namespace SynUp_Desktop.views
             //y que no salia en rojo.
             //if (!txtNif.Text.Equals("") && !txtEmail.Text.Equals("")) //Pablo Ardèvol 22/05 1553, Método pulido.  -- == se convierte en Equals para strings.      
             //{
+
             if (this.validateFields())
             {
                 _blCreateOk = this.Controller.EmployeeService.createEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress);
                 /*utilities.clMessageBox _msgBox = new utilities.*//// MODIFICATION - Pablo, 170516, clMessageBox made static to access the methods without having to create an object of the class.
                 clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "employee", _blCreateOk, this);
+
             }
             //}
             else if (txtNif.Text.Equals("") || txtEmail.Text.Equals(""))
@@ -106,8 +109,11 @@ namespace SynUp_Desktop.views
             {
                 if (this.checkEmail())
                 {
-                    Boolean _blUpdateOk = this.Controller.EmployeeService.updateEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress, _strUsername);
-                    clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.UPDATE, "employee", _blUpdateOk, this);
+                    if (Util.confirmationDialog(Literal.CONFIRMATION_UPDATE_EMPLOYEE))
+                    {
+                        Boolean _blUpdateOk = this.Controller.EmployeeService.updateEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress, _strUsername);
+                        clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.UPDATE, "employee", _blUpdateOk, this);
+                    }
                 }
             }
             else this.HelpMessage(Literal.ERROR_VALIDATION_EMPLOYEE, (int)HelpIcon.WARNING); //Pablo Ardèvol 22/05 1552, Método pulido.             
@@ -122,7 +128,14 @@ namespace SynUp_Desktop.views
         private void btnDeleteEmployee_Click(object sender, EventArgs e)
         {
             Boolean _blDelete = false;
-            model.pojo.Employee _oDeleteEmployee = this.Controller.EmployeeService.deleteEmployee(AuxEmployee);
+            model.pojo.Employee _oDeleteEmployee = null;
+
+
+            if (Util.confirmationDialog(Literal.CONFIRMATION_DELETE_EMPLOYEE))
+            {
+                _oDeleteEmployee = this.Controller.EmployeeService.deleteEmployee(AuxEmployee);
+            }
+
 
             if (_oDeleteEmployee != null)
             {
@@ -346,17 +359,22 @@ namespace SynUp_Desktop.views
             this._blHelp = false;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmEmployeeManagement_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.AuxEmployee = null;
             _blHelp = false;
         }
 
+        /*DEPRECATED METHOD. - Moved to the generic button
         /// <summary>
         /// Method that cleans values
-        /// </summary>
-        /*private void clearValues() DEPRECATED METHOD.
+        /// </summary>        
+        private void clearValues() 
         {
             this.btnCreate.Enabled = true;
             this.btnUpdateEmployee.Enabled = false;
@@ -396,19 +414,7 @@ namespace SynUp_Desktop.views
 
         }
 
-        /// <summary>
-        /// Confirmation dialog that will let the user confirm they action or cancel it.
-        /// </summary>
-        /// <param name="message"></param>
-        /// <returns>Button click</returns>
-        private bool confirmationDialog(string message)
-        {
-            return (MessageBox.Show(message, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
-        }
-
-        #region HELP
-
-        private Boolean _blHelp = false;
+        #region HELP        
 
         /// <summary>
         /// Event that runs when the button help is clicked
@@ -417,21 +423,9 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnHelp_MouseClick(object sender, MouseEventArgs e)
         {
-            if (_blHelp)
-            {
-                _blHelp = false;
-                this.Height = 290;
-                this.HelpMessage("",(int)HelpIcon.WARNING);
-                //this.changeIconMessage(0);
-                //this.lblHelpMessage.Text = "";
-                this.walkingControls();
-            }
-            else
-            {
-                _blHelp = true;
-                this.Height = 360;
-                this.walkingControls();
-            }
+            _blHelp = utilities.Help.hideShowHelp(_blHelp, this);
+            if (_blHelp) this.HelpMessage("", (int)HelpIcon.WARNING);
+            this.walkingControls();
         }
 
         /// <summary>
@@ -463,63 +457,74 @@ namespace SynUp_Desktop.views
 
                 if (sender.Equals(lblNif) || sender.Equals(txtNif))
                 {
-                    HelpMessage(Literal.INFO_NIF_EMPLOYEE,_info);
+                    this.HelpMessage(Literal.INFO_NIF_EMPLOYEE, _info);
                     //this.changeIconMessage(3);
                     //this.lblHelpMessage.Text = "Documento nacional de identidad. No puede estar vacío y tiene que ser válido."
                     //    + "En caso de tener que cambiar el DNI contacte con el administrador de la base de datos.";
                 }
                 else if (sender.Equals(lblName) || sender.Equals(txtName))
                 {
+                    this.HelpMessage(Literal.INFO_NAME_EMPLOYEE, _info);
                     //this.changeIconMessage(3);
                     //this.lblHelpMessage.Text = "Nombre del trabajador.";
                 }
                 else if (sender.Equals(lblSurname) || sender.Equals(txtSurname))
                 {
+                    this.HelpMessage(Literal.INFO_SURNAME_EMPLOYEE, _info);
                     //this.changeIconMessage(3);
                     //this.lblHelpMessage.Text = "Apellidos del trabajador.";
                 }
                 else if (sender.Equals(lblPhone) || sender.Equals(txtPhone))
                 {
+                    this.HelpMessage(Literal.INFO_PHONE_EMPLOYEE, _info);
                     //this.changeIconMessage(3);
                     //this.lblHelpMessage.Text = "Número de contacto del trabajador.";
                 }
                 else if (sender.Equals(lblEmail) || sender.Equals(txtEmail))
                 {
+                    this.HelpMessage(Literal.INFO_EMAIL_EMPLOYEE, _info);
                     //this.changeIconMessage(3);
                     //this.lblHelpMessage.Text = "Correo electrónico del trabajador. Se utilizará como nombre de usuario en el aplicación mobil";
                 }
                 else if (sender.Equals(lblAdress) || sender.Equals(txtAdress))
                 {
+                    this.HelpMessage(Literal.INFO_ADRESS_EMPLOYEE, _info);
                     //this.changeIconMessage(3);
                     //this.lblHelpMessage.Text = "Dirección postal del trabajador.";
                 }
                 else if (sender.Equals(lblUsername) || sender.Equals(txtUsername))
                 {
+                    this.HelpMessage(Literal.INFO_USERNAME_EMPLOYEE, _info);
                     //this.changeIconMessage(3);
                     //this.lblHelpMessage.Text = "Nombre de usuario que utiliza en la aplicación. Solamente puede ser modificado por el propio trabajador desde la app.";
                 }
                 else if (sender.Equals(btnCreate))
                 {
+                    this.HelpMessage(Literal.INFO_BTN_CREATE, _info);
                     //this.changeIconMessage(3);
                     //this.lblHelpMessage.Text = "Clicke aquí para crear un nuevo trabajador.";
                 }
                 else if (sender.Equals(btnUpdateEmployee))
                 {
+                    this.HelpMessage(Literal.INFO_BTN_UPDATE, _info);
                     //this.changeIconMessage(3);
                     //this.lblHelpMessage.Text = "Clicke aquí para modificar los datos del trabajador.";
                 }
                 else if (sender.Equals(btnDeleteEmployee))
                 {
+                    this.HelpMessage(Literal.INFO_BTN_DELETE, _info);
                     //this.changeIconMessage(3);
                     //this.lblHelpMessage.Text = "Clicke aquí para para eliminar el trabajador.";
                 }
                 else if (sender.Equals(btnClear))
                 {
+                    this.HelpMessage(Literal.INFO_BTN_CLEAR, _info);
                     //this.changeIconMessage(3);
                     //this.lblHelpMessage.Text = "Clicke aquí para limpiar los valores del formulario.";
                 }
                 else if (sender.Equals(btnBack))
                 {
+                    this.HelpMessage(Literal.INFO_BTN_BACK, _info);
                     //this.changeIconMessage(3);
                     //this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
                 }
@@ -536,7 +541,7 @@ namespace SynUp_Desktop.views
             {
                 if (_control is GroupBox)
                 {
-                    foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
+                    foreach (Control _inGroupBox in _control.Controls) //Recorremos los componentes del groupbox
                     {
                         _inGroupBox.MouseHover += new EventHandler(messageHelps_MouseHover);
                         _inGroupBox.MouseLeave += new EventHandler(messageHelps_MouseLeave);
@@ -554,7 +559,7 @@ namespace SynUp_Desktop.views
                 }
             }
         }
-        
+
         /// <summary>
         /// Methd that sohws message wrong
         /// </summary>
@@ -563,7 +568,7 @@ namespace SynUp_Desktop.views
             this.Height = 360;
             this.pbxIconMessage.Image = utilities.Help.changeIconMessage(icon);
             this.lblHelpMessage.Text = message;
-        }       
+        }
 
         #endregion
 

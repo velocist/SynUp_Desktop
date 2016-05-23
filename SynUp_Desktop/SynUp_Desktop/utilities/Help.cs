@@ -8,6 +8,9 @@ using System.Windows.Forms;
 
 namespace SynUp_Desktop.utilities
 {
+    /// <summary>
+    /// Class refered to the Help sections of the views.
+    /// </summary>
     public static class Help
     {
         /// <summary>
@@ -41,5 +44,29 @@ namespace SynUp_Desktop.utilities
             return _image;
 
         }
+
+        /// <summary>
+        /// Method accessed when the help button is clicked
+        /// </summary>
+        /// <param name="_blHelp"></param>
+        /// <param name="_FrParent"></param>
+        public static bool hideShowHelp(bool _blHelp, Form _FrParent)
+        {
+            if (_blHelp)
+            {
+                _FrParent.Height = 290;
+                //_FrParent.HelpMessage("", (int)HelpIcon.WARNING);
+                //this.changeIconMessage(0);
+                //this.lblHelpMessage.Text = "";
+                //_FrParent.walkingControls();
+            }
+            else
+            {
+                _FrParent.Height = 360;
+                //_FrParent.walkingControls();
+            }
+
+            return !_blHelp; //It will return the opposite of the value received
+        }        
     }
 }
