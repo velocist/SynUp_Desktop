@@ -187,7 +187,7 @@ namespace SynUp_Desktop.utilities
                             if (_inGroupBox is PictureBox)
                             {
                                 _inGroupBox.Visible = true;
-                                ((System.Windows.Forms.PictureBox)_inGroupBox).Image = new Bitmap(Application.StartupPath + Literal.WARNING_ICON);
+                                ((System.Windows.Forms.PictureBox)_inGroupBox).Image = new Bitmap(Help.changeIconMessage(0));
 
                             }
                         }
@@ -209,7 +209,7 @@ namespace SynUp_Desktop.utilities
                             if (_inGroupBox is PictureBox)
                             {
                                 _inGroupBox.Visible = true;
-                                ((System.Windows.Forms.PictureBox)_inGroupBox).Image= new Bitmap(Application.StartupPath + Literal.WARNING_ICON);
+                                ((System.Windows.Forms.PictureBox)_inGroupBox).Image= new Bitmap(Help.changeIconMessage(0));
                                 
                             }
                         }
