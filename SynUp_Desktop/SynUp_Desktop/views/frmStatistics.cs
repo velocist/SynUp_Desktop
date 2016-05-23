@@ -19,6 +19,8 @@ namespace SynUp_Desktop.views
     {
         private Controller controller;
 
+        private Boolean _blHelp = false; //Global variable that indicates whether this active support
+
         public Controller Controller
         {
             get
@@ -48,7 +50,7 @@ namespace SynUp_Desktop.views
 
             this.init();
 
-            this.blHELP = false;
+            this._blHelp = false;
 
             //Configurates form
             this.FormBorderStyle = FormBorderStyle.Fixed3D;
@@ -410,6 +412,8 @@ namespace SynUp_Desktop.views
 
             this.dtpBegin.CustomFormat = dateFormat;
             this.dtpEnd.CustomFormat = dateFormat;
+            this.dtpBegin.Format = DateTimePickerFormat.Custom;
+            this.dtpEnd.Format = DateTimePickerFormat.Custom;
 
             this.chtStatistics.Visible = false;
 
@@ -418,8 +422,6 @@ namespace SynUp_Desktop.views
 
         #region HELP
 
-        private Boolean blHELP = false; //Global variable that indicates whether this active support
-
         /// <summary>
         /// Event that runs when the button help is clicked
         /// </summary>
@@ -427,22 +429,23 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnHelp_MouseClick(object sender, MouseEventArgs e)
         {
-            if (blHELP)
-            {
-                blHELP = false;
-                this.lblHelpMessage.Text = "";
-                this.changeIconMessage(0);
-                this.walkingControls(true);
-                this.Height = 510;
-            }
-            else
-            {
-                blHELP = true;
-                this.lblHelpMessage.Text = "";
-                this.changeIconMessage(0);
-                this.walkingControls(false);
-                this.Height = 565;
-            }
+            //if (_blHelp)
+            //{
+            //    _blHelp = false;
+            //    this.Height = 510;
+            //}
+            //else
+            //{
+            //    _blHelp = true;                
+            //    this.Height = 565;
+            //}
+
+            //this.HelpMessage("", (int)HelpIcon.WARNING);
+            //this.walkingControls();
+
+            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, 510, 565);
+            if (_blHelp) this.HelpMessage("", (int)HelpIcon.WARNING);
+            this.walkingControls();
         }
 
         /// <summary>
@@ -452,10 +455,9 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void messageHelps_MouseLeave(object sender, EventArgs e)
         {
-            if (blHELP)
+            if (_blHelp)
             {
-                this.changeIconMessage(0);
-                this.lblHelpMessage.Text = "";
+                this.HelpMessage("", (int)HelpIcon.WARNING);
             }
         }
 
@@ -466,9 +468,10 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void messageHelps_MouseHover(object sender, EventArgs e)
         {
-            if (blHELP)
+            if (_blHelp)
             {
-                this.changeIconMessage(3);
+                string _message = "";
+
                 if (sender.Equals(this.btnSearch))
                 {
                     this.lblHelpMessage.Text = "Clicke aquí para buscar.";
@@ -509,14 +512,15 @@ namespace SynUp_Desktop.views
                 {
                     this.lblHelpMessage.Text = "Escoja la fecha final.";
                 }
+
+                this.HelpMessage(_message, (int)HelpIcon.INFORMATION);
             }
         }
 
         /// <summary>
         /// Method that walkings all controls in form
         /// </summary>
-        /// <param name="pEnabled"></param>
-        private void walkingControls(Boolean pEnabled)
+        private void walkingControls()
         {
             foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
             {
@@ -542,34 +546,13 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// Method that changes the icon message
+        /// Methd that sohws message wrong
         /// </summary>
-        /// <param name="pIcon"></param>
-        private void changeIconMessage(int pIcon)
+        private void HelpMessage(String message, int icon)
         {
-            String _strFilename = null;
-            Bitmap _image = null;
-
-            if (pIcon == 1)
-            {
-                _strFilename = Application.StartupPath + "\\views\\images\\warning.png";
-            }
-            else if (pIcon == 2)
-            {
-                _strFilename = Application.StartupPath + "\\views\\images\\error.png";
-            }
-            else if (pIcon == 3)
-            {
-                _strFilename = Application.StartupPath + "\\views\\images\\information.png";
-
-            }
-            //Configurates de icon message
-            if (_strFilename != null)
-            {
-                _image = new Bitmap(_strFilename);
-            }
-            this.pbxIconMessage.Image = _image;
-
+            this.Height = 565;
+            this.pbxIconMessage.Image = utilities.Help.changeIconMessage(icon);
+            this.lblHelpMessage.Text = message;
         }
 
         #endregion
