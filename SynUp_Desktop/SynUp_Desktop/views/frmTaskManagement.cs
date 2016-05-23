@@ -22,7 +22,7 @@ namespace SynUp_Desktop.views
     {
         private Controller controller;
         private model.pojo.Task auxTask;
-        private Boolean blHelp;
+        private Boolean _blHelp;
 
         public Controller Controller
         {
@@ -354,7 +354,7 @@ namespace SynUp_Desktop.views
             //ToolTips.SetToolTip(this.lblCode, "Task code.");
             //ToolTips.SetToolTip(lblDescription, "Description of the task.");
 
-            this.blHelp = false;
+            this._blHelp = false;
         }
 
         /// <summary>
@@ -365,7 +365,7 @@ namespace SynUp_Desktop.views
         private void frmTaskManagement_FormClosing(object sender, FormClosingEventArgs e)
         {
             AuxTask = null;
-            blHelp = false;
+            _blHelp = false;
             //btnClear_Click(sender, e);
         }
         
@@ -378,6 +378,7 @@ namespace SynUp_Desktop.views
         {
             AuxTask = null;
             lblCode.ForeColor = Color.Red;
+            _blHelp = false;
         }
 
         #region HELP        
@@ -389,8 +390,8 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnHelp_MouseClick(object sender, MouseEventArgs e)
         {
-            blHelp = utilities.Help.hideShowHelp(blHelp, this);
-            if (blHelp) this.HelpMessage("", (int)HelpIcon.WARNING);
+            _blHelp = utilities.Help.hideShowHelp(_blHelp, this);
+            if (_blHelp) this.HelpMessage("", (int)HelpIcon.WARNING);
             this.walkingControls();
         }
 
@@ -401,7 +402,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void messageHelps_MouseLeave(object sender, EventArgs e)
         {
-            if (blHelp)
+            if (_blHelp)
             {
                 this.HelpMessage("", (int)HelpIcon.WARNING);
             }
@@ -414,7 +415,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void messageHelps_MouseHover(object sender, EventArgs e)
         {
-            if (blHelp)
+            if (_blHelp)
             {
 
                 int _icon = (int)HelpIcon.INFORMATION;

@@ -65,7 +65,8 @@ namespace SynUp_Desktop.views
             if (this.validateFields())
             {
                 _blCreateOk = this.Controller.EmployeeService.createEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress);
-                /*utilities.clMessageBox _msgBox = new utilities.*//// MODIFICATION - Pablo, 170516, clMessageBox made static to access the methods without having to create an object of the class.
+                /*utilities.clMessageBox _msgBox = new utilities.*/
+                /// MODIFICATION - Pablo, 170516, clMessageBox made static to access the methods without having to create an object of the class.
                 clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "employee", _blCreateOk, this);
 
             }
