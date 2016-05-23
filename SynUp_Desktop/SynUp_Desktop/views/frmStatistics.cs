@@ -470,7 +470,7 @@ namespace SynUp_Desktop.views
         {
             if (_blHelp)
             {
-                string _message = "";
+                string _message = sender.ToString();
 
                 if (sender.Equals(this.btnSearch))
                 {
@@ -528,6 +528,11 @@ namespace SynUp_Desktop.views
                 {
                     foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
                     {
+                        if (_control is GenericButton)
+                        {
+                            _control.MouseHover += new EventHandler(messageHelps_MouseHover);
+                            _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
+                        }
                         _inGroupBox.MouseHover += new EventHandler(messageHelps_MouseHover);
                         _inGroupBox.MouseLeave += new EventHandler(messageHelps_MouseLeave);
                     }

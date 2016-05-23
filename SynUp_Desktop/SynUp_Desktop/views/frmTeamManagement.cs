@@ -404,7 +404,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnHelp_MouseClick(object sender, EventArgs e)
         {
-            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, this.Height, this.Height + 550);
+            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, 466, 537);
             if (_blHelp) this.HelpMessage("", (int)HelpIcon.WARNING);
             this.walkingControls();
         }
@@ -514,7 +514,7 @@ namespace SynUp_Desktop.views
         /// </summary>
         private void HelpMessage(String message, int icon)
         {
-            this.Height = 360;
+            //this.Height = 360;
             this.pbxIconMessage.Image = utilities.Help.changeIconMessage(icon);
             this.lblHelpMessage.Text = message;
         }

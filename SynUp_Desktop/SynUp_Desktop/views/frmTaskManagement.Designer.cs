@@ -352,7 +352,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(555, 362);
+            this.ClientSize = new System.Drawing.Size(555, 367);
             this.Controls.Add(this.gbHelp);
             this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.btnClear);
