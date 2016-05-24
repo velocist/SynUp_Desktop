@@ -126,16 +126,16 @@ namespace SynUp_Desktop.views
                     String _SelectedTeam = this.cmbTeamsToAdd.SelectedValue.ToString();
                     _oTeam = this.Controller.TeamService.readTeam(_SelectedTeam);
 
-                   // model.pojo.TeamHistory _oCurrentTeam = this.Controller.TeamHistoryService.getCurrentTeamHistoryByEmployee(_oSelectedEmployee.nif); //We look if the employee already in team
+                   model.pojo.TeamHistory _oCurrentTeam = this.Controller.TeamHistoryService.getCurrentTeamHistoryByEmployee(_oSelectedEmployee.nif,_oTeam.code); //We look if the employee already in team
                     
-                    //if (_oCurrentTeam == null)
-                    //{
+                    if (_oCurrentTeam == null)
+                    {
                         this.addToTeam(_oSelectedEmployee, _oTeam);
-                    //}
-                    //else
-                    //{
-                        //clMessageBox.showMessage(clMessageBox.MESSAGE.INTEAM, "employee", this);
-                    //}
+                    }
+                    else
+                    {
+                        clMessageBox.showMessage(clMessageBox.MESSAGE.INTEAM, "employee", this);
+                    }
 
                 }
             }

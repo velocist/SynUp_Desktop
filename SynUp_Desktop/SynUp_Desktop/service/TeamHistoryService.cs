@@ -71,9 +71,9 @@ namespace SynUp_Desktop.service
         /// </summary>
         /// <param name="pNifEmployee"></param>
         /// <returns></returns>
-        public TeamHistory getCurrentTeamHistoryByEmployee(String pNifEmployee)
+        public TeamHistory getCurrentTeamHistoryByEmployee(String pNifEmployee,String pCodeTeam)
         {
-            return TeamHistoryConnection.getCurrentTeamHistoryByEmployee(pNifEmployee);
+            return TeamHistoryConnection.getCurrentTeamHistoryByEmployee(pNifEmployee,pCodeTeam);
         }
 
         /// <summary>

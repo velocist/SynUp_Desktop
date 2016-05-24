@@ -147,10 +147,10 @@ namespace SynUp_Desktop.model.dao
         /// </summary>
         /// <param name="pNifEmployee"></param>
         /// <returns></returns>
-        public static TeamHistory getCurrentTeamHistoryByEmployee(String pNifEmployee)
+        public static TeamHistory getCurrentTeamHistoryByEmployee(String pNifEmployee,String pCodeTeam)
         {
             var query = from teamHistory in new synupEntities().TeamHistories
-                        where teamHistory.id_employee == pNifEmployee && teamHistory.exitDate == null
+                        where teamHistory.id_employee == pNifEmployee && teamHistory.id_team == pCodeTeam && teamHistory.exitDate == null
                         select teamHistory;
 
             return query.SingleOrDefault();
