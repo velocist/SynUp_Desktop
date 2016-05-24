@@ -22,6 +22,9 @@ namespace SynUp_Desktop.views
     {
         private Controller controller;
         private model.pojo.Task auxTask;
+        private Boolean _blHelp;
+        private int minHeight = 410;
+        private int maxHeight = 480;
 
         public Controller Controller
         {
@@ -47,7 +50,7 @@ namespace SynUp_Desktop.views
             {
                 auxTask = value;
             }
-        }
+        }        
 
         public frmTaskManagement()
         {
@@ -65,7 +68,7 @@ namespace SynUp_Desktop.views
         {
             Boolean _blDelete = false;
 
-            if (confirmationDialog("Are you sure you want to cancel this task?"))
+            if (Util.confirmationDialog(Literal.CONFIRMATION_DELETE_TASK))
             {
 
                 model.pojo.Task deleteTask = Controller.TaskService.deleteTask(AuxTask);
@@ -106,7 +109,7 @@ namespace SynUp_Desktop.views
 
             if (checkCorrectValues())
             {
-                if (confirmationDialog("Are you sure you want to update this task?"))
+                if (Util.confirmationDialog(Literal.CONFIRMATION_UPDATE_TASK))
                 {
                     _blUpdate = Controller.TaskService.updateTask(_strCode, _strName, _dtPriorityDate,
                                                                _strDescription, _strLocalization,
@@ -242,11 +245,15 @@ namespace SynUp_Desktop.views
 
             bool _correct = checkName() && checkCode();
 
-            if (!_correct) clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
+            if (!_correct) this.HelpMessage(Literal.ERROR_VALIDATION_TASK, (int)HelpIcon.ERROR); //clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
 
             return _correct;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private bool checkCode()
         {
             if (AuxTask == null)
@@ -273,6 +280,10 @@ namespace SynUp_Desktop.views
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private bool checkName()
         {
             if (txtName.Text.Equals("") || txtName.Text == null) // If the name is empty, we show a message
@@ -345,51 +356,45 @@ namespace SynUp_Desktop.views
             //ToolTips.SetToolTip(this.lblCode, "Task code.");
             //ToolTips.SetToolTip(lblDescription, "Description of the task.");
 
-            this.blHELP = false;
-        }
-
-        private void frmTaskManagement_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            AuxTask = null;
-            //btnClear_Click(sender, e);
+            this._blHelp = false;
         }
 
         /// <summary>
-        /// Confirmation dialog that will let the user confirm they action or cancel it.
+        /// 
         /// </summary>
-        /// <param name="message"></param>
-        /// <returns>Button click</returns>
-        private bool confirmationDialog(string message)
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmTaskManagement_FormClosing(object sender, FormClosingEventArgs e)
         {
-            return (MessageBox.Show(message, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
-        }
+            AuxTask = null;
+            _blHelp = false;
+            //btnClear_Click(sender, e);
 
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClear_Click(object sender, EventArgs e)
         {
             AuxTask = null;
-            lblCode.ForeColor = Color.Red;
+            _blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);
         }
 
-        #region HELP
+        #region HELP        
 
-        private Boolean blHELP = false;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnHelp_MouseClick(object sender, MouseEventArgs e)
         {
-            if (blHELP)
-            {
-                blHELP = false;
-                this.Height = 405;
-                this.changeIconMessage(0);
-                this.lblHelpMessage.Text = "";
-                this.walkingControls();
-            }
-            else
-            {
-                blHELP = true;
-                this.Height = 470;
-                this.walkingControls();
-            }
+            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, minHeight, maxHeight);
+            if (_blHelp) this.HelpMessage("", (int)HelpIcon.WARNING);
+            this.walkingControls();
         }
 
         /// <summary>
@@ -399,10 +404,9 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void messageHelps_MouseLeave(object sender, EventArgs e)
         {
-            if (blHELP)
+            if (_blHelp)
             {
-                this.changeIconMessage(0);
-                this.lblHelpMessage.Text = null;
+                this.HelpMessage("", (int)HelpIcon.WARNING);
             }
         }
 
@@ -413,79 +417,99 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void messageHelps_MouseHover(object sender, EventArgs e)
         {
-            if (blHELP)
+            if (_blHelp)
             {
+
+                int _icon = (int)HelpIcon.INFORMATION;
+                String _message = "";
 
                 if (sender.Equals(lblCode) || sender.Equals(txtCode))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "ambiar el DNI contacte con el administrador de la base de datos.";
+                    _message = Literal.INFO_CODE_TASK;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Cambiar el DNI contacte con el administrador de la base de datos.";
                 }
                 else if (sender.Equals(lblName) || sender.Equals(txtName))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Nombre de la tarea.";
+                    _message = Literal.INFO_NAME_TASK;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Nombre de la tarea.";
                 }
                 else if (sender.Equals(lblLocalization) || sender.Equals(txtLocalization))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Apellidos del trabajador.";
+                    _message = Literal.INFO_LOCATION_TASK;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Apellidos del trabajador.";
                 }
                 else if (sender.Equals(lblProject) || sender.Equals(txtProject))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Número de contacto del trabajador.";
+                    _message = Literal.INFO_PROJECT_TASK;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Número de contacto del trabajador.";
                 }
                 else if (sender.Equals(lblPriorityDate) || sender.Equals(mcalPriorityDate))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Correo electrónico del trabajador. Se utilizará como nombre de usuario en el aplicación mobil";
+                    _message = Literal.INFO_DATE_TASK;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Correo electrónico del trabajador. Se utilizará como nombre de usuario en el aplicación mobil";
                 }
                 else if (sender.Equals(lblDescription) || sender.Equals(txtDescription))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Dirección postal del trabajador.";
+                    _message = Literal.INFO_DESC_TASK;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Dirección postal del trabajador.";
                 }
                 else if (sender.Equals(lblState) || sender.Equals(txtState))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Nombre de usuario que utiliza en la aplicación. Solamente puede ser modificado por el propio trabajador desde la app.";
+                    _message = Literal.INFO_STATE_TASK;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Nombre de usuario que utiliza en la aplicación. Solamente puede ser modificado por el propio trabajador desde la app.";
                 }
                 else if (sender.Equals(lblImportance) || sender.Equals(cbImportance))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Nombre de usuario que utiliza en la aplicación. Solamente puede ser modificado por el propio trabajador desde la app.";
+                    _message = Literal.INFO_IMPORTANCE_TASK;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Nombre de usuario que utiliza en la aplicación. Solamente puede ser modificado por el propio trabajador desde la app.";
                 }
                 else if (sender.Equals(lblIdTeam) || sender.Equals(cbIdTeams))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Nombre de usuario que utiliza en la aplicación. Solamente puede ser modificado por el propio trabajador desde la app.";
+                    _message = Literal.INFO_IDTEAM_TASK;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Nombre de usuario que utiliza en la aplicación. Solamente puede ser modificado por el propio trabajador desde la app.";
                 }
                 else if (sender.Equals(btnCreateTask))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Clicke aquí para crear un nuevo trabajador.";
+                    _message = Literal.INFO_BTN_CREATE;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Clicke aquí para crear un nuevo trabajador.";
                 }
                 else if (sender.Equals(btnUpdateTask))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Clicke aquí para modificar los datos del trabajador.";
+                    _message = Literal.INFO_BTN_UPDATE;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Clicke aquí para modificar los datos del trabajador.";
                 }
                 else if (sender.Equals(btnDeleteTask))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Clicke aquí para para eliminar el trabajador.";
+                    _message = Literal.INFO_BTN_DELETE;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Clicke aquí para para eliminar el trabajador.";
                 }
                 else if (sender.Equals(btnClear))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Clicke aquí para limpiar los valores del formulario.";
+                    _message = Literal.INFO_BTN_CLEAR;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Clicke aquí para limpiar los valores del formulario.";
                 }
                 else if (sender.Equals(btnBack))
                 {
-                    this.changeIconMessage(3);
-                    this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
+                    _message = Literal.INFO_BTN_BACK;
+                    //this.changeIconMessage(3);
+                    //this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
                 }
+
+
+                this.HelpMessage(_message, _icon);
 
             }
         }
@@ -517,243 +541,268 @@ namespace SynUp_Desktop.views
                     _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
                 }
             }
-        }
-
-        /// <summary>
-        /// Method that changes the icon message
-        /// </summary>
-        /// <param name="pIcon"></param>
-        private void changeIconMessage(int pIcon)
-        {
-            String _strFilename = null;
-            Bitmap _image = null;
-
-            if (pIcon == 1)
-            {
-                _strFilename = Application.StartupPath + "\\views\\images\\warning.png";
-            }
-            else if (pIcon == 2)
-            {
-                _strFilename = Application.StartupPath + "\\views\\images\\error.png";
-            }
-            else if (pIcon == 3)
-            {
-                _strFilename = Application.StartupPath + "\\views\\images\\information.png";
-            }
-            //Configurates de icon message
-            if (_strFilename != null)
-            {
-                _image = new Bitmap(_strFilename);
-            }
-            this.pbxIconMessage.Image = _image;
-
-        }
+        }       
 
         /// <summary>
         /// Methd that sohws message wrong
         /// </summary>
-        private void messageWrong()
+        private void HelpMessage(String message, int icon)
         {
-            this.Height = 360;
-            this.changeIconMessage(2);
-            this.lblHelpMessage.Text = "El nif i/o el email no puede estar vacío.";
+            this.Height = maxHeight;
+            this.pbxIconMessage.Image = utilities.Help.changeIconMessage(icon);
+            this.lblHelpMessage.Text = message;
+            _blHelp = true;
         }
 
-        #endregion
-
-        #region DEPRECATED METHODS
-
-        //private string getState(model.pojo.Task _task)
-        //{
-        //    string state = "";
-        //    switch (_task.state)
-        //    {
-        //        case (int)TaskState.UNSELECTED:
-        //            state = "Unselected";
-        //            break;
-        //        case (int)TaskState.ONGOING:
-        //            state = "Ongoing";
-        //            break;
-        //        case (int)TaskState.ABANDONED:
-        //            state = "Abandoned";
-        //            break;
-        //        case (int)TaskState.FINISHED:
-        //            state = "Finished";
-        //            break;
-        //        case (int)TaskState.CANCELLED:
-        //            state = "Cancelled";
-        //            break;
-        //    }
-        //    return state;
-        //}
-
-        /// <summary>
-        /// Event that runs when the button clear is clicked - DEPRECATED, Pablo - 22/05/16
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //private void btnClear_Click(object sender, EventArgs e)
-        //{
-        //    this.clearValues();
-
-        //    if (this.btnCreateTask.Enabled == false)
-        //    {
-        //        this.btnCreateTask.Enabled = true;
-        //        this.btnDeleteTask.Enabled = false;
-        //        this.btnUpdateTask.Enabled = false;
-        //        this.AuxTask = null;
-        //        if (txtCode.Enabled == false) txtCode.Enabled = true;
-        //    }
-        //}
-
-        /// <summary>
-        /// Method that cleans values - DEPRECATED, Pablo - 22/05/16 // Generic button does the work
-        /// </summary>
-        //private void clearValues()
-        //{
-        //    //txtIdTeam.Text = "";
-
-        //    //cbIdTeams.SelectedIndex = 0;
-        //    txtCode.Text = "";
-        //    txtProject.Text = "";
-        //    txtName.Text = "";
-        //    txtDescription.Text = "";
-        //    txtLocalization.Text = "";
-        //    mcalPriorityDate.SelectionStart = DateTime.Today;
-        //    mcalPriorityDate.SelectionEnd = DateTime.Today;
-        //}
-
-        /// <summary>
-        /// Event that runs when the button is clicked to return back - DEPRECATED, Pablo - 22/05/16
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //private void btnBack_Click(object sender, EventArgs e)
-        //{
-        //    this.AuxTask = null;
-        //    this.clearValues();
-        //    this.Close();
-        //}
-
-        ///// <summary>
-        ///// Even that runs everytime the IdTeam textbox is changed
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void txtIdTeam_TextChanged(object sender, EventArgs e)
-        //{
-        //    if (txtIdTeam.Text != "")
-        //    {
-        //        String _iIdTeam = txtIdTeam.Text;
-
-        //        model.pojo.Team _oTeam = Controller.TeamService.readTeam(_iIdTeam); // We look for if the team already exists
-
-        //        if (_oTeam == null) // If the team exists, we show a message
-        //        {
-        //            //MessageBox.Show("This team don't exists");
-        //            lblIdTeam.ForeColor = Color.Red;
-        //            lblIdTeam.Text = "Id Team*";
-        //        }
-        //        else
-        //        {
-        //            lblIdTeam.ForeColor = Color.Black;
-        //            lblIdTeam.Text = "Id Team";
-        //        }
-
-        //    }
-        //}
-
-        ///// <summary>
-        /////  Event that runs when the focus leaves the textbox
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void txtCode_Leave(object sender, EventArgs e)
-        //{
-        //    //if (txtCode.Text.Equals("")) // We found that the textbox is not emtpty
-        //    //{
-        //    //    lblCode.ForeColor = Color.Red;
-        //    //    lblCode.Text = "Code*";
-        //    //    //txtCode.Focus();
-        //    //    //MessageBox.Show("The code can not be empty!");
-        //    //}
-
-        //    //String _strIdCode = txtCode.Text;
-        //    //model.pojo.Task foundTask = Controller.TaskService.readTask(_strIdCode); // We look for if the task already exists
-
-        //    //if (foundTask != null) // If the task exists, we show a message
-        //    //{
-        //    //    MessageBox.Show("This code already exists");
-        //    //}
-
-        //}
-
-        ///// <summary>
-        ///// Event that runs when the textbox recibes the focus
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void txtCode_Enter(object sender, EventArgs e)
-        //{
-        //    //lblCode.Text = "Code";
-        //    //lblCode.ForeColor = Color.Black;
-        //}
-
-        ///// <summary>
-        ///// Event that runs when the focus leaves the textbox
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void txtName_Leave(object sender, EventArgs e)
-        //{
-
-        //}
-
-        ///// <summary>
-        ///// Event that runs when the textbox recibes the focus
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void txtName_Enter(object sender, EventArgs e)
-        //{
-        //    lblName.Text = "Name";
-        //    lblName.ForeColor = Color.Black;
-        //}
-        ///// <summary>
-        /////  Event that runs when the focus leaves the idTeam
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void txtIdTeam_Leave(object sender, EventArgs e)
-        //{
-        //    //if (txtIdTeam.Text != "")
-        //    //{
-        //    //    String _iIdTeam = txtIdTeam.Text;
-        //    //    model.pojo.Team _oTeam = Controller.TeamService.readTeam(_iIdTeam); // We look for if the team already exists
-
-        //    //    if (_oTeam == null) // If the team exists, we show a message
-        //    //    {
-        //    //        MessageBox.Show("This team don't exists");
-        //    //        lblIdTeam.ForeColor = Color.Red;
-        //    //        lblIdTeam.Text = "Id Team*";
-        //    //    }
-
-        //    //}
-        //}
-
-        ///// <summary>
-        ///// Event that runs when the textbox recibes the focus
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void txtIdTeam_Enter(object sender, EventArgs e)
-        //{
-        //    lblIdTeam.Text = "Id Team";
-        //    lblIdTeam.ForeColor = Color.Black;
-        //}
-
-        #endregion
-
-
+        #endregion        
     }
 }
+
+#region DEPRECATED METHODS
+
+//private string getState(model.pojo.Task _task)
+//{
+//    string state = "";
+//    switch (_task.state)
+//    {
+//        case (int)TaskState.UNSELECTED:
+//            state = "Unselected";
+//            break;
+//        case (int)TaskState.ONGOING:
+//            state = "Ongoing";
+//            break;
+//        case (int)TaskState.ABANDONED:
+//            state = "Abandoned";
+//            break;
+//        case (int)TaskState.FINISHED:
+//            state = "Finished";
+//            break;
+//        case (int)TaskState.CANCELLED:
+//            state = "Cancelled";
+//            break;
+//    }
+//    return state;
+//}
+
+/// <summary>
+/// Event that runs when the button clear is clicked - DEPRECATED, Pablo - 22/05/16
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
+//private void btnClear_Click(object sender, EventArgs e)
+//{
+//    this.clearValues();
+
+//    if (this.btnCreateTask.Enabled == false)
+//    {
+//        this.btnCreateTask.Enabled = true;
+//        this.btnDeleteTask.Enabled = false;
+//        this.btnUpdateTask.Enabled = false;
+//        this.AuxTask = null;
+//        if (txtCode.Enabled == false) txtCode.Enabled = true;
+//    }
+//}
+
+/// <summary>
+/// Method that cleans values - DEPRECATED, Pablo - 22/05/16 // Generic button does the work
+/// </summary>
+//private void clearValues()
+//{
+//    //txtIdTeam.Text = "";
+
+//    //cbIdTeams.SelectedIndex = 0;
+//    txtCode.Text = "";
+//    txtProject.Text = "";
+//    txtName.Text = "";
+//    txtDescription.Text = "";
+//    txtLocalization.Text = "";
+//    mcalPriorityDate.SelectionStart = DateTime.Today;
+//    mcalPriorityDate.SelectionEnd = DateTime.Today;
+//}
+
+/// <summary>
+/// Event that runs when the button is clicked to return back - DEPRECATED, Pablo - 22/05/16
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
+//private void btnBack_Click(object sender, EventArgs e)
+//{
+//    this.AuxTask = null;
+//    this.clearValues();
+//    this.Close();
+//}
+
+///// <summary>
+///// Even that runs everytime the IdTeam textbox is changed
+///// </summary>
+///// <param name="sender"></param>
+///// <param name="e"></param>
+//private void txtIdTeam_TextChanged(object sender, EventArgs e)
+//{
+//    if (txtIdTeam.Text != "")
+//    {
+//        String _iIdTeam = txtIdTeam.Text;
+
+//        model.pojo.Team _oTeam = Controller.TeamService.readTeam(_iIdTeam); // We look for if the team already exists
+
+//        if (_oTeam == null) // If the team exists, we show a message
+//        {
+//            //MessageBox.Show("This team don't exists");
+//            lblIdTeam.ForeColor = Color.Red;
+//            lblIdTeam.Text = "Id Team*";
+//        }
+//        else
+//        {
+//            lblIdTeam.ForeColor = Color.Black;
+//            lblIdTeam.Text = "Id Team";
+//        }
+
+//    }
+//}
+
+///// <summary>
+/////  Event that runs when the focus leaves the textbox
+///// </summary>
+///// <param name="sender"></param>
+///// <param name="e"></param>
+//private void txtCode_Leave(object sender, EventArgs e)
+//{
+//    //if (txtCode.Text.Equals("")) // We found that the textbox is not emtpty
+//    //{
+//    //    lblCode.ForeColor = Color.Red;
+//    //    lblCode.Text = "Code*";
+//    //    //txtCode.Focus();
+//    //    //MessageBox.Show("The code can not be empty!");
+//    //}
+
+//    //String _strIdCode = txtCode.Text;
+//    //model.pojo.Task foundTask = Controller.TaskService.readTask(_strIdCode); // We look for if the task already exists
+
+//    //if (foundTask != null) // If the task exists, we show a message
+//    //{
+//    //    MessageBox.Show("This code already exists");
+//    //}
+
+//}
+
+///// <summary>
+///// Event that runs when the textbox recibes the focus
+///// </summary>
+///// <param name="sender"></param>
+///// <param name="e"></param>
+//private void txtCode_Enter(object sender, EventArgs e)
+//{
+//    //lblCode.Text = "Code";
+//    //lblCode.ForeColor = Color.Black;
+//}
+
+///// <summary>
+///// Event that runs when the focus leaves the textbox
+///// </summary>
+///// <param name="sender"></param>
+///// <param name="e"></param>
+//private void txtName_Leave(object sender, EventArgs e)
+//{
+
+//}
+
+///// <summary>
+///// Event that runs when the textbox recibes the focus
+///// </summary>
+///// <param name="sender"></param>
+///// <param name="e"></param>
+//private void txtName_Enter(object sender, EventArgs e)
+//{
+//    lblName.Text = "Name";
+//    lblName.ForeColor = Color.Black;
+//}
+///// <summary>
+/////  Event that runs when the focus leaves the idTeam
+///// </summary>
+///// <param name="sender"></param>
+///// <param name="e"></param>
+//private void txtIdTeam_Leave(object sender, EventArgs e)
+//{
+//    //if (txtIdTeam.Text != "")
+//    //{
+//    //    String _iIdTeam = txtIdTeam.Text;
+//    //    model.pojo.Team _oTeam = Controller.TeamService.readTeam(_iIdTeam); // We look for if the team already exists
+
+//    //    if (_oTeam == null) // If the team exists, we show a message
+//    //    {
+//    //        MessageBox.Show("This team don't exists");
+//    //        lblIdTeam.ForeColor = Color.Red;
+//    //        lblIdTeam.Text = "Id Team*";
+//    //    }
+
+//    //}
+//}
+
+///// <summary>
+///// Event that runs when the textbox recibes the focus
+///// </summary>
+///// <param name="sender"></param>
+///// <param name="e"></param>
+//private void txtIdTeam_Enter(object sender, EventArgs e)
+//{
+//    lblIdTeam.Text = "Id Team";
+//    lblIdTeam.ForeColor = Color.Black;
+//}
+
+#endregion
+
+/* Moved to Util 230516 Pablo Ardèvol
+    /// <summary>
+    /// Confirmation dialog that will let the user confirm they action or cancel it.
+    /// </summary>
+    /// <param name="message"></param>
+    /// <returns>Button click</returns>
+    private bool confirmationDialog(string message)
+    {
+        return (MessageBox.Show(message, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
+    }
+    */
+
+/* DELETED AND MOVED TO utilities.Help -- 230516 Pablo Ardèvol
+   /// <summary>
+   /// Method that changes the icon message
+   /// </summary>
+   /// <param name="pIcon"></param>
+   private void changeIconMessage(int pIcon)
+   {
+       String _strFilename = null;
+       Bitmap _image = null;
+
+       if (pIcon == 1)
+       {
+           _strFilename = Application.StartupPath + "\\views\\images\\warning.png";
+       }
+       else if (pIcon == 2)
+       {
+           _strFilename = Application.StartupPath + "\\views\\images\\error.png";
+       }
+       else if (pIcon == 3)
+       {
+           _strFilename = Application.StartupPath + "\\views\\images\\information.png";
+       }
+       //Configurates de icon message
+       if (_strFilename != null)
+       {
+           _image = new Bitmap(_strFilename);
+       }
+       this.pbxIconMessage.Image = _image;
+
+   }
+   */
+
+/* CHANGED BY HELPMESSAGE 23/05/16 - Pablo Ardèvol
+/// <summary>
+/// Methd that sohws message wrong
+/// </summary>
+private void messageWrong()
+{
+this.Height = 360;
+this.changeIconMessage(2);
+this.lblHelpMessage.Text = "El nif i/o el email no puede estar vacío.";
+}
+*/

@@ -90,6 +90,26 @@ namespace SynUp_Desktop.utilities
             }
         }
 
+        public new event EventHandler MouseHover
+        {
+            add
+            {
+                base.MouseHover += value;
+                foreach (Control control in Controls)
+                {
+                    control.MouseHover += value;
+                }
+            }
+            remove
+            {
+                base.MouseHover -= value;
+                foreach (Control control in Controls)
+                {
+                    control.MouseHover -= value;
+                }
+            }
+        }
+
         /// <summary>
         /// If the button isExit, the parent form will close. If it is false, it means it is a clear button and therefore will empty all the textbox fields in the parent form.
         /// </summary>
@@ -99,6 +119,19 @@ namespace SynUp_Desktop.utilities
         {
             if (isExit)
             {
+                /*if (Parent.Name.EndsWith("Management"))
+                {
+                    Parent.DialogResult = DialogResult.OK;
+                    //Parent.Close();                    
+                }
+                else
+                {
+                    Parent.Close();
+                    
+                    MessageBox.Show("Close lista" );
+                    Parent.Owner.Dispose();
+                    MessageBox.Show("dispose owner lista");
+                }*/
                 Parent.Close();
                 clearFields();
             }
@@ -125,26 +158,109 @@ namespace SynUp_Desktop.utilities
                         {
                             _inGroupBox.ForeColor = Color.Black; //Will reset it's validation changed color.
                         }
-                        /*if (_inGroupBox is DataGridView) //TODO: Mirar haber como podemos incluirlo aqui
+                        if (_inGroupBox is DataGridView) //TODO: Mirar haber como podemos incluirlo aqui.
+                                                         //SIIII Conseguido!!
                         {
-                            _inGroupBox.Controls.Clear();
-                            _inGroupBox.Refresh();
-                        }*/
+                            ((System.Windows.Forms.DataGridView)_inGroupBox).ClearSelection();
+                            ((System.Windows.Forms.DataGridView)_inGroupBox).Refresh();
+                        }
                     }
                 }
                 //Nota: Si quitas esto al limpiar el formulario los botones de crear quedan inhabilitados
                 // y los de updatear y eliminar quedan habilitados. Nos interesa que haga lo contrario
                 if (_control is Button && _control.Name != "btnHelp")
                 {
-                    if (_control.Name.StartsWith("btnC")) {
+                    if (_control.Name.StartsWith("btnC"))
+                    {
                         if (!_control.Enabled) _control.Enabled = true;
                     }
 
-                    if (_control.Name.StartsWith("btnU") || _control.Name.StartsWith("btnD")) {
+                    if (_control.Name.StartsWith("btnU") || _control.Name.StartsWith("btnD"))
+                    {
                         if (_control.Enabled) _control.Enabled = false;
                     }
 
                 }
+            }
+        }
+
+        /// <summary>
+        /// Event that runs when the mouse hover the control
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnGeneric_MouseHover(object sender, EventArgs e)
+        {
+            if (isExit)
+            {
+                foreach (Control _control in Parent.Controls)
+                {
+                    if (_control is GroupBox && _control.Name.Equals("gbHelp"))
+                    {
+                        foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
+                        {
+                            if (_inGroupBox is Label)
+                            {
+                                _inGroupBox.Text = Literal.INFO_BTN_BACK;
+                            }
+                            if (_inGroupBox is PictureBox)
+                            {
+                                _inGroupBox.Visible = true;
+                                ((System.Windows.Forms.PictureBox)_inGroupBox).Image = new Bitmap(Help.changeIconMessage(0));
+
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                foreach (Control _control in Parent.Controls)
+                {
+                    if (_control is GroupBox && _control.Name.Equals("gbHelp"))
+                    {
+                        foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
+                        {
+                            if (_inGroupBox is Label)
+                            {
+                                _inGroupBox.Text = Literal.INFO_BTN_CLEAR;
+                            }
+                            if (_inGroupBox is PictureBox)
+                            {
+                                _inGroupBox.Visible = true;
+                                ((System.Windows.Forms.PictureBox)_inGroupBox).Image = new Bitmap(Help.changeIconMessage(0));
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event that runs when the mouse leave the control
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnGeneric_MouseLeave(object sender, EventArgs e)
+        {
+            foreach (Control _control in Parent.Controls)
+            {
+                if (_control is GroupBox && _control.Name.Equals("gbHelp"))
+                {
+                    foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
+                    {
+                        if (_inGroupBox is Label) //Label lblHelpMessage
+                        {
+                            _inGroupBox.Text = "";
+                        }
+                        if (_inGroupBox is PictureBox)
+                        {
+                            _inGroupBox.Visible = false;
+                        }
+                    }
+                }
+
             }
         }
     }

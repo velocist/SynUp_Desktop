@@ -61,9 +61,10 @@
             // 
             // btnUpdateEmployee
             // 
-            this.btnUpdateEmployee.Location = new System.Drawing.Point(91, 201);
+            this.btnUpdateEmployee.Location = new System.Drawing.Point(121, 247);
+            this.btnUpdateEmployee.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnUpdateEmployee.Name = "btnUpdateEmployee";
-            this.btnUpdateEmployee.Size = new System.Drawing.Size(75, 40);
+            this.btnUpdateEmployee.Size = new System.Drawing.Size(100, 49);
             this.btnUpdateEmployee.TabIndex = 9;
             this.btnUpdateEmployee.Text = "Update";
             this.btnUpdateEmployee.UseVisualStyleBackColor = true;
@@ -71,9 +72,10 @@
             // 
             // btnDeleteEmployee
             // 
-            this.btnDeleteEmployee.Location = new System.Drawing.Point(172, 201);
+            this.btnDeleteEmployee.Location = new System.Drawing.Point(229, 247);
+            this.btnDeleteEmployee.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDeleteEmployee.Name = "btnDeleteEmployee";
-            this.btnDeleteEmployee.Size = new System.Drawing.Size(75, 40);
+            this.btnDeleteEmployee.Size = new System.Drawing.Size(100, 49);
             this.btnDeleteEmployee.TabIndex = 10;
             this.btnDeleteEmployee.Text = "Delete";
             this.btnDeleteEmployee.UseVisualStyleBackColor = true;
@@ -82,103 +84,118 @@
             // lblNif
             // 
             this.lblNif.AutoSize = true;
-            this.lblNif.Location = new System.Drawing.Point(17, 31);
+            this.lblNif.Location = new System.Drawing.Point(23, 38);
+            this.lblNif.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNif.Name = "lblNif";
-            this.lblNif.Size = new System.Drawing.Size(28, 13);
+            this.lblNif.Size = new System.Drawing.Size(34, 17);
             this.lblNif.TabIndex = 0;
             this.lblNif.Text = "NIF*";
             // 
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(10, 57);
+            this.lblName.Location = new System.Drawing.Point(13, 70);
+            this.lblName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(35, 13);
+            this.lblName.Size = new System.Drawing.Size(45, 17);
             this.lblName.TabIndex = 0;
             this.lblName.Text = "Name";
             // 
             // lblSurname
             // 
             this.lblSurname.AutoSize = true;
-            this.lblSurname.Location = new System.Drawing.Point(157, 57);
+            this.lblSurname.Location = new System.Drawing.Point(209, 70);
+            this.lblSurname.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSurname.Name = "lblSurname";
-            this.lblSurname.Size = new System.Drawing.Size(49, 13);
+            this.lblSurname.Size = new System.Drawing.Size(65, 17);
             this.lblSurname.TabIndex = 5;
             this.lblSurname.Text = "Surname";
             // 
             // lblPhone
             // 
             this.lblPhone.AutoSize = true;
-            this.lblPhone.Location = new System.Drawing.Point(7, 87);
+            this.lblPhone.Location = new System.Drawing.Point(9, 107);
+            this.lblPhone.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPhone.Name = "lblPhone";
-            this.lblPhone.Size = new System.Drawing.Size(38, 13);
+            this.lblPhone.Size = new System.Drawing.Size(49, 17);
             this.lblPhone.TabIndex = 0;
             this.lblPhone.Text = "Phone";
             // 
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(9, 114);
+            this.lblEmail.Location = new System.Drawing.Point(12, 140);
+            this.lblEmail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(36, 13);
+            this.lblEmail.Size = new System.Drawing.Size(47, 17);
             this.lblEmail.TabIndex = 0;
             this.lblEmail.Text = "Email*";
             // 
             // lblAdress
             // 
             this.lblAdress.AutoSize = true;
-            this.lblAdress.Location = new System.Drawing.Point(6, 142);
+            this.lblAdress.Location = new System.Drawing.Point(8, 175);
+            this.lblAdress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAdress.Name = "lblAdress";
-            this.lblAdress.Size = new System.Drawing.Size(39, 13);
+            this.lblAdress.Size = new System.Drawing.Size(52, 17);
             this.lblAdress.TabIndex = 0;
             this.lblAdress.Text = "Adress";
             // 
             // txtNif
             // 
-            this.txtNif.Location = new System.Drawing.Point(50, 28);
+            this.txtNif.Location = new System.Drawing.Point(67, 34);
+            this.txtNif.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNif.Name = "txtNif";
-            this.txtNif.Size = new System.Drawing.Size(100, 20);
+            this.txtNif.Size = new System.Drawing.Size(132, 23);
             this.txtNif.TabIndex = 1;
             this.txtNif.TextChanged += new System.EventHandler(this.txtNif_TextChanged);
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(50, 54);
+            this.txtName.Location = new System.Drawing.Point(67, 66);
+            this.txtName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(100, 20);
+            this.txtName.Size = new System.Drawing.Size(132, 23);
             this.txtName.TabIndex = 2;
             // 
             // txtSurname
             // 
-            this.txtSurname.Location = new System.Drawing.Point(218, 54);
+            this.txtSurname.Location = new System.Drawing.Point(291, 66);
+            this.txtSurname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSurname.Name = "txtSurname";
-            this.txtSurname.Size = new System.Drawing.Size(222, 20);
+            this.txtSurname.Size = new System.Drawing.Size(295, 23);
             this.txtSurname.TabIndex = 3;
             // 
             // txtPhone
             // 
-            this.txtPhone.Location = new System.Drawing.Point(50, 84);
+            this.txtPhone.Location = new System.Drawing.Point(67, 103);
+            this.txtPhone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(100, 20);
+            this.txtPhone.Size = new System.Drawing.Size(132, 23);
             this.txtPhone.TabIndex = 4;
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(50, 111);
+            this.txtEmail.Location = new System.Drawing.Point(67, 137);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(390, 20);
+            this.txtEmail.Size = new System.Drawing.Size(519, 23);
             this.txtEmail.TabIndex = 5;
             this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
             // 
             // txtAdress
             // 
-            this.txtAdress.Location = new System.Drawing.Point(50, 137);
+            this.txtAdress.Location = new System.Drawing.Point(67, 169);
+            this.txtAdress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtAdress.Name = "txtAdress";
-            this.txtAdress.Size = new System.Drawing.Size(390, 20);
+            this.txtAdress.Size = new System.Drawing.Size(519, 23);
             this.txtAdress.TabIndex = 6;
             // 
             // gbContainer
             // 
+            this.gbContainer.BackColor = System.Drawing.Color.Transparent;
+            this.gbContainer.BackgroundImage = global::SynUp_Desktop.Properties.Resources.SynUp;
+            this.gbContainer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.gbContainer.Controls.Add(this.lblMessageMandatory);
             this.gbContainer.Controls.Add(this.txtUsername);
             this.gbContainer.Controls.Add(this.lblUsername);
@@ -194,9 +211,11 @@
             this.gbContainer.Controls.Add(this.lblAdress);
             this.gbContainer.Controls.Add(this.txtName);
             this.gbContainer.Controls.Add(this.txtNif);
-            this.gbContainer.Location = new System.Drawing.Point(12, 12);
+            this.gbContainer.Location = new System.Drawing.Point(16, 15);
+            this.gbContainer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gbContainer.Name = "gbContainer";
-            this.gbContainer.Size = new System.Drawing.Size(445, 183);
+            this.gbContainer.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbContainer.Size = new System.Drawing.Size(593, 225);
             this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "Employee Data";
@@ -204,37 +223,41 @@
             // lblMessageMandatory
             // 
             this.lblMessageMandatory.AutoSize = true;
-            this.lblMessageMandatory.Location = new System.Drawing.Point(308, 167);
+            this.lblMessageMandatory.Location = new System.Drawing.Point(464, 206);
+            this.lblMessageMandatory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMessageMandatory.Name = "lblMessageMandatory";
-            this.lblMessageMandatory.Size = new System.Drawing.Size(131, 13);
+            this.lblMessageMandatory.Size = new System.Drawing.Size(121, 17);
             this.lblMessageMandatory.TabIndex = 0;
-            this.lblMessageMandatory.Text = "* This fields are mandatory";
+            this.lblMessageMandatory.Text = "* Mandatory fields";
             // 
             // txtUsername
             // 
             this.txtUsername.Enabled = false;
-            this.txtUsername.Location = new System.Drawing.Point(218, 28);
+            this.txtUsername.Location = new System.Drawing.Point(291, 34);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtUsername.MaxLength = 500;
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.ReadOnly = true;
-            this.txtUsername.Size = new System.Drawing.Size(221, 20);
+            this.txtUsername.Size = new System.Drawing.Size(293, 23);
             this.txtUsername.TabIndex = 0;
             this.txtUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(157, 31);
+            this.lblUsername.Location = new System.Drawing.Point(209, 38);
+            this.lblUsername.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(55, 13);
+            this.lblUsername.Size = new System.Drawing.Size(73, 17);
             this.lblUsername.TabIndex = 7;
             this.lblUsername.Text = "Username";
             // 
             // btnCreate
             // 
-            this.btnCreate.Location = new System.Drawing.Point(10, 201);
+            this.btnCreate.Location = new System.Drawing.Point(13, 247);
+            this.btnCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(75, 40);
+            this.btnCreate.Size = new System.Drawing.Size(100, 49);
             this.btnCreate.TabIndex = 8;
             this.btnCreate.Text = "Create";
             this.btnCreate.UseVisualStyleBackColor = true;
@@ -242,9 +265,10 @@
             // 
             // btnHelp
             // 
-            this.btnHelp.Location = new System.Drawing.Point(354, 218);
+            this.btnHelp.Location = new System.Drawing.Point(472, 268);
+            this.btnHelp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(28, 23);
+            this.btnHelp.Size = new System.Drawing.Size(37, 28);
             this.btnHelp.TabIndex = 13;
             this.btnHelp.Text = "?";
             this.btnHelp.UseVisualStyleBackColor = true;
@@ -254,8 +278,9 @@
             // 
             this.lblHelpMessage.AutoSize = true;
             this.lblHelpMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHelpMessage.Location = new System.Drawing.Point(35, 16);
-            this.lblHelpMessage.MaximumSize = new System.Drawing.Size(430, 40);
+            this.lblHelpMessage.Location = new System.Drawing.Point(47, 20);
+            this.lblHelpMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblHelpMessage.MaximumSize = new System.Drawing.Size(573, 49);
             this.lblHelpMessage.Name = "lblHelpMessage";
             this.lblHelpMessage.Size = new System.Drawing.Size(82, 13);
             this.lblHelpMessage.TabIndex = 0;
@@ -265,18 +290,21 @@
             // 
             this.gbHelp.Controls.Add(this.pbxIconMessage);
             this.gbHelp.Controls.Add(this.lblHelpMessage);
-            this.gbHelp.Location = new System.Drawing.Point(8, 255);
+            this.gbHelp.Location = new System.Drawing.Point(11, 314);
+            this.gbHelp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gbHelp.Name = "gbHelp";
-            this.gbHelp.Size = new System.Drawing.Size(450, 55);
+            this.gbHelp.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbHelp.Size = new System.Drawing.Size(600, 68);
             this.gbHelp.TabIndex = 0;
             this.gbHelp.TabStop = false;
             this.gbHelp.Text = "Help";
             // 
             // pbxIconMessage
             // 
-            this.pbxIconMessage.Location = new System.Drawing.Point(5, 15);
+            this.pbxIconMessage.Location = new System.Drawing.Point(7, 18);
+            this.pbxIconMessage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pbxIconMessage.Name = "pbxIconMessage";
-            this.pbxIconMessage.Size = new System.Drawing.Size(25, 25);
+            this.pbxIconMessage.Size = new System.Drawing.Size(33, 31);
             this.pbxIconMessage.TabIndex = 1;
             this.pbxIconMessage.TabStop = false;
             // 
@@ -286,11 +314,11 @@
             this.btnBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnBack.ButtonText = "Back";
             this.btnBack.isExit = true;
-            this.btnBack.Location = new System.Drawing.Point(385, 201);
+            this.btnBack.Location = new System.Drawing.Point(513, 247);
             this.btnBack.Margin = new System.Windows.Forms.Padding(0);
             this.btnBack.Name = "btnBack";
             this.btnBack.Parent = this;
-            this.btnBack.Size = new System.Drawing.Size(75, 40);
+            this.btnBack.Size = new System.Drawing.Size(100, 49);
             this.btnBack.TabIndex = 15;
             // 
             // btnClear
@@ -299,18 +327,21 @@
             this.btnClear.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnClear.ButtonText = "Clear";
             this.btnClear.isExit = false;
-            this.btnClear.Location = new System.Drawing.Point(253, 201);
+            this.btnClear.Location = new System.Drawing.Point(337, 247);
             this.btnClear.Margin = new System.Windows.Forms.Padding(0);
             this.btnClear.Name = "btnClear";
             this.btnClear.Parent = this;
-            this.btnClear.Size = new System.Drawing.Size(75, 40);
+            this.btnClear.Size = new System.Drawing.Size(100, 49);
             this.btnClear.TabIndex = 14;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // frmEmployeeManagement
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(465, 253);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ClientSize = new System.Drawing.Size(620, 311);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.gbHelp);
@@ -319,12 +350,15 @@
             this.Controls.Add(this.gbContainer);
             this.Controls.Add(this.btnUpdateEmployee);
             this.Controls.Add(this.btnDeleteEmployee);
+            this.DoubleBuffered = true;
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(485, 360);
+            this.MaximumSize = new System.Drawing.Size(640, 433);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(485, 295);
+            this.MinimumSize = new System.Drawing.Size(640, 353);
             this.Name = "frmEmployeeManagement";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Employee Management";

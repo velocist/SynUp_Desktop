@@ -30,9 +30,6 @@ namespace SynUp_Desktop.utilities
             EXCLUDE,
             ASSIGN,
             UNASSIGN,
-
-
-
         };
 
         public enum MESSAGE
@@ -40,7 +37,6 @@ namespace SynUp_Desktop.utilities
             EXIST,
             INTEAM,
             WRONG,
-
         }
 
         /// <summary>
@@ -153,7 +149,7 @@ namespace SynUp_Desktop.utilities
                     _strMessage = _strInitialMessage + " already on the team";
                     break;
                 case "WRONG":
-                    _strMessage = "Wrong selected values.";
+                    _strMessage = "\tWrong fields.\nInsert again the values.";
                     break;
 
             }
@@ -161,7 +157,6 @@ namespace SynUp_Desktop.utilities
         }
         private static void configureMessageBox(MessageBox pMessageBox)
         {
-
 
         }
     }

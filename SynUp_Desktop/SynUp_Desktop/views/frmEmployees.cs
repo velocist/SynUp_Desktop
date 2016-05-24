@@ -54,6 +54,9 @@ namespace SynUp_Desktop.views
             this.MinimizeBox = false;
             this.MaximizeBox = false;
 
+            //this.BackgroundImage = new Bitmap(Application.StartupPath + "\\views\\images\\synup.png");
+            
+
         }
 
         /// <summary>
@@ -123,15 +126,16 @@ namespace SynUp_Desktop.views
                     String _SelectedTeam = this.cmbTeamsToAdd.SelectedValue.ToString();
                     _oTeam = this.Controller.TeamService.readTeam(_SelectedTeam);
 
-                    model.pojo.TeamHistory _oCurrentTeam = this.Controller.TeamHistoryService.getCurrentTeamHistoryByEmployee(_oSelectedEmployee.nif); //We look if the employee already in team
-                    if (_oCurrentTeam == null)
-                    {
+                   // model.pojo.TeamHistory _oCurrentTeam = this.Controller.TeamHistoryService.getCurrentTeamHistoryByEmployee(_oSelectedEmployee.nif); //We look if the employee already in team
+                    
+                    //if (_oCurrentTeam == null)
+                    //{
                         this.addToTeam(_oSelectedEmployee, _oTeam);
-                    }
-                    else
-                    {
-                        clMessageBox.showMessage(clMessageBox.MESSAGE.INTEAM, "employee", this);
-                    }
+                    //}
+                    //else
+                    //{
+                        //clMessageBox.showMessage(clMessageBox.MESSAGE.INTEAM, "employee", this);
+                    //}
 
                 }
             }
@@ -167,12 +171,12 @@ namespace SynUp_Desktop.views
                     model.pojo.Employee _oSelectedEmployee = Controller.EmployeeService.readEmployee(_strSelectedRowCode); // We look for the employee nif
 
                     //TODO: Comprobar porque no acaba de ir bien
-                    model.pojo.TeamHistory _oCurrentTeamHistory = this.Controller.TeamHistoryService.getCurrentTeamHistoryByEmployee(_strSelectedRowCode);
+                    /*model.pojo.TeamHistory _oCurrentTeamHistory = this.Controller.TeamHistoryService.getCurrentTeamHistoryByEmployee(_strSelectedRowCode);
 
                     if (_oCurrentTeamHistory != null)
                     {
                         this.cmbTeamsToAdd.SelectedValue = _oCurrentTeamHistory.id_team;
-                    }
+                    }*/
                     /* MessageBox.Show(_oSelectedEmployee.nif);
                     //if(_oSelectedEmployee.TeamHistories)
                     //this.cmbTeamsToAdd.SelectedValue
@@ -220,10 +224,10 @@ namespace SynUp_Desktop.views
 
             if (pEmployee != null && pTeam != null)
             {
-                _oTeamHistoryControl = null;// this.Controller.TeamHistoryService.readTeamHistory(pEmployee.nif, pTeam.code);
+                //_oTeamHistoryControl = null;// this.Controller.TeamHistoryService.readTeamHistory(pEmployee.nif, pTeam.code);
 
-                if (_oTeamHistoryControl == null)
-                {
+                //if (_oTeamHistoryControl == null)
+                //{
                     //USELESS
                     //_oTeamHistory.id_employee = pEmployee.nif;
                     //_oTeamHistory.id_team = pTeam.code;
@@ -231,11 +235,11 @@ namespace SynUp_Desktop.views
 
                     Boolean _blAdd = this.Controller.TeamService.addToTeam(pEmployee.nif, pTeam.code);
                     clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.ADD, "employee", _blAdd, this);
-                }
-                else
-                {
-                    MessageBox.Show("This employee is already in the team");
-                }
+                //}
+                //else
+                //{
+                  //  MessageBox.Show("This employee is already in the team");
+                //}
             }
         }
 
@@ -257,8 +261,8 @@ namespace SynUp_Desktop.views
             this.dgvEmployees.Columns[3].Visible = false;
             this.dgvEmployees.Columns[4].HeaderText = "Email";
             this.dgvEmployees.Columns[5].Visible = false;
-            this.dgvEmployees.Columns[6].Visible = false; 
-            this.dgvEmployees.Columns[7].Visible = false; 
+            this.dgvEmployees.Columns[6].Visible = false;
+            this.dgvEmployees.Columns[7].Visible = false;
             this.dgvEmployees.Columns[8].Visible = false; // TeamsHistory
             this.dgvEmployees.Columns[9].Visible = false; // TaskHistories
 
@@ -278,6 +282,8 @@ namespace SynUp_Desktop.views
             this.dgvEmployees.RowTemplate.ReadOnly = true;
             this.dgvEmployees.RowHeadersVisible = false; // We hide the rowheader
             this.dgvEmployees.ClearSelection(); // Clear selection rows            
+
+
         }
 
         #region HELP
