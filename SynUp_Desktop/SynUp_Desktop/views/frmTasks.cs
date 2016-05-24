@@ -46,8 +46,9 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void frmTasks_Load(object sender, EventArgs e)
         {
-            this.dgvConfiguration();
             this.fillGrid();
+            this.dgvConfiguration();
+           
             
             //Form Common Configurations
             FormBorderStyle = FormBorderStyle.Fixed3D;
@@ -76,11 +77,9 @@ namespace SynUp_Desktop.views
                     this.Controller.TaskMgtView.AuxTask = _oSelectedTask; // We assign the task to form task management
                 }
             }
-
-            //if (this.Controller.TaskMgtView.ShowDialog() == DialogResult.OK)MessageBox.Show("dialogresult OK");            
-            //this.Hide();
+            
             this.Controller.TaskMgtView.ShowDialog();
-            //this.Show();
+
         }
 
         
@@ -90,8 +89,6 @@ namespace SynUp_Desktop.views
         /// <author>Pablo Ardèvol</author>
         private void dgvConfiguration()
         {
-            this.fillGrid();
-
             //Form Common Configurations
             this.FormBorderStyle = FormBorderStyle.Fixed3D;
             this.MinimizeBox = false;
@@ -135,8 +132,6 @@ namespace SynUp_Desktop.views
         private void frmTasks_Activated(object sender, EventArgs e)
         {
             this.fillGrid();
-            this.dgvTasks.ClearSelection(); // Clear selection rows.
-            this.dgvTasks.Refresh(); //Refresh the view.   
         }
 
         /// <summary>
