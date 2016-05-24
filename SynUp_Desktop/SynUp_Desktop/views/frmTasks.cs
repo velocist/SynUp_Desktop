@@ -55,7 +55,6 @@ namespace SynUp_Desktop.views
             this.MaximizeBox = false;
 
             blHELP = false;
-            this.gbHelp.Visible = false;
         }
 
         /// <summary>

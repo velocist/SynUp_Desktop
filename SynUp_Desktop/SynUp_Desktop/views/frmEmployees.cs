@@ -61,7 +61,7 @@ namespace SynUp_Desktop.views
 
             //We configures the groupbox help
             this._blHelp = false;
-            this.gbHelp.Visible = false;
+
         }
 
         /// <summary>
@@ -73,12 +73,9 @@ namespace SynUp_Desktop.views
         {
             //The grid with all the employees will load.
             this.fillGridView();
-            this.dgvEmployees.ClearSelection(); // Clear selection rows.
-            this.dgvEmployees.Refresh(); //Refresh the view.              
 
             //We configures the groupbox help
             this._blHelp = false;
-            this.gbHelp.Visible = false;
         }
 
         /// <summary>
@@ -273,7 +270,7 @@ namespace SynUp_Desktop.views
 
         #region HELP
 
-        private Boolean _blHelp = false;
+        private Boolean _blHelp;
 
         /// <summary>
         /// Event that runs when the button help is clicked
@@ -282,7 +279,6 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnHelp_MouseClick(object sender, MouseEventArgs e)
         {
-            if (!this.gbHelp.Visible) this.gbHelp.Visible = true;
             _blHelp = utilities.Help.hideShowHelp(_blHelp, this, this.MinimumSize.Height, this.MaximumSize.Height);
             if (_blHelp) this.HelpMessage("", (int)utilities.Help.HelpIcon.NONE);
             this.walkingControls();
@@ -325,13 +321,12 @@ namespace SynUp_Desktop.views
             if (_blHelp)
             {
                 //TODO Cambiar strings
-                int _iIcon = (int)utilities.Help.HelpIcon.NONE;
+                int _iIcon = (int)utilities.Help.HelpIcon.INFORMATION;
                 String _message = "";
 
                 if (sender.Equals(this.btnManagementEmployee))
                 {
                     _message = Literal.INFO_CODE_TASK;
-
                 }
                 else if (sender.Equals(this.lblTeams))
                 {

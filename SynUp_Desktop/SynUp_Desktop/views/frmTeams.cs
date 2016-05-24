@@ -46,7 +46,6 @@ namespace SynUp_Desktop.views
 
             //We configures the groupbox help
             this._blHelp = false;
-            this.gbHelp.Visible = false;
         }
 
         /// <summary>

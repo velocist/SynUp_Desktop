@@ -139,21 +139,8 @@ namespace SynUp_Desktop.utilities
         {
             if (isExit)
             {
-                /*if (Parent.Name.EndsWith("Management"))
-                {
-                    Parent.DialogResult = DialogResult.OK;
-                    //Parent.Close();                    
-                }
-                else
-                {
-                    Parent.Close();
-                    
-                    MessageBox.Show("Close lista" );
-                    Parent.Owner.Dispose();
-                    MessageBox.Show("dispose owner lista");
-                }*/
-                Parent.Close();
                 clearFields();
+                Parent.Close();                
             }
             else clearFields();
         }
@@ -229,7 +216,7 @@ namespace SynUp_Desktop.utilities
                             }
                             if (_inGroupBox is PictureBox)
                             {
-                                ((System.Windows.Forms.PictureBox)_inGroupBox).Image = new Bitmap(Help.changeIconMessage(0));
+                                ((System.Windows.Forms.PictureBox)_inGroupBox).Image = new Bitmap(Help.changeIconMessage(2));
                             }
                         }
                     }
@@ -249,7 +236,7 @@ namespace SynUp_Desktop.utilities
                             }
                             if (_inGroupBox is PictureBox)
                             {
-                                ((System.Windows.Forms.PictureBox)_inGroupBox).Image = new Bitmap(Help.changeIconMessage(0));
+                                ((System.Windows.Forms.PictureBox)_inGroupBox).Image = new Bitmap(Help.changeIconMessage(2));
                             }
                         }
                     }
@@ -273,6 +260,10 @@ namespace SynUp_Desktop.utilities
                         if (_inGroupBox is Label) //Label lblHelpMessage
                         {
                             _inGroupBox.Text = "";
+                        }
+                        if (_inGroupBox is PictureBox)
+                        {
+                            ((System.Windows.Forms.PictureBox)_inGroupBox).Image = new Bitmap(Help.changeIconMessage(2));
                         }
                     }
                 }
