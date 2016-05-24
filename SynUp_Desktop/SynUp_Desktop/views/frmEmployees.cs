@@ -54,18 +54,6 @@ namespace SynUp_Desktop.views
             this.MinimizeBox = false;
             this.MaximizeBox = false;
 
-            //this.BackgroundImage = new Bitmap(Application.StartupPath + "\\views\\images\\synup.png");
-            
-
-        }
-
-        /// <summary>
-        /// Event triggered every time the view is displayed. 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void frmEmployees_Activated(object sender, EventArgs e)
-        {
             //The grid with all the employees will load.
             this.fillGridView();
             this.dgvEmployees.ClearSelection(); // Clear selection rows.
@@ -73,10 +61,7 @@ namespace SynUp_Desktop.views
 
             //The combo with all the teams will load.
             this.fillComboTeams();
-
-            //TODO: Voy a probar de limpiar el auxiliar de empleado desde aqui a ver si no falla. FUNCIONA
-            //this.Controller.EmployeeMgtView.AuxEmployee = null;
-
+            
             //We configures the groupbox help
             this._blHelp = false;
             this.gbHelp.Visible = false;
@@ -170,7 +155,7 @@ namespace SynUp_Desktop.views
                     String _strSelectedRowCode = _cell.ToString(); // Recover the code
                     model.pojo.Employee _oSelectedEmployee = Controller.EmployeeService.readEmployee(_strSelectedRowCode); // We look for the employee nif
 
-                    //TODO: Comprobar porque no acaba de ir bien
+                    /*DELETE: Cristina  C. 240516 No lo utilizamos
                     /*model.pojo.TeamHistory _oCurrentTeamHistory = this.Controller.TeamHistoryService.getCurrentTeamHistoryByEmployee(_strSelectedRowCode);
 
                     if (_oCurrentTeamHistory != null)
@@ -459,3 +444,27 @@ this.Close();
 this.Controller.MainView.Show();
 }
 */
+
+/* DELETE: Cristina C. 24052016 Move to event load
+/// <summary>
+/// Event triggered every time the view is displayed. 
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
+private void frmEmployees_Activated(object sender, EventArgs e)
+{
+//The grid with all the employees will load.
+this.fillGridView();
+this.dgvEmployees.ClearSelection(); // Clear selection rows.
+this.dgvEmployees.Refresh(); //Refresh the view.               
+
+//The combo with all the teams will load.
+this.fillComboTeams();
+
+//TODO: Voy a probar de limpiar el auxiliar de empleado desde aqui a ver si no falla. FUNCIONA
+//this.Controller.EmployeeMgtView.AuxEmployee = null;
+
+//We configures the groupbox help
+this._blHelp = false;
+this.gbHelp.Visible = false;
+}*/

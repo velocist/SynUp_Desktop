@@ -86,6 +86,8 @@ namespace SynUp_Desktop.views
                     this.filterRanking();
                     break;
             }
+            this.dgvStadistics.ClearSelection(); // Clear selection rows
+            this.dgvStadistics.Refresh();
         }
 
         /// <summary>
@@ -201,6 +203,8 @@ namespace SynUp_Desktop.views
                 this.HelpMessage(Literal.WARNING_DATEDIFF_STATISTICS, (int)HelpIcon.WARNING);
                 //clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
             }
+
+
         }
 
         /// <summary>
@@ -325,8 +329,7 @@ namespace SynUp_Desktop.views
             this.dgvStadistics.Cursor = Cursors.Hand; // Cursor hand type            
             this.dgvStadistics.MultiSelect = false; //Can't multiselect
             this.dgvStadistics.RowTemplate.ReadOnly = true;
-            this.dgvStadistics.RowHeadersVisible = false; // We hide the rowheader
-            this.dgvStadistics.ClearSelection(); // Clear selection rows
+            this.dgvStadistics.RowHeadersVisible = false; // We hide the rowheader           
 
         }
 

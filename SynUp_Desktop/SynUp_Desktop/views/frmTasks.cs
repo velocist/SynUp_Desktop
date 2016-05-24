@@ -48,7 +48,7 @@ namespace SynUp_Desktop.views
         {
             this.dgvConfiguration();
             this.fillGrid();
-
+            
             //Form Common Configurations
             FormBorderStyle = FormBorderStyle.Fixed3D;
             this.MinimizeBox = false;
@@ -84,16 +84,7 @@ namespace SynUp_Desktop.views
             //this.Show();
         }
 
-        /// <summary>
-        /// Event that runs when clicked
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //private void btnBack_Click(object sender, EventArgs e)
-        //{
-        //    this.Close();
-        //}
-
+        
         /// <summary>
         /// DataGridView Configuration
         /// </summary>
@@ -133,8 +124,7 @@ namespace SynUp_Desktop.views
             dgvTasks.Cursor = Cursors.Hand; // Cursor hand type            
             dgvTasks.MultiSelect = false; //Can't multiselect
             dgvTasks.RowTemplate.ReadOnly = true;
-            dgvTasks.RowHeadersVisible = false; // We hide the rowheader
-            dgvTasks.ClearSelection(); // Clear selection rows            
+            dgvTasks.RowHeadersVisible = false; // We hide the rowheader           
 
         }
 
@@ -147,6 +137,7 @@ namespace SynUp_Desktop.views
             BindingSource source = new BindingSource();
             source.DataSource = Controller.TaskService.getAllTasks();
             this.dgvTasks.DataSource = source;
+            this.dgvTasks.ClearSelection(); // Clear selection rows        
             this.dgvTasks.Refresh();
             this.Refresh();
         }
