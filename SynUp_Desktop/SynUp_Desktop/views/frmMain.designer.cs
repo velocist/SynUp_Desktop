@@ -45,7 +45,8 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
-            this.lblTitle.Location = new System.Drawing.Point(56, 9);
+            this.lblTitle.Location = new System.Drawing.Point(114, 9);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(253, 31);
             this.lblTitle.TabIndex = 0;
@@ -54,9 +55,10 @@
             // 
             // btnEmployees
             // 
-            this.btnEmployees.Location = new System.Drawing.Point(10, 173);
+            this.btnEmployees.Location = new System.Drawing.Point(13, 213);
+            this.btnEmployees.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnEmployees.Name = "btnEmployees";
-            this.btnEmployees.Size = new System.Drawing.Size(344, 47);
+            this.btnEmployees.Size = new System.Drawing.Size(459, 58);
             this.btnEmployees.TabIndex = 1;
             this.btnEmployees.Text = "Employees";
             this.btnEmployees.UseVisualStyleBackColor = true;
@@ -64,9 +66,10 @@
             // 
             // btnTeams
             // 
-            this.btnTeams.Location = new System.Drawing.Point(10, 226);
+            this.btnTeams.Location = new System.Drawing.Point(13, 278);
+            this.btnTeams.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnTeams.Name = "btnTeams";
-            this.btnTeams.Size = new System.Drawing.Size(344, 47);
+            this.btnTeams.Size = new System.Drawing.Size(459, 58);
             this.btnTeams.TabIndex = 2;
             this.btnTeams.Text = "Teams";
             this.btnTeams.UseVisualStyleBackColor = true;
@@ -74,9 +77,10 @@
             // 
             // btnTasks
             // 
-            this.btnTasks.Location = new System.Drawing.Point(10, 279);
+            this.btnTasks.Location = new System.Drawing.Point(13, 343);
+            this.btnTasks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnTasks.Name = "btnTasks";
-            this.btnTasks.Size = new System.Drawing.Size(344, 47);
+            this.btnTasks.Size = new System.Drawing.Size(459, 58);
             this.btnTasks.TabIndex = 3;
             this.btnTasks.Text = "Tasks";
             this.btnTasks.UseVisualStyleBackColor = true;
@@ -84,9 +88,10 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(10, 438);
+            this.btnExit.Location = new System.Drawing.Point(13, 539);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(344, 47);
+            this.btnExit.Size = new System.Drawing.Size(459, 58);
             this.btnExit.TabIndex = 6;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -94,9 +99,10 @@
             // 
             // btnStadistics
             // 
-            this.btnStadistics.Location = new System.Drawing.Point(10, 332);
+            this.btnStadistics.Location = new System.Drawing.Point(13, 409);
+            this.btnStadistics.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnStadistics.Name = "btnStadistics";
-            this.btnStadistics.Size = new System.Drawing.Size(344, 47);
+            this.btnStadistics.Size = new System.Drawing.Size(459, 58);
             this.btnStadistics.TabIndex = 4;
             this.btnStadistics.Text = "Statistics";
             this.btnStadistics.UseVisualStyleBackColor = true;
@@ -104,9 +110,10 @@
             // 
             // btnAbout
             // 
-            this.btnAbout.Location = new System.Drawing.Point(10, 385);
+            this.btnAbout.Location = new System.Drawing.Point(13, 474);
+            this.btnAbout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAbout.Name = "btnAbout";
-            this.btnAbout.Size = new System.Drawing.Size(344, 47);
+            this.btnAbout.Size = new System.Drawing.Size(459, 58);
             this.btnAbout.TabIndex = 5;
             this.btnAbout.Text = "About";
             this.btnAbout.UseVisualStyleBackColor = true;
@@ -116,18 +123,20 @@
             // 
             this.pbxLogo.BackColor = System.Drawing.Color.Transparent;
             this.pbxLogo.Image = global::SynUp_Desktop.Properties.Resources.SynUp;
-            this.pbxLogo.Location = new System.Drawing.Point(109, 46);
+            this.pbxLogo.Location = new System.Drawing.Point(145, 57);
+            this.pbxLogo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pbxLogo.Name = "pbxLogo";
-            this.pbxLogo.Size = new System.Drawing.Size(147, 121);
+            this.pbxLogo.Size = new System.Drawing.Size(196, 149);
             this.pbxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxLogo.TabIndex = 0;
             this.pbxLogo.TabStop = false;
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(365, 492);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ClientSize = new System.Drawing.Size(487, 606);
             this.Controls.Add(this.pbxLogo);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.btnStadistics);
@@ -136,12 +145,14 @@
             this.Controls.Add(this.btnTeams);
             this.Controls.Add(this.btnEmployees);
             this.Controls.Add(this.btnAbout);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(385, 535);
+            this.MaximumSize = new System.Drawing.Size(507, 649);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(385, 535);
+            this.MinimumSize = new System.Drawing.Size(507, 649);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Main Menu";
