@@ -34,6 +34,10 @@ namespace SynUp_Desktop.utilities
             {
                 _strFilename = Application.StartupPath + Literal.INFORMATION_ICON;
             }
+            else if (pIcon == (int)HelpIcon.NONE)
+            {
+                _strFilename = null;
+            }
 
             //Configurates de icon message
             if (_strFilename != null)
@@ -67,6 +71,6 @@ namespace SynUp_Desktop.utilities
             }
 
             return !_blHelp; //It will return the opposite of the value received
-        }        
+        }
     }
 }

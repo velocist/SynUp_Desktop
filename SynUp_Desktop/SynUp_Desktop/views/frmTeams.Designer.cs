@@ -50,7 +50,7 @@
             this.dgvTeams.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTeams.GridColor = System.Drawing.SystemColors.HotTrack;
             this.dgvTeams.Location = new System.Drawing.Point(12, 23);
-            this.dgvTeams.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvTeams.Margin = new System.Windows.Forms.Padding(4);
             this.dgvTeams.Name = "dgvTeams";
             this.dgvTeams.Size = new System.Drawing.Size(780, 442);
             this.dgvTeams.TabIndex = 1;
@@ -60,9 +60,9 @@
             this.gbContainer.BackColor = System.Drawing.Color.Transparent;
             this.gbContainer.Controls.Add(this.dgvTeams);
             this.gbContainer.Location = new System.Drawing.Point(16, 40);
-            this.gbContainer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbContainer.Margin = new System.Windows.Forms.Padding(4);
             this.gbContainer.Name = "gbContainer";
-            this.gbContainer.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbContainer.Padding = new System.Windows.Forms.Padding(4);
             this.gbContainer.Size = new System.Drawing.Size(800, 473);
             this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
@@ -71,7 +71,7 @@
             // btnHelp
             // 
             this.btnHelp.Location = new System.Drawing.Point(671, 545);
-            this.btnHelp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnHelp.Margin = new System.Windows.Forms.Padding(4);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(37, 28);
             this.btnHelp.TabIndex = 3;
@@ -85,9 +85,9 @@
             this.gbHelp.Controls.Add(this.pbxIconMessage);
             this.gbHelp.Controls.Add(this.lblHelpMessage);
             this.gbHelp.Location = new System.Drawing.Point(139, 514);
-            this.gbHelp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbHelp.Margin = new System.Windows.Forms.Padding(4);
             this.gbHelp.Name = "gbHelp";
-            this.gbHelp.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbHelp.Padding = new System.Windows.Forms.Padding(4);
             this.gbHelp.Size = new System.Drawing.Size(524, 59);
             this.gbHelp.TabIndex = 0;
             this.gbHelp.TabStop = false;
@@ -96,7 +96,7 @@
             // pbxIconMessage
             // 
             this.pbxIconMessage.Location = new System.Drawing.Point(7, 22);
-            this.pbxIconMessage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbxIconMessage.Margin = new System.Windows.Forms.Padding(4);
             this.pbxIconMessage.Name = "pbxIconMessage";
             this.pbxIconMessage.Size = new System.Drawing.Size(33, 31);
             this.pbxIconMessage.TabIndex = 0;
@@ -117,7 +117,7 @@
             // btnManagementTeams
             // 
             this.btnManagementTeams.Location = new System.Drawing.Point(16, 524);
-            this.btnManagementTeams.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnManagementTeams.Margin = new System.Windows.Forms.Padding(4);
             this.btnManagementTeams.Name = "btnManagementTeams";
             this.btnManagementTeams.Size = new System.Drawing.Size(113, 49);
             this.btnManagementTeams.TabIndex = 2;
@@ -145,7 +145,7 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BackgroundImage = global::SynUp_Desktop.Properties.Resources.SynUp;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(833, 581);
+            this.ClientSize = new System.Drawing.Size(830, 582);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.gbHelp);
@@ -155,15 +155,15 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(853, 624);
+            this.MaximumSize = new System.Drawing.Size(850, 625);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(853, 624);
+            this.MinimumSize = new System.Drawing.Size(850, 625);
             this.Name = "frmTeams";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Teams";
-            this.Activated += new System.EventHandler(this.frmTeams_Activated);
+            //this.Activated += new System.EventHandler(this.frmTeams_Activated);
             this.Load += new System.EventHandler(this.frmTeams_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTeams)).EndInit();
             this.gbContainer.ResumeLayout(false);

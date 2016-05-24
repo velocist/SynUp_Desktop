@@ -19,8 +19,8 @@ namespace SynUp_Desktop.views
     {
         private Controller controller;
         private Boolean _blHelp = false;
-        private int maxHeight = 360;
-        private int minHeight = 290;
+        private int maxHeight = 430;
+        private int minHeight = 355;
 
         public Controller Controller
         {
@@ -301,7 +301,8 @@ namespace SynUp_Desktop.views
             if (checkDNI() && checkEmail())
             {
                 _blCorrect = true;
-            } else
+            }
+            else
             {
                 this.HelpMessage(Literal.ERROR_VALIDATION_EMPLOYEE, (int)HelpIcon.ERROR);
             }
@@ -405,9 +406,10 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnHelp_MouseClick(object sender, MouseEventArgs e)
         {
-            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, minHeight , maxHeight);
-            if (_blHelp) this.HelpMessage("", (int)HelpIcon.WARNING);
+            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, this.MinimumSize.Height, this.MaximumSize.Height);
+            if (_blHelp) this.HelpMessage("", (int)HelpIcon.NONE);
             this.walkingControls();
+
         }
 
         /// <summary>
@@ -419,9 +421,7 @@ namespace SynUp_Desktop.views
         {
             if (_blHelp)
             {
-                this.HelpMessage("", (int)HelpIcon.WARNING);
-                //this.changeIconMessage(0);
-                //this.lblHelpMessage.Text = null;
+                this.HelpMessage("", (int)HelpIcon.NONE);
             }
         }
 
@@ -543,11 +543,12 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// Methd that sohws message wrong
+        /// Method that shows message help
         /// </summary>
         private void HelpMessage(String message, int icon)
         {
-            this.Height = maxHeight;
+            this.pbxIconMessage.Visible = true;
+            this.Height = this.MaximumSize.Height;
             this.pbxIconMessage.Image = utilities.Help.changeIconMessage(icon);
             this.lblHelpMessage.Text = message;
         }

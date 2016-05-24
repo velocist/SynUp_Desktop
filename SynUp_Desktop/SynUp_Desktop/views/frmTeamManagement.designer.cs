@@ -68,9 +68,9 @@
             this.gbContainer.Controls.Add(this.txtName);
             this.gbContainer.Controls.Add(this.txtCode);
             this.gbContainer.Location = new System.Drawing.Point(16, 15);
-            this.gbContainer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbContainer.Margin = new System.Windows.Forms.Padding(4);
             this.gbContainer.Name = "gbContainer";
-            this.gbContainer.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbContainer.Padding = new System.Windows.Forms.Padding(4);
             this.gbContainer.Size = new System.Drawing.Size(816, 442);
             this.gbContainer.TabIndex = 17;
             this.gbContainer.TabStop = false;
@@ -89,7 +89,7 @@
             // btnAdd
             // 
             this.btnAdd.Location = new System.Drawing.Point(675, 406);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(132, 28);
             this.btnAdd.TabIndex = 9;
@@ -100,7 +100,7 @@
             // btnDeleteToTeam
             // 
             this.btnDeleteToTeam.Location = new System.Drawing.Point(533, 406);
-            this.btnDeleteToTeam.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDeleteToTeam.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteToTeam.Name = "btnDeleteToTeam";
             this.btnDeleteToTeam.Size = new System.Drawing.Size(133, 28);
             this.btnDeleteToTeam.TabIndex = 6;
@@ -125,7 +125,7 @@
             this.dgvEmployeesOnTeam.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEmployeesOnTeam.GridColor = System.Drawing.SystemColors.HotTrack;
             this.dgvEmployeesOnTeam.Location = new System.Drawing.Point(8, 81);
-            this.dgvEmployeesOnTeam.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvEmployeesOnTeam.Margin = new System.Windows.Forms.Padding(4);
             this.dgvEmployeesOnTeam.Name = "dgvEmployeesOnTeam";
             this.dgvEmployeesOnTeam.Size = new System.Drawing.Size(799, 318);
             this.dgvEmployeesOnTeam.TabIndex = 3;
@@ -154,7 +154,7 @@
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(348, 28);
-            this.txtName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtName.Margin = new System.Windows.Forms.Padding(4);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(457, 23);
             this.txtName.TabIndex = 2;
@@ -162,7 +162,7 @@
             // txtCode
             // 
             this.txtCode.Location = new System.Drawing.Point(59, 28);
-            this.txtCode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCode.Margin = new System.Windows.Forms.Padding(4);
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(225, 23);
             this.txtCode.TabIndex = 1;
@@ -171,7 +171,7 @@
             // btnDeleteTeam
             // 
             this.btnDeleteTeam.Location = new System.Drawing.Point(232, 468);
-            this.btnDeleteTeam.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDeleteTeam.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteTeam.Name = "btnDeleteTeam";
             this.btnDeleteTeam.Size = new System.Drawing.Size(100, 49);
             this.btnDeleteTeam.TabIndex = 19;
@@ -182,7 +182,7 @@
             // btnUpdateTeam
             // 
             this.btnUpdateTeam.Location = new System.Drawing.Point(124, 468);
-            this.btnUpdateTeam.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUpdateTeam.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateTeam.Name = "btnUpdateTeam";
             this.btnUpdateTeam.Size = new System.Drawing.Size(100, 49);
             this.btnUpdateTeam.TabIndex = 18;
@@ -193,7 +193,7 @@
             // btnCreateTeam
             // 
             this.btnCreateTeam.Location = new System.Drawing.Point(16, 468);
-            this.btnCreateTeam.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCreateTeam.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreateTeam.Name = "btnCreateTeam";
             this.btnCreateTeam.Size = new System.Drawing.Size(100, 49);
             this.btnCreateTeam.TabIndex = 21;
@@ -204,7 +204,7 @@
             // btnHelp
             // 
             this.btnHelp.Location = new System.Drawing.Point(691, 489);
-            this.btnHelp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnHelp.Margin = new System.Windows.Forms.Padding(4);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(37, 28);
             this.btnHelp.TabIndex = 25;
@@ -214,12 +214,13 @@
             // 
             // gbHelp
             // 
+            this.gbHelp.BackColor = System.Drawing.Color.Transparent;
             this.gbHelp.Controls.Add(this.pbxIconMessage);
             this.gbHelp.Controls.Add(this.lblHelpMessage);
             this.gbHelp.Location = new System.Drawing.Point(16, 521);
-            this.gbHelp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbHelp.Margin = new System.Windows.Forms.Padding(4);
             this.gbHelp.Name = "gbHelp";
-            this.gbHelp.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbHelp.Padding = new System.Windows.Forms.Padding(4);
             this.gbHelp.Size = new System.Drawing.Size(816, 64);
             this.gbHelp.TabIndex = 26;
             this.gbHelp.TabStop = false;
@@ -228,7 +229,7 @@
             // pbxIconMessage
             // 
             this.pbxIconMessage.Location = new System.Drawing.Point(7, 18);
-            this.pbxIconMessage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbxIconMessage.Margin = new System.Windows.Forms.Padding(4);
             this.pbxIconMessage.Name = "pbxIconMessage";
             this.pbxIconMessage.Size = new System.Drawing.Size(33, 31);
             this.pbxIconMessage.TabIndex = 1;
@@ -237,12 +238,12 @@
             // lblHelpMessage
             // 
             this.lblHelpMessage.AutoSize = true;
-            this.lblHelpMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHelpMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHelpMessage.Location = new System.Drawing.Point(47, 20);
             this.lblHelpMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHelpMessage.MaximumSize = new System.Drawing.Size(573, 49);
             this.lblHelpMessage.Name = "lblHelpMessage";
-            this.lblHelpMessage.Size = new System.Drawing.Size(82, 13);
+            this.lblHelpMessage.Size = new System.Drawing.Size(103, 16);
             this.lblHelpMessage.TabIndex = 0;
             this.lblHelpMessage.Text = "Message help...";
             // 
@@ -280,7 +281,7 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BackgroundImage = global::SynUp_Desktop.Properties.Resources.SynUp;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(840, 521);
+            this.ClientSize = new System.Drawing.Size(840, 522);
             this.Controls.Add(this.gbHelp);
             this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.btnClear);
@@ -293,15 +294,15 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(860, 630);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(860, 562);
+            this.MinimumSize = new System.Drawing.Size(860, 565);
             this.Name = "frmTeamManagement";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Team Management ";
-            this.Activated += new System.EventHandler(this.frmTeamManagement_Activated);
+           // this.Activated += new System.EventHandler(this.frmTeamManagement_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmTeamManagement_FormClosing);
             this.Load += new System.EventHandler(this.frmTeamManagement_Load);
             this.gbContainer.ResumeLayout(false);

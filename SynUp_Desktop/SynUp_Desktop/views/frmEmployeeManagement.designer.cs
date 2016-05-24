@@ -62,7 +62,7 @@
             // btnUpdateEmployee
             // 
             this.btnUpdateEmployee.Location = new System.Drawing.Point(121, 247);
-            this.btnUpdateEmployee.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUpdateEmployee.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateEmployee.Name = "btnUpdateEmployee";
             this.btnUpdateEmployee.Size = new System.Drawing.Size(100, 49);
             this.btnUpdateEmployee.TabIndex = 9;
@@ -73,7 +73,7 @@
             // btnDeleteEmployee
             // 
             this.btnDeleteEmployee.Location = new System.Drawing.Point(229, 247);
-            this.btnDeleteEmployee.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDeleteEmployee.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteEmployee.Name = "btnDeleteEmployee";
             this.btnDeleteEmployee.Size = new System.Drawing.Size(100, 49);
             this.btnDeleteEmployee.TabIndex = 10;
@@ -144,7 +144,7 @@
             // txtNif
             // 
             this.txtNif.Location = new System.Drawing.Point(67, 34);
-            this.txtNif.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNif.Margin = new System.Windows.Forms.Padding(4);
             this.txtNif.Name = "txtNif";
             this.txtNif.Size = new System.Drawing.Size(132, 23);
             this.txtNif.TabIndex = 1;
@@ -153,7 +153,7 @@
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(67, 66);
-            this.txtName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtName.Margin = new System.Windows.Forms.Padding(4);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(132, 23);
             this.txtName.TabIndex = 2;
@@ -161,7 +161,7 @@
             // txtSurname
             // 
             this.txtSurname.Location = new System.Drawing.Point(291, 66);
-            this.txtSurname.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSurname.Margin = new System.Windows.Forms.Padding(4);
             this.txtSurname.Name = "txtSurname";
             this.txtSurname.Size = new System.Drawing.Size(295, 23);
             this.txtSurname.TabIndex = 3;
@@ -169,7 +169,7 @@
             // txtPhone
             // 
             this.txtPhone.Location = new System.Drawing.Point(67, 103);
-            this.txtPhone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPhone.Margin = new System.Windows.Forms.Padding(4);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(132, 23);
             this.txtPhone.TabIndex = 4;
@@ -177,7 +177,7 @@
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(67, 137);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(519, 23);
             this.txtEmail.TabIndex = 5;
@@ -186,7 +186,7 @@
             // txtAdress
             // 
             this.txtAdress.Location = new System.Drawing.Point(67, 169);
-            this.txtAdress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtAdress.Margin = new System.Windows.Forms.Padding(4);
             this.txtAdress.Name = "txtAdress";
             this.txtAdress.Size = new System.Drawing.Size(519, 23);
             this.txtAdress.TabIndex = 6;
@@ -194,7 +194,6 @@
             // gbContainer
             // 
             this.gbContainer.BackColor = System.Drawing.Color.Transparent;
-            this.gbContainer.BackgroundImage = global::SynUp_Desktop.Properties.Resources.SynUp;
             this.gbContainer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.gbContainer.Controls.Add(this.lblMessageMandatory);
             this.gbContainer.Controls.Add(this.txtUsername);
@@ -212,9 +211,9 @@
             this.gbContainer.Controls.Add(this.txtName);
             this.gbContainer.Controls.Add(this.txtNif);
             this.gbContainer.Location = new System.Drawing.Point(16, 15);
-            this.gbContainer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbContainer.Margin = new System.Windows.Forms.Padding(4);
             this.gbContainer.Name = "gbContainer";
-            this.gbContainer.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbContainer.Padding = new System.Windows.Forms.Padding(4);
             this.gbContainer.Size = new System.Drawing.Size(593, 225);
             this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
@@ -234,7 +233,7 @@
             // 
             this.txtUsername.Enabled = false;
             this.txtUsername.Location = new System.Drawing.Point(291, 34);
-            this.txtUsername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsername.MaxLength = 500;
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.ReadOnly = true;
@@ -255,7 +254,7 @@
             // btnCreate
             // 
             this.btnCreate.Location = new System.Drawing.Point(13, 247);
-            this.btnCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCreate.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(100, 49);
             this.btnCreate.TabIndex = 8;
@@ -266,7 +265,7 @@
             // btnHelp
             // 
             this.btnHelp.Location = new System.Drawing.Point(472, 268);
-            this.btnHelp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnHelp.Margin = new System.Windows.Forms.Padding(4);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(37, 28);
             this.btnHelp.TabIndex = 13;
@@ -291,9 +290,9 @@
             this.gbHelp.Controls.Add(this.pbxIconMessage);
             this.gbHelp.Controls.Add(this.lblHelpMessage);
             this.gbHelp.Location = new System.Drawing.Point(11, 314);
-            this.gbHelp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbHelp.Margin = new System.Windows.Forms.Padding(4);
             this.gbHelp.Name = "gbHelp";
-            this.gbHelp.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbHelp.Padding = new System.Windows.Forms.Padding(4);
             this.gbHelp.Size = new System.Drawing.Size(600, 68);
             this.gbHelp.TabIndex = 0;
             this.gbHelp.TabStop = false;
@@ -302,7 +301,7 @@
             // pbxIconMessage
             // 
             this.pbxIconMessage.Location = new System.Drawing.Point(7, 18);
-            this.pbxIconMessage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbxIconMessage.Margin = new System.Windows.Forms.Padding(4);
             this.pbxIconMessage.Name = "pbxIconMessage";
             this.pbxIconMessage.Size = new System.Drawing.Size(33, 31);
             this.pbxIconMessage.TabIndex = 1;
@@ -340,8 +339,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackgroundImage = global::SynUp_Desktop.Properties.Resources.SynUp;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(620, 311);
+            this.ClientSize = new System.Drawing.Size(620, 312);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.gbHelp);
@@ -354,11 +354,11 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(640, 433);
+            this.MaximumSize = new System.Drawing.Size(640, 430);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(640, 353);
+            this.MinimumSize = new System.Drawing.Size(640, 355);
             this.Name = "frmEmployeeManagement";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Employee Management";

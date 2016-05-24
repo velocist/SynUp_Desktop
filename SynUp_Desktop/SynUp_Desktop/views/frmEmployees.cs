@@ -46,18 +46,15 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void frmEmployees_Load(object sender, EventArgs e)
         {
+            //The grid with all the employees will load.
+            this.fillGridView();
             this.dgvConfiguration();
             //this.frmEmployees_Activated(sender, e);
 
             //Form Common Configurations
             this.FormBorderStyle = FormBorderStyle.Fixed3D;
             this.MinimizeBox = false;
-            this.MaximizeBox = false;
-
-            //The grid with all the employees will load.
-            this.fillGridView();
-            this.dgvEmployees.ClearSelection(); // Clear selection rows.
-            this.dgvEmployees.Refresh(); //Refresh the view.               
+            this.MaximizeBox = false;            
 
             //The combo with all the teams will load.
             this.fillComboTeams();
@@ -126,6 +123,7 @@ namespace SynUp_Desktop.views
             }
         }
 
+        /*
         /// <summary>
         /// Event that forms is closed
         /// </summary>
@@ -134,7 +132,7 @@ namespace SynUp_Desktop.views
         private void frmEmployees_FormClosing(object sender, FormClosingEventArgs e)
         {
             _blHelp = false;
-        }
+        }*/
 
         /// <summary>
         /// Event that runs when the row state change
@@ -185,6 +183,7 @@ namespace SynUp_Desktop.views
             BindingSource source = new BindingSource();
             source.DataSource = this.Controller.EmployeeService.getAllEmployees();
             this.dgvEmployees.DataSource = source;
+            this.dgvEmployees.ClearSelection(); // Clear selection rows
             this.dgvEmployees.Refresh();
         }
 
@@ -205,7 +204,7 @@ namespace SynUp_Desktop.views
         private void addToTeam(model.pojo.Employee pEmployee, model.pojo.Team pTeam)
         {
             //model.pojo.TeamHistory _oTeamHistory = new model.pojo.TeamHistory();
-            model.pojo.TeamHistory _oTeamHistoryControl = null;
+            //model.pojo.TeamHistory _oTeamHistoryControl = null;
 
             if (pEmployee != null && pTeam != null)
             {
@@ -234,9 +233,7 @@ namespace SynUp_Desktop.views
         private void dgvConfiguration()
         {
             this.cmbTeamsToAdd.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.cmbTeamsToAdd.SelectedItem = -1;
-
-            this.fillGridView();
+            this.cmbTeamsToAdd.SelectedItem = -1;           
 
             // DataGridView Configuration
             //this.dgvEmployees.Columns[0].Visible = false; // We hide id column
@@ -265,9 +262,7 @@ namespace SynUp_Desktop.views
             this.dgvEmployees.Cursor = Cursors.Hand; // Cursor hand type            
             this.dgvEmployees.MultiSelect = false; //Can't multiselect
             this.dgvEmployees.RowTemplate.ReadOnly = true;
-            this.dgvEmployees.RowHeadersVisible = false; // We hide the rowheader
-            this.dgvEmployees.ClearSelection(); // Clear selection rows            
-
+            this.dgvEmployees.RowHeadersVisible = false; // We hide the rowheader           
 
         }
 
@@ -282,12 +277,13 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnHelp_MouseClick(object sender, MouseEventArgs e)
         {
+
             if (_blHelp)
             {
                 _blHelp = false;
                 this.lblHelpMessage.Text = "";
                 this.changeIconMessage(0);
-                this.walkingControls(true);
+                //this.walkingControls(true);
                 this.gbHelp.Visible = false;
             }
             else
