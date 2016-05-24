@@ -169,22 +169,14 @@ namespace SynUp_Desktop.model.dao
         /// <param name="team"></param>
         private static bool checkTeamMembers(Team team, synupEntities context)
         {
-            //Shows the employees that are currently in the given team.
             var query = from th in context.TeamHistories
-                        join emp in context.Employees on th.id_employee equals emp.nif
                         where th.id_team.Equals(team.code) && th.exitDate == null
                         select th;
-
-            /*using (var _context = new synupEntities())
-            {*/
+            
             foreach (var member in query)
             {
-                //var _context = tryAttach(member);
                 if (TeamHistoryConnection.deleteTeamHistory(member.id_employee, member.id_team) == null) return false;
-                /*_context.TeamHistories.Remove(member);
-                if (!commitChanges(_context)) return false;*/
             }
-            //}
 
             var query2 = from task in context.Tasks
                          where task.id_team.Equals(team.code)
@@ -200,6 +192,7 @@ namespace SynUp_Desktop.model.dao
             return true;
         }
 
+        /* 
         /// <summary>
         /// Attachs teams
         /// </summary>
@@ -223,5 +216,6 @@ namespace SynUp_Desktop.model.dao
             if (entry.State == System.Data.Entity.EntityState.Detached) context.TeamHistories.Attach(pTeam);
             return context;
         }
+        */
     }
 }
