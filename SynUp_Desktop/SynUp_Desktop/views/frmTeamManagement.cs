@@ -152,12 +152,10 @@ namespace SynUp_Desktop.views
                 if (txtCode.Text.Equals("") || _oTeam != null) // We found that the textbox is not empty
                 {
                     lblCode.ForeColor = Color.Red;
-                    //lblCode.Text = "Code*";
                     return false;
                 }
                 else
                 {
-                    //lblCode.Text = "Code";
                     lblCode.ForeColor = Color.Black;
                     return true;
                 }
@@ -172,7 +170,7 @@ namespace SynUp_Desktop.views
         {
             bool _valid = checkCode();
 
-            if (!_valid) this.HelpMessage(Literal.ERROR_VALIDATION_TEAM, utilities.Help.changeIconMessage(2)); ;
+            if (!_valid) this.HelpMessage(Literal.ERROR_VALIDATION_TEAM, (int)utilities.Help.HelpIcon.ERROR); ;
 
             return _valid;
         }
@@ -236,6 +234,20 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
+        /// Sets all the variables of the form to Null and empties the datagridView.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            auxTeam = null;
+            auxEmployee = null;
+            //dgvEmployeesOnTeam.DataSource = null;
+            //dgvEmployeesOnTeam.Refresh();
+            _blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);
+        }
+
+        /// <summary>
         /// Event that runs when the row changes stat
         /// </summary>
         /// <param name="sender"></param>
@@ -252,7 +264,6 @@ namespace SynUp_Desktop.views
                     this.AuxEmployee = this.Controller.EmployeeService.readEmployee(_strSelectedRowCode);
                 }
 
-                //this.btnAddToTeam.Enabled = true;
                 this.btnDeleteToTeam.Enabled = true;
             }
         }
@@ -281,7 +292,7 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// 
+        /// Event that runs when button add is clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -307,7 +318,6 @@ namespace SynUp_Desktop.views
             this.dgvEmployeesOnTeam.MultiSelect = false; //Can't multiselect
             this.dgvEmployeesOnTeam.RowTemplate.ReadOnly = true;
             this.dgvEmployeesOnTeam.RowHeadersVisible = false; // We hide the rowheader
-            this.dgvEmployeesOnTeam.ClearSelection(); // Clear selection rows   
 
             //Column configuration
             //dgvEmployeesOnTeam.Columns[0].Visible = false;       
@@ -334,7 +344,6 @@ namespace SynUp_Desktop.views
         /// </summary>
         private void deleteFromTeam(model.pojo.Employee pEmployee, model.pojo.Team pTeam)
         {
-            //model.pojo.TeamHistory _oTeamHistory = new model.pojo.TeamHistory();
             model.pojo.TeamHistory _oTeamHistoryControl = null;
 
             if (pEmployee != null && pTeam != null)
@@ -343,19 +352,10 @@ namespace SynUp_Desktop.views
 
                 if (_oTeamHistoryControl != null)
                 {
-                    //USELESS
-                    //_oTeamHistory.id_employee = pEmployee.nif;
-                    //_oTeamHistory.id_team = pTeam.code;
-                    //_oTeamHistory.entranceDay = DateTime.Today;
-
                     Boolean _blUpdateHistory = this.Controller.TeamHistoryService.updateTeamHistory(pEmployee.nif, pTeam.code, DateTime.Now);
                     clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.EXCLUDE, "employee", _blUpdateHistory, this);
 
                 }
-                //else
-                //{
-                //    MessageBox.Show("This employee is already in the team");
-                //}
             }
         }
 
@@ -368,10 +368,11 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnHelp_MouseClick(object sender, EventArgs e)
         {
-            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, minHeight, maxHeight);
-            if (_blHelp) this.HelpMessage("", utilities.Help.changeIconMessage(4));
+            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, this.MinimumSize.Height, this.MaximumSize.Height);
+            if (_blHelp) this.HelpMessage("", (int)utilities.Help.HelpIcon.NONE);
             this.walkingControls();
         }
+
 
         /// <summary>
         /// Event that runs when the mouse leaves labels
@@ -380,10 +381,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void messageHelps_MouseLeave(object sender, EventArgs e)
         {
-            if (_blHelp)
-            {
-                this.HelpMessage("", utilities.Help.changeIconMessage(4));
-            }
+            if (_blHelp) this.HelpMessage("", (int)utilities.Help.HelpIcon.NONE);
         }
 
         /// <summary>
@@ -395,7 +393,7 @@ namespace SynUp_Desktop.views
         {
             if (_blHelp)
             {
-                Image _icon = utilities.Help.changeIconMessage(3);
+                int _icon = (int)utilities.Help.HelpIcon.INFORMATION;
                 String _message = "";
 
                 if (sender.Equals(lblCode) || sender.Equals(txtCode))
@@ -476,28 +474,15 @@ namespace SynUp_Desktop.views
         /// <summary>
         /// Method that shows message help
         /// </summary>
-        private void HelpMessage(String pMessage, Image pIcon)
+        private void HelpMessage(String message, int icon)
         {
-            this.Height = maxHeight;
-            this.pbxIconMessage.Image = pIcon;
-            this.lblHelpMessage.Text = pMessage;
+            this.Height = this.MaximumSize.Height;
+            this.pbxIconMessage.Image = utilities.Help.changeIconMessage(icon);
+            this.lblHelpMessage.Text = message;
         }
 
         #endregion
 
-        /// <summary>
-        /// Sets all the variables of the form to Null and empties the datagridView.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            auxTeam = null;
-            auxEmployee = null;
-            //dgvEmployeesOnTeam.DataSource = null;
-            //dgvEmployeesOnTeam.Refresh();
-            _blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);
-        }
     }
 }
 
