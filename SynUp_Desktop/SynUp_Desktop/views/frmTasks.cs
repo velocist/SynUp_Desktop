@@ -48,8 +48,8 @@ namespace SynUp_Desktop.views
         {
             this.fillGrid();
             this.dgvConfiguration();
-           
-            
+
+
             //Form Common Configurations
             FormBorderStyle = FormBorderStyle.Fixed3D;
             this.MinimizeBox = false;
@@ -77,12 +77,12 @@ namespace SynUp_Desktop.views
                     this.Controller.TaskMgtView.AuxTask = _oSelectedTask; // We assign the task to form task management
                 }
             }
-            
+
             this.Controller.TaskMgtView.ShowDialog();
 
         }
 
-        
+
         /// <summary>
         /// DataGridView Configuration
         /// </summary>
@@ -270,7 +270,7 @@ namespace SynUp_Desktop.views
 
         #endregion
 
-        
+
     }
 }
 
