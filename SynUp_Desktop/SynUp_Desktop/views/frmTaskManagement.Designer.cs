@@ -295,7 +295,7 @@
             this.btnDeleteTask.Name = "btnDeleteTask";
             this.btnDeleteTask.Size = new System.Drawing.Size(100, 48);
             this.btnDeleteTask.TabIndex = 8;
-            this.btnDeleteTask.Text = "Delete";
+            this.btnDeleteTask.Text = "Cancel";
             this.btnDeleteTask.UseVisualStyleBackColor = true;
             this.btnDeleteTask.Click += new System.EventHandler(this.btnDeleteTask_Click);
             // 

@@ -270,11 +270,10 @@ namespace SynUp_Desktop.views
         {
             DateTime start = dtpBegin.Value.Date;
             DateTime end = dtpEnd.Value.Date;
-            String strFilter = cmbRanking.SelectedItem.ToString();
+            String strFilter = cmbRanking.SelectedItem.ToString().ToLower().Trim(); ;
 
             if (start != null && end != null && start.CompareTo(end) <= 0 && (!strFilter.Equals("") || !strFilter.Equals(null)))
             {
-                strFilter = strFilter.ToLower().Trim();
                 switch (strFilter)
                 {
                     case "employees":
@@ -407,14 +406,14 @@ namespace SynUp_Desktop.views
             BindingSource source = new BindingSource();
             source.DataSource = Controller.TeamService.getAllTeams();
             this.cmbTeams.DataSource = source;
-            this.cmbTeams.DisplayMember = "Name";
+            this.cmbTeams.DisplayMember = "code";
             this.cmbTeams.ValueMember = "code";
             this.cmbTeams.DropDownStyle = ComboBoxStyle.DropDownList;
 
             source = new BindingSource();
             source.DataSource = Controller.EmployeeService.getAllEmployees();
             this.cmbEmployee.DataSource = source;
-            this.cmbEmployee.DisplayMember = "Name";
+            this.cmbEmployee.DisplayMember = "nif";
             this.cmbEmployee.ValueMember = "nif";
             this.cmbEmployee.DropDownStyle = ComboBoxStyle.DropDownList;
 

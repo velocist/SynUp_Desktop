@@ -107,7 +107,7 @@ namespace SynUp_Desktop.views
             dgvTasks.Columns[5].Visible = false; // HeaderText = "Localization";
             dgvTasks.Columns[6].HeaderText = "Project";
             dgvTasks.Columns[7].Visible = false; //priority
-            dgvTasks.Columns[8].Visible = false; //state
+            dgvTasks.Columns[8].HeaderText = "State"; //state
             dgvTasks.Columns[9].Visible = false; // HeaderText = "Team";
             dgvTasks.Columns[10].Visible = false; // HeaderText = "Task Histories";
 

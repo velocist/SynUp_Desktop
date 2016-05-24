@@ -67,7 +67,7 @@ namespace SynUp_Desktop.utilities
         public static readonly string CONFIRMATION_UPDATE_EMPLOYEE = "Are you sure you want to update this employee?";
         public static readonly string CONFIRMATION_DELETE_EMPLOYEE = "Are you sure you want to delete this employee?";
         public static readonly string CONFIRMATION_UPDATE_TASK = "Are you sure you want to update this task?";
-        public static readonly string CONFIRMATION_DELETE_TASK= "Are you sure you want to delete this task?";
+        public static readonly string CONFIRMATION_DELETE_TASK= "Are you sure you want to cancell this task?";
         public static readonly string CONFIRMATION_UPDATE_TEAM= "Are you sure you want to update this team?";
         public static readonly string CONFIRMATION_DELETE_TEAM= "Are you sure you want to delete this team?";
 
