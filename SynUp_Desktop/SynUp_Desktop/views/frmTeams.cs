@@ -44,7 +44,9 @@ namespace SynUp_Desktop.views
             this.dgvConfiguration();
 
             //We configures the groupbox help
-            this._blHelp = false;
+            //this._blHelp = false;
+
+            this.walkingControls();
         }
 
         /// <summary>
@@ -58,7 +60,7 @@ namespace SynUp_Desktop.views
             this.fillGrid();
 
             //We configures the groupbox help
-            this._blHelp = false;
+            //this._blHelp = false;
         }
 
         /// <summary>
@@ -133,6 +135,8 @@ namespace SynUp_Desktop.views
 
         #region HELP
 
+        /* DELETED - HELP ALWAYS VISIBLE 24/5/16
+        
         private Boolean _blHelp = false;
 
         /// <summary>
@@ -159,8 +163,8 @@ namespace SynUp_Desktop.views
                 this.lblHelpMessage.Text = "";
                 this.changeIconMessage(0);
                 this.walkingControls(false);
-            */
-        }
+            
+        }*/
 
         /// <summary>
         /// Event that runs when the mouse leaves labels
@@ -169,7 +173,8 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void messageHelps_MouseLeave(object sender, EventArgs e)
         {
-            if (_blHelp) this.HelpMessage("", (int)utilities.Help.HelpIcon.NONE);
+            //if (_blHelp)
+            this.HelpMessage("", (int)utilities.Help.HelpIcon.NONE);
         }
 
         /// <summary>
@@ -179,25 +184,21 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void messageHelps_MouseHover(object sender, EventArgs e)
         {
-            if (_blHelp)
+            int _icon = (int)utilities.Help.HelpIcon.INFORMATION;
+            String _message = "";
+            if (sender.Equals(this.btnManagementTeams))
             {
-                int _icon = (int)utilities.Help.HelpIcon.INFORMATION;
-                String _message = "";
-                if (sender.Equals(this.btnManagementTeams))
-                {
-                    _message = Literal.INFO_BTN_MANAGEMENT;
-                }
-                else if (sender.Equals(this.dgvTeams))
-                {
-                    //TODO Colocar String dgv lista 
-                    this.lblHelpMessage.Text = "Lista de todos los equipos existentes en la base de datos.";
-                }
-                else if (sender.Equals(this.btnBack))
-                {
-                    _message = Literal.INFO_BTN_BACK;
-                }
-                this.HelpMessage(_message, _icon);
+                _message = Literal.INFO_BTN_MANAGEMENT;
             }
+            else if (sender.Equals(this.dgvTeams))
+            {
+                _message = Literal.INFO_DGV;
+            }
+            else if (sender.Equals(this.btnBack))
+            {
+                _message = Literal.INFO_BTN_BACK;
+            }
+            this.HelpMessage(_message, _icon);
         }
 
         /// <summary>
