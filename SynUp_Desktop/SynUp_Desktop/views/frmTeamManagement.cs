@@ -17,8 +17,8 @@ namespace SynUp_Desktop.views
         private Team auxTeam;
         private Employee auxEmployee;
         private Boolean _blHelp = false;
-        private int minHeight = 466;
-        private int maxHeight = 537;
+        private int minHeight = 530;
+        private int maxHeight = 565;
 
         public Controller Controller
         {
@@ -214,47 +214,12 @@ namespace SynUp_Desktop.views
                 this.btnUpdateTeam.Enabled = false;
             }
 
-            this.dgvEmployeesOnTeam.Refresh();
+            //this.dgvEmployeesOnTeam.Refresh();
 
             this._blHelp = false;
 
+            this.fillDataGrid();
             this.dgvConfiguration();
-        }
-
-        /// <summary>
-        /// Event that runs when the forms actives
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void frmTeamManagement_Activated(object sender, EventArgs e)
-        {
-            //if (this.AuxTeam != null)
-            //{
-            //    // We recover the data of selected team
-            //    this.txtCode.Text = this.AuxTeam.code.Trim();
-            //    this.txtName.Text = this.AuxTeam.name.Trim();
-
-            //    //The grid with all the employees on team will load.
-            //    this.fillDataGrid();
-            //    this.fillComboFilterEmployees();
-
-            //    this.btnDeleteTeam.Enabled = true;
-            //    this.btnUpdateTeam.Enabled = true;
-            //    this.btnCreateTeam.Enabled = false; // We disable the button to create a team
-            //    this.txtCode.Enabled = false;
-            //}
-            //else
-            //{
-            //    this.btnCreateTeam.Enabled = true;
-            //    this.txtCode.Enabled = true;
-            //    this.btnDeleteTeam.Enabled = false;
-            //    this.btnUpdateTeam.Enabled = false;
-            //}
-
-            //this.dgvEmployeesOnTeam.Refresh();
-
-            //this._blHelp = false;
-
         }
 
         /// <summary>
@@ -291,7 +256,6 @@ namespace SynUp_Desktop.views
                 this.btnDeleteToTeam.Enabled = true;
             }
         }
-
 
         /// <summary>
         /// Event that rusn when the button delete to team is clicked
@@ -332,8 +296,6 @@ namespace SynUp_Desktop.views
         /// </summary>
         private void dgvConfiguration()
         {
-            this.fillDataGrid();
-
             // DatagridView Common Configuration 
             this.dgvEmployeesOnTeam.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
             this.dgvEmployeesOnTeam.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row            
@@ -363,6 +325,7 @@ namespace SynUp_Desktop.views
                 source.DataSource = this.Controller.TeamHistoryService.getMembersInATeam(this.AuxTeam.code);
             }
             this.dgvEmployeesOnTeam.DataSource = source;
+            this.dgvEmployeesOnTeam.ClearSelection();
             this.dgvEmployeesOnTeam.Refresh();
         }
 
@@ -406,7 +369,7 @@ namespace SynUp_Desktop.views
         private void btnHelp_MouseClick(object sender, EventArgs e)
         {
             _blHelp = utilities.Help.hideShowHelp(_blHelp, this, minHeight, maxHeight);
-            if (_blHelp) this.HelpMessage("", (int)HelpIcon.WARNING);
+            if (_blHelp) this.HelpMessage("", (int)HelpIcon.NONE);
             this.walkingControls();
         }
 
@@ -515,6 +478,7 @@ namespace SynUp_Desktop.views
         /// </summary>
         private void HelpMessage(String message, int icon)
         {
+            this.pbxIconMessage.Visible = true;
             this.Height = maxHeight;
             this.pbxIconMessage.Image = utilities.Help.changeIconMessage(icon);
             this.lblHelpMessage.Text = message;
@@ -531,8 +495,8 @@ namespace SynUp_Desktop.views
         {
             auxTeam = null;
             auxEmployee = null;
-            dgvEmployeesOnTeam.DataSource = null;
-            dgvEmployeesOnTeam.Refresh();
+            //dgvEmployeesOnTeam.DataSource = null;
+            //dgvEmployeesOnTeam.Refresh();
             _blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);
         }
     }
@@ -640,3 +604,40 @@ namespace SynUp_Desktop.views
    }
    */
 
+/*DeLETES: Cristina C. 240516 Move to event load
+/// <summary>
+/// Event that runs when the forms actives
+/// </summary>
+/// <param name="sender"></param>
+/// <param name="e"></param>
+private void frmTeamManagement_Activated(object sender, EventArgs e)
+{
+    //if (this.AuxTeam != null)
+    //{
+    //    // We recover the data of selected team
+    //    this.txtCode.Text = this.AuxTeam.code.Trim();
+    //    this.txtName.Text = this.AuxTeam.name.Trim();
+
+    //    //The grid with all the employees on team will load.
+    //    this.fillDataGrid();
+    //    this.fillComboFilterEmployees();
+
+    //    this.btnDeleteTeam.Enabled = true;
+    //    this.btnUpdateTeam.Enabled = true;
+    //    this.btnCreateTeam.Enabled = false; // We disable the button to create a team
+    //    this.txtCode.Enabled = false;
+    //}
+    //else
+    //{
+    //    this.btnCreateTeam.Enabled = true;
+    //    this.txtCode.Enabled = true;
+    //    this.btnDeleteTeam.Enabled = false;
+    //    this.btnUpdateTeam.Enabled = false;
+    //}
+
+    //this.dgvEmployeesOnTeam.Refresh();
+
+    //this._blHelp = false;
+
+}
+*/

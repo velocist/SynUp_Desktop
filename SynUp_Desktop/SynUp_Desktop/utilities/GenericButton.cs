@@ -159,10 +159,15 @@ namespace SynUp_Desktop.utilities
                             _inGroupBox.ForeColor = Color.Black; //Will reset it's validation changed color.
                         }
                         if (_inGroupBox is DataGridView) //TODO: Mirar haber como podemos incluirlo aqui.
-                                                         //SIIII Conseguido!!
+                                                         //SIIII Conseguido!! 
                         {
-                            ((System.Windows.Forms.DataGridView)_inGroupBox).ClearSelection();
+                            ((System.Windows.Forms.DataGridView)_inGroupBox).DataSource = null;
                             ((System.Windows.Forms.DataGridView)_inGroupBox).Refresh();
+                        }
+                        if (_inGroupBox is Button) //Boton addtoteam deletetoteam
+                                                         //SIIII Conseguido!! 
+                        {
+                            _inGroupBox.Enabled = false;
                         }
                     }
                 }
