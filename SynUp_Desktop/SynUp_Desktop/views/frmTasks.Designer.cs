@@ -169,6 +169,7 @@
             this.Name = "frmTasks";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Tasks ";
+            this.Activated += new System.EventHandler(this.frmTasks_Activated);
             this.Load += new System.EventHandler(this.frmTasks_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTasks)).EndInit();
             this.gbContainer.ResumeLayout(false);

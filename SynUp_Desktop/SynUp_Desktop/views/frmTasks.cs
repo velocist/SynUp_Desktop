@@ -129,6 +129,18 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
+        /// Event triggered every time the view is displayed. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmTasks_Activated(object sender, EventArgs e)
+        {
+            this.fillGrid();
+            this.dgvTasks.ClearSelection(); // Clear selection rows.
+            this.dgvTasks.Refresh(); //Refresh the view.   
+        }
+
+        /// <summary>
         /// Method that fill the grid
         /// </summary>
         private void fillGrid()
@@ -266,22 +278,10 @@ namespace SynUp_Desktop.views
 
         #endregion
 
+        
     }
 }
 
-/*DELETE: Cristina C. To event load      
-         /// <summary>
-        /// Event triggered every time the view is displayed. 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void frmTasks_Activated(object sender, EventArgs e)
-        {
-            this.fillGrid();
-            this.dgvTasks.ClearSelection(); // Clear selection rows.
-            this.dgvTasks.Refresh(); //Refresh the view.            
-        }
-*/
 
 /* DELETE: Genereic button
 /// <summary>
