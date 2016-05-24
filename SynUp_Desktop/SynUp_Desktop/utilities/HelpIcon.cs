@@ -10,6 +10,7 @@ namespace SynUp_Desktop.utilities
     {
         WARNING,
         ERROR,
-        INFORMATION
+        INFORMATION,
+        NONE
     }
 }

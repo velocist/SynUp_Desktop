@@ -406,8 +406,11 @@ namespace SynUp_Desktop.views
         private void btnHelp_MouseClick(object sender, MouseEventArgs e)
         {
             _blHelp = utilities.Help.hideShowHelp(_blHelp, this, minHeight , maxHeight);
-            if (_blHelp) this.HelpMessage("", (int)HelpIcon.WARNING);
-            this.walkingControls();
+            if (_blHelp)
+            {
+                this.HelpMessage("", (int)HelpIcon.INFORMATION);
+                this.walkingControls();
+            }
         }
 
         /// <summary>
@@ -419,7 +422,7 @@ namespace SynUp_Desktop.views
         {
             if (_blHelp)
             {
-                this.HelpMessage("", (int)HelpIcon.WARNING);
+                this.HelpMessage("", (int)HelpIcon.INFORMATION);
                 //this.changeIconMessage(0);
                 //this.lblHelpMessage.Text = null;
             }
