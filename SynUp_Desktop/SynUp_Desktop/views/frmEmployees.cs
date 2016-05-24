@@ -154,20 +154,7 @@ namespace SynUp_Desktop.views
                 {
                     String _strSelectedRowCode = _cell.ToString(); // Recover the code
                     model.pojo.Employee _oSelectedEmployee = Controller.EmployeeService.readEmployee(_strSelectedRowCode); // We look for the employee nif
-
-                    /*DELETE: Cristina  C. 240516 No lo utilizamos
-                    /*model.pojo.TeamHistory _oCurrentTeamHistory = this.Controller.TeamHistoryService.getCurrentTeamHistoryByEmployee(_strSelectedRowCode);
-
-                    if (_oCurrentTeamHistory != null)
-                    {
-                        this.cmbTeamsToAdd.SelectedValue = _oCurrentTeamHistory.id_team;
-                    }*/
-                    /* MessageBox.Show(_oSelectedEmployee.nif);
-                    //if(_oSelectedEmployee.TeamHistories)
-                    //this.cmbTeamsToAdd.SelectedValue
-                    //String _SelectedTeam = this.cmbTeamsToAdd.SelectedValue.ToString();
-                    _oTeam = this.Controller.TeamService.readTeam(_SelectedTeam);
-                    this.addToTeam(_oSelectedEmployee, _oTeam);*/
+                                        
                 }
             }
             else
@@ -205,27 +192,10 @@ namespace SynUp_Desktop.views
         /// </summary>
         private void addToTeam(model.pojo.Employee pEmployee, model.pojo.Team pTeam)
         {
-            //model.pojo.TeamHistory _oTeamHistory = new model.pojo.TeamHistory();
-            //model.pojo.TeamHistory _oTeamHistoryControl = null;
-
             if (pEmployee != null && pTeam != null)
             {
-                //_oTeamHistoryControl = null;// this.Controller.TeamHistoryService.readTeamHistory(pEmployee.nif, pTeam.code);
-
-                //if (_oTeamHistoryControl == null)
-                //{
-                //USELESS
-                //_oTeamHistory.id_employee = pEmployee.nif;
-                //_oTeamHistory.id_team = pTeam.code;
-                //_oTeamHistory.entranceDay = DateTime.Today;
-
                 Boolean _blAdd = this.Controller.TeamService.addToTeam(pEmployee.nif, pTeam.code);
                 clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.ADD, "employee", _blAdd, this);
-                //}
-                //else
-                //{
-                //  MessageBox.Show("This employee is already in the team");
-                //}
             }
         }
 
@@ -326,11 +296,11 @@ namespace SynUp_Desktop.views
 
                 if (sender.Equals(this.btnManagementEmployee))
                 {
-                    _message = Literal.INFO_CODE_TASK;
+                    _message = Literal.INFO_BTN_MANAGEMENT;
                 }
                 else if (sender.Equals(this.lblTeams))
                 {
-                    _message = Literal.INFO_CODE_TASK;
+                    _message = Literal.INFO_ADD_TEAM;
                 }
                 else if (sender.Equals(this.dgvEmployees))
                 {
@@ -338,7 +308,7 @@ namespace SynUp_Desktop.views
                 }
                 else if (sender.Equals(this.btnBack))
                 {
-                    _message = Literal.INFO_CODE_TASK;
+                    _message = Literal.INFO_BTN_BACK;
                 }
                 this.HelpMessage(_message, _iIcon);
             }
@@ -383,8 +353,7 @@ namespace SynUp_Desktop.views
             this.lblHelpMessage.Text = message;
             _blHelp = true;
         }
-
-
+        
         #endregion
 
     }

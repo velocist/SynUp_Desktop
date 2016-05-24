@@ -165,7 +165,6 @@ namespace SynUp_Desktop.views
                 this.lblHelpMessage.Text = "";
                 this.changeIconMessage(0);
                 this.walkingControls(true);
-                this.gbHelp.Visible = false;
             }
             else
             {
@@ -173,7 +172,6 @@ namespace SynUp_Desktop.views
                 this.lblHelpMessage.Text = "";
                 this.changeIconMessage(0);
                 this.walkingControls(false);
-                this.gbHelp.Visible = true;
             }
         }
 
