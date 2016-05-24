@@ -119,6 +119,19 @@ namespace SynUp_Desktop.utilities
         {
             if (isExit)
             {
+                /*if (Parent.Name.EndsWith("Management"))
+                {
+                    Parent.DialogResult = DialogResult.OK;
+                    //Parent.Close();                    
+                }
+                else
+                {
+                    Parent.Close();
+                    
+                    MessageBox.Show("Close lista" );
+                    Parent.Owner.Dispose();
+                    MessageBox.Show("dispose owner lista");
+                }*/
                 Parent.Close();
                 clearFields();
             }
@@ -145,11 +158,12 @@ namespace SynUp_Desktop.utilities
                         {
                             _inGroupBox.ForeColor = Color.Black; //Will reset it's validation changed color.
                         }
-                        /*if (_inGroupBox is DataGridView) //TODO: Mirar haber como podemos incluirlo aqui
+                        if (_inGroupBox is DataGridView) //TODO: Mirar haber como podemos incluirlo aqui.
+                                                         //SIIII Conseguido!!
                         {
-                            _inGroupBox.Controls.Clear();
-                            _inGroupBox.Refresh();
-                        }*/
+                            ((System.Windows.Forms.DataGridView)_inGroupBox).ClearSelection();
+                            ((System.Windows.Forms.DataGridView)_inGroupBox).Refresh();
+                        }
                     }
                 }
                 //Nota: Si quitas esto al limpiar el formulario los botones de crear quedan inhabilitados
@@ -170,6 +184,11 @@ namespace SynUp_Desktop.utilities
             }
         }
 
+        /// <summary>
+        /// Event that runs when the mouse hover the control
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnGeneric_MouseHover(object sender, EventArgs e)
         {
             if (isExit)
@@ -209,8 +228,8 @@ namespace SynUp_Desktop.utilities
                             if (_inGroupBox is PictureBox)
                             {
                                 _inGroupBox.Visible = true;
-                                ((System.Windows.Forms.PictureBox)_inGroupBox).Image= new Bitmap(Help.changeIconMessage(0));
-                                
+                                ((System.Windows.Forms.PictureBox)_inGroupBox).Image = new Bitmap(Help.changeIconMessage(0));
+
                             }
                         }
                     }
@@ -218,6 +237,11 @@ namespace SynUp_Desktop.utilities
             }
         }
 
+        /// <summary>
+        /// Event that runs when the mouse leave the control
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnGeneric_MouseLeave(object sender, EventArgs e)
         {
             foreach (Control _control in Parent.Controls)

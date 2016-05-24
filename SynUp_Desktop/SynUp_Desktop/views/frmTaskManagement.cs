@@ -369,6 +369,7 @@ namespace SynUp_Desktop.views
             AuxTask = null;
             _blHelp = false;
             //btnClear_Click(sender, e);
+
         }
         
         /// <summary>

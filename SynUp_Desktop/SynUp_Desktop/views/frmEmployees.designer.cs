@@ -58,7 +58,7 @@
             this.dgvEmployees.Location = new System.Drawing.Point(9, 51);
             this.dgvEmployees.Name = "dgvEmployees";
             this.dgvEmployees.RowTemplate.ReadOnly = true;
-            this.dgvEmployees.Size = new System.Drawing.Size(785, 368);
+            this.dgvEmployees.Size = new System.Drawing.Size(785, 342);
             this.dgvEmployees.TabIndex = 0;
             this.dgvEmployees.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dgvEmployees_RowStateChanged);
             // 
@@ -75,15 +75,16 @@
             // 
             // gbContainer
             // 
+            this.gbContainer.BackColor = System.Drawing.Color.Transparent;
             this.gbContainer.Controls.Add(this.lblTeams);
             this.gbContainer.Controls.Add(this.cmbTeamsToAdd);
             this.gbContainer.Controls.Add(this.btnAddToTeam);
             this.gbContainer.Controls.Add(this.dgvEmployees);
             this.gbContainer.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.gbContainer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbContainer.Location = new System.Drawing.Point(12, 12);
+            this.gbContainer.Location = new System.Drawing.Point(12, 38);
             this.gbContainer.Name = "gbContainer";
-            this.gbContainer.Size = new System.Drawing.Size(800, 425);
+            this.gbContainer.Size = new System.Drawing.Size(800, 399);
             this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "List of Employees";
@@ -118,6 +119,7 @@
             // 
             // gbHelp
             // 
+            this.gbHelp.BackColor = System.Drawing.Color.Transparent;
             this.gbHelp.Controls.Add(this.pbxIconMessage);
             this.gbHelp.Controls.Add(this.lblHelpMessage);
             this.gbHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -177,6 +179,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackgroundImage = global::SynUp_Desktop.Properties.Resources.SynUp;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(820, 512);
             this.Controls.Add(this.gbHelp);
             this.Controls.Add(this.btnBack);

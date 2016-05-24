@@ -78,6 +78,7 @@ namespace SynUp_Desktop.views
                 }
             }
 
+            //if (this.Controller.TaskMgtView.ShowDialog() == DialogResult.OK)MessageBox.Show("dialogresult OK");            
             //this.Hide();
             this.Controller.TaskMgtView.ShowDialog();
             //this.Show();
