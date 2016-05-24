@@ -36,7 +36,7 @@ namespace SynUp_Desktop.views
 
         public frmEmployees()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
         /// <summary>
@@ -62,6 +62,7 @@ namespace SynUp_Desktop.views
             //We configures the groupbox help
             this._blHelp = false;
 
+            this.walkingControls();
         }
 
         /// <summary>
@@ -251,7 +252,7 @@ namespace SynUp_Desktop.views
         {
             _blHelp = utilities.Help.hideShowHelp(_blHelp, this, this.MinimumSize.Height, this.MaximumSize.Height);
             if (_blHelp) this.HelpMessage("", (int)utilities.Help.HelpIcon.NONE);
-            this.walkingControls();
+            //this.walkingControls();
 
             /*if (_blHelp)
             {
