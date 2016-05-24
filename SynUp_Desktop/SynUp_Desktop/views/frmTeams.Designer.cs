@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTeams));
             this.dgvTeams = new System.Windows.Forms.DataGridView();
             this.gbContainer = new System.Windows.Forms.GroupBox();
-            this.btnHelp = new System.Windows.Forms.Button();
             this.gbHelp = new System.Windows.Forms.GroupBox();
             this.pbxIconMessage = new System.Windows.Forms.PictureBox();
             this.lblHelpMessage = new System.Windows.Forms.Label();
@@ -67,17 +66,6 @@
             this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "List of Teams";
-            // 
-            // btnHelp
-            // 
-            this.btnHelp.Location = new System.Drawing.Point(671, 545);
-            this.btnHelp.Margin = new System.Windows.Forms.Padding(4);
-            this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(37, 28);
-            this.btnHelp.TabIndex = 3;
-            this.btnHelp.Text = "?";
-            this.btnHelp.UseVisualStyleBackColor = true;
-            this.btnHelp.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnHelp_MouseClick);
             // 
             // gbHelp
             // 
@@ -147,7 +135,6 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(830, 582);
             this.Controls.Add(this.btnBack);
-            this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.gbHelp);
             this.Controls.Add(this.btnManagementTeams);
             this.Controls.Add(this.gbContainer);
@@ -163,7 +150,6 @@
             this.Name = "frmTeams";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Teams";
-            //this.Activated += new System.EventHandler(this.frmTeams_Activated);
             this.Load += new System.EventHandler(this.frmTeams_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTeams)).EndInit();
             this.gbContainer.ResumeLayout(false);
@@ -178,7 +164,6 @@
         #endregion
         private System.Windows.Forms.DataGridView dgvTeams;
         private System.Windows.Forms.GroupBox gbContainer;
-        private System.Windows.Forms.Button btnHelp;
         private System.Windows.Forms.GroupBox gbHelp;
         private System.Windows.Forms.PictureBox pbxIconMessage;
         private System.Windows.Forms.Label lblHelpMessage;
