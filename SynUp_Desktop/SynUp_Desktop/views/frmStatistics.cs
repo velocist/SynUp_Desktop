@@ -474,34 +474,35 @@ namespace SynUp_Desktop.views
         {
             if (_blHelp)
             {
-                string _message = sender.ToString();
+                string _message = "";
 
                 if (sender.Equals(this.btnSearch))
                 {
-                    this.lblHelpMessage.Text = "Clicke aquí para buscar.";
+                    _message = Literal.INFO_BTN_SEARCH;
                 }
                 else if (sender.Equals(this.dgvStadistics))
                 {
-                    this.lblHelpMessage.Text = "Lista de los registros encontrados.";
+                    _message = Literal.INFO_RESULTS_STATISTICS;
                 }
                 else if (sender.Equals(this.btnBack))
                 {
-                    this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
+                    _message = Literal.INFO_BTN_BACK;
                 }
                 else if (sender.Equals(this.cmbFilter))
                 {
-                    this.lblHelpMessage.Text = "Escoja un filtro para buscar.";
+                    _message = Literal.INFO_FILTER_STATISTICS;
                 }
                 else if (sender.Equals(this.cmbEmployee))
                 {
-                    this.lblHelpMessage.Text = "Escoja el empleado que desee filtrar.";
+                    _message = Literal.INFO_EMPLOYEES_STATISTICS;
                 }
                 else if (sender.Equals(this.cmbTeams))
                 {
-                    this.lblHelpMessage.Text = "Escoja el equipo que desee filtrar.";
+                    _message = Literal.INFO_TEAMS_STATISTICS;
                 }
                 else if (sender.Equals(this.cmbStates))
                 {
+                   // _message = Literal
                     this.lblHelpMessage.Text = "Escoja el estado que desee filtrar.";
                 }
                 else if (sender.Equals(this.cmbRanking))

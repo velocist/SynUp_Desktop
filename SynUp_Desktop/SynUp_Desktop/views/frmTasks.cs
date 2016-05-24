@@ -48,13 +48,13 @@ namespace SynUp_Desktop.views
         {
             this.dgvConfiguration();
             this.fillGrid();
-            
+
             //Form Common Configurations
             FormBorderStyle = FormBorderStyle.Fixed3D;
             this.MinimizeBox = false;
             this.MaximizeBox = false;
 
-            blHELP = false;
+            walkingControls();
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace SynUp_Desktop.views
             //this.Show();
         }
 
-        
+
         /// <summary>
         /// DataGridView Configuration
         /// </summary>
@@ -154,28 +154,31 @@ namespace SynUp_Desktop.views
         }
 
         #region HELP
+        
 
-        Boolean blHELP;
-
-        private void btnHelp_MouseClick(object sender, EventArgs e)
+        /*private void btnHelp_MouseClick(object sender, EventArgs e)
         {
-            if (blHELP)
-            {
-                blHELP = false;
-                this.lblHelpMessage.Text = "";
-                this.changeIconMessage(0);
-                this.walkingControls(true);
-                this.gbHelp.Visible = false;
-            }
-            else
-            {
-                blHELP = true;
-                this.lblHelpMessage.Text = "";
-                this.changeIconMessage(0);
-                this.walkingControls(false);
-                this.gbHelp.Visible = true;
-            }
-        }
+            //_blHelp = utilities.Help.hideShowHelp(_blHelp, this, this.MinimumSize.Height, this.MaximumSize.Height);
+            //if (_blHelp) this.HelpMessage("", (int)utilities.Help.HelpIcon.NONE);
+           // this.walkingControls();
+
+            //if (blHELP)
+            //{
+            //    blHELP = false;
+            //    this.lblHelpMessage.Text = "";
+            //    this.changeIconMessage(0);
+            //    this.walkingControls(true);
+            //    this.gbHelp.Visible = false;
+            //}
+            //else
+            //{
+            //    blHELP = true;
+            //    this.lblHelpMessage.Text = "";
+            //    this.changeIconMessage(0);
+            //    this.walkingControls(false);
+            //    this.gbHelp.Visible = true;
+            //}
+        }*/
 
         /// <summary>
         /// Event that runs when the mouse leaves labels
@@ -184,11 +187,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void messageHelps_MouseLeave(object sender, EventArgs e)
         {
-            if (blHELP)
-            {
-                this.changeIconMessage(0);
-                this.lblHelpMessage.Text = "";
-            }
+            this.HelpMessage("", (int)utilities.Help.HelpIcon.NONE);
         }
 
         /// <summary>
@@ -198,29 +197,30 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void messageHelps_MouseHover(object sender, EventArgs e)
         {
-            if (blHELP)
+            string _message = "";
+
+            if (sender.Equals(this.btnManagementTasks))
             {
-                this.changeIconMessage(3);
-                if (sender.Equals(this.btnManagementTasks))
-                {
-                    this.lblHelpMessage.Text = "Clicke aquí para acceder al formulario de las tareas.";
-                }
-                else if (sender.Equals(this.dgvTasks))
-                {
-                    this.lblHelpMessage.Text = "Lista de todas las tareas existentes en la base de datos.";
-                }
-                else if (sender.Equals(this.btnBack))
-                {
-                    this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
-                }
+                _message = Literal.INFO_BTN_MANAGEMENT;
             }
+            else if (sender.Equals(this.dgvTasks))
+            {
+                _message = Literal.INFO_DGV;
+            }
+            else if (sender.Equals(this.btnBack))
+            {
+                _message = Literal.INFO_BTN_BACK;
+            }
+
+            HelpMessage(_message, (int)utilities.Help.HelpIcon.INFORMATION);
+
         }
 
         /// <summary>
         /// Method that walkings all controls in form
         /// </summary>
         /// <param name="pEnabled"></param>
-        private void walkingControls(Boolean pEnabled)
+        private void walkingControls()
         {
             foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
             {
@@ -246,38 +246,17 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// Method that changes the icon message
+        /// Method that shows message help
         /// </summary>
-        /// <param name="pIcon"></param>
-        private void changeIconMessage(int pIcon)
+        private void HelpMessage(String message, int icon)
         {
-            String _strFilename = null;
-            Bitmap _image = null;
-
-            if (pIcon == 1)
-            {
-                _strFilename = Application.StartupPath + "\\views\\images\\warning.png";
-            }
-            else if (pIcon == 2)
-            {
-                _strFilename = Application.StartupPath + "\\views\\images\\error.png";
-            }
-            else if (pIcon == 3)
-            {
-                _strFilename = Application.StartupPath + "\\views\\images\\information.png";
-            }
-            //Configurates de icon message
-            if (_strFilename != null)
-            {
-                _image = new Bitmap(_strFilename);
-            }
-            this.pbxIconMessage.Image = _image;
-
+            this.pbxIconMessage.Image = utilities.Help.changeIconMessage(icon);
+            this.lblHelpMessage.Text = message;
         }
 
         #endregion
 
-        
+
     }
 }
 
