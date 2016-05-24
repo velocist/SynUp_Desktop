@@ -71,6 +71,8 @@ namespace SynUp_Desktop.views
         {
             //The grid with all the employees will load.
             this.fillGridView();
+            this.dgvEmployees.ClearSelection(); // Clear selection rows.
+            this.dgvEmployees.Refresh(); //Refresh the view.
         }
 
         /// <summary>
@@ -169,6 +171,7 @@ namespace SynUp_Desktop.views
             this.dgvEmployees.DataSource = source;
             this.dgvEmployees.ClearSelection(); // Clear selection rows
             this.dgvEmployees.Refresh();
+            this.Refresh();
         }
 
         /// <summary>

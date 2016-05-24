@@ -58,6 +58,8 @@ namespace SynUp_Desktop.views
         {
             //The grid with all the teams will load.
             this.fillGrid();
+            this.dgvTeams.ClearSelection(); // Clear selection rows.
+            this.dgvTeams.Refresh(); //Refresh the view.   
 
             //We configures the groupbox help
             //this._blHelp = false;
@@ -124,13 +126,12 @@ namespace SynUp_Desktop.views
         /// </summary>
         private void fillGrid()
         {
-            if (dgvTeams.DataSource == null) dgvTeams.DataSource = new List<String>();
-
             BindingSource source = new BindingSource();
             source.DataSource = Controller.TeamService.getAllTeams();
             this.dgvTeams.DataSource = source;
             this.dgvTeams.ClearSelection();
             this.dgvTeams.Refresh();
+            this.Refresh();
         }
 
         #region HELP
