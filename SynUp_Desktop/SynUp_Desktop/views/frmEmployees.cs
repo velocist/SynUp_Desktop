@@ -54,6 +54,9 @@ namespace SynUp_Desktop.views
             this.MinimizeBox = false;
             this.MaximizeBox = false;
 
+            //this.BackgroundImage = new Bitmap(Application.StartupPath + "\\views\\images\\synup.png");
+            
+
         }
 
         /// <summary>
@@ -257,8 +260,8 @@ namespace SynUp_Desktop.views
             this.dgvEmployees.Columns[3].Visible = false;
             this.dgvEmployees.Columns[4].HeaderText = "Email";
             this.dgvEmployees.Columns[5].Visible = false;
-            this.dgvEmployees.Columns[6].Visible = false; 
-            this.dgvEmployees.Columns[7].Visible = false; 
+            this.dgvEmployees.Columns[6].Visible = false;
+            this.dgvEmployees.Columns[7].Visible = false;
             this.dgvEmployees.Columns[8].Visible = false; // TeamsHistory
             this.dgvEmployees.Columns[9].Visible = false; // TaskHistories
 
@@ -278,6 +281,8 @@ namespace SynUp_Desktop.views
             this.dgvEmployees.RowTemplate.ReadOnly = true;
             this.dgvEmployees.RowHeadersVisible = false; // We hide the rowheader
             this.dgvEmployees.ClearSelection(); // Clear selection rows            
+
+
         }
 
         #region HELP
