@@ -353,10 +353,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void messageHelps_MouseLeave(object sender, EventArgs e)
         {
-            if (_blHelp)
-            {
-                this.HelpMessage("", (int)utilities.Help.HelpIcon.NONE);
-            }
+            if (_blHelp) this.HelpMessage("", (int)utilities.Help.HelpIcon.NONE);
         }
 
         /// <summary>

@@ -197,7 +197,7 @@
             this.Name = "frmEmployees";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Employees ";
-            //this.Activated += new System.EventHandler(this.frmEmployees_Activated);
+            this.Activated += new System.EventHandler(this.frmEmployees_Activated);
             //this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEmployees_FormClosing);
             this.Load += new System.EventHandler(this.frmEmployees_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).EndInit();

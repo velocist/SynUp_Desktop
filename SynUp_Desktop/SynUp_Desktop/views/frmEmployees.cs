@@ -54,11 +54,28 @@ namespace SynUp_Desktop.views
             //Form Common Configurations
             this.FormBorderStyle = FormBorderStyle.Fixed3D;
             this.MinimizeBox = false;
-            this.MaximizeBox = false;            
+            this.MaximizeBox = false;
 
             //The combo with all the teams will load.
             this.fillComboTeams();
-            
+
+            //We configures the groupbox help
+            this._blHelp = false;
+            this.gbHelp.Visible = false;
+        }
+
+        /// <summary>
+        /// Event triggered every time the view is displayed. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmEmployees_Activated(object sender, EventArgs e)
+        {
+            //The grid with all the employees will load.
+            this.fillGridView();
+            this.dgvEmployees.ClearSelection(); // Clear selection rows.
+            this.dgvEmployees.Refresh(); //Refresh the view.              
+
             //We configures the groupbox help
             this._blHelp = false;
             this.gbHelp.Visible = false;
@@ -108,8 +125,8 @@ namespace SynUp_Desktop.views
                     String _SelectedTeam = this.cmbTeamsToAdd.SelectedValue.ToString();
                     _oTeam = this.Controller.TeamService.readTeam(_SelectedTeam);
 
-                   model.pojo.TeamHistory _oCurrentTeam = this.Controller.TeamHistoryService.getCurrentTeamHistoryByEmployee(_oSelectedEmployee.nif,_oTeam.code); //We look if the employee already in team
-                    
+                    model.pojo.TeamHistory _oCurrentTeam = this.Controller.TeamHistoryService.getCurrentTeamHistoryByEmployee(_oSelectedEmployee.nif, _oTeam.code); //We look if the employee already in team
+
                     if (_oCurrentTeam == null)
                     {
                         this.addToTeam(_oSelectedEmployee, _oTeam);
@@ -118,21 +135,9 @@ namespace SynUp_Desktop.views
                     {
                         clMessageBox.showMessage(clMessageBox.MESSAGE.INTEAM, "employee", this);
                     }
-
                 }
             }
         }
-
-        /*
-        /// <summary>
-        /// Event that forms is closed
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void frmEmployees_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            _blHelp = false;
-        }*/
 
         /// <summary>
         /// Event that runs when the row state change
@@ -212,17 +217,17 @@ namespace SynUp_Desktop.views
 
                 //if (_oTeamHistoryControl == null)
                 //{
-                    //USELESS
-                    //_oTeamHistory.id_employee = pEmployee.nif;
-                    //_oTeamHistory.id_team = pTeam.code;
-                    //_oTeamHistory.entranceDay = DateTime.Today;
+                //USELESS
+                //_oTeamHistory.id_employee = pEmployee.nif;
+                //_oTeamHistory.id_team = pTeam.code;
+                //_oTeamHistory.entranceDay = DateTime.Today;
 
-                    Boolean _blAdd = this.Controller.TeamService.addToTeam(pEmployee.nif, pTeam.code);
-                    clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.ADD, "employee", _blAdd, this);
+                Boolean _blAdd = this.Controller.TeamService.addToTeam(pEmployee.nif, pTeam.code);
+                clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.ADD, "employee", _blAdd, this);
                 //}
                 //else
                 //{
-                  //  MessageBox.Show("This employee is already in the team");
+                //  MessageBox.Show("This employee is already in the team");
                 //}
             }
         }
@@ -233,7 +238,7 @@ namespace SynUp_Desktop.views
         private void dgvConfiguration()
         {
             this.cmbTeamsToAdd.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.cmbTeamsToAdd.SelectedItem = -1;           
+            this.cmbTeamsToAdd.SelectedItem = -1;
 
             // DataGridView Configuration
             //this.dgvEmployees.Columns[0].Visible = false; // We hide id column
@@ -277,8 +282,12 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnHelp_MouseClick(object sender, MouseEventArgs e)
         {
+            if (!this.gbHelp.Visible) this.gbHelp.Visible = true;
+            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, this.MinimumSize.Height, this.MaximumSize.Height);
+            if (_blHelp) this.HelpMessage("", (int)utilities.Help.HelpIcon.NONE);
+            this.walkingControls();
 
-            if (_blHelp)
+            /*if (_blHelp)
             {
                 _blHelp = false;
                 this.lblHelpMessage.Text = "";
@@ -293,7 +302,7 @@ namespace SynUp_Desktop.views
                 this.changeIconMessage(0);
                 this.walkingControls(false);
                 this.gbHelp.Visible = true;
-            }
+            }*/
         }
 
         /// <summary>
@@ -303,11 +312,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void messageHelps_MouseLeave(object sender, EventArgs e)
         {
-            if (_blHelp)
-            {
-                this.changeIconMessage(0);
-                this.lblHelpMessage.Text = "";
-            }
+            if (_blHelp) this.HelpMessage("", (int)utilities.Help.HelpIcon.NONE);
         }
 
         /// <summary>
@@ -319,23 +324,28 @@ namespace SynUp_Desktop.views
         {
             if (_blHelp)
             {
-                this.changeIconMessage(3);
+                //TODO Cambiar strings
+                int _iIcon = (int)utilities.Help.HelpIcon.NONE;
+                String _message = "";
+
                 if (sender.Equals(this.btnManagementEmployee))
                 {
-                    this.lblHelpMessage.Text = "Clicke aquí para acceder al formulario de trabajador.";
+                    _message = Literal.INFO_CODE_TASK;
+
                 }
                 else if (sender.Equals(this.lblTeams))
                 {
-                    this.lblHelpMessage.Text = "Clicke aquí para añadir el trabajador a un equipo.";
+                    _message = Literal.INFO_CODE_TASK;
                 }
                 else if (sender.Equals(this.dgvEmployees))
                 {
-                    this.lblHelpMessage.Text = "Lista de todos los empleados existentes en la base de datos.";
+                    _message = Literal.INFO_CODE_TASK;
                 }
                 else if (sender.Equals(this.btnBack))
                 {
-                    this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
+                    _message = Literal.INFO_CODE_TASK;
                 }
+                this.HelpMessage(_message, _iIcon);
             }
         }
 
@@ -343,7 +353,7 @@ namespace SynUp_Desktop.views
         /// Method that walkings all controls in form
         /// </summary>
         /// <param name="pEnabled"></param>
-        private void walkingControls(Boolean pEnabled)
+        private void walkingControls()
         {
             foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
             {
@@ -369,39 +379,18 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// Method that changes the icon message
+        /// Method that shows message help
         /// </summary>
-        /// <param name="pIcon"></param>
-        private void changeIconMessage(int pIcon)
+        private void HelpMessage(String message, int icon)
         {
-            String _strFilename = null;
-            Bitmap _image = null;
-
-            if (pIcon == 1)
-            {
-                _strFilename = Application.StartupPath + "\\views\\images\\warning.png";
-            }
-            else if (pIcon == 2)
-            {
-                _strFilename = Application.StartupPath + "\\views\\images\\error.png";
-            }
-            else if (pIcon == 3)
-            {
-                _strFilename = Application.StartupPath + "\\views\\images\\information.png";
-
-            }
-            //Configurates de icon message
-            if (_strFilename != null)
-            {
-                _image = new Bitmap(_strFilename);
-            }
-            this.pbxIconMessage.Image = _image;
-
+            this.Height = this.MaximumSize.Height;
+            this.pbxIconMessage.Image = utilities.Help.changeIconMessage(icon);
+            this.lblHelpMessage.Text = message;
+            _blHelp = true;
         }
 
 
         #endregion
-
 
     }
 }
@@ -464,3 +453,14 @@ this.fillComboTeams();
 this._blHelp = false;
 this.gbHelp.Visible = false;
 }*/
+
+/* DELETE: Cristina C 240516. Not used 
+    /// <summary>
+    /// Event that forms is closed
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void frmEmployees_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        _blHelp = false;
+    }*/

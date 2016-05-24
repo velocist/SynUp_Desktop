@@ -66,16 +66,11 @@ namespace SynUp_Desktop.utilities
         {
             if (_blHelp)
             {
-                _FrParent.Height = _minHeight;
-                //_FrParent.HelpMessage("", (int)HelpIcon.WARNING);
-                //this.changeIconMessage(0);
-                //this.lblHelpMessage.Text = "";
-                //_FrParent.walkingControls();
+                _FrParent.Height = _minHeight;                
             }
             else
             {
                 _FrParent.Height = _maxHeight;
-                //_FrParent.walkingControls();
             }
 
             return !_blHelp; //It will return the opposite of the value received

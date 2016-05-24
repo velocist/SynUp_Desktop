@@ -447,7 +447,6 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnHelp_MouseClick(object sender, MouseEventArgs e)
         {
-
             _blHelp = utilities.Help.hideShowHelp(_blHelp, this, minHeight, maxHeight);
             if (_blHelp) this.HelpMessage("", utilities.Help.changeIconMessage(3));
             this.walkingControls();

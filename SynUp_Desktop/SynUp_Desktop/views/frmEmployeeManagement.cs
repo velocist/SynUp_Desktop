@@ -547,7 +547,6 @@ namespace SynUp_Desktop.views
         /// </summary>
         private void HelpMessage(String pMessage, Image pIcon)
         {
-            this.pbxIconMessage.Visible = true;
             this.Height = maxHeight;
             this.pbxIconMessage.Image = pIcon;
             this.lblHelpMessage.Text = pMessage;
