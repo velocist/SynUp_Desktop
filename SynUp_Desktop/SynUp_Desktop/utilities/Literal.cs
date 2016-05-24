@@ -44,13 +44,11 @@ namespace SynUp_Desktop.utilities
         public static readonly string INFO_DELETE_TEAM = "Deletes the selected employee from the team.";
 
         public static readonly string INFO_RESULTS_STATISTICS = "Results of the search.";
-        public static readonly string INFO_FILTER_STATISTICS = "";
-        public static readonly string INFO_STATE_STATISTICS = "";
-        public static readonly string INFO_RANKING_STATISTICS = "";
-        public static readonly string INFO_DTSTART_STATISTICS = "";
-        public static readonly string INFO_DTEND_STATISTICS = "";
-
-
+        public static readonly string INFO_FILTER_STATISTICS = "Select the filter you want to use for the search.";
+        public static readonly string INFO_STATE_STATISTICS = "Select the state of the task you want to filter for.";
+        public static readonly string INFO_RANKING_STATISTICS = "Select from what entity you want to check the ranking.";
+        public static readonly string INFO_DTSTART_STATISTICS = "Select the start date of the period.";
+        public static readonly string INFO_DTEND_STATISTICS = "Select the end date of the period. It can't be lesser than the selected Start Date.";
 
         public static readonly string INFO_BTN_CREATE = "Click here to create it.";
         public static readonly string INFO_BTN_UPDATE = "Click here to update it.";
