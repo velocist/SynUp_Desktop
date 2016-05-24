@@ -42,7 +42,20 @@ namespace SynUp_Desktop.views
             //The grid with all the teams will load.
             this.fillGrid();
             this.dgvConfiguration();
-            //this.frmTeams_Activated(sender, e);
+
+            //We configures the groupbox help
+            this._blHelp = false;
+        }
+
+        /// <summary>
+        /// Event that runs when the form is activated
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmTeams_Activated(object sender, EventArgs e)
+        {
+            //The grid with all the teams will load.
+            this.fillGrid();
 
             //We configures the groupbox help
             this._blHelp = false;
@@ -66,10 +79,6 @@ namespace SynUp_Desktop.views
                     _oSelectedTeam = Controller.TeamService.readTeam(_strSelectedRowCode); // We look for the employee nif
                     this.Controller.TeamMgtView.AuxTeam = _oSelectedTeam; // We assign the team to form team management
                 }
-                //else
-                //{
-                //    this.Controller.TeamMgtView.AuxTeam = null;
-                //}
             }
 
             this.Controller.TeamMgtView.ShowDialog();
@@ -79,7 +88,7 @@ namespace SynUp_Desktop.views
         /// DataGridView configuration.
         /// </summary>
         private void dgvConfiguration()
-        { 
+        {
             //Form Common Configurations
             this.FormBorderStyle = FormBorderStyle.Fixed3D;
             this.MinimizeBox = false;
@@ -120,7 +129,6 @@ namespace SynUp_Desktop.views
             this.dgvTeams.DataSource = source;
             this.dgvTeams.ClearSelection();
             this.dgvTeams.Refresh();
-            //this.Refresh();
         }
 
         #region HELP
@@ -134,13 +142,16 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnHelp_MouseClick(object sender, MouseEventArgs e)
         {
-            if (_blHelp)
+            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, this.MinimumSize.Height, this.MaximumSize.Height);
+            if (_blHelp) this.HelpMessage("", (int)utilities.Help.HelpIcon.NONE);
+            this.walkingControls();
+
+            /* (_blHelp)
             {
                 _blHelp = false;
                 this.lblHelpMessage.Text = "";
                 this.changeIconMessage(0);
                 this.walkingControls(true);
-                this.gbHelp.Visible = false;
             }
             else
             {
@@ -148,8 +159,7 @@ namespace SynUp_Desktop.views
                 this.lblHelpMessage.Text = "";
                 this.changeIconMessage(0);
                 this.walkingControls(false);
-                this.gbHelp.Visible = true;
-            }
+            */
         }
 
         /// <summary>
@@ -159,11 +169,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void messageHelps_MouseLeave(object sender, EventArgs e)
         {
-            if (_blHelp)
-            {
-                this.changeIconMessage(0);
-                this.lblHelpMessage.Text = "";
-            }
+            if (_blHelp) this.HelpMessage("", (int)utilities.Help.HelpIcon.NONE);
         }
 
         /// <summary>
@@ -175,19 +181,22 @@ namespace SynUp_Desktop.views
         {
             if (_blHelp)
             {
-                this.changeIconMessage(3);
+                int _icon = (int)utilities.Help.HelpIcon.INFORMATION;
+                String _message = "";
                 if (sender.Equals(this.btnManagementTeams))
                 {
-                    this.lblHelpMessage.Text = "Clicke aquí para acceder al formulario de equipo.";
+                    _message = Literal.INFO_BTN_MANAGEMENT;
                 }
                 else if (sender.Equals(this.dgvTeams))
                 {
+                    //TODO Colocar String dgv lista 
                     this.lblHelpMessage.Text = "Lista de todos los equipos existentes en la base de datos.";
                 }
                 else if (sender.Equals(this.btnBack))
                 {
-                    this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
+                    _message = Literal.INFO_BTN_BACK;
                 }
+                this.HelpMessage(_message, _icon);
             }
         }
 
@@ -195,7 +204,7 @@ namespace SynUp_Desktop.views
         /// Method that walkings all controls in form
         /// </summary>
         /// <param name="pEnabled"></param>
-        private void walkingControls(Boolean pEnabled)
+        private void walkingControls()
         {
             foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
             {
@@ -221,34 +230,13 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// Method that changes the icon message
+        /// Method that shows message help
         /// </summary>
-        /// <param name="pIcon"></param>
-        private void changeIconMessage(int pIcon)
+        private void HelpMessage(String message, int icon)
         {
-            String _strFilename = null;
-            Bitmap _image = null;
-
-            if (pIcon == 1)
-            {
-                _strFilename = Application.StartupPath + "\\views\\images\\warning.png";
-            }
-            else if (pIcon == 2)
-            {
-                _strFilename = Application.StartupPath + "\\views\\images\\error.png";
-            }
-            else if (pIcon == 3)
-            {
-                _strFilename = Application.StartupPath + "\\views\\images\\information.png";
-
-            }
-            //Configurates de icon message
-            if (_strFilename != null)
-            {
-                _image = new Bitmap(_strFilename);
-            }
-            this.pbxIconMessage.Image = _image;
-
+            this.Height = this.MaximumSize.Height;
+            this.pbxIconMessage.Image = utilities.Help.changeIconMessage(icon);
+            this.lblHelpMessage.Text = message;
         }
 
         #endregion
@@ -267,23 +255,3 @@ namespace SynUp_Desktop.views
         }
 */
 
-/* DELETES: Cristina C. 240516 Move to event load
-/// <summary>
-/// Event that runs when the form is activated
-/// </summary>
-/// <param name="sender"></param>
-/// <param name="e"></param>
-private void frmTeams_Activated(object sender, EventArgs e)
-{
-    //The grid with all the teams will load.
-    this.fillGrid();
-
-    //Cleans the auxiliars of form team
-    //this.Controller.TeamMgtView.AuxEmployee = null;
-    //this.Controller.TeamMgtView.AuxTeam = null;
-
-
-    //We configures the groupbox help
-    this._blHelp = false;
-    this.gbHelp.Visible = false;
-}*/

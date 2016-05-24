@@ -465,7 +465,6 @@ namespace SynUp_Desktop.views
             this.Height = this.MaximumSize.Height;
             this.pbxIconMessage.Image = utilities.Help.changeIconMessage(icon);
             this.lblHelpMessage.Text = message;
-            //_blHelp = true;
         }
 
         #endregion        
