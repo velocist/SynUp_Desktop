@@ -74,7 +74,6 @@ namespace SynUp_Desktop.utilities
         public static readonly string WARNING_DATEDIFF_STATISTICS = "End date must be bigger than the start date.";
         public static readonly string WARNING_UNSELECTED_STATISTICS = "Select a correct item from the expandable list.";
         public static readonly string WARNING_EMPTY_STATISTICS = "No items where retrieved.";
-
-
-    }
+               
+            }
 }
