@@ -37,6 +37,7 @@ namespace SynUp_Desktop.views
         public frmEmployeeManagement()
         {
             InitializeComponent();
+            maxHeight = this.MaximumSize.Height;
         }
 
         public Employee AuxEmployee;
@@ -76,7 +77,7 @@ namespace SynUp_Desktop.views
             else if (txtNif.Text.Equals("") || txtEmail.Text.Equals(""))
             {
                 //this.messageWrong();
-                this.HelpMessage(Literal.ERROR_VALIDATION_EMPLOYEE, (int)HelpIcon.WARNING);
+                this.HelpMessage(Literal.ERROR_VALIDATION_EMPLOYEE, utilities.Help.changeIconMessage(3));
             }
 
             /*else if (txtNif.Text == "")
@@ -119,7 +120,7 @@ namespace SynUp_Desktop.views
                     }
                 }
             }
-            else this.HelpMessage(Literal.ERROR_VALIDATION_EMPLOYEE, (int)HelpIcon.WARNING); //Pablo Ardèvol 22/05 1552, Método pulido.             
+            else this.HelpMessage(Literal.ERROR_VALIDATION_EMPLOYEE, utilities.Help.changeIconMessage(2)); //Pablo Ardèvol 22/05 1552, Método pulido.             
 
         }
 
@@ -304,7 +305,7 @@ namespace SynUp_Desktop.views
             }
             else
             {
-                this.HelpMessage(Literal.ERROR_VALIDATION_EMPLOYEE, (int)HelpIcon.ERROR);
+                this.HelpMessage(Literal.ERROR_VALIDATION_EMPLOYEE, utilities.Help.changeIconMessage(2));
             }
 
             return _blCorrect;
@@ -407,7 +408,7 @@ namespace SynUp_Desktop.views
         private void btnHelp_MouseClick(object sender, MouseEventArgs e)
         {
             _blHelp = utilities.Help.hideShowHelp(_blHelp, this, this.MinimumSize.Height, this.MaximumSize.Height);
-            if (_blHelp) this.HelpMessage("", (int)HelpIcon.NONE);
+            if (_blHelp) this.HelpMessage("", utilities.Help.changeIconMessage(4));
             this.walkingControls();
 
         }
@@ -421,7 +422,7 @@ namespace SynUp_Desktop.views
         {
             if (_blHelp)
             {
-                this.HelpMessage("", (int)HelpIcon.NONE);
+                this.HelpMessage("", utilities.Help.changeIconMessage(4));
             }
         }
 
@@ -434,8 +435,7 @@ namespace SynUp_Desktop.views
         {
             if (_blHelp)
             {
-
-                int _info = (int)HelpIcon.INFORMATION;
+                Image _info = utilities.Help.changeIconMessage(3);
 
                 if (sender.Equals(lblNif) || sender.Equals(txtNif))
                 {
@@ -545,12 +545,12 @@ namespace SynUp_Desktop.views
         /// <summary>
         /// Method that shows message help
         /// </summary>
-        private void HelpMessage(String message, int icon)
+        private void HelpMessage(String pMessage, Image pIcon)
         {
             this.pbxIconMessage.Visible = true;
-            this.Height = this.MaximumSize.Height;
-            this.pbxIconMessage.Image = utilities.Help.changeIconMessage(icon);
-            this.lblHelpMessage.Text = message;
+            this.Height = maxHeight;
+            this.pbxIconMessage.Image = pIcon;
+            this.lblHelpMessage.Text = pMessage;
         }
 
         #endregion        

@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace SynUp_Desktop.views
 {
     /// <summary>
@@ -97,7 +98,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void cmbFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            hideAllComponents();
+            this.hideAllComponents();
 
             switch (this.cmbFilter.SelectedIndex)
             {
@@ -200,8 +201,7 @@ namespace SynUp_Desktop.views
             }
             else
             {
-                this.HelpMessage(Literal.WARNING_DATEDIFF_STATISTICS, (int)HelpIcon.WARNING);
-                //clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
+                this.HelpMessage(Literal.WARNING_DATEDIFF_STATISTICS, utilities.Help.changeIconMessage(3));
             }
 
 
@@ -222,7 +222,7 @@ namespace SynUp_Desktop.views
             else
             {
                 //clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
-                this.HelpMessage(Literal.WARNING_UNSELECTED_STATISTICS, (int)HelpIcon.WARNING);
+                this.HelpMessage(Literal.WARNING_UNSELECTED_STATISTICS, utilities.Help.changeIconMessage(3));
             }
         }
 
@@ -240,7 +240,7 @@ namespace SynUp_Desktop.views
             else
             {
                 //clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
-                this.HelpMessage(Literal.WARNING_UNSELECTED_STATISTICS, (int)HelpIcon.WARNING);
+                this.HelpMessage(Literal.WARNING_UNSELECTED_STATISTICS, utilities.Help.changeIconMessage(2));
             }
         }
 
@@ -258,7 +258,7 @@ namespace SynUp_Desktop.views
             else
             {
                 //clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
-                this.HelpMessage(Literal.WARNING_UNSELECTED_STATISTICS, (int)HelpIcon.WARNING);
+                this.HelpMessage(Literal.WARNING_UNSELECTED_STATISTICS, utilities.Help.changeIconMessage(3));
             }
         }
 
@@ -287,7 +287,7 @@ namespace SynUp_Desktop.views
             else
             {
                 //clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
-                this.HelpMessage(Literal.WARNING_UNSELECTED_STATISTICS + " or " + Literal.WARNING_DATEDIFF_STATISTICS, (int)HelpIcon.WARNING);
+                this.HelpMessage(Literal.WARNING_UNSELECTED_STATISTICS + " or " + Literal.WARNING_DATEDIFF_STATISTICS, utilities.Help.changeIconMessage(3));
             }
         }
 
@@ -336,7 +336,7 @@ namespace SynUp_Desktop.views
         private void setInstructions(String text)
         {
             this.lblInstructions.Visible = true;
-            this.Text = text;
+            this.lblInstructions.Text = text;
         }
 
         /// <summary>
@@ -360,7 +360,7 @@ namespace SynUp_Desktop.views
             this.dtpEnd.Visible = false;
             this.chtStatistics.Visible = false;
 
-            this.HelpMessage("", (int)HelpIcon.INFORMATION);
+            this.HelpMessage("", utilities.Help.changeIconMessage(3));
             _blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);
 
         }
@@ -388,7 +388,7 @@ namespace SynUp_Desktop.views
             source.DataSource = _data;
             this.dgvStadistics.DataSource = source;
 
-            if(this.dgvStadistics.RowCount<=0) this.HelpMessage(Literal.WARNING_EMPTY_STATISTICS, (int)HelpIcon.WARNING);
+            if (this.dgvStadistics.RowCount <= 0) this.HelpMessage(Literal.WARNING_EMPTY_STATISTICS, utilities.Help.changeIconMessage(3));
             else _blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);
 
             /* this.chtStatistics.DataSource = source;
@@ -449,7 +449,7 @@ namespace SynUp_Desktop.views
         {
 
             _blHelp = utilities.Help.hideShowHelp(_blHelp, this, minHeight, maxHeight);
-            if (_blHelp) this.HelpMessage("", (int)HelpIcon.WARNING);
+            if (_blHelp) this.HelpMessage("", utilities.Help.changeIconMessage(3));
             this.walkingControls();
         }
 
@@ -462,7 +462,7 @@ namespace SynUp_Desktop.views
         {
             if (_blHelp)
             {
-                this.HelpMessage("", (int)HelpIcon.WARNING);
+                this.HelpMessage("", utilities.Help.changeIconMessage(3));
             }
         }
 
@@ -518,7 +518,7 @@ namespace SynUp_Desktop.views
                     this.lblHelpMessage.Text = "Escoja la fecha final.";
                 }
 
-                this.HelpMessage(_message, (int)HelpIcon.INFORMATION);
+                this.HelpMessage(_message, utilities.Help.changeIconMessage(3));
             }
         }
 
@@ -551,13 +551,14 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// Methd that sohws message wrong
+        /// Method that shows message help
         /// </summary>
-        private void HelpMessage(String message, int icon)
+        private void HelpMessage(String pMessage, Image pIcon)
         {
+            this.pbxIconMessage.Visible = true;
             this.Height = maxHeight;
-            this.pbxIconMessage.Image = utilities.Help.changeIconMessage(icon);
-            this.lblHelpMessage.Text = message;
+            this.pbxIconMessage.Image = pIcon;
+            this.lblHelpMessage.Text = pMessage;
         }
 
         #endregion

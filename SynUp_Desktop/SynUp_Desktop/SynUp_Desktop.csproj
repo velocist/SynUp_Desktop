@@ -191,7 +191,6 @@
       <DependentUpon>GenericButton.cs</DependentUpon>
     </Compile>
     <Compile Include="utilities\Help.cs" />
-    <Compile Include="utilities\HelpIcon.cs" />
     <Compile Include="utilities\Literal.cs" />
     <Compile Include="utilities\TaskState.cs" />
     <Compile Include="utilities\Util.cs" />

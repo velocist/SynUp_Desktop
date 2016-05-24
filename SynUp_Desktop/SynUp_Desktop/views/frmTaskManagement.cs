@@ -23,8 +23,8 @@ namespace SynUp_Desktop.views
         private Controller controller;
         private model.pojo.Task auxTask;
         private Boolean _blHelp;
-        private int minHeight = 410;
-        private int maxHeight = 480;
+        //private int minHeight = 570;
+        //private int maxHeight = 590;
 
         public Controller Controller
         {
@@ -50,7 +50,7 @@ namespace SynUp_Desktop.views
             {
                 auxTask = value;
             }
-        }        
+        }
 
         public frmTaskManagement()
         {
@@ -58,6 +58,38 @@ namespace SynUp_Desktop.views
         }
 
         #region CRUD
+
+        /// <summary>
+        /// Event that runs when the button is clicked to create a task
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <Author>Cristina C.</Author>
+        private void btnCreateTask_Click(object sender, EventArgs e)
+        {
+            String _strCode = txtCode.Text;
+            String _strIdTeam = (String)cbIdTeams.SelectedValue;
+            String _strProject = txtProject.Text;
+            String _strName = txtName.Text;
+            String _strDescription = txtDescription.Text;
+            String _strLocalization = txtLocalization.Text;
+            DateTime _dtPriorityDate = mcalPriorityDate.SelectionStart.Date;
+
+            int _nImportance = 0;
+            if (cbImportance.SelectedItem != null && !cbImportance.Equals(" ")) _nImportance = Int32.Parse(cbImportance.SelectedItem.ToString());
+
+            Boolean _blCreate = false;
+
+            if (checkCorrectValues())
+            {
+                _blCreate = Controller.TaskService.createTask(_strCode, _strName, _dtPriorityDate, _strDescription,
+                                                             _strLocalization, _strProject, _strIdTeam, _nImportance);
+
+                clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "task", _blCreate, this);
+            }
+
+        }
+
 
         /// <summary>
         /// Event that runs when the button is clicked to delete a task
@@ -103,8 +135,6 @@ namespace SynUp_Desktop.views
 
             int _nImportance = Int32.Parse(cbImportance.SelectedItem.ToString());
 
-            //int _nImportance = (int)Int32.TryParse(cbImportance.SelectedItem);
-
             Boolean _blUpdate = false;
 
             if (checkCorrectValues())
@@ -119,38 +149,7 @@ namespace SynUp_Desktop.views
                 }
             }
         }
-
-        /// <summary>
-        /// Event that runs when the button is clicked to create a task
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <Author>Cristina C.</Author>
-        private void btnCreateTask_Click(object sender, EventArgs e)
-        {
-            String _strCode = txtCode.Text;
-            String _strIdTeam = (String)cbIdTeams.SelectedValue;
-            String _strProject = txtProject.Text;
-            String _strName = txtName.Text;
-            String _strDescription = txtDescription.Text;
-            String _strLocalization = txtLocalization.Text;
-            DateTime _dtPriorityDate = mcalPriorityDate.SelectionStart.Date;
-
-            int _nImportance = 0;
-            if (cbImportance.SelectedItem != null && !cbImportance.Equals(" ")) _nImportance = Int32.Parse(cbImportance.SelectedItem.ToString());
-
-            Boolean _blCreate = false;
-
-            if (checkCorrectValues())
-            {
-                _blCreate = Controller.TaskService.createTask(_strCode, _strName, _dtPriorityDate, _strDescription,
-                                                             _strLocalization, _strProject, _strIdTeam, _nImportance);
-
-                clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "task", _blCreate, this);
-            }
-
-        }
-
+        
         #endregion
 
         #region VALIDATIONS        
@@ -164,23 +163,6 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void txtCode_TextChanged(object sender, EventArgs e)
         {
-            //if (AuxTask == null)
-            //{
-            //    String _strIdCode = txtCode.Text;
-            //    model.pojo.Task foundTask = Controller.TaskService.readTask(_strIdCode); // We look for if the task already exists
-
-            //    if (!checkCode() || foundTask != null) // If the task exists and the string is empty, we show a message
-            //    {
-            //        lblCode.ForeColor = Color.Red;
-            //        //lblCode.Text = "Code*";
-            //    }
-            //    else
-            //    {
-            //        //lblCode.Text = "Code";
-            //        lblCode.ForeColor = Color.Black;
-            //    }
-            //}
-
             this.checkCode();
         }
 
@@ -191,17 +173,6 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void txtName_TextChanged(object sender, EventArgs e)
         {
-            //if (!checkName() || txtName.Text == null) // If the name is empty, we show a message
-            //{
-            //    //lblName.Text = "Name*";
-            //    lblName.ForeColor = Color.Red;
-            //}
-            //else
-            //{
-            //    //lblName.Text = "Name";
-            //    lblName.ForeColor = Color.Black;
-            //}
-
             this.checkName();
         }
 
@@ -215,12 +186,10 @@ namespace SynUp_Desktop.views
             if (mcalPriorityDate.SelectionStart.Date < DateTime.Today || mcalPriorityDate.SelectionStart == null)
             {
                 lblPriorityDate.ForeColor = Color.Red;
-                //lblPriorityDate.Text = "Priority Date*";
             }
             else
             {
                 lblPriorityDate.ForeColor = Color.Black;
-                //lblPriorityDate.Text = "Priority Date";
             }
         }
 
@@ -232,20 +201,9 @@ namespace SynUp_Desktop.views
         /// <returns></returns>
         private bool checkCorrectValues()
         {
-            /*bool _correct = false;
-            if (checkCode() && checkName() && lblName.ForeColor != Color.Red/* && lblPriorityDate.ForeColor != Color.Red)
-            {
-                if (AuxTask != null || lblPriorityDate.ForeColor != Color.Red)
-                {
-                    _correct = true;
-                }
-            }
-
-            //clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "employee", _blCreateOk, this);*/
-
             bool _correct = checkName() && checkCode();
 
-            if (!_correct) this.HelpMessage(Literal.ERROR_VALIDATION_TASK, (int)HelpIcon.ERROR); //clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
+            if (!_correct) this.HelpMessage(Literal.ERROR_VALIDATION_TASK, (int)utilities.Help.HelpIcon.ERROR); 
 
             return _correct;
         }
@@ -265,11 +223,9 @@ namespace SynUp_Desktop.views
                 {
                     lblCode.ForeColor = Color.Red;
                     return false;
-                    //lblCode.Text = "Code*";
                 }
                 else
                 {
-                    //lblCode.Text = "Code";
                     lblCode.ForeColor = Color.Black;
                     return true;
                 }
@@ -288,13 +244,11 @@ namespace SynUp_Desktop.views
         {
             if (txtName.Text.Equals("") || txtName.Text == null) // If the name is empty, we show a message
             {
-                //lblName.Text = "Name*";
                 lblName.ForeColor = Color.Red;
                 return false;
             }
             else
             {
-                //lblName.Text = "Name";
                 lblName.ForeColor = Color.Black;
                 return true;
             }
@@ -331,9 +285,6 @@ namespace SynUp_Desktop.views
                 this.txtProject.Text = this.AuxTask.project;
                 this.txtState.Text = ((TaskState)this.AuxTask.state).ToString(); //getState(AuxTask);
 
-                //lblCode.Text = "Code*";
-                //lblName.Text = "Name*";
-
                 btnCreateTask.Enabled = false;
                 txtCode.Enabled = false;
 
@@ -360,7 +311,7 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// 
+        /// Event that runs when the form's closed
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -368,32 +319,30 @@ namespace SynUp_Desktop.views
         {
             AuxTask = null;
             _blHelp = false;
-            //btnClear_Click(sender, e);
-
         }
-        
+
         /// <summary>
-        /// 
+        /// Event thnat runs when the button clear is clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnClear_Click(object sender, EventArgs e)
         {
             AuxTask = null;
-            _blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);
+            _blHelp = utilities.Help.hideShowHelp(true, this, this.MinimumSize.Height, this.MaximumSize.Height);
         }
 
         #region HELP        
 
         /// <summary>
-        /// 
+        /// Event that runs when the button help is clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnHelp_MouseClick(object sender, MouseEventArgs e)
         {
-            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, minHeight, maxHeight);
-            if (_blHelp) this.HelpMessage("", (int)HelpIcon.WARNING);
+            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, this.MinimumSize.Height, this.MaximumSize.Height);
+            if (_blHelp) this.HelpMessage("", (int)utilities.Help.HelpIcon.NONE);
             this.walkingControls();
         }
 
@@ -406,7 +355,7 @@ namespace SynUp_Desktop.views
         {
             if (_blHelp)
             {
-                this.HelpMessage("", (int)HelpIcon.WARNING);
+                this.HelpMessage("", (int)utilities.Help.HelpIcon.NONE);
             }
         }
 
@@ -419,98 +368,66 @@ namespace SynUp_Desktop.views
         {
             if (_blHelp)
             {
-
-                int _icon = (int)HelpIcon.INFORMATION;
+                int _icon = (int)utilities.Help.HelpIcon.INFORMATION;
                 String _message = "";
 
                 if (sender.Equals(lblCode) || sender.Equals(txtCode))
                 {
                     _message = Literal.INFO_CODE_TASK;
-                    //this.changeIconMessage(3);
-                    //this.lblHelpMessage.Text = "Cambiar el DNI contacte con el administrador de la base de datos.";
                 }
                 else if (sender.Equals(lblName) || sender.Equals(txtName))
                 {
                     _message = Literal.INFO_NAME_TASK;
-                    //this.changeIconMessage(3);
-                    //this.lblHelpMessage.Text = "Nombre de la tarea.";
                 }
                 else if (sender.Equals(lblLocalization) || sender.Equals(txtLocalization))
                 {
                     _message = Literal.INFO_LOCATION_TASK;
-                    //this.changeIconMessage(3);
-                    //this.lblHelpMessage.Text = "Apellidos del trabajador.";
                 }
                 else if (sender.Equals(lblProject) || sender.Equals(txtProject))
                 {
                     _message = Literal.INFO_PROJECT_TASK;
-                    //this.changeIconMessage(3);
-                    //this.lblHelpMessage.Text = "Número de contacto del trabajador.";
                 }
                 else if (sender.Equals(lblPriorityDate) || sender.Equals(mcalPriorityDate))
                 {
                     _message = Literal.INFO_DATE_TASK;
-                    //this.changeIconMessage(3);
-                    //this.lblHelpMessage.Text = "Correo electrónico del trabajador. Se utilizará como nombre de usuario en el aplicación mobil";
                 }
                 else if (sender.Equals(lblDescription) || sender.Equals(txtDescription))
                 {
                     _message = Literal.INFO_DESC_TASK;
-                    //this.changeIconMessage(3);
-                    //this.lblHelpMessage.Text = "Dirección postal del trabajador.";
                 }
                 else if (sender.Equals(lblState) || sender.Equals(txtState))
                 {
                     _message = Literal.INFO_STATE_TASK;
-                    //this.changeIconMessage(3);
-                    //this.lblHelpMessage.Text = "Nombre de usuario que utiliza en la aplicación. Solamente puede ser modificado por el propio trabajador desde la app.";
                 }
                 else if (sender.Equals(lblImportance) || sender.Equals(cbImportance))
                 {
                     _message = Literal.INFO_IMPORTANCE_TASK;
-                    //this.changeIconMessage(3);
-                    //this.lblHelpMessage.Text = "Nombre de usuario que utiliza en la aplicación. Solamente puede ser modificado por el propio trabajador desde la app.";
                 }
                 else if (sender.Equals(lblIdTeam) || sender.Equals(cbIdTeams))
                 {
                     _message = Literal.INFO_IDTEAM_TASK;
-                    //this.changeIconMessage(3);
-                    //this.lblHelpMessage.Text = "Nombre de usuario que utiliza en la aplicación. Solamente puede ser modificado por el propio trabajador desde la app.";
                 }
                 else if (sender.Equals(btnCreateTask))
                 {
                     _message = Literal.INFO_BTN_CREATE;
-                    //this.changeIconMessage(3);
-                    //this.lblHelpMessage.Text = "Clicke aquí para crear un nuevo trabajador.";
                 }
                 else if (sender.Equals(btnUpdateTask))
                 {
                     _message = Literal.INFO_BTN_UPDATE;
-                    //this.changeIconMessage(3);
-                    //this.lblHelpMessage.Text = "Clicke aquí para modificar los datos del trabajador.";
                 }
                 else if (sender.Equals(btnDeleteTask))
                 {
                     _message = Literal.INFO_BTN_DELETE;
-                    //this.changeIconMessage(3);
-                    //this.lblHelpMessage.Text = "Clicke aquí para para eliminar el trabajador.";
                 }
                 else if (sender.Equals(btnClear))
                 {
                     _message = Literal.INFO_BTN_CLEAR;
-                    //this.changeIconMessage(3);
-                    //this.lblHelpMessage.Text = "Clicke aquí para limpiar los valores del formulario.";
                 }
                 else if (sender.Equals(btnBack))
                 {
                     _message = Literal.INFO_BTN_BACK;
-                    //this.changeIconMessage(3);
-                    //this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
                 }
-
-
                 this.HelpMessage(_message, _icon);
-
             }
         }
 
@@ -524,7 +441,7 @@ namespace SynUp_Desktop.views
             {
                 if (_control is GroupBox)
                 {
-                    foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
+                    foreach (Control _inGroupBox in _control.Controls) //Recorremos los componentes del groupbox
                     {
                         _inGroupBox.MouseHover += new EventHandler(messageHelps_MouseHover);
                         _inGroupBox.MouseLeave += new EventHandler(messageHelps_MouseLeave);
@@ -541,17 +458,17 @@ namespace SynUp_Desktop.views
                     _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
                 }
             }
-        }       
+        }
 
         /// <summary>
-        /// Methd that sohws message wrong
+        /// Method that shows message help
         /// </summary>
         private void HelpMessage(String message, int icon)
         {
-            this.Height = maxHeight;
+            this.Height = this.MaximumSize.Height;
             this.pbxIconMessage.Image = utilities.Help.changeIconMessage(icon);
             this.lblHelpMessage.Text = message;
-            _blHelp = true;
+            //_blHelp = true;
         }
 
         #endregion        
@@ -749,7 +666,6 @@ namespace SynUp_Desktop.views
 //    lblIdTeam.ForeColor = Color.Black;
 //}
 
-#endregion
 
 /* Moved to Util 230516 Pablo Ardèvol
     /// <summary>
@@ -806,3 +722,5 @@ this.changeIconMessage(2);
 this.lblHelpMessage.Text = "El nif i/o el email no puede estar vacío.";
 }
 */
+
+#endregion

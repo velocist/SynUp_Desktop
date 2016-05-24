@@ -110,6 +110,26 @@ namespace SynUp_Desktop.utilities
             }
         }
 
+        public new event EventHandler MouseLeave
+        {
+            add
+            {
+                base.MouseLeave += value;
+                foreach (Control control in Controls)
+                {
+                    control.MouseLeave += value;
+                }
+            }
+            remove
+            {
+                base.MouseLeave -= value;
+                foreach (Control control in Controls)
+                {
+                    control.MouseLeave -= value;
+                }
+            }
+        }
+
         /// <summary>
         /// If the button isExit, the parent form will close. If it is false, it means it is a clear button and therefore will empty all the textbox fields in the parent form.
         /// </summary>
@@ -165,7 +185,6 @@ namespace SynUp_Desktop.utilities
                             ((System.Windows.Forms.DataGridView)_inGroupBox).Refresh();
                         }
                         if (_inGroupBox is Button) //Boton addtoteam deletetoteam
-                                                         //SIIII Conseguido!! 
                         {
                             _inGroupBox.Enabled = false;
                         }
@@ -210,9 +229,7 @@ namespace SynUp_Desktop.utilities
                             }
                             if (_inGroupBox is PictureBox)
                             {
-                                _inGroupBox.Visible = true;
                                 ((System.Windows.Forms.PictureBox)_inGroupBox).Image = new Bitmap(Help.changeIconMessage(0));
-
                             }
                         }
                     }
@@ -232,9 +249,7 @@ namespace SynUp_Desktop.utilities
                             }
                             if (_inGroupBox is PictureBox)
                             {
-                                _inGroupBox.Visible = true;
                                 ((System.Windows.Forms.PictureBox)_inGroupBox).Image = new Bitmap(Help.changeIconMessage(0));
-
                             }
                         }
                     }
@@ -259,13 +274,8 @@ namespace SynUp_Desktop.utilities
                         {
                             _inGroupBox.Text = "";
                         }
-                        if (_inGroupBox is PictureBox)
-                        {
-                            _inGroupBox.Visible = false;
-                        }
                     }
                 }
-
             }
         }
     }

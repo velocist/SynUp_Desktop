@@ -13,6 +13,14 @@ namespace SynUp_Desktop.utilities
     /// </summary>
     public static class Help
     {
+        public enum HelpIcon
+        {
+            WARNING,
+            ERROR,
+            INFORMATION,
+            NONE
+        }
+
         /// <summary>
         /// Method that changes the icon message
         /// </summary>

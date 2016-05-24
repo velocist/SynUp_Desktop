@@ -398,7 +398,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(740, 452);
+            this.ClientSize = new System.Drawing.Size(740, 447);
             this.Controls.Add(this.gbHelp);
             this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.btnClear);
@@ -412,9 +412,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(760, 569);
+            this.MaximumSize = new System.Drawing.Size(760, 570);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(760, 489);
+            this.MinimumSize = new System.Drawing.Size(760, 490);
             this.Name = "frmTaskManagement";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Task Management ";

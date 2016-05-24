@@ -172,7 +172,7 @@ namespace SynUp_Desktop.views
         {
             bool _valid = checkCode();
 
-            if (!_valid) this.HelpMessage(Literal.ERROR_VALIDATION_TEAM, (int)HelpIcon.ERROR); ;
+            if (!_valid) this.HelpMessage(Literal.ERROR_VALIDATION_TEAM, utilities.Help.changeIconMessage(2)); ;
 
             return _valid;
         }
@@ -369,7 +369,7 @@ namespace SynUp_Desktop.views
         private void btnHelp_MouseClick(object sender, EventArgs e)
         {
             _blHelp = utilities.Help.hideShowHelp(_blHelp, this, minHeight, maxHeight);
-            if (_blHelp) this.HelpMessage("", (int)HelpIcon.NONE);
+            if (_blHelp) this.HelpMessage("", utilities.Help.changeIconMessage(4));
             this.walkingControls();
         }
 
@@ -382,7 +382,7 @@ namespace SynUp_Desktop.views
         {
             if (_blHelp)
             {
-                this.HelpMessage("", (int)HelpIcon.WARNING);
+                this.HelpMessage("", utilities.Help.changeIconMessage(4));
             }
         }
 
@@ -395,7 +395,7 @@ namespace SynUp_Desktop.views
         {
             if (_blHelp)
             {
-                int _icon = (int)HelpIcon.INFORMATION;
+                Image _icon = utilities.Help.changeIconMessage(3);
                 String _message = "";
 
                 if (sender.Equals(lblCode) || sender.Equals(txtCode))
@@ -474,14 +474,13 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// Methd that sohws message wrong
+        /// Method that shows message help
         /// </summary>
-        private void HelpMessage(String message, int icon)
+        private void HelpMessage(String pMessage, Image pIcon)
         {
-            this.pbxIconMessage.Visible = true;
             this.Height = maxHeight;
-            this.pbxIconMessage.Image = utilities.Help.changeIconMessage(icon);
-            this.lblHelpMessage.Text = message;
+            this.pbxIconMessage.Image = pIcon;
+            this.lblHelpMessage.Text = pMessage;
         }
 
         #endregion
