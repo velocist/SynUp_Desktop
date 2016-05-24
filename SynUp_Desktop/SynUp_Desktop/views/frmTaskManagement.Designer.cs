@@ -194,7 +194,7 @@
             // 
             // mcalPriorityDate
             // 
-            this.mcalPriorityDate.Location = new System.Drawing.Point(501, 96);
+            this.mcalPriorityDate.Location = new System.Drawing.Point(411, 124);
             this.mcalPriorityDate.Margin = new System.Windows.Forms.Padding(12, 11, 12, 11);
             this.mcalPriorityDate.MinDate = new System.DateTime(2016, 1, 1, 0, 0, 0, 0);
             this.mcalPriorityDate.Name = "mcalPriorityDate";
@@ -232,12 +232,12 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(97, 93);
+            this.txtDescription.Location = new System.Drawing.Point(95, 93);
             this.txtDescription.Margin = new System.Windows.Forms.Padding(4);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtDescription.Size = new System.Drawing.Size(302, 165);
+            this.txtDescription.Size = new System.Drawing.Size(304, 193);
             this.txtDescription.TabIndex = 4;
             // 
             // lblPriorityDate
