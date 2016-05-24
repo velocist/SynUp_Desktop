@@ -59,6 +59,7 @@ namespace SynUp_Desktop.views
             this.FormBorderStyle = FormBorderStyle.Fixed3D;
             this.MinimizeBox = false;
             this.MaximizeBox = false;
+            this.walkingControls();
         }
 
         /// <summary>
@@ -383,7 +384,6 @@ namespace SynUp_Desktop.views
         private void fillDataGrid(Object _data)
         {
             //if(_data=null) 
-
             BindingSource source = new BindingSource();
             source.DataSource = _data;
             this.dgvStadistics.DataSource = source;
@@ -397,7 +397,6 @@ namespace SynUp_Desktop.views
              //chtStatistics.Update();
              this.chtStatistics.DataBind();
              this.chtStatistics.Visible = true;*/
-
         }
 
         /// <summary>
@@ -447,9 +446,8 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnHelp_MouseClick(object sender, MouseEventArgs e)
         {
-            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, minHeight, maxHeight);
-            if (_blHelp) this.HelpMessage("", utilities.Help.changeIconMessage(3));
-            this.walkingControls();
+            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, this.MinimumSize.Height, this.MaximumSize.Height);
+            if (_blHelp) this.HelpMessage("", utilities.Help.changeIconMessage((int)utilities.Help.HelpIcon.NONE));
         }
 
         /// <summary>
@@ -502,23 +500,22 @@ namespace SynUp_Desktop.views
                 }
                 else if (sender.Equals(this.cmbStates))
                 {
-                   // _message = Literal
-                    this.lblHelpMessage.Text = "Escoja el estado que desee filtrar.";
+                    _message = Literal.INFO_STATE_STATISTICS;
                 }
                 else if (sender.Equals(this.cmbRanking))
                 {
-                    this.lblHelpMessage.Text = "Escoja para buscar por ránking.";
+                    _message = Literal.INFO_RANKING_STATISTICS;
                 }
                 else if (sender.Equals(this.dtpBegin))
                 {
-                    this.lblHelpMessage.Text = "Escoja la fecha de inicio.";
+                    _message = Literal.INFO_DTSTART_STATISTICS;
                 }
                 else if (sender.Equals(this.dtpEnd))
                 {
-                    this.lblHelpMessage.Text = "Escoja la fecha final.";
+                    _message = Literal.INFO_DTEND_STATISTICS;
                 }
 
-                this.HelpMessage(_message, utilities.Help.changeIconMessage(3));
+                this.HelpMessage(_message, utilities.Help.changeIconMessage((int)utilities.Help.HelpIcon.INFORMATION));
             }
         }
 
@@ -556,7 +553,7 @@ namespace SynUp_Desktop.views
         private void HelpMessage(String pMessage, Image pIcon)
         {
             this.pbxIconMessage.Visible = true;
-            this.Height = maxHeight;
+            this.Height = this.MaximumSize.Height;
             this.pbxIconMessage.Image = pIcon;
             this.lblHelpMessage.Text = pMessage;
         }
