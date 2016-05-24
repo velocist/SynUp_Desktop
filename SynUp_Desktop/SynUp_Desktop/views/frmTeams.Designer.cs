@@ -76,7 +76,7 @@
             this.gbHelp.Margin = new System.Windows.Forms.Padding(4);
             this.gbHelp.Name = "gbHelp";
             this.gbHelp.Padding = new System.Windows.Forms.Padding(4);
-            this.gbHelp.Size = new System.Drawing.Size(524, 59);
+            this.gbHelp.Size = new System.Drawing.Size(573, 59);
             this.gbHelp.TabIndex = 0;
             this.gbHelp.TabStop = false;
             this.gbHelp.Text = "Help";

@@ -124,7 +124,7 @@
             this.gbHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbHelp.Location = new System.Drawing.Point(123, 446);
             this.gbHelp.Name = "gbHelp";
-            this.gbHelp.Size = new System.Drawing.Size(552, 57);
+            this.gbHelp.Size = new System.Drawing.Size(586, 57);
             this.gbHelp.TabIndex = 0;
             this.gbHelp.TabStop = false;
             this.gbHelp.Text = "Help";
