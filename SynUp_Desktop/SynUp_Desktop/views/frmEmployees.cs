@@ -36,7 +36,7 @@ namespace SynUp_Desktop.views
 
         public frmEmployees()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
         /// <summary>
@@ -59,9 +59,7 @@ namespace SynUp_Desktop.views
             //The combo with all the teams will load.
             this.fillComboTeams();
 
-            //We configures the groupbox help
-            this._blHelp = false;
-
+            this.walkingControls();
         }
 
         /// <summary>
@@ -73,9 +71,8 @@ namespace SynUp_Desktop.views
         {
             //The grid with all the employees will load.
             this.fillGridView();
-
-            //We configures the groupbox help
-            this._blHelp = false;
+            this.dgvEmployees.ClearSelection(); // Clear selection rows.
+            this.dgvEmployees.Refresh(); //Refresh the view.
         }
 
         /// <summary>
@@ -174,6 +171,7 @@ namespace SynUp_Desktop.views
             this.dgvEmployees.DataSource = source;
             this.dgvEmployees.ClearSelection(); // Clear selection rows
             this.dgvEmployees.Refresh();
+            this.Refresh();
         }
 
         /// <summary>
@@ -240,8 +238,6 @@ namespace SynUp_Desktop.views
 
         #region HELP
 
-        private Boolean _blHelp;
-
         /// <summary>
         /// Event that runs when the button help is clicked
         /// </summary>
@@ -249,9 +245,8 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnHelp_MouseClick(object sender, MouseEventArgs e)
         {
-            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, this.MinimumSize.Height, this.MaximumSize.Height);
-            if (_blHelp) this.HelpMessage("", (int)utilities.Help.HelpIcon.NONE);
-            this.walkingControls();
+            this.HelpMessage("", (int)utilities.Help.HelpIcon.NONE);
+            //this.walkingControls();
 
             /*if (_blHelp)
             {
@@ -278,7 +273,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void messageHelps_MouseLeave(object sender, EventArgs e)
         {
-            if (_blHelp) this.HelpMessage("", (int)utilities.Help.HelpIcon.NONE);
+            this.HelpMessage("", (int)utilities.Help.HelpIcon.NONE);
         }
 
         /// <summary>
@@ -288,8 +283,6 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void messageHelps_MouseHover(object sender, EventArgs e)
         {
-            if (_blHelp)
-            {
                 //TODO Cambiar strings
                 int _iIcon = (int)utilities.Help.HelpIcon.INFORMATION;
                 String _message = "";
@@ -304,14 +297,14 @@ namespace SynUp_Desktop.views
                 }
                 else if (sender.Equals(this.dgvEmployees))
                 {
-                    _message = Literal.INFO_CODE_TASK;
+                    _message = Literal.INFO_DGV;
                 }
                 else if (sender.Equals(this.btnBack))
                 {
                     _message = Literal.INFO_BTN_BACK;
                 }
                 this.HelpMessage(_message, _iIcon);
-            }
+            
         }
 
         /// <summary>
@@ -351,7 +344,6 @@ namespace SynUp_Desktop.views
             this.Height = this.MaximumSize.Height;
             this.pbxIconMessage.Image = utilities.Help.changeIconMessage(icon);
             this.lblHelpMessage.Text = message;
-            _blHelp = true;
         }
         
         #endregion

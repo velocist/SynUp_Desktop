@@ -218,6 +218,8 @@ namespace SynUp_Desktop.views
 
             this.fillDataGrid();
             this.dgvConfiguration();
+
+            this.walkingControls();
         }
 
         /// <summary>
@@ -370,7 +372,6 @@ namespace SynUp_Desktop.views
         {
             _blHelp = utilities.Help.hideShowHelp(_blHelp, this, this.MinimumSize.Height, this.MaximumSize.Height);
             if (_blHelp) this.HelpMessage("", (int)utilities.Help.HelpIcon.NONE);
-            this.walkingControls();
         }
 
 

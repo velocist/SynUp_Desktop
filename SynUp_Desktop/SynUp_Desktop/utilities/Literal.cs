@@ -38,6 +38,8 @@ namespace SynUp_Desktop.utilities
         public static readonly string INFO_IMPORTANCE_TASK = "Priority of the task.";
         public static readonly string INFO_IDTEAM_TASK = "The team the task is assigned to.";
 
+        public static readonly string INFO_DGV = "List of all the available objects in the database.";
+
         public static readonly string INFO_CODE_TEAM = "Code identity of the team. There can't be two teams with the same code. It can't be null.";
         public static readonly string INFO_NAME_TEAM = "Name of the team.";
         public static readonly string INFO_ADD_TEAM = "Add an employee to the team.";
@@ -45,6 +47,8 @@ namespace SynUp_Desktop.utilities
 
         public static readonly string INFO_RESULTS_STATISTICS = "Results of the search.";
         public static readonly string INFO_FILTER_STATISTICS = "Select the filter you want to use for the search.";
+        public static readonly string INFO_TEAMS_STATISTICS = "Select the team you want the active tasks of.";
+        public static readonly string INFO_EMPLOYEES_STATISTICS = "Select the employee you want the active tasks of.";
         public static readonly string INFO_STATE_STATISTICS = "Select the state of the task you want to filter for.";
         public static readonly string INFO_RANKING_STATISTICS = "Select from what entity you want to check the ranking.";
         public static readonly string INFO_DTSTART_STATISTICS = "Select the start date of the period.";
@@ -63,7 +67,7 @@ namespace SynUp_Desktop.utilities
         public static readonly string CONFIRMATION_UPDATE_EMPLOYEE = "Are you sure you want to update this employee?";
         public static readonly string CONFIRMATION_DELETE_EMPLOYEE = "Are you sure you want to delete this employee?";
         public static readonly string CONFIRMATION_UPDATE_TASK = "Are you sure you want to update this task?";
-        public static readonly string CONFIRMATION_DELETE_TASK= "Are you sure you want to delete this task?";
+        public static readonly string CONFIRMATION_DELETE_TASK= "Are you sure you want to cancell this task?";
         public static readonly string CONFIRMATION_UPDATE_TEAM= "Are you sure you want to update this team?";
         public static readonly string CONFIRMATION_DELETE_TEAM= "Are you sure you want to delete this team?";
 

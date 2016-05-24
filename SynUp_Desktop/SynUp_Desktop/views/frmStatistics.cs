@@ -59,6 +59,7 @@ namespace SynUp_Desktop.views
             this.FormBorderStyle = FormBorderStyle.Fixed3D;
             this.MinimizeBox = false;
             this.MaximizeBox = false;
+            this.walkingControls();
         }
 
         /// <summary>
@@ -269,11 +270,10 @@ namespace SynUp_Desktop.views
         {
             DateTime start = dtpBegin.Value.Date;
             DateTime end = dtpEnd.Value.Date;
-            String strFilter = cmbRanking.SelectedItem.ToString();
+            String strFilter = cmbRanking.SelectedItem.ToString().ToLower().Trim(); ;
 
             if (start != null && end != null && start.CompareTo(end) <= 0 && (!strFilter.Equals("") || !strFilter.Equals(null)))
             {
-                strFilter = strFilter.ToLower().Trim();
                 switch (strFilter)
                 {
                     case "employees":
@@ -383,7 +383,6 @@ namespace SynUp_Desktop.views
         private void fillDataGrid(Object _data)
         {
             //if(_data=null) 
-
             BindingSource source = new BindingSource();
             source.DataSource = _data;
             this.dgvStadistics.DataSource = source;
@@ -397,7 +396,6 @@ namespace SynUp_Desktop.views
              //chtStatistics.Update();
              this.chtStatistics.DataBind();
              this.chtStatistics.Visible = true;*/
-
         }
 
         /// <summary>
@@ -408,14 +406,14 @@ namespace SynUp_Desktop.views
             BindingSource source = new BindingSource();
             source.DataSource = Controller.TeamService.getAllTeams();
             this.cmbTeams.DataSource = source;
-            this.cmbTeams.DisplayMember = "Name";
+            this.cmbTeams.DisplayMember = "code";
             this.cmbTeams.ValueMember = "code";
             this.cmbTeams.DropDownStyle = ComboBoxStyle.DropDownList;
 
             source = new BindingSource();
             source.DataSource = Controller.EmployeeService.getAllEmployees();
             this.cmbEmployee.DataSource = source;
-            this.cmbEmployee.DisplayMember = "Name";
+            this.cmbEmployee.DisplayMember = "nif";
             this.cmbEmployee.ValueMember = "nif";
             this.cmbEmployee.DropDownStyle = ComboBoxStyle.DropDownList;
 
@@ -447,9 +445,8 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnHelp_MouseClick(object sender, MouseEventArgs e)
         {
-            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, minHeight, maxHeight);
-            if (_blHelp) this.HelpMessage("", utilities.Help.changeIconMessage(3));
-            this.walkingControls();
+            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, this.MinimumSize.Height, this.MaximumSize.Height);
+            if (_blHelp) this.HelpMessage("", utilities.Help.changeIconMessage((int)utilities.Help.HelpIcon.NONE));
         }
 
         /// <summary>
@@ -474,50 +471,50 @@ namespace SynUp_Desktop.views
         {
             if (_blHelp)
             {
-                string _message = sender.ToString();
+                string _message = "";
 
                 if (sender.Equals(this.btnSearch))
                 {
-                    this.lblHelpMessage.Text = "Clicke aquí para buscar.";
+                    _message = Literal.INFO_BTN_SEARCH;
                 }
                 else if (sender.Equals(this.dgvStadistics))
                 {
-                    this.lblHelpMessage.Text = "Lista de los registros encontrados.";
+                    _message = Literal.INFO_RESULTS_STATISTICS;
                 }
                 else if (sender.Equals(this.btnBack))
                 {
-                    this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
+                    _message = Literal.INFO_BTN_BACK;
                 }
                 else if (sender.Equals(this.cmbFilter))
                 {
-                    this.lblHelpMessage.Text = "Escoja un filtro para buscar.";
+                    _message = Literal.INFO_FILTER_STATISTICS;
                 }
                 else if (sender.Equals(this.cmbEmployee))
                 {
-                    this.lblHelpMessage.Text = "Escoja el empleado que desee filtrar.";
+                    _message = Literal.INFO_EMPLOYEES_STATISTICS;
                 }
                 else if (sender.Equals(this.cmbTeams))
                 {
-                    this.lblHelpMessage.Text = "Escoja el equipo que desee filtrar.";
+                    _message = Literal.INFO_TEAMS_STATISTICS;
                 }
                 else if (sender.Equals(this.cmbStates))
                 {
-                    this.lblHelpMessage.Text = "Escoja el estado que desee filtrar.";
+                    _message = Literal.INFO_STATE_STATISTICS;
                 }
                 else if (sender.Equals(this.cmbRanking))
                 {
-                    this.lblHelpMessage.Text = "Escoja para buscar por ránking.";
+                    _message = Literal.INFO_RANKING_STATISTICS;
                 }
                 else if (sender.Equals(this.dtpBegin))
                 {
-                    this.lblHelpMessage.Text = "Escoja la fecha de inicio.";
+                    _message = Literal.INFO_DTSTART_STATISTICS;
                 }
                 else if (sender.Equals(this.dtpEnd))
                 {
-                    this.lblHelpMessage.Text = "Escoja la fecha final.";
+                    _message = Literal.INFO_DTEND_STATISTICS;
                 }
 
-                this.HelpMessage(_message, utilities.Help.changeIconMessage(3));
+                this.HelpMessage(_message, utilities.Help.changeIconMessage((int)utilities.Help.HelpIcon.INFORMATION));
             }
         }
 
@@ -555,7 +552,7 @@ namespace SynUp_Desktop.views
         private void HelpMessage(String pMessage, Image pIcon)
         {
             this.pbxIconMessage.Visible = true;
-            this.Height = maxHeight;
+            this.Height = this.MaximumSize.Height;
             this.pbxIconMessage.Image = pIcon;
             this.lblHelpMessage.Text = pMessage;
         }

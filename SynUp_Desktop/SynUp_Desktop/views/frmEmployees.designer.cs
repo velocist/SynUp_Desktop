@@ -38,7 +38,6 @@
             this.gbHelp = new System.Windows.Forms.GroupBox();
             this.pbxIconMessage = new System.Windows.Forms.PictureBox();
             this.lblHelpMessage = new System.Windows.Forms.Label();
-            this.btnHelp = new System.Windows.Forms.Button();
             this.btnBack = new SynUp_Desktop.utilities.GenericButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
             this.gbContainer.SuspendLayout();
@@ -125,7 +124,7 @@
             this.gbHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbHelp.Location = new System.Drawing.Point(123, 446);
             this.gbHelp.Name = "gbHelp";
-            this.gbHelp.Size = new System.Drawing.Size(552, 57);
+            this.gbHelp.Size = new System.Drawing.Size(586, 57);
             this.gbHelp.TabIndex = 0;
             this.gbHelp.TabStop = false;
             this.gbHelp.Text = "Help";
@@ -148,17 +147,6 @@
             this.lblHelpMessage.Size = new System.Drawing.Size(108, 17);
             this.lblHelpMessage.TabIndex = 0;
             this.lblHelpMessage.Text = "Message help...";
-            // 
-            // btnHelp
-            // 
-            this.btnHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHelp.Location = new System.Drawing.Point(681, 477);
-            this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(28, 26);
-            this.btnHelp.TabIndex = 4;
-            this.btnHelp.Text = "?";
-            this.btnHelp.UseVisualStyleBackColor = true;
-            this.btnHelp.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnHelp_MouseClick);
             // 
             // btnBack
             // 
@@ -185,7 +173,6 @@
             this.Controls.Add(this.gbHelp);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnManagementEmployee);
-            this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.gbContainer);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -198,7 +185,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Employees ";
             this.Activated += new System.EventHandler(this.frmEmployees_Activated);
-            //this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmEmployees_FormClosing);
             this.Load += new System.EventHandler(this.frmEmployees_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).EndInit();
             this.gbContainer.ResumeLayout(false);
@@ -223,6 +209,5 @@
         private System.Windows.Forms.GroupBox gbHelp;
         private System.Windows.Forms.PictureBox pbxIconMessage;
         private System.Windows.Forms.Label lblHelpMessage;
-        private System.Windows.Forms.Button btnHelp;
     }
 }

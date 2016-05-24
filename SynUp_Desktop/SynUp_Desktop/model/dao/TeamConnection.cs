@@ -1,4 +1,5 @@
 ﻿using SynUp_Desktop.model.pojo;
+using SynUp_Desktop.utilities;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -65,7 +66,7 @@ namespace SynUp_Desktop.model.dao
             }
 
             return false;
-        }        
+        }
 
         /// <summary>
         /// Given the code, it is searched in the database and will return the first result.
@@ -100,7 +101,7 @@ namespace SynUp_Desktop.model.dao
             using (var context = new synupEntities())
             {
                 pojo.Team _oTeam = readTeam(pTeam.code, context);
-                tryAttach(context, _oTeam);
+                //tryAttach(context, _oTeam);
                 _oTeam.name = pTeam.name;
                 return commitChanges(context);
             }
@@ -119,10 +120,14 @@ namespace SynUp_Desktop.model.dao
 
                 if (_oTeam != null) //If the team has been found - meaning that it exists:
                 {
-                    tryAttach(context, _oTeam);
-                    context.Teams.Remove(_oTeam); //Will be deleted.
-                    if (commitChanges(context)) return _oTeam; //If the changes are commited succesfully it will return the deleted Team.
-                    else return null;
+                    if (checkTeamMembers(_oTeam, context))
+                    {
+                        //tryAttach(context, _oTeam);
+                        context.Teams.Remove(_oTeam); //Will be deleted.
+                        if (commitChanges(context)) return _oTeam; //If the changes are commited succesfully it will return the deleted Team.
+                        else return null;
+                    }
+
                 }
             }
             return null;
@@ -162,18 +167,37 @@ namespace SynUp_Desktop.model.dao
         /// To-DO // CHECK THAT THE TEAM THAT IS DELETED WONT HAVE ANY FOREIGN KEYS THAT REFERENCE IT
         /// </summary>
         /// <param name="team"></param>
-        private static void checkTeamMembers(Team team, synupEntities context)
+        private static bool checkTeamMembers(Team team, synupEntities context)
         {
             //Shows the employees that are currently in the given team.
             var query = from th in context.TeamHistories
                         join emp in context.Employees on th.id_employee equals emp.nif
                         where th.id_team.Equals(team.code) && th.exitDate == null
-                        select emp;
+                        select th;
 
+            /*using (var _context = new synupEntities())
+            {*/
             foreach (var member in query)
             {
-
+                //var _context = tryAttach(member);
+                if (TeamHistoryConnection.deleteTeamHistory(member.id_employee, member.id_team) == null) return false;
+                /*_context.TeamHistories.Remove(member);
+                if (!commitChanges(_context)) return false;*/
             }
+            //}
+
+            var query2 = from task in context.Tasks
+                         where task.id_team.Equals(team.code)
+                         select task;
+
+            foreach(var task in query2)
+            {
+                task.id_team = null;
+                task.state = (int)TaskState.UNSELECTED;
+                if (!TaskConnection.updateTask(task)) return false;
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -185,6 +209,19 @@ namespace SynUp_Desktop.model.dao
         {
             var entry = pContext.Entry(pTeam);
             if (entry.State == System.Data.Entity.EntityState.Detached) pContext.Teams.Attach(pTeam);
+        }
+
+        /// <summary>
+        /// Attachs teamHistory
+        /// </summary>
+        /// <param name="pContext"></param>
+        /// <param name="pTeam">The object which were attachs</param>
+        private static synupEntities tryAttach(pojo.TeamHistory pTeam)
+        {
+            var context = new synupEntities();
+            var entry = context.Entry(pTeam);
+            if (entry.State == System.Data.Entity.EntityState.Detached) context.TeamHistories.Attach(pTeam);
+            return context;
         }
     }
 }

@@ -32,7 +32,6 @@
             this.btnManagementTasks = new System.Windows.Forms.Button();
             this.dgvTasks = new System.Windows.Forms.DataGridView();
             this.gbContainer = new System.Windows.Forms.GroupBox();
-            this.btnHelp = new System.Windows.Forms.Button();
             this.gbHelp = new System.Windows.Forms.GroupBox();
             this.pbxIconMessage = new System.Windows.Forms.PictureBox();
             this.lblHelpMessage = new System.Windows.Forms.Label();
@@ -86,17 +85,6 @@
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "List of Tasks";
             // 
-            // btnHelp
-            // 
-            this.btnHelp.Location = new System.Drawing.Point(669, 586);
-            this.btnHelp.Margin = new System.Windows.Forms.Padding(4);
-            this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(37, 28);
-            this.btnHelp.TabIndex = 3;
-            this.btnHelp.Text = "?";
-            this.btnHelp.UseVisualStyleBackColor = true;
-            this.btnHelp.Click += new System.EventHandler(this.btnHelp_MouseClick);
-            // 
             // gbHelp
             // 
             this.gbHelp.BackColor = System.Drawing.Color.Transparent;
@@ -106,7 +94,7 @@
             this.gbHelp.Margin = new System.Windows.Forms.Padding(4);
             this.gbHelp.Name = "gbHelp";
             this.gbHelp.Padding = new System.Windows.Forms.Padding(4);
-            this.gbHelp.Size = new System.Drawing.Size(524, 66);
+            this.gbHelp.Size = new System.Drawing.Size(570, 66);
             this.gbHelp.TabIndex = 0;
             this.gbHelp.TabStop = false;
             this.gbHelp.Text = "Help";
@@ -154,7 +142,6 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(827, 620);
             this.Controls.Add(this.gbHelp);
-            this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnManagementTasks);
             this.Controls.Add(this.gbContainer);
@@ -186,7 +173,6 @@
         private System.Windows.Forms.DataGridView dgvTasks;
         private System.Windows.Forms.GroupBox gbContainer;
         private utilities.GenericButton btnBack;
-        private System.Windows.Forms.Button btnHelp;
         private System.Windows.Forms.GroupBox gbHelp;
         private System.Windows.Forms.PictureBox pbxIconMessage;
         private System.Windows.Forms.Label lblHelpMessage;
