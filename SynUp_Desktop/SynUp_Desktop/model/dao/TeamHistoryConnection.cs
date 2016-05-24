@@ -50,9 +50,11 @@ namespace SynUp_Desktop.model.dao
         /// <returns>If the code is already on the database it will return the TeamHistory, otherwise it will return a null.</returns>
         public static pojo.TeamHistory readTeamHistory(String pNif, String pCodeTeam, synupEntities seContext)
         {
-            var query = from teamHistory in seContext.TeamHistories
-                        where teamHistory.id_employee == pNif && teamHistory.id_team == pCodeTeam
-                        select teamHistory;
+            //var query = from teamHistory in seContext.TeamHistories
+            //            where teamHistory.id_employee == pNif && teamHistory.id_team == pCodeTeam
+            //            select teamHistory;
+            var subquery = seContext.TeamHistories.Where(x => x.id_employee == pNif && x.id_team == pCodeTeam).Max(x => x.id);
+            var query = seContext.TeamHistories.Where(x => x.id == subquery);
 
             return query.SingleOrDefault();
         }
@@ -64,9 +66,13 @@ namespace SynUp_Desktop.model.dao
         /// <returns>If the code is already on the database it will return the TeamHistory, otherwise it will return a null.</returns>
         public static pojo.TeamHistory readTeamHistory(String pNif, String pCodeTeam)
         {
-            var query = from teamHistory in new synupEntities().TeamHistories
-                        where teamHistory.id_employee == pNif && teamHistory.id_team == pCodeTeam
-                        select teamHistory;
+            //var query = from teamHistory in new synupEntities().TeamHistories
+            //            where teamHistory.id_employee == pNif && teamHistory.id_team == pCodeTeam && 
+            //            select teamHistory;
+
+            synupEntities _synupE = new synupEntities();
+            var subquery = _synupE.TeamHistories.Where(x => x.id_employee == pNif && x.id_team == pCodeTeam).Max(x => x.id);
+            var query = _synupE.TeamHistories.Where(x => x.id == subquery);
 
             return query.SingleOrDefault();
         }
