@@ -15,6 +15,7 @@ namespace SynUp_Desktop.utilities
         #endregion
 
         public static readonly string ERROR_VALIDATION_EMPLOYEE = "The NIF and/or the e-mail are empty or are wrong formated. Fill the mandatory fields.";
+        public static readonly string ERROR_EXISTENT_EMPLOYEE = "This Employee already exists. Try with another NIF";
         public static readonly string ERROR_VALIDATION_TASK = "The Code and/or the Name and/or the Priority date are empty. Fill the mandatory fields.";
         public static readonly string ERROR_VALIDATION_TEAM = "The code can't be empty. Fill the mandatory fields.";
 
@@ -27,26 +28,38 @@ namespace SynUp_Desktop.utilities
         public static readonly string INFO_ADRESS_EMPLOYEE = "Adress of the employee.";
         public static readonly string INFO_USERNAME_EMPLOYEE = "Username of the employee used to perform the LOGIN in the mobile application. It can only be modified from the mobile device.";
 
-        public static readonly string INFO_CODE_TASK = "";
-        public static readonly string INFO_NAME_TASK = "";
-        public static readonly string INFO_LOCATION_TASK = "";
-        public static readonly string INFO_PROJECT_TASK = "";
-        public static readonly string INFO_DATE_TASK = "";
-        public static readonly string INFO_DESC_TASK = "";
-        public static readonly string INFO_STATE_TASK = "";
-        public static readonly string INFO_IMPORTANCE_TASK = "";
-        public static readonly string INFO_IDTEAM_TASK = "";
+        public static readonly string INFO_CODE_TASK = "Code identity of the task. There can't be two tasks with the same code. It can't be null.";
+        public static readonly string INFO_NAME_TASK = "Name of the task. It can't be null.";
+        public static readonly string INFO_LOCATION_TASK = "Location where the task is going to be done.";
+        public static readonly string INFO_PROJECT_TASK = "Project that the task belongs to.";
+        public static readonly string INFO_DATE_TASK = "Priority date. The task should be finished before.";
+        public static readonly string INFO_DESC_TASK = "Description of the task.";
+        public static readonly string INFO_STATE_TASK = "State of the task. It will be changed in from the mobile device.";
+        public static readonly string INFO_IMPORTANCE_TASK = "Priority of the task.";
+        public static readonly string INFO_IDTEAM_TASK = "The team the task is assigned to.";
 
-        public static readonly string INFO_CODE_TEAM = "";
-        public static readonly string INFO_NAME_TEAM = "";
-        public static readonly string INFO_ADD_TEAM = "";
-        public static readonly string INFO_DELETE_TEAM = "";
+        public static readonly string INFO_CODE_TEAM = "Code identity of the team. There can't be two teams with the same code. It can't be null.";
+        public static readonly string INFO_NAME_TEAM = "Name of the team.";
+        public static readonly string INFO_ADD_TEAM = "Add an employee to the team.";
+        public static readonly string INFO_DELETE_TEAM = "Deletes the selected employee from the team.";
+
+        public static readonly string INFO_RESULTS_STATISTICS = "Results of the search.";
+        public static readonly string INFO_FILTER_STATISTICS = "";
+        public static readonly string INFO_STATE_STATISTICS = "";
+        public static readonly string INFO_RANKING_STATISTICS = "";
+        public static readonly string INFO_DTSTART_STATISTICS = "";
+        public static readonly string INFO_DTEND_STATISTICS = "";
+
+
 
         public static readonly string INFO_BTN_CREATE = "Click here to create it.";
         public static readonly string INFO_BTN_UPDATE = "Click here to update it.";
         public static readonly string INFO_BTN_DELETE = "Click here to delete it.";
         public static readonly string INFO_BTN_CLEAR = "Click here to clear all the values of the form.";
-        public static readonly string INFO_BTN_BACK = "click here to close the form and return to the previous view.";
+        public static readonly string INFO_BTN_BACK = "Click here to close the form and return to the previous view.";
+        public static readonly string INFO_BTN_SEARCH = "Click here to search the values.";
+
+        public static readonly string INFO_BTN_MANAGEMENT = "Click here to view the details and edit the selected row.";
 
         //public static readonly string CONFIRMATION_CREATE_EMPLOYEE = "Are you sure you want to insert this employee?";
         public static readonly string CONFIRMATION_UPDATE_EMPLOYEE = "Are you sure you want to update this employee?";
