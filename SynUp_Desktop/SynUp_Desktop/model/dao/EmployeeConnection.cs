@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SynUp_Desktop.model.pojo;
 using System.Diagnostics;
+using System.Security.Cryptography;
 
 namespace SynUp_Desktop.model.dao
 {
@@ -61,6 +62,8 @@ namespace SynUp_Desktop.model.dao
             {
                 using (var context = new synupEntities())
                 {
+                    pEmployee.password = MD5Hash(pEmployee.password);
+
                     context.Employees.Add(pEmployee); //If the employee doesn't exist already in the database, it will be inserted.
                     return commitChanges(context);
                 }
@@ -161,5 +164,25 @@ namespace SynUp_Desktop.model.dao
             var entry = pContext.Entry(pEmployee);
             if (entry.State == System.Data.Entity.EntityState.Detached) pContext.Employees.Attach(pEmployee);
         }
+
+        public static string MD5Hash(string text)
+        {
+            MD5 _md5 = new MD5CryptoServiceProvider();
+            byte[] result;
+
+            _md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(text));
+            result = _md5.Hash;
+
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < result.Length; i++)
+            {
+                sb.Append(result[i].ToString("X2"));
+            }
+
+
+            return sb.ToString();
+        }
+
     }
 }
