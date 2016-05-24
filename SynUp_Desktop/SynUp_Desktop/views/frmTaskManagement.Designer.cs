@@ -112,7 +112,7 @@
             // 
             this.txtState.AutoSize = true;
             this.txtState.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtState.Location = new System.Drawing.Point(597, 96);
+            this.txtState.Location = new System.Drawing.Point(145, 300);
             this.txtState.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.txtState.Name = "txtState";
             this.txtState.Size = new System.Drawing.Size(93, 17);
@@ -148,7 +148,7 @@
             // lblState
             // 
             this.lblState.AutoSize = true;
-            this.lblState.Location = new System.Drawing.Point(476, 96);
+            this.lblState.Location = new System.Drawing.Point(8, 300);
             this.lblState.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblState.Name = "lblState";
             this.lblState.Size = new System.Drawing.Size(111, 17);
@@ -194,7 +194,7 @@
             // 
             // mcalPriorityDate
             // 
-            this.mcalPriorityDate.Location = new System.Drawing.Point(12, 123);
+            this.mcalPriorityDate.Location = new System.Drawing.Point(501, 96);
             this.mcalPriorityDate.Margin = new System.Windows.Forms.Padding(12, 11, 12, 11);
             this.mcalPriorityDate.MinDate = new System.DateTime(2016, 1, 1, 0, 0, 0, 0);
             this.mcalPriorityDate.Name = "mcalPriorityDate";
@@ -232,18 +232,18 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(331, 123);
+            this.txtDescription.Location = new System.Drawing.Point(97, 93);
             this.txtDescription.Margin = new System.Windows.Forms.Padding(4);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtDescription.Size = new System.Drawing.Size(363, 196);
+            this.txtDescription.Size = new System.Drawing.Size(302, 165);
             this.txtDescription.TabIndex = 4;
             // 
             // lblPriorityDate
             // 
             this.lblPriorityDate.AutoSize = true;
-            this.lblPriorityDate.Location = new System.Drawing.Point(8, 96);
+            this.lblPriorityDate.Location = new System.Drawing.Point(408, 96);
             this.lblPriorityDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPriorityDate.Name = "lblPriorityDate";
             this.lblPriorityDate.Size = new System.Drawing.Size(91, 17);
@@ -253,7 +253,7 @@
             // lblDescription
             // 
             this.lblDescription.AutoSize = true;
-            this.lblDescription.Location = new System.Drawing.Point(327, 96);
+            this.lblDescription.Location = new System.Drawing.Point(8, 96);
             this.lblDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(79, 17);

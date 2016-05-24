@@ -1,4 +1,5 @@
 ﻿using SynUp_Desktop.model.pojo;
+using SynUp_Desktop.utilities;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -184,6 +185,17 @@ namespace SynUp_Desktop.model.dao
                 if (!commitChanges(_context)) return false;*/
             }
             //}
+
+            var query2 = from task in context.Tasks
+                         where task.id_team.Equals(team.code)
+                         select task;
+
+            foreach(var task in query2)
+            {
+                task.id_team = null;
+                task.state = (int)TaskState.UNSELECTED;
+                if (!TaskConnection.updateTask(task)) return false;
+            }
 
             return true;
         }
