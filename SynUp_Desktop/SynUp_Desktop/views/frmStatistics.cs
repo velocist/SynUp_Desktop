@@ -66,7 +66,7 @@ namespace SynUp_Desktop.views
             this.gbContainer.MouseClick += new MouseEventHandler(this.frmStatistics_MouseClick);
             this.gbHelp.MouseClick += new MouseEventHandler(this.frmStatistics_MouseClick);
 
-            utilities.Util.loadMenu(this, this.controller);
+            utilities.clMenu.loadMenu(this, this.controller);
         }
 
         /// <summary>
@@ -240,7 +240,6 @@ namespace SynUp_Desktop.views
             }
             else
             {
-                //clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
                 this.HelpMessage(Literal.WARNING_UNSELECTED_STATISTICS, utilities.Help.changeIconMessage(3));
             }
         }
@@ -258,7 +257,6 @@ namespace SynUp_Desktop.views
             }
             else
             {
-                //clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
                 this.HelpMessage(Literal.WARNING_UNSELECTED_STATISTICS, utilities.Help.changeIconMessage(2));
             }
         }
@@ -276,7 +274,6 @@ namespace SynUp_Desktop.views
             }
             else
             {
-                //clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
                 this.HelpMessage(Literal.WARNING_UNSELECTED_STATISTICS, utilities.Help.changeIconMessage(3));
             }
         }
@@ -304,7 +301,6 @@ namespace SynUp_Desktop.views
             }
             else
             {
-                //clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
                 this.HelpMessage(Literal.WARNING_UNSELECTED_STATISTICS + " or " + Literal.WARNING_DATEDIFF_STATISTICS, utilities.Help.changeIconMessage(3));
             }
         }
