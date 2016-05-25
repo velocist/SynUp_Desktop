@@ -119,17 +119,17 @@ namespace SynUp_Desktop.utilities
 
         }
 
-        public static void showMessage(MESSAGE pMessage, String pObject, Form pForm)
+        public static void showMessage(String pMessage, String pForm)
         {
-            String _strMessage = messageToString(pMessage, pObject);
-            MessageBoxIcon _iconMessageBox = MessageBoxIcon.Information;
+            MessageBox.Show(pMessage, pForm, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //String _strMessage = messageToString(pMessage, pObject);
+            //MessageBoxIcon _iconMessageBox = MessageBoxIcon.Information;
 
-            if (pMessage.Equals("WRONG"))
-            {
-                _iconMessageBox = MessageBoxIcon.Warning;
-            }
+            //if (pMessage.Equals("WRONG"))
+            //{
+            //    _iconMessageBox = MessageBoxIcon.Warning;
+            //}
 
-            MessageBox.Show(_strMessage, pForm.Text, MessageBoxButtons.OK, _iconMessageBox);
         }
         /// <summary>
         /// Method that shows a message

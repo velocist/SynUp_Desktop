@@ -64,7 +64,7 @@ namespace SynUp_Desktop.views
 
             this.gbContainer.MouseClick += new MouseEventHandler(this.frmEmployees_MouseClick);
             this.gbHelp.MouseClick += new MouseEventHandler(this.frmEmployees_MouseClick);
-            
+
         }
 
         /// <summary>
@@ -78,6 +78,17 @@ namespace SynUp_Desktop.views
             this.fillGridView();
             this.dgvEmployees.ClearSelection(); // Clear selection rows.
             this.dgvEmployees.Refresh(); //Refresh the view.
+        }
+        
+        /// <summary>
+        /// Event that runs when mouse click on the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmEmployees_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.dgvEmployees.ClearSelection();
+            this.dgvEmployees.Refresh();
         }
 
         /// <summary>
@@ -132,7 +143,7 @@ namespace SynUp_Desktop.views
                     }
                     else
                     {
-                        clMessageBox.showMessage(clMessageBox.MESSAGE.INTEAM, "employee", this);
+                        clMessageBox.showMessage(Literal.INFO_ON_TEAM, this.Text);
                     }
                 }
             }
@@ -353,16 +364,6 @@ namespace SynUp_Desktop.views
 
         #endregion
 
-        /// <summary>
-        /// Event that runs when mouse click on the form
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void frmEmployees_MouseClick(object sender, MouseEventArgs e)
-        {
-            this.dgvEmployees.ClearSelection();
-            this.dgvEmployees.Refresh();
-        }
     }
 }
 
