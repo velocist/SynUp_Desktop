@@ -40,7 +40,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnTasks_Click(object sender, EventArgs e)
         {
-            this.Controller.TasksView.Show();
+            this.Controller.TasksView.ShowDialog();
             this.Controller.TasksView.BringToFront();
         }
 
@@ -51,7 +51,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnEmployees_Click(object sender, EventArgs e)
         {
-            this.Controller.EmployeeView.Show();
+            this.Controller.EmployeeView.ShowDialog();
             this.Controller.EmployeeView.BringToFront();
         }
 
@@ -62,7 +62,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnTeams_Click(object sender, EventArgs e)
         {
-            this.Controller.TeamsView.Show();
+            this.Controller.TeamsView.ShowDialog();
             this.Controller.TeamsView.BringToFront();
             //this.Controller.TeamsView.ShowDialog();
         }
@@ -74,7 +74,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnStadistics_Click(object sender, EventArgs e)
         {
-            this.Controller.StatisticsView.Show();
+            this.Controller.StatisticsView.ShowDialog();
             this.Controller.StatisticsView.BringToFront();
             //this.Controller.StatisticsView.ShowDialog();
         }

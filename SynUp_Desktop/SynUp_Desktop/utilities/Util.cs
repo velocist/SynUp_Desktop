@@ -51,7 +51,7 @@ namespace SynUp_Desktop.utilities
             ToolStripMenuItem menuItem;
 
             //Menu principal
-            string[] options = new string[] { "Main", "Employees", "Teams", "Tasks", "Stadistics", "About", "Exit" };
+            string[] options = new string[] { "Main", "Employees", "Teams", "Tasks", "Statistics", "About", "Exit" };
 
             foreach (string opcio in options)
             {
@@ -117,34 +117,33 @@ namespace SynUp_Desktop.utilities
 
             if (sender.ToString().Equals("Main"))
             {
-                controllerSender.MainView.Show();
-                controllerSender.MainView.BringToFront();
+                controllerSender.MainView.ShowDialog();
+                //controllerSender.MainView.BringToFront();
             }
             else if (sender.ToString().Equals("Employees"))
             {
-                controllerSender.EmployeeView.Show();
-                controllerSender.EmployeeView.BringToFront();
+                controllerSender.EmployeeView.ShowDialog();
+                //controllerSender.EmployeeView.BringToFront();
             }
             else if (sender.ToString().Equals("Teams"))
             {
-                controllerSender.TeamsView.Show();
-                controllerSender.TeamsView.BringToFront();
+                controllerSender.TeamsView.ShowDialog();
+                //controllerSender.TeamsView.BringToFront();
             }
             else if (sender.ToString().Equals("Tasks"))
             {
-                if (controllerSender.TasksView != null) controllerSender.TasksView.Show();
-                else MessageBox.Show("NOT SO OK");
+                controllerSender.TasksView.ShowDialog();
                 //controllerSender.TasksView.BringToFront();
             }
-            else if (sender.ToString().Equals("Stadistics"))
+            else if (sender.ToString().Equals("Statistics"))
             {
-                controllerSender.StatisticsView.Show();
-                controllerSender.StatisticsView.BringToFront();
+                controllerSender.StatisticsView.ShowDialog();
+                //controllerSender.StatisticsView.BringToFront();
             }
             else if (sender.ToString().Equals("About"))
             {
-                controllerSender.AboutView.Show();
-                controllerSender.AboutView.BringToFront();
+                controllerSender.AboutView.ShowDialog();
+                //controllerSender.AboutView.BringToFront();
             }
             else if (sender.ToString().Equals("Exit"))
             {

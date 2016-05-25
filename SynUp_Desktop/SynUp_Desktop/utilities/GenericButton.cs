@@ -139,7 +139,7 @@ namespace SynUp_Desktop.utilities
         {
             if (isExit)
             {
-                /*if (Parent.Modal) //Para los management
+                if (Parent.Modal) //Para los management
                 {
                     Parent.Close();
                 }
@@ -147,10 +147,10 @@ namespace SynUp_Desktop.utilities
                 {                    
                     Parent.Hide();                                        
                 }
-                clearFields();
                 //Parent.Close();
             }
-            else clearFields();
+
+            clearFields();
         }
 
         /// <summary>

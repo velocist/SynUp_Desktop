@@ -317,8 +317,8 @@ namespace SynUp_Desktop.views
         {
             //MessageBox.Show("Not implemented.\n#Poner ventana con los employees y el que se seleccione se añada");
             //Controller.EmployeeView.ShowDialog();
-            Controller.EmployeeView.BringToFront();
-            Controller.EmployeeView.Show();
+            //Controller.EmployeeView.BringToFront();
+            Controller.EmployeeView.ShowDialog();
             
         }
 
