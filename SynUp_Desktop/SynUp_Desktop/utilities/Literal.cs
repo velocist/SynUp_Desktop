@@ -83,21 +83,36 @@ namespace SynUp_Desktop.utilities
         private static readonly string CREATE_SUCCESFULL = "The {0} has been created correctly.";
         private static readonly string UPDATE_SUCCESFULL = "The {0} has been updated correctly.";
         private static readonly string DELETE_SUCCESFULL = "The {0} has been deleted correctly.";
-        private static readonly string CREATE_FAILED = "";
-        private static readonly string UPDATE_FAILED = "";
-        private static readonly string DELETE_FAILED = "";
+        private static readonly string CREATE_FAILED = "The {0} hasn't been created correctly";
+        private static readonly string UPDATE_FAILED = "The {0} hasn't been updated correctly";
+        private static readonly string DELETE_FAILED = "The {0} hasn't been deleted correctly";
 
 
         public static readonly string CREATE_EMPLOYEE_CORRETLY = String.Format(CREATE_SUCCESFULL, "employee");
-        public static readonly string CREATE_TEAM_CORRETLY = "The team has been create correctly.";
-        public static readonly string CREATE_TASK_CORRETLY = "The employee has been create correctly.";
+        public static readonly string CREATE_TEAM_CORRETLY = String.Format(CREATE_SUCCESFULL, "team");
+        public static readonly string CREATE_TASK_CORRETLY = String.Format(CREATE_SUCCESFULL, "task");
 
-        public static readonly string UPDATE_EMPLOYEE_CORRETLY = "The employee has been update correctly.";
-        public static readonly string UPDATE_TEAM_CORRETLY = "The team has been update correctly.";
-        public static readonly string UPDATE_TASK_CORRETLY = "The task has been update correctly.";
+        public static readonly string UPDATE_EMPLOYEE_CORRETLY = String.Format(CREATE_SUCCESFULL, "employee");
+        public static readonly string UPDATE_TEAM_CORRETLY = String.Format(CREATE_SUCCESFULL, "team");
+        public static readonly string UPDATE_TASK_CORRETLY = String.Format(CREATE_SUCCESFULL, "task");
 
-        public static readonly string DELETE_EMPLOYEE_CORRETLY = "The employee has been delete correctly.";
-        public static readonly string DELETE_TEAM_CORRETLY = "The team has been delete correctly.";
-        public static readonly string DELETE_TASK_CORRETLY = "The task has been delete correctly.";        
+        public static readonly string DELETE_EMPLOYEE_CORRETLY = String.Format(CREATE_SUCCESFULL, "employee");
+        public static readonly string DELETE_TEAM_CORRETLY = String.Format(CREATE_SUCCESFULL, "team");
+        public static readonly string DELETE_TASK_CORRETLY = String.Format(CREATE_SUCCESFULL, "task");
+
+        public static readonly string CREATE_EMPLOYEE_FAILED = String.Format(CREATE_FAILED, "employee");
+        public static readonly string CREATE_TEAM_FAILED = String.Format(CREATE_FAILED, "team");
+        public static readonly string CREATE_TASK_FAILED = String.Format(CREATE_FAILED, "task");
+
+        public static readonly string UPDATE_EMPLOYEE_FAILED = String.Format(UPDATE_FAILED, "employee");
+        public static readonly string UPDATE_TEAM_FAILED = String.Format(UPDATE_FAILED, "team");
+        public static readonly string UPDATE_TASK_FAILED = String.Format(UPDATE_FAILED, "task");
+
+        public static readonly string DELETE_EMPLOYEE_FAILED = String.Format(DELETE_FAILED, "employee");
+        public static readonly string DELETE_TEAM_FAILED = String.Format(DELETE_FAILED, "team");
+        public static readonly string DELETE_TASK_FAILED = String.Format(DELETE_FAILED, "task");
+
+        public static readonly string BTN_MGT_CREATE_TEXT = "Create";
+        public static readonly string BTN_MGT_UP_DEL_TEXT = "Update/Delete";
     }
 }

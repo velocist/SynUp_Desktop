@@ -79,7 +79,7 @@ namespace SynUp_Desktop.views
             this.dgvEmployees.ClearSelection(); // Clear selection rows.
             this.dgvEmployees.Refresh(); //Refresh the view.
         }
-        
+
         /// <summary>
         /// Event that runs when mouse click on the form
         /// </summary>
@@ -140,10 +140,11 @@ namespace SynUp_Desktop.views
                     if (_oCurrentTeam == null)
                     {
                         this.addToTeam(_oSelectedEmployee, _oTeam);
+                        clMessageBox.showMessage(Literal.INFO_ADD_TEAM, true, this);
                     }
                     else
                     {
-                        clMessageBox.showMessage(Literal.INFO_ON_TEAM, this.Text);
+                        clMessageBox.showMessage(Literal.INFO_ON_TEAM, false, this);
                     }
                 }
             }
@@ -209,7 +210,7 @@ namespace SynUp_Desktop.views
             if (pEmployee != null && pTeam != null)
             {
                 Boolean _blAdd = this.Controller.TeamService.addToTeam(pEmployee.nif, pTeam.code);
-                clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.ADD, "employee", _blAdd, this);
+                //clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.ADD, "employee", _blAdd, this);
             }
         }
 

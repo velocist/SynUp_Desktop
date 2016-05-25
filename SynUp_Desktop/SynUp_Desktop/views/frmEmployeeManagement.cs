@@ -66,32 +66,21 @@ namespace SynUp_Desktop.views
             //y que no salia en rojo.
             //if (!txtNif.Text.Equals("") && !txtEmail.Text.Equals("")) //Pablo Ardèvol 22/05 1553, Método pulido.  -- == se convierte en Equals para strings.      
             //{
-
             if (this.validateFields())
             {
                 _blCreateOk = this.Controller.EmployeeService.createEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress);
-                /*utilities.clMessageBox _msgBox = new utilities.*/
+
                 /// MODIFICATION - Pablo, 170516, clMessageBox made static to access the methods without having to create an object of the class.
-                clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "employee", _blCreateOk, this);
+                clMessageBox.showMessage(Literal.CREATE_EMPLOYEE_CORRETLY, _blCreateOk, this);
                 this.btnClear_Click(sender, e);
+                this.Close();
+
             }
             //}
             else if (txtNif.Text.Equals("") || txtEmail.Text.Equals(""))
             {
-                //this.messageWrong();
                 this.HelpMessage(Literal.ERROR_VALIDATION_EMPLOYEE, (int)utilities.Help.HelpIcon.ERROR);
             }
-
-            /*else if (txtNif.Text == "")
-            {
-                foreach (Control _control in this.gbContainer.Controls)
-                {
-                    if (_control.Text.Equals("") && _control.Name.Equals(txtNif) || _control.Text.Equals("") && _control.Name.Equals(txtEmail))
-                    {
-                        this.messageWrong();
-                    }
-                }
-            }*/
 
         }
 
@@ -118,7 +107,10 @@ namespace SynUp_Desktop.views
                     if (Util.confirmationDialog(Literal.CONFIRMATION_UPDATE_EMPLOYEE, this.Text))
                     {
                         Boolean _blUpdateOk = this.Controller.EmployeeService.updateEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress, _strUsername);
-                        clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.UPDATE, "employee", _blUpdateOk, this);
+                        //clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.UPDATE, "employee", _blUpdateOk, this);
+                        clMessageBox.showMessage(Literal.UPDATE_EMPLOYEE_CORRETLY, _blUpdateOk, this);
+                        this.btnClear_Click(sender, e);
+                        this.Close();
                     }
                 }
             }
@@ -140,19 +132,24 @@ namespace SynUp_Desktop.views
             if (Util.confirmationDialog(Literal.CONFIRMATION_DELETE_EMPLOYEE, this.Text))
             {
                 _oDeleteEmployee = this.Controller.EmployeeService.deleteEmployee(AuxEmployee);
+                //clMessageBox.showMessage(Literal.DELETE_EMPLOYEE_CORRETLY, this);
+                this.btnClear_Click(sender, e);
+                this.Close();
             }
 
 
             if (_oDeleteEmployee != null)
             {
-                _blDelete = true;
+                //_blDelete = true;
+                clMessageBox.showMessage(Literal.DELETE_TASK_CORRETLY, true, this);
             }
             else
             {
-                _blDelete = false;
+                //_blDelete = false;
+                clMessageBox.showMessage(Literal.DELETE_EMPLOYEE_FAILED, false, this);
             }
-
-            clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.DELETE, "employee", _blDelete, this);
+           
+            //clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.DELETE, "employee", _blDelete, this);
         }
 
         #endregion
@@ -390,7 +387,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void frmEmployeeManagement_FormClosing(object sender, FormClosingEventArgs e)
         {
-            btnClear_Click(sender, e);
+            this.btnClear_Click(sender, e);
             //this.AuxEmployee = null;
             //_blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);
         }
@@ -562,7 +559,7 @@ namespace SynUp_Desktop.views
         }
 
         #endregion
-        
+
     }
 }
 

@@ -82,7 +82,7 @@ namespace SynUp_Desktop.views
             if (validateValues())
             {
                 Boolean _blCreate = Controller.TeamService.createTeam(_strCode, _strName);
-                clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "team", _blCreate, this);
+                //clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "team", _blCreate, this);
             }
         }
 
@@ -106,7 +106,7 @@ namespace SynUp_Desktop.views
                 {
                     _blDelete = false;
                 }
-                clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.DELETE, "team", _blDelete, this);
+                //clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.DELETE, "team", _blDelete, this);
             }
 
         }
@@ -126,7 +126,7 @@ namespace SynUp_Desktop.views
                 if (Util.confirmationDialog(Literal.CONFIRMATION_UPDATE_TEAM, this.Text))
                 {
                     Boolean _blUpdate = this.Controller.TeamService.updateTeam(_strCode, _strName);
-                    clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.UPDATE, "team", _blUpdate, this);
+                    //clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.UPDATE, "team", _blUpdate, this);
                 }
             }
         }
@@ -367,8 +367,7 @@ namespace SynUp_Desktop.views
                 if (_oTeamHistoryControl != null)
                 {
                     Boolean _blUpdateHistory = this.Controller.TeamHistoryService.updateTeamHistory(pEmployee.nif, pTeam.code, DateTime.Now);
-                    clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.EXCLUDE, "employee", _blUpdateHistory, this);
-
+                    //clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.EXCLUDE, "employee", _blUpdateHistory, this);
                 }
             }
         }

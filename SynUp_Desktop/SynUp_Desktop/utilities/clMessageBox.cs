@@ -95,33 +95,51 @@ namespace SynUp_Desktop.utilities
         /// <param name="pObject">The object</param>
         /// <param name="pCorrect">If the action was correctly or wrong</param>
         /// <param name="pNameForm">The name of form which send the action</param>
-        public static void showMessageAction(ACTIONTYPE pAction, String pObject, Boolean pCorrect, Form pForm)
+        public static void showMessageAction(String pMessage, Boolean pCorrect, Form pForm)
         {
+            //public static void showMessageAction(ACTIONTYPE pAction, String pObject, Boolean pCorrect, Form pForm)
             //Nombre del método cambiado a showMessageAction para hacerlo más "userfriendly"
-            String _strMessage = null;
+            //String _strMessage = null;
             MessageBoxIcon _iconMessageBox;
 
-            String _strAction = actionToString(pAction, pCorrect);
+            //    String _strAction = actionToString(pAction, pCorrect);
             if (pCorrect)
             {
-                _strMessage = "The " + pObject + _strAction;
+                //_strMessage = "The " + pObject + _strAction;
                 _iconMessageBox = MessageBoxIcon.Information;
-                pForm.Close();
+                //pForm.Close();
 
             }
             else
             {
-                _strMessage = "The " + pObject + _strAction;
+                //_strMessage = "The " + pObject + _strAction;
                 _iconMessageBox = MessageBoxIcon.Error;
             }
 
-            MessageBox.Show(_strMessage, pForm.Text, MessageBoxButtons.OK, _iconMessageBox);
+            MessageBox.Show(pForm, pMessage, pForm.Text, MessageBoxButtons.OK, _iconMessageBox);
 
         }
 
-        public static void showMessage(String pMessage, String pForm)
+        public static void showMessage(String pMessage, Boolean pCorrect, Form pForm)
         {
-            MessageBox.Show(pMessage, pForm, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBoxIcon _iconMessageBox;
+
+            //    String _strAction = actionToString(pAction, pCorrect);
+            if (pCorrect)
+            {
+                //_strMessage = "The " + pObject + _strAction;
+                _iconMessageBox = MessageBoxIcon.Information;
+                //pForm.Close();
+
+            }
+            else
+            {
+                //_strMessage = "The " + pObject + _strAction;
+                _iconMessageBox = MessageBoxIcon.Error;
+            }
+
+            MessageBox.Show(pForm, pMessage, pForm.Text, MessageBoxButtons.OK, _iconMessageBox);
+            //MessageBox.Show(pMessage, pForm, MessageBoxButtons.OK, MessageBoxIcon.Information);
             //String _strMessage = messageToString(pMessage, pObject);
             //MessageBoxIcon _iconMessageBox = MessageBoxIcon.Information;
 
