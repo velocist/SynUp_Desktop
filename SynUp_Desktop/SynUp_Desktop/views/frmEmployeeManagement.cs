@@ -39,6 +39,7 @@ namespace SynUp_Desktop.views
             InitializeComponent();
             maxHeight = this.MaximumSize.Height;
             minHeight = this.MinimumSize.Height;
+            utilities.Util.loadMenu(this, this.controller);
         }
 
         public Employee AuxEmployee;
@@ -561,11 +562,7 @@ namespace SynUp_Desktop.views
         }
 
         #endregion
-
-        private void gbContainer_Enter(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
 

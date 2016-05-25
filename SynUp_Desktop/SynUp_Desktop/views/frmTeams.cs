@@ -30,6 +30,7 @@ namespace SynUp_Desktop.views
         public frmTeams()
         {
             InitializeComponent();
+            utilities.Util.loadMenu(this, this.controller);
         }
 
         /// <summary>
@@ -47,7 +48,6 @@ namespace SynUp_Desktop.views
             this.gbContainer.MouseClick += new MouseEventHandler(this.frmTeams_MouseClick);
             this.gbHelp.MouseClick += new MouseEventHandler(this.frmTeams_MouseClick);
 
-            utilities.Util.loadMenu(this, this.controller);
         }
 
         /// <summary>
@@ -59,7 +59,6 @@ namespace SynUp_Desktop.views
         {
             //The grid with all the teams will load.
             this.fillGrid();
-
         }
 
         /// <summary>
