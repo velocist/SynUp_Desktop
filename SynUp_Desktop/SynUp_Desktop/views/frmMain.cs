@@ -86,7 +86,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnExit_Click(object sender, EventArgs e)
         {
-            if (utilities.clMessageBox.confirmationDialog(utilities.Literal.CONFIRMATION_EXIT, "SynUp")) Application.Exit();
+            if (utilities.Util.confirmationDialog(utilities.Literal.CONFIRMATION_EXIT, "SynUp")) Application.Exit();
         }
 
         /// <summary>

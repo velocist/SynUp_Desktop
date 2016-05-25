@@ -71,15 +71,27 @@ namespace SynUp_Desktop.views
                 _blCreateOk = this.Controller.EmployeeService.createEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress);
                 /*utilities.clMessageBox _msgBox = new utilities.*/
                 /// MODIFICATION - Pablo, 170516, clMessageBox made static to access the methods without having to create an object of the class.
-                clMessageBox.showDialog(Literal.CREATE_EMPLOYEE_CORRETLY, this.Text);
+                clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "employee", _blCreateOk, this);
                 this.btnClear_Click(sender, e);
             }
             //}
             else if (txtNif.Text.Equals("") || txtEmail.Text.Equals(""))
             {
+                //this.messageWrong();
                 this.HelpMessage(Literal.ERROR_VALIDATION_EMPLOYEE, (int)utilities.Help.HelpIcon.ERROR);
             }
-            
+
+            /*else if (txtNif.Text == "")
+            {
+                foreach (Control _control in this.gbContainer.Controls)
+                {
+                    if (_control.Text.Equals("") && _control.Name.Equals(txtNif) || _control.Text.Equals("") && _control.Name.Equals(txtEmail))
+                    {
+                        this.messageWrong();
+                    }
+                }
+            }*/
+
         }
 
         /// <summary>
@@ -102,10 +114,10 @@ namespace SynUp_Desktop.views
             {
                 if (this.checkEmail())
                 {
-                    if (clMessageBox.confirmationDialog(Literal.CONFIRMATION_UPDATE_EMPLOYEE, this.Text))
+                    if (Util.confirmationDialog(Literal.CONFIRMATION_UPDATE_EMPLOYEE, this.Text))
                     {
                         Boolean _blUpdateOk = this.Controller.EmployeeService.updateEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress, _strUsername);
-                        clMessageBox.showDialog(Literal.UPDATE_EMPLOYEE_CORRETLY, this.Text);
+                        clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.UPDATE, "employee", _blUpdateOk, this);
                     }
                 }
             }
@@ -124,7 +136,7 @@ namespace SynUp_Desktop.views
             model.pojo.Employee _oDeleteEmployee = null;
 
 
-            if (clMessageBox.confirmationDialog(Literal.CONFIRMATION_DELETE_EMPLOYEE, this.Text))
+            if (Util.confirmationDialog(Literal.CONFIRMATION_DELETE_EMPLOYEE, this.Text))
             {
                 _oDeleteEmployee = this.Controller.EmployeeService.deleteEmployee(AuxEmployee);
             }
@@ -138,8 +150,9 @@ namespace SynUp_Desktop.views
             {
                 _blDelete = false;
             }
-            clMessageBox.showDialog(Literal.DELETE_EMPLOYEE_CORRETLY, this.Text);
-        }            
+
+            clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.DELETE, "employee", _blDelete, this);
+        }
 
         #endregion
 
@@ -353,7 +366,7 @@ namespace SynUp_Desktop.views
 
             this.walkingControls();
 
-            utilities.clMenu.loadMenu(this, this.controller);
+            utilities.Util.loadMenu(this, this.controller);
         }
 
         /// <summary>

@@ -9,97 +9,36 @@ namespace SynUp_Desktop.utilities
 {
     public static class clMessageBox
     {
+        //realmente necesitamos el atributo? xD
+        /*private static MessageBox msgBox;
+
+        public static MessageBox MsgBox
+        {
+            get { return msgBox; }
+            set { msgBox = value; }
+        }*/
+
         /// <summary>
-        /// Confirmation dialog that will let the user confirm they action or cancel it.
+        /// Enumeration of actions
         /// </summary>
-        /// <param name="message"></param>
-        /// <returns>Button click</returns>
-        public static void showDialog(string message, string titleForm)
+        public enum ACTIONTYPE
         {
-            MessageBox.Show(message, titleForm, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            CREATE,
+            DELETE,
+            UPDATE,
+            ADD,
+            EXCLUDE,
+            ASSIGN,
+            UNASSIGN,
+        };
+
+        public enum MESSAGE
+        {
+            EXIST,
+            INTEAM,
+            WRONG,
         }
 
-        /// <summary>
-        /// Confirmation dialog that will let the user confirm they action or cancel it.
-        /// </summary>
-        /// <param name="message"></param>
-        /// <returns>Button click</returns>
-        public static bool confirmationDialog(string message, string titleForm)
-        {
-            return (MessageBox.Show(message, titleForm, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
-        }
-
-        public static bool confirmationDialogNoClose(string message, string titleForm)
-        {
-            if (MessageBox.Show(message, titleForm, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        /*
-        /// <summary>
-        /// Method that shows a message action
-        /// </summary>
-        /// <param name="pAction">The action that was realized Values:[created,deleted,updated,added,deleted,assigned,unassigned]</param>
-        /// <param name="pObject">The object</param>
-        /// <param name="pCorrect">If the action was correctly or wrong</param>
-        /// <param name="pNameForm">The name of form which send the action</param>
-        public static void showMessageAction(ACTIONTYPE pAction, String pObject, Boolean pCorrect, Form pForm)
-        {
-            //Nombre del método cambiado a showMessageAction para hacerlo más "userfriendly"
-            String _strMessage = null;
-            MessageBoxIcon _iconMessageBox;
-
-            String _strAction = actionToString(pAction, pCorrect);
-            if (pCorrect)
-            {
-                _strMessage = "The " + pObject + _strAction;
-                _iconMessageBox = MessageBoxIcon.Information;
-                pForm.Close();
-
-            }
-            else
-            {
-                _strMessage = "The " + pObject + _strAction;
-                _iconMessageBox = MessageBoxIcon.Error;
-            }
-
-            MessageBox.Show(_strMessage, pForm.Text, MessageBoxButtons.OK, _iconMessageBox);
-
-        }
-        
-                     
-        /// <summary>
-        /// Method that shows a message
-        /// </summary>
-        /// <param name="pMessage"></param>
-        /// <returns></returns>
-        private static String messageToString(MESSAGE pMessage, String pObject)
-        {
-            String _strMessage = null;
-            String _strInitialMessage = "This " + pObject;
-            switch (pMessage.ToString())
-            {
-                case "EXIST":
-                    _strMessage = _strInitialMessage + " already exists";
-                    break;
-                case "INTEAM":
-                    _strMessage = _strInitialMessage + " already on the team";
-                    break;
-                case "WRONG":
-                    _strMessage = "\tWrong fields.\nInsert again the values.";
-                    break;
-
-            }
-            return _strMessage;
-        }
-
-            
         /// <summary>
         /// Methot that returns text action
         /// </summary>
@@ -149,8 +88,73 @@ namespace SynUp_Desktop.utilities
             return _strAction;
         }
 
-        */
+        /// <summary>
+        /// Method that shows a message action
+        /// </summary>
+        /// <param name="pAction">The action that was realized Values:[created,deleted,updated,added,deleted,assigned,unassigned]</param>
+        /// <param name="pObject">The object</param>
+        /// <param name="pCorrect">If the action was correctly or wrong</param>
+        /// <param name="pNameForm">The name of form which send the action</param>
+        public static void showMessageAction(ACTIONTYPE pAction, String pObject, Boolean pCorrect, Form pForm)
+        {
+            //Nombre del método cambiado a showMessageAction para hacerlo más "userfriendly"
+            String _strMessage = null;
+            MessageBoxIcon _iconMessageBox;
 
+            String _strAction = actionToString(pAction, pCorrect);
+            if (pCorrect)
+            {
+                _strMessage = "The " + pObject + _strAction;
+                _iconMessageBox = MessageBoxIcon.Information;
+                pForm.Close();
+
+            }
+            else
+            {
+                _strMessage = "The " + pObject + _strAction;
+                _iconMessageBox = MessageBoxIcon.Error;
+            }
+
+            MessageBox.Show(_strMessage, pForm.Text, MessageBoxButtons.OK, _iconMessageBox);
+
+        }
+
+        public static void showMessage(MESSAGE pMessage, String pObject, Form pForm)
+        {
+            String _strMessage = messageToString(pMessage, pObject);
+            MessageBoxIcon _iconMessageBox = MessageBoxIcon.Information;
+
+            if (pMessage.Equals("WRONG"))
+            {
+                _iconMessageBox = MessageBoxIcon.Warning;
+            }
+
+            MessageBox.Show(_strMessage, pForm.Text, MessageBoxButtons.OK, _iconMessageBox);
+        }
+        /// <summary>
+        /// Method that shows a message
+        /// </summary>
+        /// <param name="pMessage"></param>
+        /// <returns></returns>
+        private static String messageToString(MESSAGE pMessage, String pObject)
+        {
+            String _strMessage = null;
+            String _strInitialMessage = "This " + pObject;
+            switch (pMessage.ToString())
+            {
+                case "EXIST":
+                    _strMessage = _strInitialMessage + " already exists";
+                    break;
+                case "INTEAM":
+                    _strMessage = _strInitialMessage + " already on the team";
+                    break;
+                case "WRONG":
+                    _strMessage = "\tWrong fields.\nInsert again the values.";
+                    break;
+
+            }
+            return _strMessage;
+        }
         private static void configureMessageBox(MessageBox pMessageBox)
         {
 

@@ -64,7 +64,7 @@ namespace SynUp_Desktop.views
             this.gbContainer.MouseClick += new MouseEventHandler(this.frmEmployees_MouseClick);
             this.gbHelp.MouseClick += new MouseEventHandler(this.frmEmployees_MouseClick);
 
-            utilities.clMenu.loadMenu(this,this.controller);
+            utilities.Util.loadMenu(this,this.controller);
             
         }
 
@@ -133,7 +133,7 @@ namespace SynUp_Desktop.views
                     }
                     else
                     {
-                        clMessageBox.showDialog(Literal.INFO_ON_TEAM, this.Text);
+                        clMessageBox.showMessage(clMessageBox.MESSAGE.INTEAM, "employee", this);
                     }
                 }
             }
@@ -199,7 +199,7 @@ namespace SynUp_Desktop.views
             if (pEmployee != null && pTeam != null)
             {
                 Boolean _blAdd = this.Controller.TeamService.addToTeam(pEmployee.nif, pTeam.code);
-                clMessageBox.showDialog(Literal.INFO_ADD_TEAM, this.Text);
+                clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.ADD, "employee", _blAdd, this);
             }
         }
 
@@ -297,7 +297,7 @@ namespace SynUp_Desktop.views
             {
                 _message = Literal.INFO_BTN_MANAGEMENT;
             }
-            else if (sender.Equals(this.lblTeams) || sender.Equals(this.btnAddToTeam) || sender.Equals(this.cmbTeamsToAdd))
+            else if (sender.Equals(this.lblTeams))
             {
                 _message = Literal.INFO_ADD_TEAM;
             }

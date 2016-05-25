@@ -85,7 +85,7 @@ namespace SynUp_Desktop.views
                 _blCreate = Controller.TaskService.createTask(_strCode, _strName, _dtPriorityDate, _strDescription,
                                                              _strLocalization, _strProject, _strIdTeam, _nImportance);
 
-                clMessageBox.showDialog(Literal.CREATE_TASK_CORRETLY, this.Text);
+                clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "task", _blCreate, this);
             }
 
         }
@@ -100,7 +100,7 @@ namespace SynUp_Desktop.views
         {
             Boolean _blDelete = false;
 
-            if (clMessageBox.confirmationDialog(Literal.CONFIRMATION_DELETE_TASK, this.Text))
+            if (Util.confirmationDialog(Literal.CONFIRMATION_DELETE_TASK, this.Text))
             {
 
                 model.pojo.Task deleteTask = Controller.TaskService.deleteTask(AuxTask);
@@ -113,7 +113,8 @@ namespace SynUp_Desktop.views
                 {
                     _blDelete = false;
                 }
-                clMessageBox.showDialog(Literal.DELETE_TASK_CORRETLY, this.Text);
+
+                clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.DELETE, "task", _blDelete, this);
             }
         }
 
@@ -138,12 +139,13 @@ namespace SynUp_Desktop.views
 
             if (checkCorrectValues())
             {
-                if (clMessageBox.confirmationDialog(Literal.CONFIRMATION_UPDATE_TASK, this.Text))
+                if (Util.confirmationDialog(Literal.CONFIRMATION_UPDATE_TASK, this.Text))
                 {
                     _blUpdate = Controller.TaskService.updateTask(_strCode, _strName, _dtPriorityDate,
                                                                _strDescription, _strLocalization,
                                                                _strProject, _strIdTeam, _nImportance);
-                    clMessageBox.showDialog(Literal.UPDATE_TASK_CORRETLY, this.Text);
+
+                    clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.UPDATE, "task", _blUpdate, this);
                 }
             }
         }
@@ -306,7 +308,7 @@ namespace SynUp_Desktop.views
             //ToolTips.SetToolTip(lblDescription, "Description of the task.");
 
             this._blHelp = false;
-            utilities.clMenu.loadMenu(this, this.controller);
+            utilities.Util.loadMenu(this, this.controller);
         }
 
         /// <summary>

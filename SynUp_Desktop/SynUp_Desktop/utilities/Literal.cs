@@ -46,7 +46,6 @@ namespace SynUp_Desktop.utilities
         public static readonly string INFO_NAME_TEAM = "Name of the team.";
         public static readonly string INFO_ADD_TEAM = "Add an employee to the team.";
         public static readonly string INFO_DELETE_TEAM = "Deletes the selected employee from the team.";
-        public static readonly string INFO_ON_TEAM = "This employee already exist on team";
 
         public static readonly string INFO_RESULTS_STATISTICS = "Results of the search.";
         public static readonly string INFO_FILTER_STATISTICS = "Select the filter you want to use for the search.";
@@ -79,17 +78,5 @@ namespace SynUp_Desktop.utilities
         public static readonly string WARNING_EMPTY_STATISTICS = "No items where retrieved.";
 
         public static readonly string CONFIRMATION_EXIT = "Are you sure you want to exit?";
-
-        public static readonly string CREATE_EMPLOYEE_CORRETLY = "The employee has been create correctly.";
-        public static readonly string CREATE_TEAM_CORRETLY = "The team has been create correctly.";
-        public static readonly string CREATE_TASK_CORRETLY = "The employee has been create correctly.";
-
-        public static readonly string UPDATE_EMPLOYEE_CORRETLY = "The employee has been update correctly.";
-        public static readonly string UPDATE_TEAM_CORRETLY = "The team has been update correctly.";
-        public static readonly string UPDATE_TASK_CORRETLY = "The task has been update correctly.";
-
-        public static readonly string DELETE_EMPLOYEE_CORRETLY = "The employee has been delete correctly.";
-        public static readonly string DELETE_TEAM_CORRETLY = "The team has been delete correctly.";
-        public static readonly string DELETE_TASK_CORRETLY = "The task has been delete correctly.";
     }
 }
