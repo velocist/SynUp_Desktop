@@ -59,52 +59,8 @@ namespace SynUp_Desktop.utilities
                 menu.Items.Add(menuItem);
             }
 
-            //if (opcio == "Main")
-            //{
-            //    menuItem = new ToolStripMenuItem(opcio, null);
-            //    string[] options1 = new string[] { "Pause", "Reset" };
-            //    foreach (string opcio1 in options1)
-            //    {
-            //        ToolStripMenuItem menuOptions = new ToolStripMenuItem(opcio1, null, childClick);
-            //        menuItem.DropDownItems.Add(menuOptions);
-            //    }
-            //}
-            //else if (opcio == "Employees")
-            //{
-            //    menuItem = new ToolStripMenuItem(opcio, null);
-            //    string[] options1 = new string[] { "Music", "Sound" };
-            //    foreach (string opcio1 in options1)
-            //    {
-            //        ToolStripMenuItem menuOptions = new ToolStripMenuItem(opcio1, null);
-            //        menuItem.DropDownItems.Add(menuOptions);
-
-            //        string[] subOptions = new string[] { "On", "Off" };
-            //        foreach (string subopcio in subOptions)
-            //        {
-            //            ToolStripMenuItem menuSubOptions;
-
-            //            if (subopcio == "On")
-            //            {
-            //                menuSubOptions = new ToolStripMenuItem(subopcio, global::Arkanoid.Properties.Resources.audio49, childClick);
-            //                //menuItem.Image = global::ArkanoidProject.Properties.Resources.audio49;
-
-            //            }
-            //            else
-            //            {
-            //                menuSubOptions = new ToolStripMenuItem(subopcio, global::Arkanoid.Properties.Resources.mute35, childClick);
-            //                //menuItem.Image = global::ArkanoidProject.Properties.Resources.mute35;
-            //            }
-            //            menuOptions.DropDownItems.Add(menuSubOptions);
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    menuItem = new ToolStripMenuItem(opcio, null, childClick);
-            //}
-            //menu.Items.Add(menuItem);
-            //menuItem.BackColor = Color.Red;
-            //}
+            //Change backColor of form
+            pForm.BackColor = System.Drawing.SystemColors.InactiveCaption;
         }
 
         /// <summary>

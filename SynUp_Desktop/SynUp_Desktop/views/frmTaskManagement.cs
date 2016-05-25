@@ -55,7 +55,7 @@ namespace SynUp_Desktop.views
         public frmTaskManagement()
         {
             InitializeComponent();
-            
+
         }
 
         #region CRUD
@@ -86,7 +86,17 @@ namespace SynUp_Desktop.views
                 _blCreate = Controller.TaskService.createTask(_strCode, _strName, _dtPriorityDate, _strDescription,
                                                              _strLocalization, _strProject, _strIdTeam, _nImportance);
 
-                //clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "task", _blCreate, this);
+                if (_blCreate)
+                {
+                    clMessageBox.showMessage(Literal.CREATE_TASK_CORRETLY, true, this);
+                    this.btnClear_Click(sender, e);
+                    this.Close();
+                }
+                else
+                {
+                    clMessageBox.showMessage(Literal.CREATE_TASK_FAILED, false, this);
+                }
+                //clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "task", _blCreate, this);                
             }
 
         }
@@ -108,11 +118,14 @@ namespace SynUp_Desktop.views
 
                 if (deleteTask != null)
                 {
-                    _blDelete = true;
+                    clMessageBox.showMessage(Literal.DELETE_TASK_CORRETLY, true, this);
+                    this.btnClear_Click(sender, e);
+                    this.Close();
                 }
                 else
                 {
-                    _blDelete = false;
+                    clMessageBox.showMessage(Literal.DELETE_TASK_FAILED, false, this);
+                    //_blDelete = false;
                 }
 
                 //clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.DELETE, "task", _blDelete, this);
@@ -145,6 +158,16 @@ namespace SynUp_Desktop.views
                     _blUpdate = Controller.TaskService.updateTask(_strCode, _strName, _dtPriorityDate,
                                                                _strDescription, _strLocalization,
                                                                _strProject, _strIdTeam, _nImportance);
+                    if (_blUpdate)
+                    {
+                        clMessageBox.showMessage(Literal.UPDATE_TASK_CORRETLY, true, this);
+                        this.btnClear_Click(sender, e);
+                        this.Close();
+                    }
+                    else
+                    {
+                        clMessageBox.showMessage(Literal.UPDATE_TASK_FAILED, false, this);
+                    }
 
                     //clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.UPDATE, "task", _blUpdate, this);
                 }
