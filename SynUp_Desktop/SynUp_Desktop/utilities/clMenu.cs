@@ -7,10 +7,11 @@ using System.Windows.Forms;
 
 namespace SynUp_Desktop.utilities
 {
-    public static class Util
+    public static class clMenu
     {
         private static controller.Controller controllerSender;
 
+        /*
         /// <summary>
         /// Confirmation dialog that will let the user confirm they action or cancel it.
         /// </summary>
@@ -19,7 +20,8 @@ namespace SynUp_Desktop.utilities
         public static bool confirmationDialog(string message, string titleForm)
         {
             return (MessageBox.Show(message, titleForm, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
-        }       
+        }      
+        */
 
         /// <summary>
         /// Load the dynamic menu
@@ -134,7 +136,7 @@ namespace SynUp_Desktop.utilities
             }
             else if (sender.ToString().Equals("Exit"))
             {
-                if (confirmationDialog(Literal.CONFIRMATION_EXIT, "SynUp")) Application.Exit();
+                if (clMessageBox.confirmationDialog(Literal.CONFIRMATION_EXIT, "SynUp")) Application.Exit();
             }
         }
     }

@@ -81,7 +81,7 @@ namespace SynUp_Desktop.views
             if (validateValues())
             {
                 Boolean _blCreate = Controller.TeamService.createTeam(_strCode, _strName);
-                clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "team", _blCreate, this);
+                clMessageBox.showDialog(Literal.CREATE_TEAM_CORRETLY, this.Text);
             }
         }
 
@@ -94,7 +94,7 @@ namespace SynUp_Desktop.views
         {
             Boolean _blDelete = false;
 
-            if (Util.confirmationDialog(Literal.CONFIRMATION_DELETE_TEAM, this.Text))
+            if (clMessageBox.confirmationDialog(Literal.CONFIRMATION_DELETE_TEAM, this.Text))
             {
                 Team deleteTeam = Controller.TeamService.deleteTeam(AuxTeam);
                 if (deleteTeam != null)
@@ -105,7 +105,7 @@ namespace SynUp_Desktop.views
                 {
                     _blDelete = false;
                 }
-                clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.DELETE, "team", _blDelete, this);
+                clMessageBox.showDialog(Literal.DELETE_TEAM_CORRETLY, this.Text);
             }
 
         }
@@ -122,10 +122,10 @@ namespace SynUp_Desktop.views
 
             if (validateValues())
             {
-                if (Util.confirmationDialog(Literal.CONFIRMATION_UPDATE_TEAM, this.Text))
+                if (clMessageBox.confirmationDialog(Literal.CONFIRMATION_UPDATE_TEAM, this.Text))
                 {
                     Boolean _blUpdate = this.Controller.TeamService.updateTeam(_strCode, _strName);
-                    clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.UPDATE, "team", _blUpdate, this);
+                    clMessageBox.showDialog(Literal.UPDATE_TEAM_CORRETLY, this.Text);
                 }
             }
         }
@@ -198,7 +198,7 @@ namespace SynUp_Desktop.views
 
             this.gbContainer.MouseClick += new MouseEventHandler(this.frmTeamManagement_MouseClick);
             this.gbHelp.MouseClick += new MouseEventHandler(this.frmTeamManagement_MouseClick);
-            utilities.Util.loadMenu(this, this.controller);
+            utilities.clMenu.loadMenu(this, this.controller);
         }
 
         /// <summary>
@@ -366,8 +366,7 @@ namespace SynUp_Desktop.views
                 if (_oTeamHistoryControl != null)
                 {
                     Boolean _blUpdateHistory = this.Controller.TeamHistoryService.updateTeamHistory(pEmployee.nif, pTeam.code, DateTime.Now);
-                    clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.EXCLUDE, "employee", _blUpdateHistory, this);
-
+                    clMessageBox.showDialog(Literal.INFO_DELETE_TEAM, this.Text);
                 }
             }
         }

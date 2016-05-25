@@ -193,7 +193,7 @@
     <Compile Include="utilities\Help.cs" />
     <Compile Include="utilities\Literal.cs" />
     <Compile Include="utilities\TaskState.cs" />
-    <Compile Include="utilities\Util.cs" />
+    <Compile Include="utilities\clMenu.cs" />
     <Compile Include="views\frmAbout.cs">
       <SubType>Form</SubType>
     </Compile>
