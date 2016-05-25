@@ -120,7 +120,7 @@ namespace SynUp_Desktop.model.dao
 
                 if (_oTeam != null) //If the team has been found - meaning that it exists:
                 {
-                    if (checkTeamMembers(_oTeam, context))
+                    if (checkTeamMembers(_oTeam))
                     {
                         //tryAttach(context, _oTeam);
                         context.Teams.Remove(_oTeam); //Will be deleted.
@@ -167,29 +167,37 @@ namespace SynUp_Desktop.model.dao
         /// To-DO // CHECK THAT THE TEAM THAT IS DELETED WONT HAVE ANY FOREIGN KEYS THAT REFERENCE IT
         /// </summary>
         /// <param name="team"></param>
-        private static bool checkTeamMembers(Team team, synupEntities context)
+        private static bool checkTeamMembers(Team team)
         {
-            var query = from th in context.TeamHistories
-                        where th.id_team.Equals(team.code) && th.exitDate == null
-                        select th;
-            
-            foreach (var member in query)
+            using (var _context = new synupEntities())
             {
-                if (TeamHistoryConnection.deleteTeamHistory(member.id_employee, member.id_team) == null) return false;
+                var query = from th in _context.TeamHistories
+                            where th.id_team.Equals(team.code) && th.exitDate == null
+                            select th;
+
+                foreach (var member in query)
+                {
+                    if (TeamHistoryConnection.deleteTeamHistory(member.id_employee, member.id_team) == null) return false;
+                }
+
+                var query2 = from task in _context.Tasks
+                             where task.id_team.Equals(team.code)
+                             select task;
+
+                foreach (var task in query2)
+                {
+                    task.id_team = null;
+                    task.state = (int)TaskState.UNSELECTED;
+                    task.Team = null;
+                    if (!TaskConnection.updateTask(task)) return false;
+                }
+
+                /*team.Tasks = null;
+                team.TeamHistories = null;*/
+
+                return commitChanges(_context);
             }
 
-            var query2 = from task in context.Tasks
-                         where task.id_team.Equals(team.code)
-                         select task;
-
-            foreach(var task in query2)
-            {
-                task.id_team = null;
-                task.state = (int)TaskState.UNSELECTED;
-                if (!TaskConnection.updateTask(task)) return false;
-            }
-
-            return true;
         }
 
         /* 

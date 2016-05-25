@@ -91,6 +91,8 @@ namespace SynUp_Desktop.model.dao
                 if (foundTeamHistory != null) //If the teamHistory has been found - meaning that it exists:
                 {
                     tryAttach(context, foundTeamHistory);
+                    //foundTeamHistory
+                    //foundTeamHistory.Team = null;
                     context.TeamHistories.Remove(foundTeamHistory); //Will be deleted.
                     if (commitChanges(context)) return foundTeamHistory; //If the changes are commited succesfully it will return the deleted TeamHistory.
                     else return null;

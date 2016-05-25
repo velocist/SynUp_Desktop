@@ -14,6 +14,8 @@ namespace SynUp_Desktop.utilities
         public static readonly string INFORMATION_ICON = "\\views\\images\\information.png";
         #endregion
 
+        public static readonly string DELETED_TEAM = "deletedTeam2016";
+
         public static readonly string ERROR_VALIDATION_EMPLOYEE = "The NIF and/or the e-mail are empty or are wrong formated. Fill the mandatory fields.";
         public static readonly string ERROR_EXISTENT_EMPLOYEE = "This Employee already exists. Try with another NIF";
         public static readonly string ERROR_VALIDATION_TASK = "The Code and/or the Name and/or the Priority date are empty. Fill the mandatory fields.";
