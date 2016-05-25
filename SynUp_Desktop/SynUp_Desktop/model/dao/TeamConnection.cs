@@ -164,7 +164,7 @@ namespace SynUp_Desktop.model.dao
         }
 
         /// <summary>
-        /// To-DO // CHECK THAT THE TEAM THAT IS DELETED WONT HAVE ANY FOREIGN KEYS THAT REFERENCE IT
+        /// CHECK THAT THE TEAM THAT IS DELETED WONT HAVE ANY FOREIGN KEYS THAT REFERENCE IT
         /// </summary>
         /// <param name="team"></param>
         private static bool checkTeamMembers(Team team)
@@ -172,7 +172,7 @@ namespace SynUp_Desktop.model.dao
             using (var _context = new synupEntities())
             {
                 var query = from th in _context.TeamHistories
-                            where th.id_team.Equals(team.code) && th.exitDate == null
+                            where th.id_team.Equals(team.code)
                             select th;
 
                 foreach (var member in query)
