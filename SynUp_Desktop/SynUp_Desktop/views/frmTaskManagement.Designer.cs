@@ -86,11 +86,11 @@
             this.gbContainer.Controls.Add(this.txtName);
             this.gbContainer.Controls.Add(this.lblLocalization);
             this.gbContainer.Controls.Add(this.txtCode);
-            this.gbContainer.Location = new System.Drawing.Point(10, 25);
+            this.gbContainer.Location = new System.Drawing.Point(16, 26);
             this.gbContainer.Margin = new System.Windows.Forms.Padding(4);
             this.gbContainer.Name = "gbContainer";
             this.gbContainer.Padding = new System.Windows.Forms.Padding(4);
-            this.gbContainer.Size = new System.Drawing.Size(719, 361);
+            this.gbContainer.Size = new System.Drawing.Size(713, 361);
             this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "Task Data";
@@ -178,7 +178,7 @@
             this.txtProject.Location = new System.Drawing.Point(480, 28);
             this.txtProject.Margin = new System.Windows.Forms.Padding(4);
             this.txtProject.Name = "txtProject";
-            this.txtProject.Size = new System.Drawing.Size(231, 23);
+            this.txtProject.Size = new System.Drawing.Size(213, 23);
             this.txtProject.TabIndex = 8;
             // 
             // lblProject
@@ -216,7 +216,7 @@
             this.txtLocalization.Location = new System.Drawing.Point(480, 60);
             this.txtLocalization.Margin = new System.Windows.Forms.Padding(4);
             this.txtLocalization.Name = "txtLocalization";
-            this.txtLocalization.Size = new System.Drawing.Size(231, 23);
+            this.txtLocalization.Size = new System.Drawing.Size(213, 23);
             this.txtLocalization.TabIndex = 6;
             // 
             // lblName
@@ -384,13 +384,14 @@
             // lblHelpMessage
             // 
             this.lblHelpMessage.AutoSize = true;
-            this.lblHelpMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblHelpMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHelpMessage.Location = new System.Drawing.Point(47, 20);
             this.lblHelpMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHelpMessage.MaximumSize = new System.Drawing.Size(573, 49);
             this.lblHelpMessage.Name = "lblHelpMessage";
-            this.lblHelpMessage.Size = new System.Drawing.Size(0, 17);
+            this.lblHelpMessage.Size = new System.Drawing.Size(82, 13);
             this.lblHelpMessage.TabIndex = 0;
+            this.lblHelpMessage.Text = "Message help...";
             // 
             // frmTaskManagement
             // 

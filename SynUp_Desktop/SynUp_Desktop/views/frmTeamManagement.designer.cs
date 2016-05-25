@@ -67,7 +67,7 @@
             this.gbContainer.Controls.Add(this.lblName);
             this.gbContainer.Controls.Add(this.txtName);
             this.gbContainer.Controls.Add(this.txtCode);
-            this.gbContainer.Location = new System.Drawing.Point(10, 25);
+            this.gbContainer.Location = new System.Drawing.Point(16, 25);
             this.gbContainer.Margin = new System.Windows.Forms.Padding(4);
             this.gbContainer.Name = "gbContainer";
             this.gbContainer.Padding = new System.Windows.Forms.Padding(4);
@@ -170,7 +170,7 @@
             // 
             // btnDeleteTeam
             // 
-            this.btnDeleteTeam.Location = new System.Drawing.Point(226, 468);
+            this.btnDeleteTeam.Location = new System.Drawing.Point(232, 468);
             this.btnDeleteTeam.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteTeam.Name = "btnDeleteTeam";
             this.btnDeleteTeam.Size = new System.Drawing.Size(100, 49);
@@ -181,7 +181,7 @@
             // 
             // btnUpdateTeam
             // 
-            this.btnUpdateTeam.Location = new System.Drawing.Point(118, 468);
+            this.btnUpdateTeam.Location = new System.Drawing.Point(124, 468);
             this.btnUpdateTeam.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateTeam.Name = "btnUpdateTeam";
             this.btnUpdateTeam.Size = new System.Drawing.Size(100, 49);
@@ -192,7 +192,7 @@
             // 
             // btnCreateTeam
             // 
-            this.btnCreateTeam.Location = new System.Drawing.Point(10, 468);
+            this.btnCreateTeam.Location = new System.Drawing.Point(16, 468);
             this.btnCreateTeam.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreateTeam.Name = "btnCreateTeam";
             this.btnCreateTeam.Size = new System.Drawing.Size(100, 49);
@@ -203,7 +203,7 @@
             // 
             // btnHelp
             // 
-            this.btnHelp.Location = new System.Drawing.Point(685, 489);
+            this.btnHelp.Location = new System.Drawing.Point(691, 489);
             this.btnHelp.Margin = new System.Windows.Forms.Padding(4);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(37, 28);
@@ -252,7 +252,7 @@
             this.btnClear.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnClear.ButtonText = "Clear";
             this.btnClear.isExit = false;
-            this.btnClear.Location = new System.Drawing.Point(330, 468);
+            this.btnClear.Location = new System.Drawing.Point(336, 468);
             this.btnClear.Margin = new System.Windows.Forms.Padding(0);
             this.btnClear.Name = "btnClear";
             this.btnClear.Parent = this;
@@ -266,7 +266,7 @@
             this.btnBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnBack.ButtonText = "Back";
             this.btnBack.isExit = true;
-            this.btnBack.Location = new System.Drawing.Point(726, 468);
+            this.btnBack.Location = new System.Drawing.Point(732, 468);
             this.btnBack.Margin = new System.Windows.Forms.Padding(0);
             this.btnBack.Name = "btnBack";
             this.btnBack.Parent = this;

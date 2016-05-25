@@ -48,21 +48,21 @@
             this.dgvTeams.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvTeams.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTeams.GridColor = System.Drawing.SystemColors.HotTrack;
-            this.dgvTeams.Location = new System.Drawing.Point(8, 23);
+            this.dgvTeams.Location = new System.Drawing.Point(12, 23);
             this.dgvTeams.Margin = new System.Windows.Forms.Padding(4);
             this.dgvTeams.Name = "dgvTeams";
-            this.dgvTeams.Size = new System.Drawing.Size(791, 442);
+            this.dgvTeams.Size = new System.Drawing.Size(780, 442);
             this.dgvTeams.TabIndex = 1;
             // 
             // gbContainer
             // 
             this.gbContainer.BackColor = System.Drawing.Color.Transparent;
             this.gbContainer.Controls.Add(this.dgvTeams);
-            this.gbContainer.Location = new System.Drawing.Point(10, 25);
+            this.gbContainer.Location = new System.Drawing.Point(16, 40);
             this.gbContainer.Margin = new System.Windows.Forms.Padding(4);
             this.gbContainer.Name = "gbContainer";
             this.gbContainer.Padding = new System.Windows.Forms.Padding(4);
-            this.gbContainer.Size = new System.Drawing.Size(807, 473);
+            this.gbContainer.Size = new System.Drawing.Size(800, 473);
             this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "List of Teams";
@@ -72,7 +72,7 @@
             this.gbHelp.BackColor = System.Drawing.Color.Transparent;
             this.gbHelp.Controls.Add(this.pbxIconMessage);
             this.gbHelp.Controls.Add(this.lblHelpMessage);
-            this.gbHelp.Location = new System.Drawing.Point(133, 510);
+            this.gbHelp.Location = new System.Drawing.Point(139, 514);
             this.gbHelp.Margin = new System.Windows.Forms.Padding(4);
             this.gbHelp.Name = "gbHelp";
             this.gbHelp.Padding = new System.Windows.Forms.Padding(4);
@@ -103,7 +103,7 @@
             // 
             // btnManagementTeams
             // 
-            this.btnManagementTeams.Location = new System.Drawing.Point(10, 520);
+            this.btnManagementTeams.Location = new System.Drawing.Point(16, 524);
             this.btnManagementTeams.Margin = new System.Windows.Forms.Padding(4);
             this.btnManagementTeams.Name = "btnManagementTeams";
             this.btnManagementTeams.Size = new System.Drawing.Size(113, 49);
@@ -118,11 +118,11 @@
             this.btnBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnBack.ButtonText = "Back";
             this.btnBack.isExit = true;
-            this.btnBack.Location = new System.Drawing.Point(710, 520);
+            this.btnBack.Location = new System.Drawing.Point(716, 524);
             this.btnBack.Margin = new System.Windows.Forms.Padding(0);
             this.btnBack.Name = "btnBack";
             this.btnBack.Parent = this;
-            this.btnBack.Size = new System.Drawing.Size(75, 40);
+            this.btnBack.Size = new System.Drawing.Size(100, 49);
             this.btnBack.TabIndex = 4;
             // 
             // frmTeams

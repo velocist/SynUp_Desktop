@@ -69,18 +69,18 @@
             this.dgvTasks.Name = "dgvTasks";
             this.dgvTasks.RowTemplate.ReadOnly = true;
             this.dgvTasks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTasks.Size = new System.Drawing.Size(784, 482);
+            this.dgvTasks.Size = new System.Drawing.Size(775, 471);
             this.dgvTasks.TabIndex = 1;
             // 
             // gbContainer
             // 
             this.gbContainer.BackColor = System.Drawing.Color.Transparent;
             this.gbContainer.Controls.Add(this.dgvTasks);
-            this.gbContainer.Location = new System.Drawing.Point(10, 25);
+            this.gbContainer.Location = new System.Drawing.Point(16, 40);
             this.gbContainer.Margin = new System.Windows.Forms.Padding(4);
             this.gbContainer.Name = "gbContainer";
             this.gbContainer.Padding = new System.Windows.Forms.Padding(4);
-            this.gbContainer.Size = new System.Drawing.Size(804, 516);
+            this.gbContainer.Size = new System.Drawing.Size(795, 505);
             this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "List of Tasks";
@@ -116,8 +116,9 @@
             this.lblHelpMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHelpMessage.MaximumSize = new System.Drawing.Size(573, 49);
             this.lblHelpMessage.Name = "lblHelpMessage";
-            this.lblHelpMessage.Size = new System.Drawing.Size(0, 17);
+            this.lblHelpMessage.Size = new System.Drawing.Size(108, 17);
             this.lblHelpMessage.TabIndex = 0;
+            this.lblHelpMessage.Text = "Message help...";
             // 
             // btnBack
             // 

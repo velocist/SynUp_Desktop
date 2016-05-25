@@ -57,7 +57,7 @@
             this.dgvEmployees.Location = new System.Drawing.Point(9, 51);
             this.dgvEmployees.Name = "dgvEmployees";
             this.dgvEmployees.RowTemplate.ReadOnly = true;
-            this.dgvEmployees.Size = new System.Drawing.Size(785, 358);
+            this.dgvEmployees.Size = new System.Drawing.Size(785, 342);
             this.dgvEmployees.TabIndex = 0;
             this.dgvEmployees.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dgvEmployees_RowStateChanged);
             // 
@@ -81,9 +81,9 @@
             this.gbContainer.Controls.Add(this.dgvEmployees);
             this.gbContainer.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.gbContainer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbContainer.Location = new System.Drawing.Point(10, 25);
+            this.gbContainer.Location = new System.Drawing.Point(12, 38);
             this.gbContainer.Name = "gbContainer";
-            this.gbContainer.Size = new System.Drawing.Size(800, 415);
+            this.gbContainer.Size = new System.Drawing.Size(800, 399);
             this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "List of Employees";
@@ -144,8 +144,9 @@
             this.lblHelpMessage.Location = new System.Drawing.Point(35, 22);
             this.lblHelpMessage.MaximumSize = new System.Drawing.Size(430, 40);
             this.lblHelpMessage.Name = "lblHelpMessage";
-            this.lblHelpMessage.Size = new System.Drawing.Size(0, 17);
+            this.lblHelpMessage.Size = new System.Drawing.Size(108, 17);
             this.lblHelpMessage.TabIndex = 0;
+            this.lblHelpMessage.Text = "Message help...";
             // 
             // btnBack
             // 
@@ -184,8 +185,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Employees ";
             this.Activated += new System.EventHandler(this.frmEmployees_Activated);
-            this.Load += new System.EventHandler(this.frmEmployees_Load);
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.frmEmployees_MouseClick);
+            this.Load += new System.EventHandler(this.frmEmployees_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).EndInit();
             this.gbContainer.ResumeLayout(false);
             this.gbContainer.PerformLayout();
