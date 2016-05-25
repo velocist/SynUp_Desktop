@@ -140,7 +140,7 @@ namespace SynUp_Desktop.utilities
             if (isExit)
             {
                 clearFields();
-                Parent.Close();                
+                Parent.Close();
             }
             else clearFields();
         }
@@ -165,11 +165,10 @@ namespace SynUp_Desktop.utilities
                         {
                             _inGroupBox.ForeColor = Color.Black; //Will reset it's validation changed color.
                         }
-                        if (_inGroupBox is DataGridView) //TODO: Mirar haber como podemos incluirlo aqui.
-                                                         //SIIII Conseguido!! 
+                        if (_inGroupBox is DataGridView) //If the control is a Datagridview 
                         {
-                            ((System.Windows.Forms.DataGridView)_inGroupBox).DataSource = null;
-                            ((System.Windows.Forms.DataGridView)_inGroupBox).Refresh();
+                            ((System.Windows.Forms.DataGridView)_inGroupBox).DataSource = null; //Will clear datasource  
+                            ((System.Windows.Forms.DataGridView)_inGroupBox).Refresh(); //Will refresh datagridview
                         }
                         if (_inGroupBox is Button) //Boton addtoteam deletetoteam
                         {

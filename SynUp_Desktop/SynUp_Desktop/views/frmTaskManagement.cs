@@ -100,7 +100,7 @@ namespace SynUp_Desktop.views
         {
             Boolean _blDelete = false;
 
-            if (Util.confirmationDialog(Literal.CONFIRMATION_DELETE_TASK))
+            if (Util.confirmationDialog(Literal.CONFIRMATION_DELETE_TASK, this.Text))
             {
 
                 model.pojo.Task deleteTask = Controller.TaskService.deleteTask(AuxTask);
@@ -139,7 +139,7 @@ namespace SynUp_Desktop.views
 
             if (checkCorrectValues())
             {
-                if (Util.confirmationDialog(Literal.CONFIRMATION_UPDATE_TASK))
+                if (Util.confirmationDialog(Literal.CONFIRMATION_UPDATE_TASK, this.Text))
                 {
                     _blUpdate = Controller.TaskService.updateTask(_strCode, _strName, _dtPriorityDate,
                                                                _strDescription, _strLocalization,
@@ -149,7 +149,7 @@ namespace SynUp_Desktop.views
                 }
             }
         }
-        
+
         #endregion
 
         #region VALIDATIONS        
@@ -203,7 +203,7 @@ namespace SynUp_Desktop.views
         {
             bool _correct = checkName() && checkCode();
 
-            if (!_correct) this.HelpMessage(Literal.ERROR_VALIDATION_TASK, (int)utilities.Help.HelpIcon.ERROR); 
+            if (!_correct) this.HelpMessage(Literal.ERROR_VALIDATION_TASK, (int)utilities.Help.HelpIcon.ERROR);
 
             return _correct;
         }

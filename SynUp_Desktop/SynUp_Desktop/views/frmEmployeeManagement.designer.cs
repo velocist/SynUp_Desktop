@@ -65,7 +65,7 @@
             this.btnUpdateEmployee.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateEmployee.Name = "btnUpdateEmployee";
             this.btnUpdateEmployee.Size = new System.Drawing.Size(100, 49);
-            this.btnUpdateEmployee.TabIndex = 9;
+            this.btnUpdateEmployee.TabIndex = 8;
             this.btnUpdateEmployee.Text = "Update";
             this.btnUpdateEmployee.UseVisualStyleBackColor = true;
             this.btnUpdateEmployee.Click += new System.EventHandler(this.btnUpdateEmployee_Click);
@@ -76,7 +76,7 @@
             this.btnDeleteEmployee.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteEmployee.Name = "btnDeleteEmployee";
             this.btnDeleteEmployee.Size = new System.Drawing.Size(100, 49);
-            this.btnDeleteEmployee.TabIndex = 10;
+            this.btnDeleteEmployee.TabIndex = 9;
             this.btnDeleteEmployee.Text = "Delete";
             this.btnDeleteEmployee.UseVisualStyleBackColor = true;
             this.btnDeleteEmployee.Click += new System.EventHandler(this.btnDeleteEmployee_Click);
@@ -257,7 +257,7 @@
             this.btnCreate.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(100, 49);
-            this.btnCreate.TabIndex = 8;
+            this.btnCreate.TabIndex = 7;
             this.btnCreate.Text = "Create";
             this.btnCreate.UseVisualStyleBackColor = true;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
@@ -268,7 +268,7 @@
             this.btnHelp.Margin = new System.Windows.Forms.Padding(4);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(37, 28);
-            this.btnHelp.TabIndex = 13;
+            this.btnHelp.TabIndex = 11;
             this.btnHelp.Text = "?";
             this.btnHelp.UseVisualStyleBackColor = true;
             this.btnHelp.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnHelp_MouseClick);
@@ -276,17 +276,18 @@
             // lblHelpMessage
             // 
             this.lblHelpMessage.AutoSize = true;
-            this.lblHelpMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHelpMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.lblHelpMessage.Location = new System.Drawing.Point(47, 20);
             this.lblHelpMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHelpMessage.MaximumSize = new System.Drawing.Size(573, 49);
             this.lblHelpMessage.Name = "lblHelpMessage";
-            this.lblHelpMessage.Size = new System.Drawing.Size(82, 13);
+            this.lblHelpMessage.Size = new System.Drawing.Size(108, 17);
             this.lblHelpMessage.TabIndex = 0;
             this.lblHelpMessage.Text = "Message help...";
             // 
             // gbHelp
             // 
+            this.gbHelp.BackColor = System.Drawing.Color.Transparent;
             this.gbHelp.Controls.Add(this.pbxIconMessage);
             this.gbHelp.Controls.Add(this.lblHelpMessage);
             this.gbHelp.Location = new System.Drawing.Point(11, 314);
@@ -318,7 +319,7 @@
             this.btnBack.Name = "btnBack";
             this.btnBack.Parent = this;
             this.btnBack.Size = new System.Drawing.Size(100, 49);
-            this.btnBack.TabIndex = 15;
+            this.btnBack.TabIndex = 12;
             // 
             // btnClear
             // 
@@ -331,7 +332,7 @@
             this.btnClear.Name = "btnClear";
             this.btnClear.Parent = this;
             this.btnClear.Size = new System.Drawing.Size(100, 49);
-            this.btnClear.TabIndex = 14;
+            this.btnClear.TabIndex = 10;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // frmEmployeeManagement

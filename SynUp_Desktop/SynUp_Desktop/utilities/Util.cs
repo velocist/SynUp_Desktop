@@ -14,9 +14,9 @@ namespace SynUp_Desktop.utilities
         /// </summary>
         /// <param name="message"></param>
         /// <returns>Button click</returns>
-        public static bool confirmationDialog(string message)
+        public static bool confirmationDialog(string message, string titleForm)
         {
-            return (MessageBox.Show(message, "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
+            return (MessageBox.Show(message, titleForm, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
         }
     }
 }

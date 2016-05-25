@@ -36,7 +36,7 @@ namespace SynUp_Desktop.views
 
         public frmEmployees()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace SynUp_Desktop.views
                 {
                     String _strSelectedRowCode = _cell.ToString(); // Recover the code
                     model.pojo.Employee _oSelectedEmployee = Controller.EmployeeService.readEmployee(_strSelectedRowCode); // We look for the employee nif
-                                        
+
                 }
             }
             else
@@ -283,28 +283,28 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void messageHelps_MouseHover(object sender, EventArgs e)
         {
-                //TODO Cambiar strings
-                int _iIcon = (int)utilities.Help.HelpIcon.INFORMATION;
-                String _message = "";
+            //TODO Cambiar strings
+            int _iIcon = (int)utilities.Help.HelpIcon.INFORMATION;
+            String _message = "";
 
-                if (sender.Equals(this.btnManagementEmployee))
-                {
-                    _message = Literal.INFO_BTN_MANAGEMENT;
-                }
-                else if (sender.Equals(this.lblTeams))
-                {
-                    _message = Literal.INFO_ADD_TEAM;
-                }
-                else if (sender.Equals(this.dgvEmployees))
-                {
-                    _message = Literal.INFO_DGV;
-                }
-                else if (sender.Equals(this.btnBack))
-                {
-                    _message = Literal.INFO_BTN_BACK;
-                }
-                this.HelpMessage(_message, _iIcon);
-            
+            if (sender.Equals(this.btnManagementEmployee))
+            {
+                _message = Literal.INFO_BTN_MANAGEMENT;
+            }
+            else if (sender.Equals(this.lblTeams))
+            {
+                _message = Literal.INFO_ADD_TEAM;
+            }
+            else if (sender.Equals(this.dgvEmployees))
+            {
+                _message = Literal.INFO_DGV;
+            }
+            else if (sender.Equals(this.btnBack))
+            {
+                _message = Literal.INFO_BTN_BACK;
+            }
+            this.HelpMessage(_message, _iIcon);
+
         }
 
         /// <summary>
@@ -345,7 +345,7 @@ namespace SynUp_Desktop.views
             this.pbxIconMessage.Image = utilities.Help.changeIconMessage(icon);
             this.lblHelpMessage.Text = message;
         }
-        
+
         #endregion
 
     }
@@ -402,7 +402,6 @@ this.dgvEmployees.Refresh(); //Refresh the view.
 //The combo with all the teams will load.
 this.fillComboTeams();
 
-//TODO: Voy a probar de limpiar el auxiliar de empleado desde aqui a ver si no falla. FUNCIONA
 //this.Controller.EmployeeMgtView.AuxEmployee = null;
 
 //We configures the groupbox help

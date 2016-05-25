@@ -72,7 +72,7 @@ namespace SynUp_Desktop.views
                 /*utilities.clMessageBox _msgBox = new utilities.*/
                 /// MODIFICATION - Pablo, 170516, clMessageBox made static to access the methods without having to create an object of the class.
                 clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "employee", _blCreateOk, this);
-
+                this.btnClear_Click(sender, e);
             }
             //}
             else if (txtNif.Text.Equals("") || txtEmail.Text.Equals(""))
@@ -114,7 +114,7 @@ namespace SynUp_Desktop.views
             {
                 if (this.checkEmail())
                 {
-                    if (Util.confirmationDialog(Literal.CONFIRMATION_UPDATE_EMPLOYEE))
+                    if (Util.confirmationDialog(Literal.CONFIRMATION_UPDATE_EMPLOYEE, this.Text))
                     {
                         Boolean _blUpdateOk = this.Controller.EmployeeService.updateEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress, _strUsername);
                         clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.UPDATE, "employee", _blUpdateOk, this);
@@ -136,7 +136,7 @@ namespace SynUp_Desktop.views
             model.pojo.Employee _oDeleteEmployee = null;
 
 
-            if (Util.confirmationDialog(Literal.CONFIRMATION_DELETE_EMPLOYEE))
+            if (Util.confirmationDialog(Literal.CONFIRMATION_DELETE_EMPLOYEE, this.Text))
             {
                 _oDeleteEmployee = this.Controller.EmployeeService.deleteEmployee(AuxEmployee);
             }
@@ -357,11 +357,8 @@ namespace SynUp_Desktop.views
             }
             else
             {
-                this.btnCreate.Enabled = true;
-                this.txtNif.Enabled = true;
-                this.btnUpdateEmployee.Enabled = false;
-                this.btnDeleteEmployee.Enabled = false;
-                //this.clearValues();
+                this.btnClear_Click(sender, e);
+
             }
 
             this.setToolTips(); //Sets the tooltips for the view
@@ -370,21 +367,31 @@ namespace SynUp_Desktop.views
             this.walkingControls();
         }
 
+        /// <summary>
+        /// Event that runs when the button clear is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClear_Click(object sender, EventArgs e)
         {
             AuxEmployee = null;
+            this.btnCreate.Enabled = true;
+            this.txtNif.Enabled = true;
+            this.btnUpdateEmployee.Enabled = false;
+            this.btnDeleteEmployee.Enabled = false;
             _blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);
         }
 
         /// <summary>
-        /// 
+        /// Event that runs when the form is closed
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void frmEmployeeManagement_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.AuxEmployee = null;
-            _blHelp = false;
+            btnClear_Click(sender, e);
+            //this.AuxEmployee = null;
+            //_blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);
         }
 
         /// <summary>
@@ -410,7 +417,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnHelp_MouseClick(object sender, MouseEventArgs e)
         {
-            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, this.MinimumSize.Height, this.MaximumSize.Height);
+            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, minHeight, maxHeight);
             if (_blHelp) this.HelpMessage("", (int)utilities.Help.HelpIcon.NONE);
         }
 
@@ -436,7 +443,7 @@ namespace SynUp_Desktop.views
         {
             if (_blHelp)
             {
-                int _info = (int) utilities.Help.HelpIcon.INFORMATION;
+                int _info = (int)utilities.Help.HelpIcon.INFORMATION;
 
                 if (sender.Equals(lblNif) || sender.Equals(txtNif))
                 {

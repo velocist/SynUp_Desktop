@@ -92,7 +92,7 @@ namespace SynUp_Desktop.views
         {
             Boolean _blDelete = false;
 
-            if (Util.confirmationDialog(Literal.CONFIRMATION_DELETE_TEAM))
+            if (Util.confirmationDialog(Literal.CONFIRMATION_DELETE_TEAM, this.Text))
             {
                 Team deleteTeam = Controller.TeamService.deleteTeam(AuxTeam);
                 if (deleteTeam != null)
@@ -120,7 +120,7 @@ namespace SynUp_Desktop.views
 
             if (validateValues())
             {
-                if (Util.confirmationDialog(Literal.CONFIRMATION_UPDATE_TEAM))
+                if (Util.confirmationDialog(Literal.CONFIRMATION_UPDATE_TEAM, this.Text))
                 {
                     Boolean _blUpdate = this.Controller.TeamService.updateTeam(_strCode, _strName);
                     clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.UPDATE, "team", _blUpdate, this);
