@@ -67,20 +67,19 @@
             this.gbContainer.Controls.Add(this.lblName);
             this.gbContainer.Controls.Add(this.txtName);
             this.gbContainer.Controls.Add(this.txtCode);
-            this.gbContainer.Location = new System.Drawing.Point(16, 15);
+            this.gbContainer.Location = new System.Drawing.Point(16, 25);
             this.gbContainer.Margin = new System.Windows.Forms.Padding(4);
             this.gbContainer.Name = "gbContainer";
             this.gbContainer.Padding = new System.Windows.Forms.Padding(4);
-            this.gbContainer.Size = new System.Drawing.Size(816, 442);
+            this.gbContainer.Size = new System.Drawing.Size(816, 432);
             this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "Team";
-            
             // 
             // lblMandatory
             // 
             this.lblMandatory.AutoSize = true;
-            this.lblMandatory.Location = new System.Drawing.Point(9, 412);
+            this.lblMandatory.Location = new System.Drawing.Point(12, 402);
             this.lblMandatory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMandatory.Name = "lblMandatory";
             this.lblMandatory.Size = new System.Drawing.Size(121, 17);
@@ -89,7 +88,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(675, 406);
+            this.btnAdd.Location = new System.Drawing.Point(678, 396);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(132, 28);
@@ -100,7 +99,7 @@
             // 
             // btnDeleteToTeam
             // 
-            this.btnDeleteToTeam.Location = new System.Drawing.Point(533, 406);
+            this.btnDeleteToTeam.Location = new System.Drawing.Point(536, 396);
             this.btnDeleteToTeam.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteToTeam.Name = "btnDeleteToTeam";
             this.btnDeleteToTeam.Size = new System.Drawing.Size(133, 28);
@@ -128,7 +127,7 @@
             this.dgvEmployeesOnTeam.Location = new System.Drawing.Point(8, 81);
             this.dgvEmployeesOnTeam.Margin = new System.Windows.Forms.Padding(4);
             this.dgvEmployeesOnTeam.Name = "dgvEmployeesOnTeam";
-            this.dgvEmployeesOnTeam.Size = new System.Drawing.Size(799, 318);
+            this.dgvEmployeesOnTeam.Size = new System.Drawing.Size(799, 307);
             this.dgvEmployeesOnTeam.TabIndex = 3;
             this.dgvEmployeesOnTeam.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dgvEmployeesOnTeam_RowStateChanged);
             // 

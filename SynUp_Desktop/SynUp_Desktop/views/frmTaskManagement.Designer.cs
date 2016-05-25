@@ -66,7 +66,6 @@
             // gbContainer
             // 
             this.gbContainer.BackColor = System.Drawing.Color.Transparent;
-            this.gbContainer.BackgroundImage = global::SynUp_Desktop.Properties.Resources.SynUp;
             this.gbContainer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.gbContainer.Controls.Add(this.lblMandatory);
             this.gbContainer.Controls.Add(this.txtState);
@@ -87,11 +86,11 @@
             this.gbContainer.Controls.Add(this.txtName);
             this.gbContainer.Controls.Add(this.lblLocalization);
             this.gbContainer.Controls.Add(this.txtCode);
-            this.gbContainer.Location = new System.Drawing.Point(16, 15);
+            this.gbContainer.Location = new System.Drawing.Point(16, 26);
             this.gbContainer.Margin = new System.Windows.Forms.Padding(4);
             this.gbContainer.Name = "gbContainer";
             this.gbContainer.Padding = new System.Windows.Forms.Padding(4);
-            this.gbContainer.Size = new System.Drawing.Size(713, 372);
+            this.gbContainer.Size = new System.Drawing.Size(713, 361);
             this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "Task Data";
@@ -361,6 +360,7 @@
             // 
             // gbHelp
             // 
+            this.gbHelp.BackColor = System.Drawing.Color.Transparent;
             this.gbHelp.Controls.Add(this.pbxIconMessage);
             this.gbHelp.Controls.Add(this.lblHelpMessage);
             this.gbHelp.Location = new System.Drawing.Point(16, 449);
@@ -398,6 +398,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackgroundImage = global::SynUp_Desktop.Properties.Resources.SynUp;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(740, 447);
             this.Controls.Add(this.gbHelp);
             this.Controls.Add(this.btnHelp);
@@ -407,6 +409,7 @@
             this.Controls.Add(this.gbContainer);
             this.Controls.Add(this.btnUpdateTask);
             this.Controls.Add(this.btnDeleteTask);
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

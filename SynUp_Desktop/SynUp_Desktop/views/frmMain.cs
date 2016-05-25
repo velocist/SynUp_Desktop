@@ -40,9 +40,8 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnTasks_Click(object sender, EventArgs e)
         {
-            //this.Hide();            
-            //this.Controller.TasksView.Show();
-            this.Controller.TasksView.ShowDialog(); //Vuelvo a colocarlo que da un problema, teenemos que mirar como hacerlo
+            this.Controller.TasksView.Show();
+            this.Controller.TasksView.BringToFront();
         }
 
         /// <summary>
@@ -52,8 +51,8 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnEmployees_Click(object sender, EventArgs e)
         {
-            //this.Controller.EmployeeView.Show();
-            this.Controller.EmployeeView.ShowDialog();
+            this.Controller.EmployeeView.Show();
+            this.Controller.EmployeeView.BringToFront();
         }
 
         /// <summary>
@@ -63,8 +62,9 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnTeams_Click(object sender, EventArgs e)
         {
-            //this.Controller.TeamsView.Show();
-            this.Controller.TeamsView.ShowDialog();
+            this.Controller.TeamsView.Show();
+            this.Controller.TeamsView.BringToFront();
+            //this.Controller.TeamsView.ShowDialog();
         }
 
         /// <summary>
@@ -74,8 +74,9 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnStadistics_Click(object sender, EventArgs e)
         {
-            //this.Controller.StatisticsView.Show();
-            this.Controller.StatisticsView.ShowDialog();
+            this.Controller.StatisticsView.Show();
+            this.Controller.StatisticsView.BringToFront();
+            //this.Controller.StatisticsView.ShowDialog();
         }
 
         /// <summary>
@@ -85,8 +86,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnExit_Click(object sender, EventArgs e)
         {
-            //this.Close();
-            Application.Exit();
+            if (utilities.Util.confirmationDialog(utilities.Literal.CONFIRMATION_EXIT, "SynUp")) Application.Exit();
         }
 
         /// <summary>
@@ -99,6 +99,6 @@ namespace SynUp_Desktop.views
             //this.Controller.AboutView.Show();
             this.Controller.AboutView.ShowDialog();
         }
-        
+
     }
 }

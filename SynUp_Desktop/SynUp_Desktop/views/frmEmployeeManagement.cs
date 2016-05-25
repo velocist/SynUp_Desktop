@@ -560,7 +560,12 @@ namespace SynUp_Desktop.views
             this.lblHelpMessage.Text = pMessage;
         }
 
-        #endregion        
+        #endregion
+
+        private void gbContainer_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

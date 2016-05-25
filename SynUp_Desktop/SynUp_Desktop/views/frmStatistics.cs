@@ -65,6 +65,8 @@ namespace SynUp_Desktop.views
             this.walkingControls();
             this.gbContainer.MouseClick += new MouseEventHandler(this.frmStatistics_MouseClick);
             this.gbHelp.MouseClick += new MouseEventHandler(this.frmStatistics_MouseClick);
+
+            utilities.Util.loadMenu(this, this.controller);
         }
 
         /// <summary>

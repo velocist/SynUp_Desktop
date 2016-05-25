@@ -46,6 +46,8 @@ namespace SynUp_Desktop.views
             this.walkingControls();
             this.gbContainer.MouseClick += new MouseEventHandler(this.frmTeams_MouseClick);
             this.gbHelp.MouseClick += new MouseEventHandler(this.frmTeams_MouseClick);
+
+            utilities.Util.loadMenu(this, this.controller);
         }
 
         /// <summary>

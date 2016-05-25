@@ -58,6 +58,8 @@ namespace SynUp_Desktop.views
 
             this.gbContainer.MouseClick += new MouseEventHandler(this.frmTasks_MouseClick);
             this.gbHelp.MouseClick += new MouseEventHandler(this.frmTasks_MouseClick);
+
+            utilities.Util.loadMenu(this, this.controller);
         }
 
         /// <summary>

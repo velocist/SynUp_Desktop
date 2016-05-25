@@ -308,6 +308,7 @@ namespace SynUp_Desktop.views
             //ToolTips.SetToolTip(lblDescription, "Description of the task.");
 
             this._blHelp = false;
+            utilities.Util.loadMenu(this, this.controller);
         }
 
         /// <summary>
