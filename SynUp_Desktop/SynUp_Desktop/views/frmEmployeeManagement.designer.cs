@@ -218,7 +218,6 @@
             this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "Employee Data";
-            this.gbContainer.Enter += new System.EventHandler(this.gbContainer_Enter);
             // 
             // lblMessageMandatory
             // 
