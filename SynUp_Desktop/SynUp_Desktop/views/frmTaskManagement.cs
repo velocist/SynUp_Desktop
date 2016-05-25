@@ -279,8 +279,8 @@ namespace SynUp_Desktop.views
                 if (this.AuxTask.id_team != null) this.cbIdTeams.SelectedItem = cbIdTeams.FindString(this.AuxTask.id_team.Trim());
                 else cbIdTeams.SelectedIndex = -1;
 
-                MessageBox.Show(cbIdTeams.SelectedIndex.ToString());
-                MessageBox.Show(this.AuxTask.id_team.Trim());
+                /*MessageBox.Show(cbIdTeams.SelectedIndex.ToString());
+                MessageBox.Show(this.AuxTask.id_team.Trim());*/
 
                 this.cbImportance.SelectedIndex = (int)this.AuxTask.priority;
                 this.txtCode.Text = this.AuxTask.code;
