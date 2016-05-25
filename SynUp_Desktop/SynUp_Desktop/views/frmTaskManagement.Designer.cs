@@ -52,12 +52,12 @@
             this.btnDeleteTask = new System.Windows.Forms.Button();
             this.btnUpdateTask = new System.Windows.Forms.Button();
             this.btnCreateTask = new System.Windows.Forms.Button();
-            this.btnClear = new SynUp_Desktop.utilities.GenericButton();
-            this.btnBack = new SynUp_Desktop.utilities.GenericButton();
             this.btnHelp = new System.Windows.Forms.Button();
             this.gbHelp = new System.Windows.Forms.GroupBox();
             this.pbxIconMessage = new System.Windows.Forms.PictureBox();
             this.lblHelpMessage = new System.Windows.Forms.Label();
+            this.btnClear = new SynUp_Desktop.utilities.GenericButton();
+            this.btnBack = new SynUp_Desktop.utilities.GenericButton();
             this.gbContainer.SuspendLayout();
             this.gbHelp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxIconMessage)).BeginInit();
@@ -111,7 +111,7 @@
             // 
             this.txtState.AutoSize = true;
             this.txtState.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtState.Location = new System.Drawing.Point(145, 300);
+            this.txtState.Location = new System.Drawing.Point(145, 290);
             this.txtState.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.txtState.Name = "txtState";
             this.txtState.Size = new System.Drawing.Size(93, 17);
@@ -142,12 +142,12 @@
             this.lblImportance.Name = "lblImportance";
             this.lblImportance.Size = new System.Drawing.Size(85, 16);
             this.lblImportance.TabIndex = 14;
-            this.lblImportance.Text = "Importance";
+            this.lblImportance.Text = "Priority";
             // 
             // lblState
             // 
             this.lblState.AutoSize = true;
-            this.lblState.Location = new System.Drawing.Point(8, 300);
+            this.lblState.Location = new System.Drawing.Point(8, 290);
             this.lblState.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblState.Name = "lblState";
             this.lblState.Size = new System.Drawing.Size(111, 17);
@@ -193,7 +193,7 @@
             // 
             // mcalPriorityDate
             // 
-            this.mcalPriorityDate.Location = new System.Drawing.Point(411, 124);
+            this.mcalPriorityDate.Location = new System.Drawing.Point(501, 93);
             this.mcalPriorityDate.Margin = new System.Windows.Forms.Padding(12, 11, 12, 11);
             this.mcalPriorityDate.MinDate = new System.DateTime(2016, 1, 1, 0, 0, 0, 0);
             this.mcalPriorityDate.Name = "mcalPriorityDate";
@@ -236,7 +236,7 @@
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtDescription.Size = new System.Drawing.Size(304, 193);
+            this.txtDescription.Size = new System.Drawing.Size(304, 162);
             this.txtDescription.TabIndex = 4;
             // 
             // lblPriorityDate
@@ -320,33 +320,6 @@
             this.btnCreateTask.UseVisualStyleBackColor = true;
             this.btnCreateTask.Click += new System.EventHandler(this.btnCreateTask_Click);
             // 
-            // btnClear
-            // 
-            this.btnClear.AutoSize = true;
-            this.btnClear.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnClear.ButtonText = "Clear";
-            this.btnClear.isExit = false;
-            this.btnClear.Location = new System.Drawing.Point(336, 394);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(0);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Parent = this;
-            this.btnClear.Size = new System.Drawing.Size(100, 49);
-            this.btnClear.TabIndex = 13;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
-            // 
-            // btnBack
-            // 
-            this.btnBack.AutoSize = true;
-            this.btnBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnBack.ButtonText = "Back";
-            this.btnBack.isExit = true;
-            this.btnBack.Location = new System.Drawing.Point(629, 394);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(0);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Parent = this;
-            this.btnBack.Size = new System.Drawing.Size(100, 49);
-            this.btnBack.TabIndex = 12;
-            // 
             // btnHelp
             // 
             this.btnHelp.Location = new System.Drawing.Point(588, 414);
@@ -392,6 +365,33 @@
             this.lblHelpMessage.Size = new System.Drawing.Size(82, 13);
             this.lblHelpMessage.TabIndex = 0;
             this.lblHelpMessage.Text = "Message help...";
+            // 
+            // btnClear
+            // 
+            this.btnClear.AutoSize = true;
+            this.btnClear.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnClear.ButtonText = "Clear";
+            this.btnClear.isExit = false;
+            this.btnClear.Location = new System.Drawing.Point(336, 394);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(0);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Parent = this;
+            this.btnClear.Size = new System.Drawing.Size(100, 49);
+            this.btnClear.TabIndex = 13;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // btnBack
+            // 
+            this.btnBack.AutoSize = true;
+            this.btnBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnBack.ButtonText = "Back";
+            this.btnBack.isExit = true;
+            this.btnBack.Location = new System.Drawing.Point(629, 394);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(0);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Parent = this;
+            this.btnBack.Size = new System.Drawing.Size(100, 49);
+            this.btnBack.TabIndex = 12;
             // 
             // frmTaskManagement
             // 

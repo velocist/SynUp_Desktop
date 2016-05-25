@@ -275,9 +275,14 @@ namespace SynUp_Desktop.views
             if (AuxTask != null)
             {
                 // We recover the data of selected task
-                if (this.AuxTask.id_team != null) this.cbIdTeams.SelectedIndex = cbIdTeams.FindString(this.AuxTask.id_team.Trim());
-                this.cbImportance.SelectedIndex = (int)this.AuxTask.priority;
+                //selecteditem
+                if (this.AuxTask.id_team != null) this.cbIdTeams.SelectedItem = cbIdTeams.FindString(this.AuxTask.id_team.Trim());
+                else cbIdTeams.SelectedIndex = -1;
 
+                MessageBox.Show(cbIdTeams.SelectedIndex.ToString());
+                MessageBox.Show(this.AuxTask.id_team.Trim());
+
+                this.cbImportance.SelectedIndex = (int)this.AuxTask.priority;
                 this.txtCode.Text = this.AuxTask.code;
                 this.txtName.Text = this.AuxTask.name;
                 this.txtDescription.Text = this.AuxTask.description;

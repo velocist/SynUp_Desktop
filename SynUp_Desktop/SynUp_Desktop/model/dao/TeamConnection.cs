@@ -82,6 +82,12 @@ namespace SynUp_Desktop.model.dao
             return query.SingleOrDefault();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pCode"></param>
+        /// <param name="seContext"></param>
+        /// <returns></returns>
         public static pojo.Team readTeam(String pCode, synupEntities seContext)
         {
             var query = from team in seContext.Teams
@@ -133,11 +139,21 @@ namespace SynUp_Desktop.model.dao
             return null;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static List<pojo.Team> readAllTeams()
         {
             return (from team in new synupEntities().Teams select team).ToList();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_EmpNif"></param>
+        /// <param name="_TeamCode"></param>
+        /// <returns></returns>
         public static bool addToTeam(/*pojo.Employee pEmployee, pojo.Team pTeam*/ String _EmpNif, String _TeamCode)
         {
             model.pojo.TeamHistory _oTeamHistory = new model.pojo.TeamHistory();
