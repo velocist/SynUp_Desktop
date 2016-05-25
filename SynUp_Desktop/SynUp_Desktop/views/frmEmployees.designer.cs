@@ -185,6 +185,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Employees ";
             this.Activated += new System.EventHandler(this.frmEmployees_Activated);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.frmEmployees_MouseClick);
             this.Load += new System.EventHandler(this.frmEmployees_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).EndInit();
             this.gbContainer.ResumeLayout(false);

@@ -60,6 +60,9 @@ namespace SynUp_Desktop.views
             this.fillComboTeams();
 
             this.walkingControls();
+
+            this.gbContainer.MouseClick += new MouseEventHandler(this.frmEmployees_MouseClick);
+            this.gbHelp.MouseClick += new MouseEventHandler(this.frmEmployees_MouseClick);
         }
 
         /// <summary>
@@ -348,6 +351,16 @@ namespace SynUp_Desktop.views
 
         #endregion
 
+        /// <summary>
+        /// Event that runs when mouse click on the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmEmployees_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.dgvEmployees.ClearSelection();
+            this.dgvEmployees.Refresh();
+        }
     }
 }
 

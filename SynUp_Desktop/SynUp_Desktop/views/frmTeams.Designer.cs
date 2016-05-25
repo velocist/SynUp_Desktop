@@ -98,9 +98,8 @@
             this.lblHelpMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHelpMessage.MaximumSize = new System.Drawing.Size(573, 49);
             this.lblHelpMessage.Name = "lblHelpMessage";
-            this.lblHelpMessage.Size = new System.Drawing.Size(108, 17);
+            this.lblHelpMessage.Size = new System.Drawing.Size(0, 17);
             this.lblHelpMessage.TabIndex = 0;
-            this.lblHelpMessage.Text = "Message help...";
             // 
             // btnManagementTeams
             // 
@@ -150,7 +149,9 @@
             this.Name = "frmTeams";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Teams";
+            this.Activated += new System.EventHandler(this.frmTeams_Activated);
             this.Load += new System.EventHandler(this.frmTeams_Load);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.frmTeams_MouseClick);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTeams)).EndInit();
             this.gbContainer.ResumeLayout(false);
             this.gbHelp.ResumeLayout(false);

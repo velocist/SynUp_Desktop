@@ -46,17 +46,30 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void frmTasks_Load(object sender, EventArgs e)
         {
-            this.dgvConfiguration();
             this.fillGrid();
+            this.dgvConfiguration();
 
             //Form Common Configurations
             FormBorderStyle = FormBorderStyle.Fixed3D;
             this.MinimizeBox = false;
             this.MaximizeBox = false;
 
-            walkingControls();
+            this.walkingControls();
+
+            this.gbContainer.MouseClick += new MouseEventHandler(this.frmTasks_MouseClick);
+            this.gbHelp.MouseClick += new MouseEventHandler(this.frmTasks_MouseClick);
         }
 
+        /// <summary>
+        /// Event triggered every time the view is displayed. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmTasks_Activated(object sender, EventArgs e)
+        {
+            this.fillGrid();
+        }
+        
         /// <summary>
         /// Shows the management view window of the tasks.
         /// </summary>
@@ -77,26 +90,26 @@ namespace SynUp_Desktop.views
                 }
             }
 
-            //if (this.Controller.TaskMgtView.ShowDialog() == DialogResult.OK)MessageBox.Show("dialogresult OK");            
-            //this.Hide();
             this.Controller.TaskMgtView.ShowDialog();
-            //this.Show();
         }
 
-
+        /// <summary>
+        /// Event that runs when mouse click on the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmTasks_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.dgvTasks.ClearSelection();
+            this.dgvTasks.Refresh();
+        }
+        
         /// <summary>
         /// DataGridView Configuration
         /// </summary>
         /// <author>Pablo Ardèvol</author>
         private void dgvConfiguration()
         {
-            this.fillGrid();
-
-            //Form Common Configurations
-            this.FormBorderStyle = FormBorderStyle.Fixed3D;
-            this.MinimizeBox = false;
-            this.MaximizeBox = false;
-
             //Column configuration
             dgvTasks.Columns[0].Visible = false; // We hide id column
             //dgvTasks.Columns["code_team"].Visible = true; // We hide the id_team column
@@ -112,7 +125,6 @@ namespace SynUp_Desktop.views
             dgvTasks.Columns[10].Visible = false; // HeaderText = "Task Histories";
 
             // DatagridView Common Configuration 
-
             dgvTasks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
             dgvTasks.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row     
             dgvTasks.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -126,19 +138,7 @@ namespace SynUp_Desktop.views
             dgvTasks.RowHeadersVisible = false; // We hide the rowheader           
 
         }
-
-        /// <summary>
-        /// Event triggered every time the view is displayed. 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void frmTasks_Activated(object sender, EventArgs e)
-        {
-            this.fillGrid();
-            this.dgvTasks.ClearSelection(); // Clear selection rows.
-            this.dgvTasks.Refresh(); //Refresh the view.   
-        }
-
+        
         /// <summary>
         /// Method that fill the grid
         /// </summary>
@@ -149,12 +149,12 @@ namespace SynUp_Desktop.views
             source.DataSource = Controller.TaskService.getAllTasks();
             this.dgvTasks.DataSource = source;
             this.dgvTasks.ClearSelection(); // Clear selection rows        
-            this.dgvTasks.Refresh();
-            this.Refresh();
+            this.dgvTasks.Refresh();//Refresh the datagrid
+            this.Refresh(); //Refresh the view.   
         }
 
         #region HELP
-        
+
 
         /*private void btnHelp_MouseClick(object sender, EventArgs e)
         {
@@ -254,8 +254,8 @@ namespace SynUp_Desktop.views
             this.lblHelpMessage.Text = message;
         }
 
-        #endregion
 
+        #endregion
 
     }
 }

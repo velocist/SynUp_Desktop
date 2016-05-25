@@ -40,13 +40,12 @@ namespace SynUp_Desktop.views
         private void frmTeams_Load(object sender, EventArgs e)
         {
             //The grid with all the teams will load.
-            this.fillGrid();
+            this.frmTeams_Activated(sender, e);
             this.dgvConfiguration();
 
-            //We configures the groupbox help
-            //this._blHelp = false;
-
             this.walkingControls();
+            this.gbContainer.MouseClick += new MouseEventHandler(this.frmTeams_MouseClick);
+            this.gbHelp.MouseClick += new MouseEventHandler(this.frmTeams_MouseClick);
         }
 
         /// <summary>
@@ -58,11 +57,7 @@ namespace SynUp_Desktop.views
         {
             //The grid with all the teams will load.
             this.fillGrid();
-            this.dgvTeams.ClearSelection(); // Clear selection rows.
-            this.dgvTeams.Refresh(); //Refresh the view.   
 
-            //We configures the groupbox help
-            //this._blHelp = false;
         }
 
         /// <summary>
@@ -86,6 +81,17 @@ namespace SynUp_Desktop.views
             }
 
             this.Controller.TeamMgtView.ShowDialog();
+        }
+
+        /// <summary>
+        /// Event that runs when mouse click on the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmTeams_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.dgvTeams.ClearSelection();
+            this.dgvTeams.Refresh();
         }
 
         /// <summary>
@@ -174,7 +180,6 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void messageHelps_MouseLeave(object sender, EventArgs e)
         {
-            //if (_blHelp)
             this.HelpMessage("", (int)utilities.Help.HelpIcon.NONE);
         }
 
@@ -242,6 +247,7 @@ namespace SynUp_Desktop.views
         }
 
         #endregion
+
     }
 }
 

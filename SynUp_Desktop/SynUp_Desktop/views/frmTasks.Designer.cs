@@ -158,6 +158,7 @@
             this.Text = "SynUp - Tasks ";
             this.Activated += new System.EventHandler(this.frmTasks_Activated);
             this.Load += new System.EventHandler(this.frmTasks_Load);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.frmTasks_MouseClick);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTasks)).EndInit();
             this.gbContainer.ResumeLayout(false);
             this.gbHelp.ResumeLayout(false);

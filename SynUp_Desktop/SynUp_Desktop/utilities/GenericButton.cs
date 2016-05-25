@@ -170,10 +170,10 @@ namespace SynUp_Desktop.utilities
                             ((System.Windows.Forms.DataGridView)_inGroupBox).DataSource = null; //Will clear datasource  
                             ((System.Windows.Forms.DataGridView)_inGroupBox).Refresh(); //Will refresh datagridview
                         }
-                        if (_inGroupBox is Button) //Boton addtoteam deletetoteam
-                        {
-                            _inGroupBox.Enabled = false;
-                        }
+                        //if (_inGroupBox is Button) //Boton addtoteam deletetoteam
+                        //{
+                        //    _inGroupBox.Enabled = false;
+                        //}
                     }
                 }
                 //Nota: Si quitas esto al limpiar el formulario los botones de crear quedan inhabilitados

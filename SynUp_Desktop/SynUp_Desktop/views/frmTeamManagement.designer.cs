@@ -72,9 +72,10 @@
             this.gbContainer.Name = "gbContainer";
             this.gbContainer.Padding = new System.Windows.Forms.Padding(4);
             this.gbContainer.Size = new System.Drawing.Size(816, 442);
-            this.gbContainer.TabIndex = 17;
+            this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "Team";
+            
             // 
             // lblMandatory
             // 
@@ -83,7 +84,7 @@
             this.lblMandatory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMandatory.Name = "lblMandatory";
             this.lblMandatory.Size = new System.Drawing.Size(121, 17);
-            this.lblMandatory.TabIndex = 10;
+            this.lblMandatory.TabIndex = 0;
             this.lblMandatory.Text = "* Mandatory fields";
             // 
             // btnAdd
@@ -92,7 +93,7 @@
             this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(132, 28);
-            this.btnAdd.TabIndex = 9;
+            this.btnAdd.TabIndex = 5;
             this.btnAdd.Text = "Add Employees";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -103,7 +104,7 @@
             this.btnDeleteToTeam.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteToTeam.Name = "btnDeleteToTeam";
             this.btnDeleteToTeam.Size = new System.Drawing.Size(133, 28);
-            this.btnDeleteToTeam.TabIndex = 6;
+            this.btnDeleteToTeam.TabIndex = 4;
             this.btnDeleteToTeam.Text = "Delete Employee";
             this.btnDeleteToTeam.UseVisualStyleBackColor = true;
             this.btnDeleteToTeam.Click += new System.EventHandler(this.btnDeleteToTeam_Click);
@@ -174,7 +175,7 @@
             this.btnDeleteTeam.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteTeam.Name = "btnDeleteTeam";
             this.btnDeleteTeam.Size = new System.Drawing.Size(100, 49);
-            this.btnDeleteTeam.TabIndex = 19;
+            this.btnDeleteTeam.TabIndex = 8;
             this.btnDeleteTeam.Text = "Delete";
             this.btnDeleteTeam.UseVisualStyleBackColor = true;
             this.btnDeleteTeam.Click += new System.EventHandler(this.btnDeleteTeam_Click);
@@ -185,7 +186,7 @@
             this.btnUpdateTeam.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateTeam.Name = "btnUpdateTeam";
             this.btnUpdateTeam.Size = new System.Drawing.Size(100, 49);
-            this.btnUpdateTeam.TabIndex = 18;
+            this.btnUpdateTeam.TabIndex = 7;
             this.btnUpdateTeam.Text = "Update";
             this.btnUpdateTeam.UseVisualStyleBackColor = true;
             this.btnUpdateTeam.Click += new System.EventHandler(this.btnUpdateTeam_Click);
@@ -196,7 +197,7 @@
             this.btnCreateTeam.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreateTeam.Name = "btnCreateTeam";
             this.btnCreateTeam.Size = new System.Drawing.Size(100, 49);
-            this.btnCreateTeam.TabIndex = 21;
+            this.btnCreateTeam.TabIndex = 6;
             this.btnCreateTeam.Text = "Create";
             this.btnCreateTeam.UseVisualStyleBackColor = true;
             this.btnCreateTeam.Click += new System.EventHandler(this.btnCreateTeam_Click);
@@ -207,7 +208,7 @@
             this.btnHelp.Margin = new System.Windows.Forms.Padding(4);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(37, 28);
-            this.btnHelp.TabIndex = 25;
+            this.btnHelp.TabIndex = 10;
             this.btnHelp.Text = "?";
             this.btnHelp.UseVisualStyleBackColor = true;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_MouseClick);
@@ -222,7 +223,7 @@
             this.gbHelp.Name = "gbHelp";
             this.gbHelp.Padding = new System.Windows.Forms.Padding(4);
             this.gbHelp.Size = new System.Drawing.Size(816, 64);
-            this.gbHelp.TabIndex = 26;
+            this.gbHelp.TabIndex = 0;
             this.gbHelp.TabStop = false;
             this.gbHelp.Text = "Help";
             // 
@@ -243,9 +244,8 @@
             this.lblHelpMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHelpMessage.MaximumSize = new System.Drawing.Size(573, 49);
             this.lblHelpMessage.Name = "lblHelpMessage";
-            this.lblHelpMessage.Size = new System.Drawing.Size(103, 16);
+            this.lblHelpMessage.Size = new System.Drawing.Size(0, 16);
             this.lblHelpMessage.TabIndex = 0;
-            this.lblHelpMessage.Text = "Message help...";
             // 
             // btnClear
             // 
@@ -258,7 +258,7 @@
             this.btnClear.Name = "btnClear";
             this.btnClear.Parent = this;
             this.btnClear.Size = new System.Drawing.Size(100, 49);
-            this.btnClear.TabIndex = 10;
+            this.btnClear.TabIndex = 9;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnBack
@@ -272,7 +272,7 @@
             this.btnBack.Name = "btnBack";
             this.btnBack.Parent = this;
             this.btnBack.Size = new System.Drawing.Size(100, 49);
-            this.btnBack.TabIndex = 12;
+            this.btnBack.TabIndex = 11;
             // 
             // frmTeamManagement
             // 
@@ -302,9 +302,10 @@
             this.Name = "frmTeamManagement";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Team Management ";
-           // this.Activated += new System.EventHandler(this.frmTeamManagement_Activated);
+            this.Activated += new System.EventHandler(this.frmTeamManagement_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmTeamManagement_FormClosing);
             this.Load += new System.EventHandler(this.frmTeamManagement_Load);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.frmTeamManagement_MouseClick);
             this.gbContainer.ResumeLayout(false);
             this.gbContainer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployeesOnTeam)).EndInit();

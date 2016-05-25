@@ -40,6 +40,8 @@ namespace SynUp_Desktop.views
         public frmStatistics()
         {
             InitializeComponent();
+            minHeight = this.MinimumSize.Height;
+            maxHeight = this.MaximumSize.Height;
         }
 
         /// <summary>
@@ -59,7 +61,21 @@ namespace SynUp_Desktop.views
             this.FormBorderStyle = FormBorderStyle.Fixed3D;
             this.MinimizeBox = false;
             this.MaximizeBox = false;
+
             this.walkingControls();
+            this.gbContainer.MouseClick += new MouseEventHandler(this.frmStatistics_MouseClick);
+            this.gbHelp.MouseClick += new MouseEventHandler(this.frmStatistics_MouseClick);
+        }
+
+        /// <summary>
+        /// Event that runs when mouse click on the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmStatistics_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.dgvStadistics.ClearSelection();
+            this.dgvStadistics.Refresh();
         }
 
         /// <summary>

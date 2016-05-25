@@ -325,6 +325,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Statistics";
             this.Load += new System.EventHandler(this.frmStatistics_Load);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.frmStatistics_MouseClick);
             ((System.ComponentModel.ISupportInitialize)(this.dgvStadistics)).EndInit();
             this.gbContainer.ResumeLayout(false);
             this.gbContainer.PerformLayout();
