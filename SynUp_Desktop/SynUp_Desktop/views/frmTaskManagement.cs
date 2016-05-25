@@ -109,11 +109,8 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnDeleteTask_Click(object sender, EventArgs e)
         {
-            Boolean _blDelete = false;
-
-            if (Util.confirmationDialog(Literal.CONFIRMATION_DELETE_TASK, this.Text))
+            if (clMessageBox.confirmationDialog(Literal.CONFIRMATION_DELETE_TASK, this.Text))
             {
-
                 model.pojo.Task deleteTask = Controller.TaskService.deleteTask(AuxTask);
 
                 if (deleteTask != null)
@@ -125,10 +122,7 @@ namespace SynUp_Desktop.views
                 else
                 {
                     clMessageBox.showMessage(Literal.DELETE_TASK_FAILED, false, this);
-                    //_blDelete = false;
-                }
-
-                //clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.DELETE, "task", _blDelete, this);
+                }                
             }
         }
 
@@ -153,7 +147,7 @@ namespace SynUp_Desktop.views
 
             if (checkCorrectValues())
             {
-                if (Util.confirmationDialog(Literal.CONFIRMATION_UPDATE_TASK, this.Text))
+                if (clMessageBox.confirmationDialog(Literal.CONFIRMATION_UPDATE_TASK, this.Text))
                 {
                     _blUpdate = Controller.TaskService.updateTask(_strCode, _strName, _dtPriorityDate,
                                                                _strDescription, _strLocalization,
@@ -167,9 +161,7 @@ namespace SynUp_Desktop.views
                     else
                     {
                         clMessageBox.showMessage(Literal.UPDATE_TASK_FAILED, false, this);
-                    }
-
-                    //clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.UPDATE, "task", _blUpdate, this);
+                    }                    
                 }
             }
         }

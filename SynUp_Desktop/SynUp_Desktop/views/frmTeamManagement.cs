@@ -82,7 +82,6 @@ namespace SynUp_Desktop.views
             if (validateValues())
             {
                 Boolean _blCreate = Controller.TeamService.createTeam(_strCode, _strName);
-                //clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "team", _blCreate, this);
             }
         }
 
@@ -93,20 +92,18 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnDeleteTeam_Click(object sender, EventArgs e)
         {
-            Boolean _blDelete = false;
 
-            if (Util.confirmationDialog(Literal.CONFIRMATION_DELETE_TEAM, this.Text))
+            if (clMessageBox.confirmationDialog(Literal.CONFIRMATION_DELETE_TEAM, this.Text))
             {
                 Team deleteTeam = Controller.TeamService.deleteTeam(AuxTeam);
                 if (deleteTeam != null)
                 {
-                    _blDelete = true;
+                    clMessageBox.showMessage(Literal.DELETE_TEAM_FAILED, true, this);
                 }
                 else
                 {
-                    _blDelete = false;
+                    clMessageBox.showMessage(Literal.DELETE_TEAM_FAILED, false, this);
                 }
-                //clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.DELETE, "team", _blDelete, this);
             }
 
         }
@@ -123,10 +120,17 @@ namespace SynUp_Desktop.views
 
             if (validateValues())
             {
-                if (Util.confirmationDialog(Literal.CONFIRMATION_UPDATE_TEAM, this.Text))
+                if (clMessageBox.confirmationDialog(Literal.CONFIRMATION_UPDATE_TEAM, this.Text))
                 {
                     Boolean _blUpdate = this.Controller.TeamService.updateTeam(_strCode, _strName);
-                    //clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.UPDATE, "team", _blUpdate, this);
+
+                    if (_blUpdate)
+                    {
+                        clMessageBox.showMessage(Literal.UPDATE_TEAM_CORRETLY, true, this);
+                    } else
+                    {
+                        clMessageBox.showMessage(Literal.UPDATE_TEAM_FAILED, false, this);
+                    }
                 }
             }
         }

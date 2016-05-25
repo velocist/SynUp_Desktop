@@ -9,7 +9,7 @@ namespace SynUp_Desktop.utilities
 {
     public static class clMessageBox
     {
-        
+        /*
         /// <summary>
         /// Method that shows a message action
         /// </summary>
@@ -40,7 +40,7 @@ namespace SynUp_Desktop.utilities
 
             MessageBox.Show(pForm, pMessage, pForm.Text, MessageBoxButtons.OK, _iconMessageBox);
 
-        }
+        }*/
 
         public static void showMessage(String pMessage, Boolean pCorrect, Form pForm)
         {
@@ -58,6 +58,15 @@ namespace SynUp_Desktop.utilities
             MessageBox.Show(pForm, pMessage, pForm.Text, MessageBoxButtons.OK, _iconMessageBox);
         }
 
+        /// <summary>
+        /// Confirmation dialog that will let the user confirm they action or cancel it.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns>Button click</returns>
+        public static bool confirmationDialog(string message, string titleForm)
+        {
+            return (MessageBox.Show(message, titleForm, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
+        }
         /// <summary>
         /// Method that shows a message
         /// </summary>

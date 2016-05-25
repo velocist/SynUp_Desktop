@@ -1,4 +1,5 @@
 ﻿using SynUp_Desktop.controller;
+using SynUp_Desktop.utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -86,7 +87,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnExit_Click(object sender, EventArgs e)
         {
-            if (utilities.Util.confirmationDialog(utilities.Literal.CONFIRMATION_EXIT, "SynUp")) Application.Exit();
+            if (clMessageBox.confirmationDialog(utilities.Literal.CONFIRMATION_EXIT, "SynUp")) Application.Exit();
         }
 
         /// <summary>

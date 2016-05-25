@@ -103,7 +103,7 @@ namespace SynUp_Desktop.views
             {
                 if (this.checkEmail())
                 {
-                    if (Util.confirmationDialog(Literal.CONFIRMATION_UPDATE_EMPLOYEE, this.Text))
+                    if (clMessageBox.confirmationDialog(Literal.CONFIRMATION_UPDATE_EMPLOYEE, this.Text))
                     {
                         Boolean _blUpdateOk = this.Controller.EmployeeService.updateEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress, _strUsername);
                         //clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.UPDATE, "employee", _blUpdateOk, this);
@@ -124,31 +124,25 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnDeleteEmployee_Click(object sender, EventArgs e)
         {
-            Boolean _blDelete = false;
             model.pojo.Employee _oDeleteEmployee = null;
 
 
-            if (Util.confirmationDialog(Literal.CONFIRMATION_DELETE_EMPLOYEE, this.Text))
+            if (clMessageBox.confirmationDialog(Literal.CONFIRMATION_DELETE_EMPLOYEE, this.Text))
             {
-                _oDeleteEmployee = this.Controller.EmployeeService.deleteEmployee(AuxEmployee);
-                //clMessageBox.showMessage(Literal.DELETE_EMPLOYEE_CORRETLY, this);
+                _oDeleteEmployee = this.Controller.EmployeeService.deleteEmployee(AuxEmployee);                
                 this.btnClear_Click(sender, e);
                 this.Close();
             }
 
-
             if (_oDeleteEmployee != null)
             {
-                //_blDelete = true;
                 clMessageBox.showMessage(Literal.DELETE_TASK_CORRETLY, true, this);
             }
             else
-            {
-                //_blDelete = false;
+            {               
                 clMessageBox.showMessage(Literal.DELETE_EMPLOYEE_FAILED, false, this);
             }
            
-            //clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.DELETE, "employee", _blDelete, this);
         }
 
         #endregion
