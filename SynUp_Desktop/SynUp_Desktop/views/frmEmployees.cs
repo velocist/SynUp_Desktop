@@ -36,8 +36,7 @@ namespace SynUp_Desktop.views
 
         public frmEmployees()
         {
-            InitializeComponent();
-            utilities.Util.loadMenu(this, this.controller);
+            InitializeComponent();            
         }
 
         /// <summary>
@@ -65,6 +64,7 @@ namespace SynUp_Desktop.views
             this.gbContainer.MouseClick += new MouseEventHandler(this.frmEmployees_MouseClick);
             this.gbHelp.MouseClick += new MouseEventHandler(this.frmEmployees_MouseClick);
 
+            utilities.Util.loadMenu(this, this.controller);
         }
 
         /// <summary>

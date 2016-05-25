@@ -19,7 +19,7 @@ namespace SynUp_Desktop.utilities
         public static bool confirmationDialog(string message, string titleForm)
         {
             return (MessageBox.Show(message, titleForm, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
-        }       
+        }
 
         /// <summary>
         /// Load the dynamic menu
@@ -30,7 +30,19 @@ namespace SynUp_Desktop.utilities
 
             //Creem el menú dinàmic
             MenuStrip menu = new MenuStrip();
-            pForm.Controls.Add(menu);
+
+            bool existant = false;
+
+            foreach (Control c in pForm.Controls)
+            {
+                if (c is MenuStrip)
+                {
+                    existant = true;
+                    break;
+                }
+            }
+
+            if(!existant)pForm.Controls.Add(menu);
 
             menu.BackColor = System.Drawing.Color.AliceBlue;
             menu.LayoutStyle = ToolStripLayoutStyle.Flow;
@@ -46,6 +58,7 @@ namespace SynUp_Desktop.utilities
                 menuItem = new ToolStripMenuItem(opcio, null, childClick);
                 menu.Items.Add(menuItem);
             }
+
             //if (opcio == "Main")
             //{
             //    menuItem = new ToolStripMenuItem(opcio, null);
@@ -119,8 +132,9 @@ namespace SynUp_Desktop.utilities
             }
             else if (sender.ToString().Equals("Tasks"))
             {
-                controllerSender.TasksView.Show();
-                controllerSender.TasksView.BringToFront();
+                if (controllerSender.TasksView != null) controllerSender.TasksView.Show();
+                else MessageBox.Show("NOT SO OK");
+                //controllerSender.TasksView.BringToFront();
             }
             else if (sender.ToString().Equals("Stadistics"))
             {

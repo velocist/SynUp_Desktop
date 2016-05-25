@@ -64,7 +64,7 @@ namespace SynUp_Desktop.views
             InitializeComponent();
             minHeight = this.MinimumSize.Height;
             maxHeight = this.MaximumSize.Height;
-            utilities.Util.loadMenu(this, this.controller);
+            
         }
 
         #region CRUD
@@ -199,7 +199,9 @@ namespace SynUp_Desktop.views
 
             this.gbContainer.MouseClick += new MouseEventHandler(this.frmTeamManagement_MouseClick);
             this.gbHelp.MouseClick += new MouseEventHandler(this.frmTeamManagement_MouseClick);
-            
+
+            utilities.Util.loadMenu(this, this.controller);
+
         }
 
         /// <summary>
@@ -313,7 +315,10 @@ namespace SynUp_Desktop.views
         private void btnAdd_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("Not implemented.\n#Poner ventana con los employees y el que se seleccione se añada");
-            Controller.EmployeeView.ShowDialog();
+            //Controller.EmployeeView.ShowDialog();
+            Controller.EmployeeView.BringToFront();
+            Controller.EmployeeView.Show();
+            
         }
 
         /// <summary>

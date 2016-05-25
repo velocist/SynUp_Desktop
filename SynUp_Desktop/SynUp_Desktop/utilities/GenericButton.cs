@@ -139,11 +139,11 @@ namespace SynUp_Desktop.utilities
         {
             if (isExit)
             {
-                if (Parent.Modal) //Para los management
+                /*if (Parent.Modal) //Para los management
                 {
                     Parent.Close();
                 }
-                else //Para las listas
+                else //Para las listas*/
                 {                    
                     Parent.Hide();                                        
                 }
