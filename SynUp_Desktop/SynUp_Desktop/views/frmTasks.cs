@@ -36,9 +36,7 @@ namespace SynUp_Desktop.views
 
         public frmTasks()
         {
-            InitializeComponent();
-
-           
+            InitializeComponent();           
         }
 
         /// <summary>

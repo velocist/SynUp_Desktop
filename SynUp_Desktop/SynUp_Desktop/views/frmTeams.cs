@@ -42,7 +42,6 @@ namespace SynUp_Desktop.views
         {
             //The grid with all the teams will load.
             this.frmTeams_Activated(sender, e);
-            this.dgvConfiguration();
 
             this.walkingControls();
             this.gbContainer.MouseClick += new MouseEventHandler(this.frmTeams_MouseClick);
@@ -58,7 +57,7 @@ namespace SynUp_Desktop.views
         private void frmTeams_Activated(object sender, EventArgs e)
         {
             //The grid with all the teams will load.
-            this.fillGrid();
+            this.dgvConfiguration();
         }
 
         /// <summary>
@@ -100,6 +99,8 @@ namespace SynUp_Desktop.views
         /// </summary>
         private void dgvConfiguration()
         {
+            fillGrid();
+
             //Form Common Configurations
             this.FormBorderStyle = FormBorderStyle.Fixed3D;
             this.MinimizeBox = false;

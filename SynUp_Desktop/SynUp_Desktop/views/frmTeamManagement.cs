@@ -193,7 +193,7 @@ namespace SynUp_Desktop.views
             this.MaximizeBox = false;
             
             this.frmTeamManagement_Activated(sender, e);
-            this.dgvConfiguration();
+            
 
             this.walkingControls();
 
@@ -229,6 +229,7 @@ namespace SynUp_Desktop.views
 
             //The grid with all the employees on team will load.
             this.fillDataGrid();
+            this.dgvConfiguration();
 
             //this._blHelp = false;
             _blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);

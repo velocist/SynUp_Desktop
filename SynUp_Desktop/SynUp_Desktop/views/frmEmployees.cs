@@ -46,8 +46,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void frmEmployees_Load(object sender, EventArgs e)
         {
-            //The grid with all the employees will load.
-            this.fillGridView();
+            //The grid with all the employees will load.            
             this.dgvConfiguration();
             //this.frmEmployees_Activated(sender, e);
 
@@ -75,7 +74,7 @@ namespace SynUp_Desktop.views
         private void frmEmployees_Activated(object sender, EventArgs e)
         {
             //The grid with all the employees will load.
-            this.fillGridView();
+            this.dgvConfiguration();
             this.dgvEmployees.ClearSelection(); // Clear selection rows.
             this.dgvEmployees.Refresh(); //Refresh the view.
         }
@@ -218,6 +217,8 @@ namespace SynUp_Desktop.views
         /// </summary>
         private void dgvConfiguration()
         {
+            this.fillGridView();
+
             this.cmbTeamsToAdd.DropDownStyle = ComboBoxStyle.DropDownList;
             this.cmbTeamsToAdd.SelectedItem = -1;
 
