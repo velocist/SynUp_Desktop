@@ -92,13 +92,13 @@ namespace SynUp_Desktop.utilities
         public static readonly string CREATE_TEAM_CORRETLY = String.Format(CREATE_SUCCESFULL, "team");
         public static readonly string CREATE_TASK_CORRETLY = String.Format(CREATE_SUCCESFULL, "task");
 
-        public static readonly string UPDATE_EMPLOYEE_CORRETLY = String.Format(CREATE_SUCCESFULL, "employee");
-        public static readonly string UPDATE_TEAM_CORRETLY = String.Format(CREATE_SUCCESFULL, "team");
-        public static readonly string UPDATE_TASK_CORRETLY = String.Format(CREATE_SUCCESFULL, "task");
+        public static readonly string UPDATE_EMPLOYEE_CORRETLY = String.Format(UPDATE_SUCCESFULL, "employee");
+        public static readonly string UPDATE_TEAM_CORRETLY = String.Format(UPDATE_SUCCESFULL, "team");
+        public static readonly string UPDATE_TASK_CORRETLY = String.Format(UPDATE_SUCCESFULL, "task");
 
-        public static readonly string DELETE_EMPLOYEE_CORRETLY = String.Format(CREATE_SUCCESFULL, "employee");
-        public static readonly string DELETE_TEAM_CORRETLY = String.Format(CREATE_SUCCESFULL, "team");
-        public static readonly string DELETE_TASK_CORRETLY = String.Format(CREATE_SUCCESFULL, "task");
+        public static readonly string DELETE_EMPLOYEE_CORRETLY = String.Format(DELETE_SUCCESFULL, "employee");
+        public static readonly string DELETE_TEAM_CORRETLY = String.Format(DELETE_SUCCESFULL, "team");
+        public static readonly string DELETE_TASK_CORRETLY = String.Format(DELETE_SUCCESFULL, "task");
 
         public static readonly string CREATE_EMPLOYEE_FAILED = String.Format(CREATE_FAILED, "employee");
         public static readonly string CREATE_TEAM_FAILED = String.Format(CREATE_FAILED, "team");
