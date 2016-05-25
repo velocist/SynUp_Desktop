@@ -67,12 +67,14 @@ namespace SynUp_Desktop.utilities
         public static readonly string INFO_BTN_MANAGEMENT = "Click here to view the details and edit the selected row.";
 
         //public static readonly string CONFIRMATION_CREATE_EMPLOYEE = "Are you sure you want to insert this employee?";
-        public static readonly string CONFIRMATION_UPDATE_EMPLOYEE = "Are you sure you want to update this employee?";
-        public static readonly string CONFIRMATION_DELETE_EMPLOYEE = "Are you sure you want to delete this employee?";
-        public static readonly string CONFIRMATION_UPDATE_TASK = "Are you sure you want to update this task?";
-        public static readonly string CONFIRMATION_DELETE_TASK = "Are you sure you want to cancell this task?";
-        public static readonly string CONFIRMATION_UPDATE_TEAM = "Are you sure you want to update this team?";
-        public static readonly string CONFIRMATION_DELETE_TEAM = "Are you sure you want to delete this team?";
+        private static readonly string ARE_U_SURE = "Are you sure you want to {0} this {1}";
+
+        public static readonly string CONFIRMATION_UPDATE_EMPLOYEE = String.Format(ARE_U_SURE, "update", "employee");//"Are you sure you want to update this employee?";
+        public static readonly string CONFIRMATION_DELETE_EMPLOYEE = String.Format(ARE_U_SURE, "delete", "employee");
+        public static readonly string CONFIRMATION_UPDATE_TASK = String.Format(ARE_U_SURE, "update", "task");
+        public static readonly string CONFIRMATION_DELETE_TASK = String.Format(ARE_U_SURE, "delete", "task");
+        public static readonly string CONFIRMATION_UPDATE_TEAM = String.Format(ARE_U_SURE, "update", "team");
+        public static readonly string CONFIRMATION_DELETE_TEAM = String.Format(ARE_U_SURE, "delete", "team");
 
         public static readonly string WARNING_DATEDIFF_STATISTICS = "End date must be bigger than the start date.";
         public static readonly string WARNING_UNSELECTED_STATISTICS = "Select a correct item from the expandable list.";
@@ -83,9 +85,9 @@ namespace SynUp_Desktop.utilities
         private static readonly string CREATE_SUCCESFULL = "The {0} has been created correctly.";
         private static readonly string UPDATE_SUCCESFULL = "The {0} has been updated correctly.";
         private static readonly string DELETE_SUCCESFULL = "The {0} has been deleted correctly.";
-        private static readonly string CREATE_FAILED = "The {0} hasn't been created correctly";
-        private static readonly string UPDATE_FAILED = "The {0} hasn't been updated correctly";
-        private static readonly string DELETE_FAILED = "The {0} hasn't been deleted correctly";
+        private static readonly string CREATE_FAILED = "The {0} hasn't been created.";
+        private static readonly string UPDATE_FAILED = "The {0} hasn't been updated.";
+        private static readonly string DELETE_FAILED = "The {0} hasn't been deleted.";
 
 
         public static readonly string CREATE_EMPLOYEE_CORRETLY = String.Format(CREATE_SUCCESFULL, "employee");
