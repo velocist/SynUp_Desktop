@@ -38,8 +38,7 @@ namespace SynUp_Desktop.views
         {
             InitializeComponent();
             maxHeight = this.MaximumSize.Height;
-            minHeight = this.MinimumSize.Height;
-            utilities.Util.loadMenu(this, this.controller);
+            minHeight = this.MinimumSize.Height;            
         }
 
         public Employee AuxEmployee;
@@ -363,6 +362,7 @@ namespace SynUp_Desktop.views
             this._blHelp = false;
 
             this.walkingControls();
+            utilities.Util.loadMenu(this, this.controller);
         }
 
         /// <summary>

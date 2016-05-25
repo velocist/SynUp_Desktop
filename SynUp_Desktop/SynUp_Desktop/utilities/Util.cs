@@ -19,7 +19,7 @@ namespace SynUp_Desktop.utilities
         public static bool confirmationDialog(string message, string titleForm)
         {
             return (MessageBox.Show(message, titleForm, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
-        }       
+        }
 
         /// <summary>
         /// Load the dynamic menu
@@ -30,7 +30,19 @@ namespace SynUp_Desktop.utilities
 
             //Creem el menú dinàmic
             MenuStrip menu = new MenuStrip();
-            pForm.Controls.Add(menu);
+
+            bool existant = false;
+
+            foreach (Control c in pForm.Controls)
+            {
+                if (c is MenuStrip)
+                {
+                    existant = true;
+                    break;
+                }
+            }
+
+            if(!existant)pForm.Controls.Add(menu);
 
             menu.BackColor = System.Drawing.Color.AliceBlue;
             menu.LayoutStyle = ToolStripLayoutStyle.Flow;
@@ -39,13 +51,14 @@ namespace SynUp_Desktop.utilities
             ToolStripMenuItem menuItem;
 
             //Menu principal
-            string[] options = new string[] { "Main", "Employees", "Teams", "Tasks", "Stadistics", "About", "Exit" };
+            string[] options = new string[] { "Main", "Employees", "Teams", "Tasks", "Statistics", "About", "Exit" };
 
             foreach (string opcio in options)
             {
                 menuItem = new ToolStripMenuItem(opcio, null, childClick);
                 menu.Items.Add(menuItem);
             }
+
             //if (opcio == "Main")
             //{
             //    menuItem = new ToolStripMenuItem(opcio, null);
@@ -104,33 +117,33 @@ namespace SynUp_Desktop.utilities
 
             if (sender.ToString().Equals("Main"))
             {
-                controllerSender.MainView.Show();
-                controllerSender.MainView.BringToFront();
+                controllerSender.MainView.ShowDialog();
+                //controllerSender.MainView.BringToFront();
             }
             else if (sender.ToString().Equals("Employees"))
             {
-                controllerSender.EmployeeView.Show();
-                controllerSender.EmployeeView.BringToFront();
+                controllerSender.EmployeeView.ShowDialog();
+                //controllerSender.EmployeeView.BringToFront();
             }
             else if (sender.ToString().Equals("Teams"))
             {
-                controllerSender.TeamsView.Show();
-                controllerSender.TeamsView.BringToFront();
+                controllerSender.TeamsView.ShowDialog();
+                //controllerSender.TeamsView.BringToFront();
             }
             else if (sender.ToString().Equals("Tasks"))
             {
-                controllerSender.TasksView.Show();
-                controllerSender.TasksView.BringToFront();
+                controllerSender.TasksView.ShowDialog();
+                //controllerSender.TasksView.BringToFront();
             }
-            else if (sender.ToString().Equals("Stadistics"))
+            else if (sender.ToString().Equals("Statistics"))
             {
-                controllerSender.StatisticsView.Show();
-                controllerSender.StatisticsView.BringToFront();
+                controllerSender.StatisticsView.ShowDialog();
+                //controllerSender.StatisticsView.BringToFront();
             }
             else if (sender.ToString().Equals("About"))
             {
-                controllerSender.AboutView.Show();
-                controllerSender.AboutView.BringToFront();
+                controllerSender.AboutView.ShowDialog();
+                //controllerSender.AboutView.BringToFront();
             }
             else if (sender.ToString().Equals("Exit"))
             {

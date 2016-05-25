@@ -42,7 +42,7 @@ namespace SynUp_Desktop.views
             InitializeComponent();
             minHeight = this.MinimumSize.Height;
             maxHeight = this.MaximumSize.Height;
-            utilities.Util.loadMenu(this, this.controller);
+            
         }
 
         /// <summary>
@@ -66,7 +66,9 @@ namespace SynUp_Desktop.views
             this.walkingControls();
             this.gbContainer.MouseClick += new MouseEventHandler(this.frmStatistics_MouseClick);
             this.gbHelp.MouseClick += new MouseEventHandler(this.frmStatistics_MouseClick);
-            
+
+            utilities.Util.loadMenu(this, this.controller);
+
         }
 
         /// <summary>
@@ -376,7 +378,7 @@ namespace SynUp_Desktop.views
             this.cmbRanking.Visible = false;
             this.dtpBegin.Visible = false;
             this.dtpEnd.Visible = false;
-            this.chtStatistics.Visible = false;
+            //this.chtStatistics.Visible = false;
 
             this.HelpMessage("", utilities.Help.changeIconMessage(3));
             _blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);
@@ -449,7 +451,7 @@ namespace SynUp_Desktop.views
             this.dtpBegin.Format = DateTimePickerFormat.Custom;
             this.dtpEnd.Format = DateTimePickerFormat.Custom;
 
-            this.chtStatistics.Visible = false;
+            //this.chtStatistics.Visible = false;
 
             this.dgvConfiguration();
         }

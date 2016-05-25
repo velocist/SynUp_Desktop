@@ -143,14 +143,14 @@ namespace SynUp_Desktop.utilities
                 {
                     Parent.Close();
                 }
-                else //Para las listas
+                else //Para las listas*/
                 {                    
                     Parent.Hide();                                        
                 }
-                clearFields();
                 //Parent.Close();
             }
-            else clearFields();
+
+            clearFields();
         }
 
         /// <summary>
