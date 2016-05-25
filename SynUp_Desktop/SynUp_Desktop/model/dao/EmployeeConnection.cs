@@ -137,22 +137,45 @@ namespace SynUp_Desktop.model.dao
 
                 if (_oEmployee != null) //If the employee has been found - meaning that it exists:
                 {
-                    tryAttach(context, _oEmployee);
-
-                    context.Employees.Remove(_oEmployee); //Will be deleted.
-                    if (commitChanges(context)) return _oEmployee; //If the changes are commited succesfully it will return the deleted Employee.
-                    else return null;
+                    if (checkRelations(_oEmployee))
+                    {
+                        tryAttach(context, _oEmployee);
+                        context.Employees.Remove(_oEmployee); //Will be deleted.
+                        if (commitChanges(context)) return _oEmployee; //If the changes are commited succesfully it will return the deleted Employee.
+                        else return null;
+                    }
                 }
-
             }
 
             return null;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static List<pojo.Employee> readAllEmployees()
         {
             return (from employee in new synupEntities().Employees select employee).ToList();
-        }         
+        }
+
+
+        public static bool checkRelations(Employee _employee)
+        {
+            using (var context = new synupEntities())
+            {
+                var query = from th in context.TeamHistories
+                            where th.id_employee.Equals(_employee.nif)
+                            select th;
+
+                foreach (var member in query)
+                {
+                    if (TeamHistoryConnection.deleteTeamHistory(member.id_employee, member.id_team) == null) return false;
+                }
+
+                return commitChanges(context);
+            }
+        }
 
         /// <summary>
         /// Attachs employees
@@ -179,8 +202,6 @@ namespace SynUp_Desktop.model.dao
             {
                 sb.Append(result[i].ToString("X2"));
             }
-
-
             return sb.ToString();
         }
 
