@@ -21,7 +21,7 @@ namespace SynUp_Desktop.utilities
         public static readonly string ERROR_VALIDATION_TASK = "The Code and/or the Name and/or the Priority date are empty. Fill the mandatory fields.";
         public static readonly string ERROR_VALIDATION_TEAM = "The code can't be empty. Fill the mandatory fields.";
 
-        public static readonly string INFO_NIF_EMPLOYEE =   "'Número Identificación Fiscal' It can't be empty and must be valid. " +
+        public static readonly string INFO_NIF_EMPLOYEE = "'Número Identificación Fiscal' It can't be empty and must be valid. " +
                                                             "To change the NIF contact with the database administrator.";
         public static readonly string INFO_NAME_EMPLOYEE = "Name of the employee.";
         public static readonly string INFO_SURNAME_EMPLOYEE = "Surname of the employee.";
@@ -46,6 +46,7 @@ namespace SynUp_Desktop.utilities
         public static readonly string INFO_NAME_TEAM = "Name of the team.";
         public static readonly string INFO_ADD_TEAM = "Add an employee to the team.";
         public static readonly string INFO_DELETE_TEAM = "Deletes the selected employee from the team.";
+        public static readonly string INFO_ON_TEAM = "This employee already exist on team";
 
         public static readonly string INFO_RESULTS_STATISTICS = "Results of the search.";
         public static readonly string INFO_FILTER_STATISTICS = "Select the filter you want to use for the search.";
@@ -69,14 +70,34 @@ namespace SynUp_Desktop.utilities
         public static readonly string CONFIRMATION_UPDATE_EMPLOYEE = "Are you sure you want to update this employee?";
         public static readonly string CONFIRMATION_DELETE_EMPLOYEE = "Are you sure you want to delete this employee?";
         public static readonly string CONFIRMATION_UPDATE_TASK = "Are you sure you want to update this task?";
-        public static readonly string CONFIRMATION_DELETE_TASK= "Are you sure you want to cancell this task?";
-        public static readonly string CONFIRMATION_UPDATE_TEAM= "Are you sure you want to update this team?";
-        public static readonly string CONFIRMATION_DELETE_TEAM= "Are you sure you want to delete this team?";
+        public static readonly string CONFIRMATION_DELETE_TASK = "Are you sure you want to cancell this task?";
+        public static readonly string CONFIRMATION_UPDATE_TEAM = "Are you sure you want to update this team?";
+        public static readonly string CONFIRMATION_DELETE_TEAM = "Are you sure you want to delete this team?";
 
         public static readonly string WARNING_DATEDIFF_STATISTICS = "End date must be bigger than the start date.";
         public static readonly string WARNING_UNSELECTED_STATISTICS = "Select a correct item from the expandable list.";
         public static readonly string WARNING_EMPTY_STATISTICS = "No items where retrieved.";
 
         public static readonly string CONFIRMATION_EXIT = "Are you sure you want to exit?";
+
+        private static readonly string CREATE_SUCCESFULL = "The {0} has been created correctly.";
+        private static readonly string UPDATE_SUCCESFULL = "The {0} has been updated correctly.";
+        private static readonly string DELETE_SUCCESFULL = "The {0} has been deleted correctly.";
+        private static readonly string CREATE_FAILED = "";
+        private static readonly string UPDATE_FAILED = "";
+        private static readonly string DELETE_FAILED = "";
+
+
+        public static readonly string CREATE_EMPLOYEE_CORRETLY = String.Format(CREATE_SUCCESFULL, "employee");
+        public static readonly string CREATE_TEAM_CORRETLY = "The team has been create correctly.";
+        public static readonly string CREATE_TASK_CORRETLY = "The employee has been create correctly.";
+
+        public static readonly string UPDATE_EMPLOYEE_CORRETLY = "The employee has been update correctly.";
+        public static readonly string UPDATE_TEAM_CORRETLY = "The team has been update correctly.";
+        public static readonly string UPDATE_TASK_CORRETLY = "The task has been update correctly.";
+
+        public static readonly string DELETE_EMPLOYEE_CORRETLY = "The employee has been delete correctly.";
+        public static readonly string DELETE_TEAM_CORRETLY = "The team has been delete correctly.";
+        public static readonly string DELETE_TASK_CORRETLY = "The task has been delete correctly.";        
     }
 }
