@@ -48,8 +48,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void frmTasks_Load(object sender, EventArgs e)
         {
-            this.fillGrid();
-            this.dgvConfiguration();
+            this.frmTasks_Activated(sender, e);
 
             //Form Common Configurations
             FormBorderStyle = FormBorderStyle.Fixed3D;
@@ -71,8 +70,9 @@ namespace SynUp_Desktop.views
         private void frmTasks_Activated(object sender, EventArgs e)
         {
             this.fillGrid();
+            this.dgvConfiguration();
         }
-        
+
         /// <summary>
         /// Shows the management view window of the tasks.
         /// </summary>
@@ -106,7 +106,7 @@ namespace SynUp_Desktop.views
             this.dgvTasks.ClearSelection();
             this.dgvTasks.Refresh();
         }
-        
+
         /// <summary>
         /// DataGridView Configuration
         /// </summary>
@@ -141,7 +141,7 @@ namespace SynUp_Desktop.views
             dgvTasks.RowHeadersVisible = false; // We hide the rowheader           
 
         }
-        
+
         /// <summary>
         /// Method that fill the grid
         /// </summary>
