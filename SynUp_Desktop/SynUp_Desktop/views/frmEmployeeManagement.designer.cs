@@ -210,11 +210,11 @@
             this.gbContainer.Controls.Add(this.lblAdress);
             this.gbContainer.Controls.Add(this.txtName);
             this.gbContainer.Controls.Add(this.txtNif);
-            this.gbContainer.Location = new System.Drawing.Point(16, 28);
+            this.gbContainer.Location = new System.Drawing.Point(10, 25);
             this.gbContainer.Margin = new System.Windows.Forms.Padding(4);
             this.gbContainer.Name = "gbContainer";
             this.gbContainer.Padding = new System.Windows.Forms.Padding(4);
-            this.gbContainer.Size = new System.Drawing.Size(593, 222);
+            this.gbContainer.Size = new System.Drawing.Size(600, 220);
             this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "Employee Data";
@@ -282,9 +282,8 @@
             this.lblHelpMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHelpMessage.MaximumSize = new System.Drawing.Size(573, 49);
             this.lblHelpMessage.Name = "lblHelpMessage";
-            this.lblHelpMessage.Size = new System.Drawing.Size(108, 17);
+            this.lblHelpMessage.Size = new System.Drawing.Size(0, 17);
             this.lblHelpMessage.TabIndex = 0;
-            this.lblHelpMessage.Text = "Message help...";
             // 
             // gbHelp
             // 

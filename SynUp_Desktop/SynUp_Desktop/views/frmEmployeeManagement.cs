@@ -365,6 +365,8 @@ namespace SynUp_Desktop.views
             this._blHelp = false;
 
             this.walkingControls();
+
+            utilities.Util.loadMenu(this, this.controller);
         }
 
         /// <summary>

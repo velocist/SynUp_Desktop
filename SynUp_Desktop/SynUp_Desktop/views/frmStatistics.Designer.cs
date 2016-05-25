@@ -95,7 +95,7 @@
             this.dgvStadistics.Location = new System.Drawing.Point(8, 321);
             this.dgvStadistics.Margin = new System.Windows.Forms.Padding(4);
             this.dgvStadistics.Name = "dgvStadistics";
-            this.dgvStadistics.Size = new System.Drawing.Size(975, 200);
+            this.dgvStadistics.Size = new System.Drawing.Size(975, 208);
             this.dgvStadistics.TabIndex = 0;
             // 
             // gbContainer
@@ -118,11 +118,11 @@
             this.gbContainer.Controls.Add(this.lblFilter);
             this.gbContainer.Controls.Add(this.cmbFilter);
             this.gbContainer.Controls.Add(this.dgvStadistics);
-            this.gbContainer.Location = new System.Drawing.Point(16, 40);
+            this.gbContainer.Location = new System.Drawing.Point(10, 25);
             this.gbContainer.Margin = new System.Windows.Forms.Padding(4);
             this.gbContainer.Name = "gbContainer";
             this.gbContainer.Padding = new System.Windows.Forms.Padding(4);
-            this.gbContainer.Size = new System.Drawing.Size(996, 529);
+            this.gbContainer.Size = new System.Drawing.Size(997, 537);
             this.gbContainer.TabIndex = 0;
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "List of Statistics";
@@ -296,12 +296,12 @@
             // lblHelpMessage
             // 
             this.lblHelpMessage.AutoSize = true;
-            this.lblHelpMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHelpMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.lblHelpMessage.Location = new System.Drawing.Point(47, 27);
             this.lblHelpMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHelpMessage.MaximumSize = new System.Drawing.Size(573, 49);
             this.lblHelpMessage.Name = "lblHelpMessage";
-            this.lblHelpMessage.Size = new System.Drawing.Size(82, 13);
+            this.lblHelpMessage.Size = new System.Drawing.Size(108, 17);
             this.lblHelpMessage.TabIndex = 0;
             this.lblHelpMessage.Text = "Message help...";
             // 
