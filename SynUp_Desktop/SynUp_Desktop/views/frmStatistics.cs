@@ -378,7 +378,7 @@ namespace SynUp_Desktop.views
             this.cmbRanking.Visible = false;
             this.dtpBegin.Visible = false;
             this.dtpEnd.Visible = false;
-            this.chtStatistics.Visible = false;
+            //this.chtStatistics.Visible = false;
 
             this.HelpMessage("", utilities.Help.changeIconMessage(3));
             _blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);
@@ -451,7 +451,7 @@ namespace SynUp_Desktop.views
             this.dtpBegin.Format = DateTimePickerFormat.Custom;
             this.dtpEnd.Format = DateTimePickerFormat.Custom;
 
-            this.chtStatistics.Visible = false;
+            //this.chtStatistics.Visible = false;
 
             this.dgvConfiguration();
         }
