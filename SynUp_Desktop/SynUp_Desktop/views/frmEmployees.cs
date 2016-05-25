@@ -168,6 +168,7 @@ namespace SynUp_Desktop.views
                     String _strSelectedRowCode = _cell.ToString(); // Recover the code
                     model.pojo.Employee _oSelectedEmployee = Controller.EmployeeService.readEmployee(_strSelectedRowCode); // We look for the employee nif
 
+                    //cmbTeamsToAdd.SelectedItem = Controller.TeamService.getTeamOfEmployee(_oSelectedEmployee.nif);
                 }
             }
             else
