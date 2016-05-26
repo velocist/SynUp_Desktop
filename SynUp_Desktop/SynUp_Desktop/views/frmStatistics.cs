@@ -42,7 +42,7 @@ namespace SynUp_Desktop.views
             InitializeComponent();
             minHeight = this.MinimumSize.Height;
             maxHeight = this.MaximumSize.Height;
-            
+
         }
 
         /// <summary>
@@ -55,12 +55,12 @@ namespace SynUp_Desktop.views
             this.hideAllComponents();
             this.init();
             this._blHelp = false;
-            
+
             this.walkingControls();
             this.gbContainer.MouseClick += new MouseEventHandler(this.frmStatistics_MouseClick);
             this.gbHelp.MouseClick += new MouseEventHandler(this.frmStatistics_MouseClick);
 
-            utilities.Util.loadMenu(this, this.controller);
+            Util.loadMenu(this, this.controller);
 
         }
 
@@ -331,18 +331,7 @@ namespace SynUp_Desktop.views
         /// </summary>
         private void dgvConfiguration()
         {
-            // DatagridView Common Configuration
-            this.dgvStadistics.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
-            this.dgvStadistics.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row     
-            this.dgvStadistics.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            this.dgvStadistics.AllowUserToAddRows = false; // Can't add rows
-            this.dgvStadistics.AllowUserToDeleteRows = false; // Can't delete rows
-            this.dgvStadistics.AllowUserToOrderColumns = false; //Can order columns
-            this.dgvStadistics.AllowUserToResizeRows = false; //Can't resize columns
-            this.dgvStadistics.Cursor = Cursors.Hand; // Cursor hand type            
-            this.dgvStadistics.MultiSelect = false; //Can't multiselect
-            this.dgvStadistics.RowTemplate.ReadOnly = true;
-            this.dgvStadistics.RowHeadersVisible = false; // We hide the rowheader           
+            Util.dgvCommonConfiguration(this.dgvStadistics);
 
         }
 

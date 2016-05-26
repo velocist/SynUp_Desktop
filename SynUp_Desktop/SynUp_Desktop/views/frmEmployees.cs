@@ -49,7 +49,7 @@ namespace SynUp_Desktop.views
             //The grid with all the employees will load.            
             this.dgvConfiguration();
             //this.frmEmployees_Activated(sender, e);
-            
+
             //The combo with all the teams will load.
             this.fillComboTeams();
 
@@ -58,7 +58,7 @@ namespace SynUp_Desktop.views
             this.gbContainer.MouseClick += new MouseEventHandler(this.frmEmployees_MouseClick);
             this.gbHelp.MouseClick += new MouseEventHandler(this.frmEmployees_MouseClick);
 
-            utilities.Util.loadMenu(this, this.controller);
+            Util.loadMenu(this, this.controller);
 
         }
 
@@ -220,6 +220,8 @@ namespace SynUp_Desktop.views
             this.cmbTeamsToAdd.DropDownStyle = ComboBoxStyle.DropDownList;
             this.cmbTeamsToAdd.SelectedItem = -1;
 
+            Util.dgvCommonConfiguration(this.dgvEmployees);
+
             // DataGridView Configuration
             //this.dgvEmployees.Columns[0].Visible = false; // We hide id column
             this.dgvEmployees.Columns[0].HeaderText = "NIF";
@@ -237,17 +239,17 @@ namespace SynUp_Desktop.views
             //this.dgvEmployees.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader; 
 
             // DatagridView Common Configuration 
-            this.dgvEmployees.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
-            this.dgvEmployees.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row     
-            this.dgvEmployees.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            this.dgvEmployees.AllowUserToAddRows = false; // Can't add rows
-            this.dgvEmployees.AllowUserToDeleteRows = false; // Can't delete rows
-            this.dgvEmployees.AllowUserToOrderColumns = false; //Can order columns
-            this.dgvEmployees.AllowUserToResizeRows = false; //Can't resize columns
-            this.dgvEmployees.Cursor = Cursors.Hand; // Cursor hand type            
-            this.dgvEmployees.MultiSelect = false; //Can't multiselect
-            this.dgvEmployees.RowTemplate.ReadOnly = true;
-            this.dgvEmployees.RowHeadersVisible = false; // We hide the rowheader           
+            //this.dgvEmployees.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
+            //this.dgvEmployees.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row     
+            //this.dgvEmployees.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            //this.dgvEmployees.AllowUserToAddRows = false; // Can't add rows
+            //this.dgvEmployees.AllowUserToDeleteRows = false; // Can't delete rows
+            //this.dgvEmployees.AllowUserToOrderColumns = false; //Can order columns
+            //this.dgvEmployees.AllowUserToResizeRows = false; //Can't resize columns
+            //this.dgvEmployees.Cursor = Cursors.Hand; // Cursor hand type            
+            //this.dgvEmployees.MultiSelect = false; //Can't multiselect
+            //this.dgvEmployees.RowTemplate.ReadOnly = true;
+            //this.dgvEmployees.RowHeadersVisible = false; // We hide the rowheader           
 
         }
 

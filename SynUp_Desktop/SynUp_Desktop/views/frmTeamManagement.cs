@@ -86,13 +86,18 @@ namespace SynUp_Desktop.views
                 if (_blCreate)
                 {
                     clMessageBox.showMessage(Literal.CREATE_TEAM_CORRETLY, true, this);
-                    blAllAddCorrects = true;
-                    AuxTeam = Controller.TeamService.readTeam(_strCode);
+                    if ((((System.Windows.Forms.Control)sender).Name).Equals("btnAdd"))
+                    {
+                        blAllAddCorrects = true;
+                        AuxTeam = Controller.TeamService.readTeam(_strCode);
+                    }
+
                 }
                 else
                 {
                     clMessageBox.showMessage(Literal.CREATE_TEAM_FAILED, false, this);
                     blAllAddCorrects = false;
+
                 }
             }
         }
@@ -190,7 +195,7 @@ namespace SynUp_Desktop.views
         {
             bool _valid = checkCode();
 
-            if (!_valid) this.HelpMessage(Literal.ERROR_VALIDATION_TEAM, (int)utilities.Help.HelpIcon.ERROR); ;
+            if (!_valid) this.HelpMessage(Literal.ERROR_VALIDATION_TEAM, (int)utilities.Help.HelpIcon.ERROR);
 
             return _valid;
         }
@@ -211,7 +216,7 @@ namespace SynUp_Desktop.views
             this.gbContainer.MouseClick += new MouseEventHandler(this.frmTeamManagement_MouseClick);
             this.gbHelp.MouseClick += new MouseEventHandler(this.frmTeamManagement_MouseClick);
 
-            utilities.Util.loadMenu(this, this.controller);
+            Util.loadMenu(this, this.controller);
 
         }
 
@@ -242,7 +247,6 @@ namespace SynUp_Desktop.views
             this.fillDataGrid();
             this.dgvConfiguration();
 
-            //this._blHelp = false;
             _blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);
         }
 
@@ -281,9 +285,7 @@ namespace SynUp_Desktop.views
             this.txtCode.Enabled = true;
             this.btnDeleteTeam.Enabled = false;
             this.btnUpdateTeam.Enabled = false;
-
-            //dgvEmployeesOnTeam.DataSource = null;
-            //dgvEmployeesOnTeam.Refresh();
+            
             _blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);
         }
 
@@ -320,8 +322,6 @@ namespace SynUp_Desktop.views
 
             if (this.dgvEmployeesOnTeam.SelectedRows.Count >= 1)//If the row selected
             {
-
-
                 DataGridViewSelectedRowCollection _selected = this.dgvEmployeesOnTeam.SelectedRows;
 
                 foreach (DataGridViewRow _row in _selected)
@@ -349,7 +349,10 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            this.btnCreateTeam_Click(sender, e);
+            if (AuxTeam == null)
+            {
+                this.btnCreateTeam_Click(sender, e);
+            }
             if (blAllAddCorrects)
             {
                 this.Controller.EmployeeSelectionView.AuxTeam = this.AuxTeam;
@@ -362,20 +365,8 @@ namespace SynUp_Desktop.views
         /// </summary>
         private void dgvConfiguration()
         {
-            // DatagridView Common Configuration 
-            this.dgvEmployeesOnTeam.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
-            this.dgvEmployeesOnTeam.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row            
-            this.dgvEmployeesOnTeam.AllowUserToAddRows = false; // Can't add rows
-            this.dgvEmployeesOnTeam.AllowUserToDeleteRows = false; // Can't delete rows
-            this.dgvEmployeesOnTeam.AllowUserToOrderColumns = false; //Can't order columns
-            this.dgvEmployeesOnTeam.AllowUserToResizeRows = false; //Can't resize columns
-            this.dgvEmployeesOnTeam.Cursor = Cursors.Hand; // Cursor hand type            
-            this.dgvEmployeesOnTeam.MultiSelect = true; //Can't multiselect
-            this.dgvEmployeesOnTeam.RowTemplate.ReadOnly = true;
-            this.dgvEmployeesOnTeam.RowHeadersVisible = false; // We hide the rowheader
-
-            //Column configuration
-            //dgvEmployeesOnTeam.Columns[0].Visible = false;       
+            Util.dgvCommonConfiguration(this.dgvEmployeesOnTeam);
+            this.dgvEmployeesOnTeam.MultiSelect = true;
         }
 
         /// <summary>
@@ -427,7 +418,6 @@ namespace SynUp_Desktop.views
             _blHelp = utilities.Help.hideShowHelp(_blHelp, this, this.MinimumSize.Height, this.MaximumSize.Height);
             if (_blHelp) this.HelpMessage("", (int)utilities.Help.HelpIcon.NONE);
         }
-
 
         /// <summary>
         /// Event that runs when the mouse leaves labels

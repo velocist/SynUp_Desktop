@@ -105,6 +105,7 @@ namespace SynUp_Desktop.views
         private void frmEmployeeSelection_Load(object sender, EventArgs e)
         {
             this.dgvConfiguration();
+
         }
 
         /// <summary>
@@ -141,20 +142,8 @@ namespace SynUp_Desktop.views
             this.dgvEmployees.Columns[9].Visible = false; // TaskHistories
 
             this.dgvEmployees.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
-            //this.dgvEmployees.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader; 
 
-            // DatagridView Common Configuration 
-            this.dgvEmployees.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
-            this.dgvEmployees.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row     
-            this.dgvEmployees.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            this.dgvEmployees.AllowUserToAddRows = false; // Can't add rows
-            this.dgvEmployees.AllowUserToDeleteRows = false; // Can't delete rows
-            this.dgvEmployees.AllowUserToOrderColumns = false; //Can order columns
-            this.dgvEmployees.AllowUserToResizeRows = false; //Can't resize columns
-            this.dgvEmployees.Cursor = Cursors.Hand; // Cursor hand type            
-            this.dgvEmployees.MultiSelect = true; //Can't multiselect
-            this.dgvEmployees.RowTemplate.ReadOnly = true;
-            this.dgvEmployees.RowHeadersVisible = false; // We hide the rowheader           
+            Util.dgvCommonConfiguration(this.dgvEmployees);    
 
         }
 

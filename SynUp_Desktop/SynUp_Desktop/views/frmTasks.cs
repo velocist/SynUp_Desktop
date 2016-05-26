@@ -36,7 +36,7 @@ namespace SynUp_Desktop.views
 
         public frmTasks()
         {
-            InitializeComponent();           
+            InitializeComponent();
         }
 
         /// <summary>
@@ -46,14 +46,14 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void frmTasks_Load(object sender, EventArgs e)
         {
-            this.frmTasks_Activated(sender, e);
-            
+            this.frmTasks_Activated(sender, e); //The grid with all the tasks will load.
+
             this.walkingControls();
 
             this.gbContainer.MouseClick += new MouseEventHandler(this.frmTasks_MouseClick);
             this.gbHelp.MouseClick += new MouseEventHandler(this.frmTasks_MouseClick);
 
-            utilities.Util.loadMenu(this, this.controller);
+            Util.loadMenu(this, this.controller);
 
         }
 
@@ -122,18 +122,7 @@ namespace SynUp_Desktop.views
             dgvTasks.Columns[9].Visible = false; // HeaderText = "Team";
             dgvTasks.Columns[10].Visible = false; // HeaderText = "Task Histories";
 
-            // DatagridView Common Configuration 
-            dgvTasks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
-            dgvTasks.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row     
-            dgvTasks.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvTasks.AllowUserToAddRows = false; // Can't add rows
-            dgvTasks.AllowUserToDeleteRows = false; // Can't delete rows
-            dgvTasks.AllowUserToOrderColumns = false; //Can order columns
-            dgvTasks.AllowUserToResizeRows = false; //Can't resize columns
-            dgvTasks.Cursor = Cursors.Hand; // Cursor hand type            
-            dgvTasks.MultiSelect = false; //Can't multiselect
-            dgvTasks.RowTemplate.ReadOnly = true;
-            dgvTasks.RowHeadersVisible = false; // We hide the rowheader           
+            Util.dgvCommonConfiguration(this.dgvTasks); // DatagridView Common Configuration 
 
         }
 

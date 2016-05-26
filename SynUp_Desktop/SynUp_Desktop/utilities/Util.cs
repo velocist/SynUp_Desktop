@@ -10,7 +10,7 @@ namespace SynUp_Desktop.utilities
     public static class Util
     {
         private static controller.Controller controllerSender;
-        
+
 
         /// <summary>
         /// Load the dynamic menu
@@ -33,7 +33,7 @@ namespace SynUp_Desktop.utilities
                 }
             }
 
-            if(!existant)pForm.Controls.Add(menu);
+            if (!existant) pForm.Controls.Add(menu);
 
             menu.BackColor = System.Drawing.Color.AliceBlue;
             menu.LayoutStyle = ToolStripLayoutStyle.Flow;
@@ -50,13 +50,36 @@ namespace SynUp_Desktop.utilities
                 menu.Items.Add(menuItem);
             }
 
-            //Change backColor of form
+
+            formCommonConfiguration(pForm);
+            
+        }
+
+        public static void dgvCommonConfiguration(DataGridView pDataGrid)
+        {
+            // DatagridView Common Configuration             
+            pDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
+            pDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row      
+            pDataGrid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            pDataGrid.AllowUserToAddRows = false; // Can't add rows
+            pDataGrid.AllowUserToDeleteRows = false; // Can't delete rows
+            pDataGrid.AllowUserToOrderColumns = false; //Can't order columns
+            pDataGrid.AllowUserToResizeRows = false; //Can't resize columns
+            pDataGrid.Cursor = Cursors.Hand; // Cursor hand type            
+            pDataGrid.MultiSelect = false; //Can't multiselect
+            pDataGrid.RowTemplate.ReadOnly = true;
+            pDataGrid.RowHeadersVisible = false; // We hide the rowheader
+            pDataGrid.AutoResizeColumns(); //Autoresize columns
+
+        }
+
+        public static void formCommonConfiguration(Form pForm)
+        {
             //Form Common Configurations
             pForm.FormBorderStyle = FormBorderStyle.Fixed3D;
             pForm.MinimizeBox = false;
             pForm.MaximizeBox = false;
-            pForm.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            
+            pForm.BackColor = System.Drawing.SystemColors.InactiveCaption; //Change backColor of form
         }
 
         /// <summary>
@@ -66,42 +89,38 @@ namespace SynUp_Desktop.utilities
         /// <param name="e"></param>
         private static void childClick(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 if (sender.ToString().Equals("Main"))
                 {
                     controllerSender.MainView.ShowDialog();
-                    //controllerSender.MainView.BringToFront();
                 }
                 else if (sender.ToString().Equals("Employees"))
                 {
                     controllerSender.EmployeeView.ShowDialog();
-                    //controllerSender.EmployeeView.BringToFront();
                 }
                 else if (sender.ToString().Equals("Teams"))
                 {
                     controllerSender.TeamsView.ShowDialog();
-                    //controllerSender.TeamsView.BringToFront();
                 }
                 else if (sender.ToString().Equals("Tasks"))
                 {
                     controllerSender.TasksView.ShowDialog();
-                    //controllerSender.TasksView.BringToFront();
                 }
                 else if (sender.ToString().Equals("Statistics"))
                 {
                     controllerSender.StatisticsView.ShowDialog();
-                    //controllerSender.StatisticsView.BringToFront();
                 }
                 else if (sender.ToString().Equals("About"))
                 {
                     controllerSender.AboutView.ShowDialog();
-                    //controllerSender.AboutView.BringToFront();
                 }
                 else if (sender.ToString().Equals("Exit"))
                 {
                     if (clMessageBox.confirmationDialog(Literal.CONFIRMATION_EXIT, "SynUp")) Application.Exit();
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 //MessageBox.Show("This view is already opened.");
             }

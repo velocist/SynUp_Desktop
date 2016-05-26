@@ -39,14 +39,15 @@ namespace SynUp_Desktop.views
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void frmTeams_Load(object sender, EventArgs e)
-        {
-            //The grid with all the teams will load.
-            this.frmTeams_Activated(sender, e);
+        {            
+            this.frmTeams_Activated(sender, e); //The grid with all the teams will load.
 
             this.walkingControls();
+
             this.gbContainer.MouseClick += new MouseEventHandler(this.frmTeams_MouseClick);
             this.gbHelp.MouseClick += new MouseEventHandler(this.frmTeams_MouseClick);
-            utilities.Util.loadMenu(this, this.controller);
+
+            Util.loadMenu(this, this.controller);
         }
 
         /// <summary>
@@ -101,32 +102,15 @@ namespace SynUp_Desktop.views
         {
             fillGrid();
 
-            //Form Common Configurations
-            //this.FormBorderStyle = FormBorderStyle.Fixed3D;
-            //this.MinimizeBox = false;
-            //this.MaximizeBox = false;
-
             //Column configuration
-
             this.dgvTeams.Columns[0].HeaderText = "Code"; // We change the column name
             this.dgvTeams.Columns[1].HeaderText = "Name";
             this.dgvTeams.Columns[2].Visible = false;
             this.dgvTeams.Columns[3].Visible = false;
 
-            // DatagridView Common Configuration 
-
             this.dgvTeams.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dgvTeams.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
-            this.dgvTeams.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row            
-            this.dgvTeams.AllowUserToAddRows = false; // Can't add rows
-            this.dgvTeams.AllowUserToDeleteRows = false; // Can't delete rows
-            this.dgvTeams.AllowUserToOrderColumns = false; //Can't order columns
-            this.dgvTeams.AllowUserToResizeRows = false; //Can't resize columns
-            this.dgvTeams.Cursor = Cursors.Hand; // Cursor hand type            
-            this.dgvTeams.MultiSelect = false; //Can't multiselect
-            this.dgvTeams.RowTemplate.ReadOnly = true;
-            this.dgvTeams.RowHeadersVisible = false; // We hide the rowheader
-            this.dgvTeams.AutoResizeColumns();
+
+            Util.dgvCommonConfiguration(this.dgvTeams);
         }
 
         /// <summary>
