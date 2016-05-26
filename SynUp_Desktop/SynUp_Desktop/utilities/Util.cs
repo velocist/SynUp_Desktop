@@ -61,40 +61,44 @@ namespace SynUp_Desktop.utilities
         /// <param name="e"></param>
         private static void childClick(object sender, EventArgs e)
         {
-
-            if (sender.ToString().Equals("Main"))
+            try {
+                if (sender.ToString().Equals("Main"))
+                {
+                    controllerSender.MainView.ShowDialog();
+                    //controllerSender.MainView.BringToFront();
+                }
+                else if (sender.ToString().Equals("Employees"))
+                {
+                    controllerSender.EmployeeView.ShowDialog();
+                    //controllerSender.EmployeeView.BringToFront();
+                }
+                else if (sender.ToString().Equals("Teams"))
+                {
+                    controllerSender.TeamsView.ShowDialog();
+                    //controllerSender.TeamsView.BringToFront();
+                }
+                else if (sender.ToString().Equals("Tasks"))
+                {
+                    controllerSender.TasksView.ShowDialog();
+                    //controllerSender.TasksView.BringToFront();
+                }
+                else if (sender.ToString().Equals("Statistics"))
+                {
+                    controllerSender.StatisticsView.ShowDialog();
+                    //controllerSender.StatisticsView.BringToFront();
+                }
+                else if (sender.ToString().Equals("About"))
+                {
+                    controllerSender.AboutView.ShowDialog();
+                    //controllerSender.AboutView.BringToFront();
+                }
+                else if (sender.ToString().Equals("Exit"))
+                {
+                    if (clMessageBox.confirmationDialog(Literal.CONFIRMATION_EXIT, "SynUp")) Application.Exit();
+                }
+            } catch (Exception ex)
             {
-                controllerSender.MainView.ShowDialog();
-                //controllerSender.MainView.BringToFront();
-            }
-            else if (sender.ToString().Equals("Employees"))
-            {
-                controllerSender.EmployeeView.ShowDialog();
-                //controllerSender.EmployeeView.BringToFront();
-            }
-            else if (sender.ToString().Equals("Teams"))
-            {
-                controllerSender.TeamsView.ShowDialog();
-                //controllerSender.TeamsView.BringToFront();
-            }
-            else if (sender.ToString().Equals("Tasks"))
-            {
-                controllerSender.TasksView.ShowDialog();
-                //controllerSender.TasksView.BringToFront();
-            }
-            else if (sender.ToString().Equals("Statistics"))
-            {
-                controllerSender.StatisticsView.ShowDialog();
-                //controllerSender.StatisticsView.BringToFront();
-            }
-            else if (sender.ToString().Equals("About"))
-            {
-                controllerSender.AboutView.ShowDialog();
-                //controllerSender.AboutView.BringToFront();
-            }
-            else if (sender.ToString().Equals("Exit"))
-            {
-                if (clMessageBox.confirmationDialog(Literal.CONFIRMATION_EXIT, "SynUp")) Application.Exit();
+                //MessageBox.Show("This view is already opened.");
             }
         }
     }
