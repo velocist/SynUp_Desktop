@@ -46,7 +46,7 @@ namespace SynUp_Desktop.utilities
         public static readonly string INFO_NAME_TEAM = "Name of the team.";
         public static readonly string INFO_ADD_TEAM = "Add an employee to the team.";
         public static readonly string INFO_DELETE_TEAM = "Deletes the selected employee from the team.";
-        public static readonly string INFO_ON_TEAM = "This employee already exist on team";
+        public static readonly string INFO_ON_TEAM = "This employee already exist on the team";
 
         public static readonly string INFO_RESULTS_STATISTICS = "Results of the search.";
         public static readonly string INFO_FILTER_STATISTICS = "Select the filter you want to use for the search.";
@@ -67,7 +67,7 @@ namespace SynUp_Desktop.utilities
         public static readonly string INFO_BTN_MANAGEMENT = "Click here to view the details and edit the selected row.";
 
         //public static readonly string CONFIRMATION_CREATE_EMPLOYEE = "Are you sure you want to insert this employee?";
-        private static readonly string ARE_U_SURE = "Are you sure you want to {0} this {1}";
+        private static readonly string ARE_U_SURE = "Are you sure you want to {0} this {1}?";
 
         public static readonly string CONFIRMATION_UPDATE_EMPLOYEE = String.Format(ARE_U_SURE, "update", "employee");//"Are you sure you want to update this employee?";
         public static readonly string CONFIRMATION_DELETE_EMPLOYEE = String.Format(ARE_U_SURE, "delete", "employee");
@@ -88,6 +88,8 @@ namespace SynUp_Desktop.utilities
         private static readonly string CREATE_FAILED = "The {0} hasn't been created.";
         private static readonly string UPDATE_FAILED = "The {0} hasn't been updated.";
         private static readonly string DELETE_FAILED = "The {0} hasn't been deleted.";
+
+        public static readonly string ADD_EMPLOYEE_TO_TEAM_SUCCESFULL = "The employee has been added to the team succesfully.";
 
 
         public static readonly string CREATE_EMPLOYEE_CORRETLY = String.Format(CREATE_SUCCESFULL, "employee");

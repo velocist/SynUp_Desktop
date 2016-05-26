@@ -139,7 +139,7 @@ namespace SynUp_Desktop.views
                     if (_oCurrentTeam == null)
                     {
                         this.addToTeam(_oSelectedEmployee, _oTeam);
-                        clMessageBox.showMessage(Literal.INFO_ADD_TEAM, true, this);
+                        clMessageBox.showMessage(Literal.ADD_EMPLOYEE_TO_TEAM_SUCCESFULL, true, this);
                     }
                     else
                     {
