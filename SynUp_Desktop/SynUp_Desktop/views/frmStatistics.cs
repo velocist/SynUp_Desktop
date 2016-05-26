@@ -53,16 +53,9 @@ namespace SynUp_Desktop.views
         private void frmStatistics_Load(object sender, EventArgs e)
         {
             this.hideAllComponents();
-
             this.init();
-
             this._blHelp = false;
-
-            //Configurates form
-            this.FormBorderStyle = FormBorderStyle.Fixed3D;
-            this.MinimizeBox = false;
-            this.MaximizeBox = false;
-
+            
             this.walkingControls();
             this.gbContainer.MouseClick += new MouseEventHandler(this.frmStatistics_MouseClick);
             this.gbHelp.MouseClick += new MouseEventHandler(this.frmStatistics_MouseClick);

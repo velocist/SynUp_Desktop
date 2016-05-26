@@ -49,12 +49,7 @@ namespace SynUp_Desktop.views
             //The grid with all the employees will load.            
             this.dgvConfiguration();
             //this.frmEmployees_Activated(sender, e);
-
-            //Form Common Configurations
-            //this.FormBorderStyle = FormBorderStyle.Fixed3D;
-            //this.MinimizeBox = false;
-            //this.MaximizeBox = false;
-
+            
             //The combo with all the teams will load.
             this.fillComboTeams();
 

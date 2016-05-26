@@ -47,12 +47,7 @@ namespace SynUp_Desktop.views
         private void frmTasks_Load(object sender, EventArgs e)
         {
             this.frmTasks_Activated(sender, e);
-
-            //Form Common Configurations
-            FormBorderStyle = FormBorderStyle.Fixed3D;
-            this.MinimizeBox = false;
-            this.MaximizeBox = false;
-
+            
             this.walkingControls();
 
             this.gbContainer.MouseClick += new MouseEventHandler(this.frmTasks_MouseClick);

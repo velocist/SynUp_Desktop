@@ -332,10 +332,6 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void frmEmployeeManagement_Load(object sender, EventArgs e)
         {
-            //Form Common Configurations
-            this.FormBorderStyle = FormBorderStyle.Fixed3D;
-            this.MinimizeBox = false;
-            this.MaximizeBox = false;
 
             if (AuxEmployee != null)
             {
