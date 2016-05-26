@@ -64,7 +64,7 @@ namespace SynUp_Desktop.views
             InitializeComponent();
             minHeight = this.MinimumSize.Height;
             maxHeight = this.MaximumSize.Height;
-            
+
         }
 
         #region CRUD
@@ -82,6 +82,14 @@ namespace SynUp_Desktop.views
             if (validateValues())
             {
                 Boolean _blCreate = Controller.TeamService.createTeam(_strCode, _strName);
+                if (_blCreate)
+                {
+                    clMessageBox.showMessage(Literal.CREATE_TEAM_CORRETLY, true, this);
+                }
+                else
+                {
+                    clMessageBox.showMessage(Literal.CREATE_TEAM_FAILED, false, this);
+                }
             }
         }
 
@@ -98,7 +106,7 @@ namespace SynUp_Desktop.views
                 Team deleteTeam = Controller.TeamService.deleteTeam(AuxTeam);
                 if (deleteTeam != null)
                 {
-                    clMessageBox.showMessage(Literal.DELETE_TEAM_FAILED, true, this);
+                    clMessageBox.showMessage(Literal.DELETE_TEAM_CORRETLY, true, this);
                 }
                 else
                 {
@@ -127,7 +135,8 @@ namespace SynUp_Desktop.views
                     if (_blUpdate)
                     {
                         clMessageBox.showMessage(Literal.UPDATE_TEAM_CORRETLY, true, this);
-                    } else
+                    }
+                    else
                     {
                         clMessageBox.showMessage(Literal.UPDATE_TEAM_FAILED, false, this);
                     }
@@ -195,9 +204,9 @@ namespace SynUp_Desktop.views
             this.FormBorderStyle = FormBorderStyle.Fixed3D;
             this.MinimizeBox = false;
             this.MaximizeBox = false;
-            
+
             this.frmTeamManagement_Activated(sender, e);
-            
+
 
             this.walkingControls();
 
@@ -323,7 +332,7 @@ namespace SynUp_Desktop.views
             //Controller.EmployeeView.ShowDialog();
             //Controller.EmployeeView.BringToFront();
             Controller.EmployeeView.ShowDialog();
-            
+
         }
 
         /// <summary>
