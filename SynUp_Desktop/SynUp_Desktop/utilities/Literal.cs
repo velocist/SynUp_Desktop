@@ -46,7 +46,7 @@ namespace SynUp_Desktop.utilities
         public static readonly string INFO_NAME_TEAM = "Name of the team.";
         public static readonly string INFO_ADD_TEAM = "Add an employee to the team.";
         public static readonly string INFO_DELETE_TEAM = "Deletes the selected employee from the team.";
-        public static readonly string INFO_ON_TEAM = "This employee already exist on the team";
+        public static readonly string INFO_ON_TEAM = "This employee is already on a team";
 
         public static readonly string INFO_RESULTS_STATISTICS = "Results of the search.";
         public static readonly string INFO_FILTER_STATISTICS = "Select the filter you want to use for the search.";
