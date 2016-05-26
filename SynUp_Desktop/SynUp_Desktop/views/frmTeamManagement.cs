@@ -19,6 +19,7 @@ namespace SynUp_Desktop.views
         private Boolean _blHelp = false;
         private int minHeight;// = 530;
         private int maxHeight;// = 565;
+        private Boolean blAllAddCorrects;
 
         public Controller Controller
         {
@@ -85,10 +86,13 @@ namespace SynUp_Desktop.views
                 if (_blCreate)
                 {
                     clMessageBox.showMessage(Literal.CREATE_TEAM_CORRETLY, true, this);
+                    blAllAddCorrects = true;
+                    AuxTeam = Controller.TeamService.readTeam(_strCode);
                 }
                 else
                 {
                     clMessageBox.showMessage(Literal.CREATE_TEAM_FAILED, false, this);
+                    blAllAddCorrects = false;
                 }
             }
         }
@@ -200,13 +204,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void frmTeamManagement_Load(object sender, EventArgs e)
         {
-            //Form Common Configurations
-            this.FormBorderStyle = FormBorderStyle.Fixed3D;
-            this.MinimizeBox = false;
-            this.MaximizeBox = false;
-
             this.frmTeamManagement_Activated(sender, e);
-
 
             this.walkingControls();
 
@@ -259,12 +257,24 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
+        /// Event that runs when mouse click on the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmTeamManagement_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.dgvEmployeesOnTeam.ClearSelection();
+            this.dgvEmployeesOnTeam.Refresh();
+        }
+
+        /// <summary>
         /// Sets all the variables of the form to Null and empties the datagridView.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btnClear_Click(object sender, EventArgs e)
         {
+            this.btnClear.clearFields();
             auxTeam = null;
             auxEmployee = null;
             this.btnCreateTeam.Enabled = true;
@@ -306,19 +316,30 @@ namespace SynUp_Desktop.views
         private void btnDeleteToTeam_Click(object sender, EventArgs e)
         {
             model.pojo.Employee _oSelectedEmployee = null;
+            Boolean _blAllCorrect = true;
 
-            if (this.dgvEmployeesOnTeam.SelectedRows.Count == 1)//If the row selected
+            if (this.dgvEmployeesOnTeam.SelectedRows.Count >= 1)//If the row selected
             {
-                int _iIndexSelected = this.dgvEmployeesOnTeam.SelectedRows[0].Index; // Recover the index of selected row
-                Object _cell = this.dgvEmployeesOnTeam.Rows[_iIndexSelected].Cells[0].Value; //Gets the NIF
-                if (_cell != null)
-                {
-                    String _strSelectedRowCode = _cell.ToString(); // Recover the code
-                    _oSelectedEmployee = Controller.EmployeeService.readEmployee(_strSelectedRowCode); // We look for the employee nif
 
-                    this.deleteFromTeam(_oSelectedEmployee, AuxTeam);
+
+                DataGridViewSelectedRowCollection _selected = this.dgvEmployeesOnTeam.SelectedRows;
+
+                foreach (DataGridViewRow _row in _selected)
+                {
+                    int _iIndexSelected = _row.Index; // Recover the index of selected row
+                    Object _cell = this.dgvEmployeesOnTeam.Rows[_iIndexSelected].Cells[0].Value; //Gets the NIF
+                    if (_cell != null)
+                    {
+                        String _strSelectedRowCode = _cell.ToString(); // Recover the code
+                        _oSelectedEmployee = Controller.EmployeeService.readEmployee(_strSelectedRowCode); // We look for the employee nif
+
+                        Boolean _blDelete = this.deleteFromTeam(_oSelectedEmployee, AuxTeam);
+                        if (!_blDelete) _blAllCorrect = false;
+                    }
                 }
             }
+            if (!_blAllCorrect) clMessageBox.showMessage(Literal.INFO_ON_TEAM, false, this); //TODO: Error al elimanar algun empleado de la lista
+
         }
 
         /// <summary>
@@ -328,11 +349,12 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("Not implemented.\n#Poner ventana con los employees y el que se seleccione se añada");
-            //Controller.EmployeeView.ShowDialog();
-            //Controller.EmployeeView.BringToFront();
-            Controller.EmployeeView.ShowDialog();
-
+            this.btnCreateTeam_Click(sender, e);
+            if (blAllAddCorrects)
+            {
+                this.Controller.EmployeeSelectionView.AuxTeam = this.AuxTeam;
+                Controller.EmployeeSelectionView.ShowDialog();
+            }
         }
 
         /// <summary>
@@ -348,7 +370,7 @@ namespace SynUp_Desktop.views
             this.dgvEmployeesOnTeam.AllowUserToOrderColumns = false; //Can't order columns
             this.dgvEmployeesOnTeam.AllowUserToResizeRows = false; //Can't resize columns
             this.dgvEmployeesOnTeam.Cursor = Cursors.Hand; // Cursor hand type            
-            this.dgvEmployeesOnTeam.MultiSelect = false; //Can't multiselect
+            this.dgvEmployeesOnTeam.MultiSelect = true; //Can't multiselect
             this.dgvEmployeesOnTeam.RowTemplate.ReadOnly = true;
             this.dgvEmployeesOnTeam.RowHeadersVisible = false; // We hide the rowheader
 
@@ -375,9 +397,10 @@ namespace SynUp_Desktop.views
         /// <summary>
         /// Deleted selected employee to team
         /// </summary>
-        private void deleteFromTeam(model.pojo.Employee pEmployee, model.pojo.Team pTeam)
+        private bool deleteFromTeam(model.pojo.Employee pEmployee, model.pojo.Team pTeam)
         {
             model.pojo.TeamHistory _oTeamHistoryControl = null;
+            Boolean _blUpdateHistory = false;
 
             if (pEmployee != null && pTeam != null)
             {
@@ -385,10 +408,11 @@ namespace SynUp_Desktop.views
 
                 if (_oTeamHistoryControl != null)
                 {
-                    Boolean _blUpdateHistory = this.Controller.TeamHistoryService.updateTeamHistory(pEmployee.nif, pTeam.code, DateTime.Now);
-                    //clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.EXCLUDE, "employee", _blUpdateHistory, this);
+                    _blUpdateHistory = this.Controller.TeamHistoryService.updateTeamHistory(pEmployee.nif, pTeam.code, DateTime.Now);
+
                 }
             }
+            return _blUpdateHistory;
         }
 
         #region HELP        
@@ -514,16 +538,6 @@ namespace SynUp_Desktop.views
 
         #endregion
 
-        /// <summary>
-        /// Event that runs when mouse click on the form
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void frmTeamManagement_MouseClick(object sender, MouseEventArgs e)
-        {
-            this.dgvEmployeesOnTeam.ClearSelection();
-            this.dgvEmployeesOnTeam.Refresh();
-        }
     }
 }
 

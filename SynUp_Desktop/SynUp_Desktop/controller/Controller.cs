@@ -34,6 +34,7 @@ namespace SynUp_Desktop.controller
         private frmMain _MainView;
         private frmTaskManagement _TaskMgtView;
         private frmTeamManagement _TeamMgtView;
+        private frmEmployeeSelection _EmployeeSelectionView;
         #endregion
 
         #region GETTERS AND SETTERS
@@ -86,6 +87,19 @@ namespace SynUp_Desktop.controller
             set
             {
                 _TeamHistoryService = value;
+            }
+        }
+
+        internal StatisticsService StatisticsService
+        {
+            get
+            {
+                return _StatisticsService;
+            }
+
+            set
+            {
+                _StatisticsService = value;
             }
         }
 
@@ -206,16 +220,16 @@ namespace SynUp_Desktop.controller
             }
         }
 
-        internal StatisticsService StatisticsService
+        public frmEmployeeSelection EmployeeSelectionView
         {
             get
             {
-                return _StatisticsService;
+                return _EmployeeSelectionView;
             }
 
             set
             {
-                _StatisticsService = value;
+                _EmployeeSelectionView = value;
             }
         }
 

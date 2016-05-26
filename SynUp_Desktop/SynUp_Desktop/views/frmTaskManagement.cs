@@ -122,7 +122,7 @@ namespace SynUp_Desktop.views
                 else
                 {
                     clMessageBox.showMessage(Literal.DELETE_TASK_FAILED, false, this);
-                }                
+                }
             }
         }
 
@@ -161,7 +161,7 @@ namespace SynUp_Desktop.views
                     else
                     {
                         clMessageBox.showMessage(Literal.UPDATE_TASK_FAILED, false, this);
-                    }                    
+                    }
                 }
             }
         }
@@ -351,6 +351,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnClear_Click(object sender, EventArgs e)
         {
+            this.btnClear.clearFields();
             AuxTask = null;
             _blHelp = utilities.Help.hideShowHelp(true, this, this.MinimumSize.Height, this.MaximumSize.Height);
         }

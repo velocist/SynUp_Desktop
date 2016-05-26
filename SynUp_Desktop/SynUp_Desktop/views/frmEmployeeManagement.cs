@@ -38,7 +38,7 @@ namespace SynUp_Desktop.views
         {
             InitializeComponent();
             maxHeight = this.MaximumSize.Height;
-            minHeight = this.MinimumSize.Height;            
+            minHeight = this.MinimumSize.Height;
         }
 
         public Employee AuxEmployee;
@@ -106,10 +106,17 @@ namespace SynUp_Desktop.views
                     if (clMessageBox.confirmationDialog(Literal.CONFIRMATION_UPDATE_EMPLOYEE, this.Text))
                     {
                         Boolean _blUpdateOk = this.Controller.EmployeeService.updateEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress, _strUsername);
-                        //clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.UPDATE, "employee", _blUpdateOk, this);
-                        clMessageBox.showMessage(Literal.UPDATE_EMPLOYEE_CORRETLY, _blUpdateOk, this);
-                        this.btnClear_Click(sender, e);
-                        this.Close();
+
+                        if (_blUpdateOk)
+                        {
+                            clMessageBox.showMessage(Literal.UPDATE_EMPLOYEE_CORRETLY, true, this);
+                            this.btnClear_Click(sender, e);
+                            this.Close();
+                        }
+                        else
+                        {
+                            clMessageBox.showMessage(Literal.UPDATE_EMPLOYEE_FAILED, false, this);
+                        }
                     }
                 }
             }
@@ -129,7 +136,7 @@ namespace SynUp_Desktop.views
 
             if (clMessageBox.confirmationDialog(Literal.CONFIRMATION_DELETE_EMPLOYEE, this.Text))
             {
-                _oDeleteEmployee = this.Controller.EmployeeService.deleteEmployee(AuxEmployee);                
+                _oDeleteEmployee = this.Controller.EmployeeService.deleteEmployee(AuxEmployee);
                 this.btnClear_Click(sender, e);
                 this.Close();
             }
@@ -139,10 +146,10 @@ namespace SynUp_Desktop.views
                 clMessageBox.showMessage(Literal.DELETE_TASK_CORRETLY, true, this);
             }
             else
-            {               
+            {
                 clMessageBox.showMessage(Literal.DELETE_EMPLOYEE_FAILED, false, this);
             }
-           
+
         }
 
         #endregion
@@ -366,6 +373,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnClear_Click(object sender, EventArgs e)
         {
+            this.btnClear.clearFields();
             AuxEmployee = null;
             this.btnCreate.Enabled = true;
             this.txtNif.Enabled = true;

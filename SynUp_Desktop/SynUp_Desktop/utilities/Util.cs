@@ -51,7 +51,12 @@ namespace SynUp_Desktop.utilities
             }
 
             //Change backColor of form
+            //Form Common Configurations
+            pForm.FormBorderStyle = FormBorderStyle.Fixed3D;
+            pForm.MinimizeBox = false;
+            pForm.MaximizeBox = false;
             pForm.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            
         }
 
         /// <summary>

@@ -156,7 +156,7 @@ namespace SynUp_Desktop.utilities
         /// <summary>
         /// Clears all the fields of the form.
         /// </summary>
-        private void clearFields()
+        public void clearFields()
         {
             foreach (Control _control in Parent.Controls) //Recorremos los componentes del formulario
             {

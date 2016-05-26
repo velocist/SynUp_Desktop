@@ -32,12 +32,14 @@ namespace SynUp_Desktop
             service.EmployeeService employeeService = new service.EmployeeService();
             service.TeamHistoryService teamHistoryService = new service.TeamHistoryService();
             service.StatisticsService statisticsService = new service.StatisticsService();
+            service.EmployeeService employeeSelectionService= new service.EmployeeService();
 
             controller.TaskService = taskservice;
             controller.TeamService = teamservice;
             controller.EmployeeService = employeeService;
             controller.TeamHistoryService = teamHistoryService;
             controller.StatisticsService = statisticsService;
+            controller.EmployeeService = employeeSelectionService;
 
             // FORM
             frmAbout aboutView = new frmAbout();
@@ -49,6 +51,7 @@ namespace SynUp_Desktop
             frmTasks taskView = new frmTasks();
             frmTeamManagement teamMgtView = new frmTeamManagement();
             frmTeams teamsView = new frmTeams();
+            frmEmployeeSelection employeeSelectionView = new frmEmployeeSelection();
 
             aboutView.Controller = controller;
             employeeMgtView.Controller = controller;
@@ -59,6 +62,7 @@ namespace SynUp_Desktop
             taskView.Controller = controller;
             teamMgtView.Controller = controller;
             teamsView.Controller = controller;
+            employeeSelectionView.Controller = controller;
 
             controller.AboutView = aboutView;
             controller.MainView = mainView;
@@ -69,6 +73,7 @@ namespace SynUp_Desktop
             controller.TeamsView = teamsView;
             controller.EmployeeView = employeeView;
             controller.EmployeeMgtView = employeeMgtView;
+            controller.EmployeeSelectionView = employeeSelectionView;
 
             return mainView;
         }

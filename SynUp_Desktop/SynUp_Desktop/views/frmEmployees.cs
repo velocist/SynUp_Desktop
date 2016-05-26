@@ -36,7 +36,7 @@ namespace SynUp_Desktop.views
 
         public frmEmployees()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         /// <summary>
@@ -51,9 +51,9 @@ namespace SynUp_Desktop.views
             //this.frmEmployees_Activated(sender, e);
 
             //Form Common Configurations
-            this.FormBorderStyle = FormBorderStyle.Fixed3D;
-            this.MinimizeBox = false;
-            this.MaximizeBox = false;
+            //this.FormBorderStyle = FormBorderStyle.Fixed3D;
+            //this.MinimizeBox = false;
+            //this.MaximizeBox = false;
 
             //The combo with all the teams will load.
             this.fillComboTeams();
@@ -64,6 +64,7 @@ namespace SynUp_Desktop.views
             this.gbHelp.MouseClick += new MouseEventHandler(this.frmEmployees_MouseClick);
 
             utilities.Util.loadMenu(this, this.controller);
+
         }
 
         /// <summary>

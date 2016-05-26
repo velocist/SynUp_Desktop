@@ -75,7 +75,7 @@ namespace SynUp_Desktop.views
                 if (_cell != null)
                 {
                     String _strSelectedRowCode = _cell.ToString(); // Recover the code
-                    _oSelectedTeam = Controller.TeamService.readTeam(_strSelectedRowCode); // We look for the employee nif
+                    _oSelectedTeam = Controller.TeamService.readTeam(_strSelectedRowCode); // We look for the team code
                     this.Controller.TeamMgtView.AuxTeam = _oSelectedTeam; // We assign the team to form team management
                 }
             }
@@ -102,9 +102,9 @@ namespace SynUp_Desktop.views
             fillGrid();
 
             //Form Common Configurations
-            this.FormBorderStyle = FormBorderStyle.Fixed3D;
-            this.MinimizeBox = false;
-            this.MaximizeBox = false;
+            //this.FormBorderStyle = FormBorderStyle.Fixed3D;
+            //this.MinimizeBox = false;
+            //this.MaximizeBox = false;
 
             //Column configuration
 
