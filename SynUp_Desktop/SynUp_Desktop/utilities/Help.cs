@@ -75,5 +75,34 @@ namespace SynUp_Desktop.utilities
 
             return !_blHelp; //It will return the opposite of the value received
         }
+
+        /// <summary>
+        /// Method that walkings all controls in form
+        /// </summary>
+        /// <param name="pEnabled"></param>
+        public static void walkingControls(Form pForm, EventHandler pMouseHover, EventHandler pMouseLeave)
+        {
+            foreach (Control _control in pForm.Controls) //Recorremos los componentes del formulario
+            {
+                if (_control is GroupBox)
+                {
+                    foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
+                    {
+                        _inGroupBox.MouseHover += new EventHandler(pMouseHover);
+                        _inGroupBox.MouseLeave += new EventHandler(pMouseLeave);
+                    }
+                }
+                if (_control is Button)
+                {
+                    _control.MouseHover += new EventHandler(pMouseHover);
+                    _control.MouseLeave += new EventHandler(pMouseLeave);
+                }
+                if (_control is GenericButton)
+                {
+                    _control.MouseHover += new EventHandler(pMouseHover);
+                    _control.MouseLeave += new EventHandler(pMouseLeave);
+                }
+            }
+        }
     }
 }

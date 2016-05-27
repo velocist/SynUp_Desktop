@@ -49,7 +49,7 @@
             this.btnManagementTasks.Name = "btnManagementTasks";
             this.btnManagementTasks.Size = new System.Drawing.Size(113, 49);
             this.btnManagementTasks.TabIndex = 2;
-            this.btnManagementTasks.Text = "Management";
+            this.btnManagementTasks.Text = "Create";
             this.btnManagementTasks.UseVisualStyleBackColor = true;
             this.btnManagementTasks.Click += new System.EventHandler(this.btnManagementTasks_Click);
             // 
@@ -71,6 +71,7 @@
             this.dgvTasks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvTasks.Size = new System.Drawing.Size(775, 471);
             this.dgvTasks.TabIndex = 1;
+            this.dgvTasks.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dgvTasks_RowStateChanged);
             // 
             // gbContainer
             // 
@@ -118,7 +119,7 @@
             this.lblHelpMessage.Name = "lblHelpMessage";
             this.lblHelpMessage.Size = new System.Drawing.Size(108, 17);
             this.lblHelpMessage.TabIndex = 0;
-            this.lblHelpMessage.Text = "Message help...";
+            this.lblHelpMessage.Text = "";
             // 
             // btnBack
             // 

@@ -13,13 +13,9 @@ namespace SynUp_Desktop.views
     /// </summary>
     public partial class frmTeamManagement : Form
     {
+        #region CONTROLLER
+
         private Controller controller;
-        private Team auxTeam;
-        private Employee auxEmployee;
-        private Boolean _blHelp = false;
-        private int minHeight;// = 530;
-        private int maxHeight;// = 565;
-        private Boolean blAllAddCorrects;
 
         public Controller Controller
         {
@@ -33,6 +29,15 @@ namespace SynUp_Desktop.views
                 controller = value;
             }
         }
+
+        #endregion
+
+        private Team auxTeam;
+        private Employee auxEmployee;
+        private Boolean _blHelp = false;
+        private int minHeight;
+        private int maxHeight;
+        private Boolean blAllAddCorrects;
 
         public Team AuxTeam
         {
@@ -91,13 +96,11 @@ namespace SynUp_Desktop.views
                         blAllAddCorrects = true;
                         AuxTeam = Controller.TeamService.readTeam(_strCode);
                     }
-
                 }
                 else
                 {
                     clMessageBox.showMessage(Literal.CREATE_TEAM_FAILED, false, this);
                     blAllAddCorrects = false;
-
                 }
             }
         }
@@ -167,6 +170,10 @@ namespace SynUp_Desktop.views
             this.checkCode();
         }
 
+        /// <summary>
+        /// Method that checks if the code is correct
+        /// </summary>
+        /// <returns></returns>
         private bool checkCode()
         {
             if (this.AuxTeam == null)
@@ -191,6 +198,10 @@ namespace SynUp_Desktop.views
             }
         }
 
+        /// <summary>
+        /// MEthod that validate form values
+        /// </summary>
+        /// <returns></returns>
         private bool validateValues()
         {
             bool _valid = checkCode();
@@ -202,6 +213,8 @@ namespace SynUp_Desktop.views
 
         #endregion
 
+        #region FORM EVENTS
+
         /// <summary>
         /// Event that runs when the forms loaded
         /// </summary>
@@ -211,7 +224,7 @@ namespace SynUp_Desktop.views
         {
             this.frmTeamManagement_Activated(sender, e);
 
-            this.walkingControls();
+            utilities.Help.walkingControls(this, this.messageHelps_MouseHover, this.messageHelps_MouseLeave);
 
             this.gbContainer.MouseClick += new MouseEventHandler(this.frmTeamManagement_MouseClick);
             this.gbHelp.MouseClick += new MouseEventHandler(this.frmTeamManagement_MouseClick);
@@ -233,10 +246,7 @@ namespace SynUp_Desktop.views
                 this.txtCode.Text = this.AuxTeam.code.Trim();
                 this.txtName.Text = this.AuxTeam.name.Trim();
 
-                this.btnDeleteTeam.Enabled = true;
-                this.btnUpdateTeam.Enabled = true;
-                this.btnCreateTeam.Enabled = false; // We disable the button to create a team
-                this.txtCode.Enabled = false;
+                this.enabledCreate(false); //We enabled create team
             }
             else
             {
@@ -278,14 +288,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnClear_Click(object sender, EventArgs e)
         {
-            this.btnClear.clearFields();
-            auxTeam = null;
-            auxEmployee = null;
-            this.btnCreateTeam.Enabled = true;
-            this.txtCode.Enabled = true;
-            this.btnDeleteTeam.Enabled = false;
-            this.btnUpdateTeam.Enabled = false;
-            
+            this.clearForm();
             _blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);
         }
 
@@ -296,7 +299,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void dgvEmployeesOnTeam_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
         {
-            if (this.dgvEmployeesOnTeam.SelectedRows.Count == 1)
+            if (this.dgvEmployeesOnTeam.SelectedRows.Count >= 1)
             {
                 int _iIndexSelected = this.dgvEmployeesOnTeam.SelectedRows[0].Index;
                 Object _cell = dgvEmployeesOnTeam.Rows[_iIndexSelected].Cells[1].Value;
@@ -305,8 +308,11 @@ namespace SynUp_Desktop.views
                     String _strSelectedRowCode = _cell.ToString();
                     this.AuxEmployee = this.Controller.EmployeeService.readEmployee(_strSelectedRowCode);
                 }
-
                 this.btnDeleteToTeam.Enabled = true;
+            }
+            else
+            {
+                this.btnDeleteToTeam.Enabled = false;
             }
         }
 
@@ -349,16 +355,10 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (AuxTeam == null)
-            {
-                this.btnCreateTeam_Click(sender, e);
-            }
-            if (blAllAddCorrects)
-            {
-                this.Controller.EmployeeSelectionView.AuxTeam = this.AuxTeam;
-                Controller.EmployeeSelectionView.ShowDialog();
-            }
+            this.addToTeam(sender, e);
         }
+
+        #endregion
 
         /// <summary>
         /// Method that configurates the datagridview
@@ -375,7 +375,7 @@ namespace SynUp_Desktop.views
         private void fillDataGrid()
         {
             BindingSource source = new BindingSource();
-            //if (this.dgvEmployeesOnTeam.DataSource == null) source.DataSource = new List<String>();
+
             if (this.AuxTeam != null)
             {
                 source.DataSource = this.Controller.TeamHistoryService.getMembersInATeam(this.AuxTeam.code);
@@ -383,6 +383,24 @@ namespace SynUp_Desktop.views
             this.dgvEmployeesOnTeam.DataSource = source;
             this.dgvEmployeesOnTeam.ClearSelection();
             this.dgvEmployeesOnTeam.Refresh();
+        }
+
+        /// <summary>
+        /// Method that show employees list for select employees
+        /// </summary>
+        /// <param name="pSender"></param>
+        /// <param name="pArgs"></param>
+        private void addToTeam(object pSender, EventArgs pArgs)
+        {
+            if (AuxTeam == null)
+            {
+                this.btnCreateTeam_Click(pSender, pArgs);
+            }
+            if (blAllAddCorrects)
+            {
+                this.Controller.EmployeeSelectionView.AuxTeam = this.AuxTeam;
+                Controller.EmployeeSelectionView.ShowDialog();
+            }
         }
 
         /// <summary>
@@ -406,10 +424,44 @@ namespace SynUp_Desktop.views
             return _blUpdateHistory;
         }
 
+        /// <summary>
+        /// MEthod that enableds create or update/delete
+        /// </summary>
+        /// <param name="pEnabled">True for enabled create</param>
+        private void enabledCreate(Boolean pEnabled)
+        {
+            if (pEnabled)
+            {
+                this.txtCode.Enabled = true;
+                this.btnCreateTeam.Enabled = true;
+                this.btnUpdateTeam.Enabled = false;
+                this.btnDeleteTeam.Enabled = false;
+            }
+            else
+            {
+                this.txtCode.Enabled = false;
+                this.btnCreateTeam.Enabled = false;
+                this.btnUpdateTeam.Enabled = true;
+                this.btnDeleteTeam.Enabled = true;
+            }
+
+        }
+
+        /// <summary>
+        /// Method that clears form
+        /// </summary>
+        private void clearForm()
+        {
+            this.btnClear.clearFields();
+            this.AuxTeam = null;
+            this.AuxEmployee = null;
+            this.enabledCreate(true);
+        }
+
         #region HELP        
 
         /// <summary>
-        /// 
+        /// Event that runs when the button Help is clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -484,35 +536,6 @@ namespace SynUp_Desktop.views
                 }
 
                 this.HelpMessage(_message, _icon);
-            }
-        }
-
-        /// <summary>
-        /// Method that walkings all controls in form
-        /// </summary>
-        /// <param name="pEnabled"></param>
-        private void walkingControls()
-        {
-            foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
-            {
-                if (_control is GroupBox)
-                {
-                    foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
-                    {
-                        _inGroupBox.MouseHover += new EventHandler(messageHelps_MouseHover);
-                        _inGroupBox.MouseLeave += new EventHandler(messageHelps_MouseLeave);
-                    }
-                }
-                if (_control is Button)
-                {
-                    _control.MouseHover += new EventHandler(messageHelps_MouseHover);
-                    _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
-                }
-                if (_control is GenericButton)
-                {
-                    _control.MouseHover += new EventHandler(messageHelps_MouseHover);
-                    _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
-                }
             }
         }
 
@@ -632,3 +655,34 @@ namespace SynUp_Desktop.views
 
    }
    */
+
+/*DELETES: Cristina C. 270516 Move to Help class
+  /// <summary>
+  /// Method that walkings all controls in form
+  /// </summary>
+  /// <param name="pEnabled"></param>
+  private void walkingControls()
+  {
+      foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
+      {
+          if (_control is GroupBox)
+          {
+              foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
+              {
+                  _inGroupBox.MouseHover += new EventHandler(messageHelps_MouseHover);
+                  _inGroupBox.MouseLeave += new EventHandler(messageHelps_MouseLeave);
+              }
+          }
+          if (_control is Button)
+          {
+              _control.MouseHover += new EventHandler(messageHelps_MouseHover);
+              _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
+          }
+          if (_control is GenericButton)
+          {
+              _control.MouseHover += new EventHandler(messageHelps_MouseHover);
+              _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
+          }
+      }
+  }
+*/

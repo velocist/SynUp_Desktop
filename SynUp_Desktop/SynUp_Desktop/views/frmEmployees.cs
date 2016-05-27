@@ -19,6 +19,8 @@ namespace SynUp_Desktop.views
     /// <Author>Cristina Caballero</Author>
     public partial class frmEmployees : Form
     {
+        #region CONTROLLER
+
         private Controller controller;
 
         public Controller Controller
@@ -34,10 +36,14 @@ namespace SynUp_Desktop.views
             }
         }
 
+        #endregion
+
         public frmEmployees()
         {
             InitializeComponent();
         }
+
+        #region FORM EVENTS
 
         /// <summary>
         /// Event that runs when the form is loaded
@@ -46,19 +52,18 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void frmEmployees_Load(object sender, EventArgs e)
         {
-            //The grid with all the employees will load.            
-            this.dgvConfiguration();
+            this.dgvConfiguration(); //The grid with all the employees will load. 
             //this.frmEmployees_Activated(sender, e);
 
-            //The combo with all the teams will load.
-            this.fillComboTeams();
+            this.fillComboTeams(); //The combo with all the teams will load.
 
-            this.walkingControls();
+            utilities.Help.walkingControls(this, this.messageHelps_MouseHover, this.messageHelps_MouseLeave);
 
             this.gbContainer.MouseClick += new MouseEventHandler(this.frmEmployees_MouseClick);
             this.gbHelp.MouseClick += new MouseEventHandler(this.frmEmployees_MouseClick);
 
             Util.loadMenu(this, this.controller);
+
 
         }
 
@@ -115,34 +120,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnAddToTeam_Click(object sender, EventArgs e)
         {
-            model.pojo.Employee _oSelectedEmployee = null;
-            model.pojo.Team _oTeam = null;
-
-            if (this.dgvEmployees.SelectedRows.Count == 1)//If the row selected
-            {
-                int _iIndexSelected = this.dgvEmployees.SelectedRows[0].Index; // Recover the index of selected row
-                Object _cell = this.dgvEmployees.Rows[_iIndexSelected].Cells[0].Value;
-                if (_cell != null)
-                {
-                    String _strSelectedRowCode = _cell.ToString(); // Recover the code
-                    _oSelectedEmployee = Controller.EmployeeService.readEmployee(_strSelectedRowCode); // We look for the employee nif
-
-                    String _SelectedTeam = this.cmbTeamsToAdd.SelectedValue.ToString();
-                    _oTeam = this.Controller.TeamService.readTeam(_SelectedTeam);
-
-                    model.pojo.TeamHistory _oCurrentTeam = this.Controller.TeamHistoryService.getCurrentTeamHistoryByEmployee(_oSelectedEmployee.nif, _oTeam.code); //We look if the employee already in team
-
-                    if (_oCurrentTeam == null)
-                    {
-                        this.addToTeam(_oSelectedEmployee, _oTeam);
-                        clMessageBox.showMessage(Literal.ADD_EMPLOYEE_TO_TEAM_SUCCESFULL, true, this);
-                    }
-                    else
-                    {
-                        clMessageBox.showMessage(Literal.INFO_ON_TEAM, false, this);
-                    }
-                }
-            }
+            this.addToTeam();
         }
 
         /// <summary>
@@ -172,7 +150,11 @@ namespace SynUp_Desktop.views
                 btnAddToTeam.Enabled = false;
                 cmbTeamsToAdd.Enabled = false;
             }
+
+            Util.changeButtonText(this.dgvEmployees, this.btnManagementEmployee);
         }
+
+        #endregion
 
         /// <summary>
         /// Fills the DataGridView with the values of the database.
@@ -199,18 +181,6 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// Add selected employee to team
-        /// </summary>
-        private void addToTeam(model.pojo.Employee pEmployee, model.pojo.Team pTeam)
-        {
-            if (pEmployee != null && pTeam != null)
-            {
-                Boolean _blAdd = this.Controller.TeamService.addToTeam(pEmployee.nif, pTeam.code);
-                //clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.ADD, "employee", _blAdd, this);
-            }
-        }
-
-        /// <summary>
         /// Configurates dataGridView
         /// </summary>
         private void dgvConfiguration()
@@ -219,8 +189,6 @@ namespace SynUp_Desktop.views
 
             this.cmbTeamsToAdd.DropDownStyle = ComboBoxStyle.DropDownList;
             this.cmbTeamsToAdd.SelectedItem = -1;
-
-            Util.dgvCommonConfiguration(this.dgvEmployees);
 
             // DataGridView Configuration
             //this.dgvEmployees.Columns[0].Visible = false; // We hide id column
@@ -236,21 +204,49 @@ namespace SynUp_Desktop.views
             this.dgvEmployees.Columns[9].Visible = false; // TaskHistories
 
             this.dgvEmployees.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
-            //this.dgvEmployees.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader; 
+            //this.dgvEmployees.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;   
 
-            // DatagridView Common Configuration 
-            //this.dgvEmployees.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
-            //this.dgvEmployees.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row     
-            //this.dgvEmployees.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            //this.dgvEmployees.AllowUserToAddRows = false; // Can't add rows
-            //this.dgvEmployees.AllowUserToDeleteRows = false; // Can't delete rows
-            //this.dgvEmployees.AllowUserToOrderColumns = false; //Can order columns
-            //this.dgvEmployees.AllowUserToResizeRows = false; //Can't resize columns
-            //this.dgvEmployees.Cursor = Cursors.Hand; // Cursor hand type            
-            //this.dgvEmployees.MultiSelect = false; //Can't multiselect
-            //this.dgvEmployees.RowTemplate.ReadOnly = true;
-            //this.dgvEmployees.RowHeadersVisible = false; // We hide the rowheader           
+            Util.dgvCommonConfiguration(this.dgvEmployees); // Configure the common datagridview
 
+        }
+
+        /// <summary>
+        /// Add selected employee to team
+        /// </summary>
+        private void addToTeam()
+        {
+            model.pojo.Employee _oSelectedEmployee = null;
+            model.pojo.Team _oTeam = null;
+            Boolean _blAdd = false;
+
+            if (this.dgvEmployees.SelectedRows.Count == 1)//If the row selected
+            {
+                int _iIndexSelected = this.dgvEmployees.SelectedRows[0].Index; // Recover the index of selected row
+                Object _cell = this.dgvEmployees.Rows[_iIndexSelected].Cells[0].Value;
+                if (_cell != null)
+                {
+                    String _strSelectedRowCode = _cell.ToString(); // Recover the code
+                    _oSelectedEmployee = Controller.EmployeeService.readEmployee(_strSelectedRowCode); // We look for the employee nif
+
+                    String _SelectedTeam = this.cmbTeamsToAdd.SelectedValue.ToString();
+                    _oTeam = this.Controller.TeamService.readTeam(_SelectedTeam);
+
+                    model.pojo.TeamHistory _oCurrentTeam = this.Controller.TeamHistoryService.getCurrentTeamHistoryByEmployee(_oSelectedEmployee.nif, _oTeam.code); //We look if the employee already in team
+
+                    if (_oCurrentTeam == null)
+                    {
+                        if (_oSelectedEmployee != null && _oTeam != null)
+                        {
+                            _blAdd = this.Controller.TeamService.addToTeam(_oSelectedEmployee.nif, _oTeam.code);
+                        }
+                        clMessageBox.showMessage(Literal.ADD_EMPLOYEE_TO_TEAM_SUCCESFULL, true, this);
+                    }
+                    else
+                    {
+                        clMessageBox.showMessage(Literal.INFO_ON_TEAM, false, this);
+                    }
+                }
+            }
         }
 
         #region HELP
@@ -263,24 +259,6 @@ namespace SynUp_Desktop.views
         private void btnHelp_MouseClick(object sender, MouseEventArgs e)
         {
             this.HelpMessage("", (int)utilities.Help.HelpIcon.NONE);
-            //this.walkingControls();
-
-            /*if (_blHelp)
-            {
-                _blHelp = false;
-                this.lblHelpMessage.Text = "";
-                this.changeIconMessage(0);
-                //this.walkingControls(true);
-                this.gbHelp.Visible = false;
-            }
-            else
-            {
-                _blHelp = true;
-                this.lblHelpMessage.Text = "";
-                this.changeIconMessage(0);
-                this.walkingControls(false);
-                this.gbHelp.Visible = true;
-            }*/
         }
 
         /// <summary>
@@ -322,35 +300,6 @@ namespace SynUp_Desktop.views
             }
             this.HelpMessage(_message, _iIcon);
 
-        }
-
-        /// <summary>
-        /// Method that walkings all controls in form
-        /// </summary>
-        /// <param name="pEnabled"></param>
-        private void walkingControls()
-        {
-            foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
-            {
-                if (_control is GroupBox)
-                {
-                    foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
-                    {
-                        _inGroupBox.MouseHover += new EventHandler(messageHelps_MouseHover);
-                        _inGroupBox.MouseLeave += new EventHandler(messageHelps_MouseLeave);
-                    }
-                }
-                if (_control is Button)
-                {
-                    _control.MouseHover += new EventHandler(messageHelps_MouseHover);
-                    _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
-                }
-                if (_control is GenericButton)
-                {
-                    _control.MouseHover += new EventHandler(messageHelps_MouseHover);
-                    _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
-                }
-            }
         }
 
         /// <summary>
@@ -436,3 +385,34 @@ this.gbHelp.Visible = false;
     {
         _blHelp = false;
     }*/
+
+/* DELETE: Cristina C. 27/05/2016 Move to Class help
+/// <summary>
+/// Method that walkings all controls in form
+/// </summary>
+/// <param name="pEnabled"></param>
+private void walkingControls()
+{
+foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
+{
+    if (_control is GroupBox)
+    {
+        foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
+        {
+            _inGroupBox.MouseHover += new EventHandler(messageHelps_MouseHover);
+            _inGroupBox.MouseLeave += new EventHandler(messageHelps_MouseLeave);
+        }
+    }
+    if (_control is Button)
+    {
+        _control.MouseHover += new EventHandler(messageHelps_MouseHover);
+        _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
+    }
+    if (_control is GenericButton)
+    {
+        _control.MouseHover += new EventHandler(messageHelps_MouseHover);
+        _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
+    }
+}
+}
+*/

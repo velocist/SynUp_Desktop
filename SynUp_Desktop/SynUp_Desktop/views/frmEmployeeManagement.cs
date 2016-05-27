@@ -15,12 +15,14 @@ using System.Windows.Forms;
 
 namespace SynUp_Desktop.views
 {
+    /// <summary>
+    /// Form of employee management
+    /// </summary>
     public partial class frmEmployeeManagement : Form
     {
+        #region CONTROLLER
+
         private Controller controller;
-        private Boolean _blHelp = false;
-        private int maxHeight;
-        private int minHeight;
 
         public Controller Controller
         {
@@ -34,14 +36,20 @@ namespace SynUp_Desktop.views
                 controller = value;
             }
         }
+
+        #endregion
+
+        private Boolean _blHelp = false;
+        private int maxHeight;
+        private int minHeight;
+        public Employee AuxEmployee;
+
         public frmEmployeeManagement()
         {
             InitializeComponent();
             maxHeight = this.MaximumSize.Height;
             minHeight = this.MinimumSize.Height;
         }
-
-        public Employee AuxEmployee;
 
         #region CRUD
 
@@ -61,21 +69,23 @@ namespace SynUp_Desktop.views
             String _strAdress = txtAdress.Text;
 
             Boolean _blCreateOk;
-            //Note: Lo he quitado porque sino no comprobaba al cambiar el texto del nif y se podia poner uno existente 
-            //y que no salia en rojo.
-            //if (!txtNif.Text.Equals("") && !txtEmail.Text.Equals("")) //Pablo Ardèvol 22/05 1553, Método pulido.  -- == se convierte en Equals para strings.      
-            //{
+
             if (this.validateFields())
             {
                 _blCreateOk = this.Controller.EmployeeService.createEmployee(_strNif, _strName, _strSurname, _strPhone, _strEmail, _strAdress);
 
                 /// MODIFICATION - Pablo, 170516, clMessageBox made static to access the methods without having to create an object of the class.
-                clMessageBox.showMessage(Literal.CREATE_EMPLOYEE_CORRETLY, _blCreateOk, this);
-                this.btnClear_Click(sender, e);
-                this.Close();
-
+                if (_blCreateOk)
+                {
+                    clMessageBox.showMessage(Literal.CREATE_EMPLOYEE_CORRETLY, _blCreateOk, this);
+                    this.btnClear_Click(sender, e);
+                    this.Close();
+                }
+                else
+                {
+                    clMessageBox.showMessage(Literal.CREATE_EMPLOYEE_FAILED, _blCreateOk, this);
+                }
             }
-            //}
             else if (txtNif.Text.Equals("") || txtEmail.Text.Equals(""))
             {
                 this.HelpMessage(Literal.ERROR_VALIDATION_EMPLOYEE, (int)utilities.Help.HelpIcon.ERROR);
@@ -97,7 +107,6 @@ namespace SynUp_Desktop.views
             String _strEmail = txtEmail.Text;
             String _strAdress = txtAdress.Text;
             String _strUsername = txtUsername.Text;
-
 
             if (!txtEmail.Text.Equals(""))
             {
@@ -133,23 +142,20 @@ namespace SynUp_Desktop.views
         {
             model.pojo.Employee _oDeleteEmployee = null;
 
-
             if (clMessageBox.confirmationDialog(Literal.CONFIRMATION_DELETE_EMPLOYEE, this.Text))
             {
                 _oDeleteEmployee = this.Controller.EmployeeService.deleteEmployee(AuxEmployee);
-                this.btnClear_Click(sender, e);
-                this.Close();
+                if (_oDeleteEmployee != null)
+                {
+                    clMessageBox.showMessage(Literal.DELETE_EMPLOYEE_CORRETLY, true, this);
+                    this.btnClear_Click(sender, e);
+                    this.Close();
+                }
+                else
+                {
+                    clMessageBox.showMessage(Literal.DELETE_EMPLOYEE_FAILED, false, this);
+                }
             }
-
-            if (_oDeleteEmployee != null)
-            {
-                clMessageBox.showMessage(Literal.DELETE_TASK_CORRETLY, true, this);
-            }
-            else
-            {
-                clMessageBox.showMessage(Literal.DELETE_EMPLOYEE_FAILED, false, this);
-            }
-
         }
 
         #endregion
@@ -223,6 +229,32 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
+        /// Method that validartes fields
+        /// </summary>
+        /// <returns></returns>
+        private bool validateFields()
+        {
+            Boolean _blCorrect = false;
+            Boolean _blNif = false, _blEmail = false;
+
+            _blNif = this.checkDNI();
+
+            _blEmail = this.checkEmail();
+
+            if (checkDNI() && checkEmail())
+            {
+                _blCorrect = true;
+            }
+            else
+            {
+                this.HelpMessage(Literal.ERROR_VALIDATION_EMPLOYEE, (int)utilities.Help.HelpIcon.WARNING);
+            }
+
+            return _blCorrect;
+
+        }
+
+        /// <summary>
         /// Method that checks if the dni is correct
         /// </summary>
         /// <returns></returns>
@@ -273,7 +305,6 @@ namespace SynUp_Desktop.views
             {
                 lblEmail.ForeColor = Color.Red;
                 _blEmail = false;
-                //lblEmail.Text = "Email";
             }
             else
             {
@@ -285,45 +316,9 @@ namespace SynUp_Desktop.views
             return _blEmail;
         }
 
-        /// <summary>
-        /// Method that validartes fields
-        /// </summary>
-        /// <returns></returns>
-        private bool validateFields()
-        {
-            Boolean _blCorrect = false;
-            Boolean _blNif = false, _blEmail = false;
-
-            _blNif = this.checkDNI();
-
-            _blEmail = this.checkEmail();
-
-            if (checkDNI() && checkEmail())
-            {
-                _blCorrect = true;
-            }
-            else
-            {
-                this.HelpMessage(Literal.ERROR_VALIDATION_EMPLOYEE, (int)utilities.Help.HelpIcon.WARNING);
-            }
-
-            return _blCorrect;
-
-            /*bool blValid = false;
-            if (lblNif.ForeColor != Color.Red && lblEmail.ForeColor != Color.Red)
-            {
-                blValid = true;
-            }
-
-            if (!blValid) MessageBox.Show("MEC MEC NOT SO OK..");
-
-            return blValid; */
-
-            ///Pablo Ardèvol 22/05 1559, Método simplificado
-            //return checkDNI() && checkEmail();
-        }
-
         #endregion
+
+        #region FORM EVENTS
 
         /// <summary>
         /// Event that runs when the forms loaded
@@ -332,7 +327,6 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void frmEmployeeManagement_Load(object sender, EventArgs e)
         {
-
             if (AuxEmployee != null)
             {
                 // We recover the data of selected employee
@@ -344,21 +338,18 @@ namespace SynUp_Desktop.views
                 this.txtAdress.Text = this.AuxEmployee.adress;
                 this.txtUsername.Text = this.AuxEmployee.username;
 
-                this.btnCreate.Enabled = false; // We disable the button to create a task
-                this.txtNif.Enabled = false;
-                this.btnUpdateEmployee.Enabled = true;
-                this.btnDeleteEmployee.Enabled = true;
+                this.enabledCreate(false);// We disable the button to create a task
             }
             else
             {
                 this.btnClear_Click(sender, e);
-
             }
 
             this.setToolTips(); //Sets the tooltips for the view
-            this._blHelp = false;
 
-            this.walkingControls();
+            this._blHelp = false;
+            utilities.Help.walkingControls(this, this.messageHelps_MouseHover, this.messageHelps_MouseLeave);
+
             Util.loadMenu(this, this.controller);
         }
 
@@ -369,12 +360,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnClear_Click(object sender, EventArgs e)
         {
-            this.btnClear.clearFields();
-            AuxEmployee = null;
-            this.btnCreate.Enabled = true;
-            this.txtNif.Enabled = true;
-            this.btnUpdateEmployee.Enabled = false;
-            this.btnDeleteEmployee.Enabled = false;
+            this.clearForm();
             _blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);
         }
 
@@ -386,9 +372,9 @@ namespace SynUp_Desktop.views
         private void frmEmployeeManagement_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.btnClear_Click(sender, e);
-            //this.AuxEmployee = null;
-            //_blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);
         }
+
+        #endregion
 
         /// <summary>
         /// Method that sets the tooltips for the view
@@ -398,9 +384,42 @@ namespace SynUp_Desktop.views
             ///Nota: Interesante poner las restricciones de la base de datos directamente.
             ToolTip ToolTips = new ToolTip();
             //ToolTip1.IsBalloon = true;
-            ToolTips.SetToolTip(this.lblNif, "NIF Employee.\n[00000000-A]");
-            ToolTips.SetToolTip(this.lblPhone, "000000000");
-            ToolTips.SetToolTip(this.lblEmail, "exemple@domain.com");
+            ToolTips.SetToolTip(this.lblNif, "[00000000A]");
+            ToolTips.SetToolTip(this.lblPhone, "[000000000]");
+            ToolTips.SetToolTip(this.lblEmail, "[exemple@domain.com]");
+
+        }
+
+        /// <summary>
+        /// Method that clears form
+        /// </summary>
+        private void clearForm()
+        {
+            this.btnClear.clearFields();
+            this.AuxEmployee = null;
+            this.enabledCreate(true);
+        }
+
+        /// <summary>
+        /// MEthod that enableds create or update/delete
+        /// </summary>
+        /// <param name="pEnabled">True for enabled create</param>
+        private void enabledCreate(Boolean pEnabled)
+        {
+            if (pEnabled)
+            {
+                this.txtNif.Enabled = true;
+                this.btnCreate.Enabled = true;
+                this.btnUpdateEmployee.Enabled = false;
+                this.btnDeleteEmployee.Enabled = false;
+            }
+            else
+            {
+                this.txtNif.Enabled = false;
+                this.btnCreate.Enabled = false;
+                this.btnUpdateEmployee.Enabled = true;
+                this.btnDeleteEmployee.Enabled = true;
+            }
 
         }
 
@@ -513,35 +532,6 @@ namespace SynUp_Desktop.views
                     this.HelpMessage(Literal.INFO_BTN_BACK, _info);
                     //this.changeIconMessage(3);
                     //this.lblHelpMessage.Text = "Clicke aquí para volver al menú principal.";
-                }
-            }
-        }
-
-        /// <summary>
-        /// Method that walkings all controls in form
-        /// </summary>
-        /// <param name="pEnabled"></param>
-        private void walkingControls()
-        {
-            foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
-            {
-                if (_control is GroupBox)
-                {
-                    foreach (Control _inGroupBox in _control.Controls) //Recorremos los componentes del groupbox
-                    {
-                        _inGroupBox.MouseHover += new EventHandler(messageHelps_MouseHover);
-                        _inGroupBox.MouseLeave += new EventHandler(messageHelps_MouseLeave);
-                    }
-                }
-                if (_control is Button)
-                {
-                    _control.MouseHover += new EventHandler(messageHelps_MouseHover);
-                    _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
-                }
-                if (_control is GenericButton)
-                {
-                    _control.MouseHover += new EventHandler(messageHelps_MouseHover);
-                    _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
                 }
             }
         }
@@ -757,3 +747,34 @@ private void frmEmployeeManagement_Load(object sender, EventArgs e)
            }
        }
    }*/
+
+/* DELETE: 270516 Cristina C. Move to Help class
+    /// <summary>
+    /// Method that walkings all controls in form
+    /// </summary>
+    /// <param name="pEnabled"></param>
+    private void walkingControls()
+    {
+        foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
+        {
+            if (_control is GroupBox)
+            {
+                foreach (Control _inGroupBox in _control.Controls) //Recorremos los componentes del groupbox
+                {
+                    _inGroupBox.MouseHover += new EventHandler(messageHelps_MouseHover);
+                    _inGroupBox.MouseLeave += new EventHandler(messageHelps_MouseLeave);
+                }
+            }
+            if (_control is Button)
+            {
+                _control.MouseHover += new EventHandler(messageHelps_MouseHover);
+                _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
+            }
+            if (_control is GenericButton)
+            {
+                _control.MouseHover += new EventHandler(messageHelps_MouseHover);
+                _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
+            }
+        }
+    }
+*/

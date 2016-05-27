@@ -60,6 +60,7 @@
             this.dgvEmployees.Size = new System.Drawing.Size(785, 342);
             this.dgvEmployees.TabIndex = 0;
             this.dgvEmployees.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dgvEmployees_RowStateChanged);
+            //this.dgvEmployees.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvEmployees_MouseClick);
             // 
             // btnManagementEmployee
             // 
@@ -68,7 +69,7 @@
             this.btnManagementEmployee.Name = "btnManagementEmployee";
             this.btnManagementEmployee.Size = new System.Drawing.Size(105, 49);
             this.btnManagementEmployee.TabIndex = 3;
-            this.btnManagementEmployee.Text = "Management";
+            this.btnManagementEmployee.Text = "Create";
             this.btnManagementEmployee.UseVisualStyleBackColor = true;
             this.btnManagementEmployee.Click += new System.EventHandler(this.btnManagementEmployee_Click);
             // 
@@ -185,8 +186,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Employees ";
             this.Activated += new System.EventHandler(this.frmEmployees_Activated);
-            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.frmEmployees_MouseClick);
             this.Load += new System.EventHandler(this.frmEmployees_Load);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.frmEmployees_MouseClick);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).EndInit();
             this.gbContainer.ResumeLayout(false);
             this.gbContainer.PerformLayout();

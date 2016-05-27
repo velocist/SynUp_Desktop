@@ -53,6 +53,7 @@
             this.dgvTeams.Name = "dgvTeams";
             this.dgvTeams.Size = new System.Drawing.Size(780, 442);
             this.dgvTeams.TabIndex = 1;
+            this.dgvTeams.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvTeams_MouseClick);
             // 
             // gbContainer
             // 
@@ -108,7 +109,7 @@
             this.btnManagementTeams.Name = "btnManagementTeams";
             this.btnManagementTeams.Size = new System.Drawing.Size(113, 49);
             this.btnManagementTeams.TabIndex = 2;
-            this.btnManagementTeams.Text = "Management";
+            this.btnManagementTeams.Text = "Create";
             this.btnManagementTeams.UseVisualStyleBackColor = true;
             this.btnManagementTeams.Click += new System.EventHandler(this.btnManagementTeams_Click);
             // 

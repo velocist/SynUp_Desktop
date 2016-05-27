@@ -55,33 +55,6 @@ namespace SynUp_Desktop.utilities
             
         }
 
-        public static void dgvCommonConfiguration(DataGridView pDataGrid)
-        {
-            // DatagridView Common Configuration             
-            pDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
-            pDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row      
-            pDataGrid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            pDataGrid.AllowUserToAddRows = false; // Can't add rows
-            pDataGrid.AllowUserToDeleteRows = false; // Can't delete rows
-            pDataGrid.AllowUserToOrderColumns = false; //Can't order columns
-            pDataGrid.AllowUserToResizeRows = false; //Can't resize columns
-            pDataGrid.Cursor = Cursors.Hand; // Cursor hand type            
-            pDataGrid.MultiSelect = false; //Can't multiselect
-            pDataGrid.RowTemplate.ReadOnly = true;
-            pDataGrid.RowHeadersVisible = false; // We hide the rowheader
-            pDataGrid.AutoResizeColumns(); //Autoresize columns
-
-        }
-
-        public static void formCommonConfiguration(Form pForm)
-        {
-            //Form Common Configurations
-            pForm.FormBorderStyle = FormBorderStyle.Fixed3D;
-            pForm.MinimizeBox = false;
-            pForm.MaximizeBox = false;
-            pForm.BackColor = System.Drawing.SystemColors.InactiveCaption; //Change backColor of form
-        }
-
         /// <summary>
         /// Event of click on the menu's options
         /// </summary>
@@ -123,6 +96,50 @@ namespace SynUp_Desktop.utilities
             catch (Exception ex)
             {
                 //MessageBox.Show("This view is already opened.");
+            }
+        }
+
+        public static void dgvCommonConfiguration(DataGridView pDataGrid)
+        {
+            // DatagridView Common Configuration             
+            pDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; //Fill columns size the datagridview
+            pDataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect; //Selected complet row      
+            pDataGrid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            pDataGrid.AllowUserToAddRows = false; // Can't add rows
+            pDataGrid.AllowUserToDeleteRows = false; // Can't delete rows
+            pDataGrid.AllowUserToOrderColumns = false; //Can't order columns
+            pDataGrid.AllowUserToResizeRows = false; //Can't resize columns
+            pDataGrid.Cursor = Cursors.Hand; // Cursor hand type            
+            pDataGrid.MultiSelect = false; //Can't multiselect
+            pDataGrid.RowTemplate.ReadOnly = true;
+            pDataGrid.RowHeadersVisible = false; // We hide the rowheader
+            pDataGrid.AutoResizeColumns(); //Autoresize columns
+
+        }
+
+        public static void formCommonConfiguration(Form pForm)
+        {
+            //Form Common Configurations
+            pForm.FormBorderStyle = FormBorderStyle.Fixed3D;
+            pForm.MinimizeBox = false;
+            pForm.MaximizeBox = false;
+            pForm.BackColor = System.Drawing.SystemColors.InactiveCaption; //Change backColor of form
+        }
+
+        /// <summary>
+        /// Method that changes the text of button management
+        /// </summary>
+        /// <param name="pDataGrid"></param>
+        /// <param name="pButton"></param>
+        public static void changeButtonText(DataGridView pDataGrid, Button pButton)
+        {
+            if (pDataGrid.SelectedRows.Count == 1)//If the row selected
+            {
+                pButton.Text = "Update/Delete";
+            }
+            else
+            {
+                pButton.Text = "Create";
             }
         }
     }
