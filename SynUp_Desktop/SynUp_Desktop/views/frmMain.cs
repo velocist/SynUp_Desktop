@@ -41,8 +41,8 @@ namespace SynUp_Desktop.views
         {
             InitializeComponent();
 
-            this.linkUserManuall.Links[0].Description = "User Manual";
-            this.linkUserManuall.Links.Add(0, this.linkUserManuall.Text.Length, Application.StartupPath + "\\Resources\\UserManuall_v1.pdf");
+            this.linkUserManuall.Links[0].Description = "User's Manual";
+            this.linkUserManuall.Links.Add(0, this.linkUserManuall.Text.Length, Application.StartupPath + "\\Resources\\UserManual_v1.pdf");
         }
 
         /// <summary>
@@ -122,7 +122,7 @@ namespace SynUp_Desktop.views
             try
             {
                 ProcessStartInfo sInfo = new ProcessStartInfo(e.Link.LinkData.ToString());
-                Process.Start(Application.StartupPath + "\\Resources\\UserManuall_v1.pdf");
+                Process.Start(sInfo);
             }
             catch (Exception ex)
             {
