@@ -37,16 +37,16 @@
             // 
             // tmrAbout
             // 
-            this.tmrAbout.Interval = 75;
+            this.tmrAbout.Interval = 60;
             this.tmrAbout.Tick += new System.EventHandler(this.tmrAbout_Tick);
             // 
             // pbxCredits
             // 
             this.pbxCredits.BackColor = System.Drawing.Color.Transparent;
             this.pbxCredits.Image = global::SynUp_Desktop.Properties.Resources.Creditos;
-            this.pbxCredits.Location = new System.Drawing.Point(43, 347);
+            this.pbxCredits.Location = new System.Drawing.Point(45, 400);
             this.pbxCredits.Name = "pbxCredits";
-            this.pbxCredits.Size = new System.Drawing.Size(353, 333);
+            this.pbxCredits.Size = new System.Drawing.Size(353, 403);
             this.pbxCredits.TabIndex = 0;
             this.pbxCredits.TabStop = false;
             // 
@@ -57,7 +57,7 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BackgroundImage = global::SynUp_Desktop.Properties.Resources.SynUpOriginal;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(440, 357);
+            this.ClientSize = new System.Drawing.Size(440, 407);
             this.Controls.Add(this.pbxCredits);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
@@ -65,9 +65,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(460, 400);
+            this.MaximumSize = new System.Drawing.Size(460, 450);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(460, 400);
+            this.MinimumSize = new System.Drawing.Size(460, 450);
             this.Name = "frmAbout";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - About";

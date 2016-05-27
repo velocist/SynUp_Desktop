@@ -53,7 +53,7 @@ namespace SynUp_Desktop.views
         private void frmAbout_Load(object sender, EventArgs e)
         {
             tmrAbout.Start();
-            this.pbxCredits.Location = new Point(43, 347);
+            this.pbxCredits.Location = new Point(this.pbxCredits.Location.X, 400);
         }
 
         private void frmAbout_FormClosing(object sender, FormClosingEventArgs e)
