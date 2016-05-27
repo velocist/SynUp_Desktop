@@ -124,12 +124,12 @@
             // 
             this.linkUserManuall.AutoSize = true;
             this.linkUserManuall.BackColor = System.Drawing.Color.Transparent;
-            this.linkUserManuall.Location = new System.Drawing.Point(391, 601);
+            this.linkUserManuall.Location = new System.Drawing.Point(374, 601);
             this.linkUserManuall.Name = "linkUserManuall";
-            this.linkUserManuall.Size = new System.Drawing.Size(87, 17);
+            this.linkUserManuall.Size = new System.Drawing.Size(98, 17);
             this.linkUserManuall.TabIndex = 7;
             this.linkUserManuall.TabStop = true;
-            this.linkUserManuall.Text = "UserManuall";
+            this.linkUserManuall.Text = "User\'s Manual";
             this.linkUserManuall.VisitedLinkColor = System.Drawing.Color.Blue;
             this.linkUserManuall.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkUserManuall_LinkClicked);
             // 
