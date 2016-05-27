@@ -36,6 +36,7 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.btnStadistics = new System.Windows.Forms.Button();
             this.btnAbout = new System.Windows.Forms.Button();
+            this.linkUserManuall = new System.Windows.Forms.LinkLabel();
             this.pbxLogo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbxLogo)).BeginInit();
             this.SuspendLayout();
@@ -55,8 +56,8 @@
             // 
             // btnEmployees
             // 
-            this.btnEmployees.Location = new System.Drawing.Point(13, 213);
-            this.btnEmployees.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEmployees.Location = new System.Drawing.Point(13, 206);
+            this.btnEmployees.Margin = new System.Windows.Forms.Padding(4);
             this.btnEmployees.Name = "btnEmployees";
             this.btnEmployees.Size = new System.Drawing.Size(459, 58);
             this.btnEmployees.TabIndex = 1;
@@ -66,8 +67,8 @@
             // 
             // btnTeams
             // 
-            this.btnTeams.Location = new System.Drawing.Point(13, 278);
-            this.btnTeams.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTeams.Location = new System.Drawing.Point(13, 271);
+            this.btnTeams.Margin = new System.Windows.Forms.Padding(4);
             this.btnTeams.Name = "btnTeams";
             this.btnTeams.Size = new System.Drawing.Size(459, 58);
             this.btnTeams.TabIndex = 2;
@@ -77,8 +78,8 @@
             // 
             // btnTasks
             // 
-            this.btnTasks.Location = new System.Drawing.Point(13, 343);
-            this.btnTasks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTasks.Location = new System.Drawing.Point(13, 336);
+            this.btnTasks.Margin = new System.Windows.Forms.Padding(4);
             this.btnTasks.Name = "btnTasks";
             this.btnTasks.Size = new System.Drawing.Size(459, 58);
             this.btnTasks.TabIndex = 3;
@@ -88,8 +89,8 @@
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(13, 539);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExit.Location = new System.Drawing.Point(13, 532);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(4);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(459, 58);
             this.btnExit.TabIndex = 6;
@@ -99,8 +100,8 @@
             // 
             // btnStadistics
             // 
-            this.btnStadistics.Location = new System.Drawing.Point(13, 409);
-            this.btnStadistics.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnStadistics.Location = new System.Drawing.Point(13, 402);
+            this.btnStadistics.Margin = new System.Windows.Forms.Padding(4);
             this.btnStadistics.Name = "btnStadistics";
             this.btnStadistics.Size = new System.Drawing.Size(459, 58);
             this.btnStadistics.TabIndex = 4;
@@ -110,8 +111,8 @@
             // 
             // btnAbout
             // 
-            this.btnAbout.Location = new System.Drawing.Point(13, 474);
-            this.btnAbout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAbout.Location = new System.Drawing.Point(13, 467);
+            this.btnAbout.Margin = new System.Windows.Forms.Padding(4);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(459, 58);
             this.btnAbout.TabIndex = 5;
@@ -119,12 +120,25 @@
             this.btnAbout.UseVisualStyleBackColor = true;
             this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
             // 
+            // linkUserManuall
+            // 
+            this.linkUserManuall.AutoSize = true;
+            this.linkUserManuall.BackColor = System.Drawing.Color.Transparent;
+            this.linkUserManuall.Location = new System.Drawing.Point(391, 601);
+            this.linkUserManuall.Name = "linkUserManuall";
+            this.linkUserManuall.Size = new System.Drawing.Size(87, 17);
+            this.linkUserManuall.TabIndex = 7;
+            this.linkUserManuall.TabStop = true;
+            this.linkUserManuall.Text = "UserManuall";
+            this.linkUserManuall.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.linkUserManuall.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkUserManuall_LinkClicked);
+            // 
             // pbxLogo
             // 
             this.pbxLogo.BackColor = System.Drawing.Color.Transparent;
-            this.pbxLogo.Image = global::SynUp_Desktop.Properties.Resources.SynUp;
-            this.pbxLogo.Location = new System.Drawing.Point(145, 57);
-            this.pbxLogo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbxLogo.Image = global::SynUp_Desktop.Properties.Resources.SynUpOriginal;
+            this.pbxLogo.Location = new System.Drawing.Point(145, 48);
+            this.pbxLogo.Margin = new System.Windows.Forms.Padding(4);
             this.pbxLogo.Name = "pbxLogo";
             this.pbxLogo.Size = new System.Drawing.Size(196, 149);
             this.pbxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -136,7 +150,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(487, 606);
+            this.ClientSize = new System.Drawing.Size(490, 627);
+            this.Controls.Add(this.linkUserManuall);
             this.Controls.Add(this.pbxLogo);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.btnStadistics);
@@ -148,11 +163,10 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(507, 649);
-            this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(507, 649);
+            this.MaximumSize = new System.Drawing.Size(510, 670);
+            this.MinimumSize = new System.Drawing.Size(510, 670);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Main Menu";
@@ -172,6 +186,7 @@
         private System.Windows.Forms.Button btnStadistics;
         private System.Windows.Forms.Button btnAbout;
         private System.Windows.Forms.PictureBox pbxLogo;
+        private System.Windows.Forms.LinkLabel linkUserManuall;
     }
 }
 

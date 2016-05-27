@@ -352,6 +352,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\UserManuall_v1.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="SynUp_Desktop_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -363,6 +366,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="views\images\Creditos.png" />
     <Content Include="views\images\Error.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -383,6 +387,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="views\images\SynUp.png" />
+    <Content Include="views\images\SynUpOriginal.png" />
     <Content Include="views\images\Warning.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

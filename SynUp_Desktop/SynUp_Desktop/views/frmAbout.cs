@@ -13,10 +13,7 @@ namespace SynUp_Desktop.views
 {
     public partial class frmAbout : Form
     {
-        public frmAbout()
-        {
-            InitializeComponent();
-        }
+        #region CONTROLLER
 
         private Controller controller;
 
@@ -32,5 +29,37 @@ namespace SynUp_Desktop.views
                 controller = value;
             }
         }
+
+        #endregion
+
+        public frmAbout()
+        {
+            InitializeComponent();
+        }
+
+        private void tmrAbout_Tick(object sender, EventArgs e)
+        {
+            if (this.pbxCredits.Location.Y >= 0)
+            {
+                this.pbxCredits.Location = new Point(this.pbxCredits.Location.X, this.pbxCredits.Location.Y - 1);
+            }
+            else
+            {
+                this.tmrAbout.Stop();
+            }
+
+        }
+
+        private void frmAbout_Load(object sender, EventArgs e)
+        {
+            tmrAbout.Start();
+            this.pbxCredits.Location = new Point(43, 347);
+        }
+
+        private void frmAbout_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            tmrAbout.Stop();
+        }
+
     }
 }

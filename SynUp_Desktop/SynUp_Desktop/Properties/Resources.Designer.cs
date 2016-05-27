@@ -63,9 +63,29 @@ namespace SynUp_Desktop.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Creditos {
+            get {
+                object obj = ResourceManager.GetObject("Creditos", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap SynUp {
             get {
                 object obj = ResourceManager.GetObject("SynUp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SynUpOriginal {
+            get {
+                object obj = ResourceManager.GetObject("SynUpOriginal", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

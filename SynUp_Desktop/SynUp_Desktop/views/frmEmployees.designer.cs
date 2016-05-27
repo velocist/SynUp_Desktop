@@ -58,9 +58,8 @@
             this.dgvEmployees.Name = "dgvEmployees";
             this.dgvEmployees.RowTemplate.ReadOnly = true;
             this.dgvEmployees.Size = new System.Drawing.Size(785, 342);
-            this.dgvEmployees.TabIndex = 0;
+            this.dgvEmployees.TabIndex = 3;
             this.dgvEmployees.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dgvEmployees_RowStateChanged);
-            //this.dgvEmployees.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvEmployees_MouseClick);
             // 
             // btnManagementEmployee
             // 
@@ -68,7 +67,7 @@
             this.btnManagementEmployee.Location = new System.Drawing.Point(12, 454);
             this.btnManagementEmployee.Name = "btnManagementEmployee";
             this.btnManagementEmployee.Size = new System.Drawing.Size(105, 49);
-            this.btnManagementEmployee.TabIndex = 3;
+            this.btnManagementEmployee.TabIndex = 4;
             this.btnManagementEmployee.Text = "Create";
             this.btnManagementEmployee.UseVisualStyleBackColor = true;
             this.btnManagementEmployee.Click += new System.EventHandler(this.btnManagementEmployee_Click);
@@ -109,9 +108,9 @@
             // btnAddToTeam
             // 
             this.btnAddToTeam.Enabled = false;
-            this.btnAddToTeam.Location = new System.Drawing.Point(246, 23);
+            this.btnAddToTeam.Location = new System.Drawing.Point(246, 18);
             this.btnAddToTeam.Name = "btnAddToTeam";
-            this.btnAddToTeam.Size = new System.Drawing.Size(122, 23);
+            this.btnAddToTeam.Size = new System.Drawing.Size(122, 32);
             this.btnAddToTeam.TabIndex = 2;
             this.btnAddToTeam.Text = "Add to Team";
             this.btnAddToTeam.UseVisualStyleBackColor = true;

@@ -40,7 +40,7 @@
             this.btnAddToTeam.Location = new System.Drawing.Point(312, 360);
             this.btnAddToTeam.Name = "btnAddToTeam";
             this.btnAddToTeam.Size = new System.Drawing.Size(100, 49);
-            this.btnAddToTeam.TabIndex = 7;
+            this.btnAddToTeam.TabIndex = 2;
             this.btnAddToTeam.Text = "Add to Team";
             this.btnAddToTeam.UseVisualStyleBackColor = true;
             this.btnAddToTeam.Click += new System.EventHandler(this.btnAddToTeam_Click);
@@ -58,7 +58,7 @@
             this.dgvEmployees.Name = "dgvEmployees";
             this.dgvEmployees.RowTemplate.ReadOnly = true;
             this.dgvEmployees.Size = new System.Drawing.Size(785, 342);
-            this.dgvEmployees.TabIndex = 6;
+            this.dgvEmployees.TabIndex = 1;
             // 
             // btnCancel
             // 

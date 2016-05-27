@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,8 +13,13 @@ using System.Windows.Forms;
 
 namespace SynUp_Desktop.views
 {
+    /// <summary>
+    /// Form of main menu
+    /// </summary>
     public partial class frmMain : Form
     {
+        #region CONTROLLER
+
         private Controller controller;
 
         public Controller Controller
@@ -29,9 +35,14 @@ namespace SynUp_Desktop.views
             }
         }
 
+        #endregion
+
         public frmMain()
         {
             InitializeComponent();
+
+            this.linkUserManuall.Links[0].Description = "User Manuall";
+            this.linkUserManuall.Links.Add(0, this.linkUserManuall.Text.Length, Application.StartupPath + "\\Resources\\UserManuall_v1.pdf");
         }
 
         /// <summary>
@@ -101,5 +112,10 @@ namespace SynUp_Desktop.views
             this.Controller.AboutView.ShowDialog();
         }
 
+        private void linkUserManuall_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ProcessStartInfo sInfo = new ProcessStartInfo(e.Link.LinkData.ToString());
+            Process.Start(sInfo);
+        }
     }
 }
