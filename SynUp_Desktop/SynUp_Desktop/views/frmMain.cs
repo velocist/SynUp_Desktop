@@ -41,7 +41,7 @@ namespace SynUp_Desktop.views
         {
             InitializeComponent();
 
-            this.linkUserManuall.Links[0].Description = "User Manuall";
+            this.linkUserManuall.Links[0].Description = "User Manual";
             this.linkUserManuall.Links.Add(0, this.linkUserManuall.Text.Length, Application.StartupPath + "\\Resources\\UserManuall_v1.pdf");
         }
 
@@ -112,10 +112,23 @@ namespace SynUp_Desktop.views
             this.Controller.AboutView.ShowDialog();
         }
 
+        /// <summary>
+        /// Method that runs when the link is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void linkUserManuall_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ProcessStartInfo sInfo = new ProcessStartInfo(e.Link.LinkData.ToString());
-            Process.Start(sInfo);
+            try
+            {
+                ProcessStartInfo sInfo = new ProcessStartInfo(e.Link.LinkData.ToString());
+                Process.Start(Application.StartupPath + "\\Resources\\UserManuall_v1.pdf");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, "The UserManual file has been lost. Reinstall the program.", "SynUp", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
     }
 }

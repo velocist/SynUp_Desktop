@@ -31,7 +31,7 @@ namespace SynUp_Desktop.service
                 email = pEmail,
                 adress = pAdress,
                 //Como los ponemos por default no con el nif i el email no hace falta pedirlos en los parametros
-                username = pEmail,//Default initial username
+                username = pNif,//Default initial username
                 password = pNif //Default initial password
 
             };

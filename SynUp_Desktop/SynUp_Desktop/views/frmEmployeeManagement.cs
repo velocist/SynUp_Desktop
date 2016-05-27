@@ -106,7 +106,7 @@ namespace SynUp_Desktop.views
             String _strPhone = txtPhone.Text;
             String _strEmail = txtEmail.Text;
             String _strAdress = txtAdress.Text;
-            String _strUsername = txtUsername.Text;
+            String _strUsername = txtEmail.Text;
 
             if (!txtEmail.Text.Equals(""))
             {

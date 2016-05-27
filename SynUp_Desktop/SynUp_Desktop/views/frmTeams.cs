@@ -143,6 +143,8 @@ namespace SynUp_Desktop.views
             this.dgvTeams.ClearSelection();
             this.dgvTeams.Refresh();
             this.Refresh();
+
+            Util.changeButtonText(this.dgvTeams, this.btnManagementTeams);
         }
 
         #region HELP
