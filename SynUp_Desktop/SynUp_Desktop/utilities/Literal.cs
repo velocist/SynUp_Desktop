@@ -72,7 +72,7 @@ namespace SynUp_Desktop.utilities
         public static readonly string CONFIRMATION_UPDATE_EMPLOYEE = String.Format(ARE_U_SURE, "update", "employee");//"Are you sure you want to update this employee?";
         public static readonly string CONFIRMATION_DELETE_EMPLOYEE = String.Format(ARE_U_SURE, "delete", "employee");
         public static readonly string CONFIRMATION_UPDATE_TASK = String.Format(ARE_U_SURE, "update", "task");
-        public static readonly string CONFIRMATION_DELETE_TASK = String.Format(ARE_U_SURE, "delete", "task");
+        public static readonly string CONFIRMATION_DELETE_TASK = String.Format(ARE_U_SURE, "cancel", "task");
         public static readonly string CONFIRMATION_UPDATE_TEAM = String.Format(ARE_U_SURE, "update", "team");
         public static readonly string CONFIRMATION_DELETE_TEAM = String.Format(ARE_U_SURE, "delete", "team");
 
@@ -103,7 +103,7 @@ namespace SynUp_Desktop.utilities
 
         public static readonly string DELETE_EMPLOYEE_CORRETLY = String.Format(DELETE_SUCCESFULL, "employee");
         public static readonly string DELETE_TEAM_CORRETLY = String.Format(DELETE_SUCCESFULL, "team");
-        public static readonly string DELETE_TASK_CORRETLY = String.Format(DELETE_SUCCESFULL, "task");
+        public static readonly string DELETE_TASK_CORRETLY = "The task has been cancelled correctly.";
 
         public static readonly string CREATE_EMPLOYEE_FAILED = String.Format(CREATE_FAILED, "employee");
         public static readonly string CREATE_TEAM_FAILED = String.Format(CREATE_FAILED, "team");
@@ -115,7 +115,7 @@ namespace SynUp_Desktop.utilities
 
         public static readonly string DELETE_EMPLOYEE_FAILED = String.Format(DELETE_FAILED, "employee");
         public static readonly string DELETE_TEAM_FAILED = String.Format(DELETE_FAILED, "team");
-        public static readonly string DELETE_TASK_FAILED = String.Format(DELETE_FAILED, "task");
+        public static readonly string DELETE_TASK_FAILED = "The task hasn't been cancelled.";
 
         public static readonly string BTN_MGT_CREATE_TEXT = "Create";
         public static readonly string BTN_MGT_UP_DEL_TEXT = "Update/Delete";
