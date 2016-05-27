@@ -47,7 +47,7 @@
             this.btnManagementTasks.Location = new System.Drawing.Point(16, 565);
             this.btnManagementTasks.Margin = new System.Windows.Forms.Padding(4);
             this.btnManagementTasks.Name = "btnManagementTasks";
-            this.btnManagementTasks.Size = new System.Drawing.Size(113, 49);
+            this.btnManagementTasks.Size = new System.Drawing.Size(130, 50);
             this.btnManagementTasks.TabIndex = 2;
             this.btnManagementTasks.Text = "Create";
             this.btnManagementTasks.UseVisualStyleBackColor = true;
@@ -91,11 +91,11 @@
             this.gbHelp.BackColor = System.Drawing.Color.Transparent;
             this.gbHelp.Controls.Add(this.pbxIconMessage);
             this.gbHelp.Controls.Add(this.lblHelpMessage);
-            this.gbHelp.Location = new System.Drawing.Point(137, 549);
+            this.gbHelp.Location = new System.Drawing.Point(154, 549);
             this.gbHelp.Margin = new System.Windows.Forms.Padding(4);
             this.gbHelp.Name = "gbHelp";
             this.gbHelp.Padding = new System.Windows.Forms.Padding(4);
-            this.gbHelp.Size = new System.Drawing.Size(570, 66);
+            this.gbHelp.Size = new System.Drawing.Size(553, 66);
             this.gbHelp.TabIndex = 0;
             this.gbHelp.TabStop = false;
             this.gbHelp.Text = "Help";
@@ -117,9 +117,8 @@
             this.lblHelpMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHelpMessage.MaximumSize = new System.Drawing.Size(573, 49);
             this.lblHelpMessage.Name = "lblHelpMessage";
-            this.lblHelpMessage.Size = new System.Drawing.Size(108, 17);
+            this.lblHelpMessage.Size = new System.Drawing.Size(0, 17);
             this.lblHelpMessage.TabIndex = 0;
-            this.lblHelpMessage.Text = "";
             // 
             // btnBack
             // 

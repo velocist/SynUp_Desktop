@@ -73,11 +73,11 @@
             this.gbHelp.BackColor = System.Drawing.Color.Transparent;
             this.gbHelp.Controls.Add(this.pbxIconMessage);
             this.gbHelp.Controls.Add(this.lblHelpMessage);
-            this.gbHelp.Location = new System.Drawing.Point(139, 514);
+            this.gbHelp.Location = new System.Drawing.Point(153, 514);
             this.gbHelp.Margin = new System.Windows.Forms.Padding(4);
             this.gbHelp.Name = "gbHelp";
             this.gbHelp.Padding = new System.Windows.Forms.Padding(4);
-            this.gbHelp.Size = new System.Drawing.Size(573, 59);
+            this.gbHelp.Size = new System.Drawing.Size(559, 59);
             this.gbHelp.TabIndex = 0;
             this.gbHelp.TabStop = false;
             this.gbHelp.Text = "Help";
@@ -107,7 +107,7 @@
             this.btnManagementTeams.Location = new System.Drawing.Point(16, 524);
             this.btnManagementTeams.Margin = new System.Windows.Forms.Padding(4);
             this.btnManagementTeams.Name = "btnManagementTeams";
-            this.btnManagementTeams.Size = new System.Drawing.Size(113, 49);
+            this.btnManagementTeams.Size = new System.Drawing.Size(130, 50);
             this.btnManagementTeams.TabIndex = 2;
             this.btnManagementTeams.Text = "Create";
             this.btnManagementTeams.UseVisualStyleBackColor = true;

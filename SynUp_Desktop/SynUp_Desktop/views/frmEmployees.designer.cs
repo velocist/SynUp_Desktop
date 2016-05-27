@@ -66,7 +66,7 @@
             this.btnManagementEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnManagementEmployee.Location = new System.Drawing.Point(12, 454);
             this.btnManagementEmployee.Name = "btnManagementEmployee";
-            this.btnManagementEmployee.Size = new System.Drawing.Size(105, 49);
+            this.btnManagementEmployee.Size = new System.Drawing.Size(130, 50);
             this.btnManagementEmployee.TabIndex = 4;
             this.btnManagementEmployee.Text = "Create";
             this.btnManagementEmployee.UseVisualStyleBackColor = true;
@@ -122,9 +122,9 @@
             this.gbHelp.Controls.Add(this.pbxIconMessage);
             this.gbHelp.Controls.Add(this.lblHelpMessage);
             this.gbHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbHelp.Location = new System.Drawing.Point(123, 446);
+            this.gbHelp.Location = new System.Drawing.Point(148, 446);
             this.gbHelp.Name = "gbHelp";
-            this.gbHelp.Size = new System.Drawing.Size(586, 57);
+            this.gbHelp.Size = new System.Drawing.Size(561, 57);
             this.gbHelp.TabIndex = 0;
             this.gbHelp.TabStop = false;
             this.gbHelp.Text = "Help";
