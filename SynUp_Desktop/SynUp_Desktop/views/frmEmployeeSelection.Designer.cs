@@ -37,9 +37,10 @@
             // 
             // btnAddToTeam
             // 
-            this.btnAddToTeam.Location = new System.Drawing.Point(312, 360);
+            this.btnAddToTeam.Location = new System.Drawing.Point(270, 387);
+            this.btnAddToTeam.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAddToTeam.Name = "btnAddToTeam";
-            this.btnAddToTeam.Size = new System.Drawing.Size(100, 49);
+            this.btnAddToTeam.Size = new System.Drawing.Size(133, 60);
             this.btnAddToTeam.TabIndex = 2;
             this.btnAddToTeam.Text = "Add to Team";
             this.btnAddToTeam.UseVisualStyleBackColor = true;
@@ -54,17 +55,19 @@
             this.dgvEmployees.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEmployees.GridColor = System.Drawing.SystemColors.HotTrack;
-            this.dgvEmployees.Location = new System.Drawing.Point(11, 12);
+            this.dgvEmployees.Location = new System.Drawing.Point(15, 15);
+            this.dgvEmployees.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvEmployees.Name = "dgvEmployees";
             this.dgvEmployees.RowTemplate.ReadOnly = true;
-            this.dgvEmployees.Size = new System.Drawing.Size(785, 342);
+            this.dgvEmployees.Size = new System.Drawing.Size(794, 364);
             this.dgvEmployees.TabIndex = 1;
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(418, 360);
+            this.btnCancel.Location = new System.Drawing.Point(411, 387);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(100, 49);
+            this.btnCancel.Size = new System.Drawing.Size(133, 60);
             this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -72,15 +75,17 @@
             // 
             // frmEmployeeSelection
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ClientSize = new System.Drawing.Size(808, 416);
+            this.ClientSize = new System.Drawing.Size(816, 451);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAddToTeam);
             this.Controls.Add(this.dgvEmployees);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmEmployeeSelection";
