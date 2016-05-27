@@ -20,11 +20,9 @@ namespace SynUp_Desktop.views
     /// <Author>Cristina Caballero</Author>
     public partial class frmTaskManagement : Form
     {
+        #region CONTROLLER
+
         private Controller controller;
-        private model.pojo.Task auxTask;
-        private Boolean _blHelp;
-        //private int minHeight = 570;
-        //private int maxHeight = 590;
 
         public Controller Controller
         {
@@ -38,6 +36,11 @@ namespace SynUp_Desktop.views
                 controller = value;
             }
         }
+
+        #endregion
+
+        private Boolean _blHelp;
+        private model.pojo.Task auxTask;
 
         public model.pojo.Task AuxTask
         {
@@ -96,11 +99,9 @@ namespace SynUp_Desktop.views
                 {
                     clMessageBox.showMessage(Literal.CREATE_TASK_FAILED, false, this);
                 }
-                //clMessageBox.showMessageAction(clMessageBox.ACTIONTYPE.CREATE, "task", _blCreate, this);                
             }
 
         }
-
 
         /// <summary>
         /// Event that runs when the button is clicked to delete a task
@@ -199,14 +200,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void mcalPriorityDate_DateChanged(object sender, DateRangeEventArgs e)
         {
-            if (mcalPriorityDate.SelectionStart.Date < DateTime.Today || mcalPriorityDate.SelectionStart == null)
-            {
-                lblPriorityDate.ForeColor = Color.Red;
-            }
-            else
-            {
-                lblPriorityDate.ForeColor = Color.Black;
-            }
+            this.checkDate();
         }
 
         #endregion
@@ -217,7 +211,7 @@ namespace SynUp_Desktop.views
         /// <returns></returns>
         private bool checkCorrectValues()
         {
-            bool _correct = checkName() && checkCode();
+            bool _correct = this.checkName() && this.checkCode() && this.checkDate();
 
             if (!_correct) this.HelpMessage(Literal.ERROR_VALIDATION_TASK, (int)utilities.Help.HelpIcon.ERROR);
 
@@ -225,9 +219,9 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// 
+        /// Method that checks if the code task is correct
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Return true if its correct or false if its wrong</returns>
         private bool checkCode()
         {
             if (AuxTask == null)
@@ -253,9 +247,9 @@ namespace SynUp_Desktop.views
         }
 
         /// <summary>
-        /// 
+        /// Method that checks if the name task is correct
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Return true if its correct or false if its wrong</returns>
         private bool checkName()
         {
             if (txtName.Text.Equals("") || txtName.Text == null) // If the name is empty, we show a message
@@ -270,7 +264,26 @@ namespace SynUp_Desktop.views
             }
         }
 
-        #endregion        
+        /// <summary>
+        ///  Method that checks if the date is correct
+        /// </summary>
+        /// <returns>Return true if its correct or false if its wrong</returns>
+        private bool checkDate()
+        {
+            if (mcalPriorityDate.SelectionStart.Date < DateTime.Today || mcalPriorityDate.SelectionStart == null)
+            {
+                lblPriorityDate.ForeColor = Color.Red;
+                return false;
+            }
+            else
+            {
+                lblPriorityDate.ForeColor = Color.Black;
+                return true;
+            }
+        }
+        #endregion
+
+        #region FORM EVENT
 
         /// <summary>
         /// Event that runs when the form loads.
@@ -279,13 +292,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void frmTaskManagement_Load(object sender, EventArgs e)
         {
-
-            cbIdTeams.DataSource = Controller.TeamService.getAllTeams();
-            cbIdTeams.DisplayMember = "Name";
-            cbIdTeams.ValueMember = "Code";
-
-            cbIdTeams.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbImportance.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.fillComboTeams();
 
             if (AuxTask != null)
             {
@@ -306,31 +313,16 @@ namespace SynUp_Desktop.views
                 this.txtProject.Text = this.AuxTask.project;
                 this.txtState.Text = ((TaskState)this.AuxTask.state).ToString(); //getState(AuxTask);
 
-                btnCreateTask.Enabled = false;
-                txtCode.Enabled = false;
-
-                btnUpdateTask.Enabled = true;
-                btnDeleteTask.Enabled = true;
+                this.enabledCreate(false);
             }
             else
             {
-                btnUpdateTask.Enabled = false;
-                btnDeleteTask.Enabled = false;
-
-                btnCreateTask.Enabled = true;
-                txtCode.Enabled = true;
+                this.btnClear_Click(sender, e);
             }
 
-            ///Sets the tooltips for the view
-            ///Nota: Interesante poner las restricciones de la base de datos directamente.
-            //ToolTip ToolTips = new ToolTip();
-            //ToolTip1.IsBalloon = true;
-            //ToolTips.SetToolTip(this.lblCode, "Task code.");
-            //ToolTips.SetToolTip(lblDescription, "Description of the task.");
+            this._blHelp = utilities.Help.hideShowHelp(true, this, this.MinimumSize.Height, this.MaximumSize.Height);
 
-            this._blHelp = false;
-
-            utilities.Util.loadMenu(this, this.controller);
+            Util.loadMenu(this, this.controller);
         }
 
         /// <summary>
@@ -340,8 +332,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void frmTaskManagement_FormClosing(object sender, FormClosingEventArgs e)
         {
-            AuxTask = null;
-            _blHelp = false;
+            this.btnClear_Click(sender, e);
         }
 
         /// <summary>
@@ -351,9 +342,58 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnClear_Click(object sender, EventArgs e)
         {
-            this.btnClear.clearFields();
-            AuxTask = null;
+            this.clearForm();
             _blHelp = utilities.Help.hideShowHelp(true, this, this.MinimumSize.Height, this.MaximumSize.Height);
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Method that fills the combo teams
+        /// </summary>
+        private void fillComboTeams()
+        {
+            cbIdTeams.DataSource = Controller.TeamService.getAllTeams();
+            cbIdTeams.DisplayMember = "Name";
+            cbIdTeams.ValueMember = "Code";
+
+            cbIdTeams.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbImportance.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+
+        /// <summary>
+        /// MEthod that enableds create or update/delete
+        /// </summary>
+        /// <param name="pEnabled">True for enabled create</param>
+        private void enabledCreate(Boolean pEnabled)
+        {
+            if (pEnabled)
+            {
+                this.txtCode.Enabled = true;
+                this.btnCreateTask.Enabled = true;
+                this.btnUpdateTask.Enabled = false;
+                this.btnDeleteTask.Enabled = false;
+            }
+            else
+            {
+                this.txtCode.Enabled = false;
+                this.btnCreateTask.Enabled = false;
+                this.btnUpdateTask.Enabled = true;
+                this.btnDeleteTask.Enabled = true;
+            }
+
+        }
+
+        /// <summary>
+        /// Method that clears form
+        /// </summary>
+        private void clearForm()
+        {
+            this.btnClear.clearFields();
+            this.AuxTask = null;
+            this.enabledCreate(true);
+            this.cbIdTeams.SelectedIndex = -1;
+            this.cbImportance.SelectedIndex = 0;
         }
 
         #region HELP        

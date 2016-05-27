@@ -37,7 +37,7 @@ namespace SynUp_Desktop.views
         private Boolean _blHelp = false;
         private int minHeight;
         private int maxHeight;
-        private Boolean blAllAddCorrects;
+        //private Boolean blAllAddCorrects;
 
         public Team AuxTeam
         {
@@ -93,14 +93,14 @@ namespace SynUp_Desktop.views
                     clMessageBox.showMessage(Literal.CREATE_TEAM_CORRETLY, true, this);
                     if ((((System.Windows.Forms.Control)sender).Name).Equals("btnAdd"))
                     {
-                        blAllAddCorrects = true;
+                        //blAllAddCorrects = true;
                         AuxTeam = Controller.TeamService.readTeam(_strCode);
                     }
                 }
                 else
                 {
                     clMessageBox.showMessage(Literal.CREATE_TEAM_FAILED, false, this);
-                    blAllAddCorrects = false;
+                    //blAllAddCorrects = false;
                 }
             }
         }
@@ -341,6 +341,7 @@ namespace SynUp_Desktop.views
 
                         Boolean _blDelete = this.deleteFromTeam(_oSelectedEmployee, AuxTeam);
                         if (!_blDelete) _blAllCorrect = false;
+                        this.fillDataGrid();
                     }
                 }
             }
@@ -396,11 +397,8 @@ namespace SynUp_Desktop.views
             {
                 this.btnCreateTeam_Click(pSender, pArgs);
             }
-            if (blAllAddCorrects)
-            {
-                this.Controller.EmployeeSelectionView.AuxTeam = this.AuxTeam;
-                Controller.EmployeeSelectionView.ShowDialog();
-            }
+            this.Controller.EmployeeSelectionView.AuxTeam = this.AuxTeam;
+            Controller.EmployeeSelectionView.ShowDialog();
         }
 
         /// <summary>
