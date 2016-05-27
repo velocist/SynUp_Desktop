@@ -15,8 +15,10 @@ namespace SynUp_Desktop.views
 {
     public partial class frmEmployeeSelection : Form
     {
+
+        #region CONTROLLER
+
         private Controller controller;
-        private Team auxTeam;
 
         public Controller Controller
         {
@@ -31,6 +33,9 @@ namespace SynUp_Desktop.views
             }
         }
 
+        #endregion
+
+        private Team auxTeam;
         public Team AuxTeam
         {
             get
@@ -43,59 +48,13 @@ namespace SynUp_Desktop.views
                 auxTeam = value;
             }
         }
-        
+
         public frmEmployeeSelection()
         {
             InitializeComponent();
         }
-        
-        /// <summary>
-        /// Event that runs when the button add to team is clicked
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnAddToTeam_Click(object sender, EventArgs e)
-        {
-            model.pojo.Employee _oSelectedEmployee = null;
-            model.pojo.Team _oTeam = null;
 
-            if (this.dgvEmployees.SelectedRows.Count >= 1)
-            {
-                Boolean _blAllCorrect = true;
-
-                DataGridViewSelectedRowCollection _selected = dgvEmployees.SelectedRows;
-
-                foreach (DataGridViewRow _row in _selected)
-                {
-                    int _iIndexSelected = _row.Index; // Recover the index of selected row
-                    Object _cell = this.dgvEmployees.Rows[_iIndexSelected].Cells[0].Value;
-                    if (_cell != null)
-                    {
-                        String _strSelectedRowCode = _cell.ToString(); // Recover the code
-                        _oSelectedEmployee = Controller.EmployeeService.readEmployee(_strSelectedRowCode); // We look for the employee nif
-                        
-                        _oTeam = AuxTeam;
-                        model.pojo.TeamHistory _oCurrentTeam = this.Controller.TeamHistoryService.getCurrentTeamHistoryByEmployee(_oSelectedEmployee.nif, _oTeam.code); //We look if the employee already in team
-
-                        if (_oCurrentTeam == null)
-                        {
-                            if (_oSelectedEmployee != null && _oTeam != null)
-                            {
-                                Boolean _blAdd = this.Controller.TeamService.addToTeam(_oSelectedEmployee.nif, _oTeam.code);
-                            }
-                        }
-                        else
-                        {
-                            _blAllCorrect = false;
-                        }
-                    }
-                }
-
-                if (!_blAllCorrect) clMessageBox.showMessage(Literal.INFO_ON_TEAM, false, this);// Error al añadir algun empleado de la lista
-                this.Close();
-
-            }
-        }
+        #region FORM EVENTS
 
         /// <summary>
         /// Event that runs when the form is load
@@ -105,8 +64,30 @@ namespace SynUp_Desktop.views
         private void frmEmployeeSelection_Load(object sender, EventArgs e)
         {
             this.dgvConfiguration();
-
         }
+
+        /// <summary>
+        /// Event that runs when the button add to team is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAddToTeam_Click(object sender, EventArgs e)
+        {
+            this.addToTeam();
+        }
+
+        /// <summary>
+        /// Event that runs when the button Cancel is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            AuxTeam = null;
+        }
+
+        #endregion
 
         /// <summary>
         /// Fills the DataGridView with the values of the database.
@@ -120,7 +101,7 @@ namespace SynUp_Desktop.views
             this.dgvEmployees.Refresh();
             this.Refresh();
         }
-        
+
         /// <summary>
         /// Configurates dataGridView
         /// </summary>
@@ -143,19 +124,54 @@ namespace SynUp_Desktop.views
 
             this.dgvEmployees.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
 
-            Util.dgvCommonConfiguration(this.dgvEmployees);    
-
+            Util.dgvCommonConfiguration(this.dgvEmployees);
+            this.dgvEmployees.MultiSelect = true;
         }
 
         /// <summary>
-        /// Event that runs when the button Cancel is clicked
+        /// Method that adds selected employees on team
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void addToTeam()
         {
-            this.Close();
-            AuxTeam = null;
+            model.pojo.Employee _oSelectedEmployee = null;
+            model.pojo.Team _oTeam = null;
+
+            if (this.dgvEmployees.SelectedRows.Count >= 1)
+            {
+                Boolean _blAllCorrect = true;
+
+                DataGridViewSelectedRowCollection _selected = dgvEmployees.SelectedRows;
+
+                foreach (DataGridViewRow _row in _selected)
+                {
+                    int _iIndexSelected = _row.Index; // Recover the index of selected row
+                    Object _cell = this.dgvEmployees.Rows[_iIndexSelected].Cells[0].Value;
+                    if (_cell != null)
+                    {
+                        String _strSelectedRowCode = _cell.ToString(); // Recover the code
+                        _oSelectedEmployee = Controller.EmployeeService.readEmployee(_strSelectedRowCode); // We look for the employee nif
+
+                        _oTeam = AuxTeam;
+                        model.pojo.TeamHistory _oCurrentTeam = this.Controller.TeamHistoryService.getCurrentTeamHistoryByEmployee(_oSelectedEmployee.nif, _oTeam.code); //We look if the employee already in team
+
+                        if (_oCurrentTeam == null)
+                        {
+                            if (_oSelectedEmployee != null && _oTeam != null)
+                            {
+                                Boolean _blAdd = this.Controller.TeamService.addToTeam(_oSelectedEmployee.nif, _oTeam.code);
+                            }
+                        }
+                        else
+                        {
+                            _blAllCorrect = false;
+                        }
+                    }
+                }
+
+                if (!_blAllCorrect) clMessageBox.showMessage(Literal.ADD_ALL_EMPLOYEE_TO_TEAM_ERROR, false, this);
+                this.Close();
+
+            }
         }
     }
 }

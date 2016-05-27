@@ -90,7 +90,8 @@ namespace SynUp_Desktop.utilities
         private static readonly string DELETE_FAILED = "The {0} hasn't been deleted.";
 
         public static readonly string ADD_EMPLOYEE_TO_TEAM_SUCCESFULL = "The employee has been added to the team succesfully.";
-
+        public static readonly string ADD_ALL_EMPLOYEE_TO_TEAM_ERROR = "Any employee of the list could not be inserted because it already exists in the team.";
+        public static readonly string DELETE_ALL_EMPLOYEE_TO_TEAM_ERROR = "Any employee of the list could not be deleted into the team.";
 
         public static readonly string CREATE_EMPLOYEE_CORRETLY = String.Format(CREATE_SUCCESFULL, "employee");
         public static readonly string CREATE_TEAM_CORRETLY = String.Format(CREATE_SUCCESFULL, "team");

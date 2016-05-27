@@ -17,12 +17,11 @@ namespace SynUp_Desktop.views
     /// Forms stadistics
     /// </summary>
     public partial class frmStatistics : Form
-    {
-        private Controller controller;
-        private int minHeight = 510;
-        private int maxHeight = 570;
+    {     
 
-        private Boolean _blHelp = false; //Global variable that indicates whether this active support
+        #region CONTROLLER
+
+        private Controller controller;
 
         public Controller Controller
         {
@@ -37,13 +36,16 @@ namespace SynUp_Desktop.views
             }
         }
 
+        #endregion
+
+        private Boolean _blHelp = false; //Global variable that indicates whether this active support
+
         public frmStatistics()
         {
             InitializeComponent();
-            minHeight = this.MinimumSize.Height;
-            maxHeight = this.MaximumSize.Height;
-
         }
+
+        #region FORM EVENTS
 
         /// <summary>
         /// Iniializes the form filling all the comboboxes with the respective data.
@@ -54,9 +56,10 @@ namespace SynUp_Desktop.views
         {
             this.hideAllComponents();
             this.init();
-            this._blHelp = false;
+            //this._blHelp = false;
 
-            this.walkingControls();
+            utilities.Help.walkingControls(this, this.messageHelps_MouseHover, this.messageHelps_MouseLeave);
+
             this.gbContainer.MouseClick += new MouseEventHandler(this.frmStatistics_MouseClick);
             this.gbHelp.MouseClick += new MouseEventHandler(this.frmStatistics_MouseClick);
 
@@ -133,6 +136,8 @@ namespace SynUp_Desktop.views
                     break;
             }
         }
+
+        #endregion
 
         #region SHOW COMPONENTS BY SELECTED FILTER
 
@@ -215,10 +220,8 @@ namespace SynUp_Desktop.views
             }
             else
             {
-                this.HelpMessage(Literal.WARNING_DATEDIFF_STATISTICS, utilities.Help.changeIconMessage(3));
+                this.HelpMessage(Literal.WARNING_DATEDIFF_STATISTICS, (int)utilities.Help.HelpIcon.WARNING);
             }
-
-
         }
 
         /// <summary>
@@ -235,8 +238,7 @@ namespace SynUp_Desktop.views
             }
             else
             {
-                //clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
-                this.HelpMessage(Literal.WARNING_UNSELECTED_STATISTICS, utilities.Help.changeIconMessage(3));
+                this.HelpMessage(Literal.WARNING_UNSELECTED_STATISTICS, (int)utilities.Help.HelpIcon.WARNING);
             }
         }
 
@@ -253,8 +255,7 @@ namespace SynUp_Desktop.views
             }
             else
             {
-                //clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
-                this.HelpMessage(Literal.WARNING_UNSELECTED_STATISTICS, utilities.Help.changeIconMessage(2));
+                this.HelpMessage(Literal.WARNING_UNSELECTED_STATISTICS, (int)utilities.Help.HelpIcon.WARNING);
             }
         }
 
@@ -272,7 +273,7 @@ namespace SynUp_Desktop.views
             else
             {
                 //clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
-                this.HelpMessage(Literal.WARNING_UNSELECTED_STATISTICS, utilities.Help.changeIconMessage(3));
+                this.HelpMessage(Literal.WARNING_UNSELECTED_STATISTICS, (int)utilities.Help.HelpIcon.WARNING);
             }
         }
 
@@ -300,7 +301,7 @@ namespace SynUp_Desktop.views
             else
             {
                 //clMessageBox.showMessage(clMessageBox.MESSAGE.WRONG, null, this);
-                this.HelpMessage(Literal.WARNING_UNSELECTED_STATISTICS + " or " + Literal.WARNING_DATEDIFF_STATISTICS, utilities.Help.changeIconMessage(3));
+                this.HelpMessage(Literal.WARNING_UNSELECTED_STATISTICS + " or " + Literal.WARNING_DATEDIFF_STATISTICS, (int)utilities.Help.HelpIcon.WARNING);
             }
         }
 
@@ -332,9 +333,12 @@ namespace SynUp_Desktop.views
         private void dgvConfiguration()
         {
             Util.dgvCommonConfiguration(this.dgvStadistics);
-
         }
 
+        /// <summary>
+        /// Method that sets the instructions message
+        /// </summary>
+        /// <param name="text"></param>
         private void setInstructions(String text)
         {
             this.lblInstructions.Visible = true;
@@ -362,8 +366,8 @@ namespace SynUp_Desktop.views
             this.dtpEnd.Visible = false;
             //this.chtStatistics.Visible = false;
 
-            this.HelpMessage("", utilities.Help.changeIconMessage(3));
-            _blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);
+            this.HelpMessage("", (int)utilities.Help.HelpIcon.NONE);
+            _blHelp = utilities.Help.hideShowHelp(true, this, this.MinimumSize.Height, this.MaximumSize.Height);
 
         }
 
@@ -389,8 +393,8 @@ namespace SynUp_Desktop.views
             source.DataSource = _data;
             this.dgvStadistics.DataSource = source;
 
-            if (this.dgvStadistics.RowCount <= 0) this.HelpMessage(Literal.WARNING_EMPTY_STATISTICS, utilities.Help.changeIconMessage(3));
-            else _blHelp = utilities.Help.hideShowHelp(true, this, minHeight, maxHeight);
+            if (this.dgvStadistics.RowCount <= 0) this.HelpMessage(Literal.WARNING_EMPTY_STATISTICS, (int)utilities.Help.HelpIcon.WARNING);
+            //else _blHelp = utilities.Help.hideShowHelp(true, this, this.MinimumSize.Height, this.MaximumSize.Height);
 
             /* this.chtStatistics.DataSource = source;
 
@@ -447,8 +451,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void btnHelp_MouseClick(object sender, MouseEventArgs e)
         {
-            _blHelp = utilities.Help.hideShowHelp(_blHelp, this, this.MinimumSize.Height, this.MaximumSize.Height);
-            if (_blHelp) this.HelpMessage("", utilities.Help.changeIconMessage((int)utilities.Help.HelpIcon.NONE));
+            utilities.Help.hideShowHelp(_blHelp, this, this.MinimumSize.Height, this.MaximumSize.Height);
         }
 
         /// <summary>
@@ -458,10 +461,7 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void messageHelps_MouseLeave(object sender, EventArgs e)
         {
-            if (_blHelp)
-            {
-                this.HelpMessage("", utilities.Help.changeIconMessage(3));
-            }
+            this.HelpMessage("", (int)utilities.Help.HelpIcon.NONE);
         }
 
         /// <summary>
@@ -471,98 +471,96 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void messageHelps_MouseHover(object sender, EventArgs e)
         {
-            if (_blHelp)
+            string _message = "";
+
+            if (sender.Equals(this.btnSearch))
             {
-                string _message = "";
-
-                if (sender.Equals(this.btnSearch))
-                {
-                    _message = Literal.INFO_BTN_SEARCH;
-                }
-                else if (sender.Equals(this.dgvStadistics))
-                {
-                    _message = Literal.INFO_RESULTS_STATISTICS;
-                }
-                else if (sender.Equals(this.btnBack))
-                {
-                    _message = Literal.INFO_BTN_BACK;
-                }
-                else if (sender.Equals(this.cmbFilter))
-                {
-                    _message = Literal.INFO_FILTER_STATISTICS;
-                }
-                else if (sender.Equals(this.cmbEmployee))
-                {
-                    _message = Literal.INFO_EMPLOYEES_STATISTICS;
-                }
-                else if (sender.Equals(this.cmbTeams))
-                {
-                    _message = Literal.INFO_TEAMS_STATISTICS;
-                }
-                else if (sender.Equals(this.cmbStates))
-                {
-                    _message = Literal.INFO_STATE_STATISTICS;
-                }
-                else if (sender.Equals(this.cmbRanking))
-                {
-                    _message = Literal.INFO_RANKING_STATISTICS;
-                }
-                else if (sender.Equals(this.dtpBegin))
-                {
-                    _message = Literal.INFO_DTSTART_STATISTICS;
-                }
-                else if (sender.Equals(this.dtpEnd))
-                {
-                    _message = Literal.INFO_DTEND_STATISTICS;
-                }
-
-                this.HelpMessage(_message, utilities.Help.changeIconMessage((int)utilities.Help.HelpIcon.INFORMATION));
+                _message = Literal.INFO_BTN_SEARCH;
             }
-        }
-
-        /// <summary>
-        /// Method that walkings all controls in form
-        /// </summary>
-        private void walkingControls()
-        {
-            foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
+            else if (sender.Equals(this.dgvStadistics))
             {
-                if (_control is GroupBox)
-                {
-                    foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
-                    {
-                        _inGroupBox.MouseHover += new EventHandler(messageHelps_MouseHover);
-                        _inGroupBox.MouseLeave += new EventHandler(messageHelps_MouseLeave);
-                    }
-                }
-                if (_control is Button)
-                {
-                    _control.MouseHover += new EventHandler(messageHelps_MouseHover);
-                    _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
-                }
-                if (_control is GenericButton)
-                {
-                    _control.MouseHover += new EventHandler(messageHelps_MouseHover);
-                    _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
-                }
+                _message = Literal.INFO_RESULTS_STATISTICS;
             }
+            else if (sender.Equals(this.btnBack))
+            {
+                _message = Literal.INFO_BTN_BACK;
+            }
+            else if (sender.Equals(this.cmbFilter))
+            {
+                _message = Literal.INFO_FILTER_STATISTICS;
+            }
+            else if (sender.Equals(this.cmbEmployee))
+            {
+                _message = Literal.INFO_EMPLOYEES_STATISTICS;
+            }
+            else if (sender.Equals(this.cmbTeams))
+            {
+                _message = Literal.INFO_TEAMS_STATISTICS;
+            }
+            else if (sender.Equals(this.cmbStates))
+            {
+                _message = Literal.INFO_STATE_STATISTICS;
+            }
+            else if (sender.Equals(this.cmbRanking))
+            {
+                _message = Literal.INFO_RANKING_STATISTICS;
+            }
+            else if (sender.Equals(this.dtpBegin))
+            {
+                _message = Literal.INFO_DTSTART_STATISTICS;
+            }
+            else if (sender.Equals(this.dtpEnd))
+            {
+                _message = Literal.INFO_DTEND_STATISTICS;
+            }
+
+            this.HelpMessage(_message, (int)utilities.Help.HelpIcon.INFORMATION);
         }
 
         /// <summary>
         /// Method that shows message help
         /// </summary>
-        private void HelpMessage(String pMessage, Image pIcon)
+        private void HelpMessage(String message, int icon)
         {
-            this.pbxIconMessage.Visible = true;
             this.Height = this.MaximumSize.Height;
-            this.pbxIconMessage.Image = pIcon;
-            this.lblHelpMessage.Text = pMessage;
+            this.pbxIconMessage.Image = utilities.Help.changeIconMessage(icon);
+            this.lblHelpMessage.Text = message;
         }
 
         #endregion
 
     }
 }
+
+/*DELETES: Cristina C. 270516 Move to Help class
+/// <summary>
+/// Method that walkings all controls in form
+/// </summary>
+private void walkingControls()
+{
+    foreach (Control _control in this.Controls) //Recorremos los componentes del formulario
+    {
+        if (_control is GroupBox)
+        {
+            foreach (Control _inGroupBox in _control.Controls) //Recorrecmos los componentes del groupbox
+            {
+                _inGroupBox.MouseHover += new EventHandler(messageHelps_MouseHover);
+                _inGroupBox.MouseLeave += new EventHandler(messageHelps_MouseLeave);
+            }
+        }
+        if (_control is Button)
+        {
+            _control.MouseHover += new EventHandler(messageHelps_MouseHover);
+            _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
+        }
+        if (_control is GenericButton)
+        {
+            _control.MouseHover += new EventHandler(messageHelps_MouseHover);
+            _control.MouseLeave += new EventHandler(messageHelps_MouseLeave);
+        }
+    }
+}
+*/
 
 /* DELETES: Cristina C. Generic button
 /// <summary>

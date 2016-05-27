@@ -341,12 +341,11 @@ namespace SynUp_Desktop.views
 
                         Boolean _blDelete = this.deleteFromTeam(_oSelectedEmployee, AuxTeam);
                         if (!_blDelete) _blAllCorrect = false;
-                        this.fillDataGrid();
                     }
                 }
             }
-            if (!_blAllCorrect) clMessageBox.showMessage(Literal.INFO_ON_TEAM, false, this); //TODO: Error al elimanar algun empleado de la lista
-
+            if (!_blAllCorrect) clMessageBox.showMessage(Literal.DELETE_ALL_EMPLOYEE_TO_TEAM_ERROR, false, this);
+            this.fillDataGrid();
         }
 
         /// <summary>
@@ -384,6 +383,11 @@ namespace SynUp_Desktop.views
             this.dgvEmployeesOnTeam.DataSource = source;
             this.dgvEmployeesOnTeam.ClearSelection();
             this.dgvEmployeesOnTeam.Refresh();
+
+            if (source.Count == 0)
+            {
+                this.btnDeleteToTeam.Enabled = false;
+            }
         }
 
         /// <summary>
@@ -396,9 +400,17 @@ namespace SynUp_Desktop.views
             if (AuxTeam == null)
             {
                 this.btnCreateTeam_Click(pSender, pArgs);
+                if (AuxTeam != null)
+                {
+                    this.Controller.EmployeeSelectionView.AuxTeam = this.AuxTeam;
+                    Controller.EmployeeSelectionView.ShowDialog();
+                }
             }
-            this.Controller.EmployeeSelectionView.AuxTeam = this.AuxTeam;
-            Controller.EmployeeSelectionView.ShowDialog();
+            else
+            {
+                this.Controller.EmployeeSelectionView.AuxTeam = this.AuxTeam;
+                Controller.EmployeeSelectionView.ShowDialog();
+            }
         }
 
         /// <summary>
@@ -434,6 +446,7 @@ namespace SynUp_Desktop.views
                 this.btnCreateTeam.Enabled = true;
                 this.btnUpdateTeam.Enabled = false;
                 this.btnDeleteTeam.Enabled = false;
+                this.btnDeleteToTeam.Enabled = false;
             }
             else
             {

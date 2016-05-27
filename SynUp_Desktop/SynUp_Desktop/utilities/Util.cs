@@ -7,11 +7,13 @@ using System.Windows.Forms;
 
 namespace SynUp_Desktop.utilities
 {
+    /// <summary>
+    /// Class with common utilities
+    /// </summary>
     public static class Util
     {
         private static controller.Controller controllerSender;
-
-
+        
         /// <summary>
         /// Load the dynamic menu
         /// </summary>
@@ -50,9 +52,8 @@ namespace SynUp_Desktop.utilities
                 menu.Items.Add(menuItem);
             }
 
-
             formCommonConfiguration(pForm);
-            
+
         }
 
         /// <summary>
@@ -99,6 +100,10 @@ namespace SynUp_Desktop.utilities
             }
         }
 
+        /// <summary>
+        /// Methoid that configurates the datagridview common configuration
+        /// </summary>
+        /// <param name="pDataGrid">Datagrid to configurate</param>
         public static void dgvCommonConfiguration(DataGridView pDataGrid)
         {
             // DatagridView Common Configuration             
@@ -117,13 +122,18 @@ namespace SynUp_Desktop.utilities
 
         }
 
+        /// <summary>
+        /// Method that configurates the common properties
+        /// </summary>
+        /// <param name="pForm">Form to configurate</param>
         public static void formCommonConfiguration(Form pForm)
         {
             //Form Common Configurations
             pForm.FormBorderStyle = FormBorderStyle.Fixed3D;
-            pForm.MinimizeBox = false;
+            pForm.MinimizeBox = true;
             pForm.MaximizeBox = false;
             pForm.BackColor = System.Drawing.SystemColors.InactiveCaption; //Change backColor of form
+            pForm.StartPosition = FormStartPosition.CenterScreen;
         }
 
         /// <summary>

@@ -33,7 +33,9 @@
             this.cmbFilter = new System.Windows.Forms.ComboBox();
             this.dgvStadistics = new System.Windows.Forms.DataGridView();
             this.gbContainer = new System.Windows.Forms.GroupBox();
-            this.btnHelp = new System.Windows.Forms.Button();
+            this.gbHelp = new System.Windows.Forms.GroupBox();
+            this.pbxIconMessage = new System.Windows.Forms.PictureBox();
+            this.lblHelpMessage = new System.Windows.Forms.Label();
             this.btnBack = new SynUp_Desktop.utilities.GenericButton();
             this.cmbRanking = new System.Windows.Forms.ComboBox();
             this.cmbStates = new System.Windows.Forms.ComboBox();
@@ -45,9 +47,6 @@
             this.dtpEnd = new System.Windows.Forms.DateTimePicker();
             this.dtpBegin = new System.Windows.Forms.DateTimePicker();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.gbHelp = new System.Windows.Forms.GroupBox();
-            this.pbxIconMessage = new System.Windows.Forms.PictureBox();
-            this.lblHelpMessage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStadistics)).BeginInit();
             this.gbContainer.SuspendLayout();
             this.gbHelp.SuspendLayout();
@@ -57,7 +56,7 @@
             // lblFilter
             // 
             this.lblFilter.AutoSize = true;
-            this.lblFilter.Location = new System.Drawing.Point(8, 33);
+            this.lblFilter.Location = new System.Drawing.Point(8, 30);
             this.lblFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFilter.Name = "lblFilter";
             this.lblFilter.Size = new System.Drawing.Size(39, 17);
@@ -74,7 +73,7 @@
             "Task by employee",
             "Task by state",
             "Ranking"});
-            this.cmbFilter.Location = new System.Drawing.Point(55, 30);
+            this.cmbFilter.Location = new System.Drawing.Point(55, 26);
             this.cmbFilter.Margin = new System.Windows.Forms.Padding(4);
             this.cmbFilter.Name = "cmbFilter";
             this.cmbFilter.Size = new System.Drawing.Size(191, 24);
@@ -87,17 +86,17 @@
             this.dgvStadistics.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvStadistics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvStadistics.GridColor = System.Drawing.SystemColors.HotTrack;
-            this.dgvStadistics.Location = new System.Drawing.Point(8, 199);
+            this.dgvStadistics.Location = new System.Drawing.Point(8, 154);
             this.dgvStadistics.Margin = new System.Windows.Forms.Padding(4);
             this.dgvStadistics.Name = "dgvStadistics";
-            this.dgvStadistics.Size = new System.Drawing.Size(975, 271);
+            this.dgvStadistics.Size = new System.Drawing.Size(979, 300);
             this.dgvStadistics.TabIndex = 0;
             // 
             // gbContainer
             // 
             this.gbContainer.BackgroundImage = global::SynUp_Desktop.Properties.Resources.SynUp;
             this.gbContainer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.gbContainer.Controls.Add(this.btnHelp);
+            this.gbContainer.Controls.Add(this.gbHelp);
             this.gbContainer.Controls.Add(this.btnBack);
             this.gbContainer.Controls.Add(this.cmbRanking);
             this.gbContainer.Controls.Add(this.cmbStates);
@@ -112,7 +111,7 @@
             this.gbContainer.Controls.Add(this.lblFilter);
             this.gbContainer.Controls.Add(this.cmbFilter);
             this.gbContainer.Controls.Add(this.dgvStadistics);
-            this.gbContainer.Location = new System.Drawing.Point(16, 40);
+            this.gbContainer.Location = new System.Drawing.Point(15, 40);
             this.gbContainer.Margin = new System.Windows.Forms.Padding(4);
             this.gbContainer.Name = "gbContainer";
             this.gbContainer.Padding = new System.Windows.Forms.Padding(4);
@@ -121,143 +120,15 @@
             this.gbContainer.TabStop = false;
             this.gbContainer.Text = "List of Statistics";
             // 
-            // btnHelp
-            // 
-            this.btnHelp.Location = new System.Drawing.Point(842, 495);
-            this.btnHelp.Margin = new System.Windows.Forms.Padding(4);
-            this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(37, 28);
-            this.btnHelp.TabIndex = 6;
-            this.btnHelp.Text = "?";
-            this.btnHelp.UseVisualStyleBackColor = true;
-            this.btnHelp.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnHelp_MouseClick);
-            // 
-            // btnBack
-            // 
-            this.btnBack.AutoSize = true;
-            this.btnBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnBack.ButtonText = "Back";
-            this.btnBack.isExit = true;
-            this.btnBack.Location = new System.Drawing.Point(883, 474);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(0);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Parent = this;
-            this.btnBack.Size = new System.Drawing.Size(100, 49);
-            this.btnBack.TabIndex = 7;
-            // 
-            // cmbRanking
-            // 
-            this.cmbRanking.FormattingEnabled = true;
-            this.cmbRanking.Items.AddRange(new object[] {
-            "Teams",
-            "Employees"});
-            this.cmbRanking.Location = new System.Drawing.Point(55, 109);
-            this.cmbRanking.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbRanking.Name = "cmbRanking";
-            this.cmbRanking.Size = new System.Drawing.Size(160, 24);
-            this.cmbRanking.TabIndex = 2;
-            // 
-            // cmbStates
-            // 
-            this.cmbStates.FormattingEnabled = true;
-            this.cmbStates.Items.AddRange(new object[] {
-            "Not selected",
-            "Ongoing",
-            "Finished",
-            "Abandoned",
-            "Cancelled"});
-            this.cmbStates.Location = new System.Drawing.Point(55, 109);
-            this.cmbStates.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbStates.Name = "cmbStates";
-            this.cmbStates.Size = new System.Drawing.Size(160, 24);
-            this.cmbStates.TabIndex = 2;
-            // 
-            // cmbEmployee
-            // 
-            this.cmbEmployee.FormattingEnabled = true;
-            this.cmbEmployee.Location = new System.Drawing.Point(55, 109);
-            this.cmbEmployee.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbEmployee.Name = "cmbEmployee";
-            this.cmbEmployee.Size = new System.Drawing.Size(160, 24);
-            this.cmbEmployee.TabIndex = 2;
-            // 
-            // cmbTeams
-            // 
-            this.cmbTeams.FormattingEnabled = true;
-            this.cmbTeams.Location = new System.Drawing.Point(55, 109);
-            this.cmbTeams.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbTeams.Name = "cmbTeams";
-            this.cmbTeams.Size = new System.Drawing.Size(160, 24);
-            this.cmbTeams.TabIndex = 2;
-            // 
-            // lblInstructions
-            // 
-            this.lblInstructions.AutoSize = true;
-            this.lblInstructions.Location = new System.Drawing.Point(8, 71);
-            this.lblInstructions.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblInstructions.Name = "lblInstructions";
-            this.lblInstructions.Size = new System.Drawing.Size(71, 17);
-            this.lblInstructions.TabIndex = 0;
-            this.lblInstructions.Text = "Select the";
-            // 
-            // lblDate2
-            // 
-            this.lblDate2.AutoSize = true;
-            this.lblDate2.BackColor = System.Drawing.Color.Transparent;
-            this.lblDate2.Location = new System.Drawing.Point(629, 116);
-            this.lblDate2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblDate2.Name = "lblDate2";
-            this.lblDate2.Size = new System.Drawing.Size(37, 17);
-            this.lblDate2.TabIndex = 0;
-            this.lblDate2.Text = "End:";
-            // 
-            // lblDate1
-            // 
-            this.lblDate1.AutoSize = true;
-            this.lblDate1.BackColor = System.Drawing.Color.Transparent;
-            this.lblDate1.Location = new System.Drawing.Point(566, 71);
-            this.lblDate1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblDate1.Name = "lblDate1";
-            this.lblDate1.Size = new System.Drawing.Size(100, 17);
-            this.lblDate1.TabIndex = 0;
-            this.lblDate1.Text = "Between Start:";
-            // 
-            // dtpEnd
-            // 
-            this.dtpEnd.Location = new System.Drawing.Point(718, 111);
-            this.dtpEnd.Margin = new System.Windows.Forms.Padding(4);
-            this.dtpEnd.Name = "dtpEnd";
-            this.dtpEnd.Size = new System.Drawing.Size(265, 23);
-            this.dtpEnd.TabIndex = 4;
-            // 
-            // dtpBegin
-            // 
-            this.dtpBegin.Location = new System.Drawing.Point(718, 66);
-            this.dtpBegin.Margin = new System.Windows.Forms.Padding(4);
-            this.dtpBegin.Name = "dtpBegin";
-            this.dtpBegin.Size = new System.Drawing.Size(265, 23);
-            this.dtpBegin.TabIndex = 3;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Location = new System.Drawing.Point(883, 142);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(100, 49);
-            this.btnSearch.TabIndex = 5;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
             // gbHelp
             // 
             this.gbHelp.Controls.Add(this.pbxIconMessage);
             this.gbHelp.Controls.Add(this.lblHelpMessage);
-            this.gbHelp.Location = new System.Drawing.Point(16, 576);
+            this.gbHelp.Location = new System.Drawing.Point(8, 462);
             this.gbHelp.Margin = new System.Windows.Forms.Padding(4);
             this.gbHelp.Name = "gbHelp";
             this.gbHelp.Padding = new System.Windows.Forms.Padding(4);
-            this.gbHelp.Size = new System.Drawing.Size(997, 59);
+            this.gbHelp.Size = new System.Drawing.Size(871, 59);
             this.gbHelp.TabIndex = 0;
             this.gbHelp.TabStop = false;
             this.gbHelp.Text = "Help";
@@ -283,22 +154,138 @@
             this.lblHelpMessage.TabIndex = 0;
             this.lblHelpMessage.Text = "Message help...";
             // 
+            // btnBack
+            // 
+            this.btnBack.AutoSize = true;
+            this.btnBack.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnBack.ButtonText = "Back";
+            this.btnBack.isExit = true;
+            this.btnBack.Location = new System.Drawing.Point(883, 474);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(0);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Parent = this;
+            this.btnBack.Size = new System.Drawing.Size(100, 49);
+            this.btnBack.TabIndex = 7;
+            // 
+            // cmbRanking
+            // 
+            this.cmbRanking.FormattingEnabled = true;
+            this.cmbRanking.Items.AddRange(new object[] {
+            "Teams",
+            "Employees"});
+            this.cmbRanking.Location = new System.Drawing.Point(86, 97);
+            this.cmbRanking.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbRanking.Name = "cmbRanking";
+            this.cmbRanking.Size = new System.Drawing.Size(160, 24);
+            this.cmbRanking.TabIndex = 2;
+            // 
+            // cmbStates
+            // 
+            this.cmbStates.FormattingEnabled = true;
+            this.cmbStates.Items.AddRange(new object[] {
+            "Not selected",
+            "Ongoing",
+            "Finished",
+            "Abandoned",
+            "Cancelled"});
+            this.cmbStates.Location = new System.Drawing.Point(86, 97);
+            this.cmbStates.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbStates.Name = "cmbStates";
+            this.cmbStates.Size = new System.Drawing.Size(160, 24);
+            this.cmbStates.TabIndex = 2;
+            // 
+            // cmbEmployee
+            // 
+            this.cmbEmployee.FormattingEnabled = true;
+            this.cmbEmployee.Location = new System.Drawing.Point(86, 97);
+            this.cmbEmployee.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbEmployee.Name = "cmbEmployee";
+            this.cmbEmployee.Size = new System.Drawing.Size(160, 24);
+            this.cmbEmployee.TabIndex = 2;
+            // 
+            // cmbTeams
+            // 
+            this.cmbTeams.FormattingEnabled = true;
+            this.cmbTeams.Location = new System.Drawing.Point(86, 97);
+            this.cmbTeams.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbTeams.Name = "cmbTeams";
+            this.cmbTeams.Size = new System.Drawing.Size(160, 24);
+            this.cmbTeams.TabIndex = 2;
+            // 
+            // lblInstructions
+            // 
+            this.lblInstructions.AutoSize = true;
+            this.lblInstructions.Location = new System.Drawing.Point(8, 69);
+            this.lblInstructions.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblInstructions.Name = "lblInstructions";
+            this.lblInstructions.Size = new System.Drawing.Size(71, 17);
+            this.lblInstructions.TabIndex = 0;
+            this.lblInstructions.Text = "Select the";
+            // 
+            // lblDate2
+            // 
+            this.lblDate2.AutoSize = true;
+            this.lblDate2.BackColor = System.Drawing.Color.Transparent;
+            this.lblDate2.Location = new System.Drawing.Point(633, 69);
+            this.lblDate2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDate2.Name = "lblDate2";
+            this.lblDate2.Size = new System.Drawing.Size(37, 17);
+            this.lblDate2.TabIndex = 0;
+            this.lblDate2.Text = "End:";
+            // 
+            // lblDate1
+            // 
+            this.lblDate1.AutoSize = true;
+            this.lblDate1.BackColor = System.Drawing.Color.Transparent;
+            this.lblDate1.Location = new System.Drawing.Point(570, 30);
+            this.lblDate1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDate1.Name = "lblDate1";
+            this.lblDate1.Size = new System.Drawing.Size(100, 17);
+            this.lblDate1.TabIndex = 0;
+            this.lblDate1.Text = "Between Start:";
+            // 
+            // dtpEnd
+            // 
+            this.dtpEnd.Location = new System.Drawing.Point(722, 66);
+            this.dtpEnd.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpEnd.Name = "dtpEnd";
+            this.dtpEnd.Size = new System.Drawing.Size(265, 23);
+            this.dtpEnd.TabIndex = 4;
+            // 
+            // dtpBegin
+            // 
+            this.dtpBegin.Location = new System.Drawing.Point(722, 27);
+            this.dtpBegin.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpBegin.Name = "dtpBegin";
+            this.dtpBegin.Size = new System.Drawing.Size(265, 23);
+            this.dtpBegin.TabIndex = 3;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(887, 97);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(100, 49);
+            this.btnSearch.TabIndex = 5;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // frmStatistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1020, 575);
-            this.Controls.Add(this.gbHelp);
+            this.ClientSize = new System.Drawing.Size(1020, 577);
             this.Controls.Add(this.gbContainer);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1040, 685);
+            this.MaximumSize = new System.Drawing.Size(1040, 620);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(1040, 618);
+            this.MinimumSize = new System.Drawing.Size(1040, 620);
             this.Name = "frmStatistics";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SynUp - Statistics";
@@ -331,7 +318,6 @@
         private System.Windows.Forms.ComboBox cmbEmployee;
         private System.Windows.Forms.ComboBox cmbRanking;
         private utilities.GenericButton btnBack;
-        private System.Windows.Forms.Button btnHelp;
         private System.Windows.Forms.GroupBox gbHelp;
         private System.Windows.Forms.PictureBox pbxIconMessage;
         private System.Windows.Forms.Label lblHelpMessage;

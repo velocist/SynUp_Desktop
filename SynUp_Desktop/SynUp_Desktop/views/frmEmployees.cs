@@ -63,8 +63,6 @@ namespace SynUp_Desktop.views
             this.gbHelp.MouseClick += new MouseEventHandler(this.frmEmployees_MouseClick);
 
             Util.loadMenu(this, this.controller);
-
-
         }
 
         /// <summary>
@@ -278,7 +276,6 @@ namespace SynUp_Desktop.views
         /// <param name="e"></param>
         private void messageHelps_MouseHover(object sender, EventArgs e)
         {
-            //TODO Cambiar strings
             int _iIcon = (int)utilities.Help.HelpIcon.INFORMATION;
             String _message = "";
 

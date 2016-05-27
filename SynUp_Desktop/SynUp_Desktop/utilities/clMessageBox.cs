@@ -7,45 +7,22 @@ using System.Windows.Forms;
 
 namespace SynUp_Desktop.utilities
 {
+    /// <summary>
+    /// Class Message Box 
+    /// </summary>
     public static class clMessageBox
     {
-        /*
+
         /// <summary>
-        /// Method that shows a message action
+        /// Method that shows the message help
         /// </summary>
-        /// <param name="pAction">The action that was realized Values:[created,deleted,updated,added,deleted,assigned,unassigned]</param>
-        /// <param name="pObject">The object</param>
-        /// <param name="pCorrect">If the action was correctly or wrong</param>
-        /// <param name="pNameForm">The name of form which send the action</param>
-        public static void showMessageAction(String pMessage, Boolean pCorrect, Form pForm)
-        {
-            //public static void showMessageAction(ACTIONTYPE pAction, String pObject, Boolean pCorrect, Form pForm)
-            //Nombre del método cambiado a showMessageAction para hacerlo más "userfriendly"
-            //String _strMessage = null;
-            MessageBoxIcon _iconMessageBox;
-
-            //    String _strAction = actionToString(pAction, pCorrect);
-            if (pCorrect)
-            {
-                //_strMessage = "The " + pObject + _strAction;
-                _iconMessageBox = MessageBoxIcon.Information;
-                //pForm.Close();
-
-            }
-            else
-            {
-                //_strMessage = "The " + pObject + _strAction;
-                _iconMessageBox = MessageBoxIcon.Error;
-            }
-
-            MessageBox.Show(pForm, pMessage, pForm.Text, MessageBoxButtons.OK, _iconMessageBox);
-
-        }*/
-
+        /// <param name="pMessage"></param>
+        /// <param name="pCorrect"></param>
+        /// <param name="pForm"></param>
         public static void showMessage(String pMessage, Boolean pCorrect, Form pForm)
         {
             MessageBoxIcon _iconMessageBox;
-            
+
             if (pCorrect)
             {
                 _iconMessageBox = MessageBoxIcon.Information;
@@ -67,30 +44,6 @@ namespace SynUp_Desktop.utilities
         {
             return (MessageBox.Show(message, titleForm, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
         }
-        /// <summary>
-        /// Method that shows a message
-        /// </summary>
-        /// <param name="pMessage"></param>
-        /// <returns></returns>
-        //private static String messageToString(MESSAGE pMessage, String pObject)
-        //{
-        //    String _strMessage = null;
-        //    String _strInitialMessage = "This " + pObject;
-        //    switch (pMessage.ToString())
-        //    {
-        //        case "EXIST":
-        //            _strMessage = _strInitialMessage + " already exists";
-        //            break;
-        //        case "INTEAM":
-        //            _strMessage = _strInitialMessage + " already on the team";
-        //            break;
-        //        case "WRONG":
-        //            _strMessage = "\tWrong fields.\nInsert again the values.";
-        //            break;
-
-        //    }
-        //    return _strMessage;
-        //}
 
     }
 }
